@@ -1,34 +1,69 @@
-# Taxonomy Lean Sketch: Status Notes
+# Lean Formalization: Status Notes
 
-**Date:** 2026-04-02
-**Status:** First compilation successful. All proofs verified (490ms).
+**Last updated:** 2026-04-03
 
-## What's proven
+## Files
 
-- Terminal nodes (Δg, Δa) have no outgoing pipeline edges
-- Δx and Δh have no outgoing pipeline edges
-- Pipeline reachability from Δn, Δo, Δw, Δp, Δe, Δr, Δb, Δc to Δh
-- Framing cascade (Δn → Δb → Δc → Δh) has distinct role at each step
-- Roots have outgoing edges; junction (Δb) has both incoming and outgoing
-- Δi decomposes into Δn + Δr + Δw by definition
+| File | Contents |
+|------|----------|
+| `LeanProofs/TaxonomyGraph.lean` | Static taxonomy: domains, roles, edges, reachability, role coherence, closure classification |
+| `LeanProofs/PersistenceModel.lean` | Dynamic model: Δc→Δh state machine with 10 proved invariants |
+| `dc_dh_persistence.py` | Python exploratory model (10 scenarios) |
+| `RESULTS-2026-04-03.md` | Full results memo |
+| `CLAIM-REGISTER.md` | Prose claim audit (10 claims, 3 rewrites done) |
 
-## Negative result (the real finding)
+## Static topology (TaxonomyGraph.lean)
 
-- **Δs and Δk do NOT reach Δh through pipeline edges**
-- Δs → Δm → Δg/Δa (terminal dead ends)
-- Δk → Δx (no outgoing edges)
-- Therefore: **"Δh is the universal sink" is FALSE as a pipeline reachability claim**
-- The informal prose was compressing two different claims into one sentence
+### Closure map (all cells machine-verified)
 
-## Open questions
+| Class | Members | Terminals reached |
+|-------|---------|-------------------|
+| isTerminal | Δg, Δa, Δx, Δh | none |
+| reachesHOnly | Δw, Δc, Δe | Δh |
+| reachesGAOnly | Δs, Δm | Δg, Δa |
+| reachesXOnly | Δk | Δx |
+| reachesGAH | Δn, Δo, Δb, Δp, Δr | Δg, Δa, Δh |
 
-- **Static pipeline vs dynamic attractor:** Δh may still be a dynamic attractor under persistence, but that's a temporal claim the static graph can't represent. Needs a separate relation if formalized.
-- **Δx as dead end:** Classified as cross-scale transmission / amplifier, but has no outgoing pipeline edges. Amplifies in-place — is that a different kind of edge, or does the role need reclassifying?
-- **Therapeutic inversion count:** 13/15 in the Lean encoding vs 11/14 in the role map. Discrepancy is definitional strictness, not a bug.
+Three terminal families, not one universal sink. The coupling family {Δk, Δx} is graph-isolated.
 
-## Next steps (not tonight)
+### Role coherence
 
-1. Compute full transitive closure / reachability matrix (replace artisanal proofs)
-2. Formalize claim partition in prose: structural / definitional / dynamic / normative
-3. Introduce dynamic relation stub if the attractor claim needs teeth
-4. Do NOT add edges to rescue the universal-sink slogan
+10/11 roles structurally coherent. One mismatch: Δx labeled `crossScaleTrans` but has no outgoing edges (structurally identical to terminal). Left unresolved — the mismatch is data.
+
+## Dynamic persistence model (PersistenceModel.lean)
+
+### 10 proved invariants
+
+| # | Name | What it proves |
+|---|------|----------------|
+| 1 | `capacity_nonincreasing_internal` | Capacity never increases under internal events |
+| 2 | `idle_preserves_capacity` | Idle steps don't burn capacity (idleBurn=0) |
+| 3 | `hysteretic_absorbing_internal` | No internal event exits HYSTERETIC |
+| 4 | `reattach_from_hysteretic_fails` | REATTACH can't restore ALIGNED from HYSTERETIC |
+| 5 | `hysteresis_without_warn` | HYSTERETIC reachable without DETACHED_WARN |
+| 6 | `warn_requires_prolonged` | DETACHED_WARN needs commit count ≥ τ |
+| 7 | `external_repair_exits_hysteretic` | EXTERNAL_REPAIR → RESTRUCTURED |
+| 8 | `repair_produces_restructured_not_aligned` | Repair ≠ restoration (new regime, not baseline) |
+| 9 | `restructured_can_fail_again` | aligned → hysteretic → restructured → hysteretic |
+| 10 | `repair_capacity_is_configured` | After repair, capacity = repairCapacity |
+
+### Three-way recovery distinction (formally proved)
+
+| Category | Mechanism | Outcome |
+|----------|-----------|---------|
+| **Internally recoverable** | REATTACH from detached states | → ALIGNED (while capacity > 0) |
+| **Externally repairable** | EXTERNAL_REPAIR from HYSTERETIC | → RESTRUCTURED (new regime, less capacity) |
+| **Locked in** | No internal event exits HYSTERETIC | System stays HYSTERETIC without external intervention |
+
+**Key corollary:** External repair restores operability, not resilience. A restructured system can fail again, faster, because it starts with less rollback capacity.
+
+### Dead slogans
+
+1. ~~"Δh is the universal sink"~~ — FALSE as static pipeline topology. Three terminal families.
+2. ~~"Prolonged detachment is necessary for reset failure"~~ — FALSE. Repeated short episodes with cumulative capacity burn suffice.
+
+### Corrected statements
+
+- "Static topology yields multiple terminal families; any universalization of Δh must be stated as a temporal hypothesis, not a graph fact."
+- "Reset failure is driven by cumulative rollback depletion under detached commits; prolonged contiguous detachment is sufficient but not necessary."
+- "A system can be internally irrecoverable yet externally repairable, and external repair restores operability without restoring baseline resilience."
