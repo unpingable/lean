@@ -20,6 +20,8 @@ lake build
 
 The taxonomy is documented in `working/cybernetic-failure-taxonomy/` in the papers repo. This repo formalizes the structural claims; the papers repo holds the prose, spikes, and role map. The Lean encoding is not a replacement for the informal taxonomy — it's an ambiguity detector that forces the prose to say what it means.
 
+For the module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready), see [`PAPER-MAP.md`](PAPER-MAP.md). The paper-indexed inverse lives in the papers repo at `docs/formalization-index.md`. Claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN) is in [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md).
+
 ## Status
 
 Sketch. All current proofs compile and verify. See `NOTES.md` for open questions and next steps.
