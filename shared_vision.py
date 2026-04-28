@@ -1,38 +1,46 @@
 """
 Shared vision as coordinating prior: exploratory toy.
 
-Companion to working/shared-vision-coordinating-prior.md (Paper 24
-candidate). The purpose is to see whether the proposed three regimes —
-fragmented realism, useful fiction, cargo-cult ideology — actually fall
-out of a minimal multi-agent partially-observed control system with a
-shared coordinating prior.
+Companion to preprint/24-shared-vision-coordinating-prior/ (Paper 24, v0.2,
+2026-04-27). Purpose: probe-grade demonstrations of the three structural
+pathologies of §3 (mean-aggregation masking, alias-compatibility under
+shift, witness-filter persistence) on a minimal multi-agent partially-
+observed control system with a shared coordinating prior.
 
-Model (chatty's minimal version):
+Model:
   - one plant state x_t
   - n agents, each with local bias b_i and gain k_i
   - each agent sees y^i_t = x_t + b_i + v^i_t
-  - each agent acts a^i_t = -k_i (y^i_t - V_t)
+  - each agent acts a^i_t = -k_i (y^i_t - A_i(V_t))
   - plant evolves x_{t+1} = x_t + Σ a^i_t + w_t
-  - shared vision updates V_{t+1} = V_t + η (x_t - V_t)
+  - shared vision updates V_{t+1} = V_t + η · Φ(filtered errors)
 
-This is a stylized hybrid model in exactly the Paper-23 sense: showing
-that the mechanisms are sufficient to generate the claimed regime
-structure, not a claim about any specific organization.
+Local-gradient interpretation (Paper 24 §3.4, v0.2). Each agent has a
+private local-gradient parameter φ_i. Around stationary V_0=0 with the
+canonical action map A(V)=V, the local-gradient form
+    A_i(V_0) = A(V_0),    A_i'(V_0) = A'(V_0) + φ_i
+specializes to A_i(V) = V·(1 + φ_i), which is what the sim implements.
+Agents agree on the public target at V_0=0 (so a^i_*=0 for all i in the
+equal-gain b=0 equilibrium) and differ only in local slope 1+φ_i, which
+surfaces linearly in |ΔV| under strategic shift V_0 → V_0 + ΔV. All probes
+here run from V_0=0, so the multiplicative form is exact; for V_0 ≠ 0 it
+deviates from the strict linearization (deferred per Paper 24 §8).
 
-First-pass design intent:
-  - keep the plant tiny (1D)
-  - keep the agents tiny (2, scalar bias)
-  - make the vision update explicit and tunable
-  - classify terminal behavior as a regime label via coarse heuristics
-  - sweep (bias spread, η) to see whether fragmented/useful/cargo-cult
-    fall out as distinct phases
+What this sim covers:
+  - Aggregation-boundary probe (Conjecture 1 / §4.1): MEAN, MEDIAN,
+    MAX_ABS, VARIANCE_GATED × 4 bias configs.
+  - Alias-compatibility demo (Proposition 2 / §4.2): action divergence
+    pre- vs post-shock with hidden φ-spread.
+  - Witness-filter probe (Theorems 3–4 / §4.3): stack-rank semantics
+    over a 3-aligned-plus-1-dissenter cohort.
+  - Lock-in probe across procedural gates (UNGOVERNED, UNANIMITY,
+    DECAY_THAW, DISSENT_OVERRIDE) for §3.2 corollary.
 
-What this scaffold does NOT yet do:
-  - governance over V_t (the GovernedVisionUpdate is a placeholder)
-  - alias-compatibility probe (agents with same public V_t but different
-    internal compositions — the actual Paper-24-distinctive demo)
+What this sim does NOT yet do:
   - vector V_t (only scalar so far)
-  - brittleness-spiral coupling (coordination gain → reduced margin)
+  - heterogeneous gains
+  - non-zero bias in the alias-compatibility demo (deferred per §8)
+  - the metric-distinction split (variance vs std/MAD reported separately)
 """
 
 from dataclasses import dataclass, field, replace
@@ -46,19 +54,23 @@ import random
 class Agent:
     """A single agent with a local biased view and a gain.
 
-    `interpretation` (φ_i) is the agent's private decoding of the public
-    shared vision: the agent behaves as if the real target is
-    V_t · (1 + φ_i) rather than V_t itself. When V_t ≈ 0 the decoding
-    divergence is invisible in action space (public alignment), but as V_t
-    deviates from 0 (strategic shift, stress event) the hidden φ_i
-    divergence surfaces as action-level disagreement. This is the
-    organizational analogue of Paper 23's aliasing: public tokens of
-    alignment can coexist with diverged internal composition until stress.
-    Default 0 recovers the baseline "everyone reads V_t the same way".
+    `interpretation` (φ_i) is the agent's private *local-gradient*
+    parameter (Paper 24 §3.4, v0.2): the agent agrees on the public target
+    at V_0 = 0 and differs only in the local slope, implementing
+    A_i(V) = V · (1 + φ_i) — the V_0=0 specialization of the local-gradient
+    interpretation A_i(V_0)=A(V_0), A_i'(V_0)=A'(V_0)+φ_i with A(V)=V. At
+    V=0 the slope-divergence is invisible in action space (every agent's
+    target is 0; in the b=0 equal-gain equilibrium every action is
+    identically zero); under strategic shift V → V_0 + ΔV the hidden φ_i
+    divergence surfaces as action-level disagreement scaling linearly in
+    ΔV·φ_i. This is the "agree on level, disagree on direction" structure
+    of Proposition 2; the v0.1 additive interpretation (V_t + φ_i) gave
+    nonzero pre-shock divergence and is no longer used. Default 0 recovers
+    the baseline.
     """
     bias: float = 0.0              # b_i
     gain: float = 0.5              # k_i
-    interpretation: float = 0.0    # φ_i: private decoding of V_t
+    interpretation: float = 0.0    # φ_i: local-gradient parameter
 
 
 @dataclass
@@ -97,7 +109,10 @@ def observe(agent: Agent, x: float, rng: random.Random,
 
 
 def agent_action(agent: Agent, y: float, V: float) -> float:
-    """a_i = −k_i (y_i − g_i(V_t; φ_i)), where g_i(V; φ) = V·(1 + φ).
+    """a_i = −k_i (y_i − A_i(V)), with local-gradient action map
+    A_i(V) = V·(1 + φ_i) (Paper 24 §3.4, v0.2 — the V_0=0 specialization
+    of the general local-gradient form A_i(V_0)=A(V_0), A_i'(V_0)=A'(V_0)+φ_i
+    with A(V)=V).
 
     Recovers the baseline a_i = −k_i(y_i − V_t) when φ_i = 0.
     """
@@ -266,23 +281,24 @@ def alias_compatibility_demo(
     eta: float = 0.1,
     seed: int = 0,
 ) -> dict:
-    """Public alignment, internal divergence.
+    """Public alignment, internal divergence (Paper 24 §4.2 probe, v0.2).
 
-    Two agents with identical bias/gain but divergent private
-    interpretations φ_1, φ_2. Phase 1: V_t stays near 0, so the
-    multiplicative decoding V·(1+φ_i) is near 0 for both — actions are
-    indistinguishable regardless of φ spread. Phase 2: external shock
-    displaces V_t away from 0 (strategic shift). The hidden φ divergence
-    surfaces as action-level divergence, exposing internal non-alignment
-    that was masked under nominal conditions.
+    Two agents with identical bias/gain and divergent local-gradient
+    interpretations φ_1, φ_2 — agreement on level, disagreement on the
+    *continuation rule* under movement. Phase 1: V_t stays near V_0 = 0,
+    so A_i(V) = V·(1+φ_i) is identically 0 for both regardless of φ-spread
+    — actions are indistinguishable (observational aliasing at baseline).
+    Phase 2: external shock displaces V_t (strategic shift). The hidden
+    φ-spread surfaces linearly in |ΔV| as action-level divergence —
+    the alias breaks.
 
-    This is Paper 23's §3 masking one scale up: the measurement-and-
-    authority map at the multi-agent layer is "look at whether the agents
-    are doing the same thing." That map cannot distinguish shared from
-    merely aliased-compatible alignment while V_t is in its nominal range.
+    Reported `divergence` is mean-pairwise-absolute-divergence (n=2:
+    |a_1 - a_2|), which scales linearly in |ΔV| per Paper 24 §3.4 metric
+    distinction. The variance metric scales quadratically; both are
+    predicted by Proposition 2.
     """
     rng = random.Random(seed)
-    # Two agents: same bias & gain, opposite interpretation drift
+    # Two agents: same bias & gain, opposite local-gradient drift
     a1 = Agent(bias=-bias_spread / 2, gain=0.5,
                interpretation=-phi_spread / 2)
     a2 = Agent(bias=bias_spread / 2, gain=0.5,
@@ -290,7 +306,8 @@ def alias_compatibility_demo(
     plant = Plant(x=0.0, target=0.0)
     vision = SharedVision(V=0.0, eta=eta)
 
-    action_divergence: list[float] = []
+    linear_div: list[float] = []   # |a_1 - a_2| (mean pairwise abs)
+    variance_div: list[float] = [] # cross-agent variance for n=2: (a_1-a_2)²/4
     V_trace: list[float] = []
     plant_trace: list[float] = []
 
@@ -300,7 +317,9 @@ def alias_compatibility_demo(
         y2 = observe(a2, plant.x, rng)
         act1 = agent_action(a1, y1, vision.V)
         act2 = agent_action(a2, y2, vision.V)
-        action_divergence.append(abs(act1 - act2))
+        diff = act1 - act2
+        linear_div.append(abs(diff))
+        variance_div.append(diff * diff / 4.0)
         V_trace.append(vision.V)
         plant_trace.append(plant.x)
         plant.step(act1 + act2, rng)
@@ -310,17 +329,51 @@ def alias_compatibility_demo(
         else:
             vision.update(plant.x)
 
-    div_pre = sum(action_divergence[:T_pre_shock]) / T_pre_shock
-    div_post = sum(action_divergence[T_pre_shock:]) / T_post_shock
+    lin_pre = sum(linear_div[:T_pre_shock]) / T_pre_shock
+    lin_post = sum(linear_div[T_pre_shock:]) / T_post_shock
+    var_pre = sum(variance_div[:T_pre_shock]) / T_pre_shock
+    var_post = sum(variance_div[T_pre_shock:]) / T_post_shock
     return {
         "phi_spread": phi_spread,
         "bias_spread": bias_spread,
         "shock_offset": shock_offset,
-        "divergence_pre_shock": div_pre,
-        "divergence_post_shock": div_post,
-        "ratio_post_to_pre": (div_post / div_pre) if div_pre > 1e-9 else float("inf"),
+        # Linear metric (mean pairwise absolute divergence): ~ k · |φ_spread| · |ΔV|
+        "divergence_pre_shock": lin_pre,
+        "divergence_post_shock": lin_post,
+        "ratio_post_to_pre": (lin_post / lin_pre) if lin_pre > 1e-9 else float("inf"),
+        # Variance metric: ~ k² · (ΔV)² · Var(φ), quadratic in |ΔV|
+        "variance_pre_shock": var_pre,
+        "variance_post_shock": var_post,
         "V_at_shock": V_trace[T_pre_shock] if T_pre_shock < len(V_trace) else None,
     }
+
+
+def metric_distinction_probe(
+    phi_spread: float = 0.5,
+    shock_offsets: tuple[float, ...] = (0.5, 1.0, 2.0, 4.0),
+    bias_spread: float = 0.0,
+    seed: int = 0,
+) -> list[dict]:
+    """Sweep |ΔV| with fixed φ-spread to verify Paper 24 §3.4 metric
+    distinction: linear-metric divergence scales as |ΔV|, variance-metric
+    scales as (ΔV)². The ratios `linear / |ΔV|` and `variance / (ΔV)²`
+    should each be approximately constant across the sweep.
+    """
+    rows = []
+    for shock in shock_offsets:
+        d = alias_compatibility_demo(
+            phi_spread=phi_spread, bias_spread=bias_spread,
+            shock_offset=shock, seed=seed,
+        )
+        rows.append({
+            "shock_offset": shock,
+            "phi_spread": phi_spread,
+            "linear_div": d["divergence_post_shock"],
+            "variance_div": d["variance_post_shock"],
+            "linear_per_shock": d["divergence_post_shock"] / shock if shock else 0.0,
+            "variance_per_shock_sq": d["variance_post_shock"] / (shock * shock) if shock else 0.0,
+        })
+    return rows
 
 
 # ── Governance comparison (ungoverned vs witness-consensus) ──────
@@ -760,6 +813,18 @@ if __name__ == "__main__":
               f"  {d['divergence_pre_shock']:>14.4f}"
               f" {d['divergence_post_shock']:>15.4f}"
               f" {r_str}")
+
+    print("\n── Metric-distinction probe (linear vs variance scaling in |ΔV|) ──")
+    print("  φ_spread=0.5 fixed; |ΔV| swept. Expect linear ~ k·|φ|·|ΔV|,")
+    print("  variance ~ k²·(ΔV)²·Var(φ). Ratios should be ~constant per metric.")
+    print(f"  {'|ΔV|':>5}  {'linear div':>10}  {'lin/|ΔV|':>9}"
+          f"  {'variance':>10}  {'var/(ΔV)²':>10}")
+    for row in metric_distinction_probe(phi_spread=0.5):
+        print(f"  {row['shock_offset']:>5.2f}"
+              f"  {row['linear_div']:>10.4f}"
+              f"  {row['linear_per_shock']:>9.4f}"
+              f"  {row['variance_div']:>10.4f}"
+              f"  {row['variance_per_shock_sq']:>10.4f}")
 
     print("\n── Governance comparison (ungoverned vs witness-consensus) ──")
     print("  bias_spread=1.5, φ_spread=0 — divided-witness case")
