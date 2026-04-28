@@ -78,6 +78,16 @@ Operational masking — case (i) projection clause. General lemma `trajectory_eq
 
 **Signature note for future work:** the gate is currently a fixed function $\text{proj} : U \to U$ rather than the paper's authority-state-indexed $\Pi_{A_t}$. For case (i) this is harmless (the masking hypothesis is pointwise and absorbs gate-state dependence). Lifting to $\text{proj} : X \to U \to U$ is required if a future module wants to carry $A_t$ explicitly — e.g., to formalize the §2 continuity-budget inequality where authority delay is the load-bearing object. The §2 ADT bound is intentionally not Leaned.
 
+## `LeanProofs/Paper24SharedVision.lean`
+
+Algebraic shard for Paper 24's §4 metric probes and Theorems 3–4. Linear alias-break specialization $A_i(V) = V(1+\varphi_i)$, baseline-zero, pairwise-difference identity, two-agent absdiff and variance scaling, sup-norm-bound kernel for the witness filter, η-step bound, and the survivor-cohort centered-mean-zero algebra.
+
+**Primary cashout:**
+
+- **P24** (*Shared Vision as Coordinating Prior*) — sharpen + certify. Pins the §4 metric algebra and corrects a sign in Proposition 2: the formal pairwise difference is $(\varphi_i - \varphi_j)\cdot V$; the paper's proposition statement currently has the opposite sign. Metric claims (absolute value, square) are unaffected. Paper-ready for the algebraic core; intentionally does not formalize Conjecture 1, the agile case study, closed-loop dynamics, the witness-filter institutional prose, or the Big-O / noise-floor falsifiability hooks.
+
+**Scope discipline.** The sup-norm bound is stated as hypotheses ($|\Phi(E^F)| \le \text{maxRetained} \le \tau$), not as an operator-theoretic abstraction over arbitrary aggregators. Lean's job here is to swat sign and scaling goblins, not to model governance.
+
 ## `LeanProofs/RepairOperator.lean`
 
 Sovereign repair operator — hostile kernel check. Five-outcome classification, governed-cell partition, containment predicate (abstract), escalation operator with aging, two-tier terminal condition. Forces separation of structural invariants (provable) from political placeholders ($\sigma$, legitimacy) and measurement handwaving ($I(x)$, $O(G,t)$), which are left abstract.
@@ -109,3 +119,4 @@ State well-formedness preservation, action semantics (stay / consume / movement)
 - **2026-04-20** — P22 reclassification: dropped coupling-family tie-in (too forced); kept `persistence_normalizes` as primary anchor and three-terminal-families as resonance only. Mirrors the index update in the papers repo.
 - **2026-04-20** — P18 Appendix A drafted and mapped. `PersistenceModel.lean` now has an explicit appendix landing in P18 (v1.1 candidate, not yet pushed to Zenodo). Specific theorem pointers cited in the appendix: `idle_preserves_capacity`, `hysteresis_without_warn`, `hysteretic_absorbing_internal`, `reattach_from_hysteretic_fails`, `repair_produces_restructured_not_aligned`, `repair_capacity_is_configured`, `restructured_can_fail_again`.
 - **2026-04-22** — Added `OpsMasking.lean` entry (P23 primary cashout, case (i) only — bridge artifact + certify), `RepairOperator.lean` entry (no current paper cashout; formalizes `working/sovereign-repair-operator.md`), and Companion simulations section listing `ops_continuity.py` (P23) and `shared_vision.py` (P24). Header path in `OpsMasking.lean` updated from stale `working/ops-non-self-identical-controller.md` to `preprint/23-non-self-identical-controller/non_self_identical_controller.md` reflecting the preprint promotion. Mirrors the index update in the papers repo.
+- **2026-04-28** — Added `Paper24SharedVision.lean` (P24 primary cashout — sharpen + certify). Algebraic shard for §4 metric probes and Theorems 3–4; corrects the Proposition 2 sign in the paper. Wired into `LeanProofs.lean`.
