@@ -109,6 +109,19 @@ State well-formedness preservation, action semantics (stay / consume / movement)
 
 **No current paper cashout.** Sits outside the 22-paper scope. Candidate warrant for a future paper on biological/population-level Δt dynamics (not yet written). Documented here to keep the mapping complete; not a current revision question.
 
+## `LeanProofs/Admissibility/` (Authority kernel — infrastructure substrate)
+
+Four modules forming a Governor-neutral authority kernel:
+
+- `Authority.lean` — verdict algebra. `authorityVerdict : Basis × Precedence × Standing → AuthorityVerdict`. Authorized iff all three dimensions green.
+- `StateTransition.lean` — partitioned governance state with isolation invariants. Only `Step.amendPolicy` mutates `PolicyStore`; `StepAllowed` gates raw mutation.
+- `Derivation.lean` — read-side bridge from `GovState × Actor × AuthorityClaim` to component verdicts. Bundled-structure design (`BasisDerivation` etc. carry function + spec obligations). Revocation-shaped safety consequence.
+- `Execution.lean` — `AuthorizedStep` bundles a step with both mutation standing (`StepAllowed`) and claim verdict (`authorityAuthorized`) by construction. Load-bearing theorem: revoked basis cannot produce an `AuthorizedStep`.
+
+**No paper cashout.** This is infrastructure substrate for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout. Concrete `claimForStep` resolvers and `AuthorityClaim` schema commitments belong in Governor's instantiation, not in the kernel. Documented here to keep the mapping complete.
+
+Sibling to `LeanProofs/Admissibility.lean` (P27 obligation skeleton, namespace `P27`, has `sorry`s, intentionally unwired). The P27 skeleton and the Authority kernel are independent and address different layers (post-transition obligation accounting vs pre-action authorization). See `LeanProofs/Admissibility/README.md` for the four-module breakdown.
+
 ## Open / axiomatic boundaries
 
 - **`persistence_normalizes` axiom** in `PersistenceModel.lean` — intentionally weak, marks where static formalization ends. Relevant to the dynamic-claims roadmap (three-bucket split: explicit specifications / transition-system or temporal model / simulation). See memory `project-lean-dynamic-roadmap.md` in the papers project memory.
@@ -120,3 +133,4 @@ State well-formedness preservation, action semantics (stay / consume / movement)
 - **2026-04-20** — P18 Appendix A drafted and mapped. `PersistenceModel.lean` now has an explicit appendix landing in P18 (v1.1 candidate, not yet pushed to Zenodo). Specific theorem pointers cited in the appendix: `idle_preserves_capacity`, `hysteresis_without_warn`, `hysteretic_absorbing_internal`, `reattach_from_hysteretic_fails`, `repair_produces_restructured_not_aligned`, `repair_capacity_is_configured`, `restructured_can_fail_again`.
 - **2026-04-22** — Added `OpsMasking.lean` entry (P23 primary cashout, case (i) only — bridge artifact + certify), `RepairOperator.lean` entry (no current paper cashout; formalizes `working/sovereign-repair-operator.md`), and Companion simulations section listing `ops_continuity.py` (P23) and `shared_vision.py` (P24). Header path in `OpsMasking.lean` updated from stale `working/ops-non-self-identical-controller.md` to `preprint/23-non-self-identical-controller/non_self_identical_controller.md` reflecting the preprint promotion. Mirrors the index update in the papers repo.
 - **2026-04-28** — Added `Paper24SharedVision.lean` (P24 primary cashout — sharpen + certify). Algebraic shard for §4 metric probes and Theorems 3–4; corrects the Proposition 2 sign in the paper. Wired into `LeanProofs.lean`.
+- **2026-04-30** — Added Admissibility kernel (`Admissibility/Authority.lean`, `StateTransition.lean`, `Derivation.lean`, `Execution.lean`) under new "infrastructure substrate" framing — no paper cashout, Governor-neutral. All four wired into `LeanProofs.lean` root. New `Admissibility/README.md` documents the four-module breakdown. Mirrors the index update in the papers repo.

@@ -104,6 +104,34 @@ The formally verified results:
 
 ---
 
+## Infrastructure: Admissibility Kernel
+
+This is **not** paper-claim cashout. It's substrate — formal infrastructure that future Governor (`agent_gov`) work and any "no laundering" claim can cite. Doesn't fit the slogan-killing pattern of Layers 1–3 because it's not retroactively sharpening prose; it's pinning an algebraic skeleton from scratch.
+
+Four modules in `LeanProofs/Admissibility/`:
+
+- **`Authority.lean`** — verdict algebra. `authorityVerdict : Basis × Precedence × Standing → AuthorityVerdict`. Authorized iff all three dimensions green.
+- **`StateTransition.lean`** — partitioned governance state (`PolicyStore`, `EvidenceStore`, `GapStore`, `RevocationStore`). Only `Step.amendPolicy` mutates `PolicyStore`. `StepAllowed` predicate gates raw mutation by per-step standing predicates.
+- **`Derivation.lean`** — read-side bridge. `GovState × Actor × AuthorityClaim → component verdicts`, with revocation-shaped safety consequence (`revoked_basis_never_authorized`).
+- **`Execution.lean`** — `AuthorizedStep` bundles a step with both `StepAllowed` (mutation standing) and `authorityAuthorized` (claim verdict) by construction. Load-bearing theorem: revoked basis cannot produce an `AuthorizedStep`.
+
+### What it warrants
+
+> Governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step.
+
+### What it does NOT warrant
+
+- Concrete `claimForStep` resolution (deferred to Governor implementation; pre-committing the resolver is ontology bait).
+- Concrete `AuthorityClaim` schema (kept abstract).
+- Behavioral laws on the abstract store API (no concrete `appendEvidence` / `applyUpdate` semantics).
+- Bridge between `Derivation.deriveStanding` (claim invocation) and `StateTransition.*Standing` predicates (state mutation).
+
+### Why it's here
+
+Governor (`agent_gov`) operationally implements this kernel's pattern. The Lean modules don't *replace* Governor; they pin the algebraic skeleton so a concrete Governor instantiation can cite "no laundering" with a formal warrant rather than a slogan.
+
+---
+
 ## What the stack as a whole says
 
 The informal Δt framework theory was compressing three distinct claim types into single sentences:

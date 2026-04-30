@@ -4,9 +4,31 @@ Formal verification of structural claims from the [Δt framework](https://github
 
 ## What's here
 
-**`LeanProofs/TaxonomyGraph.lean`** — Formal encoding of the cybernetic failure taxonomy (15 domains, 14 primitive + 1 composite). Encodes the pipeline graph, role classifications, and reinforcing loops as separate relations. Proves reachability, terminality, role distinctness, and decomposition claims.
+### Paper-anchored modules
 
-**First result (2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See `NOTES.md` for details.
+**`LeanProofs/TaxonomyGraph.lean`** — Formal encoding of the cybernetic failure taxonomy (15 domains, 14 primitive + 1 composite). Encodes the pipeline graph, role classifications, and reinforcing loops as separate relations. Proves reachability, terminality, role distinctness, and decomposition claims. Cashes out into Paper 15 (sharpen + expose looseness), with secondary tie-ins to P16 and P22.
+
+**`LeanProofs/BranchSelector.lean`** — Dual-budget closure-family selection. Budget asymmetry / priming / susceptibility. Cashes out into Paper 9 (certify + sharpen).
+
+**`LeanProofs/PersistenceModel.lean`** — Five-state Δc→Δh dynamics. Cumulative rollback depletion under detached commits; three-way recovery distinction. Cashes out into Paper 18 (sharpen + bridge; Appendix A v1.1 candidate).
+
+**`LeanProofs/OpsMasking.lean`** — Operational masking, case (i) projection clause. Pointwise-equal projected actions produce identical trajectories. Cashes out into Paper 23 (bridge + certify).
+
+**`LeanProofs/Paper24SharedVision.lean`** — Algebraic shard for Paper 24's §4 metric probes. Sign correction on Proposition 2.
+
+### Infrastructure substrate (no paper anchor)
+
+**`LeanProofs/Admissibility/`** — Governor-neutral authority kernel. Four modules: `Authority.lean` (verdict algebra), `StateTransition.lean` (partitioned governance state + `StepAllowed`), `Derivation.lean` (read-side bridge), `Execution.lean` (`AuthorizedStep` requires both mutation standing and claim verdict). Warrants: *governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step.* See [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the four-module breakdown. Substrate for future Governor (`agent_gov`) implementation citation; not paper-claim cashout.
+
+**`LeanProofs/RepairOperator.lean`** — Sovereign repair operator. No paper anchor; formalizes the working note `working/sovereign-repair-operator.md`.
+
+### Skeleton (deferred)
+
+**`LeanProofs/Admissibility.lean`** — P27 obligation skeleton (namespace `P27`). Has `sorry`s; intentionally **not** wired into `LeanProofs.lean` root. Sibling but independent from the four `Admissibility/*` kernel modules above.
+
+### First result
+
+**(2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See `NOTES.md` for details.
 
 ## Building
 
