@@ -5,3 +5,7 @@ import LeanProofs.BranchSelector
 import LeanProofs.RepairOperator
 import LeanProofs.OpsMasking
 import LeanProofs.Paper24SharedVision
+import LeanProofs.Admissibility.Authority
+import LeanProofs.Admissibility.StateTransition
+import LeanProofs.Admissibility.Derivation
+import LeanProofs.Admissibility.Execution
