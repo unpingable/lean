@@ -18,13 +18,13 @@ Formal verification of structural claims from the [Δt framework](https://github
 
 ### Infrastructure substrate (no paper anchor)
 
-**`LeanProofs/Admissibility/`** — Governor-neutral authority kernel. Four modules: `Authority.lean` (verdict algebra), `StateTransition.lean` (partitioned governance state + `StepAllowed`), `Derivation.lean` (read-side bridge), `Execution.lean` (`AuthorizedStep` requires both mutation standing and claim verdict). Warrants: *governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step.* See [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the four-module breakdown. Substrate for future Governor (`agent_gov`) implementation citation; not paper-claim cashout.
+**`LeanProofs/Admissibility/`** — Governor-neutral authority kernel. Five modules: `Authority.lean` (verdict algebra), `StateTransition.lean` (partitioned governance state + `StepAllowed`), `Derivation.lean` (read-side bridge), `Execution.lean` (`AuthorizedStep` requires both mutation standing and claim verdict), `Corrective.lean` (corrective monotonicity layer — classify-based enforcement surface, `RecoveryEnv` gate). Warrants: *governance-state mutation requires both mutation standing and an authorized claim verdict, a revoked basis cannot produce an executable authorized step, and corrective recovery cannot increase the authorized action set.* See [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the five-module breakdown. Substrate for future Governor (`agent_gov`) implementation citation; not paper-claim cashout.
 
 **`LeanProofs/RepairOperator.lean`** — Sovereign repair operator. No paper anchor; formalizes the working note `working/sovereign-repair-operator.md`.
 
 ### Skeleton (deferred)
 
-**`LeanProofs/Admissibility.lean`** — P27 obligation skeleton (namespace `P27`). Has `sorry`s; intentionally **not** wired into `LeanProofs.lean` root. Sibling but independent from the four `Admissibility/*` kernel modules above.
+**`LeanProofs/Admissibility.lean`** — P27 obligation skeleton (namespace `P27`). Sorry-free as of 2026-05-01 (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally **not** wired into `LeanProofs.lean` root — sorry-elimination does not imply wiring. Sibling but independent from the five `Admissibility/*` kernel modules above.
 
 ### First result
 
