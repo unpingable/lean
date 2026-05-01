@@ -1,6 +1,27 @@
 # Lean Proofs
 
-Formal verification of structural claims from the [Δt framework](https://github.com/unpingable/papers) paper series and related working papers.
+This repository is a formal audit harness for the [Δt framework](https://github.com/unpingable/papers): a research series on systemic failure, temporal mismatch, authority collapse, and recovery under degraded conditions.
+
+The prose papers make claims about how complex systems degrade, recover, misread themselves, or substitute proxies for reality. This repo translates selected claims into Lean so they can be checked against explicit definitions instead of persuasive prose.
+
+Some claims survive. Some narrow. Some break.
+
+That is the point.
+
+Lean is used here as a pressure chamber for theory: it helps distinguish structural claims from slogans that were useful for discovery but too loose to carry formal weight. Failed claims are kept as evidence of where the original prose overreached — see [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) for the BROKEN / STALE / SOUND / OPEN audit.
+
+## Why Lean
+
+The Δt framework began as prose theory. Prose is good at discovery, but it can hide assumptions, collapse distinct cases, or make causal claims that are only directionally true.
+
+Lean forces selected claims to be stated as definitions and theorem statements. When a claim fails, the failure is treated as evidence: the theorem was overstated, the definitions were wrong, or the prose was relying on an unstated assumption. The repo's value is less the surviving theorems than the disciplined damage report on the rest.
+
+This repo does not claim that Lean proves the whole theory true. It does not replace case studies, simulations, or operational evidence. It is a forcing function against theory-by-metaphor.
+
+## Companion repos
+
+- **Papers repo:** [`unpingable/papers`](https://github.com/unpingable/papers) — prose papers, working notes, primitives, and the research-program structure. The paper-side crosswalk at [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) inverts this repo's view (paper → module).
+- **This repo (Lean):** formal claim register, proof attempts, corrected theorem statements, and the BROKEN / STALE / SOUND audit. Module → paper crosswalk lives in [`PAPER-MAP.md`](PAPER-MAP.md).
 
 ## What's here
 
@@ -38,11 +59,12 @@ Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 lake build
 ```
 
-## Relation to the paper series
+## Cross-references
 
-The taxonomy is documented in `working/cybernetic-failure-taxonomy/` in the papers repo. This repo formalizes the structural claims; the papers repo holds the prose, spikes, and role map. The Lean encoding is not a replacement for the informal taxonomy — it's an ambiguity detector that forces the prose to say what it means.
-
-For the module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready), see [`PAPER-MAP.md`](PAPER-MAP.md). The paper-indexed inverse lives in the papers repo at `docs/formalization-index.md`. Claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN) is in [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md).
+- [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
+- [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
+- [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md) — module-level exposition of what each proof establishes and what it rules out
+- Papers repo: [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) — paper → module inverse view
 
 ## Status
 
