@@ -126,6 +126,28 @@ Generated 2026-04-03 after static topology and persistence model results.
 | **Tool** | n/a |
 | **Fix** | None. |
 
+### 11. P25 §5 algebraic adjudication: aggregation does not rotate the observability subspace
+
+| Field | Value |
+|-------|-------|
+| **Location** | `preprint/25-epistemic-border-control/epistemic_border_control.md`, §5 ("Algebraic adjudication" subsection through the closing core line) |
+| **Claim** | "Aggregation improves SNR; it does not rotate the observability subspace." Stacked-witness observability matrix preserves the kernel; least-observable subspace is invariant under homogeneous replication. Paper 24's clean aggregation is therefore not sufficient for substitution-freedom. |
+| **Bucket** | Structural (linear-algebra adjudication of a sibling-vs-nested decision) |
+| **Status** | **SOUND** — kernel preservation and Gramian scaling both proven |
+| **Tool** | Lean (`Paper25EpistemicBorderControl.lean` — `ker_replicateRows_eq_ker`, `replicateRows_transpose_mul`) |
+| **Fix** | Subspace-vs-vector precision added 2026-05-03 as a clarifying paragraph in §5: when the smallest singular value is degenerate, the invariant is the unobservable subspace, not a privileged $v_\text{min}$ vector. Explicit Gramian identity $(\mathbf{1}_N \otimes O_T)^\top (\mathbf{1}_N \otimes O_T) = N \cdot O_T^\top O_T$ included. |
+
+### 12. P25 §3.1 Theorem 1: observation-equivalent states get identical control sequences
+
+| Field | Value |
+|-------|-------|
+| **Location** | `preprint/25-epistemic-border-control/epistemic_border_control.md`, §3.1 ("Theorem 1 (static observability-asymmetry substitution)") |
+| **Claim** | "Any controller whose policy depends only on $\{y_0, \ldots, y_{T-1}\}$ assigns the same control action sequence to $x$ and $x'$" when the observation trajectories agree. The structural refusal: observation geometry forecloses target regulation regardless of controller sincerity. |
+| **Bucket** | Structural (epistemic-access lemma; the policy has no distinguishing input) |
+| **Status** | **SOUND** in its load-bearing core — observation-equivalence ⇒ policy-equivalence is `rw [h]` |
+| **Tool** | Lean (`Paper25EpistemicBorderControl.lean` — `obsEquiv_policy_same`, `target_distinct_policy_same`) |
+| **Fix** | None to the structural refusal claim. The paper's prose proof additionally hand-waves a closed-loop induction (closed-loop observations track open-loop ones under common controller action). That induction is correct but is *not* the load-bearing claim; the structural refusal stands without it. The Lean theorem isolates the load-bearing core. The corollary `target_distinct_policy_same` carries `target q x ≠ target q x'` as an intentionally-unused hypothesis: the policy never sees the target, so target inequality cannot break policy equality. |
+
 ---
 
 ## Summary
@@ -134,8 +156,10 @@ Generated 2026-04-03 after static topology and persistence model results.
 |--------|-------|--------|
 | BROKEN | 2 | Rewrite with corrected claims |
 | STALE | 3 | Tighten framing, remove temporal conflation |
-| SOUND | 4 | No change; some need cross-referencing |
+| SOUND | 6 | No change; some need cross-referencing |
 | OPEN | 1 | Δc→Δh dynamics (partially formalized, external repair next) |
+
+Entries #1–#10 are from the original 2026-04-03 audit, scoped to claims touching Δh, Δc, detachment, rollback, closure, sink/attractor language, terminal families, and "long enough." Entries #11–#12 (added 2026-05-03) cover Paper 25's §5 sibling-vs-§N algebraic adjudication and §3.1 Theorem 1 epistemic-access core, formalized in `LeanProofs/Paper25EpistemicBorderControl.lean`.
 
 ### Priority rewrites — DONE (2026-04-03)
 
