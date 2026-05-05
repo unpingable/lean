@@ -277,6 +277,9 @@ theorem corrective_sequence_monotone
   This `sorry` is a recorded investigative null, not a deferred proof
   to be eliminated by axiomatizing `applyUpdate` here.
 -/
+-- CATEGORY: investigative null
+-- STATUS: stateable, undecided under current axioms
+-- DO NOT discharge by axiomatizing store ops here
 theorem corrective_then_forward_is_not_monotone :
     ∃ (env : DerivationEnv) (Γ : GovState) (sc sf : Step),
       IsCorrective sc ∧ IsForward sf ∧
