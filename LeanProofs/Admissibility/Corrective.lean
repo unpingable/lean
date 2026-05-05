@@ -255,6 +255,34 @@ theorem corrective_sequence_monotone
         (applySteps (applyStep Γ s) rest) Γ
       exact weakly_less_permissive_trans htail hstep
 
+/-! ### Investigative null shape — mixed-class sequence
+
+  Counterpoint to `corrective_sequence_monotone`. The minimal mixed
+  shape is a single corrective followed by a single forward Step.
+  Stated using existing vocabulary only — no minted primitives, no
+  broadened "boundary".
+
+  Proof is `sorry`. The vocabulary deficit is precise: constructing a
+  counterexample env requires that `applyUpdate Γ.policyStore p` actually
+  distinguish the post-state from the pre-state for *some* (Γ, p).
+  `applyUpdate : PolicyStore → PolicyUpdate → PolicyStore` is an
+  unconstrained `axiom` in StateTransition.lean. Under the worst-case
+  axiomatization where `applyUpdate` is the identity (and likewise for
+  `appendGap`, `appendRevocation`, `appendEvidence`), every Step is
+  state-preserving and the existential is provably FALSE. Until a
+  behavioral law on the abstract store ops is committed (deferred per
+  StateTransition.lean and Derivation.lean TODOs), the kernel is
+  consistent with both the existential and its negation.
+
+  This `sorry` is a recorded investigative null, not a deferred proof
+  to be eliminated by axiomatizing `applyUpdate` here.
+-/
+theorem corrective_then_forward_is_not_monotone :
+    ∃ (env : DerivationEnv) (Γ : GovState) (sc sf : Step),
+      IsCorrective sc ∧ IsForward sf ∧
+      ¬ WeaklyLessPermissive env (applySteps Γ [sc, sf]) Γ := by
+  sorry
+
 /-! ### Recovery-capable environment — available vs operationally required
 
   `CorrectiveMonotone env` makes monotonicity *available* to any
