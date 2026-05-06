@@ -161,6 +161,23 @@ Generated 2026-04-03 after static topology and persistence model results.
 
 ---
 
+## Admitted statements
+
+Theorems intentionally admitted via `sorry`, separate from the BROKEN / STALE / SOUND / OPEN axis. An admitted statement is not unproven (OPEN); it is a theorem stated and deliberately not proved, with the admission itself being the load-bearing record.
+
+### A1. `corrective_then_forward_is_not_monotone`
+
+| Field | Value |
+|-------|-------|
+| **Location** | `LeanProofs/Admissibility/Corrective.lean:283` |
+| **Type** | Investigative null (existential whose truth value is currently undecidable) |
+| **Why admitted** | Undecidable under the current axiomatization where `applyUpdate`, `appendRevocation`, and `appendGap` are unconstrained `axiom Type`s. Identity-`applyUpdate` axiomatization makes the existential provably false; behaviorally-constrained store ops may flip the result. The right fix is store-op laws, not axiomatization-of-convenience. Discharging the sorry by convenient axiomatization would launder the gap into kernel commitment rather than resolve it — the kind of move the rest of this register exists to prevent. |
+| **Resolution path** | Concurrent with entry #13's discharge: when behavioral laws on store ops land via the first concrete `BasisDerivation`, the existential becomes decidable and either the theorem is proved or its negation is, replacing the sorry with a real proof either way. |
+| **Build impact** | `lake build` green; Lean treats `sorry` as a warning. No CI gate currently forbids sorry. A `forbid-sorry` gate with this theorem on an explicit allowlist is candidate work, not wired. |
+| **Counted in summary** | No. Admitted statements are tracked separately from the four-status taxonomy; counting them as OPEN would conflate "no proof attempted" with "proof admitted deliberately as evidence of a vocabulary boundary." |
+
+---
+
 ## Summary
 
 | Status | Count | Action |
@@ -169,8 +186,9 @@ Generated 2026-04-03 after static topology and persistence model results.
 | STALE | 3 | Tighten framing, remove temporal conflation |
 | SOUND | 6 | No change; some need cross-referencing |
 | OPEN | 2 | Δc→Δh dynamics (partially formalized); corrective monotonicity (obligation declared, vacuously satisfiable pending store-op laws) |
+| ADMITTED | 1 | `corrective_then_forward_is_not_monotone` — investigative null, see § Admitted Statements above |
 
-Entries #1–#10 are from the original 2026-04-03 audit, scoped to claims touching Δh, Δc, detachment, rollback, closure, sink/attractor language, terminal families, and "long enough." Entries #11–#12 (added 2026-05-03) cover Paper 25's §5 sibling-vs-§N algebraic adjudication and §3.1 Theorem 1 epistemic-access core, formalized in `LeanProofs/Paper25EpistemicBorderControl.lean`. Entry #13 (added 2026-05-06) records the corrective-monotonicity obligation shape pinned by `LeanProofs/Admissibility/Corrective.lean` — declared, not discharged.
+Entries #1–#10 are from the original 2026-04-03 audit, scoped to claims touching Δh, Δc, detachment, rollback, closure, sink/attractor language, terminal families, and "long enough." Entries #11–#12 (added 2026-05-03) cover Paper 25's §5 sibling-vs-§N algebraic adjudication and §3.1 Theorem 1 epistemic-access core, formalized in `LeanProofs/Paper25EpistemicBorderControl.lean`. Entry #13 (added 2026-05-06) records the corrective-monotonicity obligation shape pinned by `LeanProofs/Admissibility/Corrective.lean` — declared, not discharged. Admitted statement A1 (added 2026-05-06) is the investigative-null sorry preserved deliberately as evidence of the same vocabulary gap; the build is green through `sorryAx`, which is named here rather than concealed.
 
 ### Priority rewrites — DONE (2026-04-03)
 

@@ -68,7 +68,17 @@ lake build
 
 ## Status
 
-Sketch. All current proofs compile and verify. The repo's most informative open questions — what the kernel does *not* yet rule out — are tracked alongside the proofs themselves: `Admissibility/Corrective.lean` records an investigative null on mixed corrective+forward sequences (undecided under current store-op axiomatization); `CorrectiveMonotone` is currently vacuous pending behavioral laws on `applyUpdate` / `appendGap` / `appendRevocation`; environment mutation (replacing the evaluator rather than the state) is a separate laundering vector outside `WeaklyLessPermissive`'s scope. See `NOTES.md` and the per-module pinned-questions blocks for the rest.
+Sketch. All root-imported modules build. One root-imported theorem, `corrective_then_forward_is_not_monotone` in `LeanProofs/Admissibility/Corrective.lean`, is intentionally admitted with `sorry` as an investigative null; it is not counted as a verified theorem. See "Known admitted statements" below.
+
+The repo's most informative open questions — what the kernel does *not* yet rule out — are tracked alongside the proofs themselves: `Admissibility/Corrective.lean` records the investigative null on mixed corrective+forward sequences (undecided under current store-op axiomatization); `CorrectiveMonotone` is currently vacuous pending behavioral laws on `applyUpdate` / `appendGap` / `appendRevocation`; environment mutation (replacing the evaluator rather than the state) is a separate laundering vector outside `WeaklyLessPermissive`'s scope. See `NOTES.md` and the per-module pinned-questions blocks for the rest.
+
+## Known admitted statements
+
+One root-imported theorem is intentionally admitted with `sorry`. It is not counted as a verified theorem.
+
+- **`corrective_then_forward_is_not_monotone`** in `LeanProofs/Admissibility/Corrective.lean` (line 283). The existential is undecidable under the current axiomatization where `applyUpdate` / `appendRevocation` / `appendGap` are unconstrained `axiom Type`s — if `applyUpdate` is identity, the existential is provably false; under behaviorally-constrained store ops it may flip. The sorry is preserved deliberately until store-op laws land. Discharging it by axiomatizing store ops to convenient values would launder the gap into kernel commitment rather than resolve it. See `CLAIM-REGISTER.md` § Admitted Statements for the audit trail.
+
+Lean treats `sorry` as a warning rather than a hard error, so `lake build` is green while this theorem is admitted through `sorryAx`. A `forbid-sorry` CI gate with this theorem on an explicit allowlist is candidate work; it is not currently wired. Until it is, "the build is green" is an honest statement about the modules but a partial statement about the proofs — this section is the rest of the statement.
 
 ## Reading the proofs
 
