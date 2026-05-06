@@ -83,6 +83,16 @@ structure PSys where
 -- TRANSITION FUNCTION
 -- ════════════════════════════════════════════════════════════
 
+/-
+  NOTE on burn semantics. `cap' := sys.rollbackCapacity - cfg.burnRate` uses
+  `Nat` truncating subtraction. If `burnRate > rollbackCapacity` at the moment
+  of a commit, `cap' = 0` and the system transitions directly to `hysteretic`
+  with `rollbackCapacity := 0`. The intended reading is "exhaust to zero on
+  this commit" rather than "burn exactly `burnRate`." `capacity_nonincreasing_internal`
+  is sound under either reading; downstream models that reason quantitatively
+  about per-step burn (rather than just monotonicity) should not assume true
+  integer subtraction here.
+-/
 def step (cfg : PConfig) (sys : PSys) (evt : PEvent) : PSys :=
   match sys.state, evt with
   -- ALIGNED

@@ -39,7 +39,7 @@ This repo does not claim that Lean proves the whole theory true. It does not rep
 
 ### Infrastructure substrate (no paper anchor)
 
-**`LeanProofs/Admissibility/`** — Governor-neutral authority kernel. Five modules: `Authority.lean` (verdict algebra), `StateTransition.lean` (partitioned governance state + `StepAllowed`), `Derivation.lean` (read-side bridge), `Execution.lean` (`AuthorizedStep` requires both mutation standing and claim verdict), `Corrective.lean` (corrective monotonicity layer — classify-based enforcement surface, `RecoveryEnv` gate). Warrants: *governance-state mutation requires both mutation standing and an authorized claim verdict, a revoked basis cannot produce an executable authorized step, and corrective recovery cannot increase the authorized action set.* See [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the five-module breakdown. Substrate for future Governor (`agent_gov`) implementation citation; not paper-claim cashout.
+**`LeanProofs/Admissibility/`** — Governor-neutral authority kernel. Five modules: `Authority.lean` (verdict algebra), `StateTransition.lean` (partitioned governance state + `StepAllowed`), `Derivation.lean` (read-side bridge), `Execution.lean` (`AuthorizedStep` requires both mutation standing and claim verdict), `Corrective.lean` (corrective monotonicity layer — classify-based enforcement surface, `RecoveryEnv` gate). Warrants: *governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step.* Corrective monotonicity is declared as an obligation shape (`CorrectiveMonotone env`) that any compliant `DerivationEnv` must discharge; the obligation is currently vacuously satisfiable while behavioral laws on `applyUpdate` / `appendRevocation` / `appendGap` are unconstrained axioms, so the kernel pins the *shape* of the non-laundering claim but does not yet rule out laundering by any specific concrete env. See [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the five-module breakdown and `Admissibility/Corrective.lean` for the vacuity caveat and the `RecoveryEnv` gate. Substrate for future Governor (`agent_gov`) implementation citation; not paper-claim cashout.
 
 **`LeanProofs/RepairOperator.lean`** — Sovereign repair operator. No paper anchor; formalizes the working note `working/sovereign-repair-operator.md`.
 
@@ -68,7 +68,7 @@ lake build
 
 ## Status
 
-Sketch. All current proofs compile and verify. See `NOTES.md` for open questions and next steps.
+Sketch. All current proofs compile and verify. The repo's most informative open questions — what the kernel does *not* yet rule out — are tracked alongside the proofs themselves: `Admissibility/Corrective.lean` records an investigative null on mixed corrective+forward sequences (undecided under current store-op axiomatization); `CorrectiveMonotone` is currently vacuous pending behavioral laws on `applyUpdate` / `appendGap` / `appendRevocation`; environment mutation (replacing the evaluator rather than the state) is a separate laundering vector outside `WeaklyLessPermissive`'s scope. See `NOTES.md` and the per-module pinned-questions blocks for the rest.
 
 ## Reading the proofs
 

@@ -148,6 +148,17 @@ Generated 2026-04-03 after static topology and persistence model results.
 | **Tool** | Lean (`Paper25EpistemicBorderControl.lean` — `obsEquiv_policy_same`, `target_distinct_policy_same`) |
 | **Fix** | None to the structural refusal claim. The paper's prose proof additionally hand-waves a closed-loop induction (closed-loop observations track open-loop ones under common controller action). That induction is correct but is *not* the load-bearing claim; the structural refusal stands without it. The Lean theorem isolates the load-bearing core. The corollary `target_distinct_policy_same` carries `target q x ≠ target q x'` as an intentionally-unused hypothesis: the policy never sees the target, so target inequality cannot break policy equality. |
 
+### 13. Corrective monotonicity (non-laundering)
+
+| Field | Value |
+|-------|-------|
+| **Location** | `LeanProofs/Admissibility/Corrective.lean` (`corrective_monotone`, `corrective_no_authority_laundering`) |
+| **Claim** | "Corrective steps cannot widen the authorized-action set; recovery cannot launder a revoked basis through to authorization for the same K." |
+| **Bucket** | Structural (kernel obligation) |
+| **Status** | **OPEN** — obligation declared, not yet discharged |
+| **Tool** | Lean (Admissibility/Corrective.lean) |
+| **Fix** | Theorems are stated relative to a `CorrectiveMonotone env` witness, which any concrete `DerivationEnv` must construct. The witness is currently vacuously satisfiable because behavioral laws on `applyUpdate`, `appendGap`, and `appendRevocation` are not yet committed (`StateTransition.lean` leaves them as unconstrained `axiom`s). Forcing case: the first concrete `BasisDerivation` that actually reads `RevocationStore`. Until then the kernel pins the obligation's *shape* without yet ruling out laundering for any specific env. The investigative-null sorry on `corrective_then_forward_is_not_monotone` is consistent with this state — it should not be discharged by axiomatizing store ops. |
+
 ---
 
 ## Summary
@@ -157,9 +168,9 @@ Generated 2026-04-03 after static topology and persistence model results.
 | BROKEN | 2 | Rewrite with corrected claims |
 | STALE | 3 | Tighten framing, remove temporal conflation |
 | SOUND | 6 | No change; some need cross-referencing |
-| OPEN | 1 | Δc→Δh dynamics (partially formalized, external repair next) |
+| OPEN | 2 | Δc→Δh dynamics (partially formalized); corrective monotonicity (obligation declared, vacuously satisfiable pending store-op laws) |
 
-Entries #1–#10 are from the original 2026-04-03 audit, scoped to claims touching Δh, Δc, detachment, rollback, closure, sink/attractor language, terminal families, and "long enough." Entries #11–#12 (added 2026-05-03) cover Paper 25's §5 sibling-vs-§N algebraic adjudication and §3.1 Theorem 1 epistemic-access core, formalized in `LeanProofs/Paper25EpistemicBorderControl.lean`.
+Entries #1–#10 are from the original 2026-04-03 audit, scoped to claims touching Δh, Δc, detachment, rollback, closure, sink/attractor language, terminal families, and "long enough." Entries #11–#12 (added 2026-05-03) cover Paper 25's §5 sibling-vs-§N algebraic adjudication and §3.1 Theorem 1 epistemic-access core, formalized in `LeanProofs/Paper25EpistemicBorderControl.lean`. Entry #13 (added 2026-05-06) records the corrective-monotonicity obligation shape pinned by `LeanProofs/Admissibility/Corrective.lean` — declared, not discharged.
 
 ### Priority rewrites — DONE (2026-04-03)
 

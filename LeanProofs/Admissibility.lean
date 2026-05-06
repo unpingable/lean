@@ -53,7 +53,14 @@ inductive Accounting where
 
 abbrev Horizon := Nat
 
-/-- Per-obligation retention horizon — placeholder; refine per obligation class. -/
+/-- Per-obligation retention horizon — placeholder; refine per obligation class.
+
+    NOTE: while `H ≡ 0`, several theorems below are vacuously satisfied:
+    `short_receipt_horizon_inadmissible` requires `r.durability < H ω`, which
+    is unsatisfiable when `H ω = 0` (no `Nat` is strictly less than zero).
+    The theorem statements are correct and will become load-bearing as soon
+    as `H` is refined per obligation class; until then, treat the durability
+    clause of `admissible` as structurally present but operationally inert. -/
 def H : Obligation → Horizon
   | _ => 0
 
@@ -87,7 +94,8 @@ theorem unaccounted_implies_inadmissible
   intro h
   exact h.left ω hω hu
 
-/-- Receipt horizon shorter than an obligation horizon ⇒ inadmissible. -/
+/-- Receipt horizon shorter than an obligation horizon ⇒ inadmissible.
+    Vacuous while `H ≡ 0`; see note on `H`. -/
 theorem short_receipt_horizon_inadmissible
     {Ω : List Obligation} {r : Receipt} {ω : Obligation}
     (hω : ω ∈ Ω) (hd : r.durability < H ω) :

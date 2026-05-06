@@ -62,6 +62,16 @@ structure BSys where
 -- TRANSITION FUNCTION
 -- ════════════════════════════════════════════════════════════
 
+/-
+  NOTE on burn semantics. The zero-checks below (`sys.modelQuality - burn.modelBurn == 0`,
+  `sys.authorityCoupling - burn.authBurn == 0`) use `Nat` truncating subtraction. They
+  fire both when true subtraction would be exactly zero *and* when it would be negative.
+  The intended reading is "this burn exhausts the budget" rather than "this burn
+  subtracts exactly `burn.modelBurn` units." Currently sound because budgets only
+  decrease (see `model_nonincreasing` / `authority_nonincreasing`); downstream
+  reasoning that depends on quantitative per-step burn should not assume true
+  integer subtraction here.
+-/
 def bstep (burn : BurnProfile) (sys : BSys) : BSys :=
   if sys.closure != .undetermined then sys
   else if (sys.modelQuality - burn.modelBurn == 0)
@@ -209,8 +219,13 @@ theorem authority_nonincreasing (burn : BurnProfile) (sys : BSys) :
      Once a closure family is selected, no further events change it.
 
   2. same_events_different_outcomes  ← HEADLINE
-     Same burn profile, different initial budgets → different
-     closure families. Precursor identity is not destiny.
+     Witnesses two initial states (`sysStrongModelWeakAuth`,
+     `sysWeakModelStrongAuth`) under the same burn profile producing
+     different closure families. The result is existential — one
+     counterexample to "precursor identity uniquely determines closure" —
+     not a universal quantifier over all asymmetries. The general claim
+     requires a separate theorem schema over budget asymmetry classes,
+     not formalized here.
 
   3. same_state_different_burns
      Same initial state, different burn profiles → different
@@ -229,11 +244,16 @@ theorem authority_nonincreasing (burn : BurnProfile) (sys : BSys) :
   6. model_nonincreasing / authority_nonincreasing
      Both budgets are monotone non-increasing.
 
-  The central claim:
+  The central claim — *witnessed*, not universally proved:
 
     For branching precursors, closure family is selected by
     the interaction of burn profile and pre-existing budget
     asymmetry, not by precursor type alone.
+
+  The four `native_decide` theorems above each exhibit a concrete
+  witness for one shape of the interaction. A universal proof would
+  require quantifying over budget asymmetry and burn profile classes;
+  that's a separate exercise and is not what this module delivers.
 
   This is a susceptibility model: closure depends on where
   the system is already weak, not just on what failures hit it.
