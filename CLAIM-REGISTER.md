@@ -155,26 +155,37 @@ Generated 2026-04-03 after static topology and persistence model results.
 | **Location** | `LeanProofs/Admissibility/Corrective.lean` (`corrective_monotone`, `corrective_no_authority_laundering`) |
 | **Claim** | "Corrective steps cannot widen the authorized-action set; recovery cannot launder a revoked basis through to authorization for the same K." |
 | **Bucket** | Structural (kernel obligation) |
-| **Status** | **OPEN** — obligation declared, not yet discharged |
+| **Status** | **OPEN** — obligation declared, not yet discharged for the abstract kernel |
 | **Tool** | Lean (Admissibility/Corrective.lean) |
-| **Fix** | Theorems are stated relative to a `CorrectiveMonotone env` witness, which any concrete `DerivationEnv` must construct. The witness is currently vacuously satisfiable because behavioral laws on `applyUpdate`, `appendGap`, and `appendRevocation` are not yet committed (`StateTransition.lean` leaves them as unconstrained `axiom`s). Forcing case: the first concrete `BasisDerivation` that actually reads `RevocationStore`. Until then the kernel pins the obligation's *shape* without yet ruling out laundering for any specific env. The investigative-null sorry on `corrective_then_forward_is_not_monotone` is consistent with this state — it should not be discharged by axiomatizing store ops. |
+| **Fix** | Theorems are stated relative to a `CorrectiveMonotone env` witness, which any concrete `DerivationEnv` must construct. The witness is currently vacuously satisfiable for the abstract kernel because behavioral laws on `applyUpdate`, `appendGap`, and `appendRevocation` are not yet committed (`StateTransition.lean` leaves them as unconstrained `axiom`s). Forcing case: the first concrete `BasisDerivation` that actually reads `RevocationStore`. Until then the abstract kernel pins the obligation's *shape* without yet ruling out laundering for any specific env. **Update 2026-05-07:** the previously-admitted investigative null `corrective_then_forward_is_not_monotone` (formerly entry A1) has been replaced by a positive boundary result in `LeanProofs/Admissibility/CorrectiveBoundary.lean`. See entry #14. |
+
+### 14. Corrective+forward model-dependence (boundary result)
+
+| Field | Value |
+|-------|-------|
+| **Location** | `LeanProofs/Admissibility/CorrectiveBoundary.lean` |
+| **Claim** | The abstract kernel's existential `∃ env Γ sc sf, IsCorrective sc ∧ IsForward sf ∧ ¬ WeaklyLessPermissive env (applySteps Γ [sc, sf]) Γ` marks a genuine model-dependence boundary, not a vocabulary deficit. Identity store ops + arbitrary env make the existential FALSE; nondegenerate ops + verdict-sensitive env make it TRUE. |
+| **Bucket** | Structural (parallel miniature kernel exhibits both possible answers) |
+| **Status** | **SOUND** — model-dependence proved; abstract null replaced by boundary result; repo is sorry-free |
+| **Tool** | Lean (`CorrectiveBoundary.lean`) — `Identity.corrective_then_forward_is_monotone_universally`, `Witness.corrective_then_forward_is_not_monotone`, `corrective_then_forward_is_not_monotone_of_nondegenerate` (parametric form), `witness_satisfies_nondegenerate` |
+| **Fix** | None to the boundary claim itself. Provenance: chatty's "prove the boundary, not the theorem" plan, 2026-05-07. The miniature kernel re-creates the abstract kernel's structure with concrete payload types (`PolicyStore := List Nat`, etc.) and parameterized store ops (`StoreOps` structure). Two model namespaces (`Identity`, `Witness`) prove the two possible answers. Abstract `NondegenerateStoreSemantics` packages the three commitments from `papers/working/nondegenerate-store-semantics.md` and the parametric theorem proves the existential follows from the structure. Witness model satisfies the abstract structure. The abstract kernel itself remains consistent with both the existential and its negation; that is the doctrinally-correct stance, and the boundary result is the positive content of the formerly-admitted null. |
 
 ---
 
 ## Admitted statements
 
-Theorems intentionally admitted via `sorry`, separate from the BROKEN / STALE / SOUND / OPEN axis. An admitted statement is not unproven (OPEN); it is a theorem stated and deliberately not proved, with the admission itself being the load-bearing record.
+Theorems intentionally admitted via `sorry`, separate from the BROKEN / STALE / SOUND / OPEN axis.
 
-### A1. `corrective_then_forward_is_not_monotone`
+**As of 2026-05-07: zero admitted statements. The previously-admitted A1 (`corrective_then_forward_is_not_monotone`) has been replaced by a positive boundary result in `LeanProofs/Admissibility/CorrectiveBoundary.lean`.** See entry #14. The abstract kernel's `Corrective.lean` retains the theorem's statement as a comment-shape with a pointer to the boundary module; the existential remains formally undecided in the abstract kernel itself, but the model-dependence is proved.
+
+### A1. `corrective_then_forward_is_not_monotone` (resolved 2026-05-07)
 
 | Field | Value |
 |-------|-------|
-| **Location** | `LeanProofs/Admissibility/Corrective.lean:283` |
-| **Type** | Investigative null (existential whose truth value is currently undecidable) |
-| **Why admitted** | Undecidable under the current axiomatization where `applyUpdate`, `appendRevocation`, and `appendGap` are unconstrained `axiom Type`s. Identity-`applyUpdate` axiomatization makes the existential provably false; behaviorally-constrained store ops may flip the result. The right fix is store-op laws, not axiomatization-of-convenience. Discharging the sorry by convenient axiomatization would launder the gap into kernel commitment rather than resolve it — the kind of move the rest of this register exists to prevent. |
-| **Resolution path** | Concurrent with entry #13's discharge: when behavioral laws on store ops land via the first concrete `BasisDerivation`, the existential becomes decidable and either the theorem is proved or its negation is, replacing the sorry with a real proof either way. |
-| **Build impact** | `lake build` green; Lean treats `sorry` as a warning. No CI gate currently forbids sorry. A `forbid-sorry` gate with this theorem on an explicit allowlist is candidate work, not wired. |
-| **Counted in summary** | No. Admitted statements are tracked separately from the four-status taxonomy; counting them as OPEN would conflate "no proof attempted" with "proof admitted deliberately as evidence of a vocabulary boundary." |
+| **Original location** | `LeanProofs/Admissibility/Corrective.lean:283` (theorem with `sorry`, since removed) |
+| **Type** | Investigative null (existential whose truth value is undecidable in the abstract kernel) |
+| **Resolution** | Replaced 2026-05-07 by a positive model-dependence boundary result. The `sorry`-bearing theorem is removed; theorem statement preserved in `Corrective.lean` as a comment-shape pointing to `CorrectiveBoundary.lean`. The abstract existential remains undecidable under the abstract kernel's `axiom`-typed store ops — but the boundary module proves this undecidability is *genuine model-dependence*, exhibiting both possible answers in a parallel miniature kernel. |
+| **What replaced it** | See entry #14 for the boundary result. |
 
 ---
 
@@ -184,11 +195,11 @@ Theorems intentionally admitted via `sorry`, separate from the BROKEN / STALE / 
 |--------|-------|--------|
 | BROKEN | 2 | Rewrite with corrected claims |
 | STALE | 3 | Tighten framing, remove temporal conflation |
-| SOUND | 6 | No change; some need cross-referencing |
-| OPEN | 2 | Δc→Δh dynamics (partially formalized); corrective monotonicity (obligation declared, vacuously satisfiable pending store-op laws) |
-| ADMITTED | 1 | `corrective_then_forward_is_not_monotone` — investigative null, see § Admitted Statements above |
+| SOUND | 7 | No change; some need cross-referencing |
+| OPEN | 2 | Δc→Δh dynamics (partially formalized); corrective monotonicity (obligation declared, vacuously satisfiable in abstract kernel pending store-op laws) |
+| ADMITTED | 0 | (was 1; A1 resolved 2026-05-07 via boundary result, see #14) |
 
-Entries #1–#10 are from the original 2026-04-03 audit, scoped to claims touching Δh, Δc, detachment, rollback, closure, sink/attractor language, terminal families, and "long enough." Entries #11–#12 (added 2026-05-03) cover Paper 25's §5 sibling-vs-§N algebraic adjudication and §3.1 Theorem 1 epistemic-access core, formalized in `LeanProofs/Paper25EpistemicBorderControl.lean`. Entry #13 (added 2026-05-06) records the corrective-monotonicity obligation shape pinned by `LeanProofs/Admissibility/Corrective.lean` — declared, not discharged. Admitted statement A1 (added 2026-05-06) is the investigative-null sorry preserved deliberately as evidence of the same vocabulary gap; the build is green through `sorryAx`, which is named here rather than concealed.
+Entries #1–#10 are from the original 2026-04-03 audit, scoped to claims touching Δh, Δc, detachment, rollback, closure, sink/attractor language, terminal families, and "long enough." Entries #11–#12 (added 2026-05-03) cover Paper 25's §5 sibling-vs-§N algebraic adjudication and §3.1 Theorem 1 epistemic-access core, formalized in `LeanProofs/Paper25EpistemicBorderControl.lean`. Entry #13 (added 2026-05-06) records the corrective-monotonicity obligation shape pinned by `LeanProofs/Admissibility/Corrective.lean` — declared, not discharged in the abstract kernel. Entry #14 (added 2026-05-07) records the corrective+forward model-dependence boundary result in `LeanProofs/Admissibility/CorrectiveBoundary.lean`, which replaces the formerly-admitted A1. The repo is sorry-free as of 2026-05-07.
 
 ### Priority rewrites — DONE (2026-04-03)
 

@@ -255,36 +255,50 @@ theorem corrective_sequence_monotone
         (applySteps (applyStep Γ s) rest) Γ
       exact weakly_less_permissive_trans htail hstep
 
-/-! ### Investigative null shape — mixed-class sequence
+/-! ### Investigative null shape — mixed-class sequence (boundary result)
 
-  Counterpoint to `corrective_sequence_monotone`. The minimal mixed
-  shape is a single corrective followed by a single forward Step.
-  Stated using existing vocabulary only — no minted primitives, no
-  broadened "boundary".
+  Counterpoint to `corrective_sequence_monotone`. The minimal mixed shape
+  is a single corrective followed by a single forward Step. Whether such
+  a sequence can fail `WeaklyLessPermissive` is **undecidable in this
+  abstract kernel**: store ops (`applyUpdate`, `appendRevocation`,
+  `appendGap`, `appendEvidence`) are unconstrained `axiom`s, and any
+  concrete `BasisDerivation` is permitted to ignore the stores.
 
-  Proof is `sorry`. The vocabulary deficit is precise: constructing a
-  counterexample env requires that `applyUpdate Γ.policyStore p` actually
-  distinguish the post-state from the pre-state for *some* (Γ, p).
-  `applyUpdate : PolicyStore → PolicyUpdate → PolicyStore` is an
-  unconstrained `axiom` in StateTransition.lean. Under the worst-case
-  axiomatization where `applyUpdate` is the identity (and likewise for
-  `appendGap`, `appendRevocation`, `appendEvidence`), every Step is
-  state-preserving and the existential is provably FALSE. Until a
-  behavioral law on the abstract store ops is committed (deferred per
-  StateTransition.lean and Derivation.lean TODOs), the kernel is
-  consistent with both the existential and its negation.
+  The existential was previously stated here as a `sorry`-bearing theorem
+  — preserved as evidence that the question is stateable in current
+  vocabulary but undecidable under current commitments. The `sorry` has
+  now been **replaced by a positive boundary result** in the sibling
+  module `Admissibility/CorrectiveBoundary.lean`, which proves that the
+  abstractness is *genuine model-dependence*, not vocabulary deficit:
 
-  This `sorry` is a recorded investigative null, not a deferred proof
-  to be eliminated by axiomatizing `applyUpdate` here.
+    - Identity store ops + arbitrary env ⇒ corrective+forward **IS**
+      monotone (proved in `CorrectiveBoundary.Identity`).
+    - Nondegenerate ops + verdict-sensitive env ⇒ corrective+forward
+      **IS NOT** monotone (concrete witness in `CorrectiveBoundary.Witness`).
+    - Abstract `NondegenerateStoreSemantics` predicate captures the three
+      commitments from `papers/working/nondegenerate-store-semantics.md`;
+      `corrective_then_forward_is_not_monotone_of_nondegenerate` proves
+      that any (ops, env) satisfying the predicate makes the existential
+      go through.
+
+  The abstract kernel itself remains consistent with both the existential
+  and its negation. That is the doctrinally-correct stance: the kernel
+  pins the question's *shape*; concrete envs (Governor-side instantiation
+  in `agent_gov`) decide its truth value at construction time. The
+  boundary module exhibits both possible answers in a parallel
+  miniature kernel.
+
+  Theorem statement preserved as a comment for future readers:
+
+    theorem corrective_then_forward_is_not_monotone :
+        ∃ (env : DerivationEnv) (Γ : GovState) (sc sf : Step),
+          IsCorrective sc ∧ IsForward sf ∧
+          ¬ WeaklyLessPermissive env (applySteps Γ [sc, sf]) Γ
+
+  See `CorrectiveBoundary.lean` for the parametric form, the two
+  model-specific proofs, and the abstract assumption interface. See
+  CLAIM-REGISTER A1 for the audit trail.
 -/
--- CATEGORY: investigative null
--- STATUS: stateable, undecided under current axioms
--- DO NOT discharge by axiomatizing store ops here
-theorem corrective_then_forward_is_not_monotone :
-    ∃ (env : DerivationEnv) (Γ : GovState) (sc sf : Step),
-      IsCorrective sc ∧ IsForward sf ∧
-      ¬ WeaklyLessPermissive env (applySteps Γ [sc, sf]) Γ := by
-  sorry
 
 /-! ### Recovery-capable environment — available vs operationally required
 

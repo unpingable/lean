@@ -1,6 +1,6 @@
 # Admissibility — Authority kernel
 
-Five modules forming a Governor-neutral authority kernel. **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
+Five modules forming a Governor-neutral authority kernel, plus one boundary-result module (`CorrectiveBoundary.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
@@ -38,6 +38,21 @@ Monotonicity layer over the existing four. Classifies every `Step` as `correctiv
 
 Companion working note: `~/git/papers/working/admissible-recovery-semantics.md`.
 
+### Sibling — `CorrectiveBoundary.lean` (added 2026-05-07)
+
+**Boundary-result module.** Not part of the five-module kernel proper; constructs a parallel miniature kernel with concrete payload types (`PolicyStore := List Nat`, etc.) and parameterized store ops, and proves model-dependence of the recorded null `corrective_then_forward_is_not_monotone`.
+
+The previous `sorry`-bearing investigative null in `Corrective.lean` has been removed; the theorem statement is preserved as a comment-shape pointing here.
+
+Two namespaces inside this module exhibit the model-dependence:
+
+- `Identity` — store ops are identity functions. Proves `corrective_then_forward_is_monotone_universally`: under any env, the corrective-then-forward existential is FALSE.
+- `Witness` — nondegenerate ops + a verdict-sensitive `BasisDerivation` that reads `policyStore` and `revocationStore`. Proves `corrective_then_forward_is_not_monotone`: a concrete witness `(initialState, recordRevocation 999, amendPolicy 1)` makes `WeaklyLessPermissive` fail at claim `1`.
+
+The abstract `NondegenerateStoreSemantics` structure packages the three commitments from `papers/working/nondegenerate-store-semantics.md` (nontrivial store effects, verdict-sensitive derivation, mixed-class witness), and `corrective_then_forward_is_not_monotone_of_nondegenerate` proves the existential follows from the structure. `witness_satisfies_nondegenerate` verifies the witness model satisfies the structure; `witness_corrective_then_forward_is_not_monotone_via_abstract` recovers the witness theorem from the abstract path as a regression check.
+
+The abstract kernel itself remains consistent with both the existential and its negation — that is the doctrinally-correct stance. The boundary module exhibits both possible answers without forcing the abstract kernel to commit. CLAIM-REGISTER #14 records the boundary result; A1 (the formerly-admitted sorry) is resolved.
+
 ## What the kernel warrants
 
 > Governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step. Recovery-classified transitions cannot increase the authorized action set; authority-increasing recovery requires a separately classified forward transition with fresh basis.
@@ -51,7 +66,7 @@ Companion working note: `~/git/papers/working/admissible-recovery-semantics.md`.
 
 ## Build
 
-All five modules are wired into `LeanProofs.lean` root. `lake build` (no args) regression-checks them as part of the default proof gate.
+All five kernel modules plus `CorrectiveBoundary` are wired into `LeanProofs.lean` root. `lake build` (no args) regression-checks them as part of the default proof gate. Repo is sorry-free as of 2026-05-07.
 
 ```bash
 lake build LeanProofs.Admissibility.Authority
@@ -59,6 +74,7 @@ lake build LeanProofs.Admissibility.StateTransition
 lake build LeanProofs.Admissibility.Derivation
 lake build LeanProofs.Admissibility.Execution
 lake build LeanProofs.Admissibility.Corrective
+lake build LeanProofs.Admissibility.CorrectiveBoundary
 ```
 
 Or just `lake build` for the whole stack.
