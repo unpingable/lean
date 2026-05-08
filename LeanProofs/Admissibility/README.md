@@ -45,7 +45,10 @@ Companion working note: `~/git/papers/working/admissible-recovery-semantics.md`.
 
 Two namespaces:
 
-- `Admissibility.WitnessInvariance` — abstract `Encapsulated` and `MovesUnderExcludedPerturbation` definitions over a `sameAdmittedBasis` equivalence relation, plus the boundary theorem `moves_implies_not_encapsulated` and its symmetric reading.
+- `Admissibility.WitnessInvariance` — three layered forms:
+  - **Relational:** abstract `Encapsulated` / `MovesUnderExcludedPerturbation` over a `sameAdmittedBasis` equivalence relation, plus boundary theorem `moves_implies_not_encapsulated`.
+  - **Typed perturbation-bounded** *(chatty refinement, 2026-05-08):* `EncapsulatedWrt` / `MovesUnderDisturbance` parameterized by an *allowed-perturbation relation* on the disturbance class — *not* just a type. Refinement-monotonicity corollary `encapsulated_wrt_mono`; bridge theorem `encapsulated_wrt_iff_relational`.
+  - **Regime-bounded** *(chatty follow-on patch, 2026-05-08):* `EncapsulatedWithinRegime` / `MovesWithinRegime` adding an operating regime as a predicate on `ProductWorld`. Boundary theorem `moves_within_regime_implies_not_encapsulated_within_regime`. Universal-regime collapse theorem (`encapsulated_within_universal_regime_iff_encapsulated_wrt`) shows the regime layer is a strict generalization. Regime-monotonicity (`encapsulated_within_regime_mono`) — narrowing the regime preserves encapsulation, widening can break it.
 - `Admissibility.WitnessInvarianceToy` — concrete two-bit toy (`ToyState` with `synBit`, `semBit` fields; `ToyWitness := synBit && semBit`) exhibiting `selectivity_does_not_imply_encapsulation`. The `synBit` / `semBit` field-name abbreviations work around the Lean 4 reserved keyword `syntax`.
 
 Companion working note (papers repo): `~/git/papers/working/primitives/witness-invariance-failure.md`. Keeper: *Specialization is a gain pattern. Encapsulation is an invariance claim. Modularity is an earned boundary.* Operational corollary: *A witness that moves when the wrong variable moves is not lying. It is unqualified.*

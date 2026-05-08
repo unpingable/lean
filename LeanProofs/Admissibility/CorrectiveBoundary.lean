@@ -42,6 +42,46 @@
   store ops as a `StoreOps` structure. The mirror is structural, not
   inheritance.
 
+  ## Structural mirror — what is preserved and what is collapsed
+
+  The miniature kernel provides *structural evidence* for the abstract
+  claim, not a derived theorem about it. The Lean result should not be
+  read as a theorem that lifts from `Mini` to the abstract kernel's
+  `axiom`-typed stores; the abstract null persists in `Corrective.lean`
+  because the abstract layer cannot decide it.
+
+  The mirror is faithful in:
+    - `Step` constructor shape and arity (one per mutation kind).
+    - Step classification (corrective / forward / neutral) and the
+      `IsCorrective` / `IsForward` / `IsNeutral` discipline.
+    - Step sequencing via `applyStep` / `applySteps`.
+    - WLP-style cross-state comparison via `WeaklyLessPermissive`.
+    - The bridge-structure shape (`BasisDerivation` carrying a function
+      plus its `revoked_never_admissible` obligation; `DerivationEnv`
+      bundling the three derivations; `decideAuthority` as the gate).
+
+  The mirror collapses:
+    - `Actor`, `Receipt`, `Gap` to `Unit` (no actor-distinction, no
+      receipt schema, no gap schema).
+    - `EvidenceStore` and `GapStore` to `Unit` (not exercised by the
+      recorded null, which involves only policy and revocation stores).
+    - The abstract kernel's `*Standing` predicates are not mirrored
+      (the mini's `BasisDerivation` does not depend on standing).
+
+  Within these collapses, the structural claim the mirror exhibits —
+  *that the abstract null is genuinely model-dependent* — is honest. A
+  reader extending the mirror to test additional dimensions (actors,
+  evidence schemas, standing predicates) would re-do the structural
+  exhibition for those dimensions; the current mirror does not claim
+  to cover them.
+
+  Site 2 finding (orientation): `mixed_class_witness` is intentionally
+  conclusion-shaped at the abstract level. The concrete structural
+  prerequisite (the corrective doesn't pre-block the forward's
+  authorization) is exhibited by `Witness.DoesNotPreBlock`; the abstract
+  layer does not claim an env-independent decomposition. *A failed
+  patch can be evidence of an honest abstraction boundary.*
+
   Governor-neutral. Imports `Authority.lean` for the verdict types only.
 -/
 
@@ -346,6 +386,43 @@ theorem witnessCorrective_isCorrective : Mini.IsCorrective witnessCorrective := 
 theorem witnessForward_isForward : Mini.IsForward witnessForward := by
   rfl
 
+/-! ### Structural condition: corrective does not pre-block the forward
+
+  The witness construction relies on an implicit structural condition:
+  the corrective step must not pre-block the claim the forward step is
+  meant to authorize. In the concrete witness this is discharged by
+  the numeric inequality `999 ≠ 1` — the revocation target is not the
+  witness claim.
+
+  Naming the predicate explicitly so the witness's structural
+  requirement is visible, not buried in the choice of numerals.
+  Site 3 of the 2026-05-08 proof-first scout pass.
+-/
+
+/-- A corrective step does not pre-block claim `K`: applying the step
+    to a state where `K` is not already revoked leaves `K` unrevoked.
+    Scoped locally to the `Witness` namespace's `ops` (the
+    nondegenerate store ops); not a generic relation between
+    corrective and forward steps. -/
+def DoesNotPreBlock (sc : Mini.Step) (K : Mini.Claim) : Prop :=
+  ∀ Γ : Mini.GovState,
+    K ∉ Γ.revocationStore →
+    K ∉ (Mini.applyStep ops Γ sc).revocationStore
+
+/-- The witness corrective (`recordRevocation 999`) does not pre-block
+    `witnessClaim` (= 1). Discharge of the structural condition;
+    follows from the concrete inequality `999 ≠ 1`. -/
+theorem witnessCorrective_doesNotPreBlock_witnessClaim :
+    DoesNotPreBlock witnessCorrective witnessClaim := by
+  intro Γ hNotIn hIn
+  -- `(Mini.applyStep ops Γ witnessCorrective).revocationStore` reduces
+  -- definitionally to `999 :: Γ.revocationStore` (via `ops.appendRevocation`).
+  rw [show (Mini.applyStep ops Γ witnessCorrective).revocationStore =
+        999 :: Γ.revocationStore from rfl, List.mem_cons] at hIn
+  rcases hIn with h | h
+  · exact absurd h (by decide)
+  · exact hNotIn h
+
 /-- At `initialState`, the witness claim is not authorized: nothing in the
     policy store, so basis derives to `noBasis`, so `decideAuthority`
     returns `denied`. -/
@@ -419,7 +496,11 @@ structure NondegenerateStoreSemantics
       Mini.decideAuthority env Γ a K ≠
         Mini.decideAuthority env (Mini.applyStep ops Γ s) a K
   /-- (3.3) Mixed-class witness: a corrective-then-forward sequence
-      authorizes a previously-unauthorized claim. -/
+      authorizes a previously-unauthorized claim. Conclusion-shaped at
+      this abstract level by design — the structural prerequisite
+      (corrective doesn't pre-block the forward's authorization) is
+      exhibited concretely by `Witness.DoesNotPreBlock`; the abstract
+      layer does not claim an env-independent decomposition. -/
   mixed_class_witness :
     ∃ (Γ : Mini.GovState) (sc sf : Mini.Step)
       (a : Mini.Actor) (K : Mini.Claim),

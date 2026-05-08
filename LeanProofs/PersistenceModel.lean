@@ -348,3 +348,348 @@ theorem repair_capacity_is_configured (cfg : PConfig) (sys : PSys)
   A restructured system can fail again, faster, because it starts
   with less rollback capacity (invariants 9, 10).
 -/
+
+-- ════════════════════════════════════════════════════════════
+-- PHASE A: Quantitative burn cleanup
+-- ════════════════════════════════════════════════════════════
+
+/--
+  Under `cfg.burnRate ≤ sys.rollbackCapacity`, a commit from a
+  capacity-burning state (`detachedShort` or `detachedWarn`) burns
+  exactly `burnRate` of capacity. Additive form avoids Nat-subtraction
+  edge cases when used downstream.
+
+  This isolates the Nat-truncation boundary discussed in the `step`
+  doc-comment: when `burnRate ≤ rollbackCapacity`, truncating
+  subtraction agrees with true integer subtraction, and the additive
+  identity holds.
+-/
+theorem commit_burns_exactly
+    (cfg : PConfig) (sys : PSys)
+    (h_state : sys.state = .detachedShort ∨ sys.state = .detachedWarn)
+    (h_burn : cfg.burnRate ≤ sys.rollbackCapacity) :
+    (step cfg sys .commit).rollbackCapacity + cfg.burnRate
+      = sys.rollbackCapacity := by
+  cases sys with | mk st da rc =>
+  rcases h_state with h | h
+  · -- detachedShort case
+    subst h
+    simp only [step]
+    split
+    · -- cap' == 0 branch
+      rename_i heq
+      simp_all
+      try omega
+    · -- inner split on age' >= cfg.tau
+      split <;> (simp_all; try omega)
+  · -- detachedWarn case
+    subst h
+    simp only [step]
+    split
+    · rename_i heq
+      simp_all
+      try omega
+    · simp_all
+      try omega
+
+-- ════════════════════════════════════════════════════════════
+-- PHASE A: Closed-form commit count to hysteretic
+-- ════════════════════════════════════════════════════════════
+
+/--
+  Number of commits to reach `hysteretic` from `detachedShort` (or
+  `detachedWarn`) with given starting capacity, under given `burnRate`.
+
+  Closed-form arithmetic. The connection to actual `run`-traces (the
+  realization theorem) is intentionally not formalized at this layer
+  — it requires strong induction over `rollbackCapacity` and is
+  deferred to a separate Phase C decision.
+
+  - `cap = 0` ⟹ `1` (the first commit triggers `cap' == 0`; truncating
+    Nat subtraction makes this branch fire immediately).
+  - `cap > 0` ⟹ `⌈cap / burnRate⌉ = (cap + burnRate - 1) / burnRate`.
+
+  Requires `burnRate > 0` for the result to mean anything; with
+  `burnRate = 0`, the state machine never transitions to hysteretic
+  from commits alone.
+-/
+def commitsToHysteretic (burnRate cap : Nat) : Nat :=
+  if cap = 0 then 1
+  else (cap + burnRate - 1) / burnRate
+
+/-- Non-strict monotonicity: smaller capacity reaches hysteretic in no
+    more commits than larger capacity, under positive burn rate. The
+    safe form of "less rollback capacity is no slower to failure." -/
+theorem commitsToHysteretic_monotone
+    {burnRate : Nat} (h_burn : burnRate > 0) {cap₁ cap₂ : Nat}
+    (h : cap₂ ≤ cap₁) :
+    commitsToHysteretic burnRate cap₂
+      ≤ commitsToHysteretic burnRate cap₁ := by
+  unfold commitsToHysteretic
+  split
+  · -- cap₂ = 0; commits(cap₂) = 1
+    split
+    · -- cap₁ = 0 → both 1
+      simp
+    · -- cap₁ > 0 → (cap₁ + burnRate - 1) / burnRate ≥ 1
+      next h_pos =>
+        have h_pos' : cap₁ ≥ 1 := Nat.pos_of_ne_zero h_pos
+        have : (cap₁ + burnRate - 1) / burnRate ≥ 1 := by
+          apply Nat.one_le_div_iff h_burn |>.mpr
+          omega
+        omega
+  · -- cap₂ > 0
+    split
+    · -- cap₁ = 0 contradicts cap₂ ≤ cap₁ with cap₂ > 0
+      omega
+    · -- both positive: ceiling division is monotone
+      apply Nat.div_le_div_right
+      omega
+
+-- ════════════════════════════════════════════════════════════
+-- PHASE B: Strict monotonicity + post-repair faster doctrine
+-- ════════════════════════════════════════════════════════════
+
+/-- Strict monotonicity: when capacity is positive and the gap is at
+    least one burn unit, the smaller capacity reaches hysteretic in
+    strictly fewer commits.
+
+    The `0 < cap₂` hypothesis is load-bearing: at the boundary
+    `cap₂ = 0, cap₁ = burnRate` both sides take exactly 1 commit
+    (truncating Nat subtraction makes `cap = 0` and `cap = burnRate`
+    tie at one commit). The strict inequality fails there. The
+    positivity hypothesis excludes the boundary case while preserving
+    every interesting strict-faster scenario.
+
+    This is the load-bearing arithmetic for the "faster after repair"
+    doctrine below. -/
+theorem commitsToHysteretic_strict_mono
+    {burnRate : Nat} (h_burn : burnRate > 0)
+    {cap₂ cap₁ : Nat}
+    (h_pos : 0 < cap₂)
+    (h_gap : cap₂ + burnRate ≤ cap₁) :
+    commitsToHysteretic burnRate cap₂
+      < commitsToHysteretic burnRate cap₁ := by
+  unfold commitsToHysteretic
+  have h_ne₂ : cap₂ ≠ 0 := Nat.pos_iff_ne_zero.mp h_pos
+  have h_ne₁ : cap₁ ≠ 0 := by omega
+  rw [if_neg h_ne₂, if_neg h_ne₁]
+  -- Goal: (cap₂ + burnRate - 1) / burnRate < (cap₁ + burnRate - 1) / burnRate
+  -- Strategy:
+  --   (cap₂ + burnRate - 1) + burnRate ≤ cap₁ + burnRate - 1   (from h_gap, h_pos)
+  --   ⇒ ((cap₂ + burnRate - 1) + burnRate) / burnRate ≤ (cap₁ + burnRate - 1) / burnRate
+  --   ⇒ (cap₂ + burnRate - 1) / burnRate + 1 ≤ (cap₁ + burnRate - 1) / burnRate
+  --     by Nat.add_div_right
+  --   ⇒ strict <.
+  have h_le : (cap₂ + burnRate - 1) + burnRate ≤ cap₁ + burnRate - 1 := by omega
+  have h_div :
+      ((cap₂ + burnRate - 1) + burnRate) / burnRate
+        ≤ (cap₁ + burnRate - 1) / burnRate :=
+    Nat.div_le_div_right h_le
+  rw [Nat.add_div_right _ h_burn] at h_div
+  omega
+
+/-- Doctrine "faster" claim. Under the well-configured hypothesis that
+    post-repair capacity is positive AND post-repair plus one burn unit
+    fits within the pre-failure starting capacity, post-repair reaches
+    hysteretic in strictly fewer commits than the original journey.
+
+    The `0 < cfg.repairCapacity` hypothesis excludes the degenerate
+    case where repair grants no capacity at all (in which case the
+    repaired system burns out on the first commit, same as a system
+    starting with exactly `burnRate` capacity).
+
+    The hypothesis `cfg.repairCapacity + cfg.burnRate ≤ initialCapacity`
+    is the burn-boundary form of "less capacity": repair grants at
+    least one full burn unit less than the original.
+
+    Carried as theorem hypotheses rather than extending `PConfig` —
+    keeps the static config flat and lets callers supply the comparison
+    at use-site. -/
+theorem post_repair_faster_to_hysteretic
+    (cfg : PConfig) (initialCapacity : Nat)
+    (h_burn : cfg.burnRate > 0)
+    (h_pos : 0 < cfg.repairCapacity)
+    (h_well_configured : cfg.repairCapacity + cfg.burnRate ≤ initialCapacity) :
+    commitsToHysteretic cfg.burnRate cfg.repairCapacity
+      < commitsToHysteretic cfg.burnRate initialCapacity :=
+  commitsToHysteretic_strict_mono h_burn h_pos h_well_configured
+
+-- ════════════════════════════════════════════════════════════
+-- PHASE C: Trace realization (bounded attempt)
+-- ════════════════════════════════════════════════════════════
+
+/-
+  The bridge from closed-form arithmetic (Phase A/B) to actual `run`
+  traces. Two helpers about a single `step .commit` plus strong
+  induction on `rollbackCapacity` reach `commitsToHysteretic_realizes`.
+
+  Per chatty's scope discipline (2026-05-08): two helpers maximum,
+  recurrence proved inline, no general state-machine framework.
+-/
+
+/-- Helper A: from a detached state with capacity at most one burn-unit,
+    a single commit lands in `hysteretic`. The truncating Nat
+    subtraction makes `cap' = 0` whenever `cap ≤ burnRate`, which
+    triggers the `if cap' == 0` branch into `.hysteretic`. -/
+theorem step_commit_low_terminates
+    (cfg : PConfig) (sys : PSys)
+    (h_state : sys.state = .detachedShort ∨ sys.state = .detachedWarn)
+    (h_low : sys.rollbackCapacity ≤ cfg.burnRate) :
+    (step cfg sys .commit).state = .hysteretic := by
+  cases sys with | mk st da rc =>
+  rcases h_state with h | h
+  · subst h
+    simp only [step]
+    split
+    · simp_all
+    · rename_i hne
+      simp at hne
+      simp_all
+  · subst h
+    simp only [step]
+    split
+    · simp_all
+    · rename_i hne
+      simp at hne
+      simp_all
+
+/-- Helper B: from a detached state with capacity strictly above one
+    burn-unit, a single commit decrements capacity by exactly
+    `burnRate` and the state remains detached (either `detachedShort`
+    or `detachedWarn`, depending on whether the resulting age crosses
+    `tau`). -/
+theorem step_commit_high_continues
+    (cfg : PConfig) (sys : PSys)
+    (h_state : sys.state = .detachedShort ∨ sys.state = .detachedWarn)
+    (h_high : cfg.burnRate < sys.rollbackCapacity) :
+    (step cfg sys .commit).rollbackCapacity = sys.rollbackCapacity - cfg.burnRate ∧
+    ((step cfg sys .commit).state = .detachedShort ∨
+     (step cfg sys .commit).state = .detachedWarn) := by
+  cases sys with | mk st da rc =>
+  rcases h_state with h | h
+  · subst h
+    simp only [step]
+    split
+    · rename_i heq
+      simp at heq
+      simp_all
+      omega
+    · split
+      all_goals (refine ⟨?_, ?_⟩ <;> simp_all)
+  · subst h
+    simp only [step]
+    split
+    · rename_i heq
+      simp at heq
+      simp_all
+      omega
+    · refine ⟨?_, ?_⟩ <;> simp_all
+
+/-- Realization bridge: starting from a `detachedShort` or
+    `detachedWarn` state, replicating `commitsToHysteretic`-many
+    `.commit` events lands in `hysteretic`. The trace may pass through
+    `detachedWarn` en route depending on `cfg.tau`, but the commit-count
+    is unchanged.
+
+    Proof: strong induction on `rollbackCapacity`. Two cases at each
+    step:
+
+    - `cap ≤ burnRate`: closed-form yields 1; helper A applies.
+    - `cap > burnRate`: closed-form satisfies the recurrence
+      `commits(cap) = commits(cap - burnRate) + 1` (proven inline via
+      `Nat.add_div_right`); helper B steps to a smaller-capacity
+      detached state; the inductive hypothesis applies. -/
+theorem commitsToHysteretic_realizes
+    (cfg : PConfig) (sys : PSys)
+    (h_state : sys.state = .detachedShort ∨ sys.state = .detachedWarn)
+    (h_burn : cfg.burnRate > 0) :
+    (run cfg sys
+        (List.replicate
+          (commitsToHysteretic cfg.burnRate sys.rollbackCapacity)
+          .commit)).state = .hysteretic := by
+  -- Strong induction on rollbackCapacity, generalized to any sys with that capacity.
+  suffices h : ∀ (n : Nat) (sys' : PSys),
+      sys'.rollbackCapacity = n →
+      (sys'.state = .detachedShort ∨ sys'.state = .detachedWarn) →
+      (run cfg sys' (List.replicate (commitsToHysteretic cfg.burnRate n) .commit)).state
+        = .hysteretic by
+    exact h sys.rollbackCapacity sys rfl h_state
+  intro n
+  induction n using Nat.strongRecOn with
+  | _ n ih =>
+    intro sys' hcap hstate
+    by_cases h_le : n ≤ cfg.burnRate
+    · -- Case 1: n ≤ burnRate. Closed-form is 1; one commit suffices.
+      have h_one : commitsToHysteretic cfg.burnRate n = 1 := by
+        unfold commitsToHysteretic
+        split
+        · rfl
+        · rename_i h_pos
+          have hp : 0 < n := Nat.pos_of_ne_zero h_pos
+          have h1 : n + cfg.burnRate - 1 = (n - 1) + cfg.burnRate := by omega
+          rw [h1, Nat.add_div_right _ h_burn]
+          have h2 : (n - 1) / cfg.burnRate = 0 := Nat.div_eq_of_lt (by omega)
+          omega
+      rw [h_one]
+      simp only [List.replicate, run]
+      have h_low : sys'.rollbackCapacity ≤ cfg.burnRate := by rw [hcap]; exact h_le
+      exact step_commit_low_terminates cfg sys' hstate h_low
+    · -- Case 2: n > burnRate. Recurse via helper B at cap - burnRate < n.
+      have h_lt : cfg.burnRate < n := by omega
+      have h_high : cfg.burnRate < sys'.rollbackCapacity := by rw [hcap]; exact h_lt
+      obtain ⟨hcap', hstate'⟩ := step_commit_high_continues cfg sys' hstate h_high
+      -- commitsToHysteretic n = commitsToHysteretic (n - burnRate) + 1, inline.
+      have hrec : commitsToHysteretic cfg.burnRate n =
+                  commitsToHysteretic cfg.burnRate (n - cfg.burnRate) + 1 := by
+        unfold commitsToHysteretic
+        have h_ne : n ≠ 0 := by omega
+        have h_ne' : n - cfg.burnRate ≠ 0 := by omega
+        rw [if_neg h_ne, if_neg h_ne']
+        rw [show n - cfg.burnRate + cfg.burnRate - 1 = n - 1 from by omega,
+            show n + cfg.burnRate - 1 = (n - 1) + cfg.burnRate from by omega]
+        exact Nat.add_div_right (n - 1) h_burn
+      rw [hrec, List.replicate_succ]
+      simp only [run]
+      have h_lt : n - cfg.burnRate < n := by omega
+      have hcap'_eq : (step cfg sys' .commit).rollbackCapacity = n - cfg.burnRate := by
+        rw [hcap']; rw [hcap]
+      exact ih (n - cfg.burnRate) h_lt (step cfg sys' .commit) hcap'_eq hstate'
+
+/-- Trace-level "faster" doctrine theorem. Composes
+    `post_repair_faster_to_hysteretic` (Phase B strict commit-count
+    inequality) with `commitsToHysteretic_realizes` (Phase C realization
+    bridge) to land the doctrine claim at the run-trace level: from a
+    post-repair state with capacity `cfg.repairCapacity`, the journey
+    to hysteretic uses strictly fewer commits than from a state with
+    `initialCapacity`, AND those commit counts realize concrete
+    `run`-traces ending in `hysteretic`.
+
+    The corollary preserves the corrected `0 < cfg.repairCapacity`
+    hypothesis from Phase B — at the boundary case `repairCapacity = 0`
+    the post-repair system burns out on first commit, same as a system
+    starting with exactly `cfg.burnRate` capacity, so strict-faster is
+    not honestly available. -/
+theorem post_repair_trace_faster
+    (cfg : PConfig)
+    (sysRepair sysInitial : PSys) (initialCapacity : Nat)
+    (h_burn : cfg.burnRate > 0)
+    (h_state_r : sysRepair.state = .detachedShort ∨ sysRepair.state = .detachedWarn)
+    (h_state_i : sysInitial.state = .detachedShort ∨ sysInitial.state = .detachedWarn)
+    (h_cap_r : sysRepair.rollbackCapacity = cfg.repairCapacity)
+    (h_cap_i : sysInitial.rollbackCapacity = initialCapacity)
+    (h_pos : 0 < cfg.repairCapacity)
+    (h_well : cfg.repairCapacity + cfg.burnRate ≤ initialCapacity) :
+    ∃ kR kI, kR < kI ∧
+      (run cfg sysRepair (List.replicate kR .commit)).state = .hysteretic ∧
+      (run cfg sysInitial (List.replicate kI .commit)).state = .hysteretic := by
+  refine ⟨commitsToHysteretic cfg.burnRate cfg.repairCapacity,
+          commitsToHysteretic cfg.burnRate initialCapacity,
+          ?_, ?_, ?_⟩
+  · exact post_repair_faster_to_hysteretic cfg initialCapacity h_burn h_pos h_well
+  · have := commitsToHysteretic_realizes cfg sysRepair h_state_r h_burn
+    rw [h_cap_r] at this
+    exact this
+  · have := commitsToHysteretic_realizes cfg sysInitial h_state_i h_burn
+    rw [h_cap_i] at this
+    exact this

@@ -1,2 +1,3 @@
 /.lake
 lean_proofs/
+__pycache__/

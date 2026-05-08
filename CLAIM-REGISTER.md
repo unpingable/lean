@@ -170,6 +170,17 @@ Generated 2026-04-03 after static topology and persistence model results.
 | **Tool** | Lean (`CorrectiveBoundary.lean`) — `Identity.corrective_then_forward_is_monotone_universally`, `Witness.corrective_then_forward_is_not_monotone`, `corrective_then_forward_is_not_monotone_of_nondegenerate` (parametric form), `witness_satisfies_nondegenerate` |
 | **Fix** | None to the boundary claim itself. Provenance: chatty's "prove the boundary, not the theorem" plan, 2026-05-07. The miniature kernel re-creates the abstract kernel's structure with concrete payload types (`PolicyStore := List Nat`, etc.) and parameterized store ops (`StoreOps` structure). Two model namespaces (`Identity`, `Witness`) prove the two possible answers. Abstract `NondegenerateStoreSemantics` packages the three commitments from `papers/working/nondegenerate-store-semantics.md` and the parametric theorem proves the existential follows from the structure. Witness model satisfies the abstract structure. The abstract kernel itself remains consistent with both the existential and its negation; that is the doctrinally-correct stance, and the boundary result is the positive content of the formerly-admitted null. |
 
+### 15. PersistenceModel quantitative burn + realization cluster (P18 cashout)
+
+| Field | Value |
+|-------|-------|
+| **Location** | `LeanProofs/PersistenceModel.lean` (`commit_burns_exactly`, `commitsToHysteretic`, `commitsToHysteretic_monotone`, `commitsToHysteretic_strict_mono`, `post_repair_faster_to_hysteretic`, `step_commit_low_terminates`, `step_commit_high_continues`, `commitsToHysteretic_realizes`, `post_repair_trace_faster`) |
+| **Claim** | "After external repair, the system reaches hysteretic in strictly fewer commits than the original journey, when repair grants positive capacity at least one full burn-unit below baseline." Closed-form commit count `commitsToHysteretic burnRate cap` is defined; strict commit-count monotonicity holds under `0 < repairCapacity ∧ repairCapacity + burnRate ≤ initialCapacity`; trace-level realization holds — replicating `commitsToHysteretic`-many `.commit` events from a detached state lands in `hysteretic`. |
+| **Bucket** | Structural (closed-form arithmetic + state-machine realization) |
+| **Status** | **SOUND** through the full ladder: capacity arithmetic → commit-count horizon → strict-faster theorem → run-trace realized faster. `post_repair_trace_faster` (added 2026-05-08, post-Phase-C) composes the Phase B strict inequality with two applications of `commitsToHysteretic_realizes` to land the doctrine claim at trace level. |
+| **Tool** | Lean (`PersistenceModel.lean`, added 2026-05-08, three phases) — eight new theorems landed sorry-free; companion change-log entry in PAPER-MAP. Realization proof uses `Nat.strongRecOn` for strong induction on `rollbackCapacity`, with two helpers (`step_commit_low_terminates`, `step_commit_high_continues`) and inline recurrence via `Nat.add_div_right`. |
+| **Fix** | The originally-proposed `commitsToHysteretic_strict_mono` was *false* under the draft's own `cap = 0 → 1` convention: counterexample at `cap₂ = 0, burnRate = 3, cap₁ = 3` (both sides take 1 commit, hypothesis `cap₂ + burnRate ≤ cap₁` holds, but strict `<` fails). Chatty caught it during inspection. Corrected hypothesis form requires `0 < cap₂` to exclude the genuine boundary tie, preserving doctrine: *"less capacity is no slower (non-strict) under any reduction; strictly faster (strict) when the reduction is positive and exceeds one burn-unit."* The boundary case is operationally meaningful — at `cap = burnRate` the system already burns out on first commit, so no improvement is possible from less capacity at that boundary. The realization bridge connects this commit-count arithmetic to actual `run` traces ending in `hysteretic`, completing the formalization stack from prose doctrine through closed-form arithmetic through state-machine semantics. |
+
 ---
 
 ## Admitted statements
@@ -195,8 +206,8 @@ Theorems intentionally admitted via `sorry`, separate from the BROKEN / STALE / 
 |--------|-------|--------|
 | BROKEN | 2 | Rewrite with corrected claims |
 | STALE | 3 | Tighten framing, remove temporal conflation |
-| SOUND | 7 | No change; some need cross-referencing |
-| OPEN | 2 | Δc→Δh dynamics (partially formalized); corrective monotonicity (obligation declared, vacuously satisfiable in abstract kernel pending store-op laws) |
+| SOUND | 8 | No change; some need cross-referencing |
+| OPEN | 2 | Δc→Δh dynamics (now substantially formalized via #15 quantitative burn cluster; trace-realization Phase C deferred); corrective monotonicity (obligation declared, vacuously satisfiable in abstract kernel pending store-op laws) |
 | ADMITTED | 0 | (was 1; A1 resolved 2026-05-07 via boundary result, see #14) |
 
 Entries #1–#10 are from the original 2026-04-03 audit, scoped to claims touching Δh, Δc, detachment, rollback, closure, sink/attractor language, terminal families, and "long enough." Entries #11–#12 (added 2026-05-03) cover Paper 25's §5 sibling-vs-§N algebraic adjudication and §3.1 Theorem 1 epistemic-access core, formalized in `LeanProofs/Paper25EpistemicBorderControl.lean`. Entry #13 (added 2026-05-06) records the corrective-monotonicity obligation shape pinned by `LeanProofs/Admissibility/Corrective.lean` — declared, not discharged in the abstract kernel. Entry #14 (added 2026-05-07) records the corrective+forward model-dependence boundary result in `LeanProofs/Admissibility/CorrectiveBoundary.lean`, which replaces the formerly-admitted A1. The repo is sorry-free as of 2026-05-07.

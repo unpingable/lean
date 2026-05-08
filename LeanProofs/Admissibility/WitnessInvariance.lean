@@ -129,7 +129,7 @@ theorem encapsulated_implies_not_moves
     3. *Overbroad encapsulation* — invariant to R₁ but falsely admitted
        as invariant to a coarser R₂ ⊋ R₁.
     4. *Regime leakage* — invariant under R only inside operating regime
-       Γ. (Regime layer not yet formalized; flagged in the companion note.)
+       Γ. Formalized as `EncapsulatedWithinRegime` below.
 -/
 
 /-- A world structured as a product of a basis (variables claimed
@@ -230,6 +230,127 @@ theorem encapsulated_wrt_iff_relational
     exact hEnc ab ad bd hAllowed
   · intro hEnc b d₁ d₂ hAllowed
     exact hEnc ⟨b, d₁⟩ ⟨b, d₂⟩ ⟨rfl, hAllowed⟩
+
+/-! ## Regime-bounded refinement
+
+  Per chatty 2026-05-08: most real witnesses are not globally qualified.
+  They are qualified *within an operating regime Γ*. The regime-flat
+  forms above (`EncapsulatedWrt`, `EncapsulatedAllShifts`) cannot
+  express *"invariant under this perturbation class **inside Γ**"*
+  — that distinction lived in the prose ("regime leakage" — failure
+  case 4 in the witness-failure classification) without a formal
+  counterpart. This section is the patch that gives the missing
+  phrase teeth.
+
+  Doctrine upgrade:
+
+    A witness may be qualified within Γ without being globally
+    qualified.
+
+  Operator-facing form:
+
+    Witness W is qualified for target X relative to:
+      admitted basis B,
+      perturbation class R,
+      operating regime Γ,
+      output/effect being authorized.
+
+  This subsection adds Γ as first-class. The output/effect slot remains
+  a paper-side concern not yet formalized.
+-/
+
+/-- Encapsulation within an operating regime. The witness is invariant
+    under any admitted perturbation `d₁ → d₂`, holding the basis fixed,
+    *provided both pre- and post-perturbation states are in regime Γ*.
+    Outside Γ, the encapsulation claim makes no commitment.
+
+    The double regime hypothesis (`Γ ⟨b, d₁⟩` and `Γ ⟨b, d₂⟩`) is
+    deliberate: a witness whose invariance only holds when the
+    perturbation does not push the system out of regime is honestly
+    regime-bounded, not globally invariant. -/
+def EncapsulatedWithinRegime
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    (regime : ProductWorld Basis Disturbance → Prop)
+    (allowedDisturbanceShift : Disturbance → Disturbance → Prop)
+    (witness : ProductWorld Basis Disturbance → Out) : Prop :=
+  ∀ (b : Basis) (d₁ d₂ : Disturbance),
+    regime ⟨b, d₁⟩ →
+    regime ⟨b, d₂⟩ →
+    allowedDisturbanceShift d₁ d₂ →
+      witness ⟨b, d₁⟩ = witness ⟨b, d₂⟩
+
+/-- The witness moves under an admitted in-regime perturbation. The
+    counterexample shape for `EncapsulatedWithinRegime`. -/
+def MovesWithinRegime
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    (regime : ProductWorld Basis Disturbance → Prop)
+    (allowedDisturbanceShift : Disturbance → Disturbance → Prop)
+    (witness : ProductWorld Basis Disturbance → Out) : Prop :=
+  ∃ (b : Basis) (d₁ d₂ : Disturbance),
+    regime ⟨b, d₁⟩ ∧
+    regime ⟨b, d₂⟩ ∧
+    allowedDisturbanceShift d₁ d₂ ∧
+      witness ⟨b, d₁⟩ ≠ witness ⟨b, d₂⟩
+
+/-- Boundary theorem (regime-bounded form). An in-regime perturbation
+    that moves the witness refutes encapsulation within that regime. -/
+theorem moves_within_regime_implies_not_encapsulated_within_regime
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    {regime : ProductWorld Basis Disturbance → Prop}
+    {allowedDisturbanceShift : Disturbance → Disturbance → Prop}
+    {witness : ProductWorld Basis Disturbance → Out}
+    (h : MovesWithinRegime regime allowedDisturbanceShift witness) :
+    ¬ EncapsulatedWithinRegime regime allowedDisturbanceShift witness := by
+  intro hEnc
+  obtain ⟨b, d₁, d₂, hΓ₁, hΓ₂, hAllowed, hNe⟩ := h
+  exact hNe (hEnc b d₁ d₂ hΓ₁ hΓ₂ hAllowed)
+
+/-- Universal-regime collapse: when the regime admits every state, the
+    regime-bounded form coincides with the regime-flat `EncapsulatedWrt`.
+    The regime layer is a strict generalization of the perturbation-
+    bounded form — making the regime universal recovers the prior form
+    exactly. Without this, the two forms are parallel definitions; with
+    it, the regime layer is refinement.
+
+    *Restored 2026-05-08 via operator override of strict-mode trim.* -/
+theorem encapsulated_within_universal_regime_iff_encapsulated_wrt
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    (allowedDisturbanceShift : Disturbance → Disturbance → Prop)
+    (witness : ProductWorld Basis Disturbance → Out) :
+    EncapsulatedWithinRegime (fun _ => True) allowedDisturbanceShift witness ↔
+      EncapsulatedWrt allowedDisturbanceShift witness := by
+  constructor
+  · intro hEnc b d₁ d₂ hAllowed
+    exact hEnc b d₁ d₂ trivial trivial hAllowed
+  · intro hEnc b d₁ d₂ _ _ hAllowed
+    exact hEnc b d₁ d₂ hAllowed
+
+/-- Regime monotonicity: encapsulation is downward-closed in the regime.
+    If `Γ₂ ⊆ Γ₁` (every Γ₂-state is a Γ₁-state) and the witness is
+    encapsulated over the *wider* regime `Γ₁`, it is encapsulated over
+    the *narrower* regime `Γ₂` as well.
+
+    The contrapositive is the operator-facing diagnostic the regime
+    layer was added to support: failure inside a narrow regime implies
+    failure inside any wider regime that includes it. Equivalently:
+    *narrowing the regime never breaks an existing encapsulation
+    claim, but widening can.*
+
+    *Restored 2026-05-08 via operator override of strict-mode trim.
+    Rationale: regime monotonicity is what the regime layer is for —
+    without it, per-regime claims do not compose, and the layer
+    becomes an isolated definition with no semantic relationships
+    to its neighbors.* -/
+theorem encapsulated_within_regime_mono
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    {Γ₁ Γ₂ : ProductWorld Basis Disturbance → Prop}
+    {allowedDisturbanceShift : Disturbance → Disturbance → Prop}
+    {witness : ProductWorld Basis Disturbance → Out}
+    (hSubset : ∀ x, Γ₂ x → Γ₁ x)
+    (hEnc : EncapsulatedWithinRegime Γ₁ allowedDisturbanceShift witness) :
+    EncapsulatedWithinRegime Γ₂ allowedDisturbanceShift witness := by
+  intro b d₁ d₂ hΓ₂₁ hΓ₂₂ hAllowed
+  exact hEnc b d₁ d₂ (hSubset _ hΓ₂₁) (hSubset _ hΓ₂₂) hAllowed
 
 end Admissibility.WitnessInvariance
 
