@@ -125,7 +125,7 @@ State well-formedness preservation, action semantics (stay / consume / movement)
 
 ## `LeanProofs/Admissibility/` (Authority kernel — infrastructure substrate)
 
-Five modules forming a Governor-neutral authority kernel, plus one boundary-result module:
+Five core modules forming a Governor-neutral authority kernel, plus two boundary-result siblings:
 
 - `Authority.lean` — verdict algebra. `authorityVerdict : Basis × Precedence × Standing → AuthorityVerdict`. Authorized iff all three dimensions green.
 - `StateTransition.lean` — partitioned governance state with isolation invariants. Only `Step.amendPolicy` mutates `PolicyStore`; `StepAllowed` gates raw mutation.

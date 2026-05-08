@@ -1,6 +1,6 @@
 # Admissibility — Authority kernel
 
-Five modules forming a Governor-neutral authority kernel, plus one boundary-result module (`CorrectiveBoundary.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
+Five core modules forming a Governor-neutral authority kernel, plus two boundary-result siblings (`CorrectiveBoundary.lean`, `WitnessInvariance.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
