@@ -92,6 +92,145 @@ theorem encapsulated_implies_not_moves
   intro h
   exact moves_implies_not_encapsulated h hEnc
 
+/-! ## Typed-disturbance refinement
+
+  Sharpening of the relational form when the world factors as a product
+  of a *basis* (variables the witness is claimed to depend on) and a
+  *disturbance class* (variables the witness is claimed to be invariant
+  under).
+
+  **Per chatty's correction (2026-05-08):** the disturbance class is not
+  merely a type — it is a declared *perturbation relation* over that type.
+  Otherwise we accidentally imply all type-distinct values constitute
+  admissible perturbations, which is too strong. The right operator-facing
+  question is *"invariant with respect to which excluded perturbations?"*
+  — and the answer is a relation `allowedDisturbanceShift : D → D → Prop`,
+  not just the type `D`.
+
+  Matches disturbance-decoupling vocabulary from geometric control theory
+  without inheriting its design-mode commitments — the primitive remains
+  audit-shaped (refute encapsulation by exhibiting movement under a
+  declared perturbation), not synthesis-shaped.
+
+  Cousin (not parent) to Invariant Causal Prediction (Peters/Bühlmann/
+  Meinshausen 2016): same structural shape ("test for invariance under
+  appropriate variation"), different register — ICP is statistical,
+  multi-environment, discovery-mode; this primitive is deterministic,
+  single-perturbation, refutation-mode. Cross-pointer in the companion
+  primitive note's adjacency map; do not fold.
+
+  Per-perturbation reasoning: a witness can be `EncapsulatedWrt` one
+  perturbation relation while *not* being encapsulated wrt a coarser one.
+  Naming the relation explicitly is the move that makes this expressible.
+
+  Witness-failure classification this enables (chatty 2026-05-08):
+    1. *Unqualified basis* — witness changes across basis-equivalent states.
+    2. *Undeclared disturbance* — no perturbation class named at all.
+    3. *Overbroad encapsulation* — invariant to R₁ but falsely admitted
+       as invariant to a coarser R₂ ⊋ R₁.
+    4. *Regime leakage* — invariant under R only inside operating regime
+       Γ. (Regime layer not yet formalized; flagged in the companion note.)
+-/
+
+/-- A world structured as a product of a basis (variables claimed
+    relevant) and a disturbance (variables claimed irrelevant). -/
+structure ProductWorld (Basis : Type u₁) (Disturbance : Type u₂) where
+  basis       : Basis
+  disturbance : Disturbance
+
+/-- Encapsulation with respect to a *declared perturbation relation*
+    over the disturbance class. The witness is invariant under any
+    perturbation `d₁ → d₂` admitted by `allowedDisturbanceShift`,
+    holding the basis fixed.
+
+    Compare to `EncapsulatedAllShifts` below for the unrestricted form. -/
+def EncapsulatedWrt
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    (allowedDisturbanceShift : Disturbance → Disturbance → Prop)
+    (witness : ProductWorld Basis Disturbance → Out) : Prop :=
+  ∀ (b : Basis) (d₁ d₂ : Disturbance),
+    allowedDisturbanceShift d₁ d₂ →
+      witness ⟨b, d₁⟩ = witness ⟨b, d₂⟩
+
+/-- The witness moves under an admitted perturbation, holding the basis
+    fixed — the empirical-failure shape, typed and relation-bounded. -/
+def MovesUnderDisturbance
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    (allowedDisturbanceShift : Disturbance → Disturbance → Prop)
+    (witness : ProductWorld Basis Disturbance → Out) : Prop :=
+  ∃ (b : Basis) (d₁ d₂ : Disturbance),
+    allowedDisturbanceShift d₁ d₂ ∧
+      witness ⟨b, d₁⟩ ≠ witness ⟨b, d₂⟩
+
+/-- Boundary theorem (typed form). Movement under an admitted
+    perturbation of the declared class refutes encapsulation with
+    respect to that class. -/
+theorem moves_under_disturbance_implies_not_encapsulated_wrt
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    {allowedDisturbanceShift : Disturbance → Disturbance → Prop}
+    {witness : ProductWorld Basis Disturbance → Out}
+    (h : MovesUnderDisturbance allowedDisturbanceShift witness) :
+    ¬ EncapsulatedWrt allowedDisturbanceShift witness := by
+  intro hEnc
+  obtain ⟨b, d₁, d₂, hAllowed, hNe⟩ := h
+  exact hNe (hEnc b d₁ d₂ hAllowed)
+
+/-- Refinement monotonicity: encapsulation is downward-closed in the
+    perturbation relation. If `R₂ ⊆ R₁` and the witness is encapsulated
+    over the larger class `R₁`, it is encapsulated over the smaller
+    class `R₂` as well.
+
+    The contrapositive bites in audit: failure under a *narrow*
+    perturbation class implies failure under any *wider* one that
+    includes it. Conversely, success under a narrow class is a weaker
+    claim than success under a wider one. -/
+theorem encapsulated_wrt_mono
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    {R₁ R₂ : Disturbance → Disturbance → Prop}
+    {witness : ProductWorld Basis Disturbance → Out}
+    (hSubset : ∀ d₁ d₂, R₂ d₁ d₂ → R₁ d₁ d₂)
+    (hEnc : EncapsulatedWrt R₁ witness) :
+    EncapsulatedWrt R₂ witness := by
+  intro b d₁ d₂ hR₂
+  exact hEnc b d₁ d₂ (hSubset d₁ d₂ hR₂)
+
+/-! ### Bridge to the relational form
+
+  The typed perturbation-bounded form is the relational form specialized
+  to the relation that requires basis-equivalence AND admitted-shift on
+  disturbance. Same content, different presentation; the typed form is
+  more informative for audit (the perturbation class is named).
+-/
+
+/-- The product-world relation induced by basis-equivalence plus an
+    admitted disturbance shift: two worlds are related iff their basis
+    components agree and their disturbance components are connected by
+    the declared perturbation relation. -/
+def basisAndShift
+    {Basis : Type u₁} {Disturbance : Type u₂}
+    (allowedDisturbanceShift : Disturbance → Disturbance → Prop)
+    (a b : ProductWorld Basis Disturbance) : Prop :=
+  a.basis = b.basis ∧ allowedDisturbanceShift a.disturbance b.disturbance
+
+/-- Bridge: typed perturbation-bounded encapsulation is precisely
+    relational encapsulation under the induced product relation. -/
+theorem encapsulated_wrt_iff_relational
+    {Basis : Type u₁} {Disturbance : Type u₂} {Out : Type u₃}
+    (allowedDisturbanceShift : Disturbance → Disturbance → Prop)
+    (witness : ProductWorld Basis Disturbance → Out) :
+    EncapsulatedWrt allowedDisturbanceShift witness ↔
+      Encapsulated (basisAndShift allowedDisturbanceShift) witness := by
+  constructor
+  · intro hEnc a b hR
+    obtain ⟨ab, ad⟩ := a
+    obtain ⟨bb, bd⟩ := b
+    obtain ⟨hSame, hAllowed⟩ := hR
+    have hSame' : ab = bb := hSame
+    subst hSame'
+    exact hEnc ab ad bd hAllowed
+  · intro hEnc b d₁ d₂ hAllowed
+    exact hEnc ⟨b, d₁⟩ ⟨b, d₂⟩ ⟨rfl, hAllowed⟩
+
 end Admissibility.WitnessInvariance
 
 namespace Admissibility.WitnessInvarianceToy
