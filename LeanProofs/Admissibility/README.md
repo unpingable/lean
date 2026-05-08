@@ -38,6 +38,20 @@ Monotonicity layer over the existing four. Classifies every `Step` as `correctiv
 
 Companion working note: `~/git/papers/working/admissible-recovery-semantics.md`.
 
+### Sibling — `WitnessInvariance.lean` (added 2026-05-08)
+
+**Boundary primitive module.** Formalizes the four-tier ladder
+(selectivity / specialization / encapsulation / modularity) from the gnat-claude / chatty / DeepSeek 2026-05-08 distillation of McGee, Zhang, Blank 2026 (*Cognitive Science* 50(3), "Evidence Against Syntactic Encapsulation in Large Language Models"). The doctrine is *prove the boundary claim, not the Wiley paper.*
+
+Two namespaces:
+
+- `Admissibility.WitnessInvariance` — abstract `Encapsulated` and `MovesUnderExcludedPerturbation` definitions over a `sameAdmittedBasis` equivalence relation, plus the boundary theorem `moves_implies_not_encapsulated` and its symmetric reading.
+- `Admissibility.WitnessInvarianceToy` — concrete two-bit toy (`ToyState` with `synBit`, `semBit` fields; `ToyWitness := synBit && semBit`) exhibiting `selectivity_does_not_imply_encapsulation`. The `synBit` / `semBit` field-name abbreviations work around the Lean 4 reserved keyword `syntax`.
+
+Companion working note (papers repo): `~/git/papers/working/primitives/witness-invariance-failure.md`. Keeper: *Specialization is a gain pattern. Encapsulation is an invariance claim. Modularity is an earned boundary.* Operational corollary: *A witness that moves when the wrong variable moves is not lying. It is unqualified.*
+
+The primitive supplies the missing rung in the admissibility apparatus's witness-validation vocabulary: NQ / Cadence / Continuity / Custody / Standing / Governor check construction discipline, freshness, authority — but did not previously have an explicit invariance-under-excluded-perturbation primitive. Now they do.
+
 ### Sibling — `CorrectiveBoundary.lean` (added 2026-05-07)
 
 **Boundary-result module.** Not part of the five-module kernel proper; constructs a parallel miniature kernel with concrete payload types (`PolicyStore := List Nat`, etc.) and parameterized store ops, and proves model-dependence of the recorded null `corrective_then_forward_is_not_monotone`.
@@ -66,7 +80,7 @@ The abstract kernel itself remains consistent with both the existential and its 
 
 ## Build
 
-All five kernel modules plus `CorrectiveBoundary` are wired into `LeanProofs.lean` root. `lake build` (no args) regression-checks them as part of the default proof gate. Repo is sorry-free as of 2026-05-07.
+All five kernel modules plus `CorrectiveBoundary` and `WitnessInvariance` are wired into `LeanProofs.lean` root. `lake build` (no args) regression-checks them as part of the default proof gate. Repo is sorry-free as of 2026-05-08.
 
 ```bash
 lake build LeanProofs.Admissibility.Authority
@@ -75,6 +89,7 @@ lake build LeanProofs.Admissibility.Derivation
 lake build LeanProofs.Admissibility.Execution
 lake build LeanProofs.Admissibility.Corrective
 lake build LeanProofs.Admissibility.CorrectiveBoundary
+lake build LeanProofs.Admissibility.WitnessInvariance
 ```
 
 Or just `lake build` for the whole stack.
