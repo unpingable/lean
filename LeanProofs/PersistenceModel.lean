@@ -524,7 +524,7 @@ theorem post_repair_faster_to_hysteretic
   traces. Two helpers about a single `step .commit` plus strong
   induction on `rollbackCapacity` reach `commitsToHysteretic_realizes`.
 
-  Per chatty's scope discipline (2026-05-08): two helpers maximum,
+  Per ChatGPT's scope discipline (2026-05-08): two helpers maximum,
   recurrence proved inline, no general state-machine framework.
 -/
 

@@ -10,7 +10,7 @@ a production simulation. The goal is to find out whether the
 state variables and transitions are even the right ones before
 porting anything to Lean.
 
-Key definitions (per Chatty's audit, 2026-04-03):
+Key definitions (per ChatGPT's audit, 2026-04-03):
 
   Detachment:
     Decisions can commit state without materially binding

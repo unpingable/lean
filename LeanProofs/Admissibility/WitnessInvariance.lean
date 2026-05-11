@@ -6,7 +6,7 @@
 
   Origin: McGee, Zhang, Blank 2026 *Cognitive Science* 50(3),
   "Evidence Against Syntactic Encapsulation in Large Language Models."
-  Multi-model distillation (paper-claude / chatty / DeepSeek 2026-05-08)
+  Multi-model distillation (paper-claude / ChatGPT / DeepSeek 2026-05-08)
   produced the four-tier ladder
   (selectivity / specialization / encapsulation / modularity) and the
   keeper line:
@@ -99,7 +99,7 @@ theorem encapsulated_implies_not_moves
   *disturbance class* (variables the witness is claimed to be invariant
   under).
 
-  **Per chatty's correction (2026-05-08):** the disturbance class is not
+  **Per ChatGPT's correction (2026-05-08):** the disturbance class is not
   merely a type — it is a declared *perturbation relation* over that type.
   Otherwise we accidentally imply all type-distinct values constitute
   admissible perturbations, which is too strong. The right operator-facing
@@ -123,7 +123,7 @@ theorem encapsulated_implies_not_moves
   perturbation relation while *not* being encapsulated wrt a coarser one.
   Naming the relation explicitly is the move that makes this expressible.
 
-  Witness-failure classification this enables (chatty 2026-05-08):
+  Witness-failure classification this enables (ChatGPT 2026-05-08):
     1. *Unqualified basis* — witness changes across basis-equivalent states.
     2. *Undeclared disturbance* — no perturbation class named at all.
     3. *Overbroad encapsulation* — invariant to R₁ but falsely admitted
@@ -233,7 +233,7 @@ theorem encapsulated_wrt_iff_relational
 
 /-! ## Regime-bounded refinement
 
-  Per chatty 2026-05-08: most real witnesses are not globally qualified.
+  Per ChatGPT 2026-05-08: most real witnesses are not globally qualified.
   They are qualified *within an operating regime Γ*. The regime-flat
   forms above (`EncapsulatedWrt`, `EncapsulatedAllShifts`) cannot
   express *"invariant under this perturbation class **inside Γ**"*

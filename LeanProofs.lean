@@ -13,3 +13,5 @@ import LeanProofs.Admissibility.Execution
 import LeanProofs.Admissibility.Corrective
 import LeanProofs.Admissibility.CorrectiveBoundary
 import LeanProofs.Admissibility.WitnessInvariance
+import LeanProofs.Admissibility.FiatAdmissibility
+import LeanProofs.CollapsedSurface

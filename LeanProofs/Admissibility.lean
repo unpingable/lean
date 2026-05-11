@@ -15,7 +15,7 @@
   Not yet imported into LeanProofs.lean — wiring is a separate slot decision
   and is not implied by sorry-elimination.
 
-  Key algebraic correction (chattY pass, 2026-04-28): `openFinding` is
+  Key algebraic correction (ChatGPT pass, 2026-04-28): `openFinding` is
   an *admissible* outcome (refusal to launder uncertainty into
   closure); the inadmissible case is `unaccounted`, not `openFinding`.
   This preserves the Governor primitive: permit action, deny closure,

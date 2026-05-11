@@ -237,7 +237,7 @@ def classify_regime(result: ScenarioResult, window: int = 20,
 def two_team_scenario(b1: float, b2: float, k: float, eta: float,
                       x0: float = 1.0, T: int = 100,
                       seed: int = 0) -> ScenarioParams:
-    """Chatty's minimal two-team toy: divergent biases, shared V_t."""
+    """ChatGPT's minimal two-team toy: divergent biases, shared V_t."""
     return ScenarioParams(
         T=T,
         agents=(Agent(bias=b1, gain=k), Agent(bias=b2, gain=k)),

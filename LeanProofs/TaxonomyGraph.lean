@@ -15,7 +15,7 @@
     14 primitive (Δn Δo Δs Δm Δg Δa Δk Δw Δc Δb Δx Δr Δe Δh Δp)
      1 composite (Δi = Δn + Δr + Δw), demoted, not encoded as a node
 
-  Three relation types (per Chatty's audit):
+  Three relation types (per ChatGPT's audit):
     edge        — causal pipeline: "a commonly causes or enables b"
     reinforces  — lateral mutual stabilization: "once both active,
                   they lock each other in"
@@ -364,7 +364,7 @@ theorem framing_cascade_distinct_roles :
   "Identity failure = namespace failure + recursion capture
    + write-authority drift, with no independent residue."
 
-  Per Chatty's audit: make decomposition definitional, don't
+  Per ChatGPT's audit: make decomposition definitional, don't
   try to prove metaphysical exhaustiveness. Δi is an abbreviation
   (syndrome predicate), not a node.
 -/

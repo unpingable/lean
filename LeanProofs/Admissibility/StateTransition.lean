@@ -26,7 +26,7 @@
 
   Deferred: derivation that reads GovState into component verdicts —
   belongs in a future `Admissibility/Derivation.lean`. Per
-  chatty/DeepSeek 2026-04-30: write-side fenced first, then read-side.
+  ChatGPT/DeepSeek 2026-04-30: write-side fenced first, then read-side.
 
   Governor-neutral. Does not import Governor or P27 concepts.
 -/
