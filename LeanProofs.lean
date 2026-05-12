@@ -14,5 +14,9 @@ import LeanProofs.Admissibility.Corrective
 import LeanProofs.Admissibility.CorrectiveBoundary
 import LeanProofs.Admissibility.WitnessInvariance
 import LeanProofs.Admissibility.FiatAdmissibility
+import LeanProofs.Admissibility.NumericalAdmissibility
 import LeanProofs.Admissibility.SurfaceAuthorization
+import LeanProofs.Admissibility.RecoveryMargin
+import LeanProofs.Admissibility.ClosureEligibility
+import LeanProofs.Admissibility.PublicReceiptRefinement
 import LeanProofs.CollapsedSurface
