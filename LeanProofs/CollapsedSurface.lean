@@ -28,6 +28,21 @@
   Keeper line:
     If two distinct causes render to the same public surface, that
     surface cannot identify either cause.
+
+  Recovery side (deferred, not formalized here):
+    A collapsed observation can be broken only by:
+      1. preserved history (receipts, lineage, state-at-time-T)
+      2. independent measurement (a witness adding rank, not replication)
+      3. admissible perturbation (controlled excitation without laundering
+         harm or coercion as measurement)
+    Preserved-history and independent-measurement cases have partial
+    homes in Paper 24's receipt-lineage and Paper 25's Gramian scaling
+    respectively. Admissible perturbation is named but not corpus-formal.
+    See papers/working/signal-authority-candidate.md §Recovery side.
+
+    This module proves the negative kernel only: a collapsed public
+    surface cannot identify cause-specific authority. Receipt-refinement
+    and perturbation recovery are intentionally not formalized here.
 -/
 
 namespace CollapsedSurface
