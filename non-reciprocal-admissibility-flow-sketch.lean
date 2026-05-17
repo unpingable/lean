@@ -105,3 +105,108 @@ theorem nraf_not_ordinary_authority
   uses neutrality framing to extract authority — but that's a hypothesis
   for the gate, not a theorem to ship here.
 -/
+
+/-
+  ## NEAM measurement adapter — non-canonical lead
+
+  Added: 2026-05-16. Source of inspiration: NPC Alex's
+  "Non-Equilibrium Attention Markets" piece
+  (https://lastnpcalex.agency/p/neam), with the measurement-adapter
+  framing developed in conversation with ChatGPT.
+
+  Status: exploratory / gating sketch within the existing probe.
+  Same not-canonical posture as the rest of this file. Not promoted,
+  not in lake build, not imported anywhere.
+
+  Purpose:
+    Preserve the distinction surfaced by the NEAM specimen:
+    Schnakenberg-style entropy production and HHI-over-stationary-influence
+    π may diagnose modeled non-reciprocal flow and concentration, but they
+    do not themselves constitute admissibility verdicts, laundering claims,
+    or authority grants.
+
+  Scope fence:
+    This section is not a markets model, not an SDE model, and not a
+    canonical Markov-chain layer. No DirectedFlow plumbing, no stationary-
+    distribution proof obligation. Just the measurement-vs-authority
+    boundary.
+
+  Future tripwire:
+    If someone later tries to use entropyProduction or stationaryInfluenceHHI
+    as an authorization / verdict / laundering surface, the theorems below
+    break. That is the tripwire firing. The break-message of the day will
+    be: "you are about to do the thing 2026-05-16 said not to do; promote
+    the measure to a real authority object first, or don't."
+
+  Companion prose:
+    ~/git/papers/working/non-reciprocal-admissibility-flow.md
+    § "Markets specimen + measurement-import (NEAM, 2026-05-16)"
+    carries the three guardrails (Π is not a verdict; HHI is not
+    laundering; symmetrization is not moral repair).
+-/
+
+inductive DiagnosticMeasure where
+  | entropyProduction
+  | stationaryInfluenceHHI
+
+inductive DiagnosticUse where
+  | diagnoseNonReciprocalFlow
+  | diagnoseConcentration
+  | authorizeAction
+  | declareAdmissibilityFailure
+  | declareLaundering
+
+def diagnosticUseAllowed : DiagnosticMeasure → DiagnosticUse → Prop
+  | _, .diagnoseNonReciprocalFlow      => True
+  | _, .diagnoseConcentration          => True
+  | _, .authorizeAction                => False
+  | _, .declareAdmissibilityFailure    => False
+  | _, .declareLaundering              => False
+
+/--
+  Tripwire 1: no measurement-kind may be used to authorize action.
+  Diagnostic-vs-authority separation, mechanically enforced.
+-/
+theorem no_measure_authorizes (m : DiagnosticMeasure) :
+    ¬ diagnosticUseAllowed m DiagnosticUse.authorizeAction := by
+  intro h
+  cases m <;> exact h
+
+/--
+  Tripwire 2: no measurement-kind may be used to declare an
+  admissibility failure. Π is high ≠ admissibility verdict.
+-/
+theorem no_measure_declares_admissibility_failure (m : DiagnosticMeasure) :
+    ¬ diagnosticUseAllowed m DiagnosticUse.declareAdmissibilityFailure := by
+  intro h
+  cases m <;> exact h
+
+/--
+  Tripwire 3: no measurement-kind may be used to declare laundering.
+  HHI is concentrated ≠ laundering claim; laundering requires the
+  separate surface-neutrality step (generator test Q4 in the
+  companion working note).
+-/
+theorem no_measure_declares_laundering (m : DiagnosticMeasure) :
+    ¬ diagnosticUseAllowed m DiagnosticUse.declareLaundering := by
+  intro h
+  cases m <;> exact h
+
+/-
+  Note on what is *not* encoded here:
+    - The Markov chain layer (DirectedFlow, stationary distribution,
+      rowStochastic). Not yet warranted; no corpus piece needs to
+      compose against it.
+    - The Schnakenberg formula itself. Π is referenced only as a
+      DiagnosticMeasure label; the log-domain bookkeeping is out of scope.
+    - The HHI formula. Same posture.
+    - Any markets-specific structure (price, drift, diffusion, agents).
+      The NEAM specimen contributes measurement vocabulary, not a
+      markets model.
+
+  If the diagnostic-vs-authority boundary later proves load-bearing
+  enough to need a kernel-grade module, the audit step is:
+    - Read NumericalAdmissibility.lean to check whether the
+      MeasurementKind × AuthorityUse pattern already exists in
+      canonical form. If so, this sketch retires.
+-/
