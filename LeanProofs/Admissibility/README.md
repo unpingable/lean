@@ -1,6 +1,6 @@
 # Admissibility — Authority kernel
 
-Five core modules forming a Governor-neutral authority kernel, plus two boundary-result siblings (`CorrectiveBoundary.lean`, `WitnessInvariance.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
+Five core modules forming a Governor-neutral authority kernel, plus nine siblings: two boundary-result modules (`CorrectiveBoundary.lean`, `WitnessInvariance.lean`) and seven admissibility-axis / refusal-gate kernels (`FiatAdmissibility.lean`, `NumericalAdmissibility.lean`, `SurfaceAuthorization.lean`, `PublicReceiptRefinement.lean`, `ClosureEligibility.lean`, `RecoveryMargin.lean`, `Freshness.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
@@ -70,6 +70,66 @@ The abstract `NondegenerateStoreSemantics` structure packages the three commitme
 
 The abstract kernel itself remains consistent with both the existential and its negation — that is the doctrinally-correct stance. The boundary module exhibits both possible answers without forcing the abstract kernel to commit. CLAIM-REGISTER #14 records the boundary result; A1 (the formerly-admitted sorry) is resolved.
 
+### Sibling — `FiatAdmissibility.lean` (added 2026-05-11)
+
+**Third admissibility axis: artifact-kind × use-kind.** Distinct from the authority-basis × state-mutation axis (`Authority` + `StateTransition`) and the witness × invariance axis (`WitnessInvariance`). Total `classify : ArtifactKind → UseKind → Classification`; every (kind, use) pair receives an explicit verdict (`allowed`, `requiresMediation`, `denied`, or `outOfScope`). The `outOfScope` verdict makes the kernel's silence audible — cases the kernel does not pretend to govern do not silently default. Closure property: no orphan corridors through which an artifact can claim a license it does not earn.
+
+Keeper: *The admissibility kernel is itself admissible only under custody.*
+
+Governs the relation between artifact kinds (axiom, definition, theorem, heuristic, metaphor, prestige token, proxy metric) and use kinds (orient, suggest, citeOrient, citeSupport, derive, authorize, mutateState, measureMagnitude). State mutation is the domain of the sibling `StateTransition` kernel; `FiatAdmissibility` does not pretend to govern it. Composition lemmas with the other admissibility kernels are explicitly deferred.
+
+### Sibling — `NumericalAdmissibility.lean` (added 2026-05-12)
+
+**Numerical-kind axis sibling to `FiatAdmissibility`.** Prevents one numerical kind from being treated as another: a score (constructed scalar with no native units) read as a quantity (measured magnitude); a rank (ordinal with no metric structure) read as value; a confidence (model's report about its own uncertainty) read as truth. Total `classify : NumericalKind → NumericalUse → Classification`; same closure-property shape as `FiatAdmissibility`.
+
+Keeper: *A number's shape on the page does not license what the number can be asked to do.*
+
+Sharper: *Score cannot imply magnitude; confidence cannot imply truth.* Rank, confidence, and probability cannot imply substrate at all; score, quantity, and proportion can reach substrate only through explicit mediation (calibration chain, measurement custody, population structure). Value claims always require utility structure for any non-quantity kind. Selection-by-extreme is never benign at the kernel layer. Several cells that look like keeper denials are mediation cells in disguise — value claims from any non-quantity kind require utility structure, so they discharge as `requiresMediation`, not `denied`.
+
+### Sibling — `SurfaceAuthorization.lean` (added 2026-05-11)
+
+**Governor-facing refusal gate.** Sibling to the root-level `LeanProofs/CollapsedSurface.lean` (the discrete-finite negative kernel proving a collapsed surface cannot identify cause). This module adds the *authorization* consequence: a collapsed surface cannot authorize cause-specific consequence without discriminating evidence.
+
+Keeper: *A collapsed surface may authorize inquiry. It may not authorize attribution.*
+
+Governor-shaped form: *Cause-specific authority requires discriminating evidence.* Encodes the refusal gate (collapsed + cause-specific + no discriminator ⇒ deny). Does not encode the recovery machinery itself — `Breaker` is an abstract enum naming the three known recovery paths (preserved history, independent measurement, admissible perturbation); the predicates that constitute each kind remain unformalized here. Recovery doctrine lives in the sibling `PublicReceiptRefinement.lean`.
+
+### Sibling — `PublicReceiptRefinement.lean` (added 2026-05-12)
+
+**Recovery doctrine companion to `SurfaceAuthorization`.** Formalizes the simplest recovery channel: a public receipt refines an observation when it both excludes some cause the surface alone would admit *and* remains consistent with at least one surface-admitted cause.
+
+Keeper: *Refinement narrows the admissible-cause set without collapsing it to empty.*
+
+A receipt that excludes every cause is contradiction, not refinement. A receipt that excludes nothing is decoration, not refinement. Honest refinement lives between these two failure modes. Refinement does not, in general, identify a unique cause — narrowing is not identification. Abstract over receipt type and admittance predicate; concrete receipt schemas live in consuming systems (Governor's receipt schema, Paper 24's receipt-lineage discussion, NQ's witness intake). The other two recovery channels named in `SurfaceAuthorization`'s `Breaker` enum (independent measurement, admissible perturbation) remain abstract.
+
+### Sibling — `ClosureEligibility.lean` (added 2026-05-12)
+
+**Refusal kernel for closure verdicts on shift-bounded operations.** Invariant proved: `closure ⇔ (survived ∧ resolved ∧ slack-available)`. Any deficit on any of the three dimensions forces handoff or incident.
+
+Keeper: *Survival is a handoff condition, not a closure condition.*
+
+Sharper: *A survived shift with unresolved threat or depleted operator slack must emit handoff, not closure.* Same family resemblance as the admissibility-decay candidates: a visible outcome is being asked to license a substantive claim it does not, by itself, support. Sibling to `RecoveryMargin` (which governs within-interval visible-vs-capacity; this module governs end-of-interval survival-vs-closure). Sibling to `SurfaceAuthorization` (both encode refusal gates over claims given insufficient discriminating evidence). Nightshift-style operational doctrines are the obvious downstream consumer.
+
+### Sibling — `RecoveryMargin.lean` (added 2026-05-11)
+
+**Refusal kernel for the gap between a visible liveness signal and underlying recovery capacity.** Proves `VisibleGreen` and `RecoveryMargin` are independent predicates — the visible surface cannot serve as a witness for capacity.
+
+Keeper: *Visible green does not entail recovery margin.*
+
+In tightly-coupled, high-cost-of-deviation environments, a system can maintain visible status by sacrificing recovery capacity, and the dashboard cannot report the second condition. Discrete observation-equivalence specimen at the dashboard layer (see `LeanProofs/CollapsedSurface.lean` for the general cause-from-render kernel and Paper 25 for the matrix/dynamical version). NQ-style witness-standing findings are the obvious downstream consumer (where the dashboard is being asked to testify about operability, not just status).
+
+### Sibling — `Freshness.lean` (added 2026-05-19)
+
+**Metric-time admissibility axis.** Sibling to the kernel's existing ordinal-time apparatus (Step sequences, `WeaklyLessPermissive` preorder, `ClosureEligibility.NoRegress` pairs, `RevocationStore` evolution). Where the ordinal apparatus answers *"did this happen before that,"* `Freshness` answers *"is this timestamp within an acceptable window."*
+
+Keeper: *Expired evidence cannot prove current standing. Future-issued evidence cannot prove current standing. Incoherent intervals cannot prove standing. Excessive clock divergence makes the assessment unsafe.*
+
+Three positive predicates compose into `Fresh`: `TemporallyCoherent` (issued precedes expires), `DivergenceAcceptable` (verifier-issuer clock divergence within bound), `WithinValidity` (now falls inside skewed validity window). Five negative theorems mirror four of Standing's nine `AssessmentResult` verdict kinds: `expired_not_fresh` / `not_yet_valid_not_fresh` mirror `Expired` / `NotYetValid`; `incoherent_not_fresh` and `not_precedes_not_fresh` cover the two structurally-distinct failure modes of `TemporallyCoherent` under opaque `Time.le` (both map to `AssessmentCompromised`); `divergence_excessive_not_fresh` mirrors the other `AssessmentCompromised` branch. The fifth temporal verdict (`ReplayDetected`) stays in the kernel's ordinal apparatus.
+
+Canonical consumer: `~/git/standing` (workload-identity / grant authorization tool, production-quality Rust). Forcing receipt: Standing's `AssessmentResult::AssessmentCompromised` is exactly the kernel's "gap" verdict applied to metric-time admissibility — and the Lean kernel previously could not express that the gap was *temporal* rather than basis-, precedence-, or standing-shaped. This module closes that asymmetry.
+
+Time is kept opaque (`axiom Time : Type` + four axiomatic operations: `le`, `add`, `sub`, `absSub`). Concretizing to `Nat`/`Int` would leak structural facts into theorems and break the abstraction over real consumer types (chrono's `DateTime<Utc>`). Composition with the other admissibility kernels is explicitly deferred — same defer-marker pattern as `FiatAdmissibility`. Not `Δt.lean`.
+
 ## What the kernel warrants
 
 > Governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step. Recovery-classified transitions cannot increase the authorized action set; authority-increasing recovery requires a separately classified forward transition with fresh basis.
@@ -83,7 +143,7 @@ The abstract kernel itself remains consistent with both the existential and its 
 
 ## Build
 
-All five kernel modules plus `CorrectiveBoundary` and `WitnessInvariance` are wired into `LeanProofs.lean` root. `lake build` (no args) regression-checks them as part of the default proof gate. Repo is sorry-free as of 2026-05-08.
+All fourteen modules are wired into `LeanProofs.lean` root. `lake build` (no args) regression-checks them as part of the default proof gate. Repo is sorry-free as of 2026-05-19 (the two `sorry` strings in `Corrective.lean` and `CorrectiveBoundary.lean` are docstring references to a resolved former-`sorry`, not proof holes).
 
 ```bash
 lake build LeanProofs.Admissibility.Authority
@@ -93,6 +153,13 @@ lake build LeanProofs.Admissibility.Execution
 lake build LeanProofs.Admissibility.Corrective
 lake build LeanProofs.Admissibility.CorrectiveBoundary
 lake build LeanProofs.Admissibility.WitnessInvariance
+lake build LeanProofs.Admissibility.FiatAdmissibility
+lake build LeanProofs.Admissibility.NumericalAdmissibility
+lake build LeanProofs.Admissibility.SurfaceAuthorization
+lake build LeanProofs.Admissibility.PublicReceiptRefinement
+lake build LeanProofs.Admissibility.ClosureEligibility
+lake build LeanProofs.Admissibility.RecoveryMargin
+lake build LeanProofs.Admissibility.Freshness
 ```
 
 Or just `lake build` for the whole stack.

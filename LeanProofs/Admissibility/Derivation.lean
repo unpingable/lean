@@ -194,3 +194,94 @@ theorem revoked_basis_never_authorized
 -/
 
 end Admissibility.Derivation
+
+/-! ## Example: DISPUTED as multi-receipt composition (CVD specimen)
+
+This namespace exhibits — by construction — that the kernel structurally
+permits two legitimate `DerivationEnv` values to produce opposite
+`AuthorityVerdict`s on the same `(state, actor, claim)` triple, without
+any kernel-level resolver. The composition: each trust boundary mints
+its own Authority within its own env; consumers observe both verdicts
+and adjudicate downstream.
+
+CVD specimen: a reporter-side / CNA env grants invocation standing
+(`authorized`); a vendor-side env withholds it (`denied`). Same basis,
+same precedence, opposite standings. Both verdicts are first-class
+kernel outputs.
+
+This is NOT a new primitive — no `Parallax`, no `DisputedStanding`, no
+`PostedDisagreement`. The kernel already supports persistent multi-party
+disagreement through `DerivationEnv` plurality and consumer-side
+adjudication. The example exists to make the composition pattern legible
+to readers who feel the "DISPUTED must be its own kernel state"
+temptation.
+
+See: `working/where-admissibility-fits.md` § Coordinated vulnerability
+disclosure; `working/authority-observable-not-constructible.md`
+(multi-mint within distinct trust boundaries; consumers may observe,
+not construct).
+-/
+
+namespace Admissibility.Examples.MultiReceiptComposition
+
+open Admissibility.Authority Admissibility.StateTransition Admissibility.Derivation
+
+/-- A `BasisDerivation` that derives admissible basis and recognizes no
+    revocation. Shared by both example envs — the disagreement lives in
+    the standing dimension, not the basis dimension. -/
+def admissibleBasisDerivation : BasisDerivation where
+  deriveBasis := fun _ _ => BasisVerdict.admissibleBasis
+  basisRevoked := fun _ _ => False
+  revoked_never_admissible := fun _ _ h => h.elim
+
+/-- A `PrecedenceDerivation` that always resolves precedence. -/
+def resolvedPrecedenceDerivation : PrecedenceDerivation where
+  derivePrecedence := fun _ _ => PrecedenceVerdict.resolved
+
+/-- Reporter-side / CNA standing derivation: grants invocation standing. -/
+def grantStandingDerivation : StandingDerivation where
+  deriveStanding := fun _ _ _ => StandingVerdict.standing
+
+/-- Vendor-side / disputing standing derivation: withholds invocation
+    standing. The vulnerability is acknowledged at the basis level
+    (admissible), but the vendor refuses to grant downstream-binding
+    standing for this actor's invocation. -/
+def withholdStandingDerivation : StandingDerivation where
+  deriveStanding := fun _ _ _ => StandingVerdict.noStanding
+
+/-- The reporter / CNA env: all-green ⇒ `authorized`. -/
+def reporterEnv : DerivationEnv where
+  basis := admissibleBasisDerivation
+  precedence := resolvedPrecedenceDerivation
+  standing := grantStandingDerivation
+
+/-- The vendor / disputing env: same basis and precedence, withheld
+    standing ⇒ `denied`. -/
+def vendorEnv : DerivationEnv where
+  basis := admissibleBasisDerivation
+  precedence := resolvedPrecedenceDerivation
+  standing := withholdStandingDerivation
+
+theorem reporter_authorizes
+    (state : GovState) (actor : Actor) (claim : AuthorityClaim) :
+    decideAuthority reporterEnv state actor claim = AuthorityVerdict.authorized :=
+  rfl
+
+theorem vendor_denies
+    (state : GovState) (actor : Actor) (claim : AuthorityClaim) :
+    decideAuthority vendorEnv state actor claim = AuthorityVerdict.denied :=
+  rfl
+
+/-- Persistent disagreement: the two envs produce opposite verdicts on
+    every shared `(state, actor, claim)` triple. The kernel exhibits
+    this without any resolver theorem; consumer-side adjudication is
+    the structural fallback, not a workaround. -/
+theorem disagreement_persists
+    (state : GovState) (actor : Actor) (claim : AuthorityClaim) :
+    decideAuthority reporterEnv state actor claim ≠
+    decideAuthority vendorEnv state actor claim := by
+  rw [reporter_authorizes, vendor_denies]
+  intro h
+  cases h
+
+end Admissibility.Examples.MultiReceiptComposition
