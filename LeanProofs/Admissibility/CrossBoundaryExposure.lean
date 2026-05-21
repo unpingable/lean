@@ -169,6 +169,20 @@ inductive Reach {Domain Failure : Type}
         Step B c₁ a c₂ →
         Reach B c₀ c₂
 
+/-- Transitivity of `Reach`. Utility lemma — needed when a downstream
+    module's transition projects to multiple kernel steps or to a no-op,
+    and chained reachabilities must be composed. Does not widen the
+    model; just completes the reflexive-transitive-closure apparatus. -/
+theorem Reach.trans {Domain Failure : Type}
+    [DecidableEq Domain] [DecidableEq Failure]
+    {B : Boundary Domain}
+    {c₀ c₁ c₂ : Config Domain Failure}
+    (h₁ : Reach B c₀ c₁) (h₂ : Reach B c₁ c₂) :
+    Reach B c₀ c₂ := by
+  induction h₂ with
+  | refl => exact h₁
+  | tail _ hStep ih => exact Reach.tail ih hStep
+
 /-- The invariant: no exposure with `Internal` origin and `External`
     target is present in the current configuration. -/
 def NoInternalExternalExposure {Domain Failure : Type}
