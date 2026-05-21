@@ -1,6 +1,6 @@
 # Admissibility — Authority kernel
 
-Five core modules forming a Governor-neutral authority kernel, plus nine siblings: two boundary-result modules (`CorrectiveBoundary.lean`, `WitnessInvariance.lean`) and seven admissibility-axis / refusal-gate kernels (`FiatAdmissibility.lean`, `NumericalAdmissibility.lean`, `SurfaceAuthorization.lean`, `PublicReceiptRefinement.lean`, `ClosureEligibility.lean`, `RecoveryMargin.lean`, `Freshness.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
+Five core modules forming a Governor-neutral authority kernel, plus twelve siblings: two boundary-result modules (`CorrectiveBoundary.lean`, `WitnessInvariance.lean`), seven admissibility-axis / refusal-gate kernels (`FiatAdmissibility.lean`, `NumericalAdmissibility.lean`, `SurfaceAuthorization.lean`, `PublicReceiptRefinement.lean`, `ClosureEligibility.lean`, `RecoveryMargin.lean`, `Freshness.lean`), and three cross-boundary artifact specimens (`CrossBoundaryExposure.lean`, `CrossBoundaryDegradation.lean`, `CrossBoundaryFailureMint.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
@@ -130,6 +130,69 @@ Canonical consumer: `~/git/standing` (workload-identity / grant authorization to
 
 Time is kept opaque (`axiom Time : Type` + four axiomatic operations: `le`, `add`, `sub`, `absSub`). Concretizing to `Nat`/`Int` would leak structural facts into theorems and break the abstraction over real consumer types (chrono's `DateTime<Utc>`). Composition with the other admissibility kernels is explicitly deferred — same defer-marker pattern as `FiatAdmissibility`. Not `Δt.lean`.
 
+### Sibling — `CrossBoundaryExposure.lean` (added 2026-05-21)
+
+**Cross-boundary exposure mint specimen.** First brick in the cross-boundary artifact-specimen sub-family. Introduces a first-class `Exposure` artifact carrying `(origin, target, failure)` provenance and an operator-supplied `BoundaryPartition` (`Internal` / `External` Prop-valued predicates over abstract `Domain`). The only constructor that can add an exposure is `Step.expose`, and it requires `Boundary.authorized e.origin e.target = true`.
+
+Keeper: *Boundary authorization is the exposure mint.*
+
+Sharper: This is the exposure layer. Not damage. Not failure leakage. Not cascade. Not internal failure. Failure is not modeled here.
+
+Theorem `no_external_exposure_without_authorized_edge` — under a boundary that authorizes no Internal→External edges, no reachable configuration can contain an exposure with Internal origin and External target. Proof technique is the same forward-closed-set invariant idiom used in `TaxonomyGraph` lane proofs; the novelty is the first-class artifact (`Exposure`) and the abstract boundary-partition layer, not the proof family. `Reach.trans` lives here as a utility lemma used by downstream sibling slices that project their reachability into this kernel.
+
+Origin: outside-aperture audit (fresh-context model asked "is this a process calculus?") surfaced the candidate; inside-aperture kernel-overlap audit demoted/reparented the work from a proposed `Delta/` family into this `Admissibility/CrossBoundary*` sub-family. See `papers/working/cross-boundary-artifact-specimens.md` for the audit trail.
+
+### Sibling — `CrossBoundaryDegradation.lean` (added 2026-05-21)
+
+**Cross-boundary degradation-provenance specimen.** Second brick. Extends the exposure kernel with a `degrade` action carrying a `Cause`: either `direct` (external trigger, no exposure precondition) or `fromExposure e` (which requires `e ∈ c.exposures ∧ e.target = d` as constructor arguments). Direct degradation is licensed; *exposure-attributed* degradation cannot fabricate provenance.
+
+Keeper: *This is degradation provenance only. Not damage. Not failure leakage. Not cascade.*
+
+Theorem `no_external_degradation_from_internal_exposure` — under a sealed boundary, no reachable configuration can take a `degrade_fromExposure` step on an External domain whose cited exposure has Internal origin. Direct corollary of `CrossBoundaryExposure.no_external_exposure_without_authorized_edge`, lifted through the projection pattern (richer `Config` with `grades : Domain → Grade`, `toExposureConfig` projection stripping the grade map, per-step projection lemma, `Reach.trans` chaining).
+
+`Grade` is kept abstract; the provenance theorem is independent of grade semantics, so `initGrade : Grade` is an explicit parameter rather than an `Inhabited` instance. Grade-side dynamics (recovery, hysteresis, capability) belong on the persistence side, not in the `CrossBoundary*` family.
+
+### Sibling — `CrossBoundaryFailureMint.lean` (added 2026-05-21)
+
+**Cross-boundary failure-to-exposure mint specimen.** Third brick. Introduces `FailureEvent (domain, failure)` as a first-class recorded artifact and a two-rule step relation: `fail d f` records a failure event with no boundary precondition (failure is a local-domain event), and `exposeFromFailure e` mints an exposure requiring *both* (a) `⟨e.origin, e.failure⟩ ∈ c.failures` (a recorded precedent) *and* (b) `B.authorized e.origin e.target = true` (boundary authorization).
+
+Keeper: *Failure is not exposure. Failure can be recorded without crossing a boundary. Exposure from failure is minted only by boundary authorization.*
+
+Two theorems:
+
+- `no_exposeFromFailure_internal_to_external` (step-local) — a single `exposeFromFailure` step from an Internal origin to an External target is impossible under a sealed boundary. Direct from the constructor's authorization precondition; no `Reach` required.
+- `no_external_exposure_from_internal_failure` (reachable-config) — no reachable configuration of the failure-mint system can contain an Internal-origin External-target exposure. Lifted via projection through the exposure kernel.
+
+This is the rung that makes the English sentence presentable: *internal failure → recorded failure event → authorized exposure mint → (later) downstream consequence*. Each arrow is a constructor or theorem application; no prose glue.
+
+### Composition discipline — projection pattern
+
+The cross-boundary trio shares a single composition discipline that lets each downstream brick reuse the kernel containment theorem without reproving it. Each brick:
+
+1. **Defines a richer `Config`** carrying the kernel's exposure set plus whatever new artifacts the brick introduces (degradation grades; failure events). The exposure set field is identical in name and type to the kernel's.
+2. **Defines `toExposureConfig : Config → CrossBoundaryExposure.Config`** as projection that drops the new artifacts and preserves the exposure set. Definitionally `rfl` between the projected initial config and the kernel's initial config.
+3. **Proves `step_to_exposure_reach`** — each step in the richer relation projects to a `CrossBoundaryExposure.Reach`. Steps that don't touch exposures project to `Reach.refl`; steps that mint exposures project to a single kernel `Step.expose` with the same authorization argument.
+4. **Proves `reach_to_exposure_reach`** — chains per-step projections via `CrossBoundaryExposure.Reach.trans`.
+5. **Invokes the kernel containment theorem** `no_external_exposure_without_authorized_edge` on the projected reach. The brick's own theorem then falls out as a direct corollary or a step-local strengthening.
+
+Schematic:
+
+```text
+richer Config
+  ↓ toExposureConfig
+kernel Config
+  ↓ step_to_exposure_reach + Reach.trans
+kernel Reach (initialConfig → toExposureConfig c)
+  ↓ no_external_exposure_without_authorized_edge
+no forbidden exposure in toExposureConfig c
+  ↓ (toExposureConfig c).exposures = c.exposures (rfl)
+no forbidden exposure in c
+```
+
+The discipline is what makes the bricks composable: any future cross-boundary slice (cascade, monitoring, etc.) can inherit containment by following the same five steps. Adding a new step constructor that bypasses the boundary check would break `step_to_exposure_reach` immediately — the kernel forces the discipline at the type level.
+
+Audit provenance and a detailed walk-through live in `papers/working/cross-boundary-artifact-specimens.md`. The two-tracks rule (kernel-specimen track now; process-calculus / composition track deferred until forced) is filed in operator memory as `feedback-kernel-vs-process-calculus`.
+
 ## What the kernel warrants
 
 > Governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step. Recovery-classified transitions cannot increase the authorized action set; authority-increasing recovery requires a separately classified forward transition with fresh basis.
@@ -143,7 +206,9 @@ Time is kept opaque (`axiom Time : Type` + four axiomatic operations: `le`, `add
 
 ## Build
 
-All fourteen modules are wired into `LeanProofs.lean` root. `lake build` (no args) regression-checks them as part of the default proof gate. Repo is sorry-free as of 2026-05-19 (the two `sorry` strings in `Corrective.lean` and `CorrectiveBoundary.lean` are docstring references to a resolved former-`sorry`, not proof holes).
+Fourteen modules are wired into `LeanProofs.lean` root; `lake build` (no args) regression-checks them as part of the default proof gate. The three `CrossBoundary*` specimens are intentionally **unwired** at the root level (specimen status — see audit-provenance note above); they still build green individually and pass full-stack `lake build`.
+
+Repo is sorry-free as of 2026-05-21 (the two `sorry` strings in `Corrective.lean` and `CorrectiveBoundary.lean` are docstring references to a resolved former-`sorry`, not proof holes).
 
 ```bash
 lake build LeanProofs.Admissibility.Authority
@@ -160,6 +225,10 @@ lake build LeanProofs.Admissibility.PublicReceiptRefinement
 lake build LeanProofs.Admissibility.ClosureEligibility
 lake build LeanProofs.Admissibility.RecoveryMargin
 lake build LeanProofs.Admissibility.Freshness
+# Cross-boundary specimens (unwired at root)
+lake build LeanProofs.Admissibility.CrossBoundaryExposure
+lake build LeanProofs.Admissibility.CrossBoundaryDegradation
+lake build LeanProofs.Admissibility.CrossBoundaryFailureMint
 ```
 
 Or just `lake build` for the whole stack.

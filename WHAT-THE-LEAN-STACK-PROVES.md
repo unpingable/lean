@@ -132,6 +132,48 @@ Governor (`agent_gov`) operationally implements this kernel's pattern. The Lean 
 
 ---
 
+## Infrastructure: Cross-Boundary Artifact Specimens
+
+Three modules in `LeanProofs/Admissibility/` (added 2026-05-21), intentionally unwired at root, applying the admissibility kernel's forbidden-artifact-unconstructible discipline to a new artifact family: boundary-crossing exposures.
+
+- **`CrossBoundaryExposure.lean`** — first-class `Exposure (origin, target, failure)` artifact; the only mint constructor (`Step.expose`) requires `Boundary.authorized e.origin e.target = true`. Operator-supplied `BoundaryPartition` carries Prop-valued `Internal` / `External` predicates over abstract `Domain`. Theorem `no_external_exposure_without_authorized_edge`: under a sealed boundary, no reachable configuration contains an Internal-origin External-target exposure.
+- **`CrossBoundaryDegradation.lean`** — extends with `degrade` action carrying `Cause.direct | Cause.fromExposure e`. The `fromExposure` constructor requires `e ∈ c.exposures ∧ e.target = d`. Theorem `no_external_degradation_from_internal_exposure`: exposure-attributed external degradation cannot cite an Internal-origin exposure under a sealed boundary. Direct degradation (Cause.direct) is licensed and not the concern of this slice.
+- **`CrossBoundaryFailureMint.lean`** — adds `FailureEvent (domain, failure)` artifact and a two-rule step relation. `fail d f` records a failure event without any boundary precondition; `exposeFromFailure e` mints an exposure requiring both a recorded precedent `⟨e.origin, e.failure⟩ ∈ c.failures` and `B.authorized e.origin e.target = true`. Step-local and reachable-config theorems both fall out.
+
+### Composition discipline — projection pattern
+
+Each downstream slice reuses the kernel containment theorem via a five-step projection:
+
+```text
+1. richer Config carries the kernel's exposure set + new artifacts
+2. toExposureConfig drops new artifacts, preserves exposure set
+3. step_to_exposure_reach: each richer step projects to a kernel Reach
+4. reach_to_exposure_reach: chain via CrossBoundaryExposure.Reach.trans
+5. invoke no_external_exposure_without_authorized_edge on projection
+```
+
+The brick's own theorem then falls out as a corollary. Any new step constructor that bypasses the boundary check breaks `step_to_exposure_reach` immediately at the type level. This is what makes the cross-boundary sub-family composable rather than three independent specimens that happen to share a name.
+
+### What it warrants
+
+> Under a sealed Internal→External boundary, no reachable configuration can contain a forbidden Internal-origin External-target exposure; exposure-attributed external degradation cannot cite an Internal-origin exposure; internal failure cannot mint an external exposure. The English sentence "internal failure cannot leak across a sealed boundary" now has a constructor-argument spine.
+
+### What it does NOT warrant
+
+- That failures cannot occur. Failure is local-domain; `Step.fail` has no boundary precondition.
+- That direct external degradation cannot happen. `Cause.direct` is licensed; the theorem speaks only about exposure-attributed degradation.
+- Cascade (existential reachability along authorized paths). Cascade is the licensed-but-not-required next rung; if written, `TaxonomyGraph` enters only as a sibling instantiation layer, not inside the cascade kernel.
+- Recovery, hysteresis, capability distinctions. These belong on the persistence side (`PersistenceModel` family), not in the `CrossBoundary*` family.
+- Process syntax, parallel composition, monitors, trace equivalence, bisimulation, rates. Deferred until a forcing case demands them (≥ 2 specimens that cannot state their theorem without composition).
+
+### Why it's here
+
+Outside-aperture category audit ("is this a process calculus?") surfaced the candidate; inside-aperture kernel-overlap audit found the forbidden-artifact-unconstructible *pattern* was already instantiated three ways (`StateTransition` trapdoor, `Execution.AuthorizedStep`, `TaxonomyGraph` forward-closed lanes) but the cross-boundary *artifacts* were missing. The trio fills the missing artifact-family slot without minting a new proof pattern. Specimen status (unwired at root) reflects that institutional promotion has not been earned yet — the bricks build green and the discipline is documented, but the modules are not promoted as part of the kernel's public surface until a downstream consumer forces ratification.
+
+See `papers/working/cross-boundary-artifact-specimens.md` for the full audit trail.
+
+---
+
 ## What the stack as a whole says
 
 The informal Δt framework theory was compressing three distinct claim types into single sentences:
