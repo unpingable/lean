@@ -43,6 +43,31 @@ This repo does not claim that Lean proves the whole theory true. It does not rep
 
 **`LeanProofs/Admissibility/`** — Governor-neutral authority kernel. Five core modules: `Authority.lean` (verdict algebra), `StateTransition.lean` (partitioned governance state + `StepAllowed`), `Derivation.lean` (read-side bridge), `Execution.lean` (`AuthorizedStep` requires both mutation standing and claim verdict), `Corrective.lean` (corrective monotonicity layer — classify-based enforcement surface, `RecoveryEnv` gate). Plus two boundary-result siblings (added 2026-05-08): `CorrectiveBoundary.lean` builds a parallel miniature kernel and proves the corrective+forward existential is genuinely model-dependent (identity stores → false; nondegenerate stores + verdict-sensitive derivation → true), and `WitnessInvariance.lean` carries the admissibility-witness invariance discipline in three layered forms (relational, typed perturbation-bounded, regime-bounded) — companion to the witness-invariance-failure primitive at `papers/working/primitives/witness-invariance-failure.md`. Warrants: *governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step.* Corrective monotonicity is declared as an obligation shape (`CorrectiveMonotone env`) that any compliant `DerivationEnv` must discharge; the obligation is currently vacuously satisfiable at the abstract kernel level while behavioral laws on `applyUpdate` / `appendRevocation` / `appendGap` are unconstrained axioms, so the kernel pins the *shape* of the non-laundering claim but does not yet rule out laundering by any specific concrete env. The boundary module exhibits both possible answers in a parallel miniature kernel without committing the abstract kernel to either. See [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the per-module breakdown. Substrate for future Governor (`agent_gov`) implementation citation; not paper-claim cashout.
 
+#### Why admissibility is different
+
+The paper-anchored modules mostly test claims about Δt dynamics: failure taxonomies, persistence states, masking, shared vision, recovery margins, and trace behavior. They ask whether a prose claim about system behavior survives contact with explicit definitions.
+
+The `Admissibility/` modules do something slightly different. They formalize the layer where evidence, standing, scope, freshness, and authorization determine whether a claim or transition is allowed to bind consequence at all.
+
+In other words, these modules are not primarily asking:
+
+> did the system fail?
+
+They ask:
+
+> is this claim, action, exposure, or state transition admissible under the rules that supposedly authorize it?
+
+The recurring proof pattern is intentionally small: define the artifact, define its authorized constructor or mint, then prove that the forbidden version is unreachable or unconstructible. This is why the admissibility kernel sits as infrastructure substrate rather than as a single paper cashout: it supplies reusable machinery for ruling out specific laundering moves across later systems and papers.
+
+Recent cross-boundary specimens extend that pattern to propagation artifacts:
+
+- `CrossBoundaryExposure.lean` — boundary authorization is the exposure mint.
+- `CrossBoundaryDegradation.lean` — degradation attributed to exposure must cite an active exposure.
+- `CrossBoundaryFailureMint.lean` — internal failure can be recorded without becoming external exposure unless an authorized crossing exists.
+- `CrossBoundaryCascade.lean` — an authorized path permits reachable endpoint exposure, existentially; it does not prove inevitability, scheduling, damage, or stochastic propagation.
+
+These are not a full process calculus. They are small admissibility kernels: machine-checked proofs that specific forbidden cross-boundary artifacts cannot be constructed under the stated rules.
+
 **`LeanProofs/RepairOperator.lean`** — Sovereign repair operator. No paper anchor; formalizes the working note `working/sovereign-repair-operator.md`.
 
 ### Skeleton (deferred)

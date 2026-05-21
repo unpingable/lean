@@ -1,6 +1,6 @@
 # Admissibility — Authority kernel
 
-Five core modules forming a Governor-neutral authority kernel, plus twelve siblings: two boundary-result modules (`CorrectiveBoundary.lean`, `WitnessInvariance.lean`), seven admissibility-axis / refusal-gate kernels (`FiatAdmissibility.lean`, `NumericalAdmissibility.lean`, `SurfaceAuthorization.lean`, `PublicReceiptRefinement.lean`, `ClosureEligibility.lean`, `RecoveryMargin.lean`, `Freshness.lean`), and three cross-boundary artifact specimens (`CrossBoundaryExposure.lean`, `CrossBoundaryDegradation.lean`, `CrossBoundaryFailureMint.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
+Five core modules forming a Governor-neutral authority kernel, plus thirteen siblings: two boundary-result modules (`CorrectiveBoundary.lean`, `WitnessInvariance.lean`), seven admissibility-axis / refusal-gate kernels (`FiatAdmissibility.lean`, `NumericalAdmissibility.lean`, `SurfaceAuthorization.lean`, `PublicReceiptRefinement.lean`, `ClosureEligibility.lean`, `RecoveryMargin.lean`, `Freshness.lean`), and four cross-boundary artifact specimens (`CrossBoundaryExposure.lean`, `CrossBoundaryDegradation.lean`, `CrossBoundaryFailureMint.lean`, `CrossBoundaryCascade.lean`). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
@@ -165,6 +165,20 @@ Two theorems:
 
 This is the rung that makes the English sentence presentable: *internal failure → recorded failure event → authorized exposure mint → (later) downstream consequence*. Each arrow is a constructor or theorem application; no prose glue.
 
+### Sibling — `CrossBoundaryCascade.lean` (added 2026-05-21)
+
+**Cross-boundary cascade reachability specimen.** Fourth brick; the first *affirmative* theorem in the cross-boundary family. Introduces an abstract `AuthorizedPath (B : Boundary Domain) : Domain → Domain → Prop` inductive (two constructors: `edge` for single authorized hops, `cons` for chained ones) and a third step rule `Step.exposeFromExposure` that propagates an existing exposure to a fresh immediate-origin exposure across one authorized edge.
+
+Keeper: *Cascade is authorized exposure reachability. Not inevitability. Not degradation. Not damage. Not recovery.*
+
+**Immediate-origin discipline.** Each cascade hop mints `Exposure(d_prev, d_next, f)` whose `origin / target` are the *immediate* boundary crossing, not the ultimate failure source. This is what makes projection to the kernel clean — every minted exposure satisfies `B.authorized origin target = true` directly. If ultimate provenance is ever needed, a separate `CascadeChain` witness can be added later; do not overload `Exposure.origin` to mean both "immediate crossing origin" and "root cause."
+
+Theorem `authorized_path_permits_endpoint_exposure` — given an `AuthorizedPath B d₀ dₙ` and a failure kind `f`, there *exists* a reachable cascade configuration containing some exposure to `dₙ` carrying failure `f`. Bootstrap: `Step.fail d₀ f` then `Step.exposeFromFailure ⟨d₀, d_first_hop, f⟩`, then chain `Step.exposeFromExposure` along the path. Existential, not inevitable; the theorem statement uses *permits* / *reachable* / *exists*, never *will* / *must* / *eventually*.
+
+Composition with the rest: `step_to_exposure_reach` projects all three cascade actions to kernel reachability (`fail` → `Reach.refl`; both `expose*` rules → a single `Step.expose`). A local `Reach.trans` on cascade's own `Reach` chains the inductive-helper's bootstrap step with its IH-derived reach. No `CrossBoundaryDegradation` import — cascade is exposure propagation, not degradation.
+
+Scope fence: no scheduling, no fairness, no rates, no `TaxonomyGraph`, no process syntax. *Topology, not selection.* If a future slice adds `EnabledStep` / `SchedulerAllows` / `ScheduledReach`, it lives in a separate `CrossBoundaryScheduling.lean`.
+
 ### Composition discipline — projection pattern
 
 The cross-boundary trio shares a single composition discipline that lets each downstream brick reuse the kernel containment theorem without reproving it. Each brick:
@@ -206,7 +220,7 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-Fourteen modules are wired into `LeanProofs.lean` root; `lake build` (no args) regression-checks them as part of the default proof gate. The three `CrossBoundary*` specimens are intentionally **unwired** at the root level (specimen status — see audit-provenance note above); they still build green individually and pass full-stack `lake build`.
+Fourteen modules are wired into `LeanProofs.lean` root; `lake build` (no args) regression-checks them as part of the default proof gate. The four `CrossBoundary*` specimens are intentionally **unwired** at the root level (specimen status — see audit-provenance note above); they still build green individually and pass full-stack `lake build`.
 
 Repo is sorry-free as of 2026-05-21 (the two `sorry` strings in `Corrective.lean` and `CorrectiveBoundary.lean` are docstring references to a resolved former-`sorry`, not proof holes).
 
@@ -229,6 +243,7 @@ lake build LeanProofs.Admissibility.Freshness
 lake build LeanProofs.Admissibility.CrossBoundaryExposure
 lake build LeanProofs.Admissibility.CrossBoundaryDegradation
 lake build LeanProofs.Admissibility.CrossBoundaryFailureMint
+lake build LeanProofs.Admissibility.CrossBoundaryCascade
 ```
 
 Or just `lake build` for the whole stack.

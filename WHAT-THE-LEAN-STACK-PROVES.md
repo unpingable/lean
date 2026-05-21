@@ -134,11 +134,12 @@ Governor (`agent_gov`) operationally implements this kernel's pattern. The Lean 
 
 ## Infrastructure: Cross-Boundary Artifact Specimens
 
-Three modules in `LeanProofs/Admissibility/` (added 2026-05-21), intentionally unwired at root, applying the admissibility kernel's forbidden-artifact-unconstructible discipline to a new artifact family: boundary-crossing exposures.
+Four modules in `LeanProofs/Admissibility/` (added 2026-05-21), intentionally unwired at root, applying the admissibility kernel's forbidden-artifact-unconstructible discipline to a new artifact family: boundary-crossing exposures.
 
 - **`CrossBoundaryExposure.lean`** — first-class `Exposure (origin, target, failure)` artifact; the only mint constructor (`Step.expose`) requires `Boundary.authorized e.origin e.target = true`. Operator-supplied `BoundaryPartition` carries Prop-valued `Internal` / `External` predicates over abstract `Domain`. Theorem `no_external_exposure_without_authorized_edge`: under a sealed boundary, no reachable configuration contains an Internal-origin External-target exposure.
 - **`CrossBoundaryDegradation.lean`** — extends with `degrade` action carrying `Cause.direct | Cause.fromExposure e`. The `fromExposure` constructor requires `e ∈ c.exposures ∧ e.target = d`. Theorem `no_external_degradation_from_internal_exposure`: exposure-attributed external degradation cannot cite an Internal-origin exposure under a sealed boundary. Direct degradation (Cause.direct) is licensed and not the concern of this slice.
 - **`CrossBoundaryFailureMint.lean`** — adds `FailureEvent (domain, failure)` artifact and a two-rule step relation. `fail d f` records a failure event without any boundary precondition; `exposeFromFailure e` mints an exposure requiring both a recorded precedent `⟨e.origin, e.failure⟩ ∈ c.failures` and `B.authorized e.origin e.target = true`. Step-local and reachable-config theorems both fall out.
+- **`CrossBoundaryCascade.lean`** — first affirmative theorem. Introduces an abstract `AuthorizedPath B d₀ dₙ` inductive (transitive closure of `B.authorized`) and a third step rule `exposeFromExposure` that propagates an existing exposure across one authorized edge, minting an immediate-origin successor. Theorem `authorized_path_permits_endpoint_exposure`: given an authorized path and a failure kind, there *exists* a reachable cascade configuration containing some exposure to the path's endpoint carrying that failure. Existential only — *permits / reachable / exists*, never *will / must / eventually*. Immediate-origin discipline (one exposure per hop, not root-origin) keeps the kernel projection honest.
 
 ### Composition discipline — projection pattern
 
@@ -156,13 +157,14 @@ The brick's own theorem then falls out as a corollary. Any new step constructor 
 
 ### What it warrants
 
-> Under a sealed Internal→External boundary, no reachable configuration can contain a forbidden Internal-origin External-target exposure; exposure-attributed external degradation cannot cite an Internal-origin exposure; internal failure cannot mint an external exposure. The English sentence "internal failure cannot leak across a sealed boundary" now has a constructor-argument spine.
+> Under a sealed Internal→External boundary, no reachable configuration can contain a forbidden Internal-origin External-target exposure; exposure-attributed external degradation cannot cite an Internal-origin exposure; internal failure cannot mint an external exposure. And — affirmatively — given an authorized path from `d₀` to `dₙ` and a failure kind, *there exists* a reachable cascade trace producing an endpoint exposure at `dₙ`. The English sentence "internal failure cannot leak across a sealed boundary, but can propagate where authorization permits" now has a constructor-argument spine.
 
 ### What it does NOT warrant
 
 - That failures cannot occur. Failure is local-domain; `Step.fail` has no boundary precondition.
 - That direct external degradation cannot happen. `Cause.direct` is licensed; the theorem speaks only about exposure-attributed degradation.
-- Cascade (existential reachability along authorized paths). Cascade is the licensed-but-not-required next rung; if written, `TaxonomyGraph` enters only as a sibling instantiation layer, not inside the cascade kernel.
+- That cascade *will* occur, *must* occur, or occurs *eventually*. The cascade theorem is existential — *permits* / *reachable* / *exists* — not inevitable. Scheduling, fairness, starvation, and selection live in a separate layer that is not built.
+- Ultimate (root-cause) provenance for cascade endpoints. Each cascade hop mints an immediate-origin exposure; the endpoint's `origin` is the penultimate hop, not the root failure domain. Ultimate provenance would require a separate `CascadeChain` witness, which is not in scope.
 - Recovery, hysteresis, capability distinctions. These belong on the persistence side (`PersistenceModel` family), not in the `CrossBoundary*` family.
 - Process syntax, parallel composition, monitors, trace equivalence, bisimulation, rates. Deferred until a forcing case demands them (≥ 2 specimens that cannot state their theorem without composition).
 
