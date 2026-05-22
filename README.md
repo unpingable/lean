@@ -1,31 +1,61 @@
 # Lean Proofs
 
-*New here? See [unpingable.github.io](https://unpingable.github.io/) for the project root — author (James Beck), scope, and the full preprint list. This repo is the formal audit harness; the [papers repo](https://github.com/unpingable/papers) is the prose home. See also the [methodology page](https://github.com/unpingable/papers/blob/main/docs/methodology.md) for what the BROKEN / STALE / SOUND register is doing and why.*
+*New here? See [unpingable.github.io](https://unpingable.github.io/) for the project root — author (James Beck), scope, and the full preprint list. This repo holds the admissibility kernel modules and serves as the formal audit harness for the Δt research series; the [papers repo](https://github.com/unpingable/papers) is the prose home. See also the [methodology page](https://github.com/unpingable/papers/blob/main/docs/methodology.md) for what the BROKEN / STALE / SOUND register is doing and why.*
 
-This repository is a formal audit harness for the [Δt framework](https://github.com/unpingable/papers): a research series on systemic failure, temporal mismatch, authority collapse, and recovery under degraded conditions.
+## Reading the Lean repo
 
-The prose papers make claims about how complex systems degrade, recover, misread themselves, or substitute proxies for reality. This repo translates selected claims into Lean so they can be checked against explicit definitions instead of persuasive prose.
+**This is not a process calculus. It is an admissibility kernel.**
 
-Some claims survive. Some narrow. Some break.
+This repository contains small Lean 4 kernels for reasoning about when evidence, standing, freshness, authorization, and transition are sufficient to support a claim or action.
 
-That is the point.
+The modules are intentionally narrow. They formalize recurring boundary failures: stale authority, self-certification, collapsed public surfaces, unauthorized transition, exposure without standing, and cross-boundary cascade.
 
-Lean is used here as a pressure chamber for theory: it helps distinguish structural claims from slogans that were useful for discovery but too loose to carry formal weight. Failed claims are kept as evidence of where the original prose overreached — see [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) for the BROKEN / STALE / SOUND / OPEN audit.
+A separate stack of modules audits prose claims from the Δt research series. That audit harness shares the same Lean discipline, but it is one consumer of the admissibility kernel, not the whole repo.
 
-## Why Lean
+The public handle:
 
-The Δt framework began as prose theory. Prose is good at discovery, but it can hide assumptions, collapse distinct cases, or make causal claims that are only directionally true.
+> small, auditable kernels for recurring admissibility failures.
 
-Lean forces selected claims to be stated as definitions and theorem statements. When a claim fails, the failure is treated as evidence: the theorem was overstated, the definitions were wrong, or the prose was relying on an unstated assumption. The repo's value is less the surviving theorems than the disciplined damage report on the rest.
+Most modules follow the same pattern:
 
-This repo does not claim that Lean proves the whole theory true. It does not replace case studies, simulations, or operational evidence. It is a forcing function against theory-by-metaphor.
+1. define a small model of a failure surface;
+2. state the invalid inference the system must not allow;
+3. prove that the inference cannot be derived under the model;
+4. leave implementation, policy, and consequence outside the theorem.
+
+The point is not to prove an entire software system correct. The point is to make category errors mechanically visible before they become architecture.
+
+## Map
+
+- **Admissibility kernel** — authority, standing, verdicts, state transition, execution, corrective layers.
+- **Surface / receipt / witness kernels** — collapsed surfaces, public receipt refinement, witness invariance.
+- **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
+- **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
+
+For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
+
+For what the current Lean stack proves, see [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md).
+
+## What this is not
+
+This is not a complete formal model of institutions, platforms, incidents, or distributed systems.
+
+It is not a general-purpose process calculus.
+
+When a theorem lands here, it means a specific invalid inference has been isolated tightly enough to be checked mechanically.
 
 ## Companion repos
 
 - **Papers repo:** [`unpingable/papers`](https://github.com/unpingable/papers) — prose papers, working notes, primitives, and the research-program structure. The paper-side crosswalk at [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) inverts this repo's view (paper → module).
-- **This repo (Lean):** formal claim register, proof attempts, corrected theorem statements, and the BROKEN / STALE / SOUND audit. Module → paper crosswalk lives in [`PAPER-MAP.md`](PAPER-MAP.md).
+- **This repo (Lean):** admissibility kernel modules, formal claim register for Δt-paper claims, proof attempts, corrected theorem statements, and the BROKEN / STALE / SOUND audit. Module → paper crosswalk lives in [`PAPER-MAP.md`](PAPER-MAP.md).
 
-## What's here
+## Audit harness for the Δt framework
+
+The audit-harness layer translates selected claims from the [Δt framework](https://github.com/unpingable/papers) into Lean so they can be checked against explicit definitions instead of persuasive prose. The framework's prose papers make claims about how complex systems degrade, recover, misread themselves, or substitute proxies for reality.
+
+Some claims survive. Some narrow. Some break.
+
+That is the point. Lean is used here as a pressure chamber for theory: it helps distinguish structural claims from slogans that were useful for discovery but too loose to carry formal weight. Failed claims are kept as evidence of where the original prose overreached — see [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) for the BROKEN / STALE / SOUND / OPEN audit. The repo's value is less the surviving theorems than the disciplined damage report on the rest.
 
 ### Paper-anchored modules
 
@@ -33,46 +63,15 @@ This repo does not claim that Lean proves the whole theory true. It does not rep
 
 **`LeanProofs/BranchSelector.lean`** — Dual-budget closure-family selection. Budget asymmetry / priming / susceptibility. Cashes out into Paper 9 (certify + sharpen).
 
-**`LeanProofs/PersistenceModel.lean`** — Five-state Δc→Δh dynamics. Cumulative rollback depletion under detached commits; three-way recovery distinction. Quantitative-burn + trace-realization cluster (added 2026-05-08): closed-form `commitsToHysteretic` commit count; non-strict and strict commit-count monotonicity (strict requires positive capacity above the per-commit burn unit, since `cap = 0` and `cap = burnRate` both burn out on the first commit); realization bridge from closed-form arithmetic to actual `run`-trace semantics; trace-level *post-repair faster* doctrine theorem composing the strict inequality with two applications of the realization bridge. Full ladder: capacity arithmetic → commit-count horizon → strict-faster theorem → run-trace realized faster. Cashes out into Paper 18 (sharpen + bridge; Appendix A v1.1 candidate).
+**`LeanProofs/PersistenceModel.lean`** — Five-state Δc→Δh dynamics. Cumulative rollback depletion under detached commits; three-way recovery distinction. Quantitative-burn + trace-realization cluster (added 2026-05-08): closed-form `commitsToHysteretic` commit count; non-strict and strict commit-count monotonicity (strict requires positive capacity above the per-commit burn unit); realization bridge from closed-form arithmetic to actual `run`-trace semantics; trace-level *post-repair faster* doctrine theorem composing the strict inequality with two applications of the realization bridge. Cashes out into Paper 18 (sharpen + bridge; Appendix A v1.1 candidate).
 
 **`LeanProofs/OpsMasking.lean`** — Operational masking, case (i) projection clause. Pointwise-equal projected actions produce identical trajectories. Cashes out into Paper 23 (bridge + certify).
 
 **`LeanProofs/Paper24SharedVision.lean`** — Algebraic shard for Paper 24's §4 metric probes. Sign correction on Proposition 2.
 
-### Infrastructure substrate (no paper anchor)
-
-**`LeanProofs/Admissibility/`** — Governor-neutral authority kernel. Five core modules: `Authority.lean` (verdict algebra), `StateTransition.lean` (partitioned governance state + `StepAllowed`), `Derivation.lean` (read-side bridge), `Execution.lean` (`AuthorizedStep` requires both mutation standing and claim verdict), `Corrective.lean` (corrective monotonicity layer — classify-based enforcement surface, `RecoveryEnv` gate). Plus two boundary-result siblings (added 2026-05-08): `CorrectiveBoundary.lean` builds a parallel miniature kernel and proves the corrective+forward existential is genuinely model-dependent (identity stores → false; nondegenerate stores + verdict-sensitive derivation → true), and `WitnessInvariance.lean` carries the admissibility-witness invariance discipline in three layered forms (relational, typed perturbation-bounded, regime-bounded) — companion to the witness-invariance-failure primitive at `papers/working/primitives/witness-invariance-failure.md`. Warrants: *governance-state mutation requires both mutation standing and an authorized claim verdict, and a revoked basis cannot produce an executable authorized step.* Corrective monotonicity is declared as an obligation shape (`CorrectiveMonotone env`) that any compliant `DerivationEnv` must discharge; the obligation is currently vacuously satisfiable at the abstract kernel level while behavioral laws on `applyUpdate` / `appendRevocation` / `appendGap` are unconstrained axioms, so the kernel pins the *shape* of the non-laundering claim but does not yet rule out laundering by any specific concrete env. The boundary module exhibits both possible answers in a parallel miniature kernel without committing the abstract kernel to either. See [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the per-module breakdown. Substrate for future Governor (`agent_gov`) implementation citation; not paper-claim cashout.
-
-#### Why admissibility is different
-
-The paper-anchored modules mostly test claims about Δt dynamics: failure taxonomies, persistence states, masking, shared vision, recovery margins, and trace behavior. They ask whether a prose claim about system behavior survives contact with explicit definitions.
-
-The `Admissibility/` modules do something slightly different. They formalize the layer where evidence, standing, scope, freshness, and authorization determine whether a claim or transition is allowed to bind consequence at all.
-
-In other words, these modules are not primarily asking:
-
-> did the system fail?
-
-They ask:
-
-> is this claim, action, exposure, or state transition admissible under the rules that supposedly authorize it?
-
-The recurring proof pattern is intentionally small: define the artifact, define its authorized constructor or mint, then prove that the forbidden version is unreachable or unconstructible. This is why the admissibility kernel sits as infrastructure substrate rather than as a single paper cashout: it supplies reusable machinery for ruling out specific laundering moves across later systems and papers.
-
-Recent cross-boundary specimens extend that pattern to propagation artifacts:
-
-- `CrossBoundaryExposure.lean` — boundary authorization is the exposure mint.
-- `CrossBoundaryDegradation.lean` — degradation attributed to exposure must cite an active exposure.
-- `CrossBoundaryFailureMint.lean` — internal failure can be recorded without becoming external exposure unless an authorized crossing exists.
-- `CrossBoundaryCascade.lean` — an authorized path permits reachable endpoint exposure, existentially; it does not prove inevitability, scheduling, damage, or stochastic propagation.
-
-These are not a full process calculus. They are small admissibility kernels: machine-checked proofs that specific forbidden cross-boundary artifacts cannot be constructed under the stated rules.
-
 **`LeanProofs/RepairOperator.lean`** — Sovereign repair operator. No paper anchor; formalizes the working note `working/sovereign-repair-operator.md`.
 
-### Skeleton (deferred)
-
-**`LeanProofs/Admissibility.lean`** — P27 obligation skeleton (namespace `P27`). Sorry-free as of 2026-05-01 (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally **not** wired into `LeanProofs.lean` root — sorry-elimination does not imply wiring. Sibling but independent from the five `Admissibility/*` kernel modules above.
+**`LeanProofs/Admissibility.lean`** — P27 obligation skeleton (namespace `P27`). Sorry-free as of 2026-05-01 (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally **not** wired into `LeanProofs.lean` root. Sibling but independent from the `Admissibility/*` kernel modules; the P27 skeleton is post-transition obligation accounting, the kernel is pre-action authorization.
 
 ### First result
 
@@ -88,9 +87,10 @@ lake build
 
 ## Cross-references
 
+- [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) — full module-by-module reference for the admissibility kernel modules
+- [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md) — module-level exposition of what each proof establishes and what it rules out
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
-- [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md) — module-level exposition of what each proof establishes and what it rules out
 - Papers repo: [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) — paper → module inverse view
 
 ## Status
@@ -105,11 +105,7 @@ Other open questions — what the kernel does *not* yet rule out — are tracked
 
 This repository is the canonical formal source. Required CI verifies that the formalization builds (`lean-action` on push); proof correctness rests on the Lean source itself, not on any rendered artifact.
 
-The human-readable entry point for proof readers is this README plus three companion documents:
-
-- [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk
-- [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit (BROKEN / STALE / SOUND / OPEN per specific prose location)
-- [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md) — module-level exposition of what each proof establishes and what it rules out
+The human-readable entry point for proof readers is this README plus the three companion documents linked under *Cross-references* above (`LeanProofs/Admissibility/README.md`, `WHAT-THE-LEAN-STACK-PROVES.md`, `CLAIM-REGISTER.md`).
 
 The papers-side companion at `docs/formalization-index.md` in the [papers repo](https://github.com/unpingable/papers) inverts the view (paper → module).
 
