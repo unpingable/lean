@@ -236,6 +236,32 @@ theorem composition_preserves_global_safety_aperture
   apply component_reach_preserves_invariant hMerge hReach
   exact initial_no_internal_external_exposure lbₘ.partition
 
+/-! ## What this theorem does NOT prove
+
+    This theorem proves aperture soundness only:
+
+      locally authorized component action
+      → merge soundness obligation
+      → globally safe exposure step
+
+    It does not prove:
+      - that the merge predicate is complete
+      - that the five known bad cases are exhaustive
+      - that all useful boundary merges satisfy this predicate
+      - that trace equivalence or refinement has been defined
+      - that this module belongs in the no-sorry kernel chain
+
+    Audit witnesses (2026-05-21):
+      - The proof never invokes `lbₘ.boundary.authorized`. Authorization
+        at the step is `LocalAllows lb_i`; the merged boundary appears
+        only via `lbₘ.partition` (safety judgment, post-step) and
+        `hMerge.{left,right}_sound` (soundness bridge).
+      - The `RawStep` witness `hRaw` inside each `ComponentStep`
+        constructor is bound but unused by the proof. The aperture
+        does not depend on raw-step structure beyond what
+        `ComponentStep` packages.
+-/
+
 /-! ## Open obligations
 
     The aperture closes, but the following pieces of the calculus are
