@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Admissibility Calculus 1.0: A Lean Kernel for Authority-Bound State Transitions"
+type: software
+version: "1.0.1"
+date-released: "2026-05-24"
+authors:
+  - family-names: Beck
+    given-names: James
+    affiliation: "Independent Researcher"
+url: "https://github.com/unpingable/lean"
+repository-code: "https://github.com/unpingable/lean"
+license: Apache-2.0
+keywords:
+  - admissibility
+  - authority
+  - formal-methods
+  - Lean
+  - Lean4
+  - mathlib
+  - state-transition
+  - boundary-calculus
+  - delta-t-framework
+  - governance-state
+  - refusal-gate
+  - witness-invariance
+abstract: >-
+  A small Lean 4 kernel exposing a typed-verdict algebra (basis ×
+  precedence × standing) over partitioned governance state, with
+  composition rules from claim derivation through authorized execution,
+  plus refusal-gate kernels for metric-time freshness, collapsed-surface
+  authorization, witness invariance, and corrective monotonicity. The 1.0
+  public surface comprises eight modules aggregated via CalculusOne.lean
+  and is demonstrated by seven specimen consumers in Examples.lean. The
+  artifact models when evidence-backed claims may authorize transitions,
+  proves that boundary-crossing upgrades are impossible by construction,
+  and refuses laundering across the surface, freshness, witness, and
+  authority axes. Not a sequent calculus, not a process calculus, not a
+  proof-theoretic admissibility logic — see the repository's scope fence
+  for the full list of non-claims. Annex modules build green and are
+  available but are not part of the 1.0 compatibility claim.
