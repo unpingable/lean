@@ -21,6 +21,12 @@ import LeanProofs.Admissibility.ClosureEligibility
 import LeanProofs.Admissibility.PublicReceiptRefinement
 import LeanProofs.Admissibility.Freshness
 import LeanProofs.Admissibility.AxisSkew
+import LeanProofs.Admissibility.Composition
+import LeanProofs.Admissibility.LocalBoundary
+import LeanProofs.Admissibility.CrossBoundaryExposure
+import LeanProofs.Admissibility.CrossBoundaryDegradation
+import LeanProofs.Admissibility.CrossBoundaryFailureMint
+import LeanProofs.Admissibility.CrossBoundaryCascade
 import LeanProofs.Admissibility.CalculusOne
 import LeanProofs.Admissibility.Examples
 import LeanProofs.CollapsedSurface

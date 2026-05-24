@@ -4,6 +4,25 @@ This directory contains the original five-module authority kernel (`Authority`, 
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
+## Changelog
+
+### 1.0.1 — 2026-05-24 (patch)
+
+Fixes:
+- Repair `CrossBoundaryCascade` parse error (`Step.exposeFromExposure` constructor body: multi-line `insert (...)` inside a structure update required parentheses to terminate cleanly).
+
+Infrastructure:
+- Wire all Admissibility modules into `LeanProofs.lean` (full set: twenty-three modules including the previously-unwired four `CrossBoundary*` specimens and the two experimental `Composition` / `LocalBoundary` modules).
+- `lake build` (no args) now covers the full stack, preventing silent unwired-module failures.
+
+No public surface change. No slogan change. `CalculusOne.lean` remains the 1.0 public surface.
+
+> 1.0.1 strengthens regression coverage without changing the 1.0 public surface.
+
+### 1.0 — 2026-05-24
+
+Initial named public surface. Eight modules in `CalculusOne.lean`: `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`. Seven specimen consumers in `Examples.lean`. Slogan, scope-fence, and annex documented in this README.
+
 ## Calculus 1.0 — public surface
 
 `CalculusOne.lean` is the named public aggregator. Importing it brings the 1.0 surface into scope. Eight modules are tagged `[1.0]` and form the compatibility claim:
@@ -36,7 +55,7 @@ Seven specimen consumers live in `Examples.lean` (imports `CalculusOne`): valid 
 
 ## Annex — compiled, not promised
 
-Annex modules are not part of the 1.0 compatibility claim. Future versions may rename, refactor, or absorb them without prior notice. Most are green and sorry-free; one current exception is noted in the Build section below.
+Annex modules are green and sorry-free but are not part of the 1.0 compatibility claim. Future versions may rename, refactor, or absorb them without prior notice.
 
 | Module                       | Role                                                      |
 | ---------------------------- | --------------------------------------------------------- |
@@ -270,23 +289,24 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-Seventeen modules are wired into `LeanProofs.lean` root (fifteen Admissibility modules + `CalculusOne` aggregator + `Examples` specimens). The default `lake build` (no args) regression-checks the wired set and its transitive dependencies. It does **not** check unwired modules — they are simply not in the build target.
+All twenty-three Admissibility modules are wired into `LeanProofs.lean` root (twenty-one kernel/sibling modules + `CalculusOne` aggregator + `Examples` specimens). The default `lake build` (no args) regression-checks the entire set as the default proof gate. Nothing is silently unwired.
 
-Six modules are intentionally **unwired** at the root level: the four `CrossBoundary*` specimens and the two experimental modules `Composition` and `LocalBoundary`. These must be built explicitly to be regression-checked. As of the 1.0 cutline:
+Public-surface gate: `lake build LeanProofs.Admissibility.CalculusOne` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
 
-- `CrossBoundaryExposure`, `CrossBoundaryDegradation`, `CrossBoundaryFailureMint`, `Composition`, `LocalBoundary` — build green standalone.
-- `CrossBoundaryCascade` — does **not** build standalone. There is a pre-existing parse error in the step-relation tail (around `LeanProofs/Admissibility/CrossBoundaryCascade.lean:193`); this regression is **not** addressed by the 1.0 release because the module is annex / unwired. The descriptive section below documents the file's intended shape; its build state should be repaired before any 1.1 promotion of the cross-boundary family.
+No Lean proof holes as of 2026-05-24 in the wired stack. The word `sorry` does appear in docstring text within `Corrective.lean` and `CorrectiveBoundary.lean` as references to a resolved former-`sorry`; these are comments, not proof holes — a plain grep will find them.
 
-Public-surface gate: `lake build LeanProofs.Admissibility.CalculusOne` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API. Both are wired into root and covered by the default `lake build`.
+### Cascade repair note
 
-No Lean proof holes as of 2026-05-21 in the wired stack. The word `sorry` does appear in docstring text within `Corrective.lean` and `CorrectiveBoundary.lean` as references to a resolved former-`sorry`; these are comments, not proof holes — a plain grep will find them.
+`CrossBoundaryCascade.lean` had a pre-existing parse error in its `Step.exposeFromExposure` constructor (multi-line `insert (...)` inside a structure update not parsing without parentheses). The fix was two characters; the file is now wired and covered by the default `lake build`. This bug had been silent since 2026-05-21 because the module was unwired.
+
+All modules below are wired into root and covered by `lake build` (no args). Individual builds are listed for narrow regression checks.
 
 ```bash
-# Public 1.0 surface (aggregator + specimens) — wired
+# Public 1.0 surface (aggregator + specimens)
 lake build LeanProofs.Admissibility.CalculusOne
 lake build LeanProofs.Admissibility.Examples
 
-# Core kernel [1.0] — wired
+# Core kernel [1.0]
 lake build LeanProofs.Admissibility.Authority
 lake build LeanProofs.Admissibility.StateTransition
 lake build LeanProofs.Admissibility.Derivation
@@ -296,7 +316,7 @@ lake build LeanProofs.Admissibility.Freshness
 lake build LeanProofs.Admissibility.SurfaceAuthorization
 lake build LeanProofs.Admissibility.WitnessInvariance
 
-# Annex — wired
+# Annex — axis & refusal kernels
 lake build LeanProofs.Admissibility.CorrectiveBoundary
 lake build LeanProofs.Admissibility.FiatAdmissibility
 lake build LeanProofs.Admissibility.NumericalAdmissibility
@@ -305,15 +325,13 @@ lake build LeanProofs.Admissibility.ClosureEligibility
 lake build LeanProofs.Admissibility.RecoveryMargin
 lake build LeanProofs.Admissibility.AxisSkew
 
-# Cross-boundary specimens — UNWIRED (not covered by `lake build`)
-lake build LeanProofs.Admissibility.CrossBoundaryExposure       # builds
-lake build LeanProofs.Admissibility.CrossBoundaryDegradation    # builds
-lake build LeanProofs.Admissibility.CrossBoundaryFailureMint    # builds
-lake build LeanProofs.Admissibility.CrossBoundaryCascade        # FAILS (parse error, line ~193)
+# Annex — cross-boundary artifact specimens
+lake build LeanProofs.Admissibility.CrossBoundaryExposure
+lake build LeanProofs.Admissibility.CrossBoundaryDegradation
+lake build LeanProofs.Admissibility.CrossBoundaryFailureMint
+lake build LeanProofs.Admissibility.CrossBoundaryCascade
 
-# Experimental — UNWIRED (not covered by `lake build`)
+# Annex — experimental composition
 lake build LeanProofs.Admissibility.Composition
 lake build LeanProofs.Admissibility.LocalBoundary
 ```
-
-`lake build` (no args) checks the wired set only. Unwired modules listed above must be built explicitly to be regression-checked.

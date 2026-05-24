@@ -51,11 +51,10 @@
   CrossBoundaryExposure, CrossBoundaryDegradation, CrossBoundaryFailureMint,
   CrossBoundaryCascade, LocalBoundary, Composition.
 
-  These modules are available — but their signatures are not part of the
-  1.0 compatibility claim. Future versions may rename them, refactor their
-  APIs, or absorb them into the public surface without prior notice. Most
-  build green; one current exception (`CrossBoundaryCascade`, unwired and
-  failing to parse standalone) is documented in `README.md` under Build.
+  These modules are available, green, and sorry-free — but their signatures
+  are not part of the 1.0 compatibility claim. Future versions may rename
+  them, refactor their APIs, or absorb them into the public surface without
+  prior notice.
 
   ## Load-bearing public API (names only)
 

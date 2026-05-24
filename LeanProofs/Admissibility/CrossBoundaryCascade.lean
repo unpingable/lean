@@ -190,9 +190,8 @@ inductive Step {Domain Failure : Type}
         B.authorized e_in.target dNext = true →
         Step B c (.exposeFromExposure e_in dNext)
           { c with exposures :=
-              insert
-                (CrossBoundaryExposure.Exposure.mk e_in.target dNext e_in.failure)
-                c.exposures }
+              (insert (CrossBoundaryExposure.Exposure.mk e_in.target dNext e_in.failure)
+                      c.exposures) }
 
 /-- Reachability for the cascade step relation. -/
 inductive Reach {Domain Failure : Type}
