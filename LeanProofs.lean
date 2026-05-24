@@ -21,4 +21,6 @@ import LeanProofs.Admissibility.ClosureEligibility
 import LeanProofs.Admissibility.PublicReceiptRefinement
 import LeanProofs.Admissibility.Freshness
 import LeanProofs.Admissibility.AxisSkew
+import LeanProofs.Admissibility.CalculusOne
+import LeanProofs.Admissibility.Examples
 import LeanProofs.CollapsedSurface

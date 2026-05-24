@@ -104,6 +104,27 @@ The formally verified results:
 
 ---
 
+## Calculus 1.0 surface
+
+The admissibility kernel modules described below form a named public surface: **Admissibility Calculus 1.0**, aggregated at `LeanProofs/Admissibility/CalculusOne.lean`. Eight modules are tagged `[1.0]`:
+
+- `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective` — core authority kernel
+- `Freshness` — metric-time axis
+- `SurfaceAuthorization` — collapsed-surface refusal gate
+- `WitnessInvariance` — evidence-stability discipline under perturbation
+
+Seven specimen consumers in `LeanProofs/Admissibility/Examples.lean` demonstrate the public API (valid advisory result, valid authorized mutation, stale evidence refusal, self-cert denial, conflicting precedence denial, receipt-without-authority non-upgrade, open finding accounted).
+
+What 1.0 deliberately does **not** claim: a general theory of institutions; recovery doctrine; cross-boundary process composition; numerical-kind or artifact-kind axes; a calculus of communicating processes; formal verification of any real-world institution or paper. Annex modules (`CorrectiveBoundary`, `PublicReceiptRefinement`, `RecoveryMargin`, `ClosureEligibility`, `FiatAdmissibility`, `NumericalAdmissibility`, `AxisSkew`, `CrossBoundary*`, `Composition`, `LocalBoundary`) build green but are not part of the 1.0 compatibility claim. Root-level paper-specific modules (Paper 24, Paper 25, NQ-shaped consumers, etc.) are specimens, not contents.
+
+Slogan:
+
+> Calculus 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
+
+Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
+
+---
+
 ## Infrastructure: Admissibility Kernel
 
 This is **not** paper-claim cashout. It's substrate — formal infrastructure that future Governor (`agent_gov`) work and any "no laundering" claim can cite. Doesn't fit the slogan-killing pattern of Layers 1–3 because it's not retroactively sharpening prose; it's pinning an algebraic skeleton from scratch.

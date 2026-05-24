@@ -36,6 +36,14 @@ For the full module-by-module reference, see [`LeanProofs/Admissibility/README.m
 
 For what the current Lean stack proves, see [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md).
 
+## Calculus 1.0
+
+The named public surface of the admissibility kernel is **Admissibility Calculus 1.0**. Importing `LeanProofs.Admissibility.CalculusOne` brings the eight 1.0 modules into scope (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). Seven specimen consumers live in `LeanProofs.Admissibility.Examples`, demonstrating the public API. The surface composition, scope-fence (what 1.0 does *not* claim), and annex listing live in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
+
+> Calculus 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
+
+Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) are not part of the 1.0 compatibility claim. Most build green; the per-module build state and one current unwired-module exception (`CrossBoundaryCascade`) are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
+
 ## What this is not
 
 This is not a complete formal model of institutions, platforms, incidents, or distributed systems.
