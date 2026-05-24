@@ -1,10 +1,14 @@
 /-
   Admissibility Calculus 1.0 — public surface aggregator.
 
-  This is the named public kernel of the admissibility stack. Importing
-  this module brings the 1.0 surface into scope; the broader stack
-  contains annex modules and consumer specimens that are intentionally
-  excluded from the 1.0 promise.
+  A Lean authority kernel with typed verdicts, composition rules, and
+  meta-theorems for admissible transition. Not a sequent calculus, not
+  a process calculus, not a proof-theoretic admissibility logic — the
+  scope fence below names the full list of non-claims.
+
+  Importing this module brings the 1.0 surface into scope; the broader
+  stack contains annex modules and consumer specimens that are
+  intentionally excluded from the 1.0 promise.
 
   ## Slogan
 

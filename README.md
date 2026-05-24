@@ -38,7 +38,9 @@ For what the current Lean stack proves, see [`WHAT-THE-LEAN-STACK-PROVES.md`](WH
 
 ## Calculus 1.0
 
-The named public surface of the admissibility kernel is **Admissibility Calculus 1.0**. Importing `LeanProofs.Admissibility.CalculusOne` brings the eight 1.0 modules into scope (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). Seven specimen consumers live in `LeanProofs.Admissibility.Examples`, demonstrating the public API. The surface composition, scope-fence (what 1.0 does *not* claim), and annex listing live in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
+**Admissibility Calculus 1.0** is a Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic — see the scope fence in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the full list of non-claims.
+
+Importing `LeanProofs.Admissibility.CalculusOne` brings the eight 1.0 modules into scope (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). Seven specimen consumers live in `LeanProofs.Admissibility.Examples`, demonstrating the public API.
 
 > Calculus 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
 

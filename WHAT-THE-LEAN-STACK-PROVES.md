@@ -106,7 +106,7 @@ The formally verified results:
 
 ## Calculus 1.0 surface
 
-The admissibility kernel modules described below form a named public surface: **Admissibility Calculus 1.0**, aggregated at `LeanProofs/Admissibility/CalculusOne.lean`. Eight modules are tagged `[1.0]`:
+The admissibility kernel modules described below form a named public surface: **Admissibility Calculus 1.0**, aggregated at `LeanProofs/Admissibility/CalculusOne.lean`. A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition — not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic. Eight modules are tagged `[1.0]`:
 
 - `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective` — core authority kernel
 - `Freshness` — metric-time axis

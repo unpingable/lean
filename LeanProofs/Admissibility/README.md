@@ -25,6 +25,8 @@ Initial named public surface. Eight modules in `CalculusOne.lean`: `Authority`, 
 
 ## Calculus 1.0 — public surface
 
+A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic — see the scope fence below for the full list of non-claims.
+
 `CalculusOne.lean` is the named public aggregator. Importing it brings the 1.0 surface into scope. Eight modules are tagged `[1.0]` and form the compatibility claim:
 
 | Module                | Role                                              |
