@@ -1,5 +1,7 @@
 # Lean Proofs
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20369489.svg)](https://doi.org/10.5281/zenodo.20369489)
+
 *New here? See [unpingable.github.io](https://unpingable.github.io/) for the project root — author (James Beck), scope, and the full preprint list. This repo holds the admissibility kernel modules and serves as the formal audit harness for the Δt research series; the [papers repo](https://github.com/unpingable/papers) is the prose home. See also the [methodology page](https://github.com/unpingable/papers/blob/main/docs/methodology.md) for what the BROKEN / STALE / SOUND register is doing and why.*
 
 ## Reading the Lean repo

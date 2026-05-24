@@ -10,6 +10,11 @@ authors:
     affiliation: "Independent Researcher"
 url: "https://github.com/unpingable/lean"
 repository-code: "https://github.com/unpingable/lean"
+doi: "10.5281/zenodo.20369490"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20369489"
+    description: "Concept DOI — resolves to the latest version of this software"
 license: Apache-2.0
 keywords:
   - admissibility
