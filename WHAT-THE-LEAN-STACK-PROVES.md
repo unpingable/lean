@@ -117,6 +117,8 @@ Seven specimen consumers in `LeanProofs/Admissibility/Examples.lean` demonstrate
 
 What 1.0 deliberately does **not** claim: a general theory of institutions; recovery doctrine; cross-boundary process composition; numerical-kind or artifact-kind axes; a calculus of communicating processes; formal verification of any real-world institution or paper. Annex modules (`CorrectiveBoundary`, `PublicReceiptRefinement`, `RecoveryMargin`, `ClosureEligibility`, `FiatAdmissibility`, `NumericalAdmissibility`, `AxisSkew`, `CrossBoundary*`, `Composition`, `LocalBoundary`) build green but are not part of the 1.0 compatibility claim. Root-level paper-specific modules (Paper 24, Paper 25, NQ-shaped consumers, etc.) are specimens, not contents.
 
+`StepAllowed` (the mutation-side authorization primitive) does not carry a preservation obligation for externally-defined defended values; see `LeanProofs/Admissibility/AuthorizedNotSafe.lean` — an axiomatically-inhabited counter-scenario for `FRONTIERS.md` Frontier 1, at the `StepAllowed` layer only. Whether the full `AuthorizedStep` structure also admits an unsafe witness is not settled by this file.
+
 Slogan:
 
 > Calculus 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.

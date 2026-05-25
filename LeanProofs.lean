@@ -29,4 +29,5 @@ import LeanProofs.Admissibility.CrossBoundaryFailureMint
 import LeanProofs.Admissibility.CrossBoundaryCascade
 import LeanProofs.Admissibility.CalculusOne
 import LeanProofs.Admissibility.Examples
+import LeanProofs.Admissibility.AuthorizedNotSafe
 import LeanProofs.CollapsedSurface
