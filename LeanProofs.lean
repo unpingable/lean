@@ -18,6 +18,7 @@ import LeanProofs.Admissibility.NumericalAdmissibility
 import LeanProofs.Admissibility.SurfaceAuthorization
 import LeanProofs.Admissibility.RecoveryMargin
 import LeanProofs.Admissibility.ClosureEligibility
+import LeanProofs.Admissibility.ConsolidationDenial
 import LeanProofs.Admissibility.PublicReceiptRefinement
 import LeanProofs.Admissibility.Freshness
 import LeanProofs.Admissibility.AxisSkew

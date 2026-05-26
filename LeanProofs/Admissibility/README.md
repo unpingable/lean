@@ -4,6 +4,8 @@ This directory contains the original five-module authority kernel (`Authority`, 
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
+> **Architecture in one breath:** `CalculusOne` defines the public admissibility path. The annex contains **refusal kernels** — small formal countermodels that block recurring inadmissible witness moves (e.g. `RecoveryMargin` blocks *visible green → recovery capacity*; `ClosureEligibility` blocks *survival → closure*; `ConsolidationDenial` blocks *fluency → settlement*). Each annex module that opens its docstring with "Refusal kernel for the gap between X and Y" is doing one thing: exhibiting a concrete countermodel where X holds and Y fails, breaking the inference *X therefore Y*.
+
 ## Changelog
 
 ### 1.0.1 — 2026-05-24 (patch)
@@ -65,6 +67,7 @@ Annex modules are green and sorry-free but are not part of the 1.0 compatibility
 | `PublicReceiptRefinement`    | Recovery doctrine companion to `SurfaceAuthorization`     |
 | `RecoveryMargin`             | Visible-vs-capacity gap refusal (within-interval)         |
 | `ClosureEligibility`         | Survival-vs-closure refusal (end-of-interval)             |
+| `ConsolidationDenial`        | Fluency-vs-settlement gap refusal (between-interval)      |
 | `FiatAdmissibility`          | Artifact-kind × use-kind axis                             |
 | `NumericalAdmissibility`     | Numerical-kind × use-kind axis                            |
 | `AxisSkew`                   | Directional comparison axis (lagging/matched/leading)     |
@@ -189,6 +192,16 @@ Keeper: *Visible green does not entail recovery margin.*
 
 In tightly-coupled, high-cost-of-deviation environments, a system can maintain visible status by sacrificing recovery capacity, and the dashboard cannot report the second condition. Discrete observation-equivalence specimen at the dashboard layer (see `LeanProofs/CollapsedSurface.lean` for the general cause-from-render kernel and Paper 25 for the matrix/dynamical version). NQ-style witness-standing findings are the obvious downstream consumer (where the dashboard is being asked to testify about operability, not just status).
 
+### Sibling — `ConsolidationDenial.lean` `[annex]` (added 2026-05-25)
+
+**Refusal kernel for the gap between interaction fluency and audited settlement.** Proves that `Fluent` does not witness `SettlementAdequate` — a system whose output reads coherent may have zero completed settlement passes and a non-empty unsettled buffer. One-way non-implication only; the opposite direction (settlement without fluency) is not claimed.
+
+Keeper: *Fluency is not a settlement receipt.*
+
+Sharper: *Decay can clear the buffer without settling the debt. A decay-governed system can look stable by forgetting what it failed to learn. Audited discard is not rot — residue demoted under audit is a separate stock, not epistemic damage.* Same family resemblance as `RecoveryMargin` and `ClosureEligibility`: a visible surface signal is being asked to license a substantive claim it does not, by itself, support. Sibling to `RecoveryMargin` (within-interval visible-vs-capacity) and `ClosureEligibility` (end-of-interval survival-vs-closure); this module governs between-interval fluency-vs-settlement. Sibling to `Freshness` on the temporal axis — where `Freshness` governs metric-time admissibility of evidence (*is this timestamp within an acceptable window*), `ConsolidationDenial` names a phase-time refusal (*has any settlement interval occurred at all*).
+
+The three-clock threat model (interaction λ_ext, settlement μ, decay δ) and the consolidation-interrupt controller (Schmitt-trigger safety invariant, four-stock dynamics B/K/X/R, mode-specific bounds) are *named* in the header as cybernetic provenance only; this module does not *model* them. Equations and a controller sketch live in the papers repo at `working/tooltheory/consolidation-denial.md` + `working/tooltheory/consolidation-denial-formal-sketch.md`. Nightshift, agent_gov, continuity, and NQ are the operational consumers.
+
 ### Sibling — `Freshness.lean` `[1.0]` (added 2026-05-19)
 
 **Metric-time admissibility axis.** Sibling to the kernel's existing ordinal-time apparatus (Step sequences, `WeaklyLessPermissive` preorder, `ClosureEligibility.NoRegress` pairs, `RevocationStore` evolution). Where the ordinal apparatus answers *"did this happen before that,"* `Freshness` answers *"is this timestamp within an acceptable window."*
@@ -291,7 +304,7 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-All twenty-three Admissibility modules are wired into `LeanProofs.lean` root (twenty-one kernel/sibling modules + `CalculusOne` aggregator + `Examples` specimens). The default `lake build` (no args) regression-checks the entire set as the default proof gate. Nothing is silently unwired.
+All twenty-four Admissibility modules are wired into `LeanProofs.lean` root (twenty-two kernel/sibling modules + `CalculusOne` aggregator + `Examples` specimens). The default `lake build` (no args) regression-checks the entire set as the default proof gate. Nothing is silently unwired.
 
 Public-surface gate: `lake build LeanProofs.Admissibility.CalculusOne` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
 
@@ -324,6 +337,7 @@ lake build LeanProofs.Admissibility.FiatAdmissibility
 lake build LeanProofs.Admissibility.NumericalAdmissibility
 lake build LeanProofs.Admissibility.PublicReceiptRefinement
 lake build LeanProofs.Admissibility.ClosureEligibility
+lake build LeanProofs.Admissibility.ConsolidationDenial
 lake build LeanProofs.Admissibility.RecoveryMargin
 lake build LeanProofs.Admissibility.AxisSkew
 
