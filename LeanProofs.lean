@@ -28,6 +28,7 @@ import LeanProofs.Admissibility.CrossBoundaryExposure
 import LeanProofs.Admissibility.CrossBoundaryDegradation
 import LeanProofs.Admissibility.CrossBoundaryFailureMint
 import LeanProofs.Admissibility.CrossBoundaryCascade
+import LeanProofs.Admissibility.RefusalPropagation
 import LeanProofs.Admissibility.CalculusOne
 import LeanProofs.Admissibility.Examples
 import LeanProofs.Admissibility.AuthorizedNotSafe

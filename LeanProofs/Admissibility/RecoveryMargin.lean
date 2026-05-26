@@ -32,6 +32,18 @@
     the dashboard cannot report the second condition. This kernel
     proves the structural gap.
 
+  Operator-family membership:
+    Instantiates the row `VisibleGreen ⇏ RecoveryMargin` in the
+    `surface ⇏ substance` operator-family table at
+    `working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md`,
+    which catalogs verified refusal-kernel instances on the books
+    (RecoveryMargin, ClosureEligibility, ConsolidationDenial; plus
+    the spec-level `specifications/signed_is_not_witnessed.md`).
+    The seam note also carries the layer split (refusal kernel /
+    refusal algebra / refusal calculus) and the brake against
+    promoting algebra-shape recognition to calculus-shape composition
+    without composition theorems.
+
   Structural relation to CollapsedSurface:
     The visible status is a render of the underlying system state
     (Status × Slack). Distinct underlying states — one with margin,

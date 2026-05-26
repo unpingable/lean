@@ -47,6 +47,18 @@
       `working/tooltheory/consolidation-denial-formal-sketch.md` (sketch
       with four-stock dynamics B/K/X/R and Schmitt-trigger controller)
 
+  Operator-family membership:
+    Instantiates the row `Fluent ⇏ SettlementAdequate` in the
+    `surface ⇏ substance` operator-family table at
+    `working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md`,
+    which catalogs verified refusal-kernel instances on the books
+    (RecoveryMargin, ClosureEligibility, ConsolidationDenial; plus
+    the spec-level `specifications/signed_is_not_witnessed.md`).
+    The seam note also carries the layer split (refusal kernel /
+    refusal algebra / refusal calculus) and the brake against
+    promoting algebra-shape recognition to calculus-shape composition
+    without composition theorems.
+
   Structural relation to RecoveryMargin:
     RecoveryMargin proves that a visible green signal cannot witness
     recovery capacity *within* an interval. ConsolidationDenial

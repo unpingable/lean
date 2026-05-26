@@ -25,6 +25,22 @@ No public surface change. No slogan change. `CalculusOne.lean` remains the 1.0 p
 
 Initial named public surface. Eight modules in `CalculusOne.lean`: `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`. Seven specimen consumers in `Examples.lean`. Slogan, scope-fence, and annex documented in this README.
 
+## Roadmap
+
+Forward-looking version discipline (not a release plan, a promotion gate):
+
+- **1.x** — documentation / coordination releases. Annex continues compiled-not-promised; new refusal kernels land in the annex without changing the public surface. The architecture-headline (above) is the 1.x kind of move.
+- *(optional)* `RefusalKernels.lean` aggregator — a possible *future* non-public annex aggregator over refusal kernels (`RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`, `SurfaceAuthorization`, `FiatAdmissibility`, etc.). Explicitly **not part of `CalculusOne.lean`**. Annex semantics with **no 1.0 / 1.x public compatibility promise** across version lines. Should not be created until a downstream consumer actually wants a grouped import — until that consumer-forcing event, status is **named-not-built / deferred**. Named here so the shape is decided in advance, not as a build trigger.
+- **2.0** — public refusal-*calculus* surface, only if composition / propagation / narrowing theorems land on the `surface ⇏ substance` relation. NOT just more specimens; requires at least one theorem of the shape *if A cannot witness B and B is required as basis for C, then A cannot witness C for binding use.*
+
+> **More specimens → annex / 1.x. Composition rules → calculus / 2.0.**
+
+> **A refusal kernel blocks one laundering move. A refusal calculus explains how blocked moves compose.**
+
+> **Pipeline composition is not calculus composition.** The PL/UC representation-pipeline composition discussed in the working notes (`projection-laundering.md`, `uncertainty-custody.md`) connects predicates across a representation boundary via data-flow; the 2.0 trigger above is theorem-level transitivity over blocked witness promotions (`A ⇏ B; B basis for C; ∴ A ⇏ C`). Pipeline composition does not retire the 2.0 brake.
+
+Seam discussion lives in `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md` (layer split, operator family, calculus-earns-its-shoes gate) and `~/git/papers/working/tooltheory/refusal-algebra-prior-art-and-applications.md` (eight-foundation prior-art stack, seven application zones, anti-laundering grammar). Read those first before proposing a 2.0 cut.
+
 ## Calculus 1.0 — public surface
 
 A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic — see the scope fence below for the full list of non-claims.
@@ -77,6 +93,15 @@ Annex modules are green and sorry-free but are not part of the 1.0 compatibility
 | `CrossBoundaryCascade`       | Cross-boundary cascade reachability specimen              |
 | `Composition` `[experimental]` | Diagnostic: process syntax alone does not make a calculus |
 | `LocalBoundary` `[experimental]` | Experimental aperture toward compositional calculus     |
+
+### Refusal kernel taxonomy
+
+The annex contains four refusal kernels — each proves a `surface ⇏ substance` non-implication — but with two distinct theorem shapes:
+
+- **Existential-countermodel kernels** (3): `RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`. Each exhibits one concrete state where the surface predicate holds and the substantive predicate fails. The theorem is `∃ s, Surface s ∧ ¬ Substance s`. One-shot refusal. Sufficient to break the inference *Surface ⇒ Substance*.
+- **Conditional-rule kernel** (1): `SurfaceAuthorization`. Universal over action kinds and surface statuses: if cause-specific action AND collapsed surface AND no breakers, then deny. The theorem quantifies over inputs and returns a verdict, with companion theorems filling out the verdict space. Not a one-shot countermodel; a parameterized refusal rule.
+
+Both shapes inhabit the same operator family (catalog at `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md`). The shape difference matters for how the kernel composes (or refuses to compose) with future 2.0 candidates — see Roadmap above.
 
 ## Modules
 

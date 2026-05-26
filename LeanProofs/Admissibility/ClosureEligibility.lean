@@ -31,6 +31,18 @@
     underlying resolution — same family resemblance as admitting
     testimony as if it were substrate theory.
 
+  Operator-family membership:
+    Instantiates the row `Survival ⇏ ClosureEligibility` in the
+    `surface ⇏ substance` operator-family table at
+    `working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md`,
+    which catalogs verified refusal-kernel instances on the books
+    (RecoveryMargin, ClosureEligibility, ConsolidationDenial; plus
+    the spec-level `specifications/signed_is_not_witnessed.md`).
+    The seam note also carries the layer split (refusal kernel /
+    refusal algebra / refusal calculus) and the brake against
+    promoting algebra-shape recognition to calculus-shape composition
+    without composition theorems.
+
   Relation to existing kit:
     - Sibling to RecoveryMargin: that module governs *within-interval*
       visible vs. recovery-capacity; this module governs *end-of-interval*

@@ -35,6 +35,17 @@
   (`public_receipt_refines_observation` and its siblings) remains
   deliberately abstract: the gate encodes the boundary, not the
   epistemology.
+
+  Repair-channel substrate:
+    `LeanProofs/Admissibility/PublicReceiptRefinement.lean` is the
+    closest existing partial-repair substrate, formalizing one of the
+    three channels named in this kernel's `Breaker` enum (the public
+    receipt that excludes some surface-admitted cause while remaining
+    consistent with at least one). The other two `Breaker` cases
+    (independent measurement, admissible perturbation) remain
+    unformalized; that asymmetry is intentional, not an oversight.
+    A future refusal-repair calculus, if one is earned, would extend
+    `PublicReceiptRefinement`'s pattern over the unformalized channels.
 -/
 
 namespace Admissibility.SurfaceAuthorization
