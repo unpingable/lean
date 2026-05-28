@@ -32,4 +32,7 @@ import LeanProofs.Admissibility.RefusalPropagation
 import LeanProofs.Admissibility.CalculusOne
 import LeanProofs.Admissibility.Examples
 import LeanProofs.Admissibility.AuthorizedNotSafe
+import LeanProofs.Admissibility.AuthorizedNotSafeWitness
+import LeanProofs.Admissibility.SafetyBridge
+import LeanProofs.Admissibility.SafetyBridgeWitness
 import LeanProofs.CollapsedSurface

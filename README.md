@@ -85,9 +85,11 @@ That is the point. Lean is used here as a pressure chamber for theory: it helps 
 
 **`LeanProofs/Admissibility.lean`** — P27 obligation skeleton (namespace `P27`). Sorry-free as of 2026-05-01 (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally **not** wired into `LeanProofs.lean` root. Sibling but independent from the `Admissibility/*` kernel modules; the P27 skeleton is post-transition obligation accounting, the kernel is pre-action authorization.
 
-### First result
+### First documented BROKEN claim
 
-**(2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See `NOTES.md` for details.
+The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Calculus 1.0 surface, the sorry-free kernel chain, the cross-boundary specimens, and the four open frontiers — are tracked in [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md), [`FRONTIERS.md`](FRONTIERS.md), and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md), not appended here.
+
+**(2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See [`NOTES.md`](NOTES.md) for details.
 
 ## Building
 
@@ -101,6 +103,7 @@ lake build
 
 - [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) — full module-by-module reference for the admissibility kernel modules
 - [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md) — module-level exposition of what each proof establishes and what it rules out
+- [`FRONTIERS.md`](FRONTIERS.md) — open gaps in the kernel, named as negative beachheads (load-bearing: Frontier 1, the Admissibility ≠ Safety bridge)
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
 - Narrative walkthrough: [`docs/worked-examples/standing-upgrade-block.md`](docs/worked-examples/standing-upgrade-block.md)
@@ -108,7 +111,7 @@ lake build
 
 ## Status
 
-All root-imported modules build. **Sorry-free as of 2026-05-08.** No theorems are currently admitted via `sorry`.
+All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Open gaps — what the kernel does *not* yet rule out — are mapped in [`FRONTIERS.md`](FRONTIERS.md) as negative beachheads (frontier notes, not theorem claims).
 
 The previously-admitted investigative null `corrective_then_forward_is_not_monotone` (formerly in `LeanProofs/Admissibility/Corrective.lean`) was replaced by a positive boundary result in `LeanProofs/Admissibility/CorrectiveBoundary.lean`: the abstract kernel's existential remains formally undecidable in current vocabulary, but a parallel miniature kernel exhibits both possible answers — identity store ops + arbitrary env make the existential FALSE; nondegenerate ops + verdict-sensitive derivation make it TRUE. The abstract kernel is consistent with both, which is the doctrinally-correct stance. See [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) entries A1 (resolved) and #14 (boundary result) for the audit trail. **The discipline that previously displayed the sorry now displays the resolution path** — admitted-statement history is part of the public record, not erased once resolved.
 

@@ -33,16 +33,21 @@
   exhibit one at the subset. That transfer is left to subsequent
   inspection.
 
-  Consistency caveat. The two value axioms
-  (`defendedValue_initial = 1`, `defendedValue_after = 0`) jointly
-  imply `scenarioState ≠ applyStep scenarioState scenarioStep`;
+  Consistency caveat — witnessed in companion module. The two value
+  axioms (`defendedValue_initial = 1`, `defendedValue_after = 0`)
+  jointly imply `scenarioState ≠ applyStep scenarioState scenarioStep`;
   the 1.0 surface does not establish this distinction either way.
   This file is therefore an axiomatically-inhabited counter-scenario
   built atop the kernel's abstract surface — not a fully concrete
-  model. Build-green does not by itself prove the axioms are
-  jointly consistent; a witnessing model (e.g. evidence stores as
-  `List Receipt`, `appendEvidence` as cons) is straightforward but
-  unwitnessed here.
+  model. Build-green of this file alone does not by itself prove the
+  axioms are jointly consistent.
+
+  `AuthorizedNotSafeWitness.lean` discharges the caveat by exhibiting
+  a parallel concrete miniature (evidence stores as `List Receipt`,
+  `appendEvidence` as cons, defended value `1 → 0` on poison
+  admission) in which all three premises hold simultaneously,
+  sorry/axiom-free. The wound is therefore witnessed-consistent;
+  `authorized_not_safe` is not vacuous.
 
   Root-wired in `LeanProofs.lean`. Build-covered, not public-surface
   promised: `CalculusOne.lean` is unchanged and the 1.0 compatibility
