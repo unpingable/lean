@@ -35,4 +35,6 @@ import LeanProofs.Admissibility.AuthorizedNotSafe
 import LeanProofs.Admissibility.AuthorizedNotSafeWitness
 import LeanProofs.Admissibility.SafetyBridge
 import LeanProofs.Admissibility.SafetyBridgeWitness
+import LeanProofs.Admissibility.AuthorizedStepNotSafe
+import LeanProofs.Admissibility.AuthorizedStepNotSafeWitness
 import LeanProofs.CollapsedSurface
