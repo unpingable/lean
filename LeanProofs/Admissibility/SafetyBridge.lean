@@ -18,13 +18,24 @@
   authorization is carried in `SafeStep` because the surface API binds
   the two halves together, not because it contributes to the proof.
   Any concrete bridge must earn preservation through `preserves`, not
-  by pointing back at authorization. (The `bridge` field has type
-  `σ → ρ → α → Prop`, so a malicious env could syntactically inspect
-  the actor — that is a doctrinal constraint on what counts as a
-  legitimate inhabitant, not a type-level guarantee.) That is the
-  Frontier-1 thesis turned positive: "authorized garbage is still
-  authorized" becomes "safety must be earned by a separate predicate,
-  never inferred from authority."
+  by pointing back at authorization. That is the Frontier-1 thesis
+  turned positive: "authorized garbage is still authorized" becomes
+  "safety must be earned by a separate predicate, never inferred from
+  authority."
+
+  Actor-inertness decision (Calculus 2.0 base). The base safety bridge
+  is actor-inert: `bridge : σ → α → Prop`. Actor-relative evidence
+  remains in `Allowed`; safety preservation is over the transition
+  effect. Actor-sensitive bridges are deferred until a concrete bridge
+  candidate requires actor identity. If actor identity affects
+  transition semantics, the transition relation itself must become
+  actor-indexed (`run : σ → ρ → α → σ`) rather than smuggling
+  actor-dependence through `bridge`. Reason: in the current calculus
+  `run : σ → α → σ` does not consume `ρ`, so an actor parameter in
+  `bridge` could only filter who gets to call the same transition
+  safe — which is authorization wearing a safety mustache. The named
+  deferred extension is `ActorSensitiveBridgeEnv` (see "Open" below);
+  it is not implemented here.
 
   Obligation discipline (cf. `Corrective.CorrectiveMonotone`). The
   bridge's defining contract — *bridge entails value preservation* —
@@ -67,7 +78,10 @@
     * Sequence composition beyond two steps is not built here; the
       two-step lemma establishes composability. A trajectory-indexed
       list theorem (analogue of `Corrective.corrective_sequence_monotone`)
-      waits for a consumer that needs it.
+      lives in `SafetyTrajectory.lean`.
+    * `bridge` is actor-inert by design (see Actor-inertness decision
+      above). The actor-sensitive variant is `ActorSensitiveBridgeEnv`,
+      named-but-not-implemented; awaits a forcing-case candidate.
 
   Governor-neutral. Lean core only; no Mathlib, no sibling imports.
 -/
@@ -88,7 +102,8 @@ namespace Admissibility.SafetyBridge
   - `value`     — an externally-defined defended value. The kernel does
                   not constrain such functions; that lack of constraint
                   is the Frontier-1 wound.
-  - `bridge`    — the candidate-neutral bridge predicate.
+  - `bridge`    — the candidate-neutral bridge predicate. Actor-inert
+                  by design (see header decision note).
   - `preserves` — the obligation: any concrete env must prove that its
                   bridge entails value non-decrease. This is the field
                   that makes the bridge mean something.
@@ -97,10 +112,10 @@ structure SafetyEnv (σ α ρ : Type) where
   run     : σ → α → σ
   Allowed : σ → ρ → α → Prop
   value   : σ → Nat
-  bridge  : σ → ρ → α → Prop
+  bridge  : σ → α → Prop
   preserves :
-    ∀ (st : σ) (a : ρ) (x : α),
-      bridge st a x → value st ≤ value (run st x)
+    ∀ (st : σ) (x : α),
+      bridge st x → value st ≤ value (run st x)
 
 /-- Safety floor: the action does not strictly decrease defended value. -/
 def SafetyPreserving {σ α ρ : Type}
@@ -116,26 +131,27 @@ def SafetyPreserving {σ α ρ : Type}
   safety. That absence is the content.
 -/
 theorem bridge_implies_safe {σ α ρ : Type}
-    (E : SafetyEnv σ α ρ) (st : σ) (a : ρ) (x : α)
-    (hb : E.bridge st a x) :
+    (E : SafetyEnv σ α ρ) (st : σ) (x : α)
+    (hb : E.bridge st x) :
     SafetyPreserving E st x :=
-  E.preserves st a x hb
+  E.preserves st x hb
 
 /-! ### SafeStep — the gate (analogue of Execution.AuthorizedStep) -/
 
 /--
   A safe step bundles an action with *both* its authorization witness
-  and its bridge witness. By construction there is no `SafeStep`
-  without the bridge — so a safety-relevant execution path that takes
-  a `SafeStep` cannot omit the safety proof, exactly as
-  `AuthorizedStep` cannot omit either half of authorization and
-  `RecoveryEnv` cannot omit the monotonicity witness.
+  (actor-relative) and its bridge witness (actor-inert). By
+  construction there is no `SafeStep` without the bridge — so a
+  safety-relevant execution path that takes a `SafeStep` cannot omit
+  the safety proof, exactly as `AuthorizedStep` cannot omit either
+  half of authorization and `RecoveryEnv` cannot omit the
+  monotonicity witness.
 -/
 structure SafeStep {σ α ρ : Type}
     (E : SafetyEnv σ α ρ) (st : σ) (a : ρ) where
   act     : α
   allowed : E.Allowed st a act
-  bridged : E.bridge st a act
+  bridged : E.bridge st act
 
 /-- Every `SafeStep` preserves defended value. The boring projection
     through the bundle. -/
@@ -143,7 +159,7 @@ theorem safeStep_is_safe {σ α ρ : Type}
     (E : SafetyEnv σ α ρ) (st : σ) (a : ρ)
     (s : SafeStep E st a) :
     SafetyPreserving E st s.act :=
-  E.preserves st a s.act s.bridged
+  E.preserves st s.act s.bridged
 
 /-! ### Composability — two bridged steps preserve value end to end -/
 
@@ -151,14 +167,15 @@ theorem safeStep_is_safe {σ α ρ : Type}
   Minimal composition: a bridged step followed by a bridged step
   (the second evaluated at the intermediate state) preserves value
   across the pair. Establishes that the safety floor composes by
-  transitivity of `≤`; the n-step trajectory theorem is deferred.
+  transitivity of `≤`; the n-step trajectory theorem lives in
+  `SafetyTrajectory.bridgedTraj_preserves`.
 -/
 theorem bridge_two_step_preserves {σ α ρ : Type}
-    (E : SafetyEnv σ α ρ) (st : σ) (a : ρ) (x y : α)
-    (hx : E.bridge st a x)
-    (hy : E.bridge (E.run st x) a y) :
+    (E : SafetyEnv σ α ρ) (st : σ) (x y : α)
+    (hx : E.bridge st x)
+    (hy : E.bridge (E.run st x) y) :
     E.value st ≤ E.value (E.run (E.run st x) y) :=
-  Nat.le_trans (E.preserves st a x hx) (E.preserves (E.run st x) a y hy)
+  Nat.le_trans (E.preserves st x hx) (E.preserves (E.run st x) y hy)
 
 /-
   Open (Slice A successors, pinned):
@@ -169,22 +186,32 @@ theorem bridge_two_step_preserves {σ α ρ : Type}
      the genuine open work. Until then this module pins the obligation
      shape; the witness module proves the shape is dischargeable.
 
-  2. AuthorizedStep transfer. `Allowed` here is the `StepAllowed`-shaped
-     relation. Lifting the gate to `Execution.AuthorizedStep` (which
-     additionally carries a claim-side authorized verdict) is the
-     deeper frontier `AuthorizedNotSafe.lean` flags as unsettled: a
-     wound/bridge at the StepAllowed superset does not, on its own,
-     transfer to the AuthorizedStep subset. A `SafeAuthorizedStep`
-     bundling `AuthorizedStep` + `bridged` is the natural next object.
+  2. AuthorizedStep transfer — DONE. Brick 1
+     (`AuthorizedStepNotSafe.lean` and its witness) settled the
+     verdict-layer transfer and lifted the safety gate to the
+     verdict layer via `SafeAuthorizedStepC`; brick 2
+     (`SafetyTrajectory.lean`) lifted the gate to trajectories.
 
   3. Bridge-candidate ratification. Choosing among
      witness-encapsulation / non-contamination / receipt-persistence is
      deferred to doctrine. The forcing case is the first concrete
      consumer whose safety claim cannot be stated under one candidate
-     but can under another.
+     but can under another. `nonContamination` (witness module) is the
+     specimen, not the ratified choice.
 
-  4. n-step trajectory composition. Deferred until a recovery/operation
-     sequence consumer needs more than the two-step lemma.
+  4. `ActorSensitiveBridgeEnv` — named deferred extension.
+
+       structure ActorSensitiveBridgeEnv (σ α ρ : Type)
+           extends SafetyEnv σ α ρ where
+         actorBridge : σ → ρ → α → Prop
+         actorBridge_sound :
+           ∀ st a x, actorBridge st a x → bridge st x
+
+     Not implemented. The current base is actor-inert; an actor-
+     sensitive refinement waits on a bridge candidate that genuinely
+     needs actor identity. If actor identity actually changes the
+     transition semantics, the right move is `run : σ → ρ → α → σ`,
+     not a smuggled `ρ` in the predicate.
 -/
 
 end Admissibility.SafetyBridge

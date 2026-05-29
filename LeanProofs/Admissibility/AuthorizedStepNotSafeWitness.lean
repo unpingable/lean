@@ -159,7 +159,7 @@ def authEnv : SafetyEnv GovState Step Actor where
 
 structure SafeAuthorizedStepC (st : GovState) (a : Actor) where
   auth    : AuthorizedStepC st a
-  bridged : nonContamination st a auth.step
+  bridged : nonContamination st auth.step
 
 def SafeAuthorizedStepC.toSafeStep
     {st : GovState} {a : Actor}
@@ -211,7 +211,7 @@ theorem poison_authorizable : Authorizable cleanState () scenarioStep :=
 theorem no_safeAuthStep_for_poison :
     ¬ ∃ s : SafeStep authEnv cleanState (), s.act = scenarioStep := by
   rintro ⟨s, hact⟩
-  have hb : nonContamination cleanState () scenarioStep := by
+  have hb : nonContamination cleanState scenarioStep := by
     simpa [authEnv] using hact ▸ s.bridged
   exact poison_not_bridged hb
 
@@ -234,9 +234,9 @@ theorem no_safeAuthorizedStepC_for_poison :
 
 theorem bridge_separates_authorized_steps_at_verdict_layer :
     (Authorizable cleanState () genuineStep ∧
-       nonContamination cleanState () genuineStep) ∧
+       nonContamination cleanState genuineStep) ∧
     (Authorizable cleanState () scenarioStep ∧
-       ¬ nonContamination cleanState () scenarioStep) :=
+       ¬ nonContamination cleanState scenarioStep) :=
   ⟨⟨genuine_authorizable, genuine_satisfies_bridge⟩,
    ⟨poison_authorizable, poison_not_bridged⟩⟩
 

@@ -35,6 +35,11 @@
   structural bridge is that it is checkable *without* first running
   the action and inspecting the result.
 
+  Actor-inert (Calculus 2.0 base). `nonContamination` is
+  `GovState → Step → Prop`; it consults the action's payload, never
+  the actor. Matches `SafetyBridge`'s actor-inertness decision — the
+  evidence is local-structural, authority is a separate field.
+
   Candidate status: a demonstration that the slot is dischargeable and
   load-bearing, NOT a ratification of the non-contamination candidate
   over the other two. Specimen; not on the 1.0 surface.
@@ -52,20 +57,20 @@ open Admissibility.AuthorizedNotSafeWitness
 
   A receipt-recording step is bridged iff the receipt is genuine
   (`true`). Structural and local: it inspects the action, not the
-  defended value. It is decidably *not* "value is preserved" restated —
-  preservation is a theorem about it, below. -/
+  defended value, and not the actor. It is decidably *not* "value is
+  preserved" restated — preservation is a theorem about it, below. -/
 
-def nonContamination : GovState → Actor → Step → Prop
-  | _, _, Step.recordReceipt r => r = true
+def nonContamination : GovState → Step → Prop
+  | _, Step.recordReceipt r => r = true
 
 /-- Discharge of the `preserves` obligation, proved from the store
     semantics: appending a genuine receipt cannot introduce poison,
     so `defendedValue` is preserved (hence non-decreasing). -/
 theorem nonContamination_preserves :
-    ∀ (st : GovState) (a : Actor) (x : Step),
-      nonContamination st a x →
+    ∀ (st : GovState) (x : Step),
+      nonContamination st x →
         defendedValue st ≤ defendedValue (applyStep st x) := by
-  intro st a x h
+  intro st x h
   cases x with
   | recordReceipt r =>
     simp [nonContamination] at h
@@ -93,7 +98,7 @@ def genuineStep : Step := Step.recordReceipt true
 
 /-- The genuine step satisfies the bridge. -/
 theorem genuine_satisfies_bridge :
-    nonContamination cleanState () genuineStep := rfl
+    nonContamination cleanState genuineStep := rfl
 
 /-- The genuine step is `StepAllowed` (trivial standing). -/
 theorem genuine_allowed :
@@ -122,7 +127,7 @@ theorem poison_allowed :
 
 /-- …yet it violates the bridge. This is what the bridge is *for*. -/
 theorem poison_not_bridged :
-    ¬ nonContamination cleanState () scenarioStep := by
+    ¬ nonContamination cleanState scenarioStep := by
   simp [nonContamination, scenarioStep, poison]
 
 /--
@@ -138,9 +143,9 @@ theorem poison_not_bridged :
 -/
 theorem bridge_separates_authorized_steps :
     (StepAllowed cleanState () genuineStep ∧
-       nonContamination cleanState () genuineStep) ∧
+       nonContamination cleanState genuineStep) ∧
     (StepAllowed cleanState () scenarioStep ∧
-       ¬ nonContamination cleanState () scenarioStep) :=
+       ¬ nonContamination cleanState scenarioStep) :=
   ⟨⟨genuine_allowed, genuine_satisfies_bridge⟩,
    ⟨poison_allowed, poison_not_bridged⟩⟩
 
@@ -152,7 +157,7 @@ theorem bridge_separates_authorized_steps :
 theorem no_safeStep_for_poison :
     ¬ ∃ s : SafeStep witnessEnv cleanState (), s.act = scenarioStep := by
   rintro ⟨s, hact⟩
-  have hb : nonContamination cleanState () scenarioStep := hact ▸ s.bridged
+  have hb : nonContamination cleanState scenarioStep := hact ▸ s.bridged
   exact poison_not_bridged hb
 
 end Admissibility.SafetyBridgeWitness

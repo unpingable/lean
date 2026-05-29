@@ -115,7 +115,7 @@ theorem bridgedTraj_preserves
   | cons hop rest ih =>
       have hstep :
           defendedValue _ ≤ defendedValue (applyStep _ hop.auth.step) :=
-        nonContamination_preserves _ a hop.auth.step hop.bridged
+        nonContamination_preserves _ hop.auth.step hop.bridged
       exact Nat.le_trans hstep ih
 
 /-- Concrete positive witness: a one-hop genuine trajectory keeps the
