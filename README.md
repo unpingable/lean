@@ -33,6 +33,7 @@ The point is not to prove an entire software system correct. The point is to mak
 - **Surface / receipt / witness kernels** — collapsed surfaces, public receipt refinement, witness invariance.
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
+- **Safety-bridge family** *(Frontier 1, added 2026-05-28)* — abstract `SafetyBridge` primitive, single-step wound + verdict-layer wound + trajectory triple (positive composition / negative composition / no-lift), with `AttestationLedger` as a second concrete witness. Candidate path for safety-axis "Calculus 2.0" — minting gates on overlap audit + exit criteria.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 

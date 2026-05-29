@@ -21,40 +21,50 @@ The repo is sorry-free as of 2026-05-08 per `LeanProofs/Admissibility/README.md`
 
 ---
 
-## Frontier 1 — Admissibility ≠ Safety Bridge *(load-bearing)*
+## Frontier 1 — Admissibility ≠ Safety Bridge *(load-bearing — structurally addressed 2026-05-28)*
 
-The current kernel can formalize:
+**Status update 2026-05-28.** The structural separation and its positive bridge have landed as the safety-bridge family in `LeanProofs/Admissibility/` (see this directory's `README.md` for the family description). What remains open is interpretive, not structural.
 
-- *This transition was authorized.* (`AuthorizedStep`)
-- *This step is admissibility-monotone.* (`CorrectiveMonotone`)
-- *This basis was not laundered.* (`revoked_basis_cannot_be_authorized_step`)
-- *This witness has standing under the declared perturbation class.* (`EncapsulatedWrt`)
+### What landed
 
-It cannot formalize:
+Three bricks plus a second concrete witness:
 
-> *This authorized transition preserves defended value.*
+- **Brick 0** — `AuthorizedNotSafe(Witness)` — the wound at the `StepAllowed` layer (mutation standing), axiomatic + concrete consistency discharge.
+- **Brick 1a** — `AuthorizedStepNotSafe(Witness)` — the wound transfers to the full `Execution.AuthorizedStep` (both-proofs object with kernel-legible all-green verdict). Settles the deferred-transfer question.
+- **Brick 1b** — `SafeAuthorizedStepC` + `.toSafeStep` adapter — the verdict-layer safety gate, canonical-bundle form.
+- **Brick 2** — `SafetyTrajectory` — trajectory triple (`bridgedTraj_preserves` positive; `authorized_trajectory_loses_value` negative; `no_bridgedTraj_to_poison_end` no-lift) plus the forgetful map `BridgedTraj.toAuthorizedTraj`.
+- **Tier-1 second witness** — `AttestationLedger` — the brick-1/2 results replicated over a textured (`Nat`-valued, ≥2 asymmetric actors) model, confirming the abstract layer is not receipt-specific. The wound there is an *authorized* revoke (actor-held legitimate standing destroying defended value).
 
-Loop Capture (`~/git/papers/working/loop-capture.md`) supplies the negative direction: *internal legitimacy can be preserved while defended value decays.* The $L_t / V_t$ divergence is exactly the failure case. The corpus has the negative result; the positive result — *under what conditions does admissibility composition constrain safety-relevant divergence?* — is open.
+`SafetyBridge.lean` supplies the abstract primitive (`SafetyEnv` with actor-inert `bridge`, `preserves` obligation, generic `SafeStep`). `SafetyBridgeWitness.lean` is the receipt-side non-contamination specimen.
 
-**Negative beachhead (frontier statement, not theorem):**
+### What remains open (interpretive, not structural)
+
+- **Substantive-grounding fence stays.** "All-green" in the bricks means kernel-legible all-green via a degenerate `fun _ _ => …` derivation env, NOT substantively-grounded legitimacy. The Loop-Capture / `L_t` mapping is a doctrinal reading, not an empirical claim. The bricks prove `kernel-legible all-green ⇏ defended-value preservation`; the institutional reading (real legitimacy structures showing L/V divergence) is downstream of this and not formalized.
+- **Sufficient bridges, not complete safety policy.** The two specimen bridges (`nonContamination`, ledger non-destruction) reject every wound but also some value-preserving actions a more discriminating policy would admit. A maximal bridge collapses back into "bridge := preserves-restated"; structural bridges are deliberately conservative.
+- **Verdict-layer integration into real Governor-shaped derivation.** The brick-1 verdict layer uses degenerate green inputs. Wiring it against a non-trivial `DerivationEnv` (with real `BasisDerivation` instances) is deferred Governor work.
+
+### Tier map and Calculus-2.0 candidacy
+
+The safety-bridge family is the safety-axis candidate path for "Calculus 2.0" (distinct from the existing composition-axis Roadmap entry in `LeanProofs/Admissibility/README.md`). The two next-tier stressors are filed at `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md`:
+
+- **Tier 2A** — value-axis generalization (budget-margin / non-decrease → floor → preorder)
+- **Tier 2B** — authorization-axis generalization (quorum / role → certificate; intersection-invariant inside `preserves`)
+
+2A and 2B are orthogonal sibling stressors, neither gates the other.
+
+The ρ-drop decision (actor-inert base bridge, `Allowed` keeps the actor) is recorded with ledger evidence at `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`.
+
+### Historical record — original beachhead (2026-05-10)
+
+Preserved verbatim so the frontier's evolution is auditable.
 
 > *Without an explicit bridge predicate connecting authorization to defended-value preservation, `AuthorizedStep` does not entail `SafetyPreserving`.*
+>
+> Equivalently: **authorized garbage is still authorized**.
 
-Equivalently: **authorized garbage is still authorized**. The kernel correctly says authorization holds; it does not say authorized actions are safe.
+The bridge predicate now exists (`SafetyBridge.bridge`); the candidate-neutral slot is filled by `nonContamination` (receipt side) and the ledger's non-destruction predicate (tier-1 side); the negative result is exhibited at both `StepAllowed` and `AuthorizedStep` layers; the positive composition lands across trajectories. The wound is preserved as a theorem, not closed by reformulation.
 
-**What would need to exist to close this:**
-
-- A `DefendedValue` abstraction (likely a real-valued or partial-order observable over states or traces).
-- A `SafetyPreserving` predicate over `Step` parameterized by a defended-value abstraction.
-- Bridge predicates — candidate forms include:
-  - witness-encapsulation across the safety-relevant perturbation class (lift `WitnessInvariance.EncapsulatedWrt`)
-  - aggregator non-contamination at the action layer (lift WIF-composition's $D_A$ from `~/git/papers/working/primitives/witness-invariance-composition.md`)
-  - receipt persistence of consequence (receipt-doctrine territory, currently parked in the papers-side cybernetics family)
-- A small toy model where `AuthorizedStep` holds and `SafetyPreserving` fails, then minimal additional assumptions that recover `SafetyPreserving`.
-
-**Why first:** load-bearing wound. Without it, the kernel's external claim — that *admissibility-across-transition* is the load-bearing AGI requirement — is undermined: the machinery says actions are authorized, not that authorized actions remain safe. The whole apparatus's outward claim depends on bridging this.
-
-**Related existing modules:** `Authority`, `Execution`, `Corrective`, `WitnessInvariance` (this kernel); `~/git/papers/working/loop-capture.md` (negative direction, conceptual); `~/git/papers/working/primitives/witness-invariance-composition.md` (aggregation discipline); `~/git/papers/working/primitives/attack-surface-laundering.md` (Consequence-Structure Substitutions taxonomy — discourse-layer cousin).
+**Related existing modules:** safety-bridge family above (`AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger`); historical anchors `Authority`, `Execution`, `Corrective`, `WitnessInvariance`; companion notes `~/git/papers/working/loop-capture.md`, `~/git/papers/working/primitives/witness-invariance-composition.md`, `~/git/papers/working/primitives/attack-surface-laundering.md`.
 
 ---
 

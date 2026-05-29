@@ -31,7 +31,9 @@ Forward-looking version discipline (not a release plan, a promotion gate):
 
 - **1.x** — documentation / coordination releases. Annex continues compiled-not-promised; new refusal kernels land in the annex without changing the public surface. The architecture-headline (above) is the 1.x kind of move.
 - *(optional)* `RefusalKernels.lean` aggregator — a possible *future* non-public annex aggregator over refusal kernels (`RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`, `SurfaceAuthorization`, `FiatAdmissibility`, etc.). Explicitly **not part of `CalculusOne.lean`**. Annex semantics with **no 1.0 / 1.x public compatibility promise** across version lines. Should not be created until a downstream consumer actually wants a grouped import — until that consumer-forcing event, status is **named-not-built / deferred**. Named here so the shape is decided in advance, not as a build trigger.
-- **2.0** — public refusal-*calculus* surface, only if composition / propagation / narrowing theorems land on the `surface ⇏ substance` relation. NOT just more specimens; requires at least one theorem of the shape *if A cannot witness B and B is required as basis for C, then A cannot witness C for binding use.*
+- **2.0** — two orthogonal candidate paths, either of which could earn the rename; neither has minted it yet.
+  - *Composition-axis 2.0* — public refusal-*calculus* surface, only if composition / propagation / narrowing theorems land on the `surface ⇏ substance` relation. NOT just more specimens; requires at least one theorem of the shape *if A cannot witness B and B is required as basis for C, then A cannot witness C for binding use.*
+  - *Safety-axis 2.0* — the second axis of the calculus, where `Allowed` is authorization and `bridge` is value-preservation discipline. Skeleton present in the safety-bridge family (`SafetyBridge` + `SafetyTrajectory` triple + tier-1 `AttestationLedger`); minting still gates on the kernel-overlap audit and an exit-criteria update. Tier map: `working/tooltheory/calculus-2-tier-map-2026-05-28.md`.
 
 > **More specimens → annex / 1.x. Composition rules → calculus / 2.0.**
 
@@ -91,6 +93,14 @@ Annex modules are green and sorry-free but are not part of the 1.0 compatibility
 | `CrossBoundaryDegradation`   | Cross-boundary degradation provenance specimen            |
 | `CrossBoundaryFailureMint`   | Cross-boundary failure-to-exposure mint specimen          |
 | `CrossBoundaryCascade`       | Cross-boundary cascade reachability specimen              |
+| `AuthorizedNotSafe`          | Frontier 1 single-step wound (StepAllowed layer, axiomatic) |
+| `AuthorizedNotSafeWitness`   | Frontier 1 wound consistency discharge (concrete parallel) |
+| `SafetyBridge`               | Abstract bridge primitive + `SafeStep` gate (actor-inert) |
+| `SafetyBridgeWitness`        | Non-contamination bridge specimen + boundary separation   |
+| `AuthorizedStepNotSafe`      | Frontier 1 wound at verdict layer (kernel-legible all-green) |
+| `AuthorizedStepNotSafeWitness` | Verdict-layer wound discharge + `SafeAuthorizedStepC` gate |
+| `SafetyTrajectory`           | Trajectory pair + forgetful map + no-lift theorem         |
+| `AttestationLedger`          | Tier-1 second concrete witness (Nat-textured, 2 actors)   |
 | `Composition` `[experimental]` | Diagnostic: process syntax alone does not make a calculus |
 | `LocalBoundary` `[experimental]` | Experimental aperture toward compositional calculus     |
 
@@ -288,6 +298,33 @@ Composition with the rest: `step_to_exposure_reach` projects all three cascade a
 
 Scope fence: no scheduling, no fairness, no rates, no `TaxonomyGraph`, no process syntax. *Topology, not selection.* If a future slice adds `EnabledStep` / `SchedulerAllows` / `ScheduledReach`, it lives in a separate `CrossBoundaryScheduling.lean`.
 
+### Safety-bridge family — `AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger` `[annex]` (added 2026-05-27 / 2026-05-28)
+
+**Frontier-1 safety axis: addresses the `FRONTIERS.md` Frontier 1 wound (Admissibility ≠ Safety).** Eight modules organized as three bricks plus a second concrete witness. The receipt-side bricks (0–2) instantiate the abstract `SafetyBridge` over a Bool/poison receipt miniature; `AttestationLedger` is the second, textured (`Nat`-valued, ≥2 asymmetric actors) witness that the abstract layer is not receipt-specific. Companion documents in papers repo: `working/kernel-to-body-map.md`, `working/calculus-2-exit-criteria.md`, plus tier map and ρ-drop decision at `working/tooltheory/calculus-2-tier-map-2026-05-28.md` / `working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`.
+
+Brick layout:
+
+- **Brick 0 — single-step wound (StepAllowed layer).** `AuthorizedNotSafe` exhibits the wound axiomatically over the abstract surface. `AuthorizedNotSafeWitness` discharges its consistency caveat by constructing a parallel concrete miniature (evidence store as `List Receipt`, `appendEvidence` as cons), proving the three premise axioms are jointly consistent and the wound is not vacuous.
+
+- **Brick 1a — verdict-layer wound.** `AuthorizedStepNotSafe` settles the deferred-transfer question from brick 0's scope clause: the full `Execution.AuthorizedStep` (both-proofs object carrying mutation standing AND a kernel-legible all-green verdict) also admits an unsafe witness. **Fence:** "all-green" here means kernel-legible all-green via a degenerate `fun _ _ => …` derivation env, NOT substantively-grounded legitimacy. The Loop-Capture / `L_t` mapping is a doctrinal reading outside this brick. `AuthorizedStepNotSafeWitness` discharges the caveat over a concrete `AuthorizedStepC` parallel miniature, computing the verdict via the real `Authority.authorityVerdict`.
+
+- **Brick 1b — verdict-layer safety gate.** `SafeAuthorizedStepC` (in `AuthorizedStepNotSafeWitness`) bundles the actual `AuthorizedStepC` with the bridge witness; `.toSafeStep` adapter projects into the generic `SafetyBridge.SafeStep authEnv`. Canonical carrier preserves the authorization witness (not existentially erased) for downstream trajectory/custody work.
+
+- **Brick 2 — trajectories.** `SafetyTrajectory` lifts the gate to sequences. Two state-threaded inductive trajectory families (`AuthorizedTraj`, `BridgedTraj`) carrying per-hop witnesses. Forgetful map `BridgedTraj.toAuthorizedTraj` makes the slogan "an authorized trajectory that does not lift to a bridged one" a *definition*, not rhetoric. Three theorems:
+  - `bridgedTraj_preserves` — positive composition (bridged ⇒ floor preserved).
+  - `authorized_trajectory_loses_value` — negative composition (authorized ⇏ floor preserved).
+  - `no_bridgedTraj_to_poison_end` — no-lift (the value-losing endpoint admits no bridged trajectory).
+
+`SafetyBridge.lean` is the abstract primitive: `SafetyEnv (σ α ρ : Type)` with actor-inert `bridge : σ → α → Prop` and `preserves` obligation. Actor-inertness is a Calculus-2.0 base decision — `Allowed` keeps the actor, safety preservation is over the transition effect, actor-sensitive bridges are deferred to a named extension (`ActorSensitiveBridgeEnv` declared in the Open block, not implemented). If actor identity must change transition semantics, the right move is `run : σ → ρ → α → σ`, not smuggling `ρ` through `bridge`.
+
+`SafetyBridgeWitness.lean` is the receipt-side non-contamination bridge specimen. Labeled "sufficient bridge specimen, not complete safety policy" — conservative structural bridges may reject value-preserving actions that pass a more discriminating policy. A maximal bridge collapses back into "bridge := preserves-restated"; the point of a structural bridge is checkability without first running the action.
+
+`AttestationLedger.lean` is the tier-1 second concrete witness. Two-actor (writer/auditor) protocol with `Nat`-valued defended observable (`valid` standing attestations); three step types (`post`, `attest`, `revoke k`). The wound is an *authorized* revoke — actor-held legitimate standing destroying defended value, the sharper illustration of the L/V divergence shape than the receipt model gave. Per-hop actor in the trajectory type (improvement over brick 2's trajectory-global actor parameter) makes multi-actor paths expressible as single trajectories (`protocolHappyPath` is writer-then-auditor). Confirms the ρ-drop on non-degenerate evidence (the receipt model had `Actor := Unit`).
+
+Keeper: *The lie is cheaper than the proof — authorization is a declaration (`= rfl`); preservation must be witnessed (`preserves` discharge).*
+
+Candidacy note: this family is a candidate path for "Calculus 2.0" on the **safety axis** — distinct from the existing Roadmap's composition-axis 2.0 trigger (refusal-calculus propagation theorems). The two axes are orthogonal candidates; the tier map (`working/tooltheory/calculus-2-tier-map-2026-05-28.md`) names budget-margin and quorum as sibling generalizations (value-axis and authorization-axis respectively). Minting the public "2.0" name still gates on the kernel-overlap audit and an exit-criteria update; the safety-axis bricks alone do not authorize the rename.
+
 ### Composition discipline — projection pattern
 
 The cross-boundary trio shares a single composition discipline that lets each downstream brick reuse the kernel containment theorem without reproving it. Each brick:
@@ -329,11 +366,11 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-All twenty-four Admissibility modules are wired into `LeanProofs.lean` root (twenty-two kernel/sibling modules + `CalculusOne` aggregator + `Examples` specimens). The default `lake build` (no args) regression-checks the entire set as the default proof gate. Nothing is silently unwired.
+All thirty-three Admissibility modules are wired into `LeanProofs.lean` root (thirty-one kernel/sibling modules + `CalculusOne` aggregator + `Examples` specimens). The default `lake build` (no args) regression-checks the entire set as the default proof gate. Nothing is silently unwired.
 
 Public-surface gate: `lake build LeanProofs.Admissibility.CalculusOne` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
 
-No Lean proof holes as of 2026-05-24 in the wired stack. The word `sorry` does appear in docstring text within `Corrective.lean` and `CorrectiveBoundary.lean` as references to a resolved former-`sorry`; these are comments, not proof holes — a plain grep will find them.
+No Lean proof holes as of 2026-05-28 in the wired stack. The word `sorry` does appear in docstring text within `Corrective.lean` and `CorrectiveBoundary.lean` as references to a resolved former-`sorry`; these are comments, not proof holes — a plain grep will find them.
 
 ### Cascade repair note
 
@@ -371,6 +408,16 @@ lake build LeanProofs.Admissibility.CrossBoundaryExposure
 lake build LeanProofs.Admissibility.CrossBoundaryDegradation
 lake build LeanProofs.Admissibility.CrossBoundaryFailureMint
 lake build LeanProofs.Admissibility.CrossBoundaryCascade
+
+# Annex — safety-bridge family (Frontier 1 / safety-axis 2.0 candidate)
+lake build LeanProofs.Admissibility.AuthorizedNotSafe
+lake build LeanProofs.Admissibility.AuthorizedNotSafeWitness
+lake build LeanProofs.Admissibility.SafetyBridge
+lake build LeanProofs.Admissibility.SafetyBridgeWitness
+lake build LeanProofs.Admissibility.AuthorizedStepNotSafe
+lake build LeanProofs.Admissibility.AuthorizedStepNotSafeWitness
+lake build LeanProofs.Admissibility.SafetyTrajectory
+lake build LeanProofs.Admissibility.AttestationLedger
 
 # Annex — experimental composition
 lake build LeanProofs.Admissibility.Composition
