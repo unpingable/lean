@@ -45,12 +45,12 @@ Three bricks plus a second concrete witness:
 
 ### Tier map and Calculus-2.0 candidacy
 
-The safety-bridge family is the safety-axis candidate path for "Calculus 2.0" (distinct from the existing composition-axis Roadmap entry in `LeanProofs/Admissibility/README.md`). The two next-tier stressors are filed at `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md`:
+The safety-bridge family is the safety-axis candidate path; its two minting gates — kernel-overlap audit (`~/git/papers/working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`) and exit-criteria reconciliation (`~/git/papers/working/calculus-2-exit-criteria.md` §Track split) — both closed 2026-05-29. What that ratifies is the **safety-axis publication path** (standalone formal-methods preprint per `~/git/papers/working/calculus-paper-spine-2026-05-28.md`), *not* the full "Calculus 2.0" rename: the composition-axis 2.0 trigger (refusal-calculus propagation; `MergeAdmissible` necessity + ≥3 bad-merge cases) and the self-amendment axis (Frontier 3 below) both remain open. The two next-tier safety-axis stressors are filed at `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md`:
 
 - **Tier 2A** — value-axis generalization (budget-margin / non-decrease → floor → preorder)
 - **Tier 2B** — authorization-axis generalization (quorum / role → certificate; intersection-invariant inside `preserves`)
 
-2A and 2B are orthogonal sibling stressors, neither gates the other.
+2A and 2B are orthogonal sibling stressors, neither gates the other; both are deferred-until-forcing-case, not on the preprint scope.
 
 The ρ-drop decision (actor-inert base bridge, `Allowed` keeps the actor) is recorded with ledger evidence at `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`.
 

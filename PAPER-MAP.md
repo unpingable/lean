@@ -159,7 +159,7 @@ Eight modules forming the safety-axis brick set, addressing the `FRONTIERS.md` F
 
 **Scope discipline.** The preprint inherits the kernel's institutional fence — *"kernel-legible all-green verdict, NOT substantively-grounded legitimacy."* Paper 28 is the home for the substantive-grounding argument. Separating these is what makes both papers honest. The punchy slug deliberately lives on paper 28 (where rhetoric is contribution); the preprint's sober title is genre-appropriate for cs.LO.
 
-**Related records:** spine page (above); tier map `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md`; ρ-drop decision `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`; Calculus 2.0 exit criteria reconciliation `~/git/papers/working/calculus-2-exit-criteria.md` (status update 2026-05-29).
+**Related records:** spine page (above); tier map `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md`; ρ-drop decision `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`; Calculus 2.0 exit criteria reconciliation `~/git/papers/working/calculus-2-exit-criteria.md` (status update 2026-05-29); kernel-overlap audit `~/git/papers/working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md` (closes the second safety-axis minting gate; full "Calculus 2.0" label still gated on the composition and self-amendment axes).
 
 ## Open / axiomatic boundaries
 
