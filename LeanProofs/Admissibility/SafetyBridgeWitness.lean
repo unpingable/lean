@@ -107,7 +107,8 @@ theorem genuine_allowed :
 
 /-- The genuine step assembles into a `SafeStep`: authorized *and*
     bridged, by construction. -/
-def genuineSafeStep : SafeStep witnessEnv cleanState () where
+def genuineSafeStep : SafeStep witnessEnv cleanState where
+  actor   := ()
   act     := genuineStep
   allowed := genuine_allowed
   bridged := genuine_satisfies_bridge
@@ -116,7 +117,7 @@ def genuineSafeStep : SafeStep witnessEnv cleanState () where
     `safeStep_is_safe`, no bespoke proof. -/
 theorem genuine_is_safe :
     SafetyPreserving witnessEnv cleanState genuineStep :=
-  safeStep_is_safe witnessEnv cleanState () genuineSafeStep
+  safeStep_is_safe witnessEnv cleanState genuineSafeStep
 
 /-- The poison step — `AuthorizedNotSafeWitness.scenarioStep`, the exact
     step that strictly decreased defended value last time — is fully
@@ -155,7 +156,7 @@ theorem bridge_separates_authorized_steps :
   gate does its job — the wound cannot be packaged as safe.
 -/
 theorem no_safeStep_for_poison :
-    ¬ ∃ s : SafeStep witnessEnv cleanState (), s.act = scenarioStep := by
+    ¬ ∃ s : SafeStep witnessEnv cleanState, s.act = scenarioStep := by
   rintro ⟨s, hact⟩
   have hb : nonContamination cleanState scenarioStep := hact ▸ s.bridged
   exact poison_not_bridged hb

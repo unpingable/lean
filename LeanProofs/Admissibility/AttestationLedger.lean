@@ -35,17 +35,16 @@
       `revoke k` drops it by `k` (not a 1→0 flip), so `no-lift` lands
       against a value with range, not a Bool trick.
 
-  Per-hop actor (improvement over brick 2's trajectory-global actor).
-  Brick 2's `AuthorizedTraj (a : Actor)` parameterizes the whole
-  trajectory over a single actor — fine when `Actor := Unit`, but it
-  cannot express multi-actor protocol paths like
-  `writer.post → auditor.attest → auditor.revoke`. The fix is to push
-  the actor into the per-hop witness (`LedgerAuthStep` carries `actor`),
-  making trajectories multi-actor by default. The bridge stays
-  actor-inert; only the authorization witness consults the actor. The
-  same refactor at the generic layer in `SafetyTrajectory.lean` is the
-  natural follow-on and is deferred to a separate brick (it touches
-  brick 1's downstream).
+  Per-hop actor — substrate canonical. After the canonicalization
+  pass, the substrate (`SafetyBridge.lean`) carries the per-hop actor
+  shape directly: `AuthStep E st` and `SafeStep E st` both have
+  `actor` as a *field*, and `AuthorizedTraj E` / `BridgedTraj E` over
+  any `SafetyEnv E` are multi-actor by default. This file no longer
+  needs bespoke `Ledger*Step` / `Ledger*Traj` types — they instantiate
+  the substrate at `ledgerEnv`. Multi-actor protocol paths like
+  `writer.post → auditor.attest` are a single trajectory in the
+  generic shape; single-actor is a property over trajectories
+  (`∀ hop, hop.actor = a`), not a substrate constraint.
 
   The wound is authorized. `revoke` is a power the auditor legitimately
   holds (`Allowed … auditor (revoke _)`). So the value-destroying step
@@ -192,7 +191,8 @@ def s0 : Ledger := { valid := 2, pending := 0 }
 
 /-- Genuine step: the writer posts. Authorized for the writer and
     bridged (non-destructive). -/
-def genuinePost : SafeStep ledgerEnv s0 Party.writer where
+def genuinePost : SafeStep ledgerEnv s0 where
+  actor   := Party.writer
   act     := Act.post
   allowed := trivial
   bridged := trivial
@@ -201,7 +201,7 @@ def genuinePost : SafeStep ledgerEnv s0 Party.writer where
     `safeStep_is_safe`. -/
 theorem genuinePost_safe :
     SafetyPreserving ledgerEnv s0 Act.post :=
-  safeStep_is_safe ledgerEnv s0 Party.writer genuinePost
+  safeStep_is_safe ledgerEnv s0 genuinePost
 
 /-- The wound: an auditor `revoke 1`. It is authorized — the auditor
     holds revoke standing. -/
@@ -216,10 +216,10 @@ theorem revoke_loses_value :
     defendedValue (applyAct s0 (Act.revoke 1)) < defendedValue s0 := by
   decide
 
-/-- The wound cannot be packaged as a `SafeStep` for the auditor, even
+/-- The wound cannot be packaged as a `SafeStep` (for any actor), even
     though the auditor is authorized to do it. -/
 theorem no_safeStep_for_revoke :
-    ¬ ∃ s : SafeStep ledgerEnv s0 Party.auditor, s.act = Act.revoke 1 := by
+    ¬ ∃ s : SafeStep ledgerEnv s0, s.act = Act.revoke 1 := by
   rintro ⟨s, hact⟩
   have hb : bridge s0 (Act.revoke 1) := hact ▸ s.bridged
   exact revoke_not_bridged hb
@@ -232,105 +232,64 @@ theorem bridge_separates_steps :
     (Allowed s0 Party.auditor (Act.revoke 1) ∧ ¬ bridge s0 (Act.revoke 1)) :=
   ⟨⟨trivial, trivial⟩, ⟨revoke_authorized, revoke_not_bridged⟩⟩
 
-/-! ### Trajectories (per-hop actor)
+/-! ### Trajectories — via the generic substrate
 
-  Actor lives in the hop witness, not in the trajectory type. So a
-  single trajectory can mix actors freely — `writer.post →
-  auditor.attest → auditor.revoke` is one trajectory, not three. The
-  bridge remains actor-inert; only `Allowed` reads the actor at each
-  hop. -/
-
-/-- An authorized step: an action, an actor, and the actor-relative
-    standing proof. Actor is a field, not a type parameter. -/
-structure LedgerAuthStep (s : Ledger) where
-  actor   : Party
-  act     : Act
-  allowed : Allowed s actor act
-
-/-- A safe step: authorized + bridged. Carries the real authorized step
-    (the canonical, non-erasing shape from brick 1). -/
-structure LedgerSafeStep (s : Ledger) where
-  auth    : LedgerAuthStep s
-  bridged : bridge s auth.act
-
-/-- State-threaded authorized trajectory: each hop authorized at the
-    state the previous hop produced. Multi-actor by default. -/
-inductive LedgerAuthTraj : Ledger → Ledger → Type where
-  | nil (s : Ledger) : LedgerAuthTraj s s
-  | cons {s : Ledger} (hop : LedgerAuthStep s)
-         {s' : Ledger} (rest : LedgerAuthTraj (applyAct s hop.act) s') :
-         LedgerAuthTraj s s'
-
-/-- State-threaded bridged trajectory: each hop authorized and bridged. -/
-inductive LedgerBridgedTraj : Ledger → Ledger → Type where
-  | nil (s : Ledger) : LedgerBridgedTraj s s
-  | cons {s : Ledger} (hop : LedgerSafeStep s)
-         {s' : Ledger} (rest : LedgerBridgedTraj (applyAct s hop.auth.act) s') :
-         LedgerBridgedTraj s s'
-
-/-- Forgetful map: a bridged trajectory is an authorized trajectory with
-    the bridge witnesses dropped. -/
-def LedgerBridgedTraj.toAuthorizedTraj :
-    ∀ {s s' : Ledger}, LedgerBridgedTraj s s' → LedgerAuthTraj s s'
-  | _, _, .nil s => .nil s
-  | _, _, .cons hop rest => .cons hop.auth rest.toAuthorizedTraj
-
-/-- Positive: a bridged trajectory preserves the defended-value floor
-    end to end. Structural recursion folding `bridge_preserves` through
-    `Nat.le_trans`. -/
-theorem ledgerBridgedTraj_preserves :
-    ∀ {s s' : Ledger}, LedgerBridgedTraj s s' →
-      defendedValue s ≤ defendedValue s'
-  | _, _, .nil _ => Nat.le_refl _
-  | s, _, .cons hop rest =>
-      Nat.le_trans
-        (bridge_preserves s hop.auth.act hop.bridged)
-        (ledgerBridgedTraj_preserves rest)
+  After the canonicalization pass, this file consumes the generic
+  per-hop-actor inductives `AuthorizedTraj ledgerEnv` and
+  `BridgedTraj ledgerEnv` from `SafetyBridge.lean` directly. The
+  bespoke `Ledger*Step` / `Ledger*Traj` types are gone — they were
+  exactly the substrate's `AuthStep ledgerEnv` / `SafeStep ledgerEnv`
+  shape, only locally re-declared because the old substrate had the
+  global-actor bug. The generic `bridgedTraj_preserves` discharges
+  the n-step preservation theorem for free. -/
 
 /-- The wound, as a one-hop authorized trajectory: the auditor revokes.
     Authorized at every hop. -/
-def revokeTraj : LedgerAuthTraj s0 (applyAct s0 (Act.revoke 1)) :=
-  LedgerAuthTraj.cons
-    ⟨Party.auditor, Act.revoke 1, revoke_authorized⟩
-    (LedgerAuthTraj.nil _)
+def revokeTraj : AuthorizedTraj ledgerEnv s0 (applyAct s0 (Act.revoke 1)) :=
+  AuthorizedTraj.cons
+    (E := ledgerEnv)
+    { actor := Party.auditor, act := Act.revoke 1, allowed := revoke_authorized }
+    (AuthorizedTraj.nil _)
 
 /-- Negative: an authorized trajectory loses defended value. The
     value-side of L_t/V_t divergence over this textured model. -/
 theorem authorized_trajectory_loses_value :
-    ∃ (s' : Ledger) (_ : LedgerAuthTraj s0 s'),
+    ∃ (s' : Ledger) (_ : AuthorizedTraj ledgerEnv s0 s'),
       defendedValue s' < defendedValue s0 :=
   ⟨applyAct s0 (Act.revoke 1), revokeTraj, revoke_loses_value⟩
 
 /-- A multi-actor bridged trajectory: writer posts, then auditor
     attests. Both hops bridged; trajectory mixes actors. This is the
-    expressive power the per-hop-actor refactor unlocks — the
-    trajectory-global-actor design could not state it as a single
-    trajectory. -/
+    acid test for the per-hop-actor substrate — the generic
+    trajectory type binds no global actor, so this two-actor path is
+    one trajectory, not two. -/
 def protocolHappyPath :
-    LedgerBridgedTraj s0
+    BridgedTraj ledgerEnv s0
       (applyAct (applyAct s0 Act.post) Act.attest) :=
-  LedgerBridgedTraj.cons
-    ⟨⟨Party.writer, Act.post, trivial⟩, trivial⟩
-    (LedgerBridgedTraj.cons
-      ⟨⟨Party.auditor, Act.attest, trivial⟩, trivial⟩
-      (LedgerBridgedTraj.nil _))
+  BridgedTraj.cons
+    (E := ledgerEnv)
+    { actor := Party.writer, act := Act.post, allowed := trivial, bridged := trivial }
+    (BridgedTraj.cons
+      (E := ledgerEnv)
+      { actor := Party.auditor, act := Act.attest, allowed := trivial, bridged := trivial }
+      (BridgedTraj.nil _))
 
 /-- The multi-actor bridged trajectory preserves defended value end to
     end — via the generic preservation theorem, no bespoke proof. -/
 theorem protocolHappyPath_preserves :
     defendedValue s0 ≤
       defendedValue (applyAct (applyAct s0 Act.post) Act.attest) :=
-  ledgerBridgedTraj_preserves protocolHappyPath
+  bridgedTraj_preserves protocolHappyPath
 
 /-- No-lift: the revoke endpoint admits no bridged trajectory — every
     bridged trajectory preserves the floor, but this endpoint sits below
     it. (`Nonempty` form: the negation is over inhabitants of the
     trajectory `Type`, the correction learned in brick 2.) -/
 theorem no_bridgedTraj_to_revoke_end :
-    ¬ Nonempty (LedgerBridgedTraj s0 (applyAct s0 (Act.revoke 1))) := by
+    ¬ Nonempty (BridgedTraj ledgerEnv s0 (applyAct s0 (Act.revoke 1))) := by
   rintro ⟨t⟩
-  have h := ledgerBridgedTraj_preserves t
-  simp [s0, defendedValue, applyAct] at h
+  have h := bridgedTraj_preserves t
+  simp [ledgerEnv, s0, defendedValue, applyAct] at h
 
 /-! ### What this witness establishes
 
@@ -339,8 +298,10 @@ theorem no_bridgedTraj_to_revoke_end :
   - Actor-relative authorization (`Allowed` reads `Party`) coexists with
     an actor-inert, value-blind bridge — confirming the ρ-drop on a
     genuine ≥2-actor model rather than `Unit` degeneracy.
-  - Per-hop actor in the trajectory type makes multi-actor paths
-    expressible as single trajectories (`protocolHappyPath`).
+  - The generic per-hop-actor substrate carries multi-actor paths as
+    single trajectories (`protocolHappyPath`: writer.post →
+    auditor.attest). The substrate binds no global actor; single-actor
+    paths are a property, not a primitive constraint.
   - The trajectory triple replicates: bridged ⇒ floor preserved;
     authorized ⇏ floor preserved; the lossy endpoint has no bridged
     trajectory. Against a `Nat` value with range, not a Bool flip.

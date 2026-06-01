@@ -1,14 +1,28 @@
 /-
-  Admissibility — Safety trajectories (brick 2).
+  Admissibility — Safety trajectories (brick 2), verdict-layer
+  specialization.
 
-  Lifts the single-step safety result to sequences. Two inductive
-  trajectory families over the concrete witness model, each threading
-  state through `applyStep` and carrying the real per-hop witness:
+  The *generic* per-hop-actor trajectory inductives `AuthorizedTraj` /
+  `BridgedTraj` over any `SafetyEnv` live in `SafetyBridge.lean` after
+  the canonicalization pass. This file provides the verdict-layer
+  *specialization* needed by the brick-2 specimens: trajectories
+  whose hops carry the full `AuthorizedStepC` / `SafeAuthorizedStepC`
+  (not the existential-erased `SafeStep authEnv`).
 
-    AuthorizedTraj — every hop a full `AuthorizedStepC` (kernel-legible
-                     all-green verdict + mutation standing).
-    BridgedTraj    — every hop a `SafeAuthorizedStepC` (authorized AND
-                     bridged).
+    AuthorizedTrajC — every hop a full `AuthorizedStepC` (kernel-
+                      legible all-green verdict + mutation standing,
+                      per-hop actor as a field).
+    BridgedTrajC    — every hop a `SafeAuthorizedStepC` (authorized
+                      AND bridged, per-hop actor).
+
+  Why a specialization. `authEnv.Allowed = Authorizable` is the
+  existential `∃ s : AuthorizedStepC st, ...`, so the generic
+  `AuthorizedTraj authEnv` would lose the per-hop verdict witness on
+  pack-up. The verdict-layer code needs to *read* the actual
+  `AuthorizedStepC` downstream (custody, identity, freshness work),
+  so the trajectory must carry the structure literal, not the
+  existential erasure. Same shape as the generic — per-hop actor —
+  with a richer hop payload.
 
   State-threaded by necessity. A flat `List Step` with `∀ s ∈ steps, P s`
   works for `Corrective` only because `IsCorrective` is state-
@@ -22,7 +36,7 @@
 
   The triple:
 
-    Positive — `bridgedTraj_preserves`: a bridged trajectory does not
+    Positive — `bridgedTrajC_preserves`: a bridged trajectory does not
       decrease defended value, end to end. The safety floor composes
       by `Nat.le_trans` over the per-hop discharge.
 
@@ -31,9 +45,9 @@
       is strictly below the start. Authorization holds at every hop;
       defended value is lower at the endpoint.
 
-    No-lift  — `no_bridgedTraj_to_poison_end`: the authorized
+    No-lift  — `no_bridgedTrajC_to_poison_end`: the authorized
       trajectory that loses value cannot be lifted to a bridged
-      trajectory. By `bridgedTraj_preserves`, no `BridgedTraj` exists
+      trajectory. By `bridgedTrajC_preserves`, no `BridgedTrajC` exists
       with `cleanState` as start and the poison endpoint as end.
       This is what makes the slogan "Loop Capture = an authorized
       trajectory that does not lift to a bridged one" *earned* rather
@@ -72,33 +86,34 @@ open Admissibility.AuthorizedNotSafeWitness
 open Admissibility.SafetyBridgeWitness
 open Admissibility.AuthorizedStepNotSafeWitness
 
-/-! ### Trajectory families (state-threaded, witness-carrying) -/
+/-! ### Verdict-layer trajectory families (per-hop actor, witness-carrying) -/
 
 /-- A trajectory whose every hop is a full all-green `AuthorizedStepC`,
     threading state from `s` to `s'`. The type *is* the proof that each
-    hop is authorized at its own state. -/
-inductive AuthorizedTraj (a : Actor) : GovState → GovState → Type where
-  | nil (s : GovState) : AuthorizedTraj a s s
-  | cons {s : GovState} (hop : AuthorizedStepC s a)
-         {s' : GovState} (rest : AuthorizedTraj a (applyStep s hop.step) s') :
-         AuthorizedTraj a s s'
+    hop is authorized at its own state. Per-hop actor lives in
+    `hop.actor`; the trajectory binds no global actor. -/
+inductive AuthorizedTrajC : GovState → GovState → Type where
+  | nil (s : GovState) : AuthorizedTrajC s s
+  | cons {s : GovState} (hop : AuthorizedStepC s)
+         {s' : GovState} (rest : AuthorizedTrajC (applyStep s hop.step) s') :
+         AuthorizedTrajC s s'
 
 /-- A trajectory whose every hop is a `SafeAuthorizedStepC` — authorized
     and bridged — threading state. -/
-inductive BridgedTraj (a : Actor) : GovState → GovState → Type where
-  | nil (s : GovState) : BridgedTraj a s s
-  | cons {s : GovState} (hop : SafeAuthorizedStepC s a)
-         {s' : GovState} (rest : BridgedTraj a (applyStep s hop.auth.step) s') :
-         BridgedTraj a s s'
+inductive BridgedTrajC : GovState → GovState → Type where
+  | nil (s : GovState) : BridgedTrajC s s
+  | cons {s : GovState} (hop : SafeAuthorizedStepC s)
+         {s' : GovState} (rest : BridgedTrajC (applyStep s hop.auth.step) s') :
+         BridgedTrajC s s'
 
 /-- Bridged trajectories are authorized trajectories — forget the
     bridge witness at each hop. So "Loop Capture" is precisely an
     authorized trajectory that does *not* lift to a bridged one. -/
-def BridgedTraj.toAuthorizedTraj
-    {a : Actor} {s s' : GovState} :
-    BridgedTraj a s s' → AuthorizedTraj a s s'
+def BridgedTrajC.toAuthorizedTrajC
+    {s s' : GovState} :
+    BridgedTrajC s s' → AuthorizedTrajC s s'
   | .nil s => .nil s
-  | .cons hop rest => .cons hop.auth rest.toAuthorizedTraj
+  | .cons hop rest => .cons hop.auth rest.toAuthorizedTrajC
 
 /-! ### Positive — bridged trajectories preserve the defended-value floor -/
 
@@ -107,8 +122,8 @@ def BridgedTraj.toAuthorizedTraj
   Induction folding the per-hop non-contamination discharge through
   transitivity of `≤`.
 -/
-theorem bridgedTraj_preserves
-    {a : Actor} {s s' : GovState} (t : BridgedTraj a s s') :
+theorem bridgedTrajC_preserves
+    {s s' : GovState} (t : BridgedTrajC s s') :
     defendedValue s ≤ defendedValue s' := by
   induction t with
   | nil s => exact Nat.le_refl _
@@ -120,17 +135,17 @@ theorem bridgedTraj_preserves
 
 /-- Concrete positive witness: a one-hop genuine trajectory keeps the
     defended value (1 → 1). -/
-def genuineBridgedHop : SafeAuthorizedStepC cleanState () :=
+def genuineBridgedHop : SafeAuthorizedStepC cleanState :=
   ⟨genuineAuthorizedStep, genuine_satisfies_bridge⟩
 
 def genuineTraj :
-    BridgedTraj () cleanState (applyStep cleanState genuineAuthorizedStep.step) :=
-  BridgedTraj.cons genuineBridgedHop (BridgedTraj.nil _)
+    BridgedTrajC cleanState (applyStep cleanState genuineAuthorizedStep.step) :=
+  BridgedTrajC.cons genuineBridgedHop (BridgedTrajC.nil _)
 
 theorem genuineTraj_preserves_value :
     defendedValue cleanState
       ≤ defendedValue (applyStep cleanState genuineAuthorizedStep.step) :=
-  bridgedTraj_preserves genuineTraj
+  bridgedTrajC_preserves genuineTraj
 
 /-! ### Negative — an authorized trajectory can lose defended value -/
 
@@ -138,8 +153,8 @@ theorem genuineTraj_preserves_value :
     hop is all-green (the `AuthorizedStepC.authorized` field), so
     legitimacy holds along the whole trajectory. -/
 def poisonTraj :
-    AuthorizedTraj () cleanState (applyStep cleanState poisonAuthorizedStep.step) :=
-  AuthorizedTraj.cons poisonAuthorizedStep (AuthorizedTraj.nil _)
+    AuthorizedTrajC cleanState (applyStep cleanState poisonAuthorizedStep.step) :=
+  AuthorizedTrajC.cons poisonAuthorizedStep (AuthorizedTrajC.nil _)
 
 /-- End-to-end, the poison trajectory strictly decreases defended value
     (1 → 0). Stated over `poisonAuthorizedStep.step` so the theorem is
@@ -160,7 +175,7 @@ theorem poisonTraj_loses_value :
   every hop; defended value is lower at the endpoint.
 -/
 theorem authorized_trajectory_loses_value :
-    ∃ (s' : GovState) (_ : AuthorizedTraj () cleanState s'),
+    ∃ (s' : GovState) (_ : AuthorizedTrajC cleanState s'),
       defendedValue s' < defendedValue cleanState :=
   ⟨applyStep cleanState poisonAuthorizedStep.step, poisonTraj, poisonTraj_loses_value⟩
 
@@ -168,16 +183,16 @@ theorem authorized_trajectory_loses_value :
 
   The slogan "Loop Capture is precisely an authorized trajectory that
   does not lift to a bridged one" is earned here. By
-  `bridgedTraj_preserves`, any bridged trajectory ending at the poison
+  `bridgedTrajC_preserves`, any bridged trajectory ending at the poison
   endpoint would preserve `defendedValue ≥ 1`; the endpoint has
-  `defendedValue = 0`. So no such `BridgedTraj` exists.
+  `defendedValue = 0`. So no such `BridgedTrajC` exists.
 -/
 
-theorem no_bridgedTraj_to_poison_end :
-    ¬ Nonempty (BridgedTraj () cleanState
+theorem no_bridgedTrajC_to_poison_end :
+    ¬ Nonempty (BridgedTrajC cleanState
         (applyStep cleanState poisonAuthorizedStep.step)) := by
   rintro ⟨t⟩
-  have h := bridgedTraj_preserves t
+  have h := bridgedTrajC_preserves t
   have hafter :
       defendedValue (applyStep cleanState poisonAuthorizedStep.step) = 0 := by
     show defendedValue (applyStep cleanState scenarioStep) = 0
@@ -187,11 +202,11 @@ theorem no_bridgedTraj_to_poison_end :
 
 /-! ### The triple, in one place
 
-  `bridgedTraj_preserves` says: add the bridge at every hop and the
+  `bridgedTrajC_preserves` says: add the bridge at every hop and the
   defended-value floor holds across the whole trajectory.
   `authorized_trajectory_loses_value` says: authorization at every hop,
   *without* the bridge, does not.
-  `no_bridgedTraj_to_poison_end` says: the value-losing endpoint
+  `no_bridgedTrajC_to_poison_end` says: the value-losing endpoint
   cannot be reached by any bridged trajectory, so the gap is not
   closeable post hoc.
 

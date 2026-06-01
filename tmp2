@@ -1,0 +1,143 @@
+The next piece is **Axis 2 Slice 1: stale bridge evidence**.
+
+Not another budget case. Budget already proves the core composition failure: two branch-local bridges can be honest and still fail globally at merge. The next distinct failure mode should stress **time / horizon / premise freshness**.
+
+## Axis 2 Slice 1 — Stale Evidence Merge
+
+Keeper line:
+
+> Local preservation evidence is not compositional when its validity horizon expires before reconciliation.
+
+Shape:
+
+```text
+Branch A: bridged under evidence horizon H₁
+Branch B: bridged under evidence horizon H₂
+Merge occurs at time T
+One bridge was valid locally, but stale at merge time
+Merged path cannot inherit both witnesses
+```
+
+This is different from budget:
+
+* **BudgetMerge:** branch-local scope cannot see joint usage.
+* **StaleEvidenceMerge:** branch-local evidence cannot survive time/premise drift.
+
+That gives Axis 2 two genuinely different bad cases.
+
+## Minimal model
+
+Use a state with:
+
+```lean
+structure TimedState where
+  valueOk : Bool
+  evidenceExpiresAt : Nat
+  now : Nat
+```
+
+Value stays viability-shaped:
+
+```lean
+value s := if s.valueOk then 1 else 0
+```
+
+Bridge requires:
+
+```lean
+bridge s act :=
+  s.now ≤ s.evidenceExpiresAt ∧ value s ≤ value (run s act)
+```
+
+Then merge:
+
+```lean
+merge a b :=
+  { valueOk := a.valueOk && b.valueOk
+    evidenceExpiresAt := min a.evidenceExpiresAt b.evidenceExpiresAt
+    now := max a.now b.now }
+```
+
+Bad case:
+
+```text
+A locally bridged at now = 5, expires = 10
+B locally bridged at now = 5, expires = 10
+Merge happens at now = 12
+Merged evidence horizon is expired
+```
+
+The failure is not that either branch locally lost value. It’s that the bridge evidence had a temporal scope and the merge boundary tried to reuse it outside that scope.
+
+## The theorem to aim for
+
+```lean
+theorem locally_bridged_branches_can_merge_with_stale_evidence :
+  ∃ s aEnd bEnd merged,
+    BridgedTraj timedEnv s aEnd ∧
+    BridgedTraj timedEnv s bEnd ∧
+    value aEnd = value s ∧
+    value bEnd = value s ∧
+    evidenceFresh aEnd ∧
+    evidenceFresh bEnd ∧
+    merged = mergeAt 12 aEnd bEnd ∧
+    ¬ evidenceFresh merged
+```
+
+Notice: don’t force the merged `value` to drop yet. The point of this slice is not value loss directly. It is **bridge non-portability** under temporal invalidation.
+
+If you want a value drop too, add it as a second theorem:
+
+```lean
+theorem stale_evidence_can_hide_value_loss_at_merge :
+  ...
+```
+
+But the first theorem should isolate the freshness failure.
+
+## Why this is the right next slice
+
+Because after BudgetMerge, `MergeAdmissible` cannot just mean:
+
+> combined usage within global cap
+
+It must be broader:
+
+> branch-local bridge evidence remains valid at the reconciliation boundary.
+
+So the eventual positive object starts needing at least two dimensions:
+
+```text
+MergeAdmissible =
+  joint-resource condition
+  + evidence-freshness condition
+  + reconciliation-policy condition
+```
+
+Now we’re actually earning the predicate.
+
+## Keep ConflictMerge demoted
+
+Former conflict merge becomes Slice 2 or appendix corner:
+
+> reconciliation policy itself can be value-destroying
+
+Useful, but still degenerate. Don’t make it the second flagship.
+
+So the sequence is:
+
+```text
+Axis 2 Slice 0: SharedBudgetMerge
+  Local scope failure / joint margin bust
+
+Axis 2 Slice 1: StaleEvidenceMerge
+  Temporal scope failure / stale bridge evidence
+
+Axis 2 Slice 2: ConflictMerge
+  Reconciliation policy failure / merge operator destroys value
+```
+
+Then, and only then, define `MergeAdmissible`.
+
+The next pain is **staleness**. Very on-brand. Annoyingly so.
+

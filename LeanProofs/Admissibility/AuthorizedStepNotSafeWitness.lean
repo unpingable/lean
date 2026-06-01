@@ -96,19 +96,27 @@ theorem stepAuthorityVerdictC_authorized (st : GovState) (a : Actor) (x : Step) 
 /--
   Concrete parallel of `Execution.AuthorizedStep`: a step bundled with
   both its mutation-standing proof and its all-green verdict proof.
--/
-structure AuthorizedStepC (st : GovState) (a : Actor) where
-  step       : Step
-  allowed    : StepAllowed st a step
-  authorized : stepAuthorityVerdictC st a step = AuthorityVerdict.authorized
 
-def executeC {st : GovState} {a : Actor} (s : AuthorizedStepC st a) : GovState :=
+  Per-hop actor (canonicalization pass). `actor` is a *field*, not a
+  type parameter, paralleling the substrate `AuthStep` / `SafeStep`
+  in `SafetyBridge.lean`. Trajectories built from these hops are
+  multi-actor by default; single-actor is a property, not a type
+  constraint.
+-/
+structure AuthorizedStepC (st : GovState) where
+  actor      : Actor
+  step       : Step
+  allowed    : StepAllowed st actor step
+  authorized : stepAuthorityVerdictC st actor step = AuthorityVerdict.authorized
+
+def executeC {st : GovState} (s : AuthorizedStepC st) : GovState :=
   applyStep st s.step
 
 /-! ## The verdict-layer wound, concretely (discharges the caveat) -/
 
 /-- The poison step, packaged as a concrete all-green authorized step. -/
-def poisonAuthorizedStep : AuthorizedStepC cleanState () where
+def poisonAuthorizedStep : AuthorizedStepC cleanState where
+  actor      := ()
   step       := scenarioStep
   allowed    := scenario_allowed
   authorized := rfl
@@ -117,7 +125,7 @@ def poisonAuthorizedStep : AuthorizedStepC cleanState () where
     defended value. The premises of `AuthorizedStepNotSafe` are
     therefore jointly consistent. -/
 theorem authorizedStepC_not_safe :
-    ∃ s : AuthorizedStepC cleanState (),
+    ∃ s : AuthorizedStepC cleanState,
       defendedValue (executeC s) < defendedValue cleanState := by
   refine ⟨poisonAuthorizedStep, ?_⟩
   show defendedValue (applyStep cleanState scenarioStep) < defendedValue cleanState
@@ -138,7 +146,7 @@ theorem authorizedStepC_not_safe :
   `SafeAuthorizedStepC` below. -/
 
 def Authorizable (st : GovState) (a : Actor) (x : Step) : Prop :=
-  ∃ s : AuthorizedStepC st a, s.step = x
+  ∃ s : AuthorizedStepC st, s.actor = a ∧ s.step = x
 
 def authEnv : SafetyEnv GovState Step Actor where
   run       := applyStep
@@ -155,45 +163,50 @@ def authEnv : SafetyEnv GovState Step Actor where
   downstream trajectory/custody code can read the actual
   `AuthorizedStepC`. The `.toSafeStep` adapter projects into the
   generic `SafetyBridge.SafeStep authEnv` only at the boundary where
-  the generic safety theorem is what's needed. -/
+  the generic safety theorem is what's needed.
 
-structure SafeAuthorizedStepC (st : GovState) (a : Actor) where
-  auth    : AuthorizedStepC st a
+  Per-hop actor: actor lives in `auth.actor` (a field on
+  `AuthorizedStepC`), not as a type parameter. -/
+
+structure SafeAuthorizedStepC (st : GovState) where
+  auth    : AuthorizedStepC st
   bridged : nonContamination st auth.step
 
 def SafeAuthorizedStepC.toSafeStep
-    {st : GovState} {a : Actor}
-    (s : SafeAuthorizedStepC st a) :
-    SafeStep authEnv st a where
+    {st : GovState}
+    (s : SafeAuthorizedStepC st) :
+    SafeStep authEnv st where
+  actor   := s.auth.actor
   act     := s.auth.step
-  allowed := ⟨s.auth, rfl⟩
+  allowed := ⟨s.auth, rfl, rfl⟩
   bridged := s.bridged
 
 theorem safeAuthorizedStepC_is_safe
-    {st : GovState} {a : Actor}
-    (s : SafeAuthorizedStepC st a) :
+    {st : GovState}
+    (s : SafeAuthorizedStepC st) :
     SafetyPreserving authEnv st s.auth.step :=
-  safeStep_is_safe authEnv st a s.toSafeStep
+  safeStep_is_safe authEnv st s.toSafeStep
 
 /-! ### Genuine step: authorizable, bridged, and therefore safe -/
 
-def genuineAuthorizedStep : AuthorizedStepC cleanState () where
+def genuineAuthorizedStep : AuthorizedStepC cleanState where
+  actor      := ()
   step       := genuineStep
   allowed    := genuine_allowed
   authorized := rfl
 
 theorem genuine_authorizable : Authorizable cleanState () genuineStep :=
-  ⟨genuineAuthorizedStep, rfl⟩
+  ⟨genuineAuthorizedStep, rfl, rfl⟩
 
 /-- The canonical safe-verdict-layer step for the genuine receipt. -/
-def genuineSafeAuthStepC : SafeAuthorizedStepC cleanState () where
+def genuineSafeAuthStepC : SafeAuthorizedStepC cleanState where
   auth    := genuineAuthorizedStep
   bridged := genuine_satisfies_bridge
 
 /-- The genuine step assembles into a verdict-layer `SafeStep`:
     authorizable *and* bridged, by construction. Projection of the
     canonical bundled object. -/
-def genuineSafeAuthStep : SafeStep authEnv cleanState () :=
+def genuineSafeAuthStep : SafeStep authEnv cleanState :=
   genuineSafeAuthStepC.toSafeStep
 
 theorem genuine_authstep_safe :
@@ -203,13 +216,13 @@ theorem genuine_authstep_safe :
 /-! ### Poison step: authorizable but unbridged — uncomposable as safe -/
 
 theorem poison_authorizable : Authorizable cleanState () scenarioStep :=
-  ⟨poisonAuthorizedStep, rfl⟩
+  ⟨poisonAuthorizedStep, rfl, rfl⟩
 
 /-- The wound cannot be packaged as a verdict-layer `SafeStep`: its
     `bridged` field is uninhabitable, even though it is fully
     authorizable. -/
 theorem no_safeAuthStep_for_poison :
-    ¬ ∃ s : SafeStep authEnv cleanState (), s.act = scenarioStep := by
+    ¬ ∃ s : SafeStep authEnv cleanState, s.act = scenarioStep := by
   rintro ⟨s, hact⟩
   have hb : nonContamination cleanState scenarioStep := by
     simpa [authEnv] using hact ▸ s.bridged
@@ -219,7 +232,7 @@ theorem no_safeAuthStep_for_poison :
     the poison action either, by the same uninhabitable `bridged`
     field. -/
 theorem no_safeAuthorizedStepC_for_poison :
-    ¬ ∃ s : SafeAuthorizedStepC cleanState (), s.auth.step = scenarioStep := by
+    ¬ ∃ s : SafeAuthorizedStepC cleanState, s.auth.step = scenarioStep := by
   rintro ⟨s, hact⟩
   exact poison_not_bridged (hact ▸ s.bridged)
 
