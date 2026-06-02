@@ -4,7 +4,7 @@ Module → paper crosswalk. Inverse of the paper-side index in the papers repo a
 
 Companion documents:
 
-- `WHAT-THE-LEAN-STACK-PROVES.md` — module-level exposition of what each layer proves and what it killed
+- `WHAT-THIS-PROVES.md` — module-level exposition of what each layer proves and what it killed
 - `CLAIM-REGISTER.md` — claim-level audit with BROKEN / STALE / SOUND / OPEN status for specific paper prose locations
 - `NOTES.md` — architecture overview of the three-layer stack
 

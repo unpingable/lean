@@ -1,10 +1,14 @@
-# What the Lean Stack Proves
+# What This Proves
 
 ## The short version
 
-The Δt framework's informal theory contained three category errors where prose was collapsing distinct claim types into single sentences. Machine-checked formalization forced each claim to declare its type, then proved or falsified it on those terms.
+The Lean stack proves two kinds of things.
 
-Three slogans died. Four corrected statements replaced them. The theory is sharper and says less.
+First, it audits selected claims from the Δt framework. That work found three places where the prose was collapsing distinct claim types into single sentences. Machine-checked formalization forced each claim to declare its type, then proved or falsified it on those terms.
+
+Second, it defines a small admissibility kernel: authority, standing, freshness, surface authorization, witness invariance, state transition, execution, and corrective layers. That kernel does not prove whole systems correct. It proves that specific boundary-crossing upgrades are impossible by construction.
+
+The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
 
 ---
 

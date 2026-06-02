@@ -2,21 +2,23 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20369489.svg)](https://doi.org/10.5281/zenodo.20369489)
 
+**Stumbled in here? Start with [What this is](WHAT-THIS-IS.md) — a plain-English explanation of why this repo exists, no formal-methods background assumed.**
+
+**Want to see one walked through? → [Standing-upgrade block](docs/worked-examples/standing-upgrade-block.md) — a single kernel taken end-to-end, with what it refuses and why.**
+
 *New here? See [unpingable.github.io](https://unpingable.github.io/) for the project root — author (James Beck), scope, and the full preprint list. This repo holds the admissibility kernel modules and serves as the formal audit harness for the Δt research series; the [papers repo](https://github.com/unpingable/papers) is the prose home. See also the [methodology page](https://github.com/unpingable/papers/blob/main/docs/methodology.md) for what the BROKEN / STALE / SOUND register is doing and why.*
 
 ## Reading the Lean repo
 
-**This is not a process calculus. It is an admissibility kernel.**
-
 This repository contains small Lean 4 kernels for reasoning about when evidence, standing, freshness, authorization, and transition are sufficient to support a claim or action.
+
+> small, auditable kernels for recurring admissibility failures.
+
+**This is not a process calculus. It is an admissibility kernel.**
 
 The modules are intentionally narrow. They formalize recurring boundary failures: stale authority, self-certification, collapsed public surfaces, unauthorized transition, exposure without standing, and cross-boundary cascade.
 
 A separate stack of modules audits prose claims from the Δt research series. That audit harness shares the same Lean discipline, but it is one consumer of the admissibility kernel, not the whole repo.
-
-The public handle:
-
-> small, auditable kernels for recurring admissibility failures.
 
 Most modules follow the same pattern:
 
@@ -33,11 +35,11 @@ The point is not to prove an entire software system correct. The point is to mak
 - **Surface / receipt / witness kernels** — collapsed surfaces, public receipt refinement, witness invariance.
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
-- **Safety-bridge family** *(Frontier 1, added 2026-05-28)* — abstract `SafetyBridge` primitive, single-step wound + verdict-layer wound + trajectory triple (positive composition / negative composition / no-lift), with `AttestationLedger` as a second concrete witness. Safety-axis publication path ratifiable as of 2026-05-29 (kernel-overlap audit + exit-criteria reconciliation both closed; see `working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md` and `working/calculus-2-exit-criteria.md` §Track split) — *not* "Calculus 2.0" the full label; the composition and self-amendment axes remain open.
+- **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Includes single-step, verdict-layer, trajectory, and attestation-ledger witnesses. Ratifies the standalone safety axis, not the full "Calculus 2.0" label.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
-For what the current Lean stack proves, see [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md).
+For what the current Lean stack proves, see [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md).
 
 ## Calculus 1.0
 
@@ -88,7 +90,7 @@ That is the point. Lean is used here as a pressure chamber for theory: it helps 
 
 ### First documented BROKEN claim
 
-The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Calculus 1.0 surface, the sorry-free kernel chain, the cross-boundary specimens, and the four open frontiers — are tracked in [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md), [`FRONTIERS.md`](FRONTIERS.md), and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md), not appended here.
+The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Calculus 1.0 surface, the sorry-free kernel chain, the cross-boundary specimens, and the four open frontiers — are tracked in [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), [`FRONTIERS.md`](FRONTIERS.md), and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md), not appended here.
 
 **(2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See [`NOTES.md`](NOTES.md) for details.
 
@@ -103,7 +105,7 @@ lake build
 ## Cross-references
 
 - [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) — full module-by-module reference for the admissibility kernel modules
-- [`WHAT-THE-LEAN-STACK-PROVES.md`](WHAT-THE-LEAN-STACK-PROVES.md) — module-level exposition of what each proof establishes and what it rules out
+- [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md) — module-level exposition of what each proof establishes and what it rules out
 - [`FRONTIERS.md`](FRONTIERS.md) — open gaps in the kernel, named as negative beachheads (load-bearing: Frontier 1, the Admissibility ≠ Safety bridge)
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
@@ -122,7 +124,7 @@ Other open questions — what the kernel does *not* yet rule out — are tracked
 
 This repository is the canonical formal source. Required CI verifies that the formalization builds (`lean-action` on push); proof correctness rests on the Lean source itself, not on any rendered artifact.
 
-The human-readable entry point for proof readers is this README plus the three companion documents linked under *Cross-references* above (`LeanProofs/Admissibility/README.md`, `WHAT-THE-LEAN-STACK-PROVES.md`, `CLAIM-REGISTER.md`).
+The human-readable entry point for proof readers is this README plus the three companion documents linked under *Cross-references* above (`LeanProofs/Admissibility/README.md`, `WHAT-THIS-PROVES.md`, `CLAIM-REGISTER.md`).
 
 The papers-side companion at `docs/formalization-index.md` in the [papers repo](https://github.com/unpingable/papers) inverts the view (paper → module).
 
