@@ -1,3 +1,4 @@
 /.lake
 lean_proofs/
 __pycache__/
+.claude
