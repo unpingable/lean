@@ -606,4 +606,30 @@ theorem founding_does_not_bless {Policy Op : Type}
   about it. The same shape applies here, one level up.
 -/
 
+/-! ### Axiom checks
+
+  Symmetric with sibling slices (`ContractionHinge.lean`,
+  `RetroactiveLegitimation.lean`): `#print axioms` confirms the
+  load-bearing theorems reduce to Lean's default foundations (no
+  user-introduced axioms, no `sorry`, no `admit`).
+-/
+
+-- Necessity / sufficiency of (A1) at the type level.
+#print axioms transition_is_well_founded
+#print axioms authorized_yields_transition
+
+-- Case-#3 negative: no pre-state authorization → no transition.
+#print axioms no_transition_without_pre_authorization
+#print axioms case3_self_certifying_inadmissible
+
+-- Standing specimen — case-#4 positive and case-#3 instantiated.
+#print axioms StandingSpecimen.case4_pre_authorized_standing_mutation_admissible
+#print axioms StandingSpecimen.case3_self_grant_inadmissible
+#print axioms StandingSpecimen.case3_post_state_would_validate
+#print axioms StandingSpecimen.case3_self_grant_full_shape_inadmissible
+
+-- Founding events — describable, non-blessable.
+#print axioms founding_is_describable
+#print axioms founding_does_not_bless
+
 end Admissibility.AmendmentFragment
