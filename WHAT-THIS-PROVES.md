@@ -258,3 +258,9 @@ Formalization did not confirm the informal theory. It forced the informal theory
 The theory's center of gravity was "Δh captures everything eventually." That was doing three jobs at once: a graph claim, a persistence claim, and a restorative claim. Each job needed a different model. Each model, once built, killed part of the original slogan while sharpening the part that survived.
 
 The machine didn't make the theory more impressive. It made it more honest. That turned out to be the same thing.
+
+---
+
+## Failures are part of the artifact
+
+The value of this stack is not only in the theorems that survive. It is also in the disciplined damage report produced when prose claims fail contact with formalization. A broken or stale lemma is not treated as embarrassment or debris; it records a boundary where the theory overreached, collapsed distinctions, or smuggled authority across a transition it had not earned. In that sense, the register is part of the result: it shows not just what the calculus proves, but what it refused to let the author continue pretending was true.
