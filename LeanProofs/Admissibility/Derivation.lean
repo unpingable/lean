@@ -84,10 +84,25 @@ structure PrecedenceDerivation where
   standing depends on who is invoking. Distinct from the `*Standing`
   predicates in StateTransition.lean, which gate state mutation, not
   claim invocation.
+
+  Symmetric to `BasisDerivation`: carries a revocation predicate and the
+  law that any (state, actor, claim) recognized as standing-revoked must
+  not derive `standing`. Closes the architectural gap surfaced by the
+  Alloy standing-upgrade probe (2026-06-03) — previously, `hasStanding`
+  was an unconstrained predicate at the kernel level, leaving the
+  bootstrap-blocking discipline implicit. The obligation is now named
+  architecture: concrete implementations must discharge it at
+  construction time.
 -/
 structure StandingDerivation where
   deriveStanding :
     GovState → Actor → AuthorityClaim → StandingVerdict
+  standingRevoked :
+    GovState → Actor → AuthorityClaim → Prop
+  revoked_standing_never_standing :
+    ∀ (state : GovState) (actor : Actor) (claim : AuthorityClaim),
+      standingRevoked state actor claim →
+        deriveStanding state actor claim ≠ StandingVerdict.standing
 
 /--
   A complete derivation environment: one strategy per dimension.
@@ -163,6 +178,30 @@ theorem revoked_basis_never_authorized
     (decide_authorized_requires_all_green env state actor claim).mp hauth
   exact env.basis.revoked_never_admissible state claim hrevoked hallgreen.left
 
+/--
+  Standing-side symmetric consequence: if the derivation environment
+  recognizes a (state, actor, claim) as standing-revoked, the claim cannot
+  authorize. Chains the bridge theorem with the
+  `revoked_standing_never_standing` obligation carried by every
+  `StandingDerivation`.
+
+  Names the architectural invariant that the Alloy probe identified as
+  implicit: standing is not freely settable at the kernel level; concrete
+  derivations must respect their standing-revocation predicate.
+-/
+theorem revoked_standing_never_authorized
+    (env : DerivationEnv)
+    (state : GovState)
+    (actor : Actor)
+    (claim : AuthorityClaim)
+    (hrevoked : env.standing.standingRevoked state actor claim) :
+    decideAuthority env state actor claim ≠ AuthorityVerdict.authorized := by
+  intro hauth
+  have hallgreen :=
+    (decide_authorized_requires_all_green env state actor claim).mp hauth
+  exact env.standing.revoked_standing_never_standing state actor claim hrevoked
+    hallgreen.right.right
+
 /-
   TODO (deferred):
 
@@ -174,8 +213,14 @@ theorem revoked_basis_never_authorized
   - Symmetric proof obligations for the other dimensions, added as
     fields when their consequences are needed:
       PrecedenceDerivation.conflicting_never_resolved
-      StandingDerivation.revoked_standing_never_standing
       (e.g. gap_implies_missing_standing as a cross-dimension law)
+
+    Closed 2026-06-03: StandingDerivation.revoked_standing_never_standing
+    is now a structural obligation field on `StandingDerivation`, with
+    chained theorem `revoked_standing_never_authorized` above. Surfaced
+    by the Alloy standing-upgrade probe and the codex adversarial pass
+    that flagged it as the load-bearing implicit invariant in the
+    four-layer bootstrap-blocking conjunction.
 
   - AG-specific PolicyStore rule families (AUTHORIZE_REQUIRED_CHECKS,
     premise rule, exception classes, TTL volatility classes) become
@@ -241,6 +286,8 @@ def resolvedPrecedenceDerivation : PrecedenceDerivation where
 /-- Reporter-side / CNA standing derivation: grants invocation standing. -/
 def grantStandingDerivation : StandingDerivation where
   deriveStanding := fun _ _ _ => StandingVerdict.standing
+  standingRevoked := fun _ _ _ => False
+  revoked_standing_never_standing := fun _ _ _ h => h.elim
 
 /-- Vendor-side / disputing standing derivation: withholds invocation
     standing. The vulnerability is acknowledged at the basis level
@@ -248,6 +295,8 @@ def grantStandingDerivation : StandingDerivation where
     standing for this actor's invocation. -/
 def withholdStandingDerivation : StandingDerivation where
   deriveStanding := fun _ _ _ => StandingVerdict.noStanding
+  standingRevoked := fun _ _ _ => False
+  revoked_standing_never_standing := fun _ _ _ _ => by decide
 
 /-- The reporter / CNA env: all-green ⇒ `authorized`. -/
 def reporterEnv : DerivationEnv where

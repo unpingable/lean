@@ -109,6 +109,8 @@ def allGreenPrecedence : PrecedenceDerivation where
 
 def allGreenStanding : StandingDerivation where
   deriveStanding := fun _ _ _ => StandingVerdict.standing
+  standingRevoked := fun _ _ _ => False
+  revoked_standing_never_standing := fun _ _ _ h => h.elim
 
 def allGreenDerivation : DerivationEnv where
   basis := allGreenBasis

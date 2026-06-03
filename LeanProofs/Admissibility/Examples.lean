@@ -89,7 +89,10 @@ def rejectingBasis : BasisDerivation where
 def env : DerivationEnv where
   basis := rejectingBasis
   precedence := { derivePrecedence := fun _ _ => PrecedenceVerdict.resolved }
-  standing := { deriveStanding := fun _ _ _ => StandingVerdict.standing }
+  standing :=
+    { deriveStanding := fun _ _ _ => StandingVerdict.standing
+      standingRevoked := fun _ _ _ => False
+      revoked_standing_never_standing := fun _ _ _ h => h.elim }
 
 /-- Self-certification cannot authorize. Even with maximal precedence and
     standing, a basis the env declares revoked cannot produce `authorized`. -/
@@ -138,7 +141,10 @@ def advisoryBasis : BasisDerivation where
 def env : DerivationEnv where
   basis := advisoryBasis
   precedence := { derivePrecedence := fun _ _ => PrecedenceVerdict.resolved }
-  standing := { deriveStanding := fun _ _ _ => StandingVerdict.standing }
+  standing :=
+    { deriveStanding := fun _ _ _ => StandingVerdict.standing
+      standingRevoked := fun _ _ _ => False
+      revoked_standing_never_standing := fun _ _ _ h => h.elim }
 
 /-- An open finding is accounted, not authorized. Two facts: (a) the verdict
     is `advisory`, not `authorized`, even with full precedence and standing;
