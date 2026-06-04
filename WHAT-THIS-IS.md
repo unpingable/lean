@@ -25,9 +25,9 @@ Most modules follow the same pattern:
 4. prove that the unsupported move cannot cross the boundary.
 
 Some modules audit claims from the Δt research series. Others form the
-admissibility kernel itself: authority, standing, freshness, surface
+admissibility kernels themselves: authority, standing, freshness, surface
 authorization, witness invariance, state transition, execution, and corrective
-layers.
+layers — a set of small kernels, not a unified calculus.
 
 The point is not to prove an entire institution, platform, incident, or
 distributed system correct. The point is smaller and more useful: make category

@@ -2,23 +2,23 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20369489.svg)](https://doi.org/10.5281/zenodo.20369489)
 
-**Stumbled in here? Start with [What this is](WHAT-THIS-IS.md) — a plain-English explanation of why this repo exists, no formal-methods background assumed.**
-
-**Want to see one walked through? → [Standing-upgrade block](docs/worked-examples/standing-upgrade-block.md) — a single kernel taken end-to-end, with what it refuses and why.**
-
-*New here? See [unpingable.github.io](https://unpingable.github.io/) for the project root — author (James Beck), scope, and the full preprint list. This repo holds the admissibility kernel modules and serves as the formal audit harness for the Δt research series; the [papers repo](https://github.com/unpingable/papers) is the prose home. See also the [methodology page](https://github.com/unpingable/papers/blob/main/docs/methodology.md) for what the BROKEN / STALE / SOUND register is doing and why.*
-
-## Reading the Lean repo
-
 This repository contains small Lean 4 kernels for reasoning about when evidence, standing, freshness, authorization, and transition are sufficient to support a claim or action.
 
 > small, auditable kernels for recurring admissibility failures.
 
-**This is not a process calculus. It is an admissibility kernel.**
+**This is not a process calculus. It is a set of small admissibility kernels.**
+
+### Start here
+
+- **Plain-English explainer** → [`WHAT-THIS-IS.md`](WHAT-THIS-IS.md). No formal-methods background assumed.
+- **A single kernel walked end-to-end** → [`docs/worked-examples/standing-upgrade-block.md`](docs/worked-examples/standing-upgrade-block.md). What it refuses and why.
+- **Project root, author, full preprint list** → [unpingable.github.io](https://unpingable.github.io/). The [papers repo](https://github.com/unpingable/papers) is the prose home; this repo is the formal audit harness for the Δt research series. See the [methodology page](https://github.com/unpingable/papers/blob/main/docs/methodology.md) for what the BROKEN / STALE / SOUND register is doing and why.
+
+## Reading the Lean repo
 
 The modules are intentionally narrow. They formalize recurring boundary failures: stale authority, self-certification, collapsed public surfaces, unauthorized transition, exposure without standing, and cross-boundary cascade.
 
-A separate stack of modules audits prose claims from the Δt research series. That audit harness shares the same Lean discipline, but it is one consumer of the admissibility kernel, not the whole repo.
+A separate stack of modules audits prose claims from the Δt research series. That audit harness shares the same Lean discipline, but it is one consumer of the admissibility kernels, not the whole repo.
 
 Most modules follow the same pattern:
 
@@ -31,7 +31,7 @@ The point is not to prove an entire software system correct. The point is to mak
 
 ## Map
 
-- **Admissibility kernel** — authority, standing, verdicts, state transition, execution, corrective layers.
+- **Authority kernels** — authority, standing, verdicts, state transition, execution, corrective layers.
 - **Surface / receipt / witness kernels** — collapsed surfaces, public receipt refinement, witness invariance.
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.

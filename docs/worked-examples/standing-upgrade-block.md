@@ -1,6 +1,6 @@
 # Standing-upgrade block: a worked example
 
-A limited-standing claim attempts to cross into stronger authority. The Admissibility Calculus refuses the move at three layers — verdict, bridge, and execution — and the refusal is by construction, not by policy.
+A limited-standing claim attempts to cross into stronger authority. The Admissibility Kernels refuse the move at three layers — verdict, bridge, and execution — and the refusal is by construction, not by policy.
 
 ## The scenario
 
@@ -79,4 +79,4 @@ The same machinery handles other attempted upgrades. Each is its own named speci
 - **Receipt without authority upgrade** — the trapdoor invariant `StateTransition.record_receipt_does_not_amend_policy` (line 112); specimen `specimen_receipt_no_authority_upgrade` (line 119). Recording evidence never moves authority; `recordReceipt` mutates `EvidenceStore` and cannot touch `PolicyStore` by construction.
 - **Open finding accounted** — declaring a policy gap mutates `GapStore` only; an advisory basis short-circuits the verdict algebra to `advisory`; specimen `specimen_open_finding_accounted` (line 148). The system progresses by recording the gap, not by authorizing closure on it.
 
-Each is a blocked attempt to cross a boundary the calculus refuses to authorize crossing. The calculus does not adjudicate which side is "right." It refuses to convert a structurally inadmissible claim into an authorized one regardless of how the surrounding context dresses the attempt.
+Each is a blocked attempt to cross a boundary the kernels refuse to authorize crossing. The kernels do not adjudicate which side is "right." They refuse to convert a structurally inadmissible claim into an authorized one regardless of how the surrounding context dresses the attempt.

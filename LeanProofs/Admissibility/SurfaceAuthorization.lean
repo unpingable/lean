@@ -44,8 +44,10 @@
     consistent with at least one). The other two `Breaker` cases
     (independent measurement, admissible perturbation) remain
     unformalized; that asymmetry is intentional, not an oversight.
-    A future refusal-repair calculus, if one is earned, would extend
-    `PublicReceiptRefinement`'s pattern over the unformalized channels.
+    A future refusal-repair kernel (NOT a unified calculus — that
+    framing was retired 2026-06-03) would extend
+    `PublicReceiptRefinement`'s pattern over the unformalized channels
+    if a forcing case appeared.
 -/
 
 namespace Admissibility.SurfaceAuthorization

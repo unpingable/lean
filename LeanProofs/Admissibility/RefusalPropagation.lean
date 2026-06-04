@@ -89,17 +89,19 @@
     binding ⇒ denied for all uses* — but only because the existing
     gates (`SurfaceAuthorization.authorize`, `FiatAdmissibility.classify`)
     were already designed with structural narrowing built in. The
-    rebar IS case analysis; it does not earn the word "calculus."
+    rebar IS case analysis; it does not rise to a propagation kernel.
 
   Honest finding (C.2):
     Refusal composition is statable with ONE new relation
     (`requiredFor`) plus ONE structural property (`BasisInheriting`).
     The proof is one-step contrapositive of the inheritance rule.
     The structural property does all the work; the theorem is
-    naming-shaped, not yet calculus-shaped. To earn calculus, the
-    relation would need to be instantiated over existing kernel
-    structure (`BasisDerivation`, `decideAuthority`) — that step is
-    not in this probe and not authorized.
+    naming-shaped, not yet kernel-shaped. Rising to a propagation
+    kernel would require instantiating the relation over existing
+    kernel structure (`BasisDerivation`, `decideAuthority`) — that
+    step is not in this probe and not authorized. Even then it would
+    land as a separate propagation kernel, not as part of any unified
+    calculus (per the 2026-06-03 synthesis closure).
 
   Honest finding (C.3):
     A concrete NQ-shaped instantiation (`NQDependency` namespace
@@ -226,11 +228,14 @@ def BasisInheriting
     structural assumption (`BasisInheriting`) is doing the work; the
     theorem is contrapositive packaging.
 
-    This is rebar, not calculus. To earn calculus, `requiredFor` and
-    `witnesses` would need to be instantiated over existing kernel
-    structure (`BasisDerivation.deriveBasis`, `decideAuthority`) such
-    that `BasisInheriting` holds as a kernel-level theorem rather
-    than as a parameter. That step is not in this probe. -/
+    This is rebar, not a propagation kernel. Rising to a propagation
+    kernel would require instantiating `requiredFor` and `witnesses`
+    over existing kernel structure (`BasisDerivation.deriveBasis`,
+    `decideAuthority`) such that `BasisInheriting` holds as a
+    kernel-level theorem rather than as a parameter. That step is not
+    in this probe — and per the 2026-06-03 synthesis closure, any
+    such promotion would land as a separate kernel, not as part of a
+    unified calculus. -/
 theorem refusal_composes
     {Claim : Sort u}
     {witnesses : Claim → Claim → Prop}

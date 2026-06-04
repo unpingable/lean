@@ -1,14 +1,20 @@
-# Admissibility — Authority kernel
+# Admissibility Kernels — Authority kernel and siblings
 
 > **The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.**
 
-This directory contains the original five-module authority kernel (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`) plus sibling axes and specimens. **Admissibility Kernels 1.0** exposes an eight-module public surface via `AdmissibilityKernels.lean` (the five-module kernel plus `Freshness`, `SurfaceAuthorization`, and `WitnessInvariance`). The remainder — two further boundary-result modules, four other axis / refusal-gate kernels, four cross-boundary artifact specimens, and two experimental composition slices — sits in the annex (still in this directory, not in the 1.0 promise). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
+**Public surface (1.0).** Eight modules aggregated via `AdmissibilityKernels.lean`: an authority kernel (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`) plus three sibling kernels (`Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). These names form the 1.0 compatibility claim.
+
+**Annex (compiled, not promised).** Everything else in this directory: two boundary-result modules, four refusal-gate / axis kernels, four cross-boundary specimens, and two experimental composition slices. The annex builds green and is sorry-free, but its signatures are not part of the 1.0 promise — future versions may rename, refactor, or absorb them.
+
+**What this is for.** Infrastructure substrate, not a paper. No paper anchor; the kernel modules are intended to be cited by downstream operational work (a future Governor / `agent_gov` implementation, and the consumer tools listed below).
 
 (Migration note: the aggregator was previously `CalculusOne.lean` under an "Admissibility Calculus 1.0" framing. The rename is doctrine — "calculus" overclaimed the shape of the artifact, and the word is now reserved for the unified object this stack refuses to be. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`. Build, public claims, and theorem content are unchanged.)
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
 > **Architecture in one breath:** `AdmissibilityKernels` defines the public admissibility path. The annex contains **refusal kernels** — small formal countermodels that block recurring inadmissible witness moves (e.g. `RecoveryMargin` blocks *visible green → recovery capacity*; `ClosureEligibility` blocks *survival → closure*; `ConsolidationDenial` blocks *fluency → settlement*). Each annex module that opens its docstring with "Refusal kernel for the gap between X and Y" is doing one thing: exhibiting a concrete countermodel where X holds and Y fails, breaking the inference *X therefore Y*.
+
+> **Composition discipline:** The modules form a typed federation of kernels, not a unified calculus. Cross-kernel implications require an explicit bridge theorem stating which kernel-owned refusal condition is being preserved and how. The companion working note `no-unifier-without-laundering.md` (in the papers repo) records the discipline in full.
 
 ## Changelog
 
@@ -35,17 +41,15 @@ Forward-looking version discipline (not a release plan, a promotion gate):
 
 - **1.x** — documentation / coordination releases. Annex continues compiled-not-promised; new refusal kernels land in the annex without changing the public surface. The architecture-headline (above) is the 1.x kind of move.
 - *(optional)* `RefusalKernels.lean` aggregator — a possible *future* non-public annex aggregator over refusal kernels (`RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`, `SurfaceAuthorization`, `FiatAdmissibility`, etc.). Explicitly **not part of the 1.0 aggregator (`AdmissibilityKernels.lean`)**. Annex semantics with **no 1.0 / 1.x public compatibility promise** across version lines. Should not be created until a downstream consumer actually wants a grouped import — until that consumer-forcing event, status is **named-not-built / deferred**. Named here so the shape is decided in advance, not as a build trigger.
-- **2.0** — two orthogonal candidate paths historically framed as gates on a unified rename. Post-2026-06-03 synthesis closure (see `~/git/papers/working/source-basis-discipline-synthesis.md`), no unifying calculus is the post-axes object: surviving structure is the "disciplined premise production" umbrella with separate species, not a single rename target. The two axis-candidates remain as separate kernel families:
-  - *Composition axis* — refusal-propagation kernels, only if composition / propagation / narrowing theorems land on the `surface ⇏ substance` relation. NOT just more specimens; requires at least one theorem of the shape *if A cannot witness B and B is required as basis for C, then A cannot witness C for binding use.*
-  - *Safety axis* — the second axis-candidate, where `Allowed` is authorization and `bridge` is value-preservation discipline. Skeleton present in the safety-bridge family (`SafetyBridge` + `SafetyTrajectory` triple + tier-1 `AttestationLedger`). Both minting gates closed 2026-05-29 (kernel-overlap audit: `working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`; exit-criteria reconciliation: `working/calculus-2-exit-criteria.md` §Track split). What this ratifies is the **safety-axis publication path** (standalone formal-methods preprint), not any unified-calculus rename. Historical tier map: `working/tooltheory/calculus-2-tier-map-2026-05-28.md`.
+- **2.0** — two candidate axes for future kernel families. Neither is a step toward a unified calculus; both are separate kernel families whose promotion would land independently:
+  - *Composition axis* — refusal-propagation kernels. Promotion requires at least one theorem of the shape *if A cannot witness B and B is required as basis for C, then A cannot witness C for binding use*. Not earned by additional specimens alone.
+  - *Safety axis* — value-preservation discipline over authorized transitions, where `Allowed` is authorization and `bridge` is a separate preservation witness. Skeleton present in the safety-bridge family (`SafetyBridge`, `SafetyTrajectory`, `AttestationLedger`). The safety-axis publication path is a standalone formal-methods preprint, not a unified-calculus rename.
 
-> **More specimens → annex / 1.x. Composition rules → separate kernel family, not a unified-calculus rename.**
+> **Specimens land in the annex. Composition rules would require a separate kernel family, not a unified-calculus rename.**
 
-> **A refusal kernel blocks one laundering move. A propagation kernel explains how blocked moves compose. Neither is a unified calculus.**
+> **A refusal kernel blocks one laundering move. A propagation kernel would explain how blocked moves compose. Neither is a unified calculus.**
 
-> **Pipeline composition is not refusal-propagation composition.** The PL/UC representation-pipeline composition discussed in the working notes (`projection-laundering.md`, `uncertainty-custody.md`) connects predicates across a representation boundary via data-flow; the composition-axis trigger above is theorem-level transitivity over blocked witness promotions (`A ⇏ B; B basis for C; ∴ A ⇏ C`). Pipeline composition does not retire the brake.
-
-Seam discussion lives in `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md` (layer split, operator family, when a propagation surface earns its shoes) and `~/git/papers/working/tooltheory/refusal-algebra-prior-art-and-applications.md` (eight-foundation prior-art stack, seven application zones, anti-laundering grammar). Read those first before proposing a propagation-axis cut.
+> **Pipeline composition is not refusal-propagation composition.** Pipeline composition connects predicates across a representation boundary via data-flow; the composition-axis criterion above is theorem-level transitivity over blocked witness promotions (`A ⇏ B; B basis for C; ∴ A ⇏ C`). The two are distinct, and pipeline composition does not satisfy the propagation-axis criterion.
 
 ## Admissibility Kernels 1.0 — public surface
 
@@ -327,7 +331,7 @@ Brick layout:
 
 Keeper: *The lie is cheaper than the proof — authorization is a declaration (`= rfl`); preservation must be witnessed (`preserves` discharge).*
 
-Candidacy note: this family is the safety-axis candidate, distinct from the Roadmap's composition-axis trigger (refusal-propagation theorems). The two axes are orthogonal candidates; the historical tier map (`working/tooltheory/calculus-2-tier-map-2026-05-28.md`) names budget-margin and quorum as sibling generalizations (value-axis and authorization-axis respectively). The two safety-axis minting gates closed 2026-05-29 — kernel-overlap audit (`working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`) and exit-criteria reconciliation (`working/calculus-2-exit-criteria.md` §Track split). What this ratifies is the **safety-axis publication path** as a standalone formal-methods preprint. Post-2026-06-03 synthesis closure, no unified-calculus rename is the target: the composition axis and the self-amendment axis (Frontier 3) remain as separate kernel-family candidates under the "disciplined premise production" umbrella, not as pending gates on a unified object.
+Candidacy note: this family is the safety-axis candidate, distinct from the Roadmap's composition axis (refusal-propagation theorems). The two axes are independent; neither is a step toward a unified calculus. The safety-axis publication path is a standalone formal-methods preprint. The composition axis and the self-amendment axis (Frontier 3) remain as separate kernel-family candidates with their own promotion criteria.
 
 ### Composition discipline — projection pattern
 

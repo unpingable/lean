@@ -6,7 +6,7 @@ The Lean stack proves two kinds of things.
 
 First, it audits selected claims from the Δt framework. That work found three places where the prose was collapsing distinct claim types into single sentences. Machine-checked formalization forced each claim to declare its type, then proved or falsified it on those terms.
 
-Second, it defines a small admissibility kernel: authority, standing, freshness, surface authorization, witness invariance, state transition, execution, and corrective layers. That kernel does not prove whole systems correct. It proves that specific boundary-crossing upgrades are impossible by construction.
+Second, it defines a set of small admissibility kernels: authority, standing, freshness, surface authorization, witness invariance, state transition, execution, and corrective layers. Those kernels do not prove whole systems correct. They prove that specific boundary-crossing upgrades are impossible by construction.
 
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
 
@@ -180,7 +180,7 @@ Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), ad
 
 - A claim that *substantively-grounded* legitimacy fails to entail safety. The bricks use kernel-legible all-green (degenerate `fun _ _ => …` derivation), which is sufficient to settle the type-level structural question. The Loop-Capture / institutional reading is a doctrinal mapping, not formalized here.
 - A *complete* safety policy. The two specimen bridges (non-contamination, non-destruction) are conservative — they reject the wounds and also some value-preserving actions a more discriminating policy would admit. A maximal bridge would collapse into "bridge := preserves-restated"; structural bridges trade completeness for checkability without first running the action.
-- Any unified-calculus rename. The safety-axis publication-path gates closed 2026-05-29 — kernel-overlap audit (`~/git/papers/working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`) and exit-criteria reconciliation (`~/git/papers/working/calculus-2-exit-criteria.md` §Track split). What that ratifies is the standalone safety-axis preprint, *not* any "unified calculus" rename — and post-2026-06-03 synthesis closure, that rename is no longer a target (see `~/git/papers/working/source-basis-discipline-synthesis.md`). The composition axis and self-amendment axis remain as separate species under the "disciplined premise production" umbrella, not as pending unification gates. See `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md` and `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md` for the historical tier map and ρ-drop decision records.
+- Any unified-calculus rename. Safety is a separate axis: these modules show that authorization does not imply defended-value preservation, and supply the bridge primitive whose `preserves` obligation must be discharged structurally. The safety axis is its own kernel family, not a step toward a unified calculus — composition and self-amendment remain as separate axes, not pending unification gates.
 
 ### Why it's here
 
