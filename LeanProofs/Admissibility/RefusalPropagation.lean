@@ -7,7 +7,7 @@
   nomenclature audit; the formal object is *refusal propagation
   across dependency boundaries*, which the new name names directly.
 
-  Scratch / Phase-C exploration. NOT part of CalculusOne.lean.
+  Scratch / Phase-C exploration. NOT part of AdmissibilityKernels.lean.
   NOT a 1.0 module. NOT a 2.0 candidate. NOT promised across versions.
   May be deleted, renamed, refactored, or absorbed without notice.
   No downstream consumer depends on this module.
@@ -41,8 +41,9 @@
        - `.Annex.Nightshift` (deferred-agent reconciliation)
        - `.Annex.NQWicketNightshift` (cross-kernel: NQ → Wicket → Nightshift)
 
-  The Law and Examples layers are public-bound (would migrate to
-  CalculusTwo if Public Phase D ever opens). The Annex layer stays
+  The Law and Examples layers are public-bound (would migrate to a
+  future public kernel layer if Public Phase D ever opens; that
+  layer would not constitute a unified calculus). The Annex layer stays
   annex regardless — it carries evidence that motivated the public
   shape, but does not constitute public claims.
 
@@ -322,7 +323,7 @@ end Admissibility.RefusalPropagation.Composition
     - No severity / scope / time / use-kind / provenance.
     - No "composability" between extracted adapters.
 
-  Status: experimental rebar. NOT in `CalculusOne`. Deletion-eligible. -/
+  Status: experimental rebar. NOT in `AdmissibilityKernels`. Deletion-eligible. -/
 
 namespace Admissibility.RefusalPropagation.ChainAdapter
 
@@ -578,7 +579,7 @@ end Admissibility.RefusalPropagation.Annex.NQDependency
     `~/git/papers/working/tooltheory/nq-on-nq-forcing-case.md`
 
   Status: experimental rebar, not promoted, deletion-eligible. Same
-  posture as `NQDependency`. NOT in `CalculusOne.lean`.
+  posture as `NQDependency`. NOT in `AdmissibilityKernels.lean`.
 
   Deliberately NOT modeled (same brakes as NQDependency):
     - multi-instance fan-out (only one nq_b modeled)
@@ -667,7 +668,7 @@ end Admissibility.RefusalPropagation.Annex.NQOnNQ
   But this does NOT yet trigger shared-adapter extraction — rule of
   three at the *Lean* level, not at the substrate level.
 
-  Status: experimental rebar, deletion-eligible. NOT in `CalculusOne`. -/
+  Status: experimental rebar, deletion-eligible. NOT in `AdmissibilityKernels`. -/
 
 namespace Admissibility.RefusalPropagation.Annex.Labelwatch
 
@@ -726,7 +727,7 @@ end Admissibility.RefusalPropagation.Annex.Labelwatch
       (refusal propagates); the "observable ancestors permit fleet
       observable" direction is a binding rule, not a cascade rule.
 
-  Status: experimental rebar, deletion-eligible. NOT in `CalculusOne`. -/
+  Status: experimental rebar, deletion-eligible. NOT in `AdmissibilityKernels`. -/
 
 namespace Admissibility.RefusalPropagation.Annex.NQFanOut
 
@@ -808,7 +809,7 @@ end Admissibility.RefusalPropagation.Annex.NQFanOut
   set without changing the Lean shape — still the same 3-entity, 2-edge,
   binary-state chain.
 
-  Status: experimental rebar, deletion-eligible. NOT in `CalculusOne`. -/
+  Status: experimental rebar, deletion-eligible. NOT in `AdmissibilityKernels`. -/
 
 namespace Admissibility.RefusalPropagation.Annex.Nightshift
 
@@ -892,7 +893,7 @@ end Admissibility.RefusalPropagation.Annex.Nightshift
   If this adapter required expressing any of the above, the disposition
   is incorrect and must be revisited; the brake is not for relaxation.
 
-  Status: experimental rebar, deletion-eligible. NOT in `CalculusOne`. -/
+  Status: experimental rebar, deletion-eligible. NOT in `AdmissibilityKernels`. -/
 
 namespace Admissibility.RefusalPropagation.Annex.NQWicketNightshift
 

@@ -1,24 +1,24 @@
 /-
-  Admissibility Calculus 1.0 — example specimens.
+  Admissibility Kernels — example specimens.
 
   Seven specimens demonstrating the public 1.0 surface, consumed
-  through the `CalculusOne` aggregator. Each specimen is named so
-  consumers can grep for it; each carries a short docstring naming
-  the kernel claim it demonstrates.
+  through the `AdmissibilityKernels` aggregator. Each specimen is
+  named so consumers can grep for it; each carries a short docstring
+  naming the kernel claim it demonstrates.
 
   Each specimen consumes only definitions and theorems already present
   in the 1.0 surface — no new kernel content. If a future change
   breaks one of these specimens, the breakage is also a 1.0
   compatibility break.
 
-  Naming conventions follow the calculus's grain: a specimen is the
+  Naming conventions follow the kernels' grain: a specimen is the
   smallest legible consumer of a kernel claim, not a benchmark of
   the kernel's full expressive range.
 -/
 
-import LeanProofs.Admissibility.CalculusOne
+import LeanProofs.Admissibility.AdmissibilityKernels
 
-namespace Admissibility.CalculusOne.Examples
+namespace Admissibility.Kernels.Examples
 
 open Admissibility.Authority
 open Admissibility.StateTransition
@@ -159,4 +159,4 @@ theorem specimen_open_finding_accounted
 
 end OpenFindingAccounted
 
-end Admissibility.CalculusOne.Examples
+end Admissibility.Kernels.Examples

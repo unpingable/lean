@@ -3,14 +3,17 @@
 
   Status: scratch annex, 2026-06-02. Not imported by `LeanProofs.lean`.
   Not part of any 1.0 surface. No README / PAPER-MAP promotion.
-  Re-aligned 2026-06-02 to the design-frozen Calculus Charter — Slice
-  0: The Contraction Hinge. Content unchanged from the prior pass;
-  presentation (glosses, vocabulary, term-mode T1, failure log) brought
-  into precise correspondence with the charter so review can check
-  rule ↔ gloss line by line.
+  Re-aligned 2026-06-02 to the design-frozen Slice 0 charter
+  (historical name: "Calculus Charter — Slice 0: The Contraction
+  Hinge"). Content unchanged from the prior pass; presentation
+  (glosses, vocabulary, term-mode T1, failure log) brought into
+  precise correspondence with the charter so review can check rule ↔
+  gloss line by line.
 
-  Axis 2 of the maximal-calculus axis map, working name
-  **ContractionHinge** — see `papers/working/maximal-calculus-map.md`.
+  Axis 2 of the historical maximal-calculus axis map (the unified
+  calculus being the refused frame, not a target — see
+  `papers/working/maximal-calculus-refused-map.md`), working name
+  **ContractionHinge**.
 
   Intended reading. A sequent `Γ ⊢ C` reads: *the bundle of warrants
   `Γ` collectively licenses claim `C`, counting occurrences.* Every

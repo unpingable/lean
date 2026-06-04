@@ -1,18 +1,31 @@
 /-
-  Admissibility Calculus 1.0 — public surface aggregator.
+  Admissibility Kernels — public surface aggregator.
 
-  A Lean authority kernel with typed verdicts, composition rules, and
-  meta-theorems for admissible transition. Not a sequent calculus, not
-  a process calculus, not a proof-theoretic admissibility logic — the
-  scope fence below names the full list of non-claims.
+  > The Lean work did not produce a unified calculus. It produced a
+  > set of small admissibility kernels, each isolating a different
+  > refusal boundary.
+
+  This module bundles the kernels that have earned the 1.0 stability
+  promise: typed verdicts, composition rules, and meta-theorems for
+  admissible transition. The word "calculus" is reserved here for the
+  thing this stack refuses to be: not a sequent calculus, not a
+  process calculus, not a proof-theoretic admissibility logic, not a
+  unified maximal calculus. The scope fence below names the full list
+  of non-claims.
 
   Importing this module brings the 1.0 surface into scope; the broader
   stack contains annex modules and consumer specimens that are
   intentionally excluded from the 1.0 promise.
 
+  (Historical note: this aggregator was previously named `CalculusOne`.
+  The rename is doctrine, not refactor: "calculus" overclaimed the
+  shape of the artifact. Migration is mechanical — namespace
+  `Admissibility.CalculusOne` is now `Admissibility.Kernels`, and the
+  marker theorem `calculus_one_compiles` is now `kernels_compile`.)
+
   ## Slogan
 
-  > Admissibility Calculus 1.0 models when evidence-backed claims may
+  > Admissibility Kernels 1.0 models when evidence-backed claims may
   > authorize transitions, proves that boundary-crossing upgrades are
   > impossible by construction, and refuses laundering across the
   > surface, freshness, witness, and authority axes.
@@ -34,6 +47,10 @@
      `OpsMasking`, `RepairOperator`, `CollapsedSurface`, `Basic`,
      `PersistenceModel`, the P27 skeleton at `LeanProofs/Admissibility.lean`)
      are specimens, not contents.
+  7. 1.0 does not claim a unified maximal calculus that closes the
+     kernels into one composing object. The kernels are deliberately
+     small and separately defended; their refusal to collapse is a
+     positive result, not a deferred one.
 
   ## Public surface (8 modules)
 
@@ -137,10 +154,10 @@ import LeanProofs.Admissibility.Freshness
 import LeanProofs.Admissibility.SurfaceAuthorization
 import LeanProofs.Admissibility.WitnessInvariance
 
-namespace Admissibility.CalculusOne
+namespace Admissibility.Kernels
 
 /--
-  Discoverable marker confirming the 1.0 aggregator built. Consumers
+  Discoverable marker confirming the kernels aggregator built. Consumers
   can reference this name in CI scripts or downstream test suites to
   assert that the public surface compiles.
 
@@ -148,6 +165,6 @@ namespace Admissibility.CalculusOne
   the load-bearing theorems re-listed in this module's docstring; each
   lives in its own sibling module and is proved there.
 -/
-theorem calculus_one_compiles : True := trivial
+theorem kernels_compile : True := trivial
 
-end Admissibility.CalculusOne
+end Admissibility.Kernels

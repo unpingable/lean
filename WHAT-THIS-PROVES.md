@@ -108,9 +108,11 @@ The formally verified results:
 
 ---
 
-## Calculus 1.0 surface
+## Admissibility Kernels 1.0 surface
 
-The admissibility kernel modules described below form a named public surface: **Admissibility Calculus 1.0**, aggregated at `LeanProofs/Admissibility/CalculusOne.lean`. A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition — not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic. Eight modules are tagged `[1.0]`:
+> The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.
+
+The admissibility kernel modules described below form a named public surface: **Admissibility Kernels 1.0**, aggregated at `LeanProofs/Admissibility/AdmissibilityKernels.lean` (previously `CalculusOne.lean` under the retired "Admissibility Calculus 1.0" framing — see migration note in the aggregator's docstring). A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition — not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus. Eight modules are tagged `[1.0]`:
 
 - `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective` — core authority kernel
 - `Freshness` — metric-time axis
@@ -125,7 +127,7 @@ What 1.0 deliberately does **not** claim: a general theory of institutions; reco
 
 Slogan:
 
-> Calculus 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
+> Admissibility Kernels 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
 
 Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
@@ -161,10 +163,10 @@ Governor (`agent_gov`) operationally implements this kernel's pattern. The Lean 
 
 ## Infrastructure: Safety bridge (Frontier 1)
 
-Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), addressing the Frontier 1 wound ("Admissibility ≠ Safety") from `FRONTIERS.md`. Specimen / annex status; not part of the Calculus 1.0 compatibility claim.
+Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), addressing the Frontier 1 wound ("Admissibility ≠ Safety") from `FRONTIERS.md`. Specimen / annex status; not part of the Admissibility Kernels 1.0 compatibility claim.
 
 - **`AuthorizedNotSafe.lean`** / **`AuthorizedNotSafeWitness.lean`** — Brick 0. The wound at the `StepAllowed` layer (mutation standing): an authorized step strictly decreases an externally-defined defended value. The first module exhibits it axiomatically over the abstract kernel surface; the second discharges the consistency caveat via a parallel concrete miniature (evidence store as `List Receipt`).
-- **`SafetyBridge.lean`** — Abstract primitive. `SafetyEnv (σ α ρ : Type)` with actor-inert `bridge : σ → α → Prop` and a `preserves` proof obligation. `SafeStep` bundles authorization + bridge witness; `bridge_implies_safe` projects through `preserves` without consuming `Allowed`. Actor-inertness is a Calculus-2.0 base decision (actor-relative evidence stays in `Allowed`; safety preservation is over the transition effect); the actor-sensitive refinement `ActorSensitiveBridgeEnv` is named-but-not-implemented.
+- **`SafetyBridge.lean`** — Abstract primitive. `SafetyEnv (σ α ρ : Type)` with actor-inert `bridge : σ → α → Prop` and a `preserves` proof obligation. `SafeStep` bundles authorization + bridge witness; `bridge_implies_safe` projects through `preserves` without consuming `Allowed`. Actor-inertness is a base design decision for the safety axis (actor-relative evidence stays in `Allowed`; safety preservation is over the transition effect); the actor-sensitive refinement `ActorSensitiveBridgeEnv` is named-but-not-implemented.
 - **`SafetyBridgeWitness.lean`** — Receipt-side non-contamination bridge specimen. Discharges `preserves` structurally; labeled "sufficient bridge specimen, not complete safety policy."
 - **`AuthorizedStepNotSafe.lean`** / **`AuthorizedStepNotSafeWitness.lean`** — Brick 1a. The wound transfers to the full `Execution.AuthorizedStep` (both-proofs object: mutation standing + kernel-legible all-green verdict). Fence: "all-green" is via a degenerate `fun _ _ => …` derivation env, not substantively-grounded legitimacy. Brick 1b: `SafeAuthorizedStepC` is the canonical verdict-layer safety gate, with `.toSafeStep` adapter into the generic primitive.
 - **`SafetyTrajectory.lean`** — Brick 2. State-threaded inductive trajectory families (`AuthorizedTraj`, `BridgedTraj`) carrying per-hop witnesses, with forgetful map `BridgedTraj.toAuthorizedTraj`. Three theorems: positive composition (`bridgedTraj_preserves` — a bridged trajectory preserves the defended-value floor), negative composition (`authorized_trajectory_loses_value` — an authorized trajectory can lose defended value), no-lift (`no_bridgedTraj_to_poison_end` — the value-losing endpoint admits no bridged trajectory).
@@ -178,7 +180,7 @@ Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), ad
 
 - A claim that *substantively-grounded* legitimacy fails to entail safety. The bricks use kernel-legible all-green (degenerate `fun _ _ => …` derivation), which is sufficient to settle the type-level structural question. The Loop-Capture / institutional reading is a doctrinal mapping, not formalized here.
 - A *complete* safety policy. The two specimen bridges (non-contamination, non-destruction) are conservative — they reject the wounds and also some value-preserving actions a more discriminating policy would admit. A maximal bridge would collapse into "bridge := preserves-restated"; structural bridges trade completeness for checkability without first running the action.
-- Public minting of "Calculus 2.0." The safety-axis publication-path gates closed 2026-05-29 — kernel-overlap audit (`~/git/papers/working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`) and exit-criteria reconciliation (`~/git/papers/working/calculus-2-exit-criteria.md` §Track split). What that ratifies is the standalone safety-axis preprint, *not* the full "Calculus 2.0" label, which still requires the composition axis (`MergeAdmissible` necessity + ≥3 bad-merge cases) and the self-amendment axis (Frontier 3) — neither addressed by the safety-bridge family. See `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md` and `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md` for the tier map and ρ-drop decision records.
+- Any unified-calculus rename. The safety-axis publication-path gates closed 2026-05-29 — kernel-overlap audit (`~/git/papers/working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`) and exit-criteria reconciliation (`~/git/papers/working/calculus-2-exit-criteria.md` §Track split). What that ratifies is the standalone safety-axis preprint, *not* any "unified calculus" rename — and post-2026-06-03 synthesis closure, that rename is no longer a target (see `~/git/papers/working/source-basis-discipline-synthesis.md`). The composition axis and self-amendment axis remain as separate species under the "disciplined premise production" umbrella, not as pending unification gates. See `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md` and `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md` for the historical tier map and ρ-drop decision records.
 
 ### Why it's here
 
@@ -263,4 +265,4 @@ The machine didn't make the theory more impressive. It made it more honest. That
 
 ## Failures are part of the artifact
 
-The value of this stack is not only in the theorems that survive. It is also in the disciplined damage report produced when prose claims fail contact with formalization. A broken or stale lemma is not treated as embarrassment or debris; it records a boundary where the theory overreached, collapsed distinctions, or smuggled authority across a transition it had not earned. In that sense, the register is part of the result: it shows not just what the calculus proves, but what it refused to let the author continue pretending was true.
+The value of this stack is not only in the theorems that survive. It is also in the disciplined damage report produced when prose claims fail contact with formalization. A broken or stale lemma is not treated as embarrassment or debris; it records a boundary where the theory overreached, collapsed distinctions, or smuggled authority across a transition it had not earned. In that sense, the register is part of the result: it shows not just what the kernels prove, but what they refused to let the author continue pretending was true.

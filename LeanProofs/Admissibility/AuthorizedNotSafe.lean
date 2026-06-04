@@ -50,12 +50,14 @@
   `authorized_not_safe` is not vacuous.
 
   Root-wired in `LeanProofs.lean`. Build-covered, not public-surface
-  promised: `CalculusOne.lean` is unchanged and the 1.0 compatibility
-  surface stands.
+  promised: `AdmissibilityKernels.lean` is unchanged and the 1.0
+  compatibility surface stands.
 
   Companion docs (papers repo):
     working/kernel-to-body-map.md          — Slice A & Phase 1.
-    working/calculus-2-exit-criteria.md    — exit conditions.
+    working/calculus-2-exit-criteria.md    — exit conditions (working
+                                            note retains the historical
+                                            "calculus" label).
     working/frontier-proof-obligations.md  — proof ledger.
 -/
 

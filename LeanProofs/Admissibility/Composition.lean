@@ -18,10 +18,11 @@
     diagnostic — the safety hypotheses are not load-bearing, because
     the global boundary already does all the work.
 
-    The first nontrivial calculus theorem must make safety depend on
-    local process boundaries and an admissible boundary-merge rule.
-    See `Admissibility/LocalBoundary.lean` for the experimental
-    aperture toward that theorem.
+    The first nontrivial composition-kernel theorem would have to
+    make safety depend on local process boundaries and an admissible
+    boundary-merge rule — and even that earns a propagation kernel,
+    not a unified calculus. See `Admissibility/LocalBoundary.lean`
+    for the experimental aperture toward that theorem.
 
   Companion prose
     Papers repo, `working/models/boundary-calculus/notes/locality-and-merge.md`.
@@ -159,9 +160,10 @@ theorem any_process_safe_under_sealed_boundary
     conclusion for arbitrary processes. The theorem is intentionally
     stronger than compositional preservation.
 
-    *Process syntax alone does not create a calculus. The calculus
-    begins where safety depends on the merge rule, not on the global
-    oracle. See `Admissibility/LocalBoundary.lean` for the next
+    *Process syntax alone does not create a calculus. A propagation
+    kernel begins where safety depends on the merge rule, not on the
+    global oracle — and even that earns a kernel, not a unified
+    calculus. See `Admissibility/LocalBoundary.lean` for the next
     aperture.* -/
 theorem composition_preserves_safety_global_lift
     {Domain Failure : Type}

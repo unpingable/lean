@@ -1,9 +1,9 @@
 /-
   Admissibility — Attestation-ledger protocol (second concrete witness).
 
-  Purpose: pressure-test the Calculus 2.0 skeleton against a second,
-  non-degenerate model — to show the bridge/trajectory pattern is not
-  an artifact of the Bool/poison receipt miniature. This file
+  Purpose: pressure-test the safety-axis kernel skeleton against a
+  second, non-degenerate model — to show the bridge/trajectory pattern
+  is not an artifact of the Bool/poison receipt miniature. This file
   instantiates the *generic* `SafetyBridge.SafetyEnv` with a textured
   protocol and re-derives the brick 1-2 results over it: single-step
   wound + boundary, and the trajectory pair + forgetful map + no-lift.

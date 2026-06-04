@@ -35,7 +35,7 @@
   structural bridge is that it is checkable *without* first running
   the action and inspecting the result.
 
-  Actor-inert (Calculus 2.0 base). `nonContamination` is
+  Actor-inert (safety-axis kernel base). `nonContamination` is
   `GovState → Step → Prop`; it consults the action's payload, never
   the actor. Matches `SafetyBridge`'s actor-inertness decision — the
   evidence is local-structural, authority is a separate field.

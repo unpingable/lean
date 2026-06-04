@@ -222,7 +222,8 @@ lemma component_reach_preserves_invariant
     the necessity claim still to be discharged.
 
     Theorem name carries `_aperture` to flag this is an interface
-    result, not the finished theorem of a complete calculus. -/
+    result, not a finished theorem of a complete propagation kernel
+    (and certainly not of any unified calculus). -/
 theorem composition_preserves_global_safety_aperture
     {Domain Failure : Type}
     [DecidableEq Domain] [DecidableEq Failure]
@@ -264,8 +265,9 @@ theorem composition_preserves_global_safety_aperture
 
 /-! ## Open obligations
 
-    The aperture closes, but the following pieces of the calculus are
-    NOT yet here. Each is a candidate target for the next slice.
+    The aperture closes, but the following pieces of any future
+    propagation kernel (NOT a unified calculus) are not yet here.
+    Each is a candidate target for the next slice.
 
     1. **Necessity** (`merge_admissible_necessary`):
        Construct components `lb₁`, `lb₂` and a merge `lbₘ` for which
@@ -281,9 +283,9 @@ theorem composition_preserves_global_safety_aperture
        `MergeAdmissible`. Status: paper-shaped, not Lean-shaped.
 
     3. **ComponentStep determinism + confluence**:
-       Lemmas about ComponentStep that downstream calculus theorems
-       (refinement, trace equivalence) will need. Status: deferred
-       until a forcing case appears.
+       Lemmas about ComponentStep that downstream propagation-kernel
+       theorems (refinement, trace equivalence) would need. Status:
+       deferred until a forcing case appears.
 
     4. **Restriction (ν)**:
        Local hiding of names so that exposures on a hidden domain

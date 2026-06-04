@@ -42,14 +42,17 @@
     (`Internal`/`External` as operator-supplied predicates on an
     abstract `Domain`), not the proof technique.
 
-  Pre-ratified program-name context
-    Filed under the boundary-calculus / admissibility-cybernetics
-    candidate program (see papers repo,
-    `working/boundary-calculus-program-candidate.md`). This module is
-    one specimen within that program, not the program. The file
-    deliberately is not `Delta/Containment.lean` or
-    `BoundaryCalculus/…`; the program handle is pre-ratified at
-    candidate status, not at namespace-banner status.
+  Program-name context (historical candidate, retired as a unification
+  target post-2026-06-03 synthesis closure)
+    Originally filed under the "boundary-calculus / admissibility-
+    cybernetics" candidate program (see papers repo,
+    `working/boundary-kernels-program-candidate.md`). That program
+    name carried "calculus" as a positive frame; the post-2026-06-03
+    synthesis closure retires the unified-calculus target. This module
+    is one boundary-kernel specimen, not a piece of a unified
+    calculus. The file deliberately is not `Delta/Containment.lean` or
+    `BoundaryCalculus/…`; no calculus namespace banner has been
+    minted.
 
   Scope fence
     - No process syntax.

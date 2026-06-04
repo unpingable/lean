@@ -1,10 +1,14 @@
 # Admissibility — Authority kernel
 
-This directory contains the original five-module authority kernel (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`) plus sibling axes and specimens. **Calculus 1.0** exposes an eight-module public surface via `CalculusOne.lean` (the five-module kernel plus `Freshness`, `SurfaceAuthorization`, and `WitnessInvariance`). The remainder — two further boundary-result modules, four other axis / refusal-gate kernels, four cross-boundary artifact specimens, and two experimental composition slices — sits in the annex (still in this directory, not in the 1.0 promise). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
+> **The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.**
+
+This directory contains the original five-module authority kernel (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`) plus sibling axes and specimens. **Admissibility Kernels 1.0** exposes an eight-module public surface via `AdmissibilityKernels.lean` (the five-module kernel plus `Freshness`, `SurfaceAuthorization`, and `WitnessInvariance`). The remainder — two further boundary-result modules, four other axis / refusal-gate kernels, four cross-boundary artifact specimens, and two experimental composition slices — sits in the annex (still in this directory, not in the 1.0 promise). **No paper anchor** — this is *infrastructure substrate* for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout.
+
+(Migration note: the aggregator was previously `CalculusOne.lean` under an "Admissibility Calculus 1.0" framing. The rename is doctrine — "calculus" overclaimed the shape of the artifact, and the word is now reserved for the unified object this stack refuses to be. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`. Build, public claims, and theorem content are unchanged.)
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
-> **Architecture in one breath:** `CalculusOne` defines the public admissibility path. The annex contains **refusal kernels** — small formal countermodels that block recurring inadmissible witness moves (e.g. `RecoveryMargin` blocks *visible green → recovery capacity*; `ClosureEligibility` blocks *survival → closure*; `ConsolidationDenial` blocks *fluency → settlement*). Each annex module that opens its docstring with "Refusal kernel for the gap between X and Y" is doing one thing: exhibiting a concrete countermodel where X holds and Y fails, breaking the inference *X therefore Y*.
+> **Architecture in one breath:** `AdmissibilityKernels` defines the public admissibility path. The annex contains **refusal kernels** — small formal countermodels that block recurring inadmissible witness moves (e.g. `RecoveryMargin` blocks *visible green → recovery capacity*; `ClosureEligibility` blocks *survival → closure*; `ConsolidationDenial` blocks *fluency → settlement*). Each annex module that opens its docstring with "Refusal kernel for the gap between X and Y" is doing one thing: exhibiting a concrete countermodel where X holds and Y fails, breaking the inference *X therefore Y*.
 
 ## Changelog
 
@@ -17,37 +21,37 @@ Infrastructure:
 - Wire all Admissibility modules into `LeanProofs.lean` (full set: twenty-three modules including the previously-unwired four `CrossBoundary*` specimens and the two experimental `Composition` / `LocalBoundary` modules).
 - `lake build` (no args) now covers the full stack, preventing silent unwired-module failures.
 
-No public surface change. No slogan change. `CalculusOne.lean` remains the 1.0 public surface.
+No public surface change. No slogan change. The 1.0 aggregator (then named `CalculusOne.lean`; now `AdmissibilityKernels.lean`) remains the public surface.
 
 > 1.0.1 strengthens regression coverage without changing the 1.0 public surface.
 
 ### 1.0 — 2026-05-24
 
-Initial named public surface. Eight modules in `CalculusOne.lean`: `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`. Seven specimen consumers in `Examples.lean`. Slogan, scope-fence, and annex documented in this README.
+Initial named public surface. Eight modules in the 1.0 aggregator (originally named `CalculusOne.lean`; renamed 2026-06-03 to `AdmissibilityKernels.lean`): `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`. Seven specimen consumers in `Examples.lean`. Slogan, scope-fence, and annex documented in this README.
 
 ## Roadmap
 
 Forward-looking version discipline (not a release plan, a promotion gate):
 
 - **1.x** — documentation / coordination releases. Annex continues compiled-not-promised; new refusal kernels land in the annex without changing the public surface. The architecture-headline (above) is the 1.x kind of move.
-- *(optional)* `RefusalKernels.lean` aggregator — a possible *future* non-public annex aggregator over refusal kernels (`RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`, `SurfaceAuthorization`, `FiatAdmissibility`, etc.). Explicitly **not part of `CalculusOne.lean`**. Annex semantics with **no 1.0 / 1.x public compatibility promise** across version lines. Should not be created until a downstream consumer actually wants a grouped import — until that consumer-forcing event, status is **named-not-built / deferred**. Named here so the shape is decided in advance, not as a build trigger.
-- **2.0** — two orthogonal candidate paths, either of which could earn the rename; neither has minted it yet.
-  - *Composition-axis 2.0* — public refusal-*calculus* surface, only if composition / propagation / narrowing theorems land on the `surface ⇏ substance` relation. NOT just more specimens; requires at least one theorem of the shape *if A cannot witness B and B is required as basis for C, then A cannot witness C for binding use.*
-  - *Safety-axis 2.0* — the second axis of the calculus, where `Allowed` is authorization and `bridge` is value-preservation discipline. Skeleton present in the safety-bridge family (`SafetyBridge` + `SafetyTrajectory` triple + tier-1 `AttestationLedger`). Both minting gates closed 2026-05-29 (kernel-overlap audit: `working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`; exit-criteria reconciliation: `working/calculus-2-exit-criteria.md` §Track split). What this ratifies is the **safety-axis publication path** (standalone formal-methods preprint), not the full "Calculus 2.0" rename — composition-axis 2.0 above remains the other axis of the same gate. Tier map: `working/tooltheory/calculus-2-tier-map-2026-05-28.md`.
+- *(optional)* `RefusalKernels.lean` aggregator — a possible *future* non-public annex aggregator over refusal kernels (`RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`, `SurfaceAuthorization`, `FiatAdmissibility`, etc.). Explicitly **not part of the 1.0 aggregator (`AdmissibilityKernels.lean`)**. Annex semantics with **no 1.0 / 1.x public compatibility promise** across version lines. Should not be created until a downstream consumer actually wants a grouped import — until that consumer-forcing event, status is **named-not-built / deferred**. Named here so the shape is decided in advance, not as a build trigger.
+- **2.0** — two orthogonal candidate paths historically framed as gates on a unified rename. Post-2026-06-03 synthesis closure (see `~/git/papers/working/source-basis-discipline-synthesis.md`), no unifying calculus is the post-axes object: surviving structure is the "disciplined premise production" umbrella with separate species, not a single rename target. The two axis-candidates remain as separate kernel families:
+  - *Composition axis* — refusal-propagation kernels, only if composition / propagation / narrowing theorems land on the `surface ⇏ substance` relation. NOT just more specimens; requires at least one theorem of the shape *if A cannot witness B and B is required as basis for C, then A cannot witness C for binding use.*
+  - *Safety axis* — the second axis-candidate, where `Allowed` is authorization and `bridge` is value-preservation discipline. Skeleton present in the safety-bridge family (`SafetyBridge` + `SafetyTrajectory` triple + tier-1 `AttestationLedger`). Both minting gates closed 2026-05-29 (kernel-overlap audit: `working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`; exit-criteria reconciliation: `working/calculus-2-exit-criteria.md` §Track split). What this ratifies is the **safety-axis publication path** (standalone formal-methods preprint), not any unified-calculus rename. Historical tier map: `working/tooltheory/calculus-2-tier-map-2026-05-28.md`.
 
-> **More specimens → annex / 1.x. Composition rules → calculus / 2.0.**
+> **More specimens → annex / 1.x. Composition rules → separate kernel family, not a unified-calculus rename.**
 
-> **A refusal kernel blocks one laundering move. A refusal calculus explains how blocked moves compose.**
+> **A refusal kernel blocks one laundering move. A propagation kernel explains how blocked moves compose. Neither is a unified calculus.**
 
-> **Pipeline composition is not calculus composition.** The PL/UC representation-pipeline composition discussed in the working notes (`projection-laundering.md`, `uncertainty-custody.md`) connects predicates across a representation boundary via data-flow; the 2.0 trigger above is theorem-level transitivity over blocked witness promotions (`A ⇏ B; B basis for C; ∴ A ⇏ C`). Pipeline composition does not retire the 2.0 brake.
+> **Pipeline composition is not refusal-propagation composition.** The PL/UC representation-pipeline composition discussed in the working notes (`projection-laundering.md`, `uncertainty-custody.md`) connects predicates across a representation boundary via data-flow; the composition-axis trigger above is theorem-level transitivity over blocked witness promotions (`A ⇏ B; B basis for C; ∴ A ⇏ C`). Pipeline composition does not retire the brake.
 
-Seam discussion lives in `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md` (layer split, operator family, calculus-earns-its-shoes gate) and `~/git/papers/working/tooltheory/refusal-algebra-prior-art-and-applications.md` (eight-foundation prior-art stack, seven application zones, anti-laundering grammar). Read those first before proposing a 2.0 cut.
+Seam discussion lives in `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md` (layer split, operator family, when a propagation surface earns its shoes) and `~/git/papers/working/tooltheory/refusal-algebra-prior-art-and-applications.md` (eight-foundation prior-art stack, seven application zones, anti-laundering grammar). Read those first before proposing a propagation-axis cut.
 
-## Calculus 1.0 — public surface
+## Admissibility Kernels 1.0 — public surface
 
-A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic — see the scope fence below for the full list of non-claims.
+A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence below for the full list of non-claims.
 
-`CalculusOne.lean` is the named public aggregator. Importing it brings the 1.0 surface into scope. Eight modules are tagged `[1.0]` and form the compatibility claim:
+`AdmissibilityKernels.lean` is the named public aggregator. Importing it brings the 1.0 surface into scope. Eight modules are tagged `[1.0]` and form the compatibility claim:
 
 | Module                | Role                                              |
 | --------------------- | ------------------------------------------------- |
@@ -62,9 +66,9 @@ A Lean authority kernel with typed verdicts, composition rules, and meta-theorem
 
 Slogan:
 
-> Admissibility Calculus 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
+> Admissibility Kernels 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
 
-Seven specimen consumers live in `Examples.lean` (imports `CalculusOne`): valid advisory result, valid authorized mutation, stale evidence refusal, self-cert denial, conflicting precedence denial, receipt-without-authority non-upgrade, open finding accounted.
+Seven specimen consumers live in `Examples.lean` (imports `AdmissibilityKernels`): valid advisory result, valid authorized mutation, stale evidence refusal, self-cert denial, conflicting precedence denial, receipt-without-authority non-upgrade, open finding accounted.
 
 ## Scope fence — what 1.0 does NOT claim
 
@@ -102,7 +106,7 @@ Annex modules are green and sorry-free but are not part of the 1.0 compatibility
 | `SafetyTrajectory`           | Trajectory pair + forgetful map + no-lift theorem         |
 | `AttestationLedger`          | Tier-1 second concrete witness (Nat-textured, 2 actors)   |
 | `Composition` `[experimental]` | Diagnostic: process syntax alone does not make a calculus |
-| `LocalBoundary` `[experimental]` | Experimental aperture toward compositional calculus     |
+| `LocalBoundary` `[experimental]` | Experimental aperture toward a propagation/composition kernel (not a unified calculus) |
 
 ### Refusal kernel taxonomy
 
@@ -111,7 +115,7 @@ The annex contains four refusal kernels — each proves a `surface ⇏ substance
 - **Existential-countermodel kernels** (3): `RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`. Each exhibits one concrete state where the surface predicate holds and the substantive predicate fails. The theorem is `∃ s, Surface s ∧ ¬ Substance s`. One-shot refusal. Sufficient to break the inference *Surface ⇒ Substance*.
 - **Conditional-rule kernel** (1): `SurfaceAuthorization`. Universal over action kinds and surface statuses: if cause-specific action AND collapsed surface AND no breakers, then deny. The theorem quantifies over inputs and returns a verdict, with companion theorems filling out the verdict space. Not a one-shot countermodel; a parameterized refusal rule.
 
-Both shapes inhabit the same operator family (catalog at `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md`). The shape difference matters for how the kernel composes (or refuses to compose) with future 2.0 candidates — see Roadmap above.
+Both shapes inhabit the same operator family (catalog at `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md`). The shape difference matters for how the kernel composes (or refuses to compose) with future propagation-axis candidates — see Roadmap above.
 
 ## Modules
 
@@ -300,7 +304,7 @@ Scope fence: no scheduling, no fairness, no rates, no `TaxonomyGraph`, no proces
 
 ### Safety-bridge family — `AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger` `[annex]` (added 2026-05-27 / 2026-05-28)
 
-**Frontier-1 safety axis: addresses the `FRONTIERS.md` Frontier 1 wound (Admissibility ≠ Safety).** Eight modules organized as three bricks plus a second concrete witness. The receipt-side bricks (0–2) instantiate the abstract `SafetyBridge` over a Bool/poison receipt miniature; `AttestationLedger` is the second, textured (`Nat`-valued, ≥2 asymmetric actors) witness that the abstract layer is not receipt-specific. Companion documents in papers repo: `working/kernel-to-body-map.md`, `working/calculus-2-exit-criteria.md`, plus tier map and ρ-drop decision at `working/tooltheory/calculus-2-tier-map-2026-05-28.md` / `working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`.
+**Frontier-1 safety axis: addresses the `FRONTIERS.md` Frontier 1 wound (Admissibility ≠ Safety).** Eight modules organized as three bricks plus a second concrete witness. The receipt-side bricks (0–2) instantiate the abstract `SafetyBridge` over a Bool/poison receipt miniature; `AttestationLedger` is the second, textured (`Nat`-valued, ≥2 asymmetric actors) witness that the abstract layer is not receipt-specific. Companion documents in papers repo: `working/kernel-to-body-map.md`, `working/calculus-2-exit-criteria.md` (working note retains the historical "calculus" label), plus tier map and ρ-drop decision at `working/tooltheory/calculus-2-tier-map-2026-05-28.md` / `working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`.
 
 Brick layout:
 
@@ -315,7 +319,7 @@ Brick layout:
   - `authorized_trajectory_loses_value` — negative composition (authorized ⇏ floor preserved).
   - `no_bridgedTrajC_to_poison_end` — no-lift (the value-losing endpoint admits no bridged trajectory).
 
-`SafetyBridge.lean` is the abstract primitive: `SafetyEnv (σ α ρ : Type)` with actor-inert `bridge : σ → α → Prop` and `preserves` obligation. Actor-inertness is a Calculus-2.0 base decision — `Allowed` keeps the actor, safety preservation is over the transition effect, actor-sensitive bridges are deferred to a named extension (`ActorSensitiveBridgeEnv` declared in the Open block, not implemented). If actor identity must change transition semantics, the right move is `run : σ → ρ → α → σ`, not smuggling `ρ` through `bridge`.
+`SafetyBridge.lean` is the abstract primitive: `SafetyEnv (σ α ρ : Type)` with actor-inert `bridge : σ → α → Prop` and `preserves` obligation. Actor-inertness is a base design decision for the safety axis — `Allowed` keeps the actor, safety preservation is over the transition effect, actor-sensitive bridges are deferred to a named extension (`ActorSensitiveBridgeEnv` declared in the Open block, not implemented). If actor identity must change transition semantics, the right move is `run : σ → ρ → α → σ`, not smuggling `ρ` through `bridge`.
 
 `SafetyBridgeWitness.lean` is the receipt-side non-contamination bridge specimen. Labeled "sufficient bridge specimen, not complete safety policy" — conservative structural bridges may reject value-preserving actions that pass a more discriminating policy. A maximal bridge collapses back into "bridge := preserves-restated"; the point of a structural bridge is checkability without first running the action.
 
@@ -323,7 +327,7 @@ Brick layout:
 
 Keeper: *The lie is cheaper than the proof — authorization is a declaration (`= rfl`); preservation must be witnessed (`preserves` discharge).*
 
-Candidacy note: this family is the safety-axis candidate, distinct from the Roadmap's composition-axis 2.0 trigger (refusal-calculus propagation theorems). The two axes are orthogonal candidates; the tier map (`working/tooltheory/calculus-2-tier-map-2026-05-28.md`) names budget-margin and quorum as sibling generalizations (value-axis and authorization-axis respectively). The two safety-axis minting gates closed 2026-05-29 — kernel-overlap audit (`working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`) and exit-criteria reconciliation (`working/calculus-2-exit-criteria.md` §Track split). What this ratifies is the **safety-axis publication path** as a standalone formal-methods preprint, *not* the full "Calculus 2.0" rename. The composition-axis 2.0 trigger and the self-amendment axis (Frontier 3) both remain open; the safety-axis bricks alone do not authorize the rename.
+Candidacy note: this family is the safety-axis candidate, distinct from the Roadmap's composition-axis trigger (refusal-propagation theorems). The two axes are orthogonal candidates; the historical tier map (`working/tooltheory/calculus-2-tier-map-2026-05-28.md`) names budget-margin and quorum as sibling generalizations (value-axis and authorization-axis respectively). The two safety-axis minting gates closed 2026-05-29 — kernel-overlap audit (`working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md`) and exit-criteria reconciliation (`working/calculus-2-exit-criteria.md` §Track split). What this ratifies is the **safety-axis publication path** as a standalone formal-methods preprint. Post-2026-06-03 synthesis closure, no unified-calculus rename is the target: the composition axis and the self-amendment axis (Frontier 3) remain as separate kernel-family candidates under the "disciplined premise production" umbrella, not as pending gates on a unified object.
 
 ### Composition discipline — projection pattern
 
@@ -351,7 +355,7 @@ no forbidden exposure in c
 
 The discipline is what makes the bricks composable: any future cross-boundary slice (cascade, monitoring, etc.) can inherit containment by following the same five steps. Adding a new step constructor that bypasses the boundary check would break `step_to_exposure_reach` immediately — the kernel forces the discipline at the type level.
 
-Audit provenance and a detailed walk-through live in `papers/working/cross-boundary-artifact-specimens.md`. The two-tracks rule (kernel-specimen track now; process-calculus / composition track deferred until forced) is filed in operator memory as `feedback-kernel-vs-process-calculus`.
+Audit provenance and a detailed walk-through live in `papers/working/cross-boundary-artifact-specimens.md`. The two-tracks rule (kernel-specimen track now; any unified-process-calculus / composition object deferred until forced — and as of 2026-06-03 retired as a target) is filed in operator memory as `feedback-kernel-vs-process-calculus`.
 
 ## What the kernel warrants
 
@@ -366,9 +370,9 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-All thirty-three Admissibility modules are wired into `LeanProofs.lean` root (thirty-one kernel/sibling modules + `CalculusOne` aggregator + `Examples` specimens). The default `lake build` (no args) regression-checks the entire set as the default proof gate. Nothing is silently unwired.
+All thirty-three Admissibility modules are wired into `LeanProofs.lean` root (thirty-one kernel/sibling modules + `AdmissibilityKernels` aggregator + `Examples` specimens). The default `lake build` (no args) regression-checks the entire set as the default proof gate. Nothing is silently unwired.
 
-Public-surface gate: `lake build LeanProofs.Admissibility.CalculusOne` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
+Public-surface gate: `lake build LeanProofs.Admissibility.AdmissibilityKernels` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
 
 No Lean proof holes as of 2026-05-28 in the wired stack. The word `sorry` does appear in docstring text within `Corrective.lean` and `CorrectiveBoundary.lean` as references to a resolved former-`sorry`; these are comments, not proof holes — a plain grep will find them.
 
@@ -380,7 +384,7 @@ All modules below are wired into root and covered by `lake build` (no args). Ind
 
 ```bash
 # Public 1.0 surface (aggregator + specimens)
-lake build LeanProofs.Admissibility.CalculusOne
+lake build LeanProofs.Admissibility.AdmissibilityKernels
 lake build LeanProofs.Admissibility.Examples
 
 # Core kernel [1.0]
@@ -409,7 +413,7 @@ lake build LeanProofs.Admissibility.CrossBoundaryDegradation
 lake build LeanProofs.Admissibility.CrossBoundaryFailureMint
 lake build LeanProofs.Admissibility.CrossBoundaryCascade
 
-# Annex — safety-bridge family (Frontier 1 / safety-axis 2.0 candidate)
+# Annex — safety-bridge family (Frontier 1 / safety-axis candidate)
 lake build LeanProofs.Admissibility.AuthorizedNotSafe
 lake build LeanProofs.Admissibility.AuthorizedNotSafeWitness
 lake build LeanProofs.Admissibility.SafetyBridge

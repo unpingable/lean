@@ -29,7 +29,7 @@ import LeanProofs.Admissibility.CrossBoundaryDegradation
 import LeanProofs.Admissibility.CrossBoundaryFailureMint
 import LeanProofs.Admissibility.CrossBoundaryCascade
 import LeanProofs.Admissibility.RefusalPropagation
-import LeanProofs.Admissibility.CalculusOne
+import LeanProofs.Admissibility.AdmissibilityKernels
 import LeanProofs.Admissibility.Examples
 import LeanProofs.Admissibility.AuthorizedNotSafe
 import LeanProofs.Admissibility.AuthorizedNotSafeWitness

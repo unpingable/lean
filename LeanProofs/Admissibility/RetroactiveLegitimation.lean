@@ -5,9 +5,10 @@
   Not part of any 1.0 surface. No README / PAPER-MAP promotion.
 
   Slice 1 of the substructural-sequent program (axis 3 of the
-  maximal-calculus axis map, working name **RetroactiveLegitimation** —
-  see `papers/working/maximal-calculus-map.md` and
-  `papers/working/retroactive-legitimation-charter.md`).
+  historical maximal-calculus axis map — the unified calculus is the
+  refused frame, not a target; see `papers/working/maximal-calculus-refused-map.md`
+  and `papers/working/retroactive-legitimation-charter.md`). Working
+  name **RetroactiveLegitimation**.
 
   Headline claim. A witness made valid only by the post-state of an
   operation may be true later, but cannot authorize the operation in

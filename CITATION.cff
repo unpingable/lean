@@ -35,7 +35,7 @@ abstract: >-
   composition rules from claim derivation through authorized execution,
   plus refusal-gate kernels for metric-time freshness, collapsed-surface
   authorization, witness invariance, and corrective monotonicity. The 1.0
-  public surface comprises eight modules aggregated via CalculusOne.lean
+  public surface comprises eight modules aggregated via AdmissibilityKernels.lean
   and is demonstrated by seven specimen consumers in Examples.lean. The
   artifact models when evidence-backed claims may authorize transitions,
   proves that boundary-crossing upgrades are impossible by construction,

@@ -23,15 +23,15 @@
   "safety must be earned by a separate predicate, never inferred from
   authority."
 
-  Actor-inertness decision (Calculus 2.0 base). The base safety bridge
-  is actor-inert: `bridge : σ → α → Prop`. Actor-relative evidence
-  remains in `Allowed`; safety preservation is over the transition
-  effect. Actor-sensitive bridges are deferred until a concrete bridge
-  candidate requires actor identity. If actor identity affects
-  transition semantics, the transition relation itself must become
-  actor-indexed (`run : σ → ρ → α → σ`) rather than smuggling
-  actor-dependence through `bridge`. Reason: in the current calculus
-  `run : σ → α → σ` does not consume `ρ`, so an actor parameter in
+  Actor-inertness decision (safety-axis kernel base). The base safety
+  bridge is actor-inert: `bridge : σ → α → Prop`. Actor-relative
+  evidence remains in `Allowed`; safety preservation is over the
+  transition effect. Actor-sensitive bridges are deferred until a
+  concrete bridge candidate requires actor identity. If actor identity
+  affects transition semantics, the transition relation itself must
+  become actor-indexed (`run : σ → ρ → α → σ`) rather than smuggling
+  actor-dependence through `bridge`. Reason: in the current safety-axis
+  kernel `run : σ → α → σ` does not consume `ρ`, so an actor parameter in
   `bridge` could only filter who gets to call the same transition
   safe — which is authorization wearing a safety mustache. The named
   deferred extension is `ActorSensitiveBridgeEnv` (see "Open" below);
@@ -139,7 +139,7 @@ theorem bridge_implies_safe {σ α ρ : Type}
 
 /-! ### Per-hop step gates — actor is a field, not a type parameter
 
-  Substrate fix (Calculus 2.0 prep, canonicalization pass). A step
+  Substrate fix (safety-axis kernel prep, canonicalization pass). A step
   records *who acted* as a field; the trajectory does not bind a
   single global actor. Single-actor trajectories remain expressible
   as a property (∀ hop, hop.actor = a) but are no longer the

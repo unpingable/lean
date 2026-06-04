@@ -64,9 +64,10 @@
 
   Operator postures fixed in this closeout (NOT ratified doctrine):
   well-foundedness via temporal priority is a *keystone candidate*,
-  not the keystone; the full maximal calculus is treated as
-  plural / stratified, not one completed object; valid-wait /
-  receipt-gated protocol work is NOT opened.
+  not the keystone; the (refused) unified maximal calculus is
+  treated as plural / stratified, not one completed object —
+  post-2026-06-03 synthesis closure, no such unifying object is the
+  target; valid-wait / receipt-gated protocol work is NOT opened.
 
   Architectural discipline.
 
@@ -74,7 +75,7 @@
     symmetric calculus-wide families. If the specimen does not
     stay small, the specimen is wrong. Scratch annex, intentionally
     not imported by `LeanProofs.lean`; not part of any 1.0 surface;
-    no entry in `CalculusOne.lean`.
+    no entry in `AdmissibilityKernels.lean`.
 
   Cross-references.
 
@@ -141,7 +142,7 @@ structure State (Policy : Type) where
 /-! ### Amendment-fragment environment -/
 
 /--
-  A maximal-calculus environment over policies and operations.
+  An amendment-fragment environment over policies and operations.
 
   Fields:
   - `Validates` — the policy-indexed authorization relation:
@@ -284,7 +285,7 @@ theorem authorized_yields_transition {Policy Op : Type}
   *after* observing the post-state still type-checks at the source
   policy, because proof terms carry no "when produced" metadata.
 
-  This is correct, not a leak. The calculus's claim is *what*
+  This is correct, not a leak. The fragment's claim is *what*
   policy indexes the witness, not *when* the witness was produced.
   The temporal-provenance question — *was the witness available
   before the operation began?* — lives at the protocol layer (the
@@ -293,12 +294,12 @@ theorem authorized_yields_transition {Policy Op : Type}
   down what the type system can enforce; the protocol layer pins
   down what type theory cannot.
 
-  Compare the fragment: `AuthStep E s` does not record *when* the
-  `E.Allowed s actor act` proof was constructed either. The
-  fragment's discipline is "evidence is at the source state," not
-  "evidence was produced before the action." The maximal-calculus
-  lift inherits that semantics: the policy-index, not the temporal
-  provenance, is the load-bearing part.
+  Compare the Fixed-Value Fragment: `AuthStep E s` does not record
+  *when* the `E.Allowed s actor act` proof was constructed either.
+  That fragment's discipline is "evidence is at the source state,"
+  not "evidence was produced before the action." The amendment-
+  fragment lift inherits that semantics: the policy-index, not the
+  temporal provenance, is the load-bearing part.
 -/
 
 /-! ### Case #3 negative: self-certifying amendment is inadmissible
@@ -511,20 +512,20 @@ end StandingSpecimen
   revolutions, coups; acts that install a regime by means not
   authorized under the regime they replace.
 
-  Structural admission: the calculus can *describe* these
+  Structural admission: the fragment can *describe* these
   transitions (give them a type, name them) but cannot *bless*
   them (constructively derive admissibility under any prior
   policy). `FoundingTransition` carries no `AuthEvidence` field;
   no constructor route exists from `FoundingTransition` data alone
   to `Transition E S`.
 
-  Honest cost: the calculus's confession that its scope is
+  Honest cost: the fragment's confession that its scope is
   legitimacy, not history. History contains transitions the
-  calculus calls real but cannot license. The cost is what the
-  calculus offers in exchange for being able to draw the
-  amendment-vs-laundering cut at all. A calculus that pretends to
-  bless foundings is laundering generalized; a calculus that
-  pretends foundings do not exist is the fixed-value fragment
+  fragment calls real but cannot license. The cost is what the
+  fragment offers in exchange for being able to draw the
+  amendment-vs-laundering cut at all. A kernel that pretends to
+  bless foundings is laundering generalized; a kernel that
+  pretends foundings do not exist is the Fixed-Value Fragment
   fenced too tightly.
 -/
 

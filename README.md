@@ -35,19 +35,23 @@ The point is not to prove an entire software system correct. The point is to mak
 - **Surface / receipt / witness kernels** — collapsed surfaces, public receipt refinement, witness invariance.
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
-- **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Includes single-step, verdict-layer, trajectory, and attestation-ledger witnesses. Ratifies the standalone safety axis, not the full "Calculus 2.0" label.
+- **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Includes single-step, verdict-layer, trajectory, and attestation-ledger witnesses. Ratifies the standalone safety axis, not any unified-calculus rename.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
 For what the current Lean stack proves, see [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md).
 
-## Calculus 1.0
+## Admissibility Kernels (1.0)
 
-**Admissibility Calculus 1.0** is a Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic — see the scope fence in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the full list of non-claims.
+> **The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.**
 
-Importing `LeanProofs.Admissibility.CalculusOne` brings the eight 1.0 modules into scope (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). Seven specimen consumers live in `LeanProofs.Admissibility.Examples`, demonstrating the public API.
+**Admissibility Kernels 1.0** is a Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the full list of non-claims.
 
-> Calculus 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
+Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight 1.0 modules into scope (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). Seven specimen consumers live in `LeanProofs.Admissibility.Examples`, demonstrating the public API.
+
+> Admissibility Kernels 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
+
+(Migration note: this aggregator was previously named `CalculusOne` under an "Admissibility Calculus 1.0" framing. The rename retires "calculus" from the live public surface; the word now appears only as the refused unification. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`.)
 
 Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the 1.0 compatibility claim. All Admissibility modules are now wired into root and covered by `lake build`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
@@ -90,7 +94,7 @@ That is the point. Lean is used here as a pressure chamber for theory: it helps 
 
 ### First documented BROKEN claim
 
-The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Calculus 1.0 surface, the sorry-free kernel chain, the cross-boundary specimens, and the four open frontiers — are tracked in [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), [`FRONTIERS.md`](FRONTIERS.md), and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md), not appended here.
+The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Admissibility Kernels 1.0 surface, the sorry-free kernel chain, the cross-boundary specimens, and the four open frontiers — are tracked in [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), [`FRONTIERS.md`](FRONTIERS.md), and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md), not appended here.
 
 **(2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See [`NOTES.md`](NOTES.md) for details.
 

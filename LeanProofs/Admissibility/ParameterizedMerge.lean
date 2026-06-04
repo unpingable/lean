@@ -55,7 +55,7 @@
   - Not a theorem over arbitrary observables. The generic floors a single
     `E.value`. Genuine observable plurality requires explicit doctrine.
   - Not a one-mega-theorem over all slices. Each slice instantiates
-    independently; the cross-slice "calculus pays rent" claim is the
+    independently; the cross-slice "schema pays rent" claim is the
     *schema* below plus the three concrete instantiations, not a unified
     theorem statement.
   - Not minted as canonical. Scratch annex per the working/tooltheory
@@ -580,15 +580,16 @@ end StaleBasis
   (a) distorting the frame with a per-slice layer indicator, or
   (b) distorting Stale by adding value semantics to `mergeAt` that the
   slice does not have. Both rejected — the schema is honest at the
-  cost of being a schema. The calculus *is* the per-slice
+  cost of being a schema. The kernel content *is* the per-slice
   characterization pattern at the slice's appropriate layer; the
   cross-axis structural unification lives separately, in the keystone
   (`BoundaryWitness.lean`), not in a forced cross-slice value-layer
-  iff.
+  iff. This is one of the small kernels the stack produced in place of
+  a unified calculus.
 
   This is consistent with the keystone verdict's "schema plus two
   obstruction theorems, NOT one caped theorem" line: both the
-  cross-axis keystone and the cross-slice calculus refuse to collapse
+  cross-axis keystone and the cross-slice schema refuse to collapse
   into a single grand statement, and that refusal is what keeps them
   honest. -/
 
@@ -660,7 +661,7 @@ theorem staleFrame_basis_necessity :
 
 end StaleNecessity
 
-/-! ### The cross-slice schema (the "calculus pays rent" observation)
+/-! ### The cross-slice schema (the "schema pays rent" observation)
 
   Three independent failure modes, three independent `MergeOk`
   predicates, five predicates spanning sufficiency and necessity at
@@ -690,7 +691,7 @@ end StaleNecessity
   - **Basis layer**: Slice 1 ✓ (`staleFrame_basis_necessity`).
   - Together with the existing per-slice iffs, this yields the
     slice-indexed characterizations: Budget/Conflict at value layer,
-    Stale at basis layer. **The calculus body is this schema, not a
+    Stale at basis layer. **The kernel content is this schema, not a
     single generic iff** — see the verdict comment at the start of
     the necessity section.
 
@@ -711,10 +712,11 @@ end StaleNecessity
 
   Composes with the keystone (`BoundaryWitness.lean`): both refuse
   the single-grand-theorem collapse. The keystone is a schema plus
-  two obstruction instantiations across axes; the calculus body is a
+  two obstruction instantiations across axes; this kernel is a
   schema plus three characterizations across slices. *Not every
   theorem arrives wearing a cape* — and that refusal is what keeps
-  both honest.
+  both honest, and is exactly what "small kernels, not a unified
+  calculus" looks like in practice.
 
   Promotion gate. This module is not root-wired. Promote when either
   (a) a downstream consumer needs the generic shape, or (b) a second

@@ -57,7 +57,7 @@ To actually mutate governance state, the actor would need to construct an `Execu
 
 ## The receipt
 
-The specimen `Admissibility.CalculusOne.Examples.SelfCertDenial.specimen_self_cert_denial` (at `LeanProofs/Admissibility/Examples.lean:96`) is the formal demonstration. Reading it shows a concrete derivation environment (`rejectingBasis`) and the one-line proof:
+The specimen `Admissibility.Kernels.Examples.SelfCertDenial.specimen_self_cert_denial` (at `LeanProofs/Admissibility/Examples.lean:96`) is the formal demonstration. Reading it shows a concrete derivation environment (`rejectingBasis`) and the one-line proof:
 
 ```
 revoked_basis_never_authorized env state actor claim trivial

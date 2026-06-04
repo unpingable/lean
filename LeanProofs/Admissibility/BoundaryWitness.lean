@@ -2,7 +2,7 @@
   Admissibility — cross-axis keystone schema (SCRATCH, EXPOSITORY).
 
   **Status correction 2026-06-01.** This file is *expository*, not the
-  calculus content. The boundary-witness obstruction schema names a
+  kernel content. The boundary-witness obstruction schema names a
   shared shape that both Axis 1 (no-lift) and Axis 2 (no-compose)
   instantiate, but the schema alone is contentless: non-surjectivity
   is cheap (`Nat.succ` has it — 0 is not in the image), and over the
@@ -45,7 +45,8 @@
       not *enrich* (distinguish within a fiber).
 
   What this file is NOT:
-    - Not the calculus body (lives in `ParameterizedMerge.lean`).
+    - Not the kernel body for either axis (Axis 1's kernel body
+      lives in `SafetyBridge.lean`; Axis 2's in `ParameterizedMerge.lean`).
     - Not the paper title — do not title around abstract boundary
       obstruction alone; the value-sound-gating framing is the truer
       anchor. See `axis-2-cross-axis-keystone.md` title-implications.
