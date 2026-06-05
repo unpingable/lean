@@ -187,6 +187,29 @@ theorem emitted_inferable_from_many
   refine ⟨entry, h, ?_⟩
   simp [inferableFromLog]
 
+/-- Positive characterization: many logs infer an emitted claim exactly
+    when the list contains a matching log entry. Nothing else is smuggled
+    through the existential.
+
+    Doctrine pin: the many-log existential adds list membership. It does
+    not add truth, authorization, causality, completeness, fairness, or
+    institutional standing. -/
+theorem inferableFromManyLogs_emitted_iff_exists_matching_entry
+    (entries : List LogEntry) (sys stmt : String) (ts : Nat) :
+    inferableFromManyLogs entries (.emitted sys stmt ts) ↔
+      ∃ entry ∈ entries,
+        entry.system = sys ∧
+        entry.statement = stmt ∧
+        entry.timestamp = ts := by
+  constructor
+  · intro h
+    rcases h with ⟨entry, hmem, hinf⟩
+    exact ⟨entry, hmem, by simpa [inferableFromLog] using hinf⟩
+  · intro h
+    rcases h with ⟨entry, hmem, hfields⟩
+    refine ⟨entry, hmem, ?_⟩
+    simpa [inferableFromLog] using hfields
+
 /-- A single log entry does not discharge truth. -/
 theorem log_entry_does_not_discharge_truth
     (entry : LogEntry) (stmt : String) :
