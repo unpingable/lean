@@ -5,6 +5,11 @@
   `LeanProofs.lean`. Not part of any 1.0 surface. No paper anchor.
   No promotion path. NOT used as discharge for any doctrine.
 
+  Custody class: scratch-checked (direct `lake env lean` clean as of
+  2026-06-06; see `~/git/papers/working/tooltheory/lean-custody-ledger-2026-06-06.md`
+  § Checked Scratch). Custody header added per the 2026-06-06 Option C
+  policy: every `.lean` file declares its custody class explicitly.
+
   First compiling skeleton of a "boundary checker for authority transit":
   failure to compose is the default; a successful crossing requires an
   explicit witnessed exception.
