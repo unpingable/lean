@@ -40,6 +40,35 @@
   which implementation idioms are inadmissible." Lean played the
   adversarial-reviewer role, not the ratification role.
 
+  Witness substrate gap (named, not closed).
+
+    The Lean witness here is a dependent proof object
+    (`Witness attempt now`). Production systems exchange signed
+    JSON, receipt rows, ledger entries, NQ testimony packets, WLP
+    claims, or other substrate witnesses — not Lean proofs. The
+    bridge between Lean witness and production witness is the
+    load-bearing engineering question once a downstream consumer
+    earns this pattern from category-2 fenced scratch to
+    category-1 wired/annex.
+
+    AWS Cedar's Lean/Rust methodology supplies the worked template:
+    generate many attempted transitions, valid witnesses, and
+    malformed witnesses; classify them through both the Lean model
+    and the production witness implementation; treat divergence as
+    either model error, schema error, or implementation error.
+    Differential randomized testing makes the model↔substrate
+    correspondence *tested*, not assumed.
+
+    > Lean witness ≠ production witness. The bridge is a tested
+    > correspondence, not a vibes equivalence.
+
+    This is named here so the substrate gap doesn't get handwaved
+    when a consumer appears. The template exists; the harness does
+    not, and would be the natural next engineering step if
+    BoundaryTransit ever earns promotion. See
+    `~/git/papers/working/admissibility-as-pre-authorization-layer.md`
+    § "Adjacent methodological theft" for the positioning context.
+
   Doctrine tested at the type level:
     * Witness is OUTPUT, never input. Callers submit evidence; the
       system mints the witness.
