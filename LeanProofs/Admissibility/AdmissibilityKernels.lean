@@ -46,7 +46,10 @@
      `Paper25EpistemicBorderControl`, `TaxonomyGraph`, `BranchSelector`,
      `OpsMasking`, `RepairOperator`, `CollapsedSurface`, `Basic`,
      `PersistenceModel`, the P27 skeleton at `LeanProofs/Admissibility.lean`)
-     are specimens, not contents.
+     are specimens, not contents. Consumer specimens internal to
+     `LeanProofs/Admissibility/` are enumerated in the Annex (consumer
+     specimens) subsection below; they exercise the public surface in
+     concrete settings without becoming part of it.
   7. 1.0 does not claim a unified maximal calculus that closes the
      kernels into one composing object. The kernels are deliberately
      small and separately defended; their refusal to collapse is a
@@ -65,17 +68,46 @@
   | SurfaceAuthorization| Collapsed-surface refusal; cause-specific gate    |
   | WitnessInvariance   | Evidence-stability discipline under perturbation  |
 
-  ## Annex (compiled, not promised)
+  ## Annex (ANNEX custody class — compiled support, not public surface)
+
+  The ANNEX custody class covers compiled supporting material intentionally
+  included in the admissibility corpus, scope-declared and regression-covered,
+  but not promoted as public kernel authority. ANNEX modules are imported by
+  `LeanProofs.lean` for build coverage; their signatures are not part of the
+  1.0 compatibility claim.
+
+  ANNEX splits into two sub-groups by role.
+
+  ### Kernel-adjacent annex (13 modules)
 
   CorrectiveBoundary, PublicReceiptRefinement, RecoveryMargin,
   ClosureEligibility, FiatAdmissibility, NumericalAdmissibility, AxisSkew,
   CrossBoundaryExposure, CrossBoundaryDegradation, CrossBoundaryFailureMint,
   CrossBoundaryCascade, LocalBoundary, Composition.
 
-  These modules are available, green, and sorry-free — but their signatures
-  are not part of the 1.0 compatibility claim. Future versions may rename
-  them, refactor their APIs, or absorb them into the public surface without
-  prior notice.
+  These extend the kernel surface along axes (recovery, cross-boundary
+  composition, numerical/artifact kinds, communicating processes) that the
+  1.0 surface explicitly does not promise. Per scope-fence points 2–5 above.
+
+  ### Consumer specimens (11 modules)
+
+  AttestationLedger, AuthorizedNotSafe, AuthorizedNotSafeWitness,
+  AuthorizedStepNotSafe, AuthorizedStepNotSafeWitness, SafetyBridge,
+  SafetyBridgeWitness, SafetyTrajectory, ConsolidationDenial,
+  RefusalPropagation, Examples.
+
+  These exercise the kernel surface in concrete settings — the SafetyBridge
+  / AuthorizedStep families instantiate the typed-verdict and execution
+  kernels against safety-trajectory specimens; ConsolidationDenial and
+  RefusalPropagation carry refusal-kernel specimens; Examples and
+  AttestationLedger are illustrative. Cross-references scope-fence point 6.
+
+  ### Common ANNEX guarantees and non-guarantees
+
+  All ANNEX modules are available, green, and sorry-free — but their
+  signatures are not part of the 1.0 compatibility claim. Future versions
+  may rename them, refactor their APIs, or absorb them into the public
+  surface without prior notice.
 
   ## Load-bearing public API (names only)
 
