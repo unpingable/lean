@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — Axis 2, Slice 0: shared-budget merge.
 
   Forcing-case specimen for the composition axis. The keeper result is

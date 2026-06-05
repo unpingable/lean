@@ -1,4 +1,6 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+
   Admissibility — Execution bridge (Layer 4).
 
   Reference: governor doctrine; ties together
@@ -28,6 +30,13 @@
   `revoked_basis_cannot_be_authorized_step`.
 
   Governor-neutral. Imports the three sibling Admissibility modules.
+
+  Custody:
+    Public 1.0 surface; imported by the AdmissibilityKernels aggregator;
+    signature anchored by commit hash + lake build proof gate + ratification
+    rule on changes to the load-bearing names enumerated in the aggregator
+    docstring. A definition matching this signature elsewhere does not
+    inherit this anchoring.
 -/
 
 import LeanProofs.Admissibility.Authority

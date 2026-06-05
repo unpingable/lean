@@ -1,4 +1,6 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+
   Admissibility — Derivation bridge (Layer 2).
 
   Reference: governor doctrine; bridge between
@@ -39,6 +41,13 @@
   forces it.
 
   Governor-neutral. Imports only sibling Admissibility modules.
+
+  Custody:
+    Public 1.0 surface; imported by the AdmissibilityKernels aggregator;
+    signature anchored by commit hash + lake build proof gate + ratification
+    rule on changes to the load-bearing names enumerated in the aggregator
+    docstring. A definition matching this signature elsewhere does not
+    inherit this anchoring.
 -/
 
 import LeanProofs.Admissibility.Authority

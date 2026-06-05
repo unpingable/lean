@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Safety bridge, concrete discharge + boundary.
 
   Inhabits `SafetyBridge.SafetyEnv` at the concrete miniature types of

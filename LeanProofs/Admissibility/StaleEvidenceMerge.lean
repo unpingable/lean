@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — Axis 2, Slice 1: stale-evidence merge.
 
   Second forcing-case specimen for the composition axis. Distinct failure

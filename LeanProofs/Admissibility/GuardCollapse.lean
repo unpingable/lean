@@ -1,4 +1,6 @@
 /-
+  Custody-Class: SCRATCH
+
   Admissibility — Axis 2 probe: does "freshness" collapse into a value guard?
 
   Not a slice. An interferometer probe. The open question from the Slice 0/1

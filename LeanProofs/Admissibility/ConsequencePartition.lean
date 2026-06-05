@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — ConsequencePartition (scratch annex).
 
   Status: scratch / annex / candidate. Not in LeanProofs.lean.

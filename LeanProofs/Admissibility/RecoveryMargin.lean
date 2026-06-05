@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — RecoveryMargin.
 
   Refusal kernel for the gap between a visible liveness signal and the

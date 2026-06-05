@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — LocalBoundary (Slice 1: aperture).
 
   Status: EXPERIMENTAL theorem aperture.

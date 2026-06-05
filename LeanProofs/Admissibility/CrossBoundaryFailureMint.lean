@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — CrossBoundaryFailureMint (failure-to-exposure mint).
 
   Keeper:

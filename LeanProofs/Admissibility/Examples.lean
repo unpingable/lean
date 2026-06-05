@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility Kernels — example specimens.
 
   Seven specimens demonstrating the public 1.0 surface, consumed

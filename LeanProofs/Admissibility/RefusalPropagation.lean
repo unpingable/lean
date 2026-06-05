@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — RefusalPropagation (experimental annex; not 1.0; not promised).
 
   Construction codename: *RefusalRebar* (historical; preserved in

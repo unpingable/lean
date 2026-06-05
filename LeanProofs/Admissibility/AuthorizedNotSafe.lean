@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Authorized ≠ Safe counterexample specimen.
 
   Negative model for `FRONTIERS.md` Frontier 1 (Admissibility ≠

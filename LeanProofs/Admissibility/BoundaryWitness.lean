@@ -1,4 +1,6 @@
 /-
+  Custody-Class: SCRATCH
+
   Admissibility — cross-axis keystone schema (SCRATCH, EXPOSITORY).
 
   **Status correction 2026-06-01.** This file is *expository*, not the

@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Safety trajectories (brick 2), verdict-layer
   specialization.
 

@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — Amendment fragment (specimen, scratch annex).
 
   Status: scratch annex, 2026-06-02. Closeout 2026-06-02: this file

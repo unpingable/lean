@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Composition (Slice 0: global-boundary process lift).
 
   Status: diagnostic. Not the calculus.

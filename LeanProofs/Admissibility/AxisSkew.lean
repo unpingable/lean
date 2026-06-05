@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — AxisSkew kernel (directional comparison axis).
 
   Keeper:

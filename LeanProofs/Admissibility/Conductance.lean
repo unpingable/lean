@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — Conductance (scratch annex; contagion-hygiene fragment).
 
   Status: scratch / annex / candidate. Not in LeanProofs.lean.

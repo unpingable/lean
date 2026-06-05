@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Attestation-ledger protocol (second concrete witness).
 
   Purpose: pressure-test the safety-axis kernel skeleton against a

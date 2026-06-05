@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Kernel-legible all-green verdict ≠ Safe.
 
   Brick 1a of the Frontier-1 safety programme. Settles the transfer

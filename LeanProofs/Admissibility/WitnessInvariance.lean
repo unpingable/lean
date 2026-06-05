@@ -1,4 +1,6 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+
   Admissibility — Witness invariance failure (boundary primitive).
 
   Companion working note:
@@ -36,6 +38,13 @@
       both) that exhibits selectivity ↛ encapsulation.
 
   Governor-neutral. No imports beyond core Lean.
+
+  Custody:
+    Public 1.0 surface; imported by the AdmissibilityKernels aggregator;
+    signature anchored by commit hash + lake build proof gate + ratification
+    rule on changes to the load-bearing names enumerated in the aggregator
+    docstring. A definition matching this signature elsewhere does not
+    inherit this anchoring.
 -/
 
 namespace Admissibility.WitnessInvariance

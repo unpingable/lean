@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — CrossBoundaryCascade (authorized exposure reachability).
 
   Keeper:

@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — CrossBoundaryExposure (exposure mint kernel).
 
   Keeper:

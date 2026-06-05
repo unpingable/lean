@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Corrective boundary (model-dependence proof).
 
   Sibling of `Corrective.lean`. The recorded investigative null

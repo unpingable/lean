@@ -1,4 +1,6 @@
 /-
+  Custody-Class: DEPRECATED
+
   Deprecated compatibility shim (1.1.0).
 
   The public aggregator formerly named `CalculusOne` is now

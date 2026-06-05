@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — NumericalAdmissibility kernel (numerical-kind axis).
 
   Keeper:

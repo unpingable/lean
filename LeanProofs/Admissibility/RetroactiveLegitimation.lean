@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — Retroactive Legitimation (scratch annex, specimen).
 
   Status: scratch annex, 2026-06-02. Not imported by `LeanProofs.lean`.

@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Safety bridge (candidate, non-binding).
 
   Frontier 1 (FRONTIERS.md): Admissibility ≠ Safety. The kernel can

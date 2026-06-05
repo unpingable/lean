@@ -1,4 +1,6 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+
   Admissibility — Authority verdict kernel (Layer 0).
 
   Reference: governor doctrine; sibling to LeanProofs/Admissibility.lean
@@ -22,6 +24,13 @@
   Everything else (read-side derivation; write-side mutation +
   permission gates) lives in sibling modules. This file does not
   import any of them and does not depend on Governor or P27 concepts.
+
+  Custody:
+    Public 1.0 surface; imported by the AdmissibilityKernels aggregator;
+    signature anchored by commit hash + lake build proof gate + ratification
+    rule on changes to the load-bearing names enumerated in the aggregator
+    docstring. A definition matching this signature elsewhere does not
+    inherit this anchoring.
 -/
 
 namespace Admissibility.Authority

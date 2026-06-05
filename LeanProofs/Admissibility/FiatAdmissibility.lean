@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — FiatAdmissibility kernel (third axis).
 
   Keeper:

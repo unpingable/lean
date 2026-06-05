@@ -1,4 +1,6 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+
   Admissibility — SurfaceAuthorization (Governor-facing refusal gate).
 
   Sibling to CollapsedSurface (which proves the negative kernel: a
@@ -48,6 +50,13 @@
     framing was retired 2026-06-03) would extend
     `PublicReceiptRefinement`'s pattern over the unformalized channels
     if a forcing case appeared.
+
+  Custody:
+    Public 1.0 surface; imported by the AdmissibilityKernels aggregator;
+    signature anchored by commit hash + lake build proof gate + ratification
+    rule on changes to the load-bearing names enumerated in the aggregator
+    docstring. A definition matching this signature elsewhere does not
+    inherit this anchoring.
 -/
 
 namespace Admissibility.SurfaceAuthorization

@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — Mandamus (scratch annex; liveness-dual spike).
 
   Status: scratch / annex / candidate, 2026-06-06. Not imported by

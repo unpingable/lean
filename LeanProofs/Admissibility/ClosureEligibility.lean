@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — ClosureEligibility.
 
   Refusal kernel for closure verdicts on shift-bounded operations.

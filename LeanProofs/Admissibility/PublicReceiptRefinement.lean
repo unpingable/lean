@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — PublicReceiptRefinement (recovery doctrine for
   SurfaceAuthorization).
 

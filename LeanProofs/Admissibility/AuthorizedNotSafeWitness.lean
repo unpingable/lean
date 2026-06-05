@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Authorized ≠ Safe, concrete witness.
 
   Companion to `AuthorizedNotSafe.lean`. That module exhibits the

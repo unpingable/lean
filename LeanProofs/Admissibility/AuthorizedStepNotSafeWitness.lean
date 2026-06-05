@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — Kernel-legible all-green verdict ≠ Safe, concrete
   witness + safety-gate lift (brick 1a-witness and 1b).
 

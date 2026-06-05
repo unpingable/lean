@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — CrossBoundaryDegradation (degradation provenance).
 
   Keeper:

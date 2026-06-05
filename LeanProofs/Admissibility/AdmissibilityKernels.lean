@@ -1,4 +1,6 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+
   Admissibility Kernels — public surface aggregator.
 
   > The Lean work did not produce a unified calculus. It produced a
@@ -175,6 +177,12 @@
 
   Removing any of these names without a major-version bump breaks the
   1.0 compatibility claim. Annex names carry no such commitment.
+
+  Custody:
+    Public 1.0 surface aggregator; canonical via commit hash + lake build
+    proof gate + the scope-fence and load-bearing-API enumerations above.
+    Changes to the public surface, annex enumeration, scope-fence, or
+    load-bearing API list require explicit ratification.
 -/
 
 import LeanProofs.Admissibility.Authority

@@ -1,4 +1,6 @@
 /-
+  Custody-Class: ANNEX
+
   Admissibility — ConsolidationDenial.
 
   Refusal kernel for the gap between interaction fluency and audited

@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — Axis 2 generic extraction: parameterized merge frame.
 
   Scratch / candidate. Not root-wired. Build with:

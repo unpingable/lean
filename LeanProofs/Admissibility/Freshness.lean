@@ -1,4 +1,6 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+
   Admissibility — Freshness kernel (metric-time admissibility axis).
 
   Keeper:

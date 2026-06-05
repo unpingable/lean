@@ -1,4 +1,6 @@
 /-
+  Custody-Class: UNRATIFIED-CANDIDATE
+
   Admissibility — Axis 2, Slice 2: conflict merge (reconciliation-
   policy failure / degenerate corner).
 
