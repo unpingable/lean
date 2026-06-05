@@ -351,4 +351,95 @@ example : isOk (check_crossing 500 goodAttempt) = true := by decide
 /-- Multi-failure: `now = 500`, all three kernels fail, refusal minted. -/
 example : isOk (check_crossing 500 badAttempt) = false := by decide
 
+/-! ## Doctrine verification
+
+  These theorems pin the scratch-file doctrine to the type shape:
+  witness output, failure accumulation, no self-certification, no replay,
+  and nonempty refusal receipts.
+
+  They are internal verification for fenced scratch only. They do not promote
+  this file, discharge authority possession, or close the Lean↔production
+  witness substrate gap.
+-/
+
+def KernelResult.passedShape {P : Prop} : KernelResult P → Prop
+  | .passed _ => True
+  | .failed _ => False
+
+def accumulatedFailures (now : Nat) (attempt : CrossingAttempt) :
+    List KernelFailure :=
+  (match kernel_check_self_attested attempt with
+   | .failed e => [e]
+   | .passed _ => []) ++
+  (match kernel_check_freshness now attempt with
+   | .failed e => [e]
+   | .passed _ => []) ++
+  (match kernel_check_evidence attempt with
+   | .failed e => [e]
+   | .passed _ => [])
+
+/-- If the checker mints a witness, all three kernels reached their
+    success branch. This verifies success-shape, not proof-object identity.
+
+    Case-split on ALL THREE kernels first (the `<;>` chain), then `simp`
+    can fully reduce `check_crossing`'s 8-way match with all three results
+    known. Case-splitting one at a time would leave `simp` stuck on a
+    partially-known match. -/
+theorem witness_implies_all_kernels_passed
+    (attempt : CrossingAttempt) (now : Nat)
+    (w : Witness attempt now)
+    (h : check_crossing now attempt = .ok w) :
+    KernelResult.passedShape (kernel_check_self_attested attempt) ∧
+    KernelResult.passedShape (kernel_check_freshness now attempt) ∧
+    KernelResult.passedShape (kernel_check_evidence attempt) := by
+  cases hk1 : kernel_check_self_attested attempt <;>
+    cases hk2 : kernel_check_freshness now attempt <;>
+      cases hk3 : kernel_check_evidence attempt <;>
+        simp [check_crossing, KernelResult.passedShape,
+              hk1, hk2, hk3] at h ⊢
+
+/-- If the checker refuses, the receipt's failure list is exactly the
+    accumulation of the failed kernels. -/
+theorem failure_list_is_accumulation
+    (attempt : CrossingAttempt) (now : Nat)
+    (r : RefusalReceipt)
+    (h : check_crossing now attempt = .error r) :
+    r.failures = accumulatedFailures now attempt := by
+  cases hk1 : kernel_check_self_attested attempt <;>
+    cases hk2 : kernel_check_freshness now attempt <;>
+      cases hk3 : kernel_check_evidence attempt <;>
+        simp [check_crossing, accumulatedFailures,
+              hk1, hk2, hk3] at h ⊢ <;>
+        (first | (cases h; rfl) | rfl | (exact h.symm))
+
+/-- No self-certification: a self-attested attempt cannot have a witness.
+    Stated as `Witness a n → False` because `Witness` lives in `Type`,
+    not `Prop`. -/
+theorem no_witness_for_self_attested
+    (a : CrossingAttempt) (n : Nat)
+    (h : a.basis = Basis.selfAttested) :
+    Witness a n → False := by
+  intro w
+  exact w.notSelfAttested h
+
+/-- No replay past horizon: after expiry, the witness type is uninhabited.
+    Stated as `Witness a n → False` because `Witness` lives in `Type`,
+    not `Prop`. -/
+theorem no_witness_past_horizon
+    (a : CrossingAttempt) (n : Nat)
+    (h : a.freshness.validUntil < n) :
+    Witness a n → False := by
+  intro w
+  -- w.notExpired : a.freshness.validUntil ≥ n  (i.e., n ≤ ...validUntil)
+  -- h           : a.freshness.validUntil < n
+  -- So n ≤ ...validUntil < n, contradicting Nat.lt_irrefl n.
+  exact Nat.lt_irrefl n (Nat.lt_of_le_of_lt w.notExpired h)
+
+/-- Refusal receipts emitted by the checker are nonempty. -/
+theorem refusal_is_nonempty
+    (_attempt : CrossingAttempt) (_now : Nat)
+    (r : RefusalReceipt)
+    (_h : check_crossing _now _attempt = .error r) :
+    r.failures ≠ [] := r.nonempty
+
 end BoundaryTransit

@@ -117,4 +117,141 @@ theorem many_logs_still_do_not_discharge_truth
   rcases h with ⟨entry, _, hInfer⟩
   simp [inferableFromLog] at hInfer
 
+/-! ## Doctrine verification
+
+  These theorems pin the file's intended shape: logs discharge emission
+  only. They do not discharge truth, authorization, causality,
+  completeness, or fairness.
+
+  The positive case is deliberately narrow: an entry can prove that the
+  entry was emitted by that system at that timestamp. It cannot prove
+  that the statement is true, authorized, complete, fair, or causal.
+
+  Doctrine scar to preserve (the small gremlin the first patch caught):
+
+    Constructor-negative claims (truthOf / authorizationOf / etc.)
+    reduce to False.
+    Mismatched emitted claims (.emitted sys stmt ts with wrong fields)
+    reduce to unmet equality obligations.
+    DO NOT collapse those two cases — different failure species.
+
+  The file is about emission-only admissibility, so it must be especially
+  careful not to launder *"not this emitted claim"* into *"all negative
+  claims are definitionally false."* That distinction is the doctrine in
+  miniature.
+
+  These pins are internal verification for fenced scratch only. They do
+  not promote this file or discharge any production predicate.
+-/
+
+section doctrine_verification
+
+/-- Emission is inferable exactly as the field-matching conjunction. -/
+theorem inferable_emitted_iff
+    (entry : LogEntry) (sys stmt : String) (ts : Nat) :
+    inferableFromLog entry (.emitted sys stmt ts) ↔
+      entry.system = sys ∧ entry.statement = stmt ∧ entry.timestamp = ts := by
+  simp [inferableFromLog]
+
+/-- A log entry determines only its own emitted claim. -/
+theorem inferable_emitted_determines_fields
+    (entry : LogEntry) (sys stmt : String) (ts : Nat)
+    (h : inferableFromLog entry (.emitted sys stmt ts)) :
+    entry.system = sys ∧ entry.statement = stmt ∧ entry.timestamp = ts := by
+  simpa [inferableFromLog] using h
+
+/-- The exact emitted claim for a log entry is inferable from that entry. -/
+theorem emitted_inferable_from_log
+    (entry : LogEntry) :
+    inferableFromLog entry
+      (.emitted entry.system entry.statement entry.timestamp) := by
+  simp [inferableFromLog]
+
+/-- The exact emitted claim for a log entry is inferable from a singleton
+    log list. -/
+theorem emitted_inferable_from_singleton
+    (entry : LogEntry) :
+    inferableFromManyLogs [entry]
+      (.emitted entry.system entry.statement entry.timestamp) := by
+  refine ⟨entry, ?_, ?_⟩
+  · simp
+  · simp [inferableFromLog]
+
+/-- The exact emitted claim for a log entry is inferable from any list
+    containing it. -/
+theorem emitted_inferable_from_many
+    (entry : LogEntry) (entries : List LogEntry)
+    (h : entry ∈ entries) :
+    inferableFromManyLogs entries
+      (.emitted entry.system entry.statement entry.timestamp) := by
+  refine ⟨entry, h, ?_⟩
+  simp [inferableFromLog]
+
+/-- A single log entry does not discharge truth. -/
+theorem log_entry_does_not_discharge_truth
+    (entry : LogEntry) (stmt : String) :
+    ¬ inferableFromLog entry (.truthOf stmt) := by
+  simp [inferableFromLog]
+
+/-- A single log entry does not discharge authorization. -/
+theorem log_entry_does_not_discharge_authorization
+    (entry : LogEntry) (actor action : String) :
+    ¬ inferableFromLog entry (.authorizationOf actor action) := by
+  simp [inferableFromLog]
+
+/-- A single log entry does not discharge causality. -/
+theorem log_entry_does_not_discharge_causality
+    (entry : LogEntry) (cause effect : String) :
+    ¬ inferableFromLog entry (.causalityOf cause effect) := by
+  simp [inferableFromLog]
+
+/-- A single log entry does not discharge completeness. -/
+theorem log_entry_does_not_discharge_completeness
+    (entry : LogEntry) (domain : String) :
+    ¬ inferableFromLog entry (.completenessOf domain) := by
+  simp [inferableFromLog]
+
+/-- A single log entry does not discharge fairness. -/
+theorem log_entry_does_not_discharge_fairness
+    (entry : LogEntry) (process : String) :
+    ¬ inferableFromLog entry (.fairnessOf process) := by
+  simp [inferableFromLog]
+
+/-- Many logs still do not discharge authorization. -/
+theorem many_logs_do_not_discharge_authorization
+    (entries : List LogEntry) (actor action : String) :
+    ¬ inferableFromManyLogs entries (.authorizationOf actor action) := by
+  intro h
+  rcases h with ⟨entry, _, hInfer⟩
+  simp [inferableFromLog] at hInfer
+
+/-- Many logs still do not discharge causality. -/
+theorem many_logs_do_not_discharge_causality
+    (entries : List LogEntry) (cause effect : String) :
+    ¬ inferableFromManyLogs entries (.causalityOf cause effect) := by
+  intro h
+  rcases h with ⟨entry, _, hInfer⟩
+  simp [inferableFromLog] at hInfer
+
+/-- Many logs still do not discharge completeness. -/
+theorem many_logs_do_not_discharge_completeness
+    (entries : List LogEntry) (domain : String) :
+    ¬ inferableFromManyLogs entries (.completenessOf domain) := by
+  intro h
+  rcases h with ⟨entry, _, hInfer⟩
+  simp [inferableFromLog] at hInfer
+
+/-- Many logs still do not discharge fairness. -/
+theorem many_logs_do_not_discharge_fairness
+    (entries : List LogEntry) (process : String) :
+    ¬ inferableFromManyLogs entries (.fairnessOf process) := by
+  intro h
+  rcases h with ⟨entry, _, hInfer⟩
+  simp [inferableFromLog] at hInfer
+
+/-- `Repr` instance exists; useful only as a compile/elaboration check. -/
+example : Repr LogEntry := inferInstance
+
+end doctrine_verification
+
 end Admissibility
