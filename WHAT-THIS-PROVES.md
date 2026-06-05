@@ -163,7 +163,7 @@ Governor (`agent_gov`) operationally implements this kernel's pattern. The Lean 
 
 ## Infrastructure: Safety bridge (Frontier 1)
 
-Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), addressing the Frontier 1 wound ("Admissibility ≠ Safety") from `FRONTIERS.md`. Specimen / annex status; not part of the Admissibility Kernels 1.0 compatibility claim.
+Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), addressing the Frontier 1 wound ("Admissibility ≠ Safety") from `FRONTIERS.md`. ANNEX-classified (consumer specimens sub-group) — wired into `LeanProofs.lean` for build coverage, but their signatures are not part of the Admissibility Kernels 1.0 compatibility claim.
 
 - **`AuthorizedNotSafe.lean`** / **`AuthorizedNotSafeWitness.lean`** — Brick 0. The wound at the `StepAllowed` layer (mutation standing): an authorized step strictly decreases an externally-defined defended value. The first module exhibits it axiomatically over the abstract kernel surface; the second discharges the consistency caveat via a parallel concrete miniature (evidence store as `List Receipt`).
 - **`SafetyBridge.lean`** — Abstract primitive. `SafetyEnv (σ α ρ : Type)` with actor-inert `bridge : σ → α → Prop` and a `preserves` proof obligation. `SafeStep` bundles authorization + bridge witness; `bridge_implies_safe` projects through `preserves` without consuming `Allowed`. Actor-inertness is a base design decision for the safety axis (actor-relative evidence stays in `Allowed`; safety preservation is over the transition effect); the actor-sensitive refinement `ActorSensitiveBridgeEnv` is named-but-not-implemented.
@@ -190,7 +190,7 @@ Frontier 1 of `FRONTIERS.md` named the wound on 2026-05-10: *kernel correctly sa
 
 ## Infrastructure: Cross-Boundary Artifact Specimens
 
-Four modules in `LeanProofs/Admissibility/` (added 2026-05-21), intentionally unwired at root, applying the admissibility kernel's forbidden-artifact-unconstructible discipline to a new artifact family: boundary-crossing exposures.
+Four modules in `LeanProofs/Admissibility/` (added 2026-05-21; wired into `LeanProofs.lean` as ANNEX kernel-adjacent extensions since 1.0.1 / 2026-05-24), applying the admissibility kernel's forbidden-artifact-unconstructible discipline to a new artifact family: boundary-crossing exposures.
 
 - **`CrossBoundaryExposure.lean`** — first-class `Exposure (origin, target, failure)` artifact; the only mint constructor (`Step.expose`) requires `Boundary.authorized e.origin e.target = true`. Operator-supplied `BoundaryPartition` carries Prop-valued `Internal` / `External` predicates over abstract `Domain`. Theorem `no_external_exposure_without_authorized_edge`: under a sealed boundary, no reachable configuration contains an Internal-origin External-target exposure.
 - **`CrossBoundaryDegradation.lean`** — extends with `degrade` action carrying `Cause.direct | Cause.fromExposure e`. The `fromExposure` constructor requires `e ∈ c.exposures ∧ e.target = d`. Theorem `no_external_degradation_from_internal_exposure`: exposure-attributed external degradation cannot cite an Internal-origin exposure under a sealed boundary. Direct degradation (Cause.direct) is licensed and not the concern of this slice.
@@ -226,7 +226,7 @@ The brick's own theorem then falls out as a corollary. Any new step constructor 
 
 ### Why it's here
 
-Outside-aperture category audit ("is this a process calculus?") surfaced the candidate; inside-aperture kernel-overlap audit found the forbidden-artifact-unconstructible *pattern* was already instantiated three ways (`StateTransition` trapdoor, `Execution.AuthorizedStep`, `TaxonomyGraph` forward-closed lanes) but the cross-boundary *artifacts* were missing. The trio fills the missing artifact-family slot without minting a new proof pattern. Specimen status (unwired at root) reflects that institutional promotion has not been earned yet — the bricks build green and the discipline is documented, but the modules are not promoted as part of the kernel's public surface until a downstream consumer forces ratification.
+Outside-aperture category audit ("is this a process calculus?") surfaced the candidate; inside-aperture kernel-overlap audit found the forbidden-artifact-unconstructible *pattern* was already instantiated three ways (`StateTransition` trapdoor, `Execution.AuthorizedStep`, `TaxonomyGraph` forward-closed lanes) but the cross-boundary *artifacts* were missing. The trio fills the missing artifact-family slot without minting a new proof pattern. ANNEX-classified (kernel-adjacent sub-group) status reflects that institutional promotion to the 1.0 surface has not been earned yet — the bricks build green and are regression-covered, but their signatures are not part of the 1.0 compatibility claim until a downstream consumer forces promotion.
 
 See `papers/working/cross-boundary-artifact-specimens.md` for the full audit trail.
 
