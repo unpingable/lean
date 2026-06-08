@@ -2,68 +2,78 @@
   Custody-Class: SCRATCH
 
   Labelwatch — first non-synthetic pressure test, 2026-06-08
-  (revised 2026-06-08 per operator: EvidenceInput / DerivedJudgment
-  separation; further revised 2026-06-08 per detection-lane D-001:
-  ExecutionSurface schema patch). Not imported by `LeanProofs.lean`.
-  Not part of any 1.0 surface. No paper anchor. No promotion path.
-  NOT used as discharge for any doctrine.
-
-  Goal: smallest calculus vocabulary that can represent Labelwatch
-  specimens 001 and 002 — AND can correctly classify D-001's
-  hosting-layer action without misreading it as a render-execution
-  gap.
+  (revisions: EvidenceInput/DerivedJudgment separation;
+  ExecutionSurface schema patch from D-001; ConsumerAdoption /
+  ConsumerScope patch from Specimen 003 / Driftwatch).
+  Not imported by `LeanProofs.lean`. Not part of any 1.0 surface.
+  No paper anchor. No promotion path. NOT used as discharge for
+  any doctrine.
 
   Hard discipline:
     1. Hand-authored evidence packets are FIXTURES only.
     2. EvidenceInput contains ONLY observable/documentary facts.
-       No verdict-like fields. No Bool flags.
     3. DerivedJudgment contains the products of interpretation.
        Computed FROM EvidenceInput, never appears as an input.
-    4. No specimen theorem takes its gap as a premise.
+    4. No specimen theorem takes its gap or scope as a premise.
     5. No evidence constructor contains a verdict-like field.
-    6. Derived judgments are NOT admissible as input evidence unless
-       witnessed independently.
+    6. Derived judgments are NOT admissible as input evidence
+       unless witnessed independently.
 
-  D-001 finding (detection lane, 2026-06-08):
-    moderation.bsky.app + !takedown was auto-classified as a
-    render-execution gap because the schema lacked execution surface.
-    Audit: !takedown converts at the hosting/PDS availability layer,
-    not the client render layer. The classifier could not see this
-    distinction; both surfaces collapsed to "no render observation."
+  Specimen 003 / Driftwatch finding (2026-06-08):
+    skywatch.blue emits "fringe-media" label (third-party emitter).
+    Case A: no consumer adopts → consumer_scope_effective = emitter_declared
+    Case B: driftwatch adopts + has action receipt → consumer_scope_effective = opt_in:driftwatch
+    The same underlying third-party label witnesses two different
+    effective scopes. The schema must represent the difference
+    without allowing local conversion to promote evidence to global.
 
-  Schema patch (this revision):
-    - ExecutionSurface : render | hosting | mixed | unknown
-    - PolicyDocumentation now carries executionSurface (where the
-      policy's action is supposed to execute)
-    - RenderObservation generalized to ExecutionObservation(surface).
-      executionContext replaces renderContext.
-    - ConversionGap.execution_gap_policy_present now carries surface,
-      so a gap on hosting layer is distinguishable from a gap on
-      render layer.
-    - No new constructors added (avoiding constructor explosion).
+  Spec003 patch (this revision):
+    - ConsumerScope : global_platform | emitter_declared | opt_in consumer_id
+    - ConsumerAdoption (structure): documentary record of a consumer
+      adopting a label/policy artifact
+    - ConsumerActionObservation (structure): receipt that a consumer
+      acted on the label at some surface
+    - Two new admissibility constructors:
+        from_emitter_only_scope (no adoption → emitter_declared)
+        from_consumer_adoption_and_action (adoption + action → opt_in)
+    - no_cross_consumer_inference theorem
+    - no_global_promotion theorem (vacuous-by-design: there is no
+      constructor for .global_platform; admitting one would require
+      platform-specific witness evidence we do not model)
 
-  Surface guard (per operator, 2026-06-08):
-    `executionSurface` is admissible as input evidence ONLY as a
-    field of PolicyDocumentation (or ExecutionObservation), not as a
-    derived-gap verdict surfaced back into the bundle. The classifier
-    reads surface FROM PolicyDocumentation; the gap classification
-    inherits surface from that read. There is no path by which a
-    derived `execution_gap_policy_present surface` becomes an input
-    to admissibility.
+  Spec003 guard (per operator):
+    No subscription graph modeling. No multi-consumer adoption yet.
+    One named consumer (driftwatch), one label (fringe-media), one
+    receipt.
+
+  Non-global provenance inheritance:
+    The opt_in tag in `.consumer_scope ... (.opt_in cid)` IS the
+    non-global provenance marker. There is no path by which a claim
+    with opt_in scope is rewritten or promoted to global_platform.
+    Structural — not requiring a separate theorem beyond
+    no_global_promotion.
 -/
 
 namespace Admissibility.Scratch.Labelwatch
 
-/-! ## Execution surface (new in this revision) -/
+/-! ## Execution surface -/
 
 inductive ExecutionSurface where
-  | render    -- client-side rendering (feed, UI, ranking)
-  | hosting   -- hosting / PDS availability layer (takedown, blocked)
-  | mixed     -- policy effects span both
-  | unknown   -- policy unspecified or layer not yet classified
+  | render
+  | hosting
+  | mixed
+  | unknown
   deriving DecidableEq, Repr
 
-/-! ## Evidence types (observable/documentary facts only) -/
+/-! ## Consumer scope (added Specimen 003) -/
+
+inductive ConsumerScope where
+  | global_platform           -- platform-default adoption (no constructor admits this)
+  | emitter_declared          -- only the emitter has declared; no consumer has acted
+  | opt_in (consumerId : String)  -- a specific named consumer has adopted
+  deriving DecidableEq, Repr
+
+/-! ## Evidence types -/
 
 structure LabelObservation where
   label : String
@@ -72,9 +82,6 @@ structure LabelObservation where
   timestamp : Nat
   deriving DecidableEq, Repr
 
-/-- PolicyDocumentation: a published artifact stating a label→constraint
-    rule at a specific execution surface. Witnesses artifact existence
-    AND its named execution surface, not consumer application. -/
 structure PolicyDocumentation where
   artifactId : String
   label : String
@@ -91,10 +98,6 @@ structure PolicyWitness where
   witnessedAt : Nat
   deriving DecidableEq, Repr
 
-/-- ExecutionObservation: execution receipt that the constraint was
-    applied at a specific surface and execution context.
-    (Generalized from the prior RenderObservation; surface is now an
-    explicit field, executionContext replaces renderContext.) -/
 structure ExecutionObservation where
   subject : String
   constraint : String
@@ -117,22 +120,47 @@ structure AuditEvent where
   timestamp : Nat
   deriving DecidableEq, Repr
 
-/-- The space of admissible constraint claims (claim shapes). -/
+/-- ConsumerAdoption: documentary record that a named consumer adopted
+    a label/policy artifact. Adoption is the consumer's commitment to
+    apply the label's conversion; it is distinct from policy witness
+    (which witnesses an artifact application) and from action
+    observation (which records the receipt of a specific act). -/
+structure ConsumerAdoption where
+  consumerId : String
+  artifactId : String
+  adoptedAt : Nat
+  deriving DecidableEq, Repr
+
+/-- ConsumerActionObservation: receipt that a specific named consumer
+    acted on the label at some surface and context. Distinct from
+    `ExecutionObservation` (which is platform or policy level) in that
+    this is consumer-local — the consumer's own action receipt. -/
+structure ConsumerActionObservation where
+  consumerId : String
+  subject : String
+  constraint : String
+  surface : ExecutionSurface
+  actionContext : String
+  timestamp : Nat
+  deriving DecidableEq, Repr
+
+/-! ## ConstraintClaim -/
+
 inductive ConstraintClaim where
   | label_observed (subject : String) (label : String)
-  /-- Documented conversion path: includes the policy's executionSurface
-      so the claim distinguishes hosting-layer from render-layer paths. -/
   | documented_conversion_path
       (subject : String) (label : String) (constraint : String)
       (policyArtifact : String) (surface : ExecutionSurface)
-  /-- Constraint applied at a specific surface and execution context. -/
   | constraint_applied
       (subject : String) (constraint : String)
       (surface : ExecutionSurface) (executionContext : String)
   | no_default_constraint_followed (subject : String) (label : String)
+  /-- The effective consumer scope of a label observation. -/
+  | consumer_scope
+      (subject : String) (label : String) (scope : ConsumerScope)
   deriving DecidableEq, Repr
 
-/-! ## EvidenceInput (observation-only) -/
+/-! ## EvidenceInput -/
 
 structure EvidenceInput where
   labelObs : Option LabelObservation
@@ -140,6 +168,8 @@ structure EvidenceInput where
   policyWit : Option PolicyWitness
   executionObs : Option ExecutionObservation
   auditEvents : List AuditEvent
+  consumerAdoptions : List ConsumerAdoption
+  consumerActions : List ConsumerActionObservation
   deriving DecidableEq, Repr
 
 /-! ## Admissibility relation -/
@@ -149,8 +179,6 @@ inductive AdmissibleFromInput : EvidenceInput → ConstraintClaim → Prop where
       (e : EvidenceInput) (l : LabelObservation)
       (hLabel : e.labelObs = some l)
       : AdmissibleFromInput e (.label_observed l.subject l.label)
-  /-- labelObs + policyDoc (matching label) grounds the documented
-      conversion path claim, carrying the policy's executionSurface. -/
   | from_label_and_policy_doc
       (e : EvidenceInput) (l : LabelObservation) (p : PolicyDocumentation)
       (hLabel : e.labelObs = some l)
@@ -159,12 +187,6 @@ inductive AdmissibleFromInput : EvidenceInput → ConstraintClaim → Prop where
       : AdmissibleFromInput e
           (.documented_conversion_path l.subject p.label p.constraint
             p.artifactId p.executionSurface)
-  /-- Full coherent bundle: labelObs + policyDoc + executionObs with
-      matching identities, surface coherent between policy and
-      execution, and policy preceding execution in time. The surface
-      coherence check is new: it refuses bundles where a hosting-layer
-      policy is "witnessed" by a render-layer execution observation
-      (or vice versa). -/
   | from_full_coherent_bundle
       (e : EvidenceInput) (l : LabelObservation) (p : PolicyDocumentation)
       (r : ExecutionObservation)
@@ -185,13 +207,31 @@ inductive AdmissibleFromInput : EvidenceInput → ConstraintClaim → Prop where
       (hAuditPresent : a ∈ e.auditEvents)
       (hAuditOutcome : a.outcome = .no_consumer_found_converting)
       : AdmissibleFromInput e (.no_default_constraint_followed l.subject l.label)
+  /-- A label observation with NO consumer adoptions grounds the
+      emitter_declared scope claim. -/
+  | from_emitter_only_scope
+      (e : EvidenceInput) (l : LabelObservation)
+      (hLabel : e.labelObs = some l)
+      (hNoAdoption : e.consumerAdoptions = [])
+      : AdmissibleFromInput e (.consumer_scope l.subject l.label .emitter_declared)
+  /-- A label observation + a consumer adoption + a consumer action
+      receipt (same consumerId, same subject) grounds the opt_in
+      scope claim. The opt_in tag carries the consumer's name as the
+      non-global provenance marker. -/
+  | from_consumer_adoption_and_action
+      (e : EvidenceInput) (l : LabelObservation)
+      (ca : ConsumerAdoption) (action : ConsumerActionObservation)
+      (hLabel : e.labelObs = some l)
+      (hAdoption : ca ∈ e.consumerAdoptions)
+      (hAction : action ∈ e.consumerActions)
+      (hSameConsumer : ca.consumerId = action.consumerId)
+      (hSubjectMatch : l.subject = action.subject)
+      : AdmissibleFromInput e
+          (.consumer_scope l.subject l.label (.opt_in ca.consumerId))
 
-/-! ## DerivedJudgment (products of interpretation) -/
+/-! ## DerivedJudgment -/
 
 inductive ConversionGap where
-  /-- Policy documented at a specific surface, but no execution observed
-      at that surface. The surface is now explicit so D-001 (hosting)
-      is distinguishable from S001 (render). -/
   | execution_gap_policy_present (surface : ExecutionSurface)
   | conversion_witness_gap_no_consumer
   | other_gap
@@ -199,6 +239,7 @@ inductive ConversionGap where
 
 structure DerivedJudgment where
   gap : Option ConversionGap
+  effectiveScope : Option ConsumerScope
   deriving DecidableEq, Repr
 
 def hasNoConsumerAudit : List AuditEvent → Bool
@@ -208,10 +249,6 @@ def hasNoConsumerAudit : List AuditEvent → Bool
       | .no_consumer_found_converting => true
       | _ => hasNoConsumerAudit rest
 
-/-- Gap classifier. Reads only EvidenceInput. The surface in
-    execution_gap_policy_present is inherited from PolicyDocumentation
-    (the canonical source) — NOT a verdict re-surfaced into the
-    bundle. -/
 def classifyInputGap (e : EvidenceInput) : Option ConversionGap :=
   match e.labelObs, e.policyDoc, e.executionObs, hasNoConsumerAudit e.auditEvents with
   | some _, some p, none, _ => some (.execution_gap_policy_present p.executionSurface)
@@ -219,10 +256,19 @@ def classifyInputGap (e : EvidenceInput) : Option ConversionGap :=
   | some _, _, none, _ => some .other_gap
   | _, _, _, _ => none
 
-def deriveJudgment (e : EvidenceInput) : DerivedJudgment :=
-  { gap := classifyInputGap e }
+/-- Classify the effective consumer scope. Reads only EvidenceInput.
+    Takes the first ConsumerAdoption (per "one named consumer" guard).
+    If a future patch admits multi-consumer, this classifier extends. -/
+def classifyEffectiveScope (e : EvidenceInput) : Option ConsumerScope :=
+  match e.labelObs, e.consumerAdoptions with
+  | some _, [] => some .emitter_declared
+  | some _, c :: _ => some (.opt_in c.consumerId)
+  | none, _ => none
 
-/-! ## Specimens (fixtures — observation-only) -/
+def deriveJudgment (e : EvidenceInput) : DerivedJudgment :=
+  { gap := classifyInputGap e, effectiveScope := classifyEffectiveScope e }
+
+/-! ## Specimens -/
 
 def spec002_audit : AuditEvent := {
   auditor := "compliance_team",
@@ -242,7 +288,9 @@ def spec001 : EvidenceInput := {
     documenter := "policy_team", publishedAt := 50 },
   policyWit := none,
   executionObs := none,
-  auditEvents := []
+  auditEvents := [],
+  consumerAdoptions := [],
+  consumerActions := []
 }
 
 def spec002 : EvidenceInput := {
@@ -252,7 +300,9 @@ def spec002 : EvidenceInput := {
   policyDoc := none,
   policyWit := none,
   executionObs := none,
-  auditEvents := [spec002_audit]
+  auditEvents := [spec002_audit],
+  consumerAdoptions := [],
+  consumerActions := []
 }
 
 def spec_demo_full_render : EvidenceInput := {
@@ -271,7 +321,57 @@ def spec_demo_full_render : EvidenceInput := {
     surface := .render,
     executionContext := "user_feed_render",
     timestamp := 150 },
-  auditEvents := []
+  auditEvents := [],
+  consumerAdoptions := [],
+  consumerActions := []
+}
+
+/-- skywatch.blue emits "fringe-media" label — third-party emitter. -/
+def skywatch_fringe_label : LabelObservation := {
+  label := "fringe-media",
+  subject := "post_uvw",
+  observer := "skywatch.blue",
+  timestamp := 500
+}
+
+/-- Spec003 Case A: same skywatch label, NO consumer adoption.
+    Effective scope should be emitter_declared. -/
+def spec003a : EvidenceInput := {
+  labelObs := some skywatch_fringe_label,
+  policyDoc := none,
+  policyWit := none,
+  executionObs := none,
+  auditEvents := [],
+  consumerAdoptions := [],
+  consumerActions := []
+}
+
+def driftwatch_adoption : ConsumerAdoption := {
+  consumerId := "driftwatch",
+  artifactId := "skywatch.blue/fringe-media",
+  adoptedAt := 600
+}
+
+def driftwatch_action : ConsumerActionObservation := {
+  consumerId := "driftwatch",
+  subject := "post_uvw",
+  constraint := "demote_locally",
+  surface := .render,
+  actionContext := "driftwatch_feed",
+  timestamp := 700
+}
+
+/-- Spec003 Case B: same skywatch label, driftwatch has adopted and
+    has an action receipt. Effective scope should be opt_in:driftwatch.
+    Effective scope MUST NOT be global_platform. -/
+def spec003b : EvidenceInput := {
+  labelObs := some skywatch_fringe_label,
+  policyDoc := none,
+  policyWit := none,
+  executionObs := none,
+  auditEvents := [],
+  consumerAdoptions := [driftwatch_adoption],
+  consumerActions := [driftwatch_action]
 }
 
 /-! ## Positive admissibility theorems -/
@@ -317,7 +417,22 @@ theorem spec_demo_full_admits_constraint_applied :
     spec_demo_full_render _ _ _ rfl rfl rfl rfl rfl rfl rfl
   decide
 
-/-! ## Non-laundering theorems -/
+/-- Spec003 Case A: no adoption → emitter_declared scope is admissible. -/
+theorem spec003a_admits_emitter_declared_scope :
+    AdmissibleFromInput spec003a
+      (.consumer_scope "post_uvw" "fringe-media" .emitter_declared) :=
+  AdmissibleFromInput.from_emitter_only_scope spec003a skywatch_fringe_label rfl rfl
+
+/-- Spec003 Case B: driftwatch adopted + acted → opt_in:driftwatch
+    scope is admissible. -/
+theorem spec003b_admits_opt_in_driftwatch_scope :
+    AdmissibleFromInput spec003b
+      (.consumer_scope "post_uvw" "fringe-media" (.opt_in "driftwatch")) :=
+  AdmissibleFromInput.from_consumer_adoption_and_action
+    spec003b skywatch_fringe_label driftwatch_adoption driftwatch_action
+    rfl (List.Mem.head _) (List.Mem.head _) rfl rfl
+
+/-! ## Non-laundering theorems (carried forward) -/
 
 theorem no_constraint_applied_without_policy_doc
     {e : EvidenceInput} (hNoPolicy : e.policyDoc = none)
@@ -354,8 +469,6 @@ theorem label_and_policy_doc_cannot_derive_constraint_applied
     ¬ AdmissibleFromInput e (.constraint_applied subj constr s ctx) :=
   no_constraint_applied_without_execution_observation hNoExec subj constr s ctx
 
-/-! ### Specimen-instance refusals -/
-
 theorem spec001_refuses_constraint_applied
     (constr : String) (s : ExecutionSurface) (ctx : String) :
     ¬ AdmissibleFromInput spec001 (.constraint_applied "post_xyz" constr s ctx) :=
@@ -376,12 +489,56 @@ theorem spec002_refuses_documented_conversion_path
       rw [show spec002.policyDoc = none from rfl] at hPolicy
       cases hPolicy
 
-/-! ## Gap classification (on DerivedJudgment side)
+/-! ## Spec003 non-inference theorems
 
-D-001's lesson: the gap classifier now carries surface. spec001's
-gap is on render surface; a hosting-layer policy would produce a
-gap on hosting surface, no longer collapsing to a generic
-"execution_gap_policy_present."
+These are the load-bearing theorems for the patch.
+-/
+
+/-- Adoption by consumer C does not imply adoption by consumer D.
+    Phrased as: if every ConsumerAdoption in the bundle has
+    consumerId equal to c, and d ≠ c, then the bundle cannot derive
+    an opt_in:d scope claim. -/
+theorem no_cross_consumer_inference
+    {e : EvidenceInput} {subject label d : String}
+    (h_no_d_adoption :
+      ∀ ca : ConsumerAdoption, ca ∈ e.consumerAdoptions → ca.consumerId ≠ d) :
+    ¬ AdmissibleFromInput e (.consumer_scope subject label (.opt_in d)) := by
+  intro h
+  cases h with
+  | from_consumer_adoption_and_action _ ca _ _ hAdoption _ _ _ =>
+      -- After cases, the claim's .opt_in d unifies with the constructor's
+      -- .opt_in ca.consumerId, so d is substituted by ca.consumerId.
+      -- h_no_d_adoption ca hAdoption (after substitution) has type
+      -- ca.consumerId ≠ ca.consumerId. Apply to rfl → False.
+      exact h_no_d_adoption ca hAdoption rfl
+
+/-- Spec003b specifically: cannot infer that "otherwatch" has adopted
+    from "driftwatch"'s adoption. Pairs with
+    spec003b_admits_opt_in_driftwatch_scope as the positive counterpart. -/
+theorem spec003b_refuses_otherwatch_scope :
+    ¬ AdmissibleFromInput spec003b
+      (.consumer_scope "post_uvw" "fringe-media" (.opt_in "otherwatch")) := by
+  apply no_cross_consumer_inference (d := "otherwatch")
+  intro ca hCa
+  rcases List.mem_cons.mp hCa with rfl | h
+  · decide
+  · cases h
+
+/-- Opt_in consumer adoption does not promote to global_platform.
+    Proven structurally: there is NO admissibility constructor that
+    produces a `.global_platform` scope claim. Adding one would
+    require platform-specific witness evidence that this minimum
+    vocabulary does not model. -/
+theorem no_global_promotion
+    (e : EvidenceInput) (subject label : String) :
+    ¬ AdmissibleFromInput e (.consumer_scope subject label .global_platform) := by
+  intro h
+  cases h
+
+/-! ## Gap classification + scope classification (DerivedJudgment side)
+
+These are PROPERTIES of derived judgments. No specimen theorem
+takes any of them as a premise.
 -/
 
 theorem spec001_derived_gap :
@@ -393,6 +550,21 @@ theorem spec002_derived_gap :
 theorem spec001_and_spec002_gaps_differ :
     (deriveJudgment spec001).gap ≠ (deriveJudgment spec002).gap := by
   rw [spec001_derived_gap, spec002_derived_gap]
+  intro h; cases h
+
+theorem spec003a_derived_scope :
+    (deriveJudgment spec003a).effectiveScope = some .emitter_declared := rfl
+
+theorem spec003b_derived_scope :
+    (deriveJudgment spec003b).effectiveScope = some (.opt_in "driftwatch") := rfl
+
+/-- The same underlying label produces different effective scopes
+    depending on whether a consumer has adopted. This is the
+    Spec003 / Driftwatch counterexample to the accidental rule
+    "third-party → no conversion." -/
+theorem spec003a_and_spec003b_scopes_differ :
+    (deriveJudgment spec003a).effectiveScope ≠ (deriveJudgment spec003b).effectiveScope := by
+  rw [spec003a_derived_scope, spec003b_derived_scope]
   intro h; cases h
 
 /-! ## Vacuity guard -/
@@ -409,58 +581,78 @@ theorem spec_demo_full_admissibility_nonempty :
     ∃ c, AdmissibleFromInput spec_demo_full_render c :=
   ⟨_, spec_demo_full_admits_constraint_applied⟩
 
+theorem spec003a_admissibility_nonempty :
+    ∃ c, AdmissibleFromInput spec003a c :=
+  ⟨_, spec003a_admits_emitter_declared_scope⟩
+
+theorem spec003b_admissibility_nonempty :
+    ∃ c, AdmissibleFromInput spec003b c :=
+  ⟨_, spec003b_admits_opt_in_driftwatch_scope⟩
+
 /-! ## The separation invariant
 
-The principle, per operator (2026-06-08):
+The principle:
   "Derived judgments are not admissible as input evidence unless
    witnessed independently."
 
-Structural reading: there is no constructor of `AdmissibleFromInput`
-that takes a `DerivedJudgment` or `ConversionGap` as an argument.
-Every admissibility derivation reaches back to an observable fact in
-EvidenceInput.
+CAVEAT 1 (recorded 2026-06-08): the theorem name
+`derived_judgments_require_independent_witness` slightly overclaims.
+The proof shows every current admissibility constructor requires a
+LabelObservation — specimen-track local. The broader principle is
+structural (type signature of `AdmissibleFromInput`).
+`admissible_claims_require_label_anchor` would be a more accurate
+name.
 
-The schema patch (D-001) preserves the separation: `ExecutionSurface`
+CAVEAT 2 (recorded 2026-06-08): `AuditEvent.scope` is a laundering
+pressure point. The no_consumer_found_converting outcome is safe
+ONLY if scope is precise (consumer/context/surface/time-named).
+Type system doesn't enforce this.
+
+CAVEAT 3 (recorded 2026-06-08 with D-001 patch): `ExecutionSurface`
 appears as input evidence ONLY as a field of `PolicyDocumentation`
-and `ExecutionObservation` (observation-shaped). The classifier reads
-surface from `PolicyDocumentation`; the derived
-`execution_gap_policy_present surface` inherits surface from that
-read, but is NEVER fed back into the bundle as an input. No
-constructor of `AdmissibleFromInput` reads `ConversionGap`-side
-surface as a premise.
+or `ExecutionObservation`. Not as a free-standing verdict.
 
-CAVEAT 1 (recorded 2026-06-08 per operator): the theorem name
-`derived_judgments_require_independent_witness` slightly overclaims
-what the proof shows. The proof demonstrates that every current
-admissibility constructor requires a `LabelObservation`. That is
-"specimen-track local" — it holds because all four current
-constructors happen to need a `LabelObservation`. The broader
-principle (no derived judgment may serve as primary evidence unless
-independently witnessed) is enforced STRUCTURALLY by the type
-signature of `AdmissibleFromInput`, not by this theorem alone. A
-more accurate name for what the theorem proves would be
-`admissible_claims_require_label_anchor`. Kept under the broader
-name as a fenced marker; rename if/when a future constructor breaks
-the label-anchor invariant while preserving the separation principle.
+CAVEAT 4 (recorded 2026-06-08 with Spec003 patch, updated post-review):
+`ConsumerScope` appears as input evidence ONLY through
+`ConsumerAdoption` (consumerId field) and `ConsumerActionObservation`
+(consumerId field). Not as a free-standing scope verdict in the
+bundle.
 
-CAVEAT 2 (recorded 2026-06-08 per operator): `AuditEvent.scope` is
-the new laundering pressure point. The `no_consumer_found_converting`
-outcome is safe ONLY if scope is precise enough — e.g., "auditor A
-checked consumer C / context ctx / label V / policy surface S at
-time T and found no documented/default conversion." It is NOT safe
-if scope is a global no-conversion claim ("nothing converted this
-anywhere"). The type system does not enforce scope precision. That
-is a Labelwatch-side discipline question for the producer of
-AuditEvent records.
+Two sub-caveats on this slice's claim of "no global promotion":
 
-CAVEAT 3 (added 2026-06-08, schema patch): `ExecutionSurface` is the
-newest laundering pressure point. The surface guard requires it to
-appear as input evidence ONLY as a field of `PolicyDocumentation` or
-`ExecutionObservation`. It must NOT appear as a free-standing
-"surface verdict" injected back into the bundle from a downstream
-classifier. The type system enforces this structurally: `EvidenceInput`
-has no `executionSurface : ExecutionSurface` field; surface is always
-sub-field of a documented observation.
+  (a) `no_global_promotion` is named more broadly than what it
+  proves. The proof is: "there is no constructor in this fenced
+  consumer-adoption fragment that produces `.global_platform`." It
+  is NOT a general claim that no evidence anywhere can ground
+  `.global_platform`. A future patch admitting a platform-witness
+  constructor (e.g., first-party protocol evidence) would
+  legitimately derive `.global_platform`. The current theorem is
+  correct only WITHIN this fragment. A more honest name would be
+  `opt_in_adoption_does_not_promote_to_global` or
+  `no_global_scope_from_consumer_adoption_fragment`. Kept under the
+  broader name as a fenced marker; rename when a platform-witness
+  constructor is added.
+
+  (b) Non-globality is structurally preserved through
+  `ConsumerScope.opt_in cid` (the consumerId tag is the
+  non-global-provenance marker). This spike does NOT model arbitrary
+  caveat-list inheritance (e.g., Labelwatch packets carrying named
+  caveats like `non_global_provenance`, `consumer_local_scope_only`,
+  `no_cross_consumer_inference` as a free-form set). The Lean side
+  preserves the SCOPE caveat structurally; it does not yet model
+  caveat lists as data. That is the correct boundary for this slice.
+
+CAVEAT 5 (recorded 2026-06-08 with Spec003 patch, updated post-review):
+the `classifyEffectiveScope` function takes the FIRST
+ConsumerAdoption per the "one named consumer" guard. This is a quiet
+policy — deterministic but not loud about its choice. If
+multi-consumer adoption is ever admitted in a future slice, the
+operator's stated preference is to make >1 ConsumerAdoption return
+`none` (unsupported/ambiguous) rather than silently take the first.
+The current single-consumer reading is a known partial; the
+fail-over-first preference is recorded as the next likely D-style
+bite if multi-consumer specimens appear before the classifier is
+patched.
 -/
 
 theorem derived_judgments_require_independent_witness
@@ -475,6 +667,10 @@ theorem derived_judgments_require_independent_witness
   | from_full_coherent_bundle _ _ _ hLabel _ _ _ _ _ _ _ =>
       intro hNone; rw [hNone] at hLabel; cases hLabel
   | from_audited_no_default _ _ hLabel _ _ _ =>
+      intro hNone; rw [hNone] at hLabel; cases hLabel
+  | from_emitter_only_scope _ hLabel _ =>
+      intro hNone; rw [hNone] at hLabel; cases hLabel
+  | from_consumer_adoption_and_action _ _ _ hLabel _ _ _ _ =>
       intro hNone; rw [hNone] at hLabel; cases hLabel
 
 theorem admissibility_pure_of_evidence_input
