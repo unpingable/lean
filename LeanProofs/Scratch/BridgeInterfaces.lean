@@ -90,12 +90,60 @@ inductive DependencyName : Type where
   | custodyRequirement
   deriving DecidableEq, Repr
 
+/-! ## Effect grounding (added 2026-06-08)
+
+The slogan: *force is not a property of the name; force is a property of
+what acting on the claim does.* `EffectSignature` decomposes what a
+claim-kind operationally changes into a small fixed set of boolean axes.
+`EffectSeverity` is a small ordered class derived mechanically from the
+signature. `effectOfClaimKind` is asserted per-claim-kind (operational
+declaration); the severity projection is derived. Bridges' decision
+logic is *unchanged* by this addition; only the receipts now carry
+effect evidence.
+-/
+
+structure EffectSignature where
+  changesVisibility : Bool
+  changesAccess : Bool
+  changesStanding : Bool
+  changesObligation : Bool
+  changesRecordOnly : Bool
+  requiresActor : Bool
+  deriving DecidableEq, Repr
+
+def emptyEffect : EffectSignature := {
+  changesVisibility := false,
+  changesAccess := false,
+  changesStanding := false,
+  changesObligation := false,
+  changesRecordOnly := false,
+  requiresActor := false
+}
+
+/-- EffectSeverity: small ordered class. The hierarchy is asserted once
+    here as the legitimate floor (per operator/claude-web discussion 2026-06-08):
+    record_only < constraining < binding < force_bearing. -/
+inductive EffectSeverity where
+  | record_only
+  | constraining
+  | binding
+  | force_bearing
+  deriving DecidableEq, Repr
+
+def EffectSeverity.level : EffectSeverity → Nat
+  | .record_only => 0
+  | .constraining => 1
+  | .binding => 2
+  | .force_bearing => 3
+
 structure RefusalReceipt where
   owner : BridgeOwner
   ruleName : String
   dependenciesConsulted : List DependencyName
   source : State
   target : State
+  sourceEffect : EffectSignature   -- added 2026-06-08: effect evidence
+  targetEffect : EffectSignature   -- added 2026-06-08: effect evidence
   deriving Repr
 
 inductive BridgeDecision : Type where
@@ -172,6 +220,35 @@ def custodyRequirement : Modality → ClaimKind → Bool
 def allowedClaimKindTransition : ClaimKind → ClaimKind → Bool
   | c1, c2 => decide (c1 = c2)
 
+/-- effectOfClaimKind: asserted per-claim-kind effect signature.
+    Hand-crafted (each new claim-kind requires a deliberate effect
+    declaration); severity is then derived mechanically. -/
+def effectOfClaimKind : ClaimKind → EffectSignature
+  | .revocation => { emptyEffect with changesStanding := true, requiresActor := true }
+  | .observation => { emptyEffect with changesRecordOnly := true }
+  | .authorization => { emptyEffect with changesAccess := true, requiresActor := true }
+  | .risk_score => { emptyEffect with changesRecordOnly := true }
+  | .visibility_constraint => { emptyEffect with changesVisibility := true }
+  | .enforcement_action => {
+      emptyEffect with changesAccess := true, changesStanding := true, requiresActor := true }
+  | .obligation_claim => { emptyEffect with changesObligation := true, requiresActor := true }
+
+/-- severityOfEffect: derived severity from effect signature. Mechanical
+    projection — not a hand-grade table. -/
+def severityOfEffect (e : EffectSignature) : EffectSeverity :=
+  if e.changesAccess && e.changesStanding && e.requiresActor then
+    .force_bearing
+  else if e.changesStanding || e.changesObligation then
+    .binding
+  else if e.changesVisibility || e.changesAccess then
+    .constraining
+  else
+    .record_only
+
+/-- claimKindSeverity: composition. No hand-graded "ForceGrade table." -/
+def claimKindSeverity (c : ClaimKind) : EffectSeverity :=
+  severityOfEffect (effectOfClaimKind c)
+
 end Policies
 
 /-! ## Bridge decision functions
@@ -186,20 +263,26 @@ policies) are recorded in each receipt.
     Inspects: s.modality, s.claimKind, s.resource, t.modality,
     t.claimKind, t.resource.
     Does NOT inspect: s.index, t.index.
-    Declared interface: requiredResourceClass. -/
+    Declared interface: requiredResourceClass.
+    Receipt evidence (descriptive, not decision-constitutive): effectOfClaimKind
+    applied to source and target claim-kinds. -/
 def ResourceBridge.decide (s t : State) : BridgeDecision :=
   if !Policies.requiredResourceClass t.modality t.claimKind t.resource then
     .refuse {
       owner := .resource,
       ruleName := "target_resource_invalid_for_modality",
       dependenciesConsulted := [.requiredResourceClass],
-      source := s, target := t }
+      source := s, target := t,
+      sourceEffect := Policies.effectOfClaimKind s.claimKind,
+      targetEffect := Policies.effectOfClaimKind t.claimKind }
   else if !Policies.requiredResourceClass s.modality s.claimKind s.resource then
     .refuse {
       owner := .resource,
       ruleName := "source_resource_invalid_for_modality",
       dependenciesConsulted := [.requiredResourceClass],
-      source := s, target := t }
+      source := s, target := t,
+      sourceEffect := Policies.effectOfClaimKind s.claimKind,
+      targetEffect := Policies.effectOfClaimKind t.claimKind }
   else
     .accept
 
@@ -218,7 +301,9 @@ def IndexBridge.decide (s t : State) : BridgeDecision :=
         owner := .index,
         ruleName := "surface_scope_violation",
         dependenciesConsulted := [.surfaceScopePolicy],
-        source := s, target := t }
+        source := s, target := t,
+        sourceEffect := Policies.effectOfClaimKind s.claimKind,
+        targetEffect := Policies.effectOfClaimKind t.claimKind }
     else .accept
   else .accept
 
@@ -236,7 +321,9 @@ def ModalityBridge.decide (s t : State) : BridgeDecision :=
       owner := .modality,
       ruleName := "modality_transition_not_authorized",
       dependenciesConsulted := [.allowedModalTransition, .isDemotionPolicy],
-      source := s, target := t }
+      source := s, target := t,
+      sourceEffect := Policies.effectOfClaimKind s.claimKind,
+      targetEffect := Policies.effectOfClaimKind t.claimKind }
 
 /-- ClaimKindBridge (flat, added 2026-06-08).
     Inspects: s.claimKind, t.claimKind ONLY.
@@ -258,7 +345,9 @@ def ClaimKindBridge.decide (s t : State) : BridgeDecision :=
       owner := .claim_kind,
       ruleName := "claim_kind_transition_not_authorized",
       dependenciesConsulted := [.allowedClaimKindTransition],
-      source := s, target := t }
+      source := s, target := t,
+      sourceEffect := Policies.effectOfClaimKind s.claimKind,
+      targetEffect := Policies.effectOfClaimKind t.claimKind }
 
 /-- ProtocolBridge.
     Inspects: nothing in this spike (stub).
@@ -325,6 +414,21 @@ def CascadeOutcome.demotionRule : CascadeOutcome → Option String
 def BridgeDecision.isAccept : BridgeDecision → Bool
   | .accept => true
   | _ => false
+
+def CascadeOutcome.sourceEffect : CascadeOutcome → Option EffectSignature
+  | .refuse rc => some rc.sourceEffect
+  | _ => none
+
+def CascadeOutcome.targetEffect : CascadeOutcome → Option EffectSignature
+  | .refuse rc => some rc.targetEffect
+  | _ => none
+
+/-- Effect severity of the receipt's source/target as a pair. The
+    cascade's "reason" for refusal can be narrated by reading these:
+    severity-increase indicates force escalation along the transition. -/
+def CascadeOutcome.severityDelta : CascadeOutcome → Option (EffectSeverity × EffectSeverity)
+  | .refuse rc => some (Policies.severityOfEffect rc.sourceEffect, Policies.severityOfEffect rc.targetEffect)
+  | _ => none
 
 /-! ## Specimens
 
@@ -510,6 +614,51 @@ example : (ClaimKindBridge.decide s6b_source s6b_target).isAccept = false := by 
 example : (ClaimKindBridge.decide s1_source s1_target).isAccept = true := by rfl
 example : (ClaimKindBridge.decide s2_source s2_target).isAccept = true := by rfl
 example : (ClaimKindBridge.decide s3_source s3_target).isAccept = true := by rfl
+
+/-! ## Effect-witness verifications (added 2026-06-08)
+
+Verify that the derived effect severity matches the operational
+intuition: descriptive claim-kinds project to .record_only,
+interventional claim-kinds project to .constraining, and
+enforcement-tier claim-kinds project to .force_bearing. The receipts'
+effect-witness data is consistent with the claim-kind effect
+projection.
+-/
+
+-- Severity derivation is mechanical, not hand-graded
+example : Policies.claimKindSeverity .risk_score = .record_only := by rfl
+example : Policies.claimKindSeverity .observation = .record_only := by rfl
+example : Policies.claimKindSeverity .visibility_constraint = .constraining := by rfl
+example : Policies.claimKindSeverity .authorization = .constraining := by rfl
+example : Policies.claimKindSeverity .revocation = .binding := by rfl
+example : Policies.claimKindSeverity .obligation_claim = .binding := by rfl
+example : Policies.claimKindSeverity .enforcement_action = .force_bearing := by rfl
+
+-- S6a effect-witness: risk_score → visibility_constraint
+-- source severity record_only → target severity constraining
+-- The transition is force-bearing in the operational sense (the target
+-- effect changes platform behavior; the source merely records). The
+-- ClaimKindBridge refusal cites a real severity delta, not a name-only
+-- mismatch.
+example : (cascade s6a_source s6a_target).severityDelta = some (.record_only, .constraining) := by rfl
+
+-- S5 effect-witness: risk_score → enforcement_action
+-- Target severity .force_bearing (changes access + standing + requires actor).
+-- ModalityBridge owns the refusal (cascade order); the effect-witness
+-- explains why the refusal weight is high — target is enforcement-tier.
+example : (cascade s5_source s5_target).severityDelta = some (.record_only, .force_bearing) := by rfl
+
+-- S6b effect-witness: visibility_constraint → enforcement_action
+-- Target severity .force_bearing. ModalityBridge owns; effect-witness
+-- captures the cross-tier escalation.
+example : (cascade s6b_source s6b_target).severityDelta = some (.constraining, .force_bearing) := by rfl
+
+-- S4 effect-witness: authorization → observation
+-- Target severity .record_only — the cross-modality refusal here is
+-- modality-shape (authorized → observed unlicensed), not severity-shape.
+-- This is a useful negative observation: a refusal can be high-priority
+-- in cascade order without target effect being force-bearing.
+example : (cascade s4_source s4_target).severityDelta = some (.constraining, .record_only) := by rfl
 
 /-
   Specimen 6 gradient composition: the three-state chain
