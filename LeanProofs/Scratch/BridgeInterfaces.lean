@@ -77,6 +77,7 @@ inductive BridgeOwner : Type where
   | resource
   | index
   | modality
+  | claim_kind   -- added 2026-06-08 per Specimen 6a OWNERSHIP-GAP finding
   | protocol
   deriving DecidableEq, Repr
 
@@ -85,6 +86,7 @@ inductive DependencyName : Type where
   | surfaceScopePolicy
   | allowedModalTransition
   | isDemotionPolicy
+  | allowedClaimKindTransition   -- added 2026-06-08 with ClaimKindBridge
   | custodyRequirement
   deriving DecidableEq, Repr
 
@@ -161,6 +163,15 @@ def isDemotionPolicy : Modality → Modality → Bool
 def custodyRequirement : Modality → ClaimKind → Bool
   | _, _ => true
 
+/-- ClaimKindBridge interface — allowedClaimKindTransition (added 2026-06-08).
+    DELIBERATELY FLAT: no Modality parameter. The bridge consults
+    *only* the claim-kind transition pair; it does not read modality or
+    any other column. This is a probe of whether ClaimKind can be owned
+    independently of the other columns. Identity-only baseline: no
+    transitions licensed. -/
+def allowedClaimKindTransition : ClaimKind → ClaimKind → Bool
+  | c1, c2 => decide (c1 = c2)
+
 end Policies
 
 /-! ## Bridge decision functions
@@ -227,6 +238,28 @@ def ModalityBridge.decide (s t : State) : BridgeDecision :=
       dependenciesConsulted := [.allowedModalTransition, .isDemotionPolicy],
       source := s, target := t }
 
+/-- ClaimKindBridge (flat, added 2026-06-08).
+    Inspects: s.claimKind, t.claimKind ONLY.
+    Does NOT inspect: resource, modality, index.
+    Declared interface: allowedClaimKindTransition (no Modality parameter).
+
+    This is a deliberate probe of whether ClaimKind can be owned
+    independently. Cascade-order (ClaimKindBridge AFTER ModalityBridge)
+    means that on transitions where claimKind AND modality both drift,
+    ModalityBridge fires first and ClaimKindBridge never runs — so the
+    flat bridge is not asked to disambiguate. The flat policy refuses
+    *any* claim-kind drift; whether that's the right policy is a
+    separate question the next forcing specimen would have to address. -/
+def ClaimKindBridge.decide (s t : State) : BridgeDecision :=
+  if Policies.allowedClaimKindTransition s.claimKind t.claimKind then
+    .accept
+  else
+    .refuse {
+      owner := .claim_kind,
+      ruleName := "claim_kind_transition_not_authorized",
+      dependenciesConsulted := [.allowedClaimKindTransition],
+      source := s, target := t }
+
 /-- ProtocolBridge.
     Inspects: nothing in this spike (stub).
     Declared interface: custodyRequirement. -/
@@ -235,10 +268,12 @@ def ProtocolBridge.decide (_s _t : State) : BridgeDecision :=
 
 /-! ## Cascade composition
 
-Cascade order: Resource → Index → Modality → Protocol.
-First refusal wins for ownership assignment. Downstream bridges'
-decisions are recorded but not authoritative. Demotions are
-propagated as acceptWithDemotion with the demoting bridge's owner.
+Cascade order (updated 2026-06-08):
+  Resource → Index → Modality → ClaimKind → Protocol.
+
+First refusal wins for ownership assignment. ClaimKindBridge sits after
+ModalityBridge because it only fires on intra-modality transitions (its
+own guard); cross-modality refusals are owned by ModalityBridge.
 -/
 
 inductive CascadeOutcome : Type where
@@ -258,9 +293,12 @@ def cascade (s t : State) : CascadeOutcome :=
       | .refuse rc => .refuse rc
       | .acceptWithDemotion rule => .acceptWithDemotion rule .modality
       | _ =>
-        match ProtocolBridge.decide s t with
+        match ClaimKindBridge.decide s t with
         | .refuse rc => .refuse rc
-        | _ => .accept
+        | _ =>
+          match ProtocolBridge.decide s t with
+          | .refuse rc => .refuse rc
+          | _ => .accept
 
 /-! ## Extractor helpers (avoid match-pattern Decidable synthesis pain) -/
 
@@ -424,7 +462,21 @@ def s6a_target : State := {
   index := { actor := "A", surface := "S1", time := 0, scope := "default" }
 }
 
-example : cascade s6a_source s6a_target = .accept := by rfl
+-- Post-β-flat-patch (2026-06-08): S6a now produces a single-owner refusal
+-- via the flat ClaimKindBridge. The OWNERSHIP-GAP that S6a originally
+-- revealed has been captured by a bridge consulting ONLY claimKind
+-- transition pairs (no modality, no resource, no index).
+example : (cascade s6a_source s6a_target).refusedBy = some .claim_kind := by rfl
+example : (cascade s6a_source s6a_target).refusalRule = some "claim_kind_transition_not_authorized" := by rfl
+example : (cascade s6a_source s6a_target).refusalDeps = some [.allowedClaimKindTransition] := by rfl
+
+-- Regression verification: pre-existing specimens' cascade outcomes
+-- unchanged by the flat β patch.
+example : (cascade s1_source s1_target).refusedBy = some .resource := by rfl
+example : (cascade s2_source s2_target).demotedBy = some .modality := by rfl
+example : (cascade s3_source s3_target).refusedBy = some .index := by rfl
+example : (cascade s4_source s4_target).refusedBy = some .modality := by rfl
+example : (cascade s5_source s5_target).refusedBy = some .modality := by rfl
 
 /-- Specimen 6b: advisory visibility_constraint → enforcement
     enforcement_action. Cross-modality leg of the gradient. Similar
@@ -442,23 +494,49 @@ def s6b_target : State := {
 example : (cascade s6b_source s6b_target).refusedBy = some .modality := by rfl
 example : (cascade s6b_source s6b_target).refusalRule = some "modality_transition_not_authorized" := by rfl
 
+-- Honest-accounting diagnostic: flat ClaimKindBridge in isolation also
+-- refuses S4, S5, and S6b (cross-modality transitions where claimKind
+-- also drifts). The cascade outcome is ModalityBridge because of cascade
+-- ORDER, not because ClaimKindBridge wouldn't have fired. Recording the
+-- would-fire overlap so the "single-owner refusal" verdict on these
+-- specimens is read accurately: it is single-owner-AFTER-cascade-order,
+-- not single-owner-as-the-only-bridge-that-could-have-fired.
+example : (ClaimKindBridge.decide s4_source s4_target).isAccept = false := by rfl
+example : (ClaimKindBridge.decide s5_source s5_target).isAccept = false := by rfl
+example : (ClaimKindBridge.decide s6b_source s6b_target).isAccept = false := by rfl
+
+-- The identity-claimKind specimens are unambiguous: ClaimKindBridge
+-- accepts in isolation (claimKinds match), so no would-fire overlap.
+example : (ClaimKindBridge.decide s1_source s1_target).isAccept = true := by rfl
+example : (ClaimKindBridge.decide s2_source s2_target).isAccept = true := by rfl
+example : (ClaimKindBridge.decide s3_source s3_target).isAccept = true := by rfl
+
 /-
   Specimen 6 gradient composition: the three-state chain
   advisory/risk_score → advisory/visibility_constraint → enforcement/enforcement_action.
 
-  Per-step verdicts:
-    Step 1 (S6a): ACCEPT — discovery; current interfaces do not catch
-                          intra-modality claim-kind drift.
+  Per-step verdicts (post-flat-β):
+    Step 1 (S6a): REFUSED by ClaimKindBridge (flat) — the original
+                  OWNERSHIP-GAP captured by a bridge that consults only
+                  the claim-kind transition pair (no modality read, no
+                  resource read, no index read).
     Step 2 (S6b): REFUSED by ModalityBridge — cross-modality escalation
-                          caught.
+                  caught.
 
-  Net observation: the gradient passes the cross-modality gate (Step 2)
-  only because Step 1 silently smuggled the claim-kind escalation into
-  the advisory column. The chain's *first* leg is the laundering surface;
-  the *second* leg is where the existing instrument fires. This is the
-  kind of finding the bounded-interface design exists to expose: an
-  under-owned column visible by the order in which refusals land along a
-  multi-step chain.
+  Pre-β observation (preserved for trail): the gradient originally
+  passed the cross-modality gate (Step 2) only because Step 1 silently
+  smuggled the claim-kind escalation into the advisory column. The
+  first leg was the laundering surface; the second leg was where the
+  existing instrument fired. The β patch (flat ClaimKindBridge) closes
+  the first-leg laundering surface.
+
+  Caveat the flat policy carries: identity-only `allowedClaimKindTransition`
+  refuses *every* claim-kind drift. It captures S6a correctly but cannot
+  distinguish a force-bearing escalation (descriptive → interventional)
+  from a force-neutral refinement. The next forcing specimen — one that
+  legitimately wants a claim-kind transition — would be the test of
+  whether ClaimKind owns its column flatly or whether a ForceGrade
+  diagnostic is needed (claimKind/modality bounded coupling).
 -/
 
 end Specimens
