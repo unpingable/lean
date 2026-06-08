@@ -121,8 +121,32 @@ theorem local_adoption_does_not_imply_global :
   intro hGlobal
   exact consumerB_does_not_adopt_evidenceX (hGlobal consumerB)
 
+/-- Negated-universal wrapper: cross-consumer lift. Refutes the
+    blanket rule that adoption by one consumer implies adoption by
+    any other. -/
+theorem not_all_cross_consumer_lifted :
+    ¬ (∀ (r : AdoptionRegistry) (A B : Consumer) (e : Evidence),
+        Adopts r A e → Adopts r B e) := by
+  intro h
+  rcases cross_consumer_adoption_does_not_imply
+    with ⟨A, B, e, hA, hNotB⟩
+  exact hNotB (h asymmetric_registry A B e hA)
+
+/-- Negated-universal wrapper: local-to-global lift. Refutes the
+    blanket rule that adoption by any consumer implies global
+    adoption. -/
+theorem not_all_local_adoption_globalizes :
+    ¬ (∀ (r : AdoptionRegistry) (c : Consumer) (e : Evidence),
+        Adopts r c e → GloballyAdopted r e) := by
+  intro h
+  have ⟨hAdopt, hNotGlobal⟩ := local_adoption_does_not_imply_global
+  exact hNotGlobal
+    (h asymmetric_registry consumerA evidenceX hAdopt)
+
 /-! ## The explicit bridge (refused here)
 
+Under this encoding, no constructor or bridge predicate licenses
+either cross-consumer lift or local-to-global lift of adoption.
 The negative theorems hold because `Adopts` is defined extensionally
 over the registry — there is no propagation rule that would lift
 A's adoption to other consumers, and no closure rule that would
@@ -149,7 +173,7 @@ take, were someone to build them:
 
 Any path from local adoption to cross-consumer or global adoption
 must be visible in the proof structure as an explicit invocation of
-such a bridge. This module refuses the silent path.
+such a bridge. Within the model, the module refuses the silent path.
 -/
 
 end Admissibility.Scratch.MultiConsumerAdoption

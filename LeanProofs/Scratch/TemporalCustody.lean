@@ -126,6 +126,17 @@ theorem citation_validity_does_not_imply_execution_admissibility :
    stale_specimen_cited_while_valid,
    stale_specimen_not_admissible⟩
 
+/-- Negated-universal wrapper. The existential above is a
+    counterexample to the universal implication; this theorem states
+    the refutation explicitly so prose can read "does not imply"
+    without leaning on the existential's shape. -/
+theorem not_all_citation_validity_implies_admissibility :
+    ¬ (∀ a : ConsumerAction, CitedWhileValid a.citation → AdmissibleAt a) := by
+  intro h
+  rcases citation_validity_does_not_imply_execution_admissibility
+    with ⟨a, hCited, hNotAdmissible⟩
+  exact hNotAdmissible (h a hCited)
+
 /-- Positive contrast: a specimen that IS admissible. Demonstrates
     `AdmissibleAt` is not vacuously refused — there exist
     consumer actions the predicate accepts. -/
@@ -146,12 +157,14 @@ theorem fresh_specimen_admissible :
 
 /-! ## The bridge that would (if present) discharge stale citations
 
-The negative theorem above holds because `AdmissibleAt` checks
-freshness at the execution boundary. A system that wanted to admit
-stale-at-execution citations would have to introduce an explicit
-bridge — a separate predicate that licenses the discharge. The
-bridge is not built here; this slice exists only to refuse the
-silent path.
+Under this encoding, no constructor or bridge predicate licenses
+the conversion from citation-time validity to execution-time
+admissibility. The negative theorem above holds because
+`AdmissibleAt` checks freshness at the execution boundary; a system
+that wanted to admit stale-at-execution citations would have to
+introduce an explicit bridge — a separate predicate that licenses
+the discharge. The bridge is not built here; within the model the
+slice refuses the silent path.
 
 If such a bridge were ever built, it would be a SEPARATE constructor
 or predicate (e.g., `AllowsRetroactiveDischarge`), and the resulting

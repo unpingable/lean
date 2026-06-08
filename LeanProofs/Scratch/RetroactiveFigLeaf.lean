@@ -116,15 +116,26 @@ theorem post_validation_does_not_imply_authorization :
    late_evidence_post_validates_at_25,
    late_evidence_does_not_authorize_early_decision⟩
 
+/-- Negated-universal wrapper. Refutes the blanket rule that
+    post-validation implies authorization. -/
+theorem not_all_post_validation_authorizes :
+    ¬ (∀ (d : Decision) (e : Evidence) (t : Time),
+        PostValidatedAt d e t → AuthorizedBy d e) := by
+  intro h
+  rcases post_validation_does_not_imply_authorization
+    with ⟨d, e, t, hPost, hNotAuth⟩
+  exact hNotAuth (h d e t hPost)
+
 /-! ## The explicit bridge (refused here)
 
-The negative theorem holds because `AuthorizedBy` is defined in
-terms of temporal availability at decision time. A system that
-wanted to admit post-validation as a form of authorization would
-need to add an EXPLICIT bridge predicate — a separate proposition
-licensing the discharge — and a constructor or rule taking
-`PostValidatedAt d e t` plus the bridge to conclude an
-authorization-shaped claim.
+Under this encoding, no constructor or bridge predicate licenses
+the conversion from post-validation to authorization. The negative
+theorem holds because `AuthorizedBy` is defined in terms of
+temporal availability at decision time. A system that wanted to
+admit post-validation as a form of authorization would need to add
+an EXPLICIT bridge predicate — a separate proposition licensing the
+discharge — and a constructor or rule taking `PostValidatedAt d e t`
+plus the bridge to conclude an authorization-shaped claim.
 
 The bridge is NOT built here. The signature it would have, were
 someone to build it:
@@ -137,7 +148,8 @@ someone to build it:
 
 Any path from later-arriving evidence to earlier-decision
 authorization must be visible in the proof structure as an explicit
-invocation of such a bridge. This module refuses the silent path.
+invocation of such a bridge. Within the model, the module refuses
+the silent path.
 -/
 
 end Admissibility.Scratch.RetroactiveFigLeaf
