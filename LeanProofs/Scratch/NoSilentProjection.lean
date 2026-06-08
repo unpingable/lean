@@ -1,4 +1,6 @@
 /-
+  Custody-Class: SCRATCH
+
   NoSilentProjection — scratch kernel (anti-laundering candidate).
 
   Status: scratch / candidate, 2026-06-05. Not imported by
@@ -25,16 +27,26 @@
     (public/promoted).
 
   Design — avoiding the tautology trap:
-    Atoms, the family `carries` relation, the family `demands` relation,
-    and the `Converts` relation are all defined independently of one
-    another. `CanDischarge` is an inductive with exactly two
-    constructors: `direct` (the family carries the atom) and
-    `viaConversion` (the family carries some atom `a'` and a `Converts
-    a' a` witness exists). The `Converts` relation is empty by default;
-    silent conversion would require declaring some `Converts a b` axiom
-    across the existing family boundaries. The keystone negative
-    theorem falsifies under such an axiom — see the §Falsifiability
-    witness block at the end of this file.
+    Atoms, the family `carries` relation, and the `Converts` relation
+    are defined independently. `demands` aliases `carries` per the
+    doctrine's obligation-set convention (a family's obligation set is
+    what it owes AND what it asks for); the two readings are kept named
+    separately to keep theorems directionally legible.
+
+    `CanDischarge` is an inductive with exactly two constructors:
+    `direct` (the family carries the atom) and `viaConversion` (the
+    family carries some atom `a'` and a `Converts source target a' a`
+    witness exists). The `Converts` relation is family-scoped (per the
+    doctrine's bridge-family × atom-demand grid) and empty by default;
+    silent conversion would require extending `Converts` with an
+    explicit constructor declaring the relevant cross-family rule, NOT
+    merely declaring it as an axiom. (An axiom inhabiting a `def := False`
+    or an empty inductive can leave existing case-analysis proofs
+    apparently green while making the system inconsistent invisibly —
+    that is the verdict-compression trap. The keystone proof is
+    sensitive to *constructor* additions to `Converts`, not to axiom
+    inhabitants.) See §Falsifiability witness at the end of this file
+    for the strip-and-restore test that demonstrates this.
 
   Atom spellings adopt the kebab-case identifiers from
   `bridge-obligation-lattice.md` verbatim via Lean's escaped-identifier
@@ -77,17 +89,39 @@ open Family
 /-- Per-family obligation set as a Bool-valued predicate. The set is
     what each family carries AND what any bridge claiming to discharge
     it must provide. The two readings (carries / demands) are
-    definitionally identified below. -/
+    definitionally identified below.
+
+    The table is the full 4 × 5 = 20 cells with NO wildcard. Wildcards
+    would silently default new atoms or families to "carried by nobody
+    / demanded by nobody" — exactly the class of silent remainder this
+    kernel exists to refuse. Adding a sixth atom or fifth family will
+    fail Lean's exhaustiveness check and force this table to be
+    revisited explicitly. -/
 def carriesB : Family → Atom → Bool
+  -- Deform: {temporal-bounding, type-fidelity}
+  | Deform,     «non-amplification» => false
   | Deform,     «temporal-bounding» => true
   | Deform,     «type-fidelity»     => true
+  | Deform,     freshness           => false
+  | Deform,     «anti-precedent»    => false
+  -- Exception: {temporal-bounding, anti-precedent}
+  | Exception,  «non-amplification» => false
   | Exception,  «temporal-bounding» => true
+  | Exception,  «type-fidelity»     => false
+  | Exception,  freshness           => false
   | Exception,  «anti-precedent»    => true
+  -- Projection: {non-amplification, type-fidelity, freshness}
   | Projection, «non-amplification» => true
+  | Projection, «temporal-bounding» => false
   | Projection, «type-fidelity»     => true
   | Projection, freshness           => true
+  | Projection, «anti-precedent»    => false
+  -- Lift: {type-fidelity}
+  | Lift,       «non-amplification» => false
+  | Lift,       «temporal-bounding» => false
   | Lift,       «type-fidelity»     => true
-  | _, _ => false
+  | Lift,       freshness           => false
+  | Lift,       «anti-precedent»    => false
 
 /-- Family `f` carries atom `a`. -/
 def carries (f : Family) (a : Atom) : Prop := carriesB f a = true
@@ -98,32 +132,45 @@ def carries (f : Family) (a : Atom) : Prop := carriesB f a = true
     split keeps the directional reading legible in theorems below. -/
 def demands : Family → Atom → Prop := carries
 
-/-- Conversion relation between atoms. INTENTIONALLY EMPTY (no
-    constructors) in this scratch kernel — the kernel refuses silent
-    conversion across atom boundaries. Any cross-atom equivalence must
-    be declared by *extending the inductive with a new constructor*
-    (and re-justified at the doctrine layer first). The empty-inductive
-    encoding is what makes the falsifiability test load-bearing: case
-    analysis on a `Converts a' a` hypothesis is sensitive to the
-    constructor set, so adding even one cross-atom constructor forces
-    every downstream negative theorem that crosses it to handle a new
-    case it cannot discharge. -/
-inductive Converts : Atom → Atom → Prop
+/-- Family-scoped conversion rule. `Converts source target a' a`
+    declares that, when discharging target family `target`'s demand for
+    atom `a`, source family `source` may use atom `a'` instead — i.e.,
+    carrying `a'` is permitted to stand in for carrying `a` *for that
+    specific bridge pair*. Family-scoping is the doctrine's bridge-
+    family × atom-demand grid made literal: a rule justified for one
+    `(source, target)` pair does not silently leak into another pair.
+    Atom-level conversion would be its own laundering channel in a lab
+    coat.
 
-/-- Family `f` can discharge atom `a` either by carrying it directly or
-    by carrying some atom convertible to it. The two constructors are
-    the only ways to inhabit `CanDischarge`; with `Converts` empty,
-    `viaConversion` is uninhabited and the relation collapses to
-    `carries`. -/
-inductive CanDischarge : Family → Atom → Prop where
-  | direct {f : Family} {a : Atom} (h : carries f a) : CanDischarge f a
-  | viaConversion {f : Family} {a' a : Atom}
-      (hc : carries f a') (hv : Converts a' a) : CanDischarge f a
+    INTENTIONALLY EMPTY (no constructors) in this scratch kernel — the
+    kernel refuses silent conversion across any family pair. Any cross-
+    family rule must be declared by *extending this inductive with a
+    new constructor* (and re-justified at the doctrine layer first).
+    Case analysis on a `Converts s t a' a` hypothesis is sensitive to
+    the constructor set, so adding even one constructor forces every
+    downstream negative theorem that crosses the affected
+    `(s, t, a', a)` quadruple to handle a new case it cannot discharge. -/
+inductive Converts : Family → Family → Atom → Atom → Prop
+
+/-- `CanDischarge source target a` holds when `source` can discharge
+    `target`'s demand for atom `a`, either by carrying `a` directly
+    (target irrelevant in this case) or by carrying some atom `a'`
+    together with a family-scoped conversion `Converts source target
+    a' a`. The two constructors are the only ways to inhabit the
+    relation; with `Converts` empty, `viaConversion` is uninhabited and
+    the relation collapses to `carries source a`. -/
+inductive CanDischarge : Family → Family → Atom → Prop where
+  | direct {source target : Family} {a : Atom}
+      (h : carries source a) : CanDischarge source target a
+  | viaConversion {source target : Family} {a' a : Atom}
+      (hc : carries source a')
+      (hv : Converts source target a' a) : CanDischarge source target a
 
 /-- Family `source` discharges family `target` iff it can discharge
-    every atom in `target`'s demand set. -/
+    every atom in `target`'s demand set, scoped to the `(source, target)`
+    pair. -/
 def FamilyDischarges (source target : Family) : Prop :=
-  ∀ a : Atom, demands target a → CanDischarge source a
+  ∀ a : Atom, demands target a → CanDischarge source target a
 
 /-! ## Negative theorem stack — Lift cannot silently discharge Projection
 
@@ -144,19 +191,19 @@ theorem lift_does_not_carry_non_amplification :
   intro h
   exact Bool.noConfusion h
 
-/-- `Lift` cannot discharge `freshness` — neither directly nor by
-    conversion (since `Converts` is empty). -/
-theorem lift_cannot_discharge_freshness :
-    ¬ CanDischarge Lift freshness := by
+/-- `Lift` cannot discharge `Projection`'s demand for `freshness` —
+    neither by carrying it (Lift doesn't) nor by a `Lift → Projection`
+    conversion (since `Converts` is empty for that family pair). -/
+theorem lift_cannot_discharge_projection_freshness :
+    ¬ CanDischarge Lift Projection freshness := by
   intro h
   cases h with
   | direct hc        => exact lift_does_not_carry_freshness hc
   | viaConversion _ hv => cases hv
 
-/-- `Lift` cannot discharge `non-amplification` — neither directly nor
-    by conversion. -/
-theorem lift_cannot_discharge_non_amplification :
-    ¬ CanDischarge Lift «non-amplification» := by
+/-- `Lift` cannot discharge `Projection`'s demand for `non-amplification`. -/
+theorem lift_cannot_discharge_projection_non_amplification :
+    ¬ CanDischarge Lift Projection «non-amplification» := by
   intro h
   cases h with
   | direct hc        => exact lift_does_not_carry_non_amplification hc
@@ -173,55 +220,76 @@ theorem projection_demands_freshness : demands Projection freshness := by
 theorem lift_does_not_silently_discharge_projection :
     ¬ FamilyDischarges Lift Projection := by
   intro h
-  exact lift_cannot_discharge_freshness
+  exact lift_cannot_discharge_projection_freshness
     (h freshness projection_demands_freshness)
 
 /-! ## Falsifiability witness — strip-and-restore log
 
     The kernel's load-bearing claim is that the keystone negative
-    theorem can fail if a silent conversion is declared. To witness
-    this, the empty `inductive Converts` was temporarily extended
-    2026-06-05 with a single cross-atom constructor:
+    theorem actually depends on the absence of silent conversion across
+    the relevant family pair — that the theorem is not a tautology of
+    its own definitions. To witness this, the empty
+    `inductive Converts` was temporarily extended 2026-06-05 with the
+    *two* constructors needed to fully refute the theorem (not just one
+    constructor, which would only break the current proof path while
+    leaving the proposition still true via the other missing atom):
 
     ```lean
-    inductive Converts : Atom → Atom → Prop where
-      | silent_freshness : Converts «type-fidelity» freshness
+    inductive Converts : Family → Family → Atom → Atom → Prop where
+      | silent_freshness :
+          Converts Lift Projection «type-fidelity» freshness
+      | silent_non_amp :
+          Converts Lift Projection «type-fidelity» «non-amplification»
     ```
 
-    Under that constructor, the `cases hv` tactic in the
-    `viaConversion` branch of `lift_cannot_discharge_freshness` no
-    longer produces zero goals. It produces one specialized case where
-    `a'` is forced to `«type-fidelity»` (the constructor's domain) and
-    `hc : carries Lift «type-fidelity»` is available — both consistent
-    facts that leave the goal `False` undischargeable from the
-    hypotheses.
-
-    Observed failure (verbatim from `lake build LeanProofs.Scratch.
-    NoSilentProjection` with the constructor present):
+    With both constructors, `Lift` can construct a `CanDischarge Lift
+    Projection a` witness for every atom in `Projection`'s demand set
+    `{non-amplification, type-fidelity, freshness}`:
 
     ```text
-    error: LeanProofs/Scratch/NoSilentProjection.lean:156:23:
-      unsolved goals
+    type-fidelity       direct (Lift carries it)
+    freshness           viaConversion (carries type-fidelity, silent_freshness)
+    non-amplification   viaConversion (carries type-fidelity, silent_non_amp)
+    ```
+
+    So `FamilyDischarges Lift Projection` is inhabitable, hence
+    `¬ FamilyDischarges Lift Projection` is *refutable*, not merely
+    proof-broken. Both supporting lemmas fail to prove, with verbatim
+    output from `lake build LeanProofs.Scratch.NoSilentProjection`:
+
+    ```text
+    error: LeanProofs/Scratch/NoSilentProjection.lean:208:23: unsolved goals
     case viaConversion.silent_freshness
+    hc✝ : carries Lift «type-fidelity»
+    ⊢ False
+    error: LeanProofs/Scratch/NoSilentProjection.lean:216:23: unsolved goals
+    case viaConversion.silent_non_amp
     hc✝ : carries Lift «type-fidelity»
     ⊢ False
     ```
 
-    The constructor was removed and the file restored to its current
-    form. `lake build LeanProofs.Scratch.NoSilentProjection` was re-run
-    and confirmed green.
+    Both constructors were removed and the file restored to its current
+    form. `lake build LeanProofs.Scratch.NoSilentProjection` re-run
+    confirmed green.
 
-    Interpretation: the keystone negative theorem is not a tautology of
-    its own definitions. It depends on `Converts` being constructorless
-    over the relevant atom pairs. Declaring *one* cross-family
-    conversion breaks the dependent negative theorem in the obligation
-    atom that conversion targets — which is the desired falsifiability
-    handle. The user's framing applies precisely: *"it can fail if you
-    accidentally add a constructor that launders atoms."*
+    Interpretation: the keystone negative theorem actually depends on
+    the absence of *both* `Lift → Projection` laundering rules. One
+    declared rule would break the current proof path while leaving the
+    proposition itself still true (via the other missing atom — this
+    would be *proof-witness* falsifiability only); two declared rules
+    refute the proposition itself.
 
-    The same pattern would falsify `NoSilentDelegation` (against
-    `non-amplification` or `type-fidelity`) and `NoSilentException`
-    (against `temporal-bounding` or `anti-precedent`) once those
-    candidates are built. -/
+    Family-scoping matters: under the previous atom-only `Converts :
+    Atom → Atom → Prop` signature, a `silent_freshness` rule for one
+    bridge pair would silently apply to *every* bridge pair where the
+    source carried `type-fidelity`. The family-scoped signature confines
+    each declared rule to the specific `(source, target)` pair it was
+    justified for.
+
+    The same two-rule pattern would refute `NoSilentDelegation` (would
+    need conversions covering `{non-amplification, type-fidelity}`) and
+    `NoSilentException` (would need conversions covering
+    `{temporal-bounding, anti-precedent}`) once those candidates are
+    built. -/
 
 end Admissibility.Scratch.NoSilentProjection

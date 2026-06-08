@@ -70,6 +70,29 @@
 
   This module is the eighth refusal-gate / axis-kernel sibling.
 
+  Related doctrine notes (papers repo):
+    ~/git/papers/working/admissibility-decay-family-note.md
+      Descriptive family covering five "license persists after admissibility
+      failure" primitives. This Freshness kernel is the evidence-side
+      metric-time substrate: when the family invariant runs over time-bearing
+      evidence, `Fresh` is the licensing relation that may expire while the
+      artifact persists. NOT a sixth family axis; the kernel is upstream of
+      every axis whose `X` is time-bearing evidence.
+
+    ~/git/papers/working/commitment-standing-decay-candidate.md
+      Operational-standing axis (admissibility-set membership at time t).
+      Distinct from this kernel's metric-time freshness: operational standing
+      can decay while evidence is fresh, and evidence can expire while
+      operational standing persists. The header keeper "Expired evidence
+      cannot prove current standing" governs which sense of "standing"
+      Freshness applies to.
+
+    ~/git/papers/working/vocabulary/standing-three-senses.md
+      Disambiguation of three distinct senses of "standing" across the
+      corpus: state-fact (this repo's Derivation.lean), operational
+      (commitment-standing-decay), and provable-now (this kernel). Glossary
+      only; not a primitive, not doctrine.
+
   Custody:
     This module is canonical only via its commit hash + lake build
     proof gate + ratification rule on changes to `Time` / its
