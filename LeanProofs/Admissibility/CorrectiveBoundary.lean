@@ -6,9 +6,12 @@
   Sibling of `Corrective.lean`. The recorded investigative null
   `corrective_then_forward_is_not_monotone` (originally `sorry`-bearing in
   `Corrective.lean`) marks a boundary in the abstract kernel: under the
-  kernel's unconstrained `axiom` store ops, the existential is undecidable.
+  kernel's unconstrained `axiom` store ops, the existential is not decided
+  by the kernel's assumptions — it is model-dependent, consistent with
+  both directions. ("Undecidable" in the meta-logical / recursion-theoretic
+  sense is NOT claimed and not proved here.)
 
-  This module proves the undecidability is GENUINE MODEL-DEPENDENCE, not
+  This module proves the model-dependence is GENUINE, not
   vocabulary deficit. We construct a parallel miniature kernel with the
   same shape as the abstract kernel but with concrete, definable types
   for `PolicyStore`, `RevocationStore`, etc., and concrete, parameterized
@@ -476,9 +479,17 @@ end Witness
   captures (3.3) and is essentially the recorded null's existential
   packaged as evidence; the general theorem unwraps it.
 
-  The factoring is honest: the structure says "to make the existential
-  go through, you need at least these three things, and the first two
-  are independently meaningful prerequisites that the third depends on."
+  Field dependence is pinned, not asserted. The parametric theorem
+  consumes only (3.3). (3.2) is DERIVABLE from (3.3) — see
+  `mixed_class_witness_implies_verdict_sensitive` — and is retained as a
+  named field for doctrinal legibility, not logical necessity. (3.1) is
+  NOT implied by (3.3) — see `PerverseRevocationEnv`, in which a
+  corrective step mints authority under identity `applyUpdate` — and
+  functions as the model-hygiene commitment that excludes
+  revocation-driven laundering models from the "nondegenerate" label.
+  The three fields are therefore not a flat list of independent
+  prerequisites: (3.1) is independent, (3.2) is entailed, (3.3) is the
+  load-bearing witness.
 -/
 
 /-- The three nondegeneracy commitments packaged for the parametric
@@ -579,5 +590,113 @@ theorem witness_corrective_then_forward_is_not_monotone_via_abstract :
           (Mini.applySteps Witness.ops Γ [sc, sf]) Γ :=
   corrective_then_forward_is_not_monotone_of_nondegenerate
     witness_satisfies_nondegenerate
+
+/-! ## Field dependence — what (3.3) does and does not imply
+
+  `corrective_then_forward_is_not_monotone_of_nondegenerate` consumes
+  only `mixed_class_witness`. The other two fields' relationship to (3.3)
+  is now pinned instead of asserted:
+
+    - (3.3) → (3.2): provable. A verdict change across a two-step
+      sequence pigeonholes onto one of the two steps.
+    - (3.3) ↛ (3.1): refuted by `PerverseRevocationEnv` below, where a
+      corrective step mints authority under identity `applyUpdate`.
+
+  So (3.2) is a consequence of (3.3) kept as a named field for doctrinal
+  legibility, and (3.1) is a genuine independent model-hygiene commitment
+  that fences off revocation-driven laundering models — not implied by
+  the witness shape.
+-/
+
+/-- (3.3) implies (3.2): a mixed-class witness already exhibits verdict
+    sensitivity at one of its two steps. Pigeonhole over the intermediate
+    state. -/
+theorem mixed_class_witness_implies_verdict_sensitive
+    {ops : Mini.StoreOps} {env : Mini.DerivationEnv}
+    (h : ∃ (Γ : Mini.GovState) (sc sf : Mini.Step)
+        (a : Mini.Actor) (K : Mini.Claim),
+        Mini.IsCorrective sc ∧ Mini.IsForward sf ∧
+        Mini.decideAuthority env Γ a K ≠ AuthorityVerdict.authorized ∧
+        Mini.decideAuthority env (Mini.applySteps ops Γ [sc, sf]) a K =
+          AuthorityVerdict.authorized) :
+    ∃ (Γ : Mini.GovState) (s : Mini.Step)
+      (a : Mini.Actor) (K : Mini.Claim),
+      Mini.decideAuthority env Γ a K ≠
+        Mini.decideAuthority env (Mini.applyStep ops Γ s) a K := by
+  obtain ⟨Γ, sc, sf, a, K, _hc, _hf, hpre, hpost⟩ := h
+  have hseq :
+      Mini.applySteps ops Γ [sc, sf] =
+        Mini.applyStep ops (Mini.applyStep ops Γ sc) sf := rfl
+  rw [hseq] at hpost
+  by_cases hmid :
+      Mini.decideAuthority env (Mini.applyStep ops Γ sc) a K =
+        Mini.decideAuthority env Γ a K
+  · refine ⟨Mini.applyStep ops Γ sc, sf, a, K, ?_⟩
+    rw [hpost, hmid]
+    exact hpre
+  · exact ⟨Γ, sc, a, K, fun hc => hmid hc.symm⟩
+
+/-! ### Counter-model: (3.3) without (3.1)
+
+  Identity `applyUpdate`, nondegenerate `appendRevocation`, and a basis
+  derivation that grants `admissibleBasis` exactly when the claim sits in
+  the revocation store. `revoked_never_admissible` is discharged
+  vacuously by declaring nothing revoked. The corrective step
+  `recordRevocation 1` then authorizes claim 1; the forward step is a
+  no-op present only to satisfy the witness shape.
+-/
+
+namespace PerverseRevocationEnv
+
+/-- Identity policy updates, nondegenerate revocations. Fails (3.1). -/
+def ops : Mini.StoreOps where
+  applyUpdate      := fun s _  => s
+  appendRevocation := fun s rv => rv :: s
+  appendEvidence   := fun s _  => s
+  appendGap        := fun s _  => s
+
+/-- Perverse basis derivation: revocation-store membership GRANTS basis. -/
+def deriveBasis (Γ : Mini.GovState) (K : Mini.Claim) : BasisVerdict :=
+  if K ∈ Γ.revocationStore then BasisVerdict.admissibleBasis
+  else BasisVerdict.noBasis
+
+def basis : Mini.BasisDerivation where
+  deriveBasis              := deriveBasis
+  basisRevoked             := fun _ _ => False
+  revoked_never_admissible := fun _ _ h => h.elim
+
+def env : Mini.DerivationEnv where
+  basis      := basis
+  precedence := { derivePrecedence := fun _ _ => PrecedenceVerdict.resolved }
+  standing   := { deriveStanding   := fun _ _ _ => StandingVerdict.standing }
+
+def initialState : Mini.GovState :=
+  { policyStore := [], evidenceStore := (), gapStore := (),
+    revocationStore := [] }
+
+/-- (3.1) fails: applyUpdate is the identity. -/
+theorem applyUpdate_trivial :
+    ∀ (s : Mini.PolicyStore) (p : Mini.PolicyUpdate),
+      ops.applyUpdate s p = s :=
+  fun _ _ => rfl
+
+/-- (3.3) holds: recordRevocation 1 (corrective) followed by amendPolicy 1
+    (forward, inert) authorizes claim 1 from a state where it was not
+    authorized. Corrective step alone mints authority. -/
+theorem mixed_class_witness_holds :
+    ∃ (Γ : Mini.GovState) (sc sf : Mini.Step)
+      (a : Mini.Actor) (K : Mini.Claim),
+      Mini.IsCorrective sc ∧ Mini.IsForward sf ∧
+      Mini.decideAuthority env Γ a K ≠ AuthorityVerdict.authorized ∧
+      Mini.decideAuthority env
+        (Mini.applySteps ops Γ
+          [Mini.Step.recordRevocation 1, Mini.Step.amendPolicy 1]) a K =
+        AuthorityVerdict.authorized := by
+  refine ⟨initialState, Mini.Step.recordRevocation 1,
+          Mini.Step.amendPolicy 1, (), 1, rfl, rfl, ?_, ?_⟩
+  · decide
+  · decide
+
+end PerverseRevocationEnv
 
 end Admissibility.CorrectiveBoundary

@@ -40,7 +40,7 @@ Every `witnessed` receipt carries a `custody_scope` field:
 | Scope | Meaning | Discharges SHA-bound claims? |
 |---|---|---|
 | `at_sha` | The witness is bound to a repo SHA — e.g., git-tracked file content, a clean build at HEAD. | YES (subject to currency check). |
-| `working_tree_only` | The witness applies to the filesystem state — includes untracked files, dirty edits, etc. | **NO.** The receipt carries explicit `discharges` and `does_not_discharge` arrays so the downstream caller cannot quietly promote a worktree fact to a corpus fact. |
+| `working_tree_only` | The witness applies to the filesystem state — includes untracked files, dirty edits, etc. | **NO.** The receipt carries explicit `discharges` and `does_not_discharge` arrays; it does not authorize promotion to a corpus fact, and a governed downstream caller can refuse to treat it as one. The label is on the receipt; enforcement is the caller's. |
 
 ### Why this exists (the lake/git asymmetry)
 

@@ -21,9 +21,9 @@ computed at read time by `receipt-valid` — there is no harvestable
 `value` field on a stale receipt that an agent could re-use to
 discharge a current claim.
 
-## What this tool refuses
+## What returns `gap_blocks` (the tool will not witness)
 
-Phase 1 emits `gap_blocks` (downstream action stops) for:
+Phase 1 emits `gap_blocks` (signaling: downstream is expected to stop) for:
 
 - Module name resolution when no source file exists for the dotted name.
 - Module name with invalid identifier syntax.
@@ -100,10 +100,11 @@ The core discipline of Phase 1, restated for the next slice:
    witnessed receipts.
 
 2. **No silent conversion from `gap_blocks` to `out_of_scope_demotes`
-   (or vice versa).** The two refusals have opposite downstream
-   semantics: `gap_blocks` *blocks*; `out_of_scope_demotes`
-   *demotes*. Collapsing them is the disease the algebra exists to
-   prevent.
+   (or vice versa).** The two refusals signal opposite downstream
+   semantics: `gap_blocks` signals "stop"; `out_of_scope_demotes`
+   signals "proceed as advisory only." Collapsing them is the
+   disease the algebra exists to flag — enforcement is the
+   downstream caller's, the labels are the tool's.
 
 3. **Staleness is a read-time predicate, not a packageable value.**
    A stale receipt does not carry a usable `value` field that an

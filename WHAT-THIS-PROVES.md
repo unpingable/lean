@@ -112,7 +112,7 @@ The formally verified results:
 
 > The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.
 
-The admissibility kernel modules described below form a named public surface: **Admissibility Kernels 1.0**, aggregated at `LeanProofs/Admissibility/AdmissibilityKernels.lean` (previously `CalculusOne.lean` under the retired "Admissibility Calculus 1.0" framing — see migration note in the aggregator's docstring). A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition — not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus. Eight modules are tagged `[1.0]`:
+The admissibility kernel modules described below form a named public surface: **Admissibility Kernels 1.0**, aggregated at `LeanProofs/Admissibility/AdmissibilityKernels.lean` (previously `CalculusOne.lean` under the retired "Admissibility Calculus 1.0" framing — see migration note in the aggregator's docstring). A Lean authority kernel with typed verdicts and object-level refusal theorems for admissible transition; general composition rules and meta-theorems are out of scope for 1.0. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus. Eight modules are tagged `[1.0]`:
 
 - `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective` — core authority kernel
 - `Freshness` — metric-time axis

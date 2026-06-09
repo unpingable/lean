@@ -36,9 +36,10 @@
     - No grades, no degradation, no failure, no cascade.
     - No bisimulation, no trace equivalence.
     - Boundary is global and identical for all components.
-    - Not imported into `LeanProofs.lean` — sibling to the
-      CrossBoundary* family, outside the no-sorry kernel chain
-      (though this file is itself sorry-free).
+    - Root-imported (`LeanProofs.lean`) for build coverage; NOT
+      promoted into the `AdmissibilityKernels` aggregator surface
+      (sibling to the CrossBoundary* family in that respect).
+      Itself sorry-free. Build coverage ≠ promotion.
 
   Custody
     Canonical anchoring of `Admissibility.Composition`. A definition

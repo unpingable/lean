@@ -34,10 +34,12 @@ abstract: >-
   The Lean work did not produce a unified calculus. It produced a set
   of small admissibility kernels, each isolating a different refusal
   boundary. The stack exposes a typed-verdict algebra (basis ×
-  precedence × standing) over partitioned governance state, with
-  composition rules from claim derivation through authorized execution,
+  precedence × standing) over partitioned governance state, with a
+  typed pipeline from claim derivation through authorized execution,
   plus refusal-gate kernels for metric-time freshness, collapsed-surface
-  authorization, witness invariance, and corrective monotonicity. The
+  authorization, witness invariance, and corrective monotonicity.
+  General composition rules and meta-theorems are out of scope for 1.0
+  and remain separate kernel families. The
   1.0 public surface comprises eight modules aggregated via
   AdmissibilityKernels.lean and is demonstrated by seven specimen
   consumers in Examples.lean. The artifact models when evidence-backed

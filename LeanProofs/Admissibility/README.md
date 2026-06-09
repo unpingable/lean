@@ -84,7 +84,7 @@ Forward-looking version discipline (not a release plan, a promotion gate):
 
 ## Admissibility Kernels 1.0 — public surface
 
-A Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence below for the full list of non-claims.
+A Lean authority kernel with typed verdicts and object-level refusal theorems for admissible transition. General composition rules and meta-theorems are out of scope for 1.0 and remain separate kernel families (pipeline composition between kernels is wired but is not the same thing as a composition theorem — see the distinction at L82-83 above). Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence below for the full list of non-claims.
 
 `AdmissibilityKernels.lean` is the named public aggregator. Importing it brings the 1.0 surface into scope. Eight modules are tagged `[1.0]` and form the compatibility claim:
 

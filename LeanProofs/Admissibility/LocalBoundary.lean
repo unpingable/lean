@@ -4,10 +4,13 @@
   Admissibility — LocalBoundary (Slice 1: aperture).
 
   Status: EXPERIMENTAL theorem aperture.
-    This file may contain `sorry`. The purpose is to stabilize the
+    Currently sorry-free. Root-imported (`LeanProofs.lean`) for build
+    coverage, but NOT promoted into the `AdmissibilityKernels`
+    aggregator surface — build coverage is not promotion (per repo
+    custody doctrine: "Promotion is the import in the aggregator;
+    the marker is the receipt"). The purpose is to stabilize the
     interface between raw capability, local authorization, component
-    execution, and merged/global safety. It is not part of the
-    no-sorry admissibility kernel.
+    execution, and merged/global safety.
 
   Keeper:
     If the merged boundary authorizes the component step, locality
@@ -55,8 +58,9 @@
     `working/models/boundary-calculus/notes/locality-and-merge.md`.
 
   Scope fence
-    - Not imported into `LeanProofs.lean` — outside the no-sorry
-      kernel chain.
+    - Root-imported (`LeanProofs.lean`) for build coverage; NOT
+      promoted into the `AdmissibilityKernels` aggregator surface.
+      Build coverage ≠ promotion.
     - Custody: candidate aperture, not a ratified primitive.
     - Builds on `Composition.lean` (Slice 0) for `Process` and
       `SystemState`; reuses kernel `Exposure`, `Action`, `Boundary`,
@@ -294,7 +298,9 @@ theorem composition_preserves_global_safety_aperture
        cannot be observed externally. Status: deferred; would change
        the action surface non-trivially.
 
-    Do not import this module into the no-sorry kernel chain until
-    items 1 and 2 are at least sketched. -/
+    Do not promote this module into the `AdmissibilityKernels`
+    aggregator surface until items 1 and 2 are at least sketched.
+    (Root-import for build coverage is current and fine; promotion
+    is a separate gate.) -/
 
 end Admissibility.LocalBoundary

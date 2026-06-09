@@ -45,7 +45,7 @@ For what the current Lean stack proves, see [`WHAT-THIS-PROVES.md`](WHAT-THIS-PR
 
 > **The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.**
 
-**Admissibility Kernels 1.0** is a Lean authority kernel with typed verdicts, composition rules, and meta-theorems for admissible transition. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the full list of non-claims.
+**Admissibility Kernels 1.0** is a Lean authority kernel with typed verdicts and object-level refusal theorems for admissible transition. General composition rules and meta-theorems are out of scope for 1.0 and remain separate kernel families. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the full list of non-claims.
 
 Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight 1.0 modules into scope (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). Seven specimen consumers live in `LeanProofs.Admissibility.Examples`, demonstrating the public API.
 

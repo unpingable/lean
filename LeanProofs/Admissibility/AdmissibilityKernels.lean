@@ -8,12 +8,13 @@
   > refusal boundary.
 
   This module bundles the kernels that have earned the 1.0 stability
-  promise: typed verdicts, composition rules, and meta-theorems for
-  admissible transition. The word "calculus" is reserved here for the
-  thing this stack refuses to be: not a sequent calculus, not a
-  process calculus, not a proof-theoretic admissibility logic, not a
-  unified maximal calculus. The scope fence below names the full list
-  of non-claims.
+  promise: typed verdicts and object-level refusal theorems for
+  admissible transition. General composition rules and meta-theorems
+  are out of scope for 1.0 and remain separate kernel families. The
+  word "calculus" is reserved here for the thing this stack refuses
+  to be: not a sequent calculus, not a process calculus, not a
+  proof-theoretic admissibility logic, not a unified maximal calculus.
+  The scope fence below names the full list of non-claims.
 
   Importing this module brings the 1.0 surface into scope; the broader
   stack contains annex modules and consumer specimens that are

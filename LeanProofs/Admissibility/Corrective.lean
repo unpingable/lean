@@ -268,14 +268,17 @@ theorem corrective_sequence_monotone
 
   Counterpoint to `corrective_sequence_monotone`. The minimal mixed shape
   is a single corrective followed by a single forward Step. Whether such
-  a sequence can fail `WeaklyLessPermissive` is **undecidable in this
-  abstract kernel**: store ops (`applyUpdate`, `appendRevocation`,
-  `appendGap`, `appendEvidence`) are unconstrained `axiom`s, and any
-  concrete `BasisDerivation` is permitted to ignore the stores.
+  a sequence can fail `WeaklyLessPermissive` is **not decided by this
+  abstract kernel's assumptions** (model-dependent — consistent with both
+  the existential and its negation): store ops (`applyUpdate`,
+  `appendRevocation`, `appendGap`, `appendEvidence`) are unconstrained
+  `axiom`s, and any concrete `BasisDerivation` is permitted to ignore the
+  stores. ("Undecidable" in the meta-logical / recursion-theoretic sense
+  is NOT claimed.)
 
   The existential was previously stated here as a `sorry`-bearing theorem
   — preserved as evidence that the question is stateable in current
-  vocabulary but undecidable under current commitments. The `sorry` has
+  vocabulary but not decided under current commitments. The `sorry` has
   now been **replaced by a positive boundary result** in the sibling
   module `Admissibility/CorrectiveBoundary.lean`, which proves that the
   abstractness is *genuine model-dependence*, not vocabulary deficit:
