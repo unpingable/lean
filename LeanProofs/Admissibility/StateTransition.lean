@@ -140,20 +140,41 @@ theorem amend_policy_targets_policy_store
       applyUpdate state.policyStore p := by
   rfl
 
-/-- Dual trapdoor: the privileged policy write touches `policyStore` and
-    nothing else. Without this, a future widening of the `amendPolicy`
-    branch into a multi-store update would silently launder a policy
-    amendment into a covert evidence / gap / revocation injection, and no
-    existing theorem would break. Closes the `amendPolicy` row of the
-    trapdoor grid (the other six off-diagonal cells — non-amend steps
-    preserving non-target stores — remain unproven, deliberately: the
-    privileged-write row is the load-bearing asymmetry). -/
+/-- Dual trapdoor (cell): `amendPolicy` does not touch `evidenceStore`.
+    Without this, a future widening of the `amendPolicy` branch into a
+    multi-store update would silently launder a policy amendment into a
+    covert evidence injection. -/
+theorem amend_policy_preserves_evidence_store
+    (state : GovState) (p : PolicyUpdate) :
+    (applyStep state (Step.amendPolicy p)).evidenceStore = state.evidenceStore := by
+  rfl
+
+/-- Dual trapdoor (cell): `amendPolicy` does not touch `gapStore`. -/
+theorem amend_policy_preserves_gap_store
+    (state : GovState) (p : PolicyUpdate) :
+    (applyStep state (Step.amendPolicy p)).gapStore = state.gapStore := by
+  rfl
+
+/-- Dual trapdoor (cell): `amendPolicy` does not touch `revocationStore`. -/
+theorem amend_policy_preserves_revocation_store
+    (state : GovState) (p : PolicyUpdate) :
+    (applyStep state (Step.amendPolicy p)).revocationStore = state.revocationStore := by
+  rfl
+
+/-- Row-level convenience: `amendPolicy` preserves the non-policy stores.
+
+    This records containment of the privileged policy-write path; it does
+    NOT claim full four-store orthogonality for every step/store pair.
+    The other six off-diagonal cells (non-amend steps preserving non-target
+    stores) remain unproven, deliberately. -/
 theorem amend_policy_preserves_other_stores
     (state : GovState) (p : PolicyUpdate) :
     (applyStep state (Step.amendPolicy p)).evidenceStore = state.evidenceStore
     ∧ (applyStep state (Step.amendPolicy p)).gapStore = state.gapStore
-    ∧ (applyStep state (Step.amendPolicy p)).revocationStore = state.revocationStore := by
-  refine ⟨?_, ?_, ?_⟩ <;> rfl
+    ∧ (applyStep state (Step.amendPolicy p)).revocationStore = state.revocationStore :=
+  ⟨amend_policy_preserves_evidence_store state p,
+   amend_policy_preserves_gap_store state p,
+   amend_policy_preserves_revocation_store state p⟩
 
 /-! ## Layer 3b — authorized execution wrapper
 
