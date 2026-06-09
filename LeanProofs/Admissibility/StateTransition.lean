@@ -140,6 +140,21 @@ theorem amend_policy_targets_policy_store
       applyUpdate state.policyStore p := by
   rfl
 
+/-- Dual trapdoor: the privileged policy write touches `policyStore` and
+    nothing else. Without this, a future widening of the `amendPolicy`
+    branch into a multi-store update would silently launder a policy
+    amendment into a covert evidence / gap / revocation injection, and no
+    existing theorem would break. Closes the `amendPolicy` row of the
+    trapdoor grid (the other six off-diagonal cells — non-amend steps
+    preserving non-target stores — remain unproven, deliberately: the
+    privileged-write row is the load-bearing asymmetry). -/
+theorem amend_policy_preserves_other_stores
+    (state : GovState) (p : PolicyUpdate) :
+    (applyStep state (Step.amendPolicy p)).evidenceStore = state.evidenceStore
+    ∧ (applyStep state (Step.amendPolicy p)).gapStore = state.gapStore
+    ∧ (applyStep state (Step.amendPolicy p)).revocationStore = state.revocationStore := by
+  refine ⟨?_, ?_, ?_⟩ <;> rfl
+
 /-! ## Layer 3b — authorized execution wrapper
 
   No mutation outside `executeIfAllowed`; `executeIfAllowed` requires
