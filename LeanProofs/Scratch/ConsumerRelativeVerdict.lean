@@ -74,7 +74,14 @@ variable {Verdict : Type u}
 /-- The nucleus shape: force/admissibility is a verdict produced *by a
     consumer about an artifact* — never `Artifact → Verdict` alone. The
     codomain `Verdict` is abstract (binary, product, or closed enum,
-    depending on the system). -/
+    depending on the system).
+
+    NB: `Force` here is a **scratch fossil label**, not the ratified noun.
+    Provisional public noun (operator decision 2026-06-14, mint deferred):
+    `VerdictFor`. `Relies` is rejected for the nucleus (negative/unknown
+    verdicts make "relies on a denial" misleading); it is paper/application
+    language only. See
+    `papers/working/observer-foundation-promotion-preflight.md`. -/
 abbrev Force (Verdict : Type u) : Type u := Consumer → Artifact → Verdict
 
 /-- All consumers agree: every pair produces the same verdict on every
