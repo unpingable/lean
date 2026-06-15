@@ -59,23 +59,26 @@
     These exist; this slice does NOT claim to formalize or compose with
     them. Adjacency is advisory.
 
-  ## Follow-up, NOT implemented in this slice (named so the seam is legible)
+  ## Follow-up — now BUILT as sibling slices (local "not here" still holds)
 
-  Once the trajectory theorem compiles, the one-step shards above promote
-  into two *bridge-price* theorems — the NoFreeStandingBridge move
+  The two *bridge-price* theorems below — the NoFreeStandingBridge move
   (name a bridge predicate, never inhabit it, prove asserting it collapses
-  the gate). Neither is built here:
+  the gate) — are NOT in THIS file, but (update 2026-06-14/15) they now exist
+  as sibling scratch slices. "Not implemented in this slice" reads
+  local-to-this-file, NOT globally pending:
 
     1. Retroactive bridge (price form). Later evidence cannot authorize an
        earlier decision: "it worked later" does not discharge "it was
        unauthorized then." RetroactiveFigLeaf / RetroactiveLegitimation
        prove the local negative; the price form proves that asserting the
        retroactive-discharge bridge opens every gate.
+       → BUILT: `LeanProofs/Scratch/RetroactiveBridgePrice.lean`.
 
     2. Anticipatory bridge (price form). Expected future evidence cannot
        authorize present action: "approval is coming" is not approval.
        Freshness.not_yet_valid_not_fresh is the single-moment negative;
        the price form is the dual no-go.
+       → BUILT: `LeanProofs/Scratch/AnticipatoryBridgePrice.lean`.
 
   ## Observer axis — WARRANT only, NOT a slice
 
@@ -89,11 +92,14 @@
 
   with the theorem: no absolute / consumer-independent force stamp exists
   unless there is a universal root consumer that all others factor
-  through — and none is inhabited. The only current beachhead is
-  `LeanProofs/Scratch/MultiConsumerAdoption.lean`, which models
-  consumer-relative *adoption*, not force; force-as-derived is a larger
-  multi-frame build. Left as a warrant so the practical theorem is not
-  hijacked by the sexier one.
+  through — and none is inhabited. (update 2026-06-14: this observer axis is
+  now BUILT — `ConsumerRelativeFreshness` → `ConsumerRelativeForce` →
+  `AbsoluteForceStampBridgePrice` → `NoUniversalRoot`, where the
+  global-section theorem `has_global_section_iff_consumers_agree` lives. Still
+  do not build it HERE; `MultiConsumerAdoption.lean` was the original
+  adoption-only beachhead.) The `Force : Consumer → Artifact → Prop` typing
+  above is the one the built slices actually use — NOT a `Verdict` codomain;
+  do not "correct" it.
 -/
 
 namespace Admissibility.Scratch.TemporalTrajectory
@@ -248,5 +254,98 @@ theorem not_all_completed_hopwise_fresh_trajectories_compose :
   intro h
   exact ciFairyTale_not_trajectory_fresh_at_50
     (h 0 8 ciFairyTale 50 (by decide))
+
+/-! ## DISCRIMINATOR — temporal lift has a characterization, but a DIRECTED one
+
+  The probe (2026-06-15) classified this row as home B (directed prohibition),
+  NOT home A (descent / global-section). The contrast that pins it:
+
+      Observer  (NoUniversalRoot):  HasGlobalSection      ↔ ConsumersAgree
+      Temporal  (here):             TrajectoryFreshAt path T ↔ BeforeEarliestDeadline path T
+
+  Both are characterizations — both are `iff`s. They are NOT the same kind of
+  object. Observer's compatibility datum (`ConsumersAgree`) is SYMMETRIC:
+  agreement across the consumer index. Temporal's (`BeforeEarliestDeadline`) is
+  DIRECTED: a single one-sided bound — the consume time `T` must not have
+  passed the EARLIEST-expiring carried window. Having an `iff` does not make a
+  row descent-shaped; the *shape of the compatibility datum* does. The per-hop
+  conjunction collapsing to one inequality against the earliest deadline is
+  precisely the directed condition, made formal.
+
+  This is the receipt for "schema travels, formal home stays local": the
+  schema (`local ⇏ global`) is shared with observer; the home is not.
+
+  Still home B. Still fenced scratch. No promotion. No global-section claim.
+
+  ## Axiom footprint (honest departure)
+
+  `trajectory_fresh_at_iff_before_earliest_deadline` depends on `propext`
+  (NOT zero-axiom; no `Classical.choice`, no `Quot.sound`). The leak is
+  proof mechanics, not the statement: the goal is an `Iff`, and the proof
+  reaches the directed bound via `simp`/`Iff`-rewrites, both of which route
+  through propositional extensionality. A fully propext-free term proof is
+  obstructed by Lean's generated-matcher non-defeq (a raw `match` in a
+  `show`/`rfl` is not defeq to the structural def's internal matcher while
+  the scrutinee `earliestDeadline rest` is stuck). Flagged like
+  QuorumCustody's footprint note so no one reads "characterization theorem"
+  as "axiom-free." `ciFairyTale_earliestDeadline` is axiom-free. -/
+
+/-- The earliest validity deadline among the witnesses a trajectory carries —
+    the first window to expire. `none` for the empty trajectory. -/
+def earliestDeadline {t t' : Time} (path : FreshTrajC t t') : Option Time :=
+  match path with
+  | .nil _ => none
+  | .cons w _ _ rest =>
+      match earliestDeadline rest with
+      | none => some w.validUntil
+      | some d => some (if w.validUntil ≤ d then w.validUntil else d)
+
+/-- The DIRECTED compatibility datum: the consume time `T` is at or before the
+    earliest carried deadline. A one-sided scalar bound — contrast observer's
+    symmetric cross-consumer agreement. -/
+def BeforeEarliestDeadline {t t' : Time} (path : FreshTrajC t t') (T : Time) : Prop :=
+  match earliestDeadline path with
+  | none => True
+  | some d => T ≤ d
+
+/-- The earliest deadline of the CI fairy tale is 10 — `w1`'s window, the
+    early-expiring one — even though `w2` survives to 100. Ties the
+    discriminator to the existing specimen. -/
+theorem ciFairyTale_earliestDeadline : earliestDeadline ciFairyTale = some 10 := by
+  decide
+
+/-- THE CHARACTERIZATION. The composed run is trajectory-fresh at consume time
+    `T` iff `T` has not passed the earliest carried deadline. The per-hop
+    freshness conjunction collapses to a single DIRECTED inequality — the
+    temporal analogue of observer's `HasGlobalSection ↔ ConsumersAgree`, but
+    with a directed datum where observer's is symmetric. This is why temporal
+    is home B even though it admits an `iff`. -/
+theorem trajectory_fresh_at_iff_before_earliest_deadline
+    {t t' : Time} (path : FreshTrajC t t') (T : Time) :
+    TrajectoryFreshAt path T ↔ BeforeEarliestDeadline path T := by
+  induction path with
+  | nil _ => simp [TrajectoryFreshAt, BeforeEarliestDeadline, earliestDeadline]
+  | cons w fr d rest ih =>
+    cases hd : earliestDeadline rest with
+    | none =>
+      have hrest : TrajectoryFreshAt rest T := ih.mpr (by simp [BeforeEarliestDeadline, hd])
+      simp only [BeforeEarliestDeadline, earliestDeadline, hd, TrajectoryFreshAt, FreshAt]
+      exact ⟨fun h => h.1, fun h => ⟨h, hrest⟩⟩
+    | some dd =>
+      have ih' : TrajectoryFreshAt rest T ↔ T ≤ dd := by
+        rw [ih]; simp [BeforeEarliestDeadline, hd]
+      have hRHS : BeforeEarliestDeadline (FreshTrajC.cons w fr d rest) T
+                  = (T ≤ if w.validUntil ≤ dd then w.validUntil else dd) := by
+        simp only [BeforeEarliestDeadline, earliestDeadline, hd]
+      rw [hRHS]
+      show (FreshAt w T ∧ TrajectoryFreshAt rest T)
+            ↔ (T ≤ if w.validUntil ≤ dd then w.validUntil else dd)
+      rw [FreshAt, ih']
+      by_cases hcase : w.validUntil ≤ dd
+      · rw [if_pos hcase]
+        exact ⟨fun h => h.1, fun h => ⟨h, Nat.le_trans h hcase⟩⟩
+      · rw [if_neg hcase]
+        have hlt : dd ≤ w.validUntil := Nat.le_of_lt (Nat.lt_of_not_le hcase)
+        exact ⟨fun h => h.2, fun h => ⟨Nat.le_trans h hlt, h⟩⟩
 
 end Admissibility.Scratch.TemporalTrajectory
