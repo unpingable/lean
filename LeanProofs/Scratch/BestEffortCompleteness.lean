@@ -63,9 +63,14 @@
     - specimens: forged stamps that are denotable, inspectable, and refused —
       `semantic_satisfaction_on_custodial_gap`,
       `evidence_witness_..._authority`, `authority_ratification_..._evidentiary`,
-      `custody_receipt_..._semantic`, `system_execution_..._authority`.
-    - `exhaustion_is_closed_but_not_discharged` — wall one: best-effort
-      residue (exhausted) closes the record without completing the claim.
+      `authority_ratification_..._custodial`, `custody_receipt_..._semantic`,
+      `system_execution_..._authority`. The two `authority_ratification_...`
+      specimens together are the operator-fiat fence all-green: an authority
+      basis discharges NEITHER evidentiary NOR custodial gaps.
+    - wall one — best-effort residue closes ≠ discharges, exhaustively:
+      `nonsatisfied_closed_but_not_discharged` (general, any non-satisfied
+      closure) plus named instances for `exhausted / refused / quarantined /
+      escalated`. Conjunctive coverage of the four terminal residues.
     - `system_execution_cannot_complete_authority_requirement` — the headline,
       connected THROUGH `complete` (not through a grammar restriction):
       automatic best effort cannot complete an authority-required obligation.
@@ -294,6 +299,17 @@ theorem authority_ratification_does_not_discharge_evidentiary_gap
   apply unlicensed_for_kind_is_not_discharge (stamped_closes o _)
   rw [hkind]; decide
 
+/-- Ratification does not discharge a custodial gap either — completing the
+    pair with the evidentiary case above: an authority (operator-fiat) basis
+    licenses ONLY the authority gap, NEITHER evidentiary NOR custodial. This is
+    the P4.0g fence stated all-green: operator basis ⇏ custody, operator basis
+    ⇏ evidence. The operator stamp is not governance's chmod 777. -/
+theorem authority_ratification_does_not_discharge_custodial_gap
+    {o : Obligation} (hkind : o.kind = GapKind.custodial) :
+    ¬ discharged (stamped o ⟨Closure.satisfied, Basis.authorityRatification⟩) o := by
+  apply unlicensed_for_kind_is_not_discharge (stamped_closes o _)
+  rw [hkind]; decide
+
 /-- A custody receipt does not discharge a semantic gap. -/
 theorem custody_receipt_does_not_discharge_semantic_gap
     {o : Obligation} (hkind : o.kind = GapKind.semantic) :
@@ -310,19 +326,50 @@ theorem system_execution_does_not_discharge_authority_gap
   apply unlicensed_for_kind_is_not_discharge (stamped_closes o _)
   rw [hkind]; decide
 
-/-! ## WALL ONE — terminal residue closes without discharging -/
+/-! ## WALL ONE — terminal residue closes without discharging
 
-/-- Exhaustion (best-effort residue) closes the record yet does not discharge:
-    the cheating accounting is denotable, you can ask `complete`, it says no. -/
-theorem exhaustion_is_closed_but_not_discharged {o : Obligation} :
-    closed (stamped o ⟨Closure.exhausted, Basis.systemExecution⟩) o ∧
-    ¬ discharged (stamped o ⟨Closure.exhausted, Basis.systemExecution⟩) o := by
+  Conjunctive coverage: the guarantee "only `satisfied` discharges" holds at a
+  seam only if EVERY non-`satisfied` closure fails it. The general lemma covers
+  all of them at once; the named instances make each best-effort residue
+  citeable. -/
+
+/-- General form: ANY non-`satisfied` closure closes the record but does not
+    discharge — the `satisfied` conjunct of `discharged` fails regardless of
+    basis or kind. Best-effort residue closes ≠ discharges, exhaustively. -/
+theorem nonsatisfied_closed_but_not_discharged
+    {o : Obligation} {c : Closure} {b : Basis} (hc : c ≠ Closure.satisfied) :
+    closed (stamped o ⟨c, b⟩) o ∧ ¬ discharged (stamped o ⟨c, b⟩) o := by
   refine ⟨⟨_, stamped_closes o _⟩, ?_⟩
   rintro ⟨s, hclose, hsat, _⟩
   rw [stamped_closes] at hclose
   injection hclose with hs
   subst hs
-  simp at hsat
+  exact hc hsat
+
+/-- Exhaustion (best-effort residue) closes the record yet does not discharge:
+    the cheating accounting is denotable, you can ask `complete`, it says no. -/
+theorem exhaustion_is_closed_but_not_discharged {o : Obligation} :
+    closed (stamped o ⟨Closure.exhausted, Basis.systemExecution⟩) o ∧
+    ¬ discharged (stamped o ⟨Closure.exhausted, Basis.systemExecution⟩) o :=
+  nonsatisfied_closed_but_not_discharged (by decide)
+
+/-- Refusal closes the record but does not discharge. -/
+theorem refused_is_closed_but_not_discharged {o : Obligation} :
+    closed (stamped o ⟨Closure.refused, Basis.systemExecution⟩) o ∧
+    ¬ discharged (stamped o ⟨Closure.refused, Basis.systemExecution⟩) o :=
+  nonsatisfied_closed_but_not_discharged (by decide)
+
+/-- Quarantine closes the record but does not discharge. -/
+theorem quarantined_is_closed_but_not_discharged {o : Obligation} :
+    closed (stamped o ⟨Closure.quarantined, Basis.systemExecution⟩) o ∧
+    ¬ discharged (stamped o ⟨Closure.quarantined, Basis.systemExecution⟩) o :=
+  nonsatisfied_closed_but_not_discharged (by decide)
+
+/-- Escalation closes the record but does not discharge. -/
+theorem escalated_is_closed_but_not_discharged {o : Obligation} :
+    closed (stamped o ⟨Closure.escalated, Basis.systemExecution⟩) o ∧
+    ¬ discharged (stamped o ⟨Closure.escalated, Basis.systemExecution⟩) o :=
+  nonsatisfied_closed_but_not_discharged (by decide)
 
 /-! ## THE HEADLINE — best effort cannot complete an authority requirement -/
 
