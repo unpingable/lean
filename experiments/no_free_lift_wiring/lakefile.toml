@@ -1,0 +1,10 @@
+name = "wired"
+version = "0.1.0"
+defaultTargets = ["Wired"]
+
+# Mathlib-free on purpose: the wired composition imports nothing external, so it
+# builds with no download and its axiom footprint is fully visible. Pinned to
+# v4.29.0 to match canonical ~/git/lean.
+
+[[lean_lib]]
+name = "Wired"

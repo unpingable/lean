@@ -55,6 +55,10 @@ Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight 1.0 m
 
 Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition, safety-bridge family) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the 1.0 compatibility claim. Thirty-four of the forty-seven modules in `LeanProofs/Admissibility/` are wired into `LeanProofs.lean` for regression coverage (9 PUBLIC-SHIPPED, 24 ANNEX, 1 DEPRECATED shim); the remaining thirteen are fenced UNRATIFIED-CANDIDATE / SCRATCH material that builds only when invoked directly. Wiring is build-coverage, not public-surface promotion — promotion lives in the `AdmissibilityKernels.lean` aggregator's import list. Per-file custody status is regression-checked via `scripts/check-custody-classes.sh`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
+### `experiments/` — tracked wiring witnesses (non-canonical)
+
+The `experiments/` tree holds reproducible integration artifacts that are **not imported by the canonical proof surface** — each is its own Lake project with its own toolchain pin. A successful build under `experiments/` attests that the wiring checks; it does **not** promote any result into the relied-upon theorem surface (build-exit-0 is attestation of the math, never admission of a world claim). See [`experiments/README.md`](experiments/README.md) for the per-project custody contract (`EXPERIMENTAL-WIRING`). Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings, with schema theorems axiom-free even in the composed build.
+
 ## What this is not
 
 This is not a complete formal model of institutions, platforms, incidents, or distributed systems.

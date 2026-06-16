@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "Admissibility Kernels: A Lean Stack for Authority-Bound State Transitions"
 type: software
-version: "1.1.0"
-date-released: "2026-06-04"
+version: "1.2.0"
+date-released: "2026-06-16"
 authors:
   - family-names: Beck
     given-names: James
@@ -54,3 +54,9 @@ abstract: >-
   Calculus 1.0"; a deprecated compatibility shim at
   LeanProofs/Admissibility/CalculusOne.lean preserves the old import
   path through the 1.x line — see the aggregator's migration note.)
+  (v1.2 adds fenced UNRATIFIED-CANDIDATE No-Free-Lift candidate annexes
+  and an experimental attestation-boundary wiring tree under
+  experiments/, shipped with module names de-placarded and a
+  composition-classification target naming the gate toward any future
+  calculus claim; the 1.0 public surface and its non-claims are
+  unchanged.)
