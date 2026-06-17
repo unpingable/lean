@@ -5,6 +5,39 @@ to Zenodo deposits under the concept DOI
 [10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
 release tag drives the deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## Unreleased — v1.3 candidate: Witnessed Derivation Calculus (2026-06-17)
+
+A **candidate** experiment surface (`experiments/no_free_lift_wiring/Successor/`,
+EXPERIMENTAL-WIRING, NOT in `defaultTargets`). Public 1.0/1.2 surface untouched. **Not a
+2.0 release** — the public-claim promotion remains gated. After the original
+`composition_classification` gate was retired (see the entry below), a *successor* was
+developed and earned a narrow technical name. Claims + exact theorem receipts:
+`experiments/no_free_lift_wiring/RATIFICATION-v1.3.md`.
+
+### Earned (compiled, axiom footprints ≤ `[propext, Quot.sound]`, no `sorry`)
+- **Witnessed Derivation Calculus** — the defined inductive judgment `Lift` with composition
+  (`derivation_extends_along_paid_path`), genuine multi-context cut (`cut_admissible_general`),
+  soundness (`paid_lift_sound`), provenance (`no_free_lift`), and non-manufacture
+  (`revoked_floor_derives_nothing`) — all schematic — plus a canonical-form **normalization**
+  theorem (`bridge_path_normal_form`) established **for the freshness embedding model**. The
+  name is earned by exhibiting the full package in a canonical model, not by an abstract
+  universal normalization theorem.
+- **Four-axis model-admission discipline** `WitnessedDiscipline` (`bridge_valid` /
+  `semantic_nontrivial` / `bridge_selective` / `properly_live`) — a filter BESIDE the
+  calculus (`Normalization` never imports it). The earlier single `Discriminating` axis is
+  retired by factorization: under `BridgeValid` it is exactly `SemanticNontrivial`
+  (`bridgeValid_discriminating_iff_semanticNontrivial`); `bridge_selective` adds the genuine,
+  `B`-dependent teeth it lacked. Inhabited by the canonical freshness embedding
+  (`embedding_is_witnessed`).
+
+### Does not change / does not claim
+- Public 1.0/1.2 surface — unchanged. Name is the **narrow** witnessed-derivation object;
+  "Admissibility Calculus" is **not** revived.
+- Refusal legibility / continuation-bearing refusal (an external agent_gov frontier) is
+  **future candidate** — no Successor theorem proves it.
+- agent_gov correspondences are external **implemented-instance / convergent evidence**, not a
+  verified reduction, and are **not** part of the ratification basis.
+
 ## Unreleased — composition gate prosecuted and retired (2026-06-17)
 
 A **status correction**, not new public mathematics. The `composition_classification`

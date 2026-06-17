@@ -8,3 +8,8 @@ defaultTargets = ["Wired"]
 
 [[lean_lib]]
 name = "Wired"
+
+# 1.3 candidate: the witnessed-derivation calculus core + model-admission discipline.
+# Custody: EXPERIMENTAL-WIRING. NOT in defaultTargets; build `lake build Successor`.
+[[lean_lib]]
+name = "Successor"
