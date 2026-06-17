@@ -2,32 +2,62 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20369489.svg)](https://doi.org/10.5281/zenodo.20369489)
 
-This repository contains small Lean 4 kernels for reasoning about when evidence, standing, freshness, authorization, and transition are sufficient to support a claim or action.
+Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-> small, auditable kernels for recurring admissibility failures.
+## Current release: Witnessed Derivation Calculus v1.3 candidate
 
-**This is not a process calculus. It is a set of small admissibility kernels.**
+**[`v1.3.0-rc1`](https://github.com/unpingable/lean/releases/tag/v1.3.0-rc1)** introduces the ratified **Witnessed Derivation Calculus** candidate.
 
-### Start here
+It provides:
 
-- **Plain-English explainer** → [`WHAT-THIS-IS.md`](WHAT-THIS-IS.md). No formal-methods background assumed.
+- a witnessed-derivation judgment, `Lift`;
+- paid composition and multi-context cut;
+- soundness, provenance, and revocation non-manufacture results (schematic);
+- a canonical-form normalization theorem for the canonical freshness embedding;
+- a separate four-axis model-admission filter, `WitnessedDiscipline` (`bridge_valid` / `semantic_nontrivial` / `bridge_selective` / `properly_live`);
+- a factorization showing the former `Discriminating` axis contributes no independent information beyond `SemanticNontrivial` under `BridgeValid`.
+
+The name is deliberately narrow. This is **not** a process calculus, a maximal admissibility logic, or a unification of every kernel in the repository. The calculus governs witnessed derivation across typed bridges; `WitnessedDiscipline` is a model filter beside it, not part of normalization, and normalization itself is scoped to the canonical freshness embedding.
+
+The v1.3 candidate lives under `experiments/no_free_lift_wiring/` and does **not** alter the stable 1.x public import surface.
+
+- **Exact ratified claims and theorem receipts:** [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md)
+- **Migration and divergence constraints:** [`MIGRATION-NOTES.md`](experiments/no_free_lift_wiring/MIGRATION-NOTES.md)
+- **2.0 public-promotion exit criteria:** [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md)
+- **Release:** [`v1.3.0-rc1`](https://github.com/unpingable/lean/releases/tag/v1.3.0-rc1)
+
+## Stable public surface: Admissibility Kernels
+
+The stable public surface remains a collection of small admissibility kernels, each isolating a particular refusal boundary: stale authority, invalid standing upgrades, unauthorized transition, collapsed public surfaces, unwitnessed movement, and related category errors.
+
+> Local kernels decide admissibility. Witnessed movement between contexts requires an explicit bridge.
+
+The repository therefore contains two related but distinct layers:
+
+1. **Admissibility Kernels** — small local refusal kernels (the stable 1.x public surface).
+2. **Witnessed Derivation Calculus** — the ratified v1.3 candidate for witnessed movement and composition across typed bridges.
+
+Neither is a universal model of institutions, software systems, or agency.
+
+## Start here
+
+- **What changed in v1.3** → [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md)
+- **Plain-English project explainer** → [`WHAT-THIS-IS.md`](WHAT-THIS-IS.md). No formal-methods background assumed.
 - **A single kernel walked end-to-end** → [`docs/worked-examples/standing-upgrade-block.md`](docs/worked-examples/standing-upgrade-block.md). What it refuses and why.
-- **Project root, author, full preprint list** → [unpingable.github.io](https://unpingable.github.io/). The [papers repo](https://github.com/unpingable/papers) is the prose home; this repo is the formal audit harness for the Δt research series. See the [methodology page](https://github.com/unpingable/papers/blob/main/docs/methodology.md) for what the BROKEN / STALE / SOUND register is doing and why.
+- **What the current Lean stack proves** → [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md)
+- **Full admissibility-kernel reference** → [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md)
+- **Project root, author, full preprint list** → [unpingable.github.io](https://unpingable.github.io/). The [papers repo](https://github.com/unpingable/papers) is the prose home; this repo is the formal audit harness for the Δt research series.
 
-## Reading the Lean repo
+## How to read this repository
 
-The modules are intentionally narrow. They formalize recurring boundary failures: stale authority, self-certification, collapsed public surfaces, unauthorized transition, exposure without standing, and cross-boundary cascade.
+Most modules follow the same discipline:
 
-A separate stack of modules audits prose claims from the Δt research series. That audit harness shares the same Lean discipline, but it is one consumer of the admissibility kernels, not the whole repo.
-
-Most modules follow the same pattern:
-
-1. define a small model of a failure surface;
+1. define a small model of a boundary or failure surface;
 2. state the invalid inference the system must not allow;
-3. prove that the inference cannot be derived under the model;
-4. leave implementation, policy, and consequence outside the theorem.
+3. prove that the inference cannot be derived under that model;
+4. leave implementation, policy, and world-level consequence outside the theorem.
 
-The point is not to prove an entire software system correct. The point is to make category errors mechanically visible before they become architecture.
+The point is not to prove an entire software system correct. It is to make invalid promotions and unpaid boundary crossings mechanically visible before they become architecture.
 
 ## Map
 
@@ -35,33 +65,32 @@ The point is not to prove an entire software system correct. The point is to mak
 - **Surface / receipt / witness kernels** — collapsed surfaces, public receipt refinement, witness invariance.
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
-- **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Includes single-step, verdict-layer, trajectory, and attestation-ledger witnesses. Ratifies the standalone safety axis, not any unified-calculus rename.
+- **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Ratifies the standalone safety axis, not any unified-calculus rename.
+- **Witnessed Derivation Calculus** *(v1.3 candidate, `experiments/`)* — witnessed movement and composition across typed bridges. See the release section above.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
-For what the current Lean stack proves, see [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md).
+## Stable 1.x public surface
 
-## Admissibility Kernels (1.0)
+> **The Lean work did not produce a *unified* calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary — and, in v1.3, a narrow witnessed-derivation calculus beside them.**
 
-> **The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.**
+The stable public surface (**Admissibility Kernels**, unchanged since 1.0) is a Lean authority kernel with typed verdicts and object-level refusal theorems for admissible transition. General composition rules and meta-theorems are out of scope for the 1.x stable surface and live in separate kernel families. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the full list of non-claims.
 
-**Admissibility Kernels 1.0** is a Lean authority kernel with typed verdicts and object-level refusal theorems for admissible transition. General composition rules and meta-theorems are out of scope for 1.0 and remain separate kernel families. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the full list of non-claims.
+Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight stable modules into scope (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). Seven specimen consumers live in `LeanProofs.Admissibility.Examples`, demonstrating the public API.
 
-Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight 1.0 modules into scope (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). Seven specimen consumers live in `LeanProofs.Admissibility.Examples`, demonstrating the public API.
+> Admissibility Kernels models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
 
-> Admissibility Kernels 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
+(Migration note: this aggregator was previously named `CalculusOne` under an "Admissibility Calculus 1.0" framing. The rename retires "calculus" from the *stable* public surface; the v1.3 candidate reintroduces it only for the narrow witnessed-derivation object. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`.)
 
-(Migration note: this aggregator was previously named `CalculusOne` under an "Admissibility Calculus 1.0" framing. The rename retires "calculus" from the live public surface; the word now appears only as the refused unification. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`.)
+## Repository custody and compatibility
 
-Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition, safety-bridge family) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the 1.0 compatibility claim. Thirty-four of the forty-seven modules in `LeanProofs/Admissibility/` are wired into `LeanProofs.lean` for regression coverage (9 PUBLIC-SHIPPED, 24 ANNEX, 1 DEPRECATED shim); the remaining thirteen are fenced UNRATIFIED-CANDIDATE / SCRATCH material that builds only when invoked directly. Wiring is build-coverage, not public-surface promotion — promotion lives in the `AdmissibilityKernels.lean` aggregator's import list. Per-file custody status is regression-checked via `scripts/check-custody-classes.sh`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
+Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition, safety-bridge family) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the stable compatibility claim. Thirty-four of the forty-seven modules in `LeanProofs/Admissibility/` are wired into `LeanProofs.lean` for regression coverage (9 PUBLIC-SHIPPED, 24 ANNEX, 1 DEPRECATED shim); the remaining thirteen are fenced UNRATIFIED-CANDIDATE / SCRATCH material that builds only when invoked directly. Wiring is build-coverage, not public-surface promotion — promotion lives in the `AdmissibilityKernels.lean` aggregator's import list. Per-file custody status is regression-checked via `scripts/check-custody-classes.sh`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
 ### `experiments/` — tracked wiring witnesses (non-canonical)
 
-The `experiments/` tree holds reproducible integration artifacts that are **not imported by the canonical proof surface** — each is its own Lake project with its own toolchain pin. A successful build under `experiments/` attests that the wiring checks; it does **not** promote any result into the relied-upon theorem surface (build-exit-0 is attestation of the math, never admission of a world claim). See [`experiments/README.md`](experiments/README.md) for the per-project custody contract (`EXPERIMENTAL-WIRING`). Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings, with schema theorems axiom-free even in the composed build.
+The `experiments/` tree holds reproducible integration artifacts that are **not imported by the canonical proof surface** — each is its own Lake project with its own toolchain pin. A successful build under `experiments/` attests that the wiring checks; it does **not** promote any result into the relied-upon theorem surface (build-exit-0 is attestation of the math, never admission of a world claim). See [`experiments/README.md`](experiments/README.md) for the per-project custody contract (`EXPERIMENTAL-WIRING`).
 
-Honest characterization of `no_free_lift_wiring/`, as of 2026-06-17: a typed claim-transition substrate with conditional soundness for paid freshness paths (paid reachability preserves `Sem` *given* a sound floor and a `Sem`-valid bridge relation) and a partial, species-based composition classification. It does not claim a unified calculus. The proposed `composition_classification` promotion gate was investigated and found unsuitable — not unproved, but retired as the wrong target: semantic bridge validity does not support the intended exclusive classification, and the replacement reach-floor condition reduces to ordinary ancestor coverage. Findings record: [`experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md`](experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md).
-
-A successor *was* subsequently developed (v1.3 candidate, `experiments/no_free_lift_wiring/Successor/`): the **Witnessed Derivation Calculus** — the defined judgment `Lift` with composition, multi-context cut, soundness, provenance, non-manufacture (schematic), and a canonical-form normalization theorem established for the freshness embedding model. Beside it (not part of it) sits a four-axis model-admission filter `WitnessedDiscipline` (`bridge_valid` / `semantic_nontrivial` / `bridge_selective` / `properly_live`); the earlier single `Discriminating` axis is retired by factorization. This is a **candidate** surface — EXPERIMENTAL-WIRING, not in `defaultTargets`, public 1.0/1.2 surface untouched. Claims and exact theorem receipts: [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md); port constraints: [`MIGRATION-NOTES.md`](experiments/no_free_lift_wiring/MIGRATION-NOTES.md). The name "calculus" is the narrow witnessed-derivation object, not a revival of the retired "Admissibility Calculus".
+Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings. It hosts the **v1.3 Witnessed Derivation Calculus candidate** (`Successor/`, see the release section above) and the **findings record for the retired composition-classification gate** ([`COMPOSITION-CLASSIFICATION-TARGET.md`](experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md) — the proposed exhaustive classifier was investigated and retired as the wrong target, not unproved). The road from here to a supported public surface is specified in [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md): public promotion, migration map, stable namespace, and a non-experimental compiled consumer — not new theorems.
 
 ## What this is not
 
@@ -74,11 +103,11 @@ When a theorem lands here, it means a specific invalid inference has been isolat
 ## Companion repos
 
 - **Papers repo:** [`unpingable/papers`](https://github.com/unpingable/papers) — prose papers, working notes, primitives, and the research-program structure. The paper-side crosswalk at [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) inverts this repo's view (paper → module).
-- **This repo (Lean):** admissibility kernel modules, formal claim register for Δt-paper claims, proof attempts, corrected theorem statements, and the BROKEN / STALE / SOUND audit. Module → paper crosswalk lives in [`PAPER-MAP.md`](PAPER-MAP.md).
+- **This repo (Lean):** admissibility kernel modules, the witnessed-derivation calculus candidate, the formal claim register for Δt-paper claims, proof attempts, corrected theorem statements, and the BROKEN / STALE / SOUND audit. Module → paper crosswalk lives in [`PAPER-MAP.md`](PAPER-MAP.md).
 
 ## Audit harness for the Δt framework
 
-The audit-harness layer translates selected claims from the [Δt framework](https://github.com/unpingable/papers) into Lean so they can be checked against explicit definitions instead of persuasive prose. The framework's prose papers make claims about how complex systems degrade, recover, misread themselves, or substitute proxies for reality.
+The audit-harness layer translates selected claims from the [Δt framework](https://github.com/unpingable/papers) into Lean so they can be checked against explicit definitions instead of persuasive prose. The framework's prose papers make claims about how complex systems degrade, recover, misread themselves, or substitute proxies for reality. It is one consumer of the admissibility kernels, not the whole repo.
 
 Some claims survive. Some narrow. Some break.
 
@@ -102,7 +131,7 @@ That is the point. Lean is used here as a pressure chamber for theory: it helps 
 
 ### First documented BROKEN claim
 
-The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Admissibility Kernels 1.0 surface, the sorry-free kernel chain, the cross-boundary specimens, and the four open frontiers — are tracked in [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), [`FRONTIERS.md`](FRONTIERS.md), and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md), not appended here.
+The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Admissibility Kernels surface, the sorry-free kernel chain, the cross-boundary specimens, and the open frontiers — are tracked in [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), [`FRONTIERS.md`](FRONTIERS.md), and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md), not appended here.
 
 **(2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See [`NOTES.md`](NOTES.md) for details.
 
@@ -111,7 +140,8 @@ The audit's first recorded finding, kept here as the chronological anchor for th
 Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 
 ```bash
-lake build
+lake build                  # stable public surface + regression-wired modules
+lake build Successor        # v1.3 candidate (under experiments/no_free_lift_wiring/)
 ```
 
 ## Cross-references
@@ -121,12 +151,14 @@ lake build
 - [`FRONTIERS.md`](FRONTIERS.md) — open gaps in the kernel, named as negative beachheads (load-bearing: Frontier 1, the Admissibility ≠ Safety bridge)
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
+- [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
+- [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — public-promotion criteria for the 2.0 boundary
 - Narrative walkthrough: [`docs/worked-examples/standing-upgrade-block.md`](docs/worked-examples/standing-upgrade-block.md)
 - Papers repo: [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) — paper → module inverse view
 
 ## Status
 
-All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Open gaps — what the kernel does *not* yet rule out — are mapped in [`FRONTIERS.md`](FRONTIERS.md) as negative beachheads (frontier notes, not theorem claims).
+**`v1.3.0-rc1` released** — the Witnessed Derivation Calculus candidate (experiment surface; stable 1.x public import surface unchanged). All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Open gaps — what the kernel does *not* yet rule out — are mapped in [`FRONTIERS.md`](FRONTIERS.md) as negative beachheads (frontier notes, not theorem claims).
 
 The previously-admitted investigative null `corrective_then_forward_is_not_monotone` (formerly in `LeanProofs/Admissibility/Corrective.lean`) was replaced by a positive boundary result in `LeanProofs/Admissibility/CorrectiveBoundary.lean`: the abstract kernel's existential remains formally undecidable in current vocabulary, but a parallel miniature kernel exhibits both possible answers — identity store ops + arbitrary env make the existential FALSE; nondegenerate ops + verdict-sensitive derivation make it TRUE. The abstract kernel is consistent with both, which is the doctrinally-correct stance. See [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) entries A1 (resolved) and #14 (boundary result) for the audit trail. **The discipline that previously displayed the sorry now displays the resolution path** — admitted-statement history is part of the public record, not erased once resolved.
 
@@ -136,8 +168,8 @@ Other open questions — what the kernel does *not* yet rule out — are tracked
 
 This repository is the canonical formal source. Required CI verifies that the formalization builds (`lean-action` on push); proof correctness rests on the Lean source itself, not on any rendered artifact.
 
-The human-readable entry point for proof readers is this README plus the three companion documents linked under *Cross-references* above (`LeanProofs/Admissibility/README.md`, `WHAT-THIS-PROVES.md`, `CLAIM-REGISTER.md`).
+The human-readable entry point for proof readers is this README plus the companion documents linked under *Cross-references* above.
 
 The papers-side companion at `docs/formalization-index.md` in the [papers repo](https://github.com/unpingable/papers) inverts the view (paper → module).
 
-GitHub Pages renders this README at <https://unpingable.github.io/lean/> via classic Pages, so the proof reader's portal is reachable from the web without additional infrastructure. Generated `doc-gen4` API HTML is not currently published; if added later it will sit as a secondary reference layer beneath the human-readable portal, not as the front door. Proof CI proves the formalization; publication of any rendered API docs would belong to a separate non-required workflow.
+GitHub Pages renders this README at <https://unpingable.github.io/lean/> via classic Pages, so the proof reader's portal is reachable from the web without additional infrastructure. Generated `doc-gen4` API HTML is not currently published; if added later it will sit as a secondary reference layer beneath the human-readable portal, not as the front door.
