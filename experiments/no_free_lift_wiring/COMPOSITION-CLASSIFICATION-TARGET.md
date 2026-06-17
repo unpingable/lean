@@ -1,74 +1,83 @@
-# Composition Classification — the gate that earns "calculus"
+# Composition Classification — INVALIDATED TARGET / findings record
 
-**Custody-Class:** CANDIDATE-TARGET (unbuilt). Non-binding. This file defines the
-**theorem to prove**, not a result. It is the checkpoint, drawn clearly rather
-than elided.
+**Status: prior target invalidated (2026-06-16).** The earlier target —
+`classify : Attempt Bridge → Bool → Outcome`, a single classifier over
+`(attempt × validity)` — assumed same-axis bridge paths and cross-axis conversion
+attempts share one domain. Source inspection + an adversarial pass (codex, gpt-5.5)
+refuted it. This file is now a **findings record, not a design.** Replacing the dead
+single-classifier with a confident "two-register classifier" would just be the next
+attractive mistake in a cleaner jacket — the honest status is narrower.
 
-## Why this is the gate
+**Status update: gate retired, not merely undefined (2026-06-17).** A further pass
+(adversarial review by a non-Claude, source-grounded reviewer over the quarry copy in
+`~/git/playground/wired`, plus a compiled reach-floor demotion there) prosecuted the
+*general* composition-classification gate, not just the single-classifier form. Outcome:
 
-Present state of `wired` (verified in source, 2026-06-16): a **formal theory of
-attestation boundaries** — indexed claims, paid transport bridges with
-per-coordinate carry laws (`transitivity` / `triangle` / `clock-order` /
-`authorization` / `monotone-spend`), and typed cross-axis non-conversion
-witnesses (`cross_edge_dichotomy`, `cross_consumer_adoption_unsound`). It is
-**not yet a calculus**: `CoCompilation.lean` is `modules_cocompile : True :=
-trivial` — a co-compilation marker. Composition is handled per-family **in
-prose**, never as an object the system itself classifies. That missing
-**organizing judgment** is the calculus-shaped step.
+> The proposed composition-classification gate was investigated and found unsuitable.
+> Semantic bridge validity does not support the intended exclusive classification
+> (`naive_exclusivity_fails`: a `BridgeValid` cross-edge can preserve `Sem` yet still add
+> derivational reach over a floor), and the replacement reach-floor condition reduces to
+> ordinary ancestor coverage (`reachFloor_iff_ancestor_covered`, compiled in the quarry).
+> No successor promotion criterion has yet been adopted.
 
-## The target (working name `composition_classification` — NOT `_trichotomy`)
+This is a **retirement of the target**, not a parked open theorem. The species classifier
+`classifyStep` is *total as a function*; what is partial — and not strengthenable in this
+model without a new assumption — is the soundness/exclusivity story. The word *calculus* is
+withheld. The sections below are preserved as the prior open-gate framing, now historical:
+do not read "what a real theorem must define" as "build it."
 
-"Trichotomy" would pre-claim exhaustive + mutually-exclusive + decidable
-coverage. Until that is proved, the honest name is `composition_classification`.
-Promote to `_trichotomy` only after exclusivity **and** exhaustiveness are shown.
+## Why the prior target is dead
 
-For a **suitably constrained class** of bridge pairs `(A ⇝ B)`, `(B ⇝ C)`,
-classify the composite `A ⇝ C` into one of:
+Real `Embedding.Bridge` is same-axis BY CONSTRUCTION (`bridge_both_freshness`; cross
+edges definitionally `False`). So:
+- cross-axis conversion is NOT an `Attempt Bridge` — it can't be a value the
+  classifier ranges over;
+- same-axis and cross-axis are different domains, not two branches of one.
 
-- **Composable** — same / compatible coordinate. The composite is a valid paid
-  bridge whose receipt obligation is *that coordinate's own carry law applied to
-  the pair* (transitivity, triangle, clock-order, authorization, monotone-spend).
-  **No universal additive monoid** — cost composes under the owning boundary's
-  algebra, not as `cost₁ + cost₂`.
-- **Redundant** — paid but vacuous (a valid cross-bridge that carries authority
-  and witnesses nothing — the redundant arm of `cross_edge_dichotomy`).
-- **Refused** — different epistemic species; *no* receipt yields the target
-  judgment (authority ↛ freshness, signature ↛ witness, proof ↛ world).
-  **Forbidden-composition, not incomplete-composition.**
+## Current proved artifact (the whole of it)
 
-The composed object must **preserve** (not collapse):
-- the intermediate trace `A ⇝ B ⇝ C` (no silent `A ⇝ C`);
-- each leg's receipt obligation;
-- unresolved `NonDischargeClaim`s (authority / freshness / scope / standing /
-  consumer_reliance);
-- the coordinate-specific cost algebra (no flattening to one monoid);
-- non-manufacture: composing evidence does **not** mint authority.
+- `Wired.CompositionClassification.freshness_two_step_lift_sound` — length-2 paid
+  `Lift` soundness for freshness (`Sem` holds at the end of a 2-step same-axis path).
+  - It is **path soundness**, NOT bridge-relation closure and NOT a classification
+    theorem. It is `paid_lift_sound` at length 2 — near-trivial — and it accepts
+    degenerate/weakening steps.
 
-## Lean signature sketch (target — unproven)
+That is the only theorem. Everything below is unbuilt.
 
-```lean
-inductive CompositionOutcome | composable | redundant | refused
+## Recorded corrections (do not re-lose these)
 
--- for a constrained class of bridge pairs over a Sem-indexed claim space:
-theorem composition_classification (pair : ConstrainedBridgePair) :
-    ∃  o : CompositionOutcome, Holds o pair        -- ∃  = classification (this gate)
-    -- ∃! o, Holds o pair                           -- ∃! = trichotomy (later, if earned)
-```
+1. `freshness_two_step_lift_sound` is path soundness, not composition closure.
+2. The freshness `Bridge` RELATION is not closed into a direct bridge (two
+   carry-forwards = carry THEN weaken, by triangle's `≥`). The PATH is closed/sound.
+3. Cross-axis cases are not `Attempt Bridge` cases.
+4. "Two registers" is a useful explanatory split, NOT yet a partition theorem.
+5. `redundant` is contaminated: `Embedding.valid_cross_bridge_is_redundant` proves
+   only semantic TRUTH of the target under `BridgeValid`, not "adds no reach." It is
+   a reachability claim in disguise. **Owner: AG-Claude / `Embedding.lean`.**
 
-## State ladder — which rung this clears
+## Open gate — what a real composition-classification theorem must first define
 
-1. **NOW** — formal theory of attestation boundaries.
-2. **after this theorem** — *typed calculus* of attestation boundaries. ← **THIS GATE**
-3. **after no-replay / resource rules formalized IN Lean** (currently runtime-only,
-   `already_consumed` in `linear_accountant`) — *substructural* calculus.
-4. **after typed fidelity interfaces** — *conditional* model→world interpretation
-   (within declared scope; **not** magical world-soundness — that is the
-   `formal_bound_to_world_without_model_fidelity` laundering, refused).
+1. The **domain** of attempted moves: real bridge paths (1-step, n-step), purported
+   cross-axis conversions, malformed attempts, and same/cross species cases —
+   explicitly and exhaustively.
+2. Outcome **semantics** for `composable` / `refused` / `redundant` (semantics, not
+   enum labels nothing references).
+3. **Soundness** of each outcome.
+4. Whether coverage is **exhaustive and exclusive.**
 
-## Naming consequence
+## Naming fences (earned, not declared)
 
-Until rung 2 clears, the present-tense honest names are **`No Free Lift:
-Attestation Boundaries in Admissibility Systems`** (banner = the edge law, a
-theorem) or **`Toward a Calculus of Attestation Boundaries`**. "Calculus" is used
-in the *accounting / reckoning* sense, never the proof-theoretic
-collapse-the-kernels object — and it is **unpaid until this gate clears.**
+- Do NOT use `Trichotomy` until exhaustiveness AND exclusivity are proved.
+- Do NOT use `redundant` until the cross-edge theorem proves non-reach /
+  non-contribution — or rename the outcome to match the weaker theorem. Candidate
+  honest names for the current theorem shape:
+  - `valid_cross_bridge_target_true`
+  - `valid_cross_bridge_preserves_truth`
+  - `valid_cross_bridge_semantically_vacuous` (only if it really proves vacuity)
+- `composition_classification`, NOT `composition_trichotomy` (earlier fence, still in force).
+
+## Next Lean work (NOT a classifier)
+
+Either: strengthen/rename the cross-edge "redundant" theorem (owner AG-Claude); or
+generalize `freshness_two_step_lift_sound` to n-step path soundness IF that is
+meaningful and not already trivial from `Lift`. **Do not build another classifier yet.**

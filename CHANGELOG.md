@@ -5,6 +5,30 @@ to Zenodo deposits under the concept DOI
 [10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
 release tag drives the deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## Unreleased — composition gate prosecuted and retired (2026-06-17)
+
+A **status correction**, not new public mathematics. The `composition_classification`
+promotion gate named in v1.2.0 was attempted and adversarially reviewed (non-Claude,
+source-grounded, over the quarry copy); the result is a *retirement* of that target, not
+progress toward it.
+
+### Findings (no public-surface change)
+- Attempted and adversarially reviewed the proposed composition gate; semantic bridge
+  validity does not support the intended exclusive classification (`naive_exclusivity_fails`).
+- Retained as durable corrections: arbitrary-length paid-path transport (framed as
+  transport, not a calculus) and the semantic-truth ⊬ derivational-reach separation.
+- Corrected the bridge non-closure account (carry-then-weaken; the *path* is sound, the
+  one-step *relation* is not closed).
+- Demoted the reach-floor closure condition to ordinary graph reachability / ancestor
+  coverage.
+- Withheld the word *calculus*; no successor promotion criterion adopted.
+
+### Does not change
+- The **1.0 public theorem surface** and all its non-claims — *unchanged*.
+- "Calculus of attestation boundaries" was already a *destination* claim, not a present
+  one. It remains a destination only; the specific gate proposed to earn it is now retired
+  rather than pending. Findings record: `experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md`.
+
 ## v1.2.0 — No Free Lift candidate annexes (2026-06-16)
 
 A **semantic / governance release**, not new public mathematics. It adds fenced

@@ -59,6 +59,8 @@ Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-k
 
 The `experiments/` tree holds reproducible integration artifacts that are **not imported by the canonical proof surface** — each is its own Lake project with its own toolchain pin. A successful build under `experiments/` attests that the wiring checks; it does **not** promote any result into the relied-upon theorem surface (build-exit-0 is attestation of the math, never admission of a world claim). See [`experiments/README.md`](experiments/README.md) for the per-project custody contract (`EXPERIMENTAL-WIRING`). Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings, with schema theorems axiom-free even in the composed build.
 
+Honest characterization of `no_free_lift_wiring/`, as of 2026-06-17: a typed claim-transition substrate with conditional soundness for paid freshness paths (paid reachability preserves `Sem` *given* a sound floor and a `Sem`-valid bridge relation) and a partial, species-based composition classification. It does not claim a unified calculus. The proposed `composition_classification` promotion gate was investigated and found unsuitable — not unproved, but retired as the wrong target: semantic bridge validity does not support the intended exclusive classification, and the replacement reach-floor condition reduces to ordinary ancestor coverage. No successor promotion criterion has yet been adopted. Findings record: [`experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md`](experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md).
+
 ## What this is not
 
 This is not a complete formal model of institutions, platforms, incidents, or distributed systems.
