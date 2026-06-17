@@ -1,7 +1,7 @@
 # Ratification Record — Witnessed Derivation Calculus (v1.3 candidate)
 Status: RATIFIED
 Ratified by: operator
-Artifact commit: df9e7b7
+Artifact commit: 5eb5629
 Date: 2026-06-17
 
 Verdict:
@@ -44,6 +44,23 @@ schematic over any kernel/bridge. **Normalization is established for the freshne
 model, not for every possible witnessed-derivation instance.** v1.3 earns the name by exhibiting the
 *full package in a canonical model*, not by proving an abstract universal normalization theorem.
 
+Three further fences, so the framing cannot outrun the theorems:
+
+- **No general normalization is claimed.** The total order on freshness *time* is load-bearing —
+  it is what makes a canonical form tractable. Authority and standing carry no such order; there is
+  no normalization theorem for them, and none is asserted.
+- **Soundness is relative, and its burden is named.** `BridgeValid Sem B` *is* the assumption that
+  every single bridge step preserves `Sem` (`∀ c c', Sem c → B c c' → Sem c'`). `paid_lift_sound`
+  derives soundness of the *transitive closure* from that single-step burden by induction — it
+  does not assume its conclusion. This is a legitimate relative theorem, not circular plumbing.
+- **Non-manufacture is one direction only.** `revoked_floor_derives_nothing` covers manufacture
+  (empty floor ⇒ no derivation). **Non-suppression** — an input revocation remaining represented —
+  is **not built**, and may require provenance / no-drop / richer operational semantics rather than
+  an ordinary derivability theorem.
+- **Cut is admissibility, not elimination.** `cut_admissible_general` shows the composition a cut
+  would license is already derivable in the two-rule (`base`/`cross`) closure; there is no primitive
+  cut rule being normalized away. The claim is cut-*admissibility*, not cut-*elimination*.
+
 ---
 
 ## Claim 2 — Under `BridgeValid`, `Discriminating` contributes no independent information beyond `SemanticNontrivial` `[proved internally]`
@@ -75,10 +92,17 @@ fields**: `bridge_valid`, `semantic_nontrivial`, `bridge_selective`, `properly_l
 | excludes trivial semantics (via `semantic_nontrivial`) | `Tightened.trivial_rt_closure_excluded` | none |
 | the canonical freshness embedding satisfies all four axes | `Tightened.embedding_is_witnessed` | `[propext, Quot.sound]` |
 | the discipline composes with soundness/provenance | `Tightened.tightened_metatheory` | none |
+| the four axes are independent — for each, a finite model where exactly it fails | `AxisIndependence.{bridge_valid,semantic_nontrivial,bridge_selective,properly_live}_independent` | none |
 
 **Fence (load-bearing):** `WitnessedDiscipline` is a **model-admission filter beside the calculus**.
 `Normalization` never imports it; adopting bridge selectivity **does not enlarge the calculus**.
 The discipline's admitted class is non-empty, witnessed by the **canonical freshness embedding model**.
+
+**Independence fence:** the four separating witnesses prove the axes are **independent /
+irredundant under the present definitions** — no axis follows from the other three. This is **not**
+a claim of minimality, uniqueness, or completeness: it does **not** establish that no alternative
+basis (e.g. a three-axis encoding) expresses the same discipline, that these four axes are uniquely
+natural, or that the taxonomy is complete for every notion of witnessed discipline.
 
 ---
 
