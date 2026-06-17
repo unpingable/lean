@@ -1,4 +1,14 @@
 # Ratification Record — Witnessed Derivation Calculus (v1.3 candidate)
+Status: RATIFIED
+Ratified by: operator
+Artifact commit: df9e7b7
+Date: 2026-06-17
+
+Verdict:
+- Claim 1 accepted with stated scope.
+- Claim 2 accepted with stated BridgeValid qualification.
+- Claim 3 accepted with stated calculus/discipline separation.
+- All listed non-claims remain in force.
 
 **Surface:** `experiments/no_free_lift_wiring/Successor/` (Custody-Class: EXPERIMENTAL-WIRING; NOT in `defaultTargets`).
 **Public 1.2 surface (`LeanProofs/Admissibility/`): untouched.** This is the v1.3 *candidate* experiment surface — **not a 2.0 release**.
