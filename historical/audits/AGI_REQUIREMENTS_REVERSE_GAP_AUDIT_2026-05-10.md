@@ -1,6 +1,25 @@
-# Frontiers — Open Gaps for the Admissibility Kernel
+# AGI-Requirements Reverse-Gap Audit — 2026-05-10 (closed audit artifact)
 
-**Status:** frontier notes. **Not theorem claims.** First-pass beachheads.
+> **CLOSED AUDIT ARTIFACT. NOT the project frontier register. NOT a promotion queue.**
+>
+> This is one dated inquiry: the 2026-05-10 reverse-gap audit of
+> `~/git/papers/working/agi-requirements-framework.md` against the kernel. A finding is
+> **admissible to this ledger only if it is a gap where *that requirements document*
+> demands more than the kernel delivers** — every entry below cashes back to a section of it.
+>
+> A finding with the same *wound-shape* but a different *provenance* — e.g. a
+> calculus-internal concern surfaced by some other inquiry — does **not** belong here, no
+> matter how load-bearing. **Named is not collected: recognition does not confer custody,
+> similarity does not authorize filing, importance does not erase provenance.** File such a
+> finding in its own provenance ledger (e.g. a calculus-side findings doc under
+> `experiments/no_free_lift_wiring/`), not here. *(This fence exists because the file's old
+> name — "Frontiers" — read as a live open-problems register and lured exactly that
+> mis-filing. The receipt is preserved; the misleading surface is retired.)*
+
+**Status:** closed audit notes. **Not theorem claims.** First-pass beachheads, scoped to the
+one requirements doc named above. **Closed to further findings on 2026-06-17**; later status
+notes below (e.g. Frontier 1's 2026-05-28 disposition) are retained as **historical disposition**,
+so this is a dated audit record with subsequent notes, not a frozen 2026-05-10 snapshot.
 **Originated:** 2026-05-10 reverse-gap audit of `~/git/papers/working/agi-requirements-framework.md` against the post-reframe corpus (admissibility-cybernetics + Loop Capture + WIF-composition + this kernel). Surfaced gaps where the AGI requirements doc demands more than the current admissibility machinery delivers.
 
 ## What this file is and is not
@@ -146,11 +165,14 @@ Loop Capture supplies the *adversarial* version (external attacker captures the 
 
 ---
 
-## Frontier 5 — *(reserved)*
+## Frontier 5 — *(reserved slot — never populated; retired when this audit closed)*
 
-Reserved for whatever falls out of working Frontier 2 (Belief Coherence). Belief-coherence work tends to surface load-bearing primitives that weren't visible from outside — likely candidates: *commitment*, *retraction*, *observer-binding*, *revision under standing*. None named yet; placeholder kept honest.
+This slot was reserved for whatever might fall out of working Frontier 2 (Belief Coherence) —
+likely candidates were *commitment*, *retraction*, *observer-binding*, *revision under standing*.
+It was never populated, and is **retired with this audit (closed 2026-06-17)**. It is not an open
+intake slot; this is a closed artifact, not a live register.
 
-> *Whatever horrible fifth thing falls out while trying to do #2.*
+> *(historical) Whatever horrible fifth thing falls out while trying to do #2.*
 
 ---
 

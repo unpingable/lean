@@ -141,7 +141,7 @@ Sibling to `LeanProofs/Admissibility.lean` (P27 obligation skeleton, namespace `
 
 ## `LeanProofs/Admissibility/` safety-bridge family (Frontier 1 — standalone preprint anchor)
 
-Eight modules forming the safety-axis brick set, addressing the `FRONTIERS.md` Frontier 1 wound (`Admissibility ≠ Safety`) with a single-step wound + verdict-layer wound + trajectory triple + second concrete witness. Module-by-module description in `LeanProofs/Admissibility/README.md`; status (structurally addressed 2026-05-28) in `FRONTIERS.md`.
+Eight modules forming the safety-axis brick set, addressing the Frontier 1 wound (`Admissibility ≠ Safety`) from the closed 2026-05-10 AGI-requirements reverse-gap audit with a single-step wound + verdict-layer wound + trajectory triple + second concrete witness. Module-by-module description in `LeanProofs/Admissibility/README.md`; status (structurally addressed 2026-05-28) in `historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md`.
 
 - `AuthorizedNotSafe.lean` / `AuthorizedNotSafeWitness.lean` (added 2026-05-27 / 2026-05-28) — Brick 0. The wound at the `StepAllowed` layer; axiomatic exhibition + concrete consistency discharge over a `List Receipt` parallel miniature.
 - `SafetyBridge.lean` / `SafetyBridgeWitness.lean` (added 2026-05-28) — Abstract primitive: actor-inert `bridge : σ → α → Prop` with `preserves` obligation; non-contamination bridge specimen with structural discharge.

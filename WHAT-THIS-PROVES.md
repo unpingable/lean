@@ -163,7 +163,7 @@ Governor (`agent_gov`) operationally implements this kernel's pattern. The Lean 
 
 ## Infrastructure: Safety bridge (Frontier 1)
 
-Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), addressing the Frontier 1 wound ("Admissibility ≠ Safety") from `FRONTIERS.md`. ANNEX-classified (consumer specimens sub-group) — wired into `LeanProofs.lean` for build coverage, but their signatures are not part of the Admissibility Kernels 1.0 compatibility claim.
+Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), addressing the Frontier 1 wound ("Admissibility ≠ Safety") from the closed 2026-05-10 AGI-requirements reverse-gap audit (`historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md`). ANNEX-classified (consumer specimens sub-group) — wired into `LeanProofs.lean` for build coverage, but their signatures are not part of the Admissibility Kernels 1.0 compatibility claim.
 
 - **`AuthorizedNotSafe.lean`** / **`AuthorizedNotSafeWitness.lean`** — Brick 0. The wound at the `StepAllowed` layer (mutation standing): an authorized step strictly decreases an externally-defined defended value. The first module exhibits it axiomatically over the abstract kernel surface; the second discharges the consistency caveat via a parallel concrete miniature (evidence store as `List Receipt`).
 - **`SafetyBridge.lean`** — Abstract primitive. `SafetyEnv (σ α ρ : Type)` with actor-inert `bridge : σ → α → Prop` and a `preserves` proof obligation. `SafeStep` bundles authorization + bridge witness; `bridge_implies_safe` projects through `preserves` without consuming `Allowed`. Actor-inertness is a base design decision for the safety axis (actor-relative evidence stays in `Allowed`; safety preservation is over the transition effect); the actor-sensitive refinement `ActorSensitiveBridgeEnv` is named-but-not-implemented.
@@ -184,7 +184,7 @@ Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), ad
 
 ### Why it's here
 
-Frontier 1 of `FRONTIERS.md` named the wound on 2026-05-10: *kernel correctly says authorization holds; it does not say authorized actions are safe.* The corpus had the negative direction (Loop Capture: `L_t` legitimacy can stay high while `V_t` defended value decays). This family formalizes both directions — the wound as a theorem, the positive bridge as a structural primitive — and lifts the pair to trajectories so the divergence is a composition result, not a single-step accident. The interpretive frontier (real institutional legitimacy structures) is downstream of this and stays open.
+Frontier 1 of the 2026-05-10 AGI-requirements reverse-gap audit (`historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md`) named the wound: *kernel correctly says authorization holds; it does not say authorized actions are safe.* The corpus had the negative direction (Loop Capture: `L_t` legitimacy can stay high while `V_t` defended value decays). This family formalizes both directions — the wound as a theorem, the positive bridge as a structural primitive — and lifts the pair to trajectories so the divergence is a composition result, not a single-step accident. The interpretive frontier (real institutional legitimacy structures) is downstream of this and stays open.
 
 ---
 

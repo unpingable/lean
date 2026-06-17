@@ -131,7 +131,7 @@ That is the point. Lean is used here as a pressure chamber for theory: it helps 
 
 ### First documented BROKEN claim
 
-The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Admissibility Kernels surface, the sorry-free kernel chain, the cross-boundary specimens, and the open frontiers — are tracked in [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), [`FRONTIERS.md`](FRONTIERS.md), and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md), not appended here.
+The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Admissibility Kernels surface, the sorry-free kernel chain, and the cross-boundary specimens — are tracked in [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md) and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md); gaps against the AGI-requirements doc live in [the closed 2026-05-10 reverse-gap audit](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md). Not appended here.
 
 **(2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See [`NOTES.md`](NOTES.md) for details.
 
@@ -148,7 +148,7 @@ lake build Successor        # v1.3 candidate (under experiments/no_free_lift_wir
 
 - [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) — full module-by-module reference for the admissibility kernel modules
 - [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md) — module-level exposition of what each proof establishes and what it rules out
-- [`FRONTIERS.md`](FRONTIERS.md) — open gaps in the kernel, named as negative beachheads (load-bearing: Frontier 1, the Admissibility ≠ Safety bridge)
+- [`historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md`](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md) — **closed audit artifact**: the dated 2026-05-10 AGI-requirements reverse-gap audit (gaps where *that one requirements document* demands more than the kernel delivers). Not the project's live open-problems register, not a promotion queue.
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
@@ -158,7 +158,7 @@ lake build Successor        # v1.3 candidate (under experiments/no_free_lift_wir
 
 ## Status
 
-**`v1.3.0-rc1` released** — the Witnessed Derivation Calculus candidate (experiment surface; stable 1.x public import surface unchanged). All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Open gaps — what the kernel does *not* yet rule out — are mapped in [`FRONTIERS.md`](FRONTIERS.md) as negative beachheads (frontier notes, not theorem claims).
+**`v1.3.0-rc1` released** — the Witnessed Derivation Calculus candidate (experiment surface; stable 1.x public import surface unchanged). All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Gaps surfaced by the dated 2026-05-10 AGI-requirements reverse-gap audit are recorded in [the closed reverse-gap audit](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md) — a **closed audit artifact** scoped to that one requirements document, not the project's live open-problems register.
 
 The previously-admitted investigative null `corrective_then_forward_is_not_monotone` (formerly in `LeanProofs/Admissibility/Corrective.lean`) was replaced by a positive boundary result in `LeanProofs/Admissibility/CorrectiveBoundary.lean`: the abstract kernel's existential remains formally undecidable in current vocabulary, but a parallel miniature kernel exhibits both possible answers — identity store ops + arbitrary env make the existential FALSE; nondegenerate ops + verdict-sensitive derivation make it TRUE. The abstract kernel is consistent with both, which is the doctrinally-correct stance. See [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) entries A1 (resolved) and #14 (boundary result) for the audit trail. **The discipline that previously displayed the sorry now displays the resolution path** — admitted-statement history is part of the public record, not erased once resolved.
 
