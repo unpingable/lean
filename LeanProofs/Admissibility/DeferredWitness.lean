@@ -1,3 +1,16 @@
+/-
+  Custody-Class: ANNEX
+
+  Promoted from `LeanProofs/Scratch/DeferredWitness.lean` (2026-06-26): compiled,
+  sorry-free, wired into `LeanProofs.lean` for build coverage. Signatures are NOT
+  part of the 1.0 compatibility claim — annex semantics (may rename, refactor, or
+  absorb without notice). Provenance: scratch reconnaissance graduated to annex so
+  downstream operational work (NQ's EVIDENCE_RETIREMENT basis-stale slice) can cite
+  it as evidence under the pinning discipline, rather than steer implementation
+  from a fenced module. A refusal kernel for temporal backflow: it pins the one
+  lawful form of late-witness completion and the laundering moves it blocks.
+-/
+
 /-!
 # Deferred Witness
 
@@ -43,7 +56,7 @@ List String so the kernel is self-contained and computable (`#eval` works). Lift
 to abstract `[LinearOrder]` / `[DecidableEq]` carriers is mechanical.
 -/
 
-namespace DeferredWitness
+namespace Admissibility.DeferredWitness
 
 abbrev Time         := Nat
 abbrev ClaimKind    := String
@@ -331,4 +344,4 @@ example : ¬ LawfulCompletion staleUse := stale_evidence_rejected (by decide)
 
 #eval doctrine
 
-end DeferredWitness
+end Admissibility.DeferredWitness

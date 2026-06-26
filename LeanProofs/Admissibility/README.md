@@ -4,11 +4,11 @@
 
 **Public surface (1.0).** Eight modules aggregated via `AdmissibilityKernels.lean`: an authority kernel (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`) plus three sibling kernels (`Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). These names form the 1.0 compatibility claim and carry the `Custody-Class: PUBLIC-SHIPPED` marker.
 
-**Five custody classes.** The 47 `.lean` files in this directory are partitioned by per-file `Custody-Class:` markers (regression-checked by `scripts/check-custody-classes.sh`):
+**Five custody classes.** The 51 `.lean` files in this directory are partitioned by per-file `Custody-Class:` markers (regression-checked by `scripts/check-custody-classes.sh`):
 
 - **PUBLIC-SHIPPED (9).** The 8 surface modules above plus the `AdmissibilityKernels.lean` aggregator. Signatures are the 1.0 compatibility claim.
-- **ANNEX (24).** Compiled supporting material imported by `LeanProofs.lean` for build coverage but explicitly outside the 1.0 promise. Splits into **13 kernel-adjacent** modules (recovery, cross-boundary, numerical/artifact-kind axes, experimental composition) and **11 consumer specimens** (SafetyBridge / AuthorizedNotSafe families, `ConsolidationDenial`, `RefusalPropagation`, `Examples`). Annex builds green and is sorry-free; future versions may rename, refactor, or absorb without notice.
-- **UNRATIFIED-CANDIDATE (11).** Named-but-not-promoted material with pending forcing-case discriminators. Not imported by `LeanProofs.lean`; builds when invoked directly.
+- **ANNEX (25).** Compiled supporting material imported by `LeanProofs.lean` for build coverage but explicitly outside the 1.0 promise. Splits into **14 kernel-adjacent** modules (recovery, cross-boundary, numerical/artifact-kind axes, deferred-witness lapse, experimental composition) and **11 consumer specimens** (SafetyBridge / AuthorizedNotSafe families, `ConsolidationDenial`, `RefusalPropagation`, `Examples`). Annex builds green and is sorry-free; future versions may rename, refactor, or absorb without notice.
+- **UNRATIFIED-CANDIDATE (14).** Named-but-not-promoted material with pending forcing-case discriminators. Not imported by `LeanProofs.lean`; builds when invoked directly.
 - **SCRATCH (2).** Fenced exploratory material (`BoundaryWitness`, `GuardCollapse`). Not imported by `LeanProofs.lean`.
 - **DEPRECATED (1).** `CalculusOne` shim; scheduled for 2.0 removal.
 
@@ -26,10 +26,21 @@ Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespa
 
 ## Changelog
 
+### Unreleased — DeferredWitness promoted SCRATCH → ANNEX (2026-06-26)
+
+- `LeanProofs/Scratch/DeferredWitness.lean` → `LeanProofs/Admissibility/DeferredWitness.lean`. Namespace `DeferredWitness` → `Admissibility.DeferredWitness`; `Custody-Class: ANNEX` marker added; wired into `LeanProofs.lean` (refusal-kernel cluster). Sorry-free; outside the 1.0 compatibility claim. **Forcing context:** NQ's EVIDENCE_RETIREMENT basis-stale slice needs to cite the kernel as *evidence* under the `[annex]` pinning discipline (`nq` repo, `docs/theory/ROADMAP_EXPECTATIONS_FROM_LEAN_KERNEL.md`) rather than steer implementation from a `[scratch]` module, which that discipline forbids.
+- **Registry-count drift flagged (NOT reconciled in this pass).** `scripts/check-custody-classes.sh` now reports **51 files** — PUBLIC-SHIPPED 9, ANNEX 25, UNRATIFIED-CANDIDATE 14, SCRATCH 2, DEPRECATED 1. The prose counts throughout this README ("47 `.lean` files", "ANNEX (24)", "UNRATIFIED-CANDIDATE (11)", "Thirty-four of the 47 … wired") predate three earlier UNRATIFIED-CANDIDATE additions *plus* this promotion and are stale. Left for a dedicated count-reconciliation pass rather than guessed at here — only the marker, the wiring, and this receipt are claimed. *(Reconciled 2026-06-26 — see next entry.)*
+
+### Unreleased — registry counts reconciled (2026-06-26)
+
+- Prose counts throughout this README brought into agreement with `scripts/check-custody-classes.sh` (51 files: PUBLIC-SHIPPED 9, ANNEX 25, UNRATIFIED-CANDIDATE 14, SCRATCH 2, DEPRECATED 1) and with the `LeanProofs.lean` import graph (35 wired = 9 + 25 + 1; 16 fenced = 14 + 2). Touched: the five-class summary, the ANNEX 14/11 sub-split, the kernel-adjacent table (`DeferredWitness` row added), the fenced-material list (added `CarryLaws`, `NoFreeLift`, `NoFreeStandingBridge` — the three UNRATIFIED-CANDIDATE modules added before this pass), and the two wired-count sentences.
+- **Audit, not guess.** Counts were derived from a per-file `Custody-Class:` marker sweep and verified against `LeanProofs.lean` imports, not inferred from the old prose. The DeferredWitness annex split is kernel-adjacent (refusal kernel), so 13→14 kernel-adjacent and consumer specimens unchanged at 11.
+- **One count deliberately left stale:** the "Refusal kernel taxonomy" section still reads *four* refusal kernels. Folding `DeferredWitness` into the existential-vs-conditional split is a content judgment about its theorem shape, not a registry count, and carries an in-place flag instead.
+
 ### Unreleased — custody discipline
 
 Infrastructure:
-- Per-file `Custody-Class:` markers across all 47 `.lean` files in `LeanProofs/Admissibility/`, drawn from the five ratified classes (`PUBLIC-SHIPPED`, `ANNEX`, `SCRATCH`, `UNRATIFIED-CANDIDATE`, `DEPRECATED`). Class vocabulary ratified in the papers repo at `working/custody-classes.md`.
+- Per-file `Custody-Class:` markers across all `.lean` files in `LeanProofs/Admissibility/` (the gate enforces one per file regardless of count), drawn from the five ratified classes (`PUBLIC-SHIPPED`, `ANNEX`, `SCRATCH`, `UNRATIFIED-CANDIDATE`, `DEPRECATED`). Class vocabulary ratified in the papers repo at `working/custody-classes.md`.
 - New `scripts/check-custody-classes.sh` — regression-checks marker presence and class validity; exits non-zero on missing or unratified markers.
 - `ANNEX` ratified as the fifth custody class: compiled supporting material, scope-declared and regression-covered, but not promoted as public kernel authority.
 - `AdmissibilityKernels.lean` scope-fence extended to enumerate 11 internal consumer specimens previously unclassified at the aggregator level (`AttestationLedger`, `AuthorizedNotSafe(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyBridge(Witness)`, `SafetyTrajectory`, `ConsolidationDenial`, `RefusalPropagation`, `Examples`). Annex now declared in two sub-groups: kernel-adjacent (13) and consumer specimens (11).
@@ -118,7 +129,7 @@ Seven specimen consumers live in `Examples.lean` (imports `AdmissibilityKernels`
 
 Annex modules carry `Custody-Class: ANNEX` and are imported by `LeanProofs.lean` for build coverage. They are green and sorry-free, but their signatures are *not* part of the 1.0 compatibility claim — future versions may rename, refactor, or absorb without notice. ANNEX splits into two sub-groups by role.
 
-### Kernel-adjacent annex (13 modules)
+### Kernel-adjacent annex (14 modules)
 
 Extend the kernel surface along axes (recovery, cross-boundary composition, numerical/artifact-kind axes, communicating processes) that the 1.0 surface explicitly does not promise. Per scope-fence points 2–5 above.
 
@@ -128,6 +139,7 @@ Extend the kernel surface along axes (recovery, cross-boundary composition, nume
 | `PublicReceiptRefinement`    | Recovery doctrine companion to `SurfaceAuthorization`     |
 | `RecoveryMargin`             | Visible-vs-capacity gap refusal (within-interval)         |
 | `ClosureEligibility`         | Survival-vs-closure refusal (end-of-interval)             |
+| `DeferredWitness`            | Pending/lapsed-vs-admissible refusal (deferred witness)   |
 | `FiatAdmissibility`          | Artifact-kind × use-kind axis                             |
 | `NumericalAdmissibility`     | Numerical-kind × use-kind axis                            |
 | `AxisSkew`                   | Directional comparison axis (lagging/matched/leading)     |
@@ -156,11 +168,11 @@ Exercise the public surface in concrete settings. The SafetyBridge / AuthorizedS
 | `RefusalPropagation`         | Refusal-propagation specimen                              |
 | `Examples`                   | Seven public-surface specimen consumers                   |
 
-### Fenced material — UNRATIFIED-CANDIDATE / SCRATCH (13 modules)
+### Fenced material — UNRATIFIED-CANDIDATE / SCRATCH (16 modules)
 
 Not imported by `LeanProofs.lean`. Build only when invoked directly (`lake build LeanProofs.Admissibility.<name>`). Status declared per file via `Custody-Class:` markers; reasons typically captured in companion working notes in the papers repo.
 
-- **UNRATIFIED-CANDIDATE (11)** — named candidates with pending forcing-case discriminators: `AmendmentFragment`, `BudgetMerge`, `Conductance`, `ConsequencePartition`, `ContractionHinge`, `Mandamus`, `MergeConflict`, `ParameterizedMerge`, `ProjectionLaundering`, `RetroactiveLegitimation`, `StaleEvidenceMerge`.
+- **UNRATIFIED-CANDIDATE (14)** — named candidates with pending forcing-case discriminators: `AmendmentFragment`, `BudgetMerge`, `CarryLaws`, `Conductance`, `ConsequencePartition`, `ContractionHinge`, `Mandamus`, `MergeConflict`, `NoFreeLift`, `NoFreeStandingBridge`, `ParameterizedMerge`, `ProjectionLaundering`, `RetroactiveLegitimation`, `StaleEvidenceMerge`.
 - **SCRATCH (2)** — fenced exploratory material: `BoundaryWitness` (expository schema, not kernel content), `GuardCollapse` (interferometer probe).
 
 ### Refusal kernel taxonomy
@@ -171,6 +183,8 @@ The annex contains four refusal kernels — each proves a `surface ⇏ substance
 - **Conditional-rule kernel** (1): `SurfaceAuthorization`. Universal over action kinds and surface statuses: if cause-specific action AND collapsed surface AND no breakers, then deny. The theorem quantifies over inputs and returns a verdict, with companion theorems filling out the verdict space. Not a one-shot countermodel; a parameterized refusal rule.
 
 Both shapes inhabit the same operator family (catalog at `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md`). The shape difference matters for how the kernel composes (or refuses to compose) with future propagation-axis candidates — see Roadmap above.
+
+> **[count-reconciliation flag, 2026-06-26]** The newly-promoted `DeferredWitness` annex module is a refusal kernel (`pending ⇏ admissible`, `lapsed ⇏ admissible`) and appears to be existential-countermodel shape, which would make this **five** kernels (4 existential + 1 conditional). It is deliberately *not* folded into the counts above: placing it in the two-shape split is a content judgment about its theorem form against the catalog, not a registry count. Left for whoever next audits the taxonomy. This is the only count in the file intentionally left stale.
 
 ## Modules
 
@@ -295,6 +309,14 @@ Keeper: *Fluency is not a settlement receipt.*
 Sharper: *Decay can clear the buffer without settling the debt. A decay-governed system can look stable by forgetting what it failed to learn. Audited discard is not rot — residue demoted under audit is a separate stock, not epistemic damage.* Same family resemblance as `RecoveryMargin` and `ClosureEligibility`: a visible surface signal is being asked to license a substantive claim it does not, by itself, support. Sibling to `RecoveryMargin` (within-interval visible-vs-capacity) and `ClosureEligibility` (end-of-interval survival-vs-closure); this module governs between-interval fluency-vs-settlement. Sibling to `Freshness` on the temporal axis — where `Freshness` governs metric-time admissibility of evidence (*is this timestamp within an acceptable window*), `ConsolidationDenial` names a phase-time refusal (*has any settlement interval occurred at all*).
 
 The three-clock threat model (interaction λ_ext, settlement μ, decay δ) and the consolidation-interrupt controller (Schmitt-trigger safety invariant, four-stock dynamics B/K/X/R, mode-specific bounds) are *named* in the header as cybernetic provenance only; this module does not *model* them. Equations and a controller sketch live in the papers repo at `working/tooltheory/consolidation-denial.md` + `working/tooltheory/consolidation-denial-formal-sketch.md`. Nightshift, agent_gov, continuity, and NQ are the operational consumers.
+
+### Sibling — `DeferredWitness.lean` `[annex]` (promoted SCRATCH → ANNEX 2026-06-26)
+
+**Refusal kernel for temporal backflow — the one lawful form of late-witness completion, and the laundering it is not.** Governs a claim asserted at t₁ and completed by evidence observed at t₂ > t₁ under a deferral grant. The discriminator lives entirely at assertion time: the grant must itself be witnessed *before* the claim relied on it (anti-necromancy), bound to the exact witnessed terms (no post-hoc widening), inside the window.
+
+Keeper: *Signed is not witnessed; later evidence is not prior standing; a license to defer is itself a declared state requiring a witness.*
+
+Distinct in shape from the existential-countermodel refusal kernels (`RecoveryMargin` / `ClosureEligibility` / `ConsolidationDenial`): in addition to the named contrapositives (`no_retroactive_standing`, `necromancy_rejected`, `mutated_terms_rejected`, `stale_evidence_rejected`) it carries an executable classifier (`firstViolation` over a disjoint, countable, never-graded `Backflow` taxonomy) and a lifecycle (`statusOf` → `refused` / `pending` / `completed` / `lapsed`, with `Admissible` gated to `completed` so a window closing with no completing witness *lapses* rather than drifting into de-facto admissibility). Layer B (budget/refresh — how many claims one grant may complete) is the declared open frontier. Operational consumer: NQ's EVIDENCE_RETIREMENT basis-stale slice (the `live → stale` evidence-currency transition); see the `nq` repo gap doc and the pinning-discipline memo `docs/theory/ROADMAP_EXPECTATIONS_FROM_LEAN_KERNEL.md`.
 
 ### Sibling — `Freshness.lean` `[1.0]` (added 2026-05-19)
 
@@ -425,7 +447,7 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-Thirty-four of the 47 `LeanProofs/Admissibility/*.lean` files are wired into `LeanProofs.lean` root: 9 PUBLIC-SHIPPED (8 surface modules + the `AdmissibilityKernels` aggregator), 24 ANNEX (13 kernel-adjacent + 11 consumer specimens), and 1 DEPRECATED (`CalculusOne` shim). The remaining 13 files (UNRATIFIED-CANDIDATE + SCRATCH) are fenced — they build only when invoked directly and are not part of the default regression set. The default `lake build` (no args) covers the wired set; `scripts/check-custody-classes.sh` validates that every file in the directory declares one of the five ratified custody classes.
+Thirty-five of the 51 `LeanProofs/Admissibility/*.lean` files are wired into `LeanProofs.lean` root: 9 PUBLIC-SHIPPED (8 surface modules + the `AdmissibilityKernels` aggregator), 25 ANNEX (14 kernel-adjacent + 11 consumer specimens), and 1 DEPRECATED (`CalculusOne` shim). The remaining 16 files (UNRATIFIED-CANDIDATE + SCRATCH) are fenced — they build only when invoked directly and are not part of the default regression set. The default `lake build` (no args) covers the wired set; `scripts/check-custody-classes.sh` validates that every file in the directory declares one of the five ratified custody classes.
 
 Public-surface gate: `lake build LeanProofs.Admissibility.AdmissibilityKernels` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
 
@@ -435,7 +457,7 @@ No Lean proof holes as of 2026-05-28 in the wired stack. The word `sorry` does a
 
 `CrossBoundaryCascade.lean` had a pre-existing parse error in its `Step.exposeFromExposure` constructor (multi-line `insert (...)` inside a structure update not parsing without parentheses). The fix was two characters; the file is now wired and covered by the default `lake build`. This bug had been silent since 2026-05-21 because the module was unwired.
 
-The modules below are the 34 wired into `LeanProofs.lean` root and covered by `lake build` (no args). Individual builds are listed for narrow regression checks. The 13 fenced files (UNRATIFIED-CANDIDATE / SCRATCH, enumerated in §Annex above) build individually but are not part of the default regression set.
+The modules below are the 35 wired into `LeanProofs.lean` root and covered by `lake build` (no args). Individual builds are listed for narrow regression checks. The 16 fenced files (UNRATIFIED-CANDIDATE / SCRATCH, enumerated in §Annex above) build individually but are not part of the default regression set.
 
 ```bash
 # Public 1.0 surface (aggregator + specimens)
