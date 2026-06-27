@@ -50,7 +50,7 @@ open because it is **hard**, not because it is speculative.
    channel (live revocation / refusal / custody obligations): revocation present at
    input cannot silently vanish through a bridge (frame / no-weakening invariant).
    Likely needs a richer derivation object (resource/provenance semantics), not just
-   another `Lift` lemma. This is the missing inverse of `revoked_floor_derives_nothing`.
+   another `Lift` lemma. This is the **dual** of `revoked_floor_derives_nothing` (not its inverse): manufacture creates on the revocation channel where it should refuse; suppression drops a refusal that should persist — two failure directions on one channel, not a function and its inverse.
 
 4. **Composition-classification via reachability (cheapest; returns to a retired
    gate).** The `composition_classification` gate is RETIRED (naive exclusivity
@@ -89,7 +89,12 @@ proof theory. Listed so it is on the register; not ranked against the proof-theo
 
 For *research leverage*: normalization-as-admitting-class + cut-elimination first.
 For *slice discipline*: composition-closure (#4) first — bounded, de-risks the bridge
-relation before #1 builds on it. Either way: **1.4.0 ships before any of this opens.**
+relation before #1 builds on it. **A third edge, if the witnessed-clock lead (below) is
+live:** it adds a term *to the judgment* (new constructor/cases, perhaps a new
+termination-measure component), so it must precede **#2 cut-elimination** — which builds a
+cut-rank induction *over* the judgment — or #2 must be written to anticipate a
+clock-carrying constructor, or the cut-rank argument gets redone. #2 and the clock work are
+**not** independent. Either way: **1.4.0 ships before any of this opens.**
 
 ## What Would Make This 2.0
 
@@ -105,8 +110,15 @@ least one:
 2. **Substructural.** Resource-sensitive non-suppression — direction #3: live
    revocation/refusal resources cannot silently vanish through admissible transport,
    earning the substructural language for real.
-3. **API-breaking.** The better calculus forces an incompatible change to the public
-   `LeanProofs.Witnessed.*` definitions.
+3. **API-breaking.** A *stronger* calculus forces an incompatible change to the public
+   `LeanProofs.Witnessed.*` definitions. Note the asymmetry: criteria 1–2 are
+   *achievements*; this one is an *obligation* — semver makes any break demand a major
+   bump. So it needs a **fence on the fence**: a real improvement that *forces* a break
+   earns 2.0; **manufacturing** a break to reach the integer (a vanity rename, gratuitous
+   signature churn with nothing stronger proven) is the same attractor wearing semver.
+   Don't churn the public API for the number. Criterion 3 is a *consequence* of a genuine
+   result (1, 2, the clock work, or an equally real strengthening) — never a path to the
+   integer on its own.
 
 Packaging, documentation, additional public surfaces, and model-scoped extensions are
 **minor** releases unless they break the public API. This is the fence that keeps the
@@ -117,8 +129,9 @@ integer, *witnessed* — not a milestone that merely feels large.
 
 A 2026-06-27 multi-model pass surfaced a second 2.0 candidate and an *operational adapter
 track* that must not steal the integer. Full synthesis (with the validator tool-theory and
-the non-collapse table) lives in the papers repo at
-`working/tooltheory/validator-as-bounded-witness.md`. Sorted here by the rule above —
+the non-collapse table) lives in an **internal working note, not part of this public
+surface** — `working/tooltheory/validator-as-bounded-witness.md` in the papers working tree
+(may not resolve for an external reader). Sorted here by the rule above —
 *does it change the calculus, or carry it to the world?*
 
 The find: **the untrusted-generator / deterministic-checker split is the corpus doctrine as
