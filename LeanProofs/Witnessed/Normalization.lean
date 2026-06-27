@@ -3,8 +3,8 @@
   every paid freshness path admits a CANONICAL FORM (a carry segment, then a weakening
   segment).
 
-  Custody class: EXPERIMENTAL-WIRING. NOT in defaultTargets; build with
-  `lake build Successor`. The `Wired` spine is untouched. No new axiom, no new
+  Custody class: ANNEX (Mathlib-free; 2.0 candidate public surface). In the default build; isolate with
+  `lake build Witnessed`. It imports only the Mathlib-free spine. No new axiom, no new
   constructor on the judgment, no assumption that already contains the normal form.
 
   The hinge is the commutation law `weaken ; carry ⟹ carry ; weaken`

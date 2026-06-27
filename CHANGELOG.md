@@ -5,6 +5,34 @@ to Zenodo deposits under the concept DOI
 [10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
 release tag drives the deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## Unreleased — Witnessed Derivation Calculus promoted to canonical surface (2026-06-26)
+
+The ratified v1.3 calculus is now **in the canonical proof surface**, not only under
+`experiments/`. This is the mechanical 2.0 packaging slice (gates 1–5 of
+`V2.0-EXIT-CRITERIA.md`); it is **not** a 2.0 release — version bump, tag, and operator
+promotion (gates 6 prose / 7) remain pending. The stable 1.x Admissibility Kernels
+surface is untouched.
+
+- **A1 — enforced Mathlib-free boundary.** New `Witnessed` `lean_lib` in `lakefile.toml`
+  (`roots = ["LeanProofs.Witnessed"]`). No module under `LeanProofs/Witnessed/` imports
+  Mathlib, so `lake build Witnessed` cannot reach it — the axiom-footprint cleanliness is
+  build-graph-enforced, not merely re-checked.
+- **Port.** The 12-module ratified cone (7 spine + 5 successor) copied from
+  `experiments/no_free_lift_wiring/{Wired,Successor}/` into `LeanProofs/Witnessed/`,
+  namespaced `LeanProofs.Witnessed.*`, wired into `LeanProofs.lean` (default target).
+  Renames: `Wired.Authority` → `AuthorityModel` (study copy, kept off the `[1.0]`
+  `Admissibility.Authority` name), `WitnessedDerivation` → `Derivation`, `Tightened` →
+  `Discipline`, `DisciplineObstruction` → `Obstruction`, `tightened_metatheory` →
+  `discipline_metatheory`. The experiment tree is unchanged and remains the provenance
+  record (copied, not moved). Receipt names otherwise frozen.
+- **Gate 4 — external consumer.** `LeanProofs/Witnessed/Examples.lean` imports only the
+  canonical surface, builds a `Lift` derivation, and applies `no_free_lift` /
+  `paid_lift_sound` — proving the promoted API is usable from outside the cone.
+- **Gate 5 — footprint regression gate.** `scripts/check-witnessed-footprint.sh`
+  re-attests all **10** ratified receipts against their documented footprints
+  (`RATIFICATION-v1.3.md`): 6 axiom-free, 2× `[propext]`, 2× `[propext, Quot.sound]`.
+  Fail-closed — non-zero on build failure, footprint drift, or `sorryAx`.
+
 ## Unreleased — v1.3 candidate: Witnessed Derivation Calculus (2026-06-17)
 
 A **candidate** experiment surface (`experiments/no_free_lift_wiring/Successor/`,

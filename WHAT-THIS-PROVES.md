@@ -133,6 +133,33 @@ Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibi
 
 ---
 
+## Witnessed Derivation Calculus (`LeanProofs/Witnessed/`)
+
+> A compiled theorem is evidence into an admission gate, not the receipt the gate emits. Signed is not witnessed.
+
+The **Witnessed Derivation Calculus** is a narrow, ratified, **Mathlib-free** proof-theoretic calculus for witnessed movement across typed boundaries — now a canonical surface (`import LeanProofs.Witnessed`), promoted from the ratified experiment record (`experiments/no_free_lift_wiring/RATIFICATION-v1.3.md`, artifact `5eb5629`). Distinct from the Admissibility Kernels above: those are local refusal kernels; this is a calculus of *movement between* contexts, where every cross-boundary step consumes a bridge coordinate.
+
+### What it proves
+
+- a defined inductive judgment `Lift K B c` (local kernel admission, plus one paid cross-rule that consumes a bridge);
+- **composition** along a paid path (`derivation_extends_along_paid_path`), **genuine multi-context cut** — admissibility, not elimination (`cut_admissible_general`), **soundness** (`paid_lift_sound`), **provenance** (`no_free_lift` — nothing lifts for free), and **non-manufacture** of revocations (`revoked_floor_derives_nothing`) — all schematic, axiom-free;
+- **normalization** to canonical bridge form (`bridge_path_normal_form`, footprint `[propext]`) established **for the freshness embedding model**;
+- a separate four-axis model-admission filter `WitnessedDiscipline`, with each axis independent (`AxisIndependence`), and a factorization retiring the former `Discriminating` axis as exactly `SemanticNontrivial` under `BridgeValid` (`bridgeValid_discriminating_iff_semanticNontrivial`).
+
+All ten ratified receipts carry axiom footprints ≤ `[propext, Quot.sound]`, re-attested in the canonical build by `scripts/check-witnessed-footprint.sh`. A consumer specimen (`LeanProofs/Witnessed/Examples.lean`) exercises the public API from outside the ported cone.
+
+### What it does NOT prove
+
+- **not** universal normalization — the canonical-form result is scoped to the freshness model (which supplies a total time order); no general normalization is claimed;
+- **not** non-suppression — only non-*manufacture* is proved, and one direction only;
+- **not** full composition-classification — that gate was prosecuted and **retired** (see `COMPOSITION-CLASSIFICATION-TARGET.md`), not left open;
+- **not** model→world transfer — a compiled theorem attests the math, never a world claim; the fence is load-bearing;
+- **not** the retired maximal "Admissibility Calculus" — the name is deliberately narrow, and `WitnessedDiscipline` is a filter *beside* the calculus, not part of normalization.
+
+These open directions are named, not started: `experiments/no_free_lift_wiring/FRONTIER-REGISTER.md`.
+
+---
+
 ## Infrastructure: Admissibility Kernel
 
 This is **not** paper-claim cashout. It's substrate — formal infrastructure that future Governor (`agent_gov`) work and any "no laundering" claim can cite. Doesn't fit the slogan-killing pattern of Layers 1–3 because it's not retroactively sharpening prose; it's pinning an algebraic skeleton from scratch.

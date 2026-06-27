@@ -16,3 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: leanprover/lean-action@v1
+      # Gate 5: re-attest the Witnessed Derivation Calculus axiom footprint in the
+      # canonical build context. Fail-closed; protects the now-public Mathlib-free
+      # surface against axiom drift / sorry. Runs after lean-action so elan/lake are
+      # on PATH. Cheap — the Witnessed lib is Mathlib-free.
+      - name: Witnessed footprint gate
+        run: bash scripts/check-witnessed-footprint.sh

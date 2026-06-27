@@ -1,9 +1,9 @@
 /-
   LeanProofs.Witnessed.Discipline — the model-admission discipline for the witnessed-derivation
-  calculus (1.3 candidate).
+  calculus (ratified v1.3; now canonical as `LeanProofs.Witnessed.*`).
 
-  Custody class: EXPERIMENTAL-WIRING. NOT in defaultTargets; build with
-  `lake build Successor`. The `Wired` spine is untouched.
+  Custody class: ANNEX (Mathlib-free; 2.0 candidate public surface). In the default build; isolate with
+  `lake build Witnessed`. It imports only the Mathlib-free spine.
 
   DOCTRINE (load-bearing, do not let the two layers re-collapse):
 

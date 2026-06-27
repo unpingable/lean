@@ -19,7 +19,7 @@ It provides:
 
 The name is deliberately narrow. This is **not** a process calculus, a maximal admissibility logic, or a unification of every kernel in the repository. The calculus governs witnessed derivation across typed bridges; `WitnessedDiscipline` is a model filter beside it, not part of normalization, and normalization itself is scoped to the canonical freshness embedding.
 
-The v1.3 candidate lives under `experiments/no_free_lift_wiring/` and does **not** alter the stable 1.x public import surface.
+The ratified calculus now lives in the canonical surface as `LeanProofs.Witnessed.*` — a separate **Mathlib-free** library (`import LeanProofs.Witnessed`), with its axiom footprint regression-gated by `scripts/check-witnessed-footprint.sh`. Its ratified source is preserved under `experiments/no_free_lift_wiring/`. This is a **new** public surface and does **not** alter the stable 1.x **Admissibility Kernels** surface. The 2.0 *release* — version bump, tag, and operator promotion — remains pending (see [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md)).
 
 - **Exact ratified claims and theorem receipts:** [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md)
 - **Migration and divergence constraints:** [`MIGRATION-NOTES.md`](experiments/no_free_lift_wiring/MIGRATION-NOTES.md)
@@ -35,7 +35,7 @@ The stable public surface remains a collection of small admissibility kernels, e
 The repository therefore contains two related but distinct layers:
 
 1. **Admissibility Kernels** — small local refusal kernels (the stable 1.x public surface).
-2. **Witnessed Derivation Calculus** — the ratified v1.3 candidate for witnessed movement and composition across typed bridges.
+2. **Witnessed Derivation Calculus** — the ratified calculus for witnessed movement and composition across typed bridges, now a canonical **Mathlib-free** surface (`LeanProofs.Witnessed.*`); 2.0 release pending.
 
 Neither is a universal model of institutions, software systems, or agency.
 
@@ -66,7 +66,7 @@ The point is not to prove an entire software system correct. It is to make inval
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
 - **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Ratifies the standalone safety axis, not any unified-calculus rename.
-- **Witnessed Derivation Calculus** *(v1.3 candidate, `experiments/`)* — witnessed movement and composition across typed bridges. See the release section above.
+- **Witnessed Derivation Calculus** *(ratified v1.3; now canonical as `LeanProofs.Witnessed.*`, Mathlib-free)* — witnessed movement and composition across typed bridges. See the release section above.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
@@ -90,7 +90,7 @@ Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-k
 
 The `experiments/` tree holds reproducible integration artifacts that are **not imported by the canonical proof surface** — each is its own Lake project with its own toolchain pin. A successful build under `experiments/` attests that the wiring checks; it does **not** promote any result into the relied-upon theorem surface (build-exit-0 is attestation of the math, never admission of a world claim). See [`experiments/README.md`](experiments/README.md) for the per-project custody contract (`EXPERIMENTAL-WIRING`).
 
-Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings. It hosts the **v1.3 Witnessed Derivation Calculus candidate** (`Successor/`, see the release section above) and the **findings record for the retired composition-classification gate** ([`COMPOSITION-CLASSIFICATION-TARGET.md`](experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md) — the proposed exhaustive classifier was investigated and retired as the wrong target, not unproved). The road from here to a supported public surface is specified in [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md): public promotion, migration map, stable namespace, and a non-experimental compiled consumer — not new theorems.
+Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings. It hosts the **ratified source** of the Witnessed Derivation Calculus (`Successor/` + the `Wired` spine) — now promoted into the canonical surface as `LeanProofs.Witnessed.*` (this tree remains the provenance record, still not imported by the canonical surface) — and the **findings record for the retired composition-classification gate** ([`COMPOSITION-CLASSIFICATION-TARGET.md`](experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md) — the proposed exhaustive classifier was investigated and retired as the wrong target, not unproved). The road from here to a supported public surface is specified in [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md): public promotion, migration map, stable namespace, and a non-experimental compiled consumer — not new theorems.
 
 ## What this is not
 
