@@ -112,3 +112,36 @@ Packaging, documentation, additional public surfaces, and model-scoped extension
 **minor** releases unless they break the public API. This is the fence that keeps the
 release-number attractor from putting on a graduation cap: 2.0 is a diff that deserves the
 integer, *witnessed* — not a milestone that merely feels large.
+
+## Operational track (1.5–1.7) + the witnessed-clock 2.0 lead
+
+A 2026-06-27 multi-model pass surfaced a second 2.0 candidate and an *operational adapter
+track* that must not steal the integer. Full synthesis (with the validator tool-theory and
+the non-collapse table) lives in the papers repo at
+`working/tooltheory/validator-as-bounded-witness.md`. Sorted here by the rule above —
+*does it change the calculus, or carry it to the world?*
+
+The find: **the untrusted-generator / deterministic-checker split is the corpus doctrine as
+an executable architecture** — `validate : Policy → RuntimeFacts → WitnessCert → Except
+Error Derivation` with `validate_sound` is *signed-is-not-witnessed* at the wire. That is an
+*adapter* track, named-not-started, and it does **not** change what the calculus proves:
+
+- **1.5** — certificate validator (the doctrine instantiated at the boundary; a small
+  compiled *checker*, **not** Lean-the-prover in the loop). Proof-Carrying Authorization.
+- **1.6** — freshness-bound validation (Δt as a *policy* layer over existing `Freshness`,
+  not a core rewrite).
+- **1.7** — runtime adapter spike (CLI/daemon/FFI, explicitly non-authoritative).
+
+The 2.0 lead, candidate alongside #1+#2 above — **witnessed clocks / temporal custody:**
+
+> A freshness bound over a *reported* timestamp is not witnessed freshness; timestamp
+> authority must itself be witnessed, or Δt validation launders time through assertion.
+> **Timestamp-signed is not timestamp-witnessed.**
+
+`t_gen` is attacker-controlled until witnessed. The hard question is *what it means for a
+timestamp to carry witness authority rather than assertion, and what refuses when it
+doesn't* (trusted clock? skew? replay? does staleness refuse / degrade / re-witness?). This
+connects the **Δt paper series** to the witnessed-derivation work. It is **2.0-class only
+if** solving it forces the derivation judgment to carry clock authority as a first-class
+term — a breaking change forced by stronger math. Until then it stays a named frontier, not
+a number.
