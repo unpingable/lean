@@ -16,7 +16,7 @@
   This is NOT a revival of the retired maximal "Admissibility Calculus": its scope is
   witnessed derivation across typed boundaries; model→world transfer, universal
   normalization, non-suppression, and full composition-classification remain fenced
-  (see FRONTIER-REGISTER.md). Receipt names are frozen per MIGRATION §C.
+  (see `docs/WITNESSED-FRONTIER-REGISTER.md`). Receipt names are frozen per MIGRATION §C.
 
   Renames from the experiment surface: `Wired.Authority` → `AuthorityModel` (a study
   copy, NOT the 1.0 `Admissibility.Authority` kernel); `Successor.WitnessedDerivation`

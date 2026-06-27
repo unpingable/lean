@@ -5,13 +5,21 @@ to Zenodo deposits under the concept DOI
 [10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
 release tag drives the deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
-## Unreleased — Witnessed Derivation Calculus promoted to canonical surface (2026-06-26)
+## 1.4.0 — Witnessed Derivation Calculus (2026-06-27)
 
-The ratified v1.3 calculus is now **in the canonical proof surface**, not only under
-`experiments/`. This is the mechanical 2.0 packaging slice (gates 1–5 of
-`V2.0-EXIT-CRITERIA.md`); it is **not** a 2.0 release — version bump, tag, and operator
-promotion (gates 6 prose / 7) remain pending. The stable 1.x Admissibility Kernels
-surface is untouched.
+1.4.0 promotes the ratified Witnessed Derivation Calculus into the **canonical public
+surface** as the Mathlib-free `LeanProofs.Witnessed.*` library — no longer only under
+`experiments/`. Supersedes `v1.3.0-rc1`. The stable 1.x Admissibility Kernels surface is
+untouched.
+
+**On the version.** The project's planning docs frame this as "the 2.0 boundary"
+(`V2.0-EXIT-CRITERIA.md`), and it ships as **1.4.0** on purpose. Semver is a consumer
+contract: this release is purely additive — nothing in the 1.x surface breaks — so it is a
+**minor** bump, not a major one. The milestone (a second ratified formal object lands in
+the public surface) gets its volume here and in the release title, not in the integer. A
+future **2.0** is reserved for a *structural* strengthening of the calculus — see the
+"What Would Make This 2.0" gate in
+[`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
 - **A1 — enforced Mathlib-free boundary.** New `Witnessed` `lean_lib` in `lakefile.toml`
   (`roots = ["LeanProofs.Witnessed"]`). No module under `LeanProofs/Witnessed/` imports
@@ -32,12 +40,17 @@ surface is untouched.
   re-attests all **10** ratified receipts against their documented footprints
   (`RATIFICATION-v1.3.md`): 6 axiom-free, 2× `[propext]`, 2× `[propext, Quot.sound]`.
   Fail-closed — non-zero on build failure, footprint drift, or `sorryAx`.
+- **Gate 6 — prose reconciled.** `README.md`, `WHAT-THIS-PROVES.md`, and the ported file
+  headers updated to the canonical-surface state; the retired-maximal-`Admissibility
+  Calculus` fence kept visible throughout. Frontier roadmap published as
+  [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) (named, not
+  started; includes the "What Would Make This 2.0" gate).
 
-## Unreleased — v1.3 candidate: Witnessed Derivation Calculus (2026-06-17)
+## v1.3.0-rc1 — Witnessed Derivation Calculus (candidate, 2026-06-17)
 
 A **candidate** experiment surface (`experiments/no_free_lift_wiring/Successor/`,
-EXPERIMENTAL-WIRING, NOT in `defaultTargets`). Public 1.0/1.2 surface untouched. **Not a
-2.0 release** — the public-claim promotion remains gated. After the original
+EXPERIMENTAL-WIRING, NOT in `defaultTargets`). Public 1.0/1.2 surface untouched. The
+canonical-surface promotion later shipped in **1.4.0** (above). After the original
 `composition_classification` gate was retired (see the entry below), a *successor* was
 developed and earned a narrow technical name. Claims + exact theorem receipts:
 `experiments/no_free_lift_wiring/RATIFICATION-v1.3.md`.
@@ -66,7 +79,7 @@ developed and earned a narrow technical name. Claims + exact theorem receipts:
 - agent_gov correspondences are external **implemented-instance / convergent evidence**, not a
   verified reduction, and are **not** part of the ratification basis.
 
-## Unreleased — composition gate prosecuted and retired (2026-06-17)
+## v1.3.0-rc1 — composition gate prosecuted and retired (2026-06-17)
 
 A **status correction**, not new public mathematics. The `composition_classification`
 promotion gate named in v1.2.0 was attempted and adversarially reviewed (non-Claude,

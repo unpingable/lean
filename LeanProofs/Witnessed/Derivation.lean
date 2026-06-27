@@ -2,7 +2,7 @@
   LeanProofs.Witnessed.Derivation — the judgment layer of the witnessed-derivation
   calculus (ratified v1.3; now canonical as `LeanProofs.Witnessed.*`).
 
-  Custody class: ANNEX (Mathlib-free; 2.0 candidate public surface). In the default build; isolate with
+  Custody class: ANNEX (Mathlib-free public surface). In the default build; isolate with
   `lake build Witnessed`. It imports only the Mathlib-free `LeanProofs.Witnessed.*` spine.
 
   The calculus is the inductive judgment `Lift K B c` ("claim `c` is derivable from

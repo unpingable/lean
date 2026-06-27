@@ -156,7 +156,7 @@ All ten ratified receipts carry axiom footprints ≤ `[propext, Quot.sound]`, re
 - **not** model→world transfer — a compiled theorem attests the math, never a world claim; the fence is load-bearing;
 - **not** the retired maximal "Admissibility Calculus" — the name is deliberately narrow, and `WitnessedDiscipline` is a filter *beside* the calculus, not part of normalization.
 
-These open directions are named, not started: `experiments/no_free_lift_wiring/FRONTIER-REGISTER.md`.
+These open directions are named, not started: [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
 ---
 

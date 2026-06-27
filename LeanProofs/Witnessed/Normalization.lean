@@ -3,7 +3,7 @@
   every paid freshness path admits a CANONICAL FORM (a carry segment, then a weakening
   segment).
 
-  Custody class: ANNEX (Mathlib-free; 2.0 candidate public surface). In the default build; isolate with
+  Custody class: ANNEX (Mathlib-free public surface). In the default build; isolate with
   `lake build Witnessed`. It imports only the Mathlib-free spine. No new axiom, no new
   constructor on the judgment, no assumption that already contains the normal form.
 

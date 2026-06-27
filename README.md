@@ -4,9 +4,9 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: Witnessed Derivation Calculus v1.3 candidate
+## Current release: 1.4.0 — Witnessed Derivation Calculus
 
-**[`v1.3.0-rc1`](https://github.com/unpingable/lean/releases/tag/v1.3.0-rc1)** introduces the ratified **Witnessed Derivation Calculus** candidate.
+**1.4.0** promotes the ratified **Witnessed Derivation Calculus** into the canonical public surface as the Mathlib-free `LeanProofs.Witnessed.*` library.
 
 It provides:
 
@@ -19,12 +19,12 @@ It provides:
 
 The name is deliberately narrow. This is **not** a process calculus, a maximal admissibility logic, or a unification of every kernel in the repository. The calculus governs witnessed derivation across typed bridges; `WitnessedDiscipline` is a model filter beside it, not part of normalization, and normalization itself is scoped to the canonical freshness embedding.
 
-The ratified calculus now lives in the canonical surface as `LeanProofs.Witnessed.*` — a separate **Mathlib-free** library (`import LeanProofs.Witnessed`), with its axiom footprint regression-gated by `scripts/check-witnessed-footprint.sh`. Its ratified source is preserved under `experiments/no_free_lift_wiring/`. This is a **new** public surface and does **not** alter the stable 1.x **Admissibility Kernels** surface. The 2.0 *release* — version bump, tag, and operator promotion — remains pending (see [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md)).
+The ratified calculus lives in the canonical surface as `LeanProofs.Witnessed.*` — a separate **Mathlib-free** library (`import LeanProofs.Witnessed`), with its axiom footprint regression-gated by `scripts/check-witnessed-footprint.sh`. Its ratified source is preserved under `experiments/no_free_lift_wiring/`. This is a **new, additive** public surface and does **not** alter the stable 1.x **Admissibility Kernels** surface — which is why it ships as the **minor** release **1.4.0**, not a major bump. The planning docs frame this as "the 2.0 boundary" ([`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md)); semver keeps its one job (nothing in 1.x breaks), and the milestone lives in the release title and notes. A future **2.0** is reserved for a *structural* strengthening of the calculus — see the "What Would Make This 2.0" gate in [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
 - **Exact ratified claims and theorem receipts:** [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md)
 - **Migration and divergence constraints:** [`MIGRATION-NOTES.md`](experiments/no_free_lift_wiring/MIGRATION-NOTES.md)
 - **2.0 public-promotion exit criteria:** [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md)
-- **Release:** [`v1.3.0-rc1`](https://github.com/unpingable/lean/releases/tag/v1.3.0-rc1)
+- **Release:** `v1.4.0` (supersedes [`v1.3.0-rc1`](https://github.com/unpingable/lean/releases/tag/v1.3.0-rc1))
 
 ## Stable public surface: Admissibility Kernels
 
@@ -35,7 +35,7 @@ The stable public surface remains a collection of small admissibility kernels, e
 The repository therefore contains two related but distinct layers:
 
 1. **Admissibility Kernels** — small local refusal kernels (the stable 1.x public surface).
-2. **Witnessed Derivation Calculus** — the ratified calculus for witnessed movement and composition across typed bridges, now a canonical **Mathlib-free** surface (`LeanProofs.Witnessed.*`); 2.0 release pending.
+2. **Witnessed Derivation Calculus** — the ratified calculus for witnessed movement and composition across typed bridges, a canonical **Mathlib-free** surface (`LeanProofs.Witnessed.*`) shipped in 1.4.0.
 
 Neither is a universal model of institutions, software systems, or agency.
 
@@ -66,7 +66,7 @@ The point is not to prove an entire software system correct. It is to make inval
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
 - **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Ratifies the standalone safety axis, not any unified-calculus rename.
-- **Witnessed Derivation Calculus** *(ratified v1.3; now canonical as `LeanProofs.Witnessed.*`, Mathlib-free)* — witnessed movement and composition across typed bridges. See the release section above.
+- **Witnessed Derivation Calculus** *(ratified; canonical `LeanProofs.Witnessed.*` since 1.4.0, Mathlib-free)* — witnessed movement and composition across typed bridges. See the release section above.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
@@ -80,7 +80,7 @@ Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight stabl
 
 > Admissibility Kernels models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
 
-(Migration note: this aggregator was previously named `CalculusOne` under an "Admissibility Calculus 1.0" framing. The rename retires "calculus" from the *stable* public surface; the v1.3 candidate reintroduces it only for the narrow witnessed-derivation object. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`.)
+(Migration note: this aggregator was previously named `CalculusOne` under an "Admissibility Calculus 1.0" framing. The rename retires "calculus" from the *stable* public surface; the Witnessed Derivation Calculus reintroduces it only for that narrow witnessed-derivation object. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`.)
 
 ## Repository custody and compatibility
 
@@ -103,7 +103,7 @@ When a theorem lands here, it means a specific invalid inference has been isolat
 ## Companion repos
 
 - **Papers repo:** [`unpingable/papers`](https://github.com/unpingable/papers) — prose papers, working notes, primitives, and the research-program structure. The paper-side crosswalk at [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) inverts this repo's view (paper → module).
-- **This repo (Lean):** admissibility kernel modules, the witnessed-derivation calculus candidate, the formal claim register for Δt-paper claims, proof attempts, corrected theorem statements, and the BROKEN / STALE / SOUND audit. Module → paper crosswalk lives in [`PAPER-MAP.md`](PAPER-MAP.md).
+- **This repo (Lean):** admissibility kernel modules, the witnessed-derivation calculus, the formal claim register for Δt-paper claims, proof attempts, corrected theorem statements, and the BROKEN / STALE / SOUND audit. Module → paper crosswalk lives in [`PAPER-MAP.md`](PAPER-MAP.md).
 
 ## Audit harness for the Δt framework
 
@@ -140,9 +140,14 @@ The audit's first recorded finding, kept here as the chronological anchor for th
 Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 
 ```bash
-lake build                  # stable public surface + regression-wired modules
-lake build Successor        # v1.3 candidate (under experiments/no_free_lift_wiring/)
+lake build                  # stable Admissibility surface + Witnessed calculus + regression-wired modules
+lake build Witnessed        # the Witnessed Derivation Calculus in isolation (Mathlib-free)
+bash scripts/check-witnessed-footprint.sh   # re-attest the ratified axiom footprint (fail-closed)
 ```
+
+The ratified source of the calculus also builds standalone under
+`experiments/no_free_lift_wiring/` (its own Lake project / toolchain pin) — that tree
+is the provenance record, not the canonical import path.
 
 ## Cross-references
 

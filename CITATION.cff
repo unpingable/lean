@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "Admissibility Kernels: A Lean Stack for Authority-Bound State Transitions"
 type: software
-version: "1.2.0"
-date-released: "2026-06-16"
+version: "1.4.0"
+date-released: "2026-06-27"
 authors:
   - family-names: Beck
     given-names: James
@@ -59,4 +59,12 @@ abstract: >-
   experiments/, shipped with module names de-placarded and a
   composition-classification target naming the gate toward any future
   calculus claim; the 1.0 public surface and its non-claims are
-  unchanged.)
+  unchanged.) (1.4.0 promotes the ratified Witnessed Derivation
+  Calculus — a narrow proof-theoretic calculus for witnessed movement
+  across typed boundaries (composition, multi-context cut, soundness,
+  provenance, non-manufacture, model-scoped normalization) — into the
+  canonical public surface as the Mathlib-free LeanProofs.Witnessed.*
+  library, with a build-graph-enforced no-Mathlib boundary and an
+  axiom-footprint regression gate. It is additive: the 1.x
+  Admissibility surface is unchanged, and it is not a revival of the
+  retired maximal "Admissibility Calculus".)
