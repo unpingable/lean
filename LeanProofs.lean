@@ -42,3 +42,6 @@ import LeanProofs.Admissibility.AuthorizedStepNotSafeWitness
 import LeanProofs.Admissibility.SafetyTrajectory
 import LeanProofs.Admissibility.AttestationLedger
 import LeanProofs.CollapsedSurface
+
+-- Witnessed Derivation Calculus (2.0 port; Mathlib-free, see LeanProofs/Witnessed.lean)
+import LeanProofs.Witnessed

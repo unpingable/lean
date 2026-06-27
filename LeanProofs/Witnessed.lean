@@ -1,0 +1,43 @@
+/-
+  The Witnessed Derivation Calculus — public aggregator.
+
+  Ported 2026-06-26 from the ratified experiment surface
+  (`experiments/no_free_lift_wiring/`, artifact commit 5eb5629; ratification record
+  `RATIFICATION-v1.3.md`). A narrow proof-theoretic calculus for witnessed movement
+  across typed boundaries: a defined judgment `Lift` with composition, genuine
+  multi-context cut (cut-admissibility), soundness, provenance, non-manufacture, and
+  normalization to canonical bridge form in the freshness model.
+
+  Mathlib-FREE by construction. No module under `LeanProofs/Witnessed/` imports
+  Mathlib, so every receipt's axiom footprint stays at core Lean (≤ propext,
+  Quot.sound) and is re-attestable in isolation via `lake build Witnessed`
+  (enforced by the separate `Witnessed` lean_lib — see lakefile.toml, A1).
+
+  This is NOT a revival of the retired maximal "Admissibility Calculus": its scope is
+  witnessed derivation across typed boundaries; model→world transfer, universal
+  normalization, non-suppression, and full composition-classification remain fenced
+  (see FRONTIER-REGISTER.md). Receipt names are frozen per MIGRATION §C.
+
+  Renames from the experiment surface: `Wired.Authority` → `AuthorityModel` (a study
+  copy, NOT the 1.0 `Admissibility.Authority` kernel); `Successor.WitnessedDerivation`
+  → `Derivation`; `Successor.Tightened` → `Discipline` (and `tightened_metatheory`
+  → `discipline_metatheory`); `Successor.DisciplineObstruction` → `Obstruction`.
+-/
+
+-- Spine (No-Free-Lift conservation law and its coordinates)
+import LeanProofs.Witnessed.CarryLaws
+import LeanProofs.Witnessed.Coordinates
+import LeanProofs.Witnessed.Divergence
+import LeanProofs.Witnessed.NoFreeLift
+
+-- Modeled kernels + the wire (Authority ⊕ Freshness into the spine)
+import LeanProofs.Witnessed.Freshness
+import LeanProofs.Witnessed.AuthorityModel
+import LeanProofs.Witnessed.Embedding
+
+-- The calculus + its model-admission discipline
+import LeanProofs.Witnessed.Derivation        -- judgment `Lift`, composition, non-manufacture
+import LeanProofs.Witnessed.Normalization      -- canonical form (freshness model)
+import LeanProofs.Witnessed.Discipline         -- four-axis WitnessedDiscipline (was Tightened)
+import LeanProofs.Witnessed.AxisIndependence   -- four separating finite models
+import LeanProofs.Witnessed.Obstruction        -- annex: retired `Discriminating`, factorization

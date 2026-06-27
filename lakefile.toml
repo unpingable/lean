@@ -1,7 +1,7 @@
 name = "lean_proofs"
 version = "0.1.0"
 keywords = ["math"]
-defaultTargets = ["LeanProofs"]
+defaultTargets = ["LeanProofs", "Witnessed"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -16,3 +16,17 @@ rev = "master"
 
 [[lean_lib]]
 name = "LeanProofs"
+
+# A1 (signed 2026-06-26): the Witnessed Derivation Calculus, ported from the
+# ratified experiment surface (experiments/no_free_lift_wiring, artifact 5eb5629).
+# Mathlib-FREE by construction — no module under LeanProofs/Witnessed/ may
+# `import Mathlib`. Its own lean_lib so the no-Mathlib property is build-graph
+# ENFORCED (`lake build Witnessed` cannot reach Mathlib) and the axiom footprint
+# stays re-attestable in isolation (gate 5). The LeanProofs lib uses default globs
+# and owns only its root module, so LeanProofs.Witnessed.* is import-reachable from
+# it but glob-owned only here — no double ownership.
+[[lean_lib]]
+name = "Witnessed"
+srcDir = "."
+roots = ["LeanProofs.Witnessed"]
+globs = ["LeanProofs.Witnessed", "LeanProofs.Witnessed.+"]
