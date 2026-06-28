@@ -1,5 +1,12 @@
 /-
-  Custody-Class: SCRATCH
+  Custody-Class: SCRATCH  —  SUPERSEDED (do not cite this file as warrant)
+
+  PROMOTED 2026-06-27. The citable [annex] home for the separation result is now
+  `LeanProofs/Admissibility/PredicateWitnessSeparation.lean`
+  (`Admissibility.PredicateWitnessSeparation`). The annex version promotes the
+  separation theorems ONLY, with an opaque witness payload so it cannot launder the
+  introduction-rule debt. Cite the annex; this scratch draft is left on the floor as
+  provenance — its suggestive `PredicateWitness` fields are exactly what was stripped.
 
   PredicateWitnessSeparation — fenced scratch slice, 2026-06-25. Not
   imported by `LeanProofs.lean`. Not part of any 1.0 surface. No paper

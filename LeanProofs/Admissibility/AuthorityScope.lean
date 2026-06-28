@@ -1,43 +1,56 @@
 /-
-  Custody-Class: SCRATCH  —  SUPERSEDED (do not cite this file as warrant)
+  Custody-Class: ANNEX
 
-  PROMOTED 2026-06-27. The citable [annex] home is now
-  `LeanProofs/Admissibility/AuthorityScope.lean` (`Admissibility.AuthorityScope`).
-  The annex version promotes this specimen verbatim AND adds the universal anti-pope
-  guarantee `authorized_exact_match` (authorized ⇒ exact match on all five axes), which
-  this draft deliberately omitted for migration fidelity. Cite the annex; this scratch
-  draft is left on the floor as provenance.
+  Promoted from `LeanProofs/Scratch/AuthorityScope.lean` (2026-06-27): compiled,
+  sorry-free, axiom-free, wired into `LeanProofs.lean` for build coverage. Signatures
+  are NOT part of the 1.0 compatibility claim — annex semantics (may rename, refactor,
+  or absorb without notice). Provenance: scratch specimen graduated to annex so the
+  scoped conversion receipt is citable as warrant where *standing* (a Boolean held at a
+  decision instant) is converted into *authorized use* — anticipated at the point a
+  standing layer and an indexer/Spine intersect, where the temptation is to read a bare
+  "authorized" flag as a universal key.
 
-  AuthorityScope — fenced scratch specimen, migrated 2026-06-18 from the playground
-  `wired` Successor track (commit f781070). Not imported by `LeanProofs.lean`. Not
-  part of any 1.0 / kernel surface. No paper anchor. No promotion path. NOT used as
-  discharge for any doctrine. Compile-is-contact only.
+  WHAT IS PROMOTED, AND WHAT IS ADDED AT PROMOTION:
+
+    PROMOTED verbatim — the specimen and its existential anti-pope COUNTERMODELS
+    (`wrong_useClass_/wrong_scope_/wrong_authority_/expired_/revoked_not_authorized`,
+    `conversion_does_not_synthesize_eligibility`, `exact_match_authorizes`). Each refutes
+    a specific laundering rule and shows the laws bite without being inert.
+
+    ADDED — the UNIVERSAL anti-pope guarantee (`authorized_exact_match`): authorized ⇒
+    the receipt matches on all five axes, is unrevoked, and unexpired. The scratch header
+    flagged this as "a cheap follow-up, deliberately NOT added to keep this a faithful
+    migration." That reason was migration fidelity — and it lapses at promotion. This seam
+    is guarantee-typed: the existentials say "a mismatched receipt fails *somewhere*"; the
+    universal says "an authorized crossing names *exactly* its scope, with no adjacent
+    leak, conjunctively." Citing-as-warrant wants the universal. So it is added here.
 
   THE SPECIMEN — the conversion receipt, nailed down (anti-pope).
 
   A bare `AuthorizesUse : Bool` flag is a UNIVERSAL KEY: a receipt that authorizes
-  everything is the exact laundering device a typed authority bridge exists to
-  prevent — a tiny pope. This specimen demotes it. The conversion receipt is scoped
-  on five axes — WHO (authority), WHAT eligible use (useClass), WHERE (scope), WHEN
-  (expiry), and WHETHER it still stands (revoked) — and the anti-pope laws witness
-  the receipt authorizes ONLY the exact crossing it names, nothing adjacent.
+  everything is the exact laundering device a typed authority bridge exists to prevent —
+  a tiny pope. This specimen demotes it. The conversion receipt is scoped on five axes —
+  WHO (authority), WHAT eligible use (useClass), WHERE (scope), WHEN (expiry), and
+  WHETHER it still stands (revoked) — and the anti-pope laws witness the receipt
+  authorizes ONLY the exact crossing it names, nothing adjacent.
 
-  Doctrine line (migrated): `AuthorizesUse` is a scoped conversion receipt from
-  eligible standing to authorized use. It does not synthesize eligibility, does not
-  generalize across use class / scope / time / authority state, and fails under
-  revocation or expiry.
+  Doctrine line (migrated): `AuthorizesUse` is a scoped conversion receipt from eligible
+  standing to authorized use. It does not synthesize eligibility, does not generalize
+  across use class / scope / time / authority state, and fails under revocation or expiry.
 
-  Everything decidable and axiom-free (verified: the anti-pope laws depend on no
-  axioms). Each non-law is a compiled COUNTERMODEL (existential): it refutes the
-  laundering rule "a mismatched receipt still authorizes." The stronger UNIVERSAL
-  guarantee (authorized ⇒ exact match on all five axes) is a cheap follow-up,
-  deliberately NOT added here to keep this a faithful migration of the verified
-  specimen.
+  Everything decidable and axiom-free (verified: every theorem depends on no axioms).
+
+  Corpus placement: a sharp specimen of `SurfaceAuthorization` (authorizing *through* a
+  surface ≠ the surface being a universal authority) crossed with the no-universal-key /
+  no-laundering family. Sibling faces in annex: `Admissibility.DeferredWitness` (temporal
+  — signed ≠ witnessed) and `Admissibility.PredicateWitnessSeparation` (projection —
+  findability ≠ legitimacy). This is the *scope/conversion-receipt* face: a paid crossing
+  authorizes exactly what it names. They do not subsume each other.
 
   Separate track from `ReachableDrift` — do not blur.
 -/
 
-namespace AuthorityScope
+namespace Admissibility.AuthorityScope
 
 /-- What an authorized action is *for*. A promotion receipt is not an execution
     receipt; the ring does not transfer between use classes. -/
@@ -163,4 +176,41 @@ theorem exact_match_authorizes :
     Authorized ⟨true, false, some ⟨0, .promotion, .alpha, 100, false⟩⟩
                ⟨0, .promotion, .alpha⟩ 0 := by decide
 
-end AuthorityScope
+/-! ## The universal anti-pope guarantee (added at promotion)
+
+The countermodels above each refute one laundering rule. This is the conjunctive
+statement they were sampling: an authorized crossing names EXACTLY its scope. No
+mismatched, revoked, or expired receipt can ever sit under `Authorized`. This is the
+form a consumer cites as warrant — "authorized" is never a universal key. -/
+
+/-- **Authorized ⇒ exact match on all five axes.** From `Authorized si req now` the
+    item carries a receipt, and that receipt agrees with the request on authority,
+    use class, and scope, is unrevoked, and is unexpired. The contrapositive is every
+    anti-pope law at once: any disagreement on any axis (or revocation/expiry) puts the
+    crossing outside `Authorized`. -/
+theorem authorized_exact_match {si : ScopedItem} {req : Request} {now : Nat}
+    (h : Authorized si req now) :
+    ∃ r, si.receipt = some r ∧
+      r.authority = req.authority ∧
+      r.useClass = req.useClass ∧
+      r.scope = req.scope ∧
+      r.revoked = false ∧
+      now < r.expiresAt := by
+  obtain ⟨-, hc⟩ := h
+  cases hr : si.receipt with
+  | none => simp only [Converts, hr] at hc
+  | some r =>
+      simp only [Converts, hr] at hc
+      exact ⟨r, rfl, hc.1, hc.2.1, hc.2.2.1, hc.2.2.2.1, hc.2.2.2.2⟩
+
+/-! ## Doctrine -/
+
+def doctrine : List String :=
+  [ "a bare authorized flag is a universal key — a tiny pope; the conversion receipt is scoped on five axes",
+    "authorized ⇒ exact match on who / what / where / when / whether (authorized_exact_match) — no adjacent crossing",
+    "conversion consumes eligibility, never synthesizes it — no retroactive standing",
+    "the paid crossing still works on exact match — scoped, not inert" ]
+
+#eval doctrine
+
+end Admissibility.AuthorityScope
