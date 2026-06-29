@@ -133,7 +133,7 @@ That is the point. Lean is used here as a pressure chamber for theory: it helps 
 
 The audit's first recorded finding, kept here as the chronological anchor for the BROKEN/STALE/SOUND register. Subsequent results — the Admissibility Kernels surface, the sorry-free kernel chain, and the cross-boundary specimens — are tracked in [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md) and [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md); gaps against the AGI-requirements doc live in [the closed 2026-05-10 reverse-gap audit](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md). Not appended here.
 
-**(2026-04-02):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges. The "universal sink" property is a dynamic/temporal attractor claim, not a graph-topological one. The prose was compressing two different kinds of claims into one sentence. See [`NOTES.md`](NOTES.md) for details.
+**(2026-04-02; refined 2026-06-29):** The informal claim "Δh is the universal sink" is false as a pipeline reachability claim. Δs and Δk cannot reach Δh through pipeline edges; the static graph instead decomposes into three terminal closure families `{Δg, Δa}`, `{Δx}`, `{Δh}` (Δh is *a* terminal family, not *the* sink). Any "universal sink" reading of Δh would be a *temporal-attractor* claim rather than a graph-topological one — and that temporal claim is **OPEN**: it requires an explicit dynamics substrate the static graph cannot represent (the placeholder axiom that once stood in for it was removed in v2.0.0). The prose was compressing two different kinds of claims into one sentence. See [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) #1 for the full status.
 
 ## Building
 

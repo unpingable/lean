@@ -5,36 +5,80 @@ to Zenodo deposits under the concept DOI
 [10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
 release tag drives the deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
-## Unreleased — WDC 2.0 candidate: model-independent normalization
+## 2.0.0 — WDC: model-independent normalization and audit fence (2026-06-29)
 
-Candidate for the reserved integer **2.0** (a *structural* strengthening — criterion #1,
-proof-theoretic, in the Frontier Register). **Not a cut release**: version unchanged,
-nothing tagged. WDC-surface cleanliness only; the repo-wide axiom audit is a separate
-(fence) pass not claimed here.
+2.0.0 promotes Witnessed Derivation Calculus normalization from a freshness-*model* theorem
+to a **model-independent admitting-class theorem**, and hardens the repo's custody fence.
 
-- **`LeanProofs/Witnessed/AbstractNormalization.lean`** — `normal_form_iff_of_commutes`:
-  the carry-then-weaken normal-form factorization holds for ANY two-family paid bridge
-  satisfying the local commutation law `Commutes C W`, independent of the freshness model.
-  Axiom-free.
-- **`LeanProofs/Witnessed/CommutesNecessity.lean`** — `commutes_is_necessary`: the
-  commutation law is load-bearing (a concrete system where it fails admits a paid path with
-  no carry-then-weaken factorization). Axiom-free.
+**On the version.** This major bump marks the *reserved* WDC structural milestone — 1.4.0
+deliberately spent a minor "to leave the integer 2.0 owed" for exactly this proof-theoretic
+strengthening (criterion #1 in `docs/WITNESSED-FRONTIER-REGISTER.md`), which has now landed.
+The public surface is **additive / non-breaking**: existing 1.x imports are intended to
+remain unaffected — `bridge_path_normal_form` keeps its name, signature, and `[propext]`
+footprint. The integer marks the milestone, not an API break.
+
+### WDC 2.0 — the structural theorem
+
+- **`LeanProofs/Witnessed/AbstractNormalization.lean`** — `normal_form_iff_of_commutes`
+  (**axiom-free**): the carry-then-weaken normal-form factorization holds for ANY two-family
+  paid bridge satisfying the local commutation law `Commutes C W`, independent of the
+  freshness model `(Nat, <, b−a)`.
+- **`LeanProofs/Witnessed/CommutesNecessity.lean`** — `commutes_is_necessary` (**axiom-free**):
+  the commutation law is load-bearing — a concrete system where it fails admits a paid path
+  with no carry-then-weaken factorization. The theorem is genuinely conditional.
 - **`Normalization.bridge_path_normal_form` rerouted** to be the `(CarryStep, WeakenStep)`
   instance of the abstract theorem (`perm_weaken_carry` discharges `Commutes`). Name,
-  signature, and `[propext]` footprint **unchanged** — non-breaking. Prose: "canonical
-  form" → "normal-form factorization" (existence of the carry/weaken split, not a unique
-  canonical representative).
-- **Footprint gate hardened** (`scripts/check-witnessed-footprint.sh`): `set -euo pipefail`
-  and explicit failure if the `lake env lean` probe fails; two new axiom-free receipts
-  attested (12 total).
-- **Repo-wide custody fence** (separate from WDC; see [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md)).
-  The repo is **axiom-classified, not axiom-free**: `scripts/audit-axioms.sh` +
-  `axiom-policy.tsv` classify every `axiom`/`constant` (23 signature, 8 specimen, **0
-  forbidden**, 0 unclassified) — the removed `TaxonomyGraph.persistence_normalizes`
-  placeholder was the lone forbidden case (demoted to a non-asserting
-  `TemporalAttractorSubstrate` socket; CLAIM-REGISTER #1 corrected to OPEN). `native_decide`
-  confined to finite-witness modules (`audit-native-decide.sh`). mathlib pinned in
-  `lakefile.toml` to the manifest SHA with a drift gate (`check-mathlib-pin.sh`).
+  signature, and `[propext]` footprint **unchanged**. Prose: "canonical form" →
+  "normal-form factorization" (existence of the split, not a unique canonical representative).
+
+### Audit fence (see [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md))
+
+> **The repository is not axiom-free; it is axiom-classified. WDC promoted receipts remain
+> footprint-attested.**
+
+- **Footprint gate hardened** (`scripts/check-witnessed-footprint.sh`): `set -euo pipefail`,
+  explicit failure if the `lake env lean` probe fails; 12 ratified receipts attested.
+- **Repo axiom classifier** (`scripts/audit-axioms.sh` + `axiom-policy.tsv`): every
+  `axiom`/`constant` classified — 23 signature, 0 interface-law, 8 specimen, **0 forbidden**,
+  0 unclassified.
+- **native_decide classifier** (`scripts/audit-native-decide.sh`): confined to finite-witness
+  modules; forbidden in WDC / kernels / structural receipts.
+- **mathlib pinned** in `lakefile.toml` to the manifest SHA, with a drift gate
+  (`scripts/check-mathlib-pin.sh`). Moving mathlib is now explicit.
+
+### TaxonomyGraph
+
+- **Removed the `persistence_normalizes` placeholder axiom** (a `True`-bodied claim-shaped
+  stand-in) — demoted to a non-asserting `TemporalAttractorSubstrate` socket. It was the lone
+  forbidden axiom; the repo axiom census is now 0 forbidden.
+- **Downgraded the unconditional temporal Δh claim to OPEN** (CLAIM-REGISTER #1): static
+  topology neither proves nor refutes it; a conditional version needs an explicit dynamics
+  substrate.
+- **Promoted the static closure-partition result** as the headline: `{Δg, Δa}`, `{Δx}`, and
+  `{Δh}` are three distinct terminal closure families under the declared edge graph. Δh is
+  *a* terminal family, not *the* universal sink.
+- **Edge-policy sensitivity**: `no_reach_of_closed_lane` (axiom-free) packages the negative
+  result as "src inside a forward-closed lane, dst outside ⇒ unreachable"; fenced
+  counterfactual edges (`Δm→Δc`, `Δx→Δc`) prove the static result FLIPS under one admitted
+  handoff edge — i.e. it is edge-policy-relative, not universal over all policies.
+
+### Boundary / Admissibility
+
+Boundary-related reachability work in this release is **supporting infrastructure, not the
+reason for the 2.0 integer**. It claims no Boundary composition *calculus*, no trichotomy,
+and no exhaustiveness theorem; `RefusedByClosedLane ⇒ ¬Composable` is proved in one
+direction only. A Boundary milestone, if earned later, gets its own name.
+
+### Experimental / scratch (not part of the promoted surface)
+
+- A **quarantined Persistence Attractor roadmap** (`experiments/persistence_attractor/NOTES.md`)
+  and scratch packaging (`LeanProofs/Scratch/PersistenceAttractor.lean`, unimported, no
+  axiom/sorry/native_decide). **No dynamic Δh theorem is claimed in this release.**
+
+### Compatibility
+
+Major version marks the reserved WDC structural milestone. Existing 1.x public imports are
+intended to remain unaffected; the theorem surface is additive/non-breaking.
 
 ## 1.4.0 — Witnessed Derivation Calculus (2026-06-27)
 
