@@ -6,6 +6,11 @@
   promotion path. NOT used as discharge for any doctrine. Compile-is-
   contact only. **Forward-looking** (BFT framing of multigov custody).
 
+  SYNCHRONIC ONLY: this file resolves WHO decides at t₀ (unique winner /
+  non-conflicting cert). It says nothing about who owns the RESIDUE at t₁ —
+  `UniqueWinnerAt(t₀) ↛ ResidueOwnerAt(t₁)`, winner ≠ janitor. The diachronic
+  coupling edge lives at (papers) working/tooltheory/scratch/quorum-residue-coupling/.
+
   ## The synthesis (median was laundering consensus)
 
   A multi-model detour reached for `median` as a "BFT" object and stated a
