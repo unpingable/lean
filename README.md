@@ -4,11 +4,18 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: 1.4.0 — Witnessed Derivation Calculus
+## Current release: 2.0.0 — WDC: model-independent normalization and audit fence
 
-**1.4.0** promotes the ratified **Witnessed Derivation Calculus** into the canonical public surface as the Mathlib-free `LeanProofs.Witnessed.*` library.
+**2.0.0** is the reserved WDC structural milestone: normalization is lifted from a
+freshness-*model* theorem to a **model-independent admitting-class theorem**
+(`normal_form_iff_of_commutes` over an explicit local commutation law, with a necessity
+counterexample showing the law is load-bearing), and the repo gains a classifier-based audit
+fence (axiom classes, native_decide policy, mathlib SHA pin — see [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md)).
+The public surface is **additive/non-breaking** — existing 1.x imports are unaffected; the
+integer marks the reserved milestone, not an API break. See [`CHANGELOG.md`](CHANGELOG.md).
 
-It provides:
+The 1.4.0 **Witnessed Derivation Calculus** surface (the Mathlib-free `LeanProofs.Witnessed.*`
+library) is carried forward intact. It provides:
 
 - a witnessed-derivation judgment, `Lift`;
 - paid composition and multi-context cut;

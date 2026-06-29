@@ -143,14 +143,14 @@ The **Witnessed Derivation Calculus** is a narrow, ratified, **Mathlib-free** pr
 
 - a defined inductive judgment `Lift K B c` (local kernel admission, plus one paid cross-rule that consumes a bridge);
 - **composition** along a paid path (`derivation_extends_along_paid_path`), **genuine multi-context cut** — admissibility, not elimination (`cut_admissible_general`), **soundness** (`paid_lift_sound`), **provenance** (`no_free_lift` — nothing lifts for free), and **non-manufacture** of revocations (`revoked_floor_derives_nothing`) — all schematic, axiom-free;
-- **normalization** to canonical bridge form (`bridge_path_normal_form`, footprint `[propext]`) established **for the freshness embedding model**;
+- **normalization** — a model-independent **normal-form factorization** (`AbstractNormalization.normal_form_iff_of_commutes`, **axiom-free**) for any two-family paid bridge satisfying a local commutation law, with the freshness `bridge_path_normal_form` (footprint `[propext]`) now its **instance**, plus a necessity counterexample (`commutes_is_necessary`) showing the commutation law is load-bearing;
 - a separate four-axis model-admission filter `WitnessedDiscipline`, with each axis independent (`AxisIndependence`), and a factorization retiring the former `Discriminating` axis as exactly `SemanticNontrivial` under `BridgeValid` (`bridgeValid_discriminating_iff_semanticNontrivial`).
 
-All ten ratified receipts carry axiom footprints ≤ `[propext, Quot.sound]`, re-attested in the canonical build by `scripts/check-witnessed-footprint.sh`. A consumer specimen (`LeanProofs/Witnessed/Examples.lean`) exercises the public API from outside the ported cone.
+All twelve ratified receipts carry axiom footprints ≤ `[propext, Quot.sound]`, re-attested in the canonical build by `scripts/check-witnessed-footprint.sh`. A consumer specimen (`LeanProofs/Witnessed/Examples.lean`) exercises the public API from outside the ported cone.
 
 ### What it does NOT prove
 
-- **not** universal normalization — the canonical-form result is scoped to the freshness model (which supplies a total time order); no general normalization is claimed;
+- **not** universal normalization — the result is an *admitting-class* theorem (it holds for bridge systems satisfying the local commutation law, with the freshness model as one instance); it does not prove that all bridge systems normalize;
 - **not** non-suppression — only non-*manufacture* is proved, and one direction only;
 - **not** full composition-classification — that gate was prosecuted and **retired** (see `COMPOSITION-CLASSIFICATION-TARGET.md`), not left open;
 - **not** model→world transfer — a compiled theorem attests the math, never a world claim; the fence is load-bearing;

@@ -1,13 +1,14 @@
 /-
   LeanProofs.Witnessed.AbstractNormalization — the normalization theorem lifted OFF the
-  freshness model. This is the 2.0-candidate structural strengthening: the canonical-form
-  theorem holds for ANY two-family paid-bridge system satisfying a local commutation law,
-  not just the freshness model `(Nat, <, b−a)`.
+  freshness model. This is the WDC 2.0 structural strengthening: the normal-form
+  factorization holds for ANY two-family paid-bridge system satisfying a local commutation
+  law, not just the freshness model `(Nat, <, b−a)`.
 
-  Custody class: CANDIDATE (2.0 shot). Imports only the spine (`NoFreeLift`, for `PaidFrom`).
-  NOT yet imported by the Witnessed aggregator, NOT in the footprint gate — compile-is-
-  contact until ratified. Wiring the shipped `Normalization.lean` to instantiate this (and
-  adding it to the aggregator + footprint) is the custody/promotion step, done on ratification.
+  Custody class: PROMOTED WDC 2.0 receipt. Imports only the spine (`NoFreeLift`, for
+  `PaidFrom`). Imported by the Witnessed aggregator and footprint-attested
+  (`scripts/check-witnessed-footprint.sh`). The shipped
+  `Normalization.bridge_path_normal_form` is the freshness INSTANCE of
+  `normal_form_iff_of_commutes` (see that file).
 
   The move (per the corrected plan): the existing `bridge_path_normal_form` proof is a
   finite-path bubble-sort driven entirely by the local permutation law
@@ -29,6 +30,13 @@ open LeanProofs.Witnessed.NoFreeLift
 
 variable {α : Type}
 
+/-
+  Why `Chain` and not just `PaidFrom`? `PaidFrom` is the exported paid-path judgment, with
+  steps appended at the TAIL. `Chain` is a local single-family closure with FRONT-cons
+  structure, used so the normalization proof can induct over homogeneous carry/weaken
+  segments and bubble one carry leftward through a weaken chain. It is proof plumbing
+  (induction direction), not a second authority judgment.
+-/
 /-- A single-family chain (reflexive-transitive, cons at front). -/
 inductive Chain (R : α → α → Prop) : α → α → Prop
   | nil  {a} : Chain R a a
@@ -103,17 +111,28 @@ theorem chainW_to_paid {C W : α → α → Prop} {z c : α} (h : Chain W z c) :
   | nil => exact PaidFrom.refl
   | cons hs _ ih => exact PaidFrom_cons (Or.inr hs) ih
 
+/-- A carry-then-weaken factorization always inhabits the paid path. This direction is
+    UNCONDITIONAL — it does NOT use the commutation law; only the forward/completeness
+    direction (`normalize`) needs `Commutes`. (Kept separate so the dependency bill is
+    explicit per-direction, matching the repo's footprint discipline.) -/
+theorem factored_to_paid {C W : α → α → Prop} {a c : α}
+    (h : ∃ z, Chain C a z ∧ Chain W z c) : PaidFrom (Step C W) a c := by
+  obtain ⟨z, hc, hw⟩ := h
+  exact PaidFrom_trans (chainC_to_paid hc) (chainW_to_paid hw)
+
 /-! ## The capstone — both halves, abstract, no model, no axiom -/
 
-/-- **normal_form_iff_of_commutes** — the 2.0-candidate theorem. For any two-family paid
-    bridge `Step C W` whose families satisfy the local commutation law, a paid path factors
-    EXACTLY as a carry segment followed by a weaken segment, and every such factored pair is
-    itself a paid path. The freshness `bridge_path_normal_form` is the instance
-    `C := CarryStep`, `W := WeakenStep`, `hcomm := perm_weaken_carry`. -/
+/-- **normal_form_iff_of_commutes** — the WDC 2.0 theorem. For any two-family paid bridge
+    `Step C W` whose families satisfy the local commutation law, a paid path admits a
+    NORMAL-FORM FACTORIZATION as a carry segment followed by a weaken segment (existence of
+    the split, not a unique canonical representative), and every such factored pair is itself
+    a paid path. Only the forward (`.mp`) direction is conditional on `Commutes`; the reverse
+    is `factored_to_paid` (unconditional). The freshness `bridge_path_normal_form` is the
+    instance `C := CarryStep`, `W := WeakenStep`, `hcomm := perm_weaken_carry`. -/
 theorem normal_form_iff_of_commutes {C W : α → α → Prop} (hcomm : Commutes C W) {a c : α} :
     PaidFrom (Step C W) a c ↔ ∃ z, Chain C a z ∧ Chain W z c := by
   constructor
   · exact normalize hcomm
-  · rintro ⟨z, hc, hw⟩; exact PaidFrom_trans (chainC_to_paid hc) (chainW_to_paid hw)
+  · exact factored_to_paid
 
 end LeanProofs.Witnessed.AbstractNormalization
