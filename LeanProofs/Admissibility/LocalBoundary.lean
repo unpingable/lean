@@ -44,10 +44,10 @@
       projection laundering, containment inversion, ambient
       authority leak) are paper-shaped until the theorem aperture
       forces them. NOT encoded as preconditions yet.
-    - Complete necessity claim: each `MergeAdmissible` field is
-      load-bearing via counterexample. Not proved here. A narrow
-      `left_sound` pressure test below shows the existing definitions
-      can express the failure mode.
+    - Complete necessity claim. Not proved here. The narrow
+      `left_sound` and `right_sound` pressure tests below show the
+      existing definitions can express each field-specific failure
+      mode, but they do not prove `MergeAdmissible` is complete.
     - Restriction (ν), replication, and richer action surfaces
       (degradation, failure, cascade) deferred.
     - Per-component reachability shape lemmas (a ComponentReach from
@@ -161,8 +161,9 @@ inductive ComponentReach {Domain Failure : Type}
     These are exactly the obligations the aperture theorem will
     demand. The five bad cases (boundary collision, authority
     widening, etc.) will become derivable corollaries — or
-    counterexamples to specific instantiations — once the necessity
-    pass is run. They are NOT encoded here. -/
+    counterexamples to specific instantiations — only if later forced.
+    They are NOT encoded here, and the pressure tests below do not
+    promote this ANNEX aperture into a complete merge theory. -/
 structure MergeAdmissible {Domain Failure : Type}
     (lb₁ lb₂ lbₘ : LocalBoundary Domain) : Prop where
   left_sound :
@@ -245,7 +246,7 @@ theorem composition_preserves_global_safety_aperture
   apply component_reach_preserves_invariant hMerge hReach
   exact initial_no_internal_external_exposure lbₘ.partition
 
-/-- **Necessity pressure test for `MergeAdmissible.left_sound`.**
+/-- **Pressure test for `MergeAdmissible.left_sound`.**
 
     If a left component locally authorizes an exposure that is
     `Internal → External` for the merged partition, then a single
@@ -253,9 +254,8 @@ theorem composition_preserves_global_safety_aperture
     violating `NoInternalExternalExposure lbₘ.partition`.
 
     This proves only that the `left_sound` obligation is load-bearing
-    for this aperture theorem. It does not claim `MergeAdmissible` is
-    complete, nor that every future merge interface must have exactly
-    this shape. -/
+    for this aperture theorem. It is an ANNEX pressure test, not a
+    completeness claim and not a promotion beyond `LocalBoundary`. -/
 theorem dropping_left_sound_permits_merged_partition_violation
     {Domain Failure : Type}
     [DecidableEq Domain] [DecidableEq Failure]
@@ -277,6 +277,40 @@ theorem dropping_left_sound_permits_merged_partition_violation
         ⟨Process.par (Process.expose e Process.stop) Process.stop,
           initialConfig Domain Failure⟩)
       (ComponentStep.left RawStep.expose hAllows)
+  · intro hInv
+    exact hInv e (by simp [s₁, initialConfig]) hBad
+
+/-- **Pressure test for `MergeAdmissible.right_sound`.**
+
+    Symmetrically, if a right component locally authorizes an exposure
+    that is `Internal → External` for the merged partition, then a
+    single right component step from the empty configuration reaches a
+    state violating `NoInternalExternalExposure lbₘ.partition`.
+
+    This proves only that the `right_sound` obligation is load-bearing
+    for this aperture theorem. It is an ANNEX pressure test, not a
+    completeness claim and not a promotion beyond `LocalBoundary`. -/
+theorem dropping_right_sound_permits_merged_partition_violation
+    {Domain Failure : Type}
+    [DecidableEq Domain] [DecidableEq Failure]
+    {lb₁ lb₂ lbₘ : LocalBoundary Domain}
+    (e : Exposure Domain Failure)
+    (hAllows : LocalAllows lb₂ (Action.expose (Failure := Failure) e))
+    (hBad : lbₘ.partition.Internal e.origin ∧ lbₘ.partition.External e.target) :
+    ∃ s : SystemState Domain Failure,
+      ComponentReach lb₁ lb₂
+        ⟨Process.par Process.stop (Process.expose e Process.stop),
+          initialConfig Domain Failure⟩ s ∧
+      ¬ NoInternalExternalExposure lbₘ.partition s.config := by
+  let s₁ : SystemState Domain Failure :=
+    ⟨Process.par Process.stop Process.stop,
+      ⟨insert e (initialConfig Domain Failure).exposures⟩⟩
+  refine ⟨s₁, ?_, ?_⟩
+  · exact ComponentReach.tail
+      (ComponentReach.refl
+        ⟨Process.par Process.stop (Process.expose e Process.stop),
+          initialConfig Domain Failure⟩)
+      (ComponentStep.right RawStep.expose hAllows)
   · intro hInv
     exact hInv e (by simp [s₁, initialConfig]) hBad
 
@@ -314,11 +348,11 @@ theorem dropping_left_sound_permits_merged_partition_violation
 
     1. **Necessity** (`merge_admissible_necessary`):
        Construct components `lb₁`, `lb₂` and a merge `lbₘ` for which
-       `MergeAdmissible` fails on one field (e.g., `left_sound`), and
-       exhibit a `ComponentReach` from `⟨P|Q, initialConfig⟩` whose
-       resulting config violates `NoInternalExternalExposure lbₘ.partition`.
-       Status: one narrow `left_sound` pressure test is proved above;
-       the full necessity inventory remains open.
+       `MergeAdmissible` fails on one field, and exhibit a
+       `ComponentReach` from `⟨P|Q, initialConfig⟩` whose resulting
+       config violates `NoInternalExternalExposure lbₘ.partition`.
+       Status: narrow `left_sound` and `right_sound` pressure tests
+       are proved above; the full necessity inventory remains open.
 
     2. **Five bad-case corollaries**:
        Show that each of (boundary collision / authority widening /
