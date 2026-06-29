@@ -6,7 +6,8 @@
   `RATIFICATION-v1.3.md`). A narrow proof-theoretic calculus for witnessed movement
   across typed boundaries: a defined judgment `Lift` with composition, genuine
   multi-context cut (cut-admissibility), soundness, provenance, non-manufacture, and
-  normalization to canonical bridge form in the freshness model.
+  2.0 model-independent normal-form factorization for any bridge system satisfying the
+  local commutation law, with the freshness model as the public instance.
 
   Mathlib-FREE by construction. No module under `LeanProofs/Witnessed/` imports
   Mathlib, so every receipt's axiom footprint stays at core Lean (≤ propext,
@@ -15,8 +16,9 @@
 
   This is NOT a revival of the retired maximal "Admissibility Calculus": its scope is
   witnessed derivation across typed boundaries; model→world transfer, universal
-  normalization, non-suppression, and full composition-classification remain fenced
-  (see `docs/WITNESSED-FRONTIER-REGISTER.md`). Receipt names are frozen per MIGRATION §C.
+  normalization, cut-elimination, non-suppression, and full composition-classification remain
+  fenced (see `docs/WITNESSED-FRONTIER-REGISTER.md`). Receipt names are frozen per
+  MIGRATION §C.
 
   Renames from the experiment surface: `Wired.Authority` → `AuthorityModel` (a study
   copy, NOT the 1.0 `Admissibility.Authority` kernel); `Successor.WitnessedDerivation`

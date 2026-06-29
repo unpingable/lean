@@ -14,24 +14,28 @@ fence (axiom classes, native_decide policy, mathlib SHA pin — see [`docs/AUDIT
 The public surface is **additive/non-breaking** — existing 1.x imports are unaffected; the
 integer marks the reserved milestone, not an API break. See [`CHANGELOG.md`](CHANGELOG.md).
 
-The 1.4.0 **Witnessed Derivation Calculus** surface (the Mathlib-free `LeanProofs.Witnessed.*`
-library) is carried forward intact. It provides:
+The **Witnessed Derivation Calculus** surface (the Mathlib-free
+`LeanProofs.Witnessed.*` library, promoted in 1.4.0 and structurally strengthened in
+2.0.0) provides:
 
 - a witnessed-derivation judgment, `Lift`;
 - paid composition and multi-context cut;
 - soundness, provenance, and revocation non-manufacture results (schematic);
-- a canonical-form normalization theorem for the canonical freshness embedding;
+- a model-independent normal-form factorization theorem over any admitting class
+  satisfying the local commutation law, with the canonical freshness embedding as its
+  public instance;
 - a separate four-axis model-admission filter, `WitnessedDiscipline` (`bridge_valid` / `semantic_nontrivial` / `bridge_selective` / `properly_live`);
 - a factorization showing the former `Discriminating` axis contributes no independent information beyond `SemanticNontrivial` under `BridgeValid`.
 
-The name is deliberately narrow. This is **not** a process calculus, a maximal admissibility logic, or a unification of every kernel in the repository. The calculus governs witnessed derivation across typed bridges; `WitnessedDiscipline` is a model filter beside it, not part of normalization, and normalization itself is scoped to the canonical freshness embedding.
+The name is deliberately narrow. This is **not** a process calculus, a maximal admissibility logic, or a unification of every kernel in the repository. The calculus governs witnessed derivation across typed bridges; `WitnessedDiscipline` is a model filter beside it, not part of normalization, and the 2.0 normalization result is an admitting-class theorem, not universal normalization.
 
-The ratified calculus lives in the canonical surface as `LeanProofs.Witnessed.*` — a separate **Mathlib-free** library (`import LeanProofs.Witnessed`), with its axiom footprint regression-gated by `scripts/check-witnessed-footprint.sh`. Its ratified source is preserved under `experiments/no_free_lift_wiring/`. This is a **new, additive** public surface and does **not** alter the stable 1.x **Admissibility Kernels** surface — which is why it ships as the **minor** release **1.4.0**, not a major bump. The planning docs frame this as "the 2.0 boundary" ([`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md)); semver keeps its one job (nothing in 1.x breaks), and the milestone lives in the release title and notes. A future **2.0** is reserved for a *structural* strengthening of the calculus — see the "What Would Make This 2.0" gate in [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
+The ratified calculus lives in the canonical surface as `LeanProofs.Witnessed.*` — a separate **Mathlib-free** library (`import LeanProofs.Witnessed`), with its axiom footprint regression-gated by `scripts/check-witnessed-footprint.sh`. Its ratified source is preserved under `experiments/no_free_lift_wiring/`. The public surface remains **additive/non-breaking** relative to 1.x; 2.0.0 is the structural WDC milestone, not an API churn release. The historical promotion gate is recorded in [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md); the post-v2 frontier is tracked in [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
 - **Exact ratified claims and theorem receipts:** [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md)
 - **Migration and divergence constraints:** [`MIGRATION-NOTES.md`](experiments/no_free_lift_wiring/MIGRATION-NOTES.md)
-- **2.0 public-promotion exit criteria:** [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md)
-- **Release:** `v1.4.0` (supersedes [`v1.3.0-rc1`](https://github.com/unpingable/lean/releases/tag/v1.3.0-rc1))
+- **2.0 release gate receipt:** [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md)
+- **Downstream v2 consumer receipt:** [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/)
+- **Release:** `v2.0.0` (supersedes [`v1.4.0`](https://github.com/unpingable/lean/releases/tag/v1.4.0))
 
 ## Stable public surface: Admissibility Kernels
 
@@ -42,7 +46,7 @@ The stable public surface remains a collection of small admissibility kernels, e
 The repository therefore contains two related but distinct layers:
 
 1. **Admissibility Kernels** — small local refusal kernels (the stable 1.x public surface).
-2. **Witnessed Derivation Calculus** — the ratified calculus for witnessed movement and composition across typed bridges, a canonical **Mathlib-free** surface (`LeanProofs.Witnessed.*`) shipped in 1.4.0.
+2. **Witnessed Derivation Calculus** — the ratified calculus for witnessed movement and composition across typed bridges, a canonical **Mathlib-free** surface (`LeanProofs.Witnessed.*`) shipped in 1.4.0 and structurally strengthened in 2.0.0.
 
 Neither is a universal model of institutions, software systems, or agency.
 
@@ -73,7 +77,7 @@ The point is not to prove an entire software system correct. It is to make inval
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
 - **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Ratifies the standalone safety axis, not any unified-calculus rename.
-- **Witnessed Derivation Calculus** *(ratified; canonical `LeanProofs.Witnessed.*` since 1.4.0, Mathlib-free)* — witnessed movement and composition across typed bridges. See the release section above.
+- **Witnessed Derivation Calculus** *(ratified; canonical `LeanProofs.Witnessed.*` since 1.4.0, structurally strengthened in 2.0.0, Mathlib-free)* — witnessed movement and composition across typed bridges. See the release section above.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
@@ -97,7 +101,7 @@ Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-k
 
 The `experiments/` tree holds reproducible integration artifacts that are **not imported by the canonical proof surface** — each is its own Lake project with its own toolchain pin. A successful build under `experiments/` attests that the wiring checks; it does **not** promote any result into the relied-upon theorem surface (build-exit-0 is attestation of the math, never admission of a world claim). See [`experiments/README.md`](experiments/README.md) for the per-project custody contract (`EXPERIMENTAL-WIRING`).
 
-Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings. It hosts the **ratified source** of the Witnessed Derivation Calculus (`Successor/` + the `Wired` spine) — now promoted into the canonical surface as `LeanProofs.Witnessed.*` (this tree remains the provenance record, still not imported by the canonical surface) — and the **findings record for the retired composition-classification gate** ([`COMPOSITION-CLASSIFICATION-TARGET.md`](experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md) — the proposed exhaustive classifier was investigated and retired as the wrong target, not unproved). The public-surface promotion was governed by [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md): public promotion, migration map, stable namespace, and a non-experimental compiled consumer — not new theorems. That promotion shipped in 1.4.0.
+Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings. It hosts the **ratified source** of the Witnessed Derivation Calculus (`Successor/` + the `Wired` spine) — now promoted into the canonical surface as `LeanProofs.Witnessed.*` (this tree remains the provenance record, still not imported by the canonical surface) — and the **findings record for the retired composition-classification gate** ([`COMPOSITION-CLASSIFICATION-TARGET.md`](experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md) — the proposed exhaustive classifier was investigated and retired as the wrong target, not unproved). The public-surface promotion was governed by [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md): public promotion, migration map, stable namespace, and a non-experimental compiled consumer — not new theorems. That promotion shipped in 1.4.0; the 2.0.0 release is the later structural normalization + audit-fence milestone.
 
 ## What this is not
 
@@ -172,13 +176,14 @@ is the provenance record, not the canonical import path.
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
-- [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — public-promotion criteria for the 2.0 boundary
+- [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
+- [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
 - Narrative walkthrough: [`docs/worked-examples/standing-upgrade-block.md`](docs/worked-examples/standing-upgrade-block.md)
 - Papers repo: [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) — paper → module inverse view
 
 ## Status
 
-**`v1.4.0` released** — the Witnessed Derivation Calculus is now a canonical, Mathlib-free public surface at `LeanProofs.Witnessed.*`; the stable 1.x Admissibility Kernels surface is unchanged. All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Gaps surfaced by the dated 2026-05-10 AGI-requirements reverse-gap audit are recorded in [the closed reverse-gap audit](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md) — a **closed audit artifact** scoped to that one requirements document, not the project's live open-problems register.
+**`v2.0.0` released** — the Witnessed Derivation Calculus now has model-independent admitting-class normalization and an explicit audit fence, while the stable 1.x Admissibility Kernels surface remains unchanged. All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Gaps surfaced by the dated 2026-05-10 AGI-requirements reverse-gap audit are recorded in [the closed reverse-gap audit](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md) — a **closed audit artifact** scoped to that one requirements document, not the project's live open-problems register.
 
 The previously-admitted investigative null `corrective_then_forward_is_not_monotone` (formerly in `LeanProofs/Admissibility/Corrective.lean`) was replaced by a positive boundary result in `LeanProofs/Admissibility/CorrectiveBoundary.lean`: the abstract kernel's existential remains formally undecidable in current vocabulary, but a parallel miniature kernel exhibits both possible answers — identity store ops + arbitrary env make the existential FALSE; nondegenerate ops + verdict-sensitive derivation make it TRUE. The abstract kernel is consistent with both, which is the doctrinally-correct stance. See [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) entries A1 (resolved) and #14 (boundary result) for the audit trail. **The discipline that previously displayed the sorry now displays the resolution path** — admitted-statement history is part of the public record, not erased once resolved.
 

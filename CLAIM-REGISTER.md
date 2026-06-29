@@ -191,7 +191,7 @@ Generated 2026-04-03 after static topology and persistence model results.
 | **Bucket** | Structural (admitting-class theorem + necessity counterexample; the Frontier Register's 2.0 criterion #1) |
 | **Status** | **SOUND** — `normal_form_iff_of_commutes` and `commutes_is_necessary` axiom-free; `bridge_path_normal_form` re-attested at `[propext]` (unchanged) through the abstract route. WDC-surface footprint gate green (12 receipts). |
 | **Tool** | Lean — `AbstractNormalization.{Chain, Step, Commutes, normal_form_iff_of_commutes}`, `CommutesNecessity.commutes_is_necessary`, `Normalization.{commutes_carry_weaken, cchain_iff_chain, wchain_iff_chain, freshpath_iff_paidstep, bridge_path_normal_form}`. |
-| **Fix** | None. Promotion of the AbstractNormalization candidate (2026-06-29, operator-ratified). NOT a cut/tagged release; version unchanged. The model-specific `normalize`/`bubble` survive only as the route for the cruder two-edge corollary. Candidate for the reserved integer 2.0 (criterion #1, proof-theoretic) pending a release decision. WDC-surface cleanliness only — repo-wide axiom audit is a separate (fence) pass. |
+| **Fix** | None. Released as `v2.0.0` on 2026-06-29 (peeled tag target `b4bd02b`) after operator ratification. The model-specific `normalize`/`bubble` survive only as the route for the cruder two-edge corollary. This is the reserved WDC structural milestone: model-independent admitting-class normalization plus the load-bearing necessity counterexample. It is **not** a cut-elimination release and does not claim universal normalization. WDC-surface cleanliness remains footprint-gated; repo-wide axiom classification is recorded by the audit fence. |
 
 ---
 

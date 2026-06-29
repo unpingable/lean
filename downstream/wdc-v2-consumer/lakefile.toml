@@ -1,0 +1,11 @@
+name = "wdc_v2_consumer"
+version = "0.1.0"
+defaultTargets = ["DownstreamWdcV2"]
+
+[[require]]
+name = "lean_proofs"
+git = "https://github.com/unpingable/lean.git"
+rev = "v2.0.0"
+
+[[lean_lib]]
+name = "DownstreamWdcV2"
