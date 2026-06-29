@@ -23,9 +23,10 @@ Generated 2026-04-03 after static topology and persistence model results.
 | **Location** | `working/cybernetic-failure-taxonomy/taxonomy-relationships.md:136` |
 | **Claim** | "Δh is the universal sink — any failure that persists long enough becomes hysteresis" |
 | **Bucket** | Was presented as structural; is actually temporal |
-| **Status** | **BROKEN** |
+| **Status** | **BROKEN** as static pipeline topology. **OPEN** as an unconditional temporal-attractor claim. Potentially **SOUND** only as a *conditional dynamics theorem* — one requiring explicit persistence / no-correction / operational-use / burn or lock-in hypotheses (not asserted anywhere as of 2026-06-29). |
 | **Tool** | Lean (TaxonomyGraph.lean — closure classification) |
-| **Fix** | Static topology yields three terminal families {Δg,Δa}, {Δx}, {Δh}. Δs and Δk cannot reach Δh. Universalization of Δh must be stated as a temporal hypothesis, not a graph fact. |
+| **Fix** | Static topology yields three terminal closure families {Δg,Δa}, {Δx}, {Δh}; Δs and Δk cannot reach Δh (`ds_not_reaches_dh`/`dk_not_reaches_dh` via forward-closed lanes). That partition is the public result. **2026-06-29: demoted the `axiom persistence_normalizes : ∀ d, d≠.dh → True`** (a `True`-bodied placeholder polluting the repo axiom surface) to a non-asserting `TemporalAttractorSubstrate` socket; the prose "TRUE as a temporal attractor claim" is corrected to OPEN. Any universalization of Δh must be a conditional temporal theorem over an explicit dynamics substrate, not a graph fact and not an axiom. |
+| **Robustness (Step 4, 2026-06-29)** | The non-reachability is **edge-policy-relative**, and that is now itself a theorem. Reachability is parameterized over the edge relation (`ReachableBy E`, adapters `reachable_to_by_edge`/`by_edge_to_reachable`); the negative results route through the generic `no_reach_of_closed_lane` (forward-closed lane + src inside + dst outside ⇒ unreachable — the receipt names the hinge). Fenced counterfactuals (`CounterfactualEdges.edgePlusDmDc`/`edgePlusDxDc`, no mutation of canonical `edge`) prove the result FLIPS under one admitted handoff edge: `ds_reaches_dh_with_dm_dc` (Δs→Δm→Δc→Δh under Δm→Δc) and `dk_reaches_dh_with_dx_dc` (Δk→Δx→Δc→Δh under Δx→Δc). **Interpretation:** the verified static result is a closure-partition theorem for the *declared* graph, not a universal theorem over all plausible edge-admission policies. (`no_reach_of_closed_lane` is also the conversion-router #4 delta — one pattern, two surfaces.) |
 
 ### 2. Δh property-based clarification (contradicts #1)
 
@@ -181,6 +182,17 @@ Generated 2026-04-03 after static topology and persistence model results.
 | **Tool** | Lean (`PersistenceModel.lean`, added 2026-05-08, three phases) — eight new theorems landed sorry-free; companion change-log entry in PAPER-MAP. Realization proof uses `Nat.strongRecOn` for strong induction on `rollbackCapacity`, with two helpers (`step_commit_low_terminates`, `step_commit_high_continues`) and inline recurrence via `Nat.add_div_right`. |
 | **Fix** | The originally-proposed `commitsToHysteretic_strict_mono` was *false* under the draft's own `cap = 0 → 1` convention: counterexample at `cap₂ = 0, burnRate = 3, cap₁ = 3` (both sides take 1 commit, hypothesis `cap₂ + burnRate ≤ cap₁` holds, but strict `<` fails). ChatGPT caught it during inspection. Corrected hypothesis form requires `0 < cap₂` to exclude the genuine boundary tie, preserving doctrine: *"less capacity is no slower (non-strict) under any reduction; strictly faster (strict) when the reduction is positive and exceeds one burn-unit."* The boundary case is operationally meaningful — at `cap = burnRate` the system already burns out on first commit, so no improvement is possible from less capacity at that boundary. The realization bridge connects this commit-count arithmetic to actual `run` traces ending in `hysteretic`, completing the formalization stack from prose doctrine through closed-form arithmetic through state-machine semantics. |
 
+### 16. WDC 2.0: model-independent normalization (admitting-class)
+
+| Field | Value |
+|-------|-------|
+| **Location** | `LeanProofs/Witnessed/AbstractNormalization.lean`, `LeanProofs/Witnessed/CommutesNecessity.lean`, `LeanProofs/Witnessed/Normalization.lean` |
+| **Claim** | The carry/weaken normal-form factorization is earned OFF the freshness model: `normal_form_iff_of_commutes` proves `PaidFrom (Step C W) a c ↔ ∃ z, Chain C a z ∧ Chain W z c` for any two-family bridge whose families satisfy the local commutation law `Commutes C W`. The freshness `bridge_path_normal_form` is rerouted to be its `(CarryStep, WeakenStep)` instance (`perm_weaken_carry` discharges `Commutes`); name/signature/`[propext]` footprint unchanged. `commutes_is_necessary` proves the law is load-bearing — a concrete system where `Commutes` fails admits a paid path with no carry-then-weaken factorization. |
+| **Bucket** | Structural (admitting-class theorem + necessity counterexample; the Frontier Register's 2.0 criterion #1) |
+| **Status** | **SOUND** — `normal_form_iff_of_commutes` and `commutes_is_necessary` axiom-free; `bridge_path_normal_form` re-attested at `[propext]` (unchanged) through the abstract route. WDC-surface footprint gate green (12 receipts). |
+| **Tool** | Lean — `AbstractNormalization.{Chain, Step, Commutes, normal_form_iff_of_commutes}`, `CommutesNecessity.commutes_is_necessary`, `Normalization.{commutes_carry_weaken, cchain_iff_chain, wchain_iff_chain, freshpath_iff_paidstep, bridge_path_normal_form}`. |
+| **Fix** | None. Promotion of the AbstractNormalization candidate (2026-06-29, operator-ratified). NOT a cut/tagged release; version unchanged. The model-specific `normalize`/`bubble` survive only as the route for the cruder two-edge corollary. Candidate for the reserved integer 2.0 (criterion #1, proof-theoretic) pending a release decision. WDC-surface cleanliness only — repo-wide axiom audit is a separate (fence) pass. |
+
 ---
 
 ## Admitted statements
@@ -206,7 +218,7 @@ Theorems intentionally admitted via `sorry`, separate from the BROKEN / STALE / 
 |--------|-------|--------|
 | BROKEN | 2 | Rewrite with corrected claims |
 | STALE | 3 | Tighten framing, remove temporal conflation |
-| SOUND | 8 | No change; some need cross-referencing |
+| SOUND | 9 | No change; some need cross-referencing (incl. #16 WDC 2.0 normalization) |
 | OPEN | 2 | Δc→Δh dynamics (now substantially formalized via #15 quantitative burn cluster; trace-realization Phase C deferred); corrective monotonicity (obligation declared, vacuously satisfiable in abstract kernel pending store-op laws) |
 | ADMITTED | 0 | (was 1; A1 resolved 2026-05-07 via boundary result, see #14) |
 

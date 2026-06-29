@@ -5,6 +5,37 @@ to Zenodo deposits under the concept DOI
 [10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
 release tag drives the deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## Unreleased — WDC 2.0 candidate: model-independent normalization
+
+Candidate for the reserved integer **2.0** (a *structural* strengthening — criterion #1,
+proof-theoretic, in the Frontier Register). **Not a cut release**: version unchanged,
+nothing tagged. WDC-surface cleanliness only; the repo-wide axiom audit is a separate
+(fence) pass not claimed here.
+
+- **`LeanProofs/Witnessed/AbstractNormalization.lean`** — `normal_form_iff_of_commutes`:
+  the carry-then-weaken normal-form factorization holds for ANY two-family paid bridge
+  satisfying the local commutation law `Commutes C W`, independent of the freshness model.
+  Axiom-free.
+- **`LeanProofs/Witnessed/CommutesNecessity.lean`** — `commutes_is_necessary`: the
+  commutation law is load-bearing (a concrete system where it fails admits a paid path with
+  no carry-then-weaken factorization). Axiom-free.
+- **`Normalization.bridge_path_normal_form` rerouted** to be the `(CarryStep, WeakenStep)`
+  instance of the abstract theorem (`perm_weaken_carry` discharges `Commutes`). Name,
+  signature, and `[propext]` footprint **unchanged** — non-breaking. Prose: "canonical
+  form" → "normal-form factorization" (existence of the carry/weaken split, not a unique
+  canonical representative).
+- **Footprint gate hardened** (`scripts/check-witnessed-footprint.sh`): `set -euo pipefail`
+  and explicit failure if the `lake env lean` probe fails; two new axiom-free receipts
+  attested (12 total).
+- **Repo-wide custody fence** (separate from WDC; see [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md)).
+  The repo is **axiom-classified, not axiom-free**: `scripts/audit-axioms.sh` +
+  `axiom-policy.tsv` classify every `axiom`/`constant` (23 signature, 8 specimen, **0
+  forbidden**, 0 unclassified) — the removed `TaxonomyGraph.persistence_normalizes`
+  placeholder was the lone forbidden case (demoted to a non-asserting
+  `TemporalAttractorSubstrate` socket; CLAIM-REGISTER #1 corrected to OPEN). `native_decide`
+  confined to finite-witness modules (`audit-native-decide.sh`). mathlib pinned in
+  `lakefile.toml` to the manifest SHA with a drift gate (`check-mathlib-pin.sh`).
+
 ## 1.4.0 — Witnessed Derivation Calculus (2026-06-27)
 
 1.4.0 promotes the ratified Witnessed Derivation Calculus into the **canonical public

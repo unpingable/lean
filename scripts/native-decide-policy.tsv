@@ -1,0 +1,4 @@
+# native-decide-policy.tsv — modules where native_decide is allowed (finite computational witnesses).
+# Forbidden everywhere else (WDC / Admissibility kernels / structural receipts). columns: path<TAB>note
+LeanProofs/PersistenceModel.lean	finite Δt trace witnesses (P18 burn model)
+LeanProofs/BranchSelector.lean	finite branch-selection witnesses (Δt model)

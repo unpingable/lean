@@ -15,7 +15,7 @@
 #   1 — `lake build Witnessed` failed
 #   2 — a receipt drifted (missing/renamed, new axiom, sorry, or wrong footprint)
 
-set -uo pipefail
+set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
@@ -37,6 +37,8 @@ declare -A EXPECT=(
   ["$P.Obstruction.bridgeValid_discriminating_iff_semanticNontrivial"]="$PROPEXT"
   ["$P.Discipline.embedding_is_witnessed"]="$PROPEXT_QUOT"
   ["$P.Discipline.discipline_metatheory"]="$NONE"
+  ["$P.AbstractNormalization.normal_form_iff_of_commutes"]="$NONE"
+  ["$P.CommutesNecessity.commutes_is_necessary"]="$NONE"
 )
 
 # 1. The library must build. The separate `Witnessed` lean_lib is Mathlib-free by
@@ -53,7 +55,11 @@ trap 'rm -f "$TMP"' EXIT
   echo "import LeanProofs.Witnessed"
   for r in "${!EXPECT[@]}"; do echo "#print axioms $r"; done
 } > "$TMP"
-OUT="$(lake env lean "$TMP" 2>&1)"
+if ! OUT="$(lake env lean "$TMP" 2>&1)"; then
+  echo "$OUT" >&2
+  echo "FAIL: footprint probe (lake env lean) did not succeed — a receipt is likely renamed/removed" >&2
+  exit 2
+fi
 
 # 3. Fail closed on each receipt: exact footprint line must be present.
 fail=0
@@ -63,7 +69,7 @@ if grep -q 'sorryAx' <<<"$OUT"; then
 fi
 for r in "${!EXPECT[@]}"; do
   if ! grep -Fq "'$r' ${EXPECT[$r]}" <<<"$OUT"; then
-    actual="$(grep -F "'$r'" <<<"$OUT")"
+    actual="$(grep -F "'$r'" <<<"$OUT" || true)"
     echo "FAIL: $r" >&2
     echo "      expected: ${EXPECT[$r]}" >&2
     echo "      actual:   ${actual:-<no axiom report — renamed or removed?>}" >&2

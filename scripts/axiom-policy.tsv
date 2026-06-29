@@ -1,0 +1,33 @@
+# axiom-policy.tsv — repo axiom classification (Phase 5). The repo is NOT axiom-free; it is axiom-classified.
+# columns: path<TAB>name<TAB>class<TAB>note   classes: signature | interface-law | specimen | forbidden
+LeanProofs/Admissibility/StateTransition.lean	PolicyStore	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	EvidenceStore	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	GapStore	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	RevocationStore	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	Receipt	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	Gap	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	Revocation	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	PolicyUpdate	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	Actor	signature	abstract carrier type
+LeanProofs/Admissibility/StateTransition.lean	appendEvidence	signature	abstract carrier op
+LeanProofs/Admissibility/StateTransition.lean	appendGap	signature	abstract carrier op
+LeanProofs/Admissibility/StateTransition.lean	appendRevocation	signature	abstract carrier op
+LeanProofs/Admissibility/StateTransition.lean	applyUpdate	signature	abstract carrier op
+LeanProofs/Admissibility/StateTransition.lean	EvidenceWriteStanding	signature	abstract standing predicate symbol
+LeanProofs/Admissibility/StateTransition.lean	GapDeclareStanding	signature	abstract standing predicate symbol
+LeanProofs/Admissibility/StateTransition.lean	RevocationStanding	signature	abstract standing predicate symbol
+LeanProofs/Admissibility/StateTransition.lean	PolicyAmendmentStanding	signature	abstract standing predicate symbol
+LeanProofs/Admissibility/AuthorizedNotSafe.lean	scenarioState	specimen	fenced authorized-not-safe separation witness
+LeanProofs/Admissibility/AuthorizedNotSafe.lean	scenarioActor	specimen	fenced authorized-not-safe separation witness
+LeanProofs/Admissibility/AuthorizedNotSafe.lean	scenarioReceipt	specimen	fenced authorized-not-safe separation witness
+LeanProofs/Admissibility/AuthorizedNotSafe.lean	scenarioStanding	specimen	fenced authorized-not-safe separation witness
+LeanProofs/Admissibility/AuthorizedNotSafe.lean	defendedValue	specimen	fenced authorized-not-safe separation witness
+LeanProofs/Admissibility/AuthorizedNotSafe.lean	defendedValue_initial	specimen	fenced authorized-not-safe separation witness
+LeanProofs/Admissibility/AuthorizedNotSafe.lean	defendedValue_after	specimen	fenced authorized-not-safe separation witness
+LeanProofs/Admissibility/AuthorizedStepNotSafe.lean	scenarioClaim	specimen	fenced authorized-step-not-safe separation witness
+LeanProofs/Admissibility/Derivation.lean	AuthorityClaim	signature	abstract carrier type
+LeanProofs/Admissibility/Freshness.lean	Time	signature	abstract carrier type
+LeanProofs/Admissibility/Freshness.lean	Time.le	signature	abstract relation symbol (predicate, not a law)
+LeanProofs/Admissibility/Freshness.lean	Time.add	signature	abstract op symbol
+LeanProofs/Admissibility/Freshness.lean	Time.sub	signature	abstract op symbol
+LeanProofs/Admissibility/Freshness.lean	Time.absSub	signature	abstract op symbol

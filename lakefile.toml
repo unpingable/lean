@@ -12,7 +12,7 @@ maxSynthPendingDepth = 3
 [[require]]
 name = "mathlib"
 scope = "leanprover-community"
-rev = "master"
+rev = "6ef8cc2731780be866bf243afcb7732f4da5f406"  # pinned to lake-manifest.json SHA; move only via explicit `lake update` + repin (scripts/check-mathlib-pin.sh)
 
 [[lean_lib]]
 name = "LeanProofs"

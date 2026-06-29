@@ -187,32 +187,25 @@ def reinforces : Domain → Domain → Bool
   to domains that have no pipeline to Δh (like Δs, Δk, Δx) because
   persistence is a temporal property, not a graph-topological one.
 
-  We model this as a separate axiom rather than smuggling it into
-  the edge relation. The axiom says: for any domain, if the failure
-  persists beyond some threshold without correction, the system
-  enters Δh-adjacent dynamics (self-stabilizing non-return).
+  We do NOT model this with an axiom. A `True`-bodied axiom asserts nothing yet pollutes
+  the repo-wide axiom surface (a placeholder wearing a fake mustache). Instead we leave a
+  SOCKET — the type a future temporal-attractor theorem would inhabit — and assert no
+  attractor property. The static graph neither proves nor refutes one.
 
-  This is deliberately NOT proven from the graph. It is a claim
-  about dynamics that the static graph cannot represent.
+  This claim is deliberately NOT proven from the graph, and as of 2026-06-29 it is NOT
+  asserted anywhere: it is OPEN, pending an explicit dynamics substrate.
 -/
-axiom persistence_normalizes :
-  ∀ (d : Domain), d ≠ .dh →
-    -- "if d persists without correction, the system's state
-    --  becomes hysteretically self-stabilizing"
-    -- This is stated as an axiom because it's a dynamic claim,
-    -- not derivable from static pipeline topology.
-    True  -- placeholder: the real content is in the comment.
-          -- A proper formalization would need a temporal logic
-          -- or a state-transition system, not just a graph.
 
-/-
-  NOTE: This axiom is intentionally weak (just True) because
-  we don't yet have the temporal substrate to state it properly.
-  Its value is DOCUMENTARY: it marks where the informal prose
-  was making a claim the graph can't support, and names the
-  kind of formalism (temporal logic, attractor dynamics) that
-  would be needed to state it for real.
--/
+/-- Documentary socket (DEMOTED 2026-06-29 from `axiom persistence_normalizes : ∀ d,
+    d ≠ .dh → True`). The type a temporal-attractor theorem would inhabit; it asserts NO
+    attractor property. A real conditional theorem would need persistence / no-correction /
+    operational-use / burn or lock-in hypotheses — see `PersistenceModel.lean` for the
+    Δc→Δh quantitative-burn machinery such a version would build on. -/
+structure TemporalAttractorSubstrate where
+  State : Type
+  active : State → Domain → Prop
+  corrected : State → Domain → Prop
+  hysteretic : State → Prop
 
 -- ════════════════════════════════════════════════════════════
 -- REACHABILITY (transitive closure of pipeline edges only)
@@ -266,9 +259,10 @@ theorem dh_no_pipeline_outgoing : ∀ (b : Domain), edge .dh b = false := by
   Reachable:     Δn, Δo, Δw, Δp, Δe, Δr, Δb, Δc, Δm (via Δb path)
   Not reachable: Δs, Δk, Δx, Δg, Δa, Δh (itself, non-reflexive)
 
-  "Δh is the universal sink" is therefore FALSE as a pipeline
-  reachability claim. It is TRUE as a temporal attractor claim
-  (see Relation 3 / persistence_normalizes axiom).
+  "Δh is the universal sink" is therefore FALSE as a pipeline reachability claim. The
+  graph instead decomposes into three terminal closure families (see summary). The
+  temporal-attractor version is NOT asserted here — it remains OPEN, requiring a dynamics
+  substrate the static graph cannot represent (see `TemporalAttractorSubstrate`).
 -/
 
 -- Δn → Δb → Δc → Δh  (the framing cascade)
@@ -332,9 +326,9 @@ theorem dc_reaches_dh : Reachable .dc .dh :=
   Δk does NOT reach Δh through pipeline edges.
   Δk → Δx (no outgoing). Dead end.
 
-  These are not bugs. They mean the "universal sink" property
-  of Δh operates through temporal dynamics (persistence_normalizes),
-  not through pipeline topology.
+  These are not bugs. They mean any "universal sink" reading of Δh would have to operate
+  through temporal dynamics (OPEN; see `TemporalAttractorSubstrate`), not through pipeline
+  topology — where Δh is just one of three terminal closure families.
 -/
 
 -- ════════════════════════════════════════════════════════════
@@ -777,6 +771,93 @@ private theorem notCoupling_closed :
   intro a b ha hb
   cases a <;> simp [notCoupling] at ha <;> cases b <;> simp_all [notCoupling, edge]
 
+-- ── Edge-parameterized reachability (Step 4: robustness / edge-policy sensitivity) ──
+
+/-
+  `Reachable` above is hard-wired to the canonical `edge`. To state edge-policy sensitivity
+  — does the negative result survive admitting a candidate handoff edge? — we parameterize
+  reachability over an edge relation. SAME shape as `Reachable` (nonempty-transitive, NO
+  reflexive constructor), so the audit story is unchanged; adapters keep the old names stable.
+-/
+inductive ReachableBy {α : Type} (E : α → α → Bool) : α → α → Prop where
+  | step  {a b : α}   : E a b = true → ReachableBy E a b
+  | trans {a b c : α} : ReachableBy E a b → ReachableBy E b c → ReachableBy E a c
+
+/-- The canonical `Reachable` is `ReachableBy edge` (forward). -/
+theorem reachable_to_by_edge {a b : Domain} (h : Reachable a b) : ReachableBy edge a b := by
+  induction h with
+  | step he => exact ReachableBy.step he
+  | trans _ _ ih1 ih2 => exact ReachableBy.trans ih1 ih2
+
+/-- …and back. Old theorem names over `Reachable` stay stable. -/
+theorem by_edge_to_reachable {a b : Domain} (h : ReachableBy edge a b) : Reachable a b := by
+  induction h with
+  | step he => exact Reachable.step he
+  | trans _ _ ih1 ih2 => exact Reachable.trans ih1 ih2
+
+/-- Forward-closed containment, parameterized over the edge relation. -/
+theorem reachableBy_stays_in_closed {α : Type} {E : α → α → Bool} {S : α → Bool}
+    (h_closed : ∀ a b, S a = true → E a b = true → S b = true)
+    {a b : α} (h : ReachableBy E a b) (ha : S a = true) : S b = true := by
+  induction h with
+  | step he => exact h_closed _ _ ha he
+  | trans _ _ ih1 ih2 => exact ih2 (ih1 ha)
+
+/-- **no_reach_of_closed_lane** — the sharp negative receipt. If `src` is inside a
+    forward-closed lane `S` and `dst` is outside it, `dst` is unreachable from `src`. The
+    proof now says the quiet part out loud: non-reachability BECAUSE the lane is closed and
+    excludes the target — not "trust the exhaustive case split." -/
+theorem no_reach_of_closed_lane {α : Type} {E : α → α → Bool} {S : α → Bool} {src dst : α}
+    (h_closed : ∀ a b, S a = true → E a b = true → S b = true)
+    (h_src : S src = true) (h_dst : S dst = false) : ¬ ReachableBy E src dst := by
+  intro h
+  have hd : S dst = true := reachableBy_stays_in_closed h_closed h h_src
+  rw [h_dst] at hd
+  exact Bool.noConfusion hd
+
+-- ── Counterfactual edge admissions (edge-policy sensitivity, FENCED) ──
+
+/-
+  These do NOT mutate the canonical `edge`. They admit one candidate handoff edge each and
+  prove the static negative result FLIPS — demonstrating it was edge-policy-relative, not a
+  universal-over-all-policies theorem. The ambiguity goes in a labelled specimen jar; it does
+  not wander the canonical graph. No `native_decide` (this is robustness machinery, not a
+  finite-trace specimen — `decide` reduces the concrete edge lookups).
+-/
+namespace CounterfactualEdges
+
+/-- Canonical `edge` plus a candidate handoff `Δm → Δc` (model drift directly detaches
+    consequence — the edge the closure argument silently excluded). -/
+def edgePlusDmDc : Domain → Domain → Bool
+  | .dm, .dc => true
+  | a, b     => edge a b
+
+/-- Canonical `edge` plus a candidate propagation `Δx → Δc` (cross-scale inversion re-emits
+    downstream rather than absorbing in place). -/
+def edgePlusDxDc : Domain → Domain → Bool
+  | .dx, .dc => true
+  | a, b     => edge a b
+
+/-- Under the admitted edge `Δm→Δc`, Δs DOES reach Δh (Δs→Δm→Δc→Δh). So
+    `ds_not_reaches_dh` is relative to excluding that edge, not structural. -/
+theorem ds_reaches_dh_with_dm_dc : ReachableBy edgePlusDmDc .ds .dh := by
+  apply ReachableBy.trans (b := .dm)
+  · exact ReachableBy.step (by decide)
+  · apply ReachableBy.trans (b := .dc)
+    · exact ReachableBy.step (by decide)
+    · exact ReachableBy.step (by decide)
+
+/-- Under the admitted edge `Δx→Δc`, Δk DOES reach Δh (Δk→Δx→Δc→Δh). So
+    `dk_not_reaches_dh` is relative to Δx being modeled as a non-propagating sink. -/
+theorem dk_reaches_dh_with_dx_dc : ReachableBy edgePlusDxDc .dk .dh := by
+  apply ReachableBy.trans (b := .dx)
+  · exact ReachableBy.step (by decide)
+  · apply ReachableBy.trans (b := .dc)
+    · exact ReachableBy.step (by decide)
+    · exact ReachableBy.step (by decide)
+
+end CounterfactualEdges
+
 -- ── Non-reachability: proved via forward-closed sets ───────
 
 /-
@@ -784,20 +865,23 @@ private theorem notCoupling_closed :
   Δs and Δk do not reach Δh through pipeline edges.
 -/
 
-theorem ds_not_reaches_dh : ¬ Reachable .ds .dh := by
-  intro h
-  have := reachable_stays_in_closed signalLane_closed (show signalLane .ds = true from rfl) h
-  simp [signalLane] at this
+theorem ds_not_reaches_dh : ¬ Reachable .ds .dh := fun h =>
+  -- routed through the generic closed-lane theorem: Δs is inside the forward-closed signal
+  -- lane and Δh is outside it, so no path exists. The receipt names the hinge.
+  no_reach_of_closed_lane signalLane_closed
+    (show signalLane .ds = true from rfl) (show signalLane .dh = false from rfl)
+    (reachable_to_by_edge h)
 
 theorem dm_not_reaches_dh : ¬ Reachable .dm .dh := by
   intro h
   have := reachable_stays_in_closed signalLane_closed (show signalLane .dm = true from rfl) h
   simp [signalLane] at this
 
-theorem dk_not_reaches_dh : ¬ Reachable .dk .dh := by
-  intro h
-  have := reachable_stays_in_closed couplingLane_closed (show couplingLane .dk = true from rfl) h
-  simp [couplingLane] at this
+theorem dk_not_reaches_dh : ¬ Reachable .dk .dh := fun h =>
+  -- Δk is inside the forward-closed coupling lane; Δh is outside it.
+  no_reach_of_closed_lane couplingLane_closed
+    (show couplingLane .dk = true from rfl) (show couplingLane .dh = false from rfl)
+    (reachable_to_by_edge h)
 
 theorem dk_not_reaches_dg : ¬ Reachable .dk .dg := by
   intro h

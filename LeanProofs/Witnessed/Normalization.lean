@@ -1,7 +1,10 @@
 /-
-  LeanProofs.Witnessed.Normalization — the canonical-form theorem that earns the calculus claim:
-  every paid freshness path admits a CANONICAL FORM (a carry segment, then a weakening
-  segment).
+  LeanProofs.Witnessed.Normalization — the normal-form factorization that earns the calculus
+  claim: every paid freshness path factors as a carry segment followed by a weakening segment
+  (existence of the split, NOT a claim of a unique canonical representative). As of the 2.0
+  strengthening this is the freshness INSTANCE of the model-independent
+  `AbstractNormalization.normal_form_iff_of_commutes` — the commutation law, not the freshness
+  arithmetic, is what earns it.
 
   Custody class: ANNEX (Mathlib-free public surface). In the default build; isolate with
   `lake build Witnessed`. It imports only the Mathlib-free spine. No new axiom, no new
@@ -22,6 +25,7 @@
 -/
 
 import LeanProofs.Witnessed.Embedding
+import LeanProofs.Witnessed.AbstractNormalization
 
 namespace LeanProofs.Witnessed.Normalization
 
@@ -174,18 +178,71 @@ theorem paidfrom_to_path {f h : FreshClaim}
     (p : PaidFrom Embedding.Bridge (Sum.inr f) (Sum.inr h)) : FreshPath f h :=
   paidfrom_to_path_aux p rfl
 
-/-! ## The capstone — both halves, over the real judgment, no `sorry`, no new axiom -/
+/-! ## 2.0: route the capstone through the model-independent abstract theorem
 
-/-- **bridge_path_normal_form** — every paid freshness path factors as a carry
-    segment followed by a weakening segment, AND every such factored pair is a paid
-    path. The forward half is the disputed hinge (`bubble` ∘ `perm_weaken_carry`);
-    the reverse keeps the normal form inhabiting the original judgment. -/
+    The carry/weaken factorization is no longer earned by freshness-specific bubbling — it
+    is the `(CarryStep, WeakenStep)` instance of
+    `AbstractNormalization.normal_form_iff_of_commutes`, whose ONLY hypothesis is the local
+    commutation law. `perm_weaken_carry` discharges it; the rest is full-claim bridge glue.
+    The model-specific `normalize`/`bubble` above survive only as the route for the cruder
+    two-edge corollary below. -/
+
+open LeanProofs.Witnessed.AbstractNormalization (Chain Step Commutes normal_form_iff_of_commutes)
+
+/-- The freshness model discharges the abstract commutation law: `perm_weaken_carry` IS
+    `Commutes CarryStep WeakenStep`. This is the whole content the abstraction needs from
+    the model. -/
+theorem commutes_carry_weaken : Commutes CarryStep WeakenStep := by
+  intro a b c hw hc; exact perm_weaken_carry hw hc
+
+theorem cchain_iff_chain {f g : FreshClaim} : CChain f g ↔ Chain CarryStep f g := by
+  constructor
+  · intro h; induction h with
+    | nil => exact Chain.nil
+    | cons hs _ ih => exact Chain.cons hs ih
+  · intro h; induction h with
+    | nil => exact CChain.nil
+    | cons hs _ ih => exact CChain.cons hs ih
+
+theorem wchain_iff_chain {f g : FreshClaim} : WChain f g ↔ Chain WeakenStep f g := by
+  constructor
+  · intro h; induction h with
+    | nil => exact Chain.nil
+    | cons hs _ ih => exact Chain.cons hs ih
+  · intro h; induction h with
+    | nil => exact WChain.nil
+    | cons hs _ ih => exact WChain.cons hs ih
+
+theorem freshpath_iff_paidstep {f h : FreshClaim} :
+    FreshPath f h ↔ PaidFrom (Step CarryStep WeakenStep) f h := by
+  constructor
+  · intro p; induction p with
+    | refl => exact PaidFrom.refl
+    | step _ s ih => exact PaidFrom.step ih s
+  · intro p; induction p with
+    | refl => exact FreshPath.refl
+    | step _ s ih => exact FreshPath.step ih s
+
+/-- **bridge_path_normal_form** — every paid freshness path factors as a carry segment
+    followed by a weakening segment, AND every such factored pair is a paid path. This is a
+    NORMAL-FORM FACTORIZATION (existence of the carry-then-weaken split), not a claim of a
+    unique canonical representative. As of 2.0 it is earned model-independently: the
+    `(CarryStep, WeakenStep)` instance of `normal_form_iff_of_commutes`. Name and signature
+    unchanged from 1.4.0. -/
 theorem bridge_path_normal_form {f h : FreshClaim} :
     PaidFrom Embedding.Bridge (Sum.inr f) (Sum.inr h)
       ↔ ∃ g, CChain f g ∧ WChain g h := by
   constructor
-  · intro p; exact normalize (paidfrom_to_path p)
-  · rintro ⟨g, hc, hw⟩; exact path_to_paidfrom (chains_to_path hc hw)
+  · intro p
+    have hp : PaidFrom (Step CarryStep WeakenStep) f h :=
+      freshpath_iff_paidstep.mp (paidfrom_to_path p)
+    obtain ⟨z, hc, hw⟩ := (normal_form_iff_of_commutes commutes_carry_weaken).mp hp
+    exact ⟨z, cchain_iff_chain.mpr hc, wchain_iff_chain.mpr hw⟩
+  · rintro ⟨g, hc, hw⟩
+    have hp : PaidFrom (Step CarryStep WeakenStep) f h :=
+      (normal_form_iff_of_commutes commutes_carry_weaken).mpr
+        ⟨g, cchain_iff_chain.mp hc, wchain_iff_chain.mp hw⟩
+    exact path_to_paidfrom (freshpath_iff_paidstep.mpr hp)
 
 /-! ## The two-edge corollary
 

@@ -142,8 +142,16 @@ Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 ```bash
 lake build                  # stable Admissibility surface + Witnessed calculus + regression-wired modules
 lake build Witnessed        # the Witnessed Derivation Calculus in isolation (Mathlib-free)
-bash scripts/check-witnessed-footprint.sh   # re-attest the ratified axiom footprint (fail-closed)
+bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
+bash scripts/audit-axioms.sh                # repo axiom classifier (signature/interface-law/specimen; 0 forbidden)
+bash scripts/audit-native-decide.sh         # native_decide confined to finite-witness modules
+bash scripts/check-mathlib-pin.sh           # lakefile mathlib rev == manifest SHA (no silent drift)
 ```
+
+**Custody posture: the repository is not axiom-free; it is *axiom-classified*. WDC promoted
+receipts remain footprint-attested.** See [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
+what each gate checks and the four axiom classes (signature / interface-law / specimen /
+forbidden — the last held at zero).
 
 The ratified source of the calculus also builds standalone under
 `experiments/no_free_lift_wiring/` (its own Lake project / toolchain pin) — that tree

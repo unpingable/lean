@@ -29,6 +29,8 @@ import LeanProofs.Witnessed.CarryLaws
 import LeanProofs.Witnessed.Coordinates
 import LeanProofs.Witnessed.Divergence
 import LeanProofs.Witnessed.NoFreeLift
+import LeanProofs.Witnessed.AbstractNormalization  -- 2.0: model-independent normalization (admitting-class)
+import LeanProofs.Witnessed.CommutesNecessity      -- 2.0: the commutation law is load-bearing (necessity)
 
 -- Modeled kernels + the wire (Authority ⊕ Freshness into the spine)
 import LeanProofs.Witnessed.Freshness
@@ -37,7 +39,7 @@ import LeanProofs.Witnessed.Embedding
 
 -- The calculus + its model-admission discipline
 import LeanProofs.Witnessed.Derivation        -- judgment `Lift`, composition, non-manufacture
-import LeanProofs.Witnessed.Normalization      -- canonical form (freshness model)
+import LeanProofs.Witnessed.Normalization      -- normal-form factorization (freshness instance of AbstractNormalization)
 import LeanProofs.Witnessed.Discipline         -- four-axis WitnessedDiscipline (was Tightened)
 import LeanProofs.Witnessed.AxisIndependence   -- four separating finite models
 import LeanProofs.Witnessed.Obstruction        -- annex: retired `Discriminating`, factorization

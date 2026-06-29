@@ -1,6 +1,11 @@
 # Frontier Register — Witnessed Derivation Calculus (Named, Not Started)
 
-**Status: NAMED-NOT-STARTED.** Nothing below is authorized work.
+**Status: NAMED-NOT-STARTED — except #1, now LANDED as a candidate (2026-06-29).**
+Direction #1 (admitting-class normalization) is built: `AbstractNormalization.normal_form_iff_of_commutes`
+(model-independent, axiom-free) + `CommutesNecessity.commutes_is_necessary` (the commutation law is
+load-bearing), with `Normalization.bridge_path_normal_form` rerouted as the freshness instance
+(signature + `[propext]` footprint unchanged). Candidate for the reserved integer 2.0 (criterion #1);
+**NOT a cut release**. Everything else below remains NAMED-NOT-STARTED — nothing else is authorized work.
 **Gate: do not start any item before the 1.4.0 release ships** — the packaging milestone
 specified by [`../experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md`](../experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md). That milestone is
 packaging, not theorems; opening any frontier item before it ships is the frontier eating
