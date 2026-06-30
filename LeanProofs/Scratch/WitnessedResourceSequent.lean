@@ -17,6 +17,24 @@
   revocation, custody, freshness, or a formula grammar for authority. Compile is
   contact only.
 
+  `Split` non-determinism (scope fence). `Split consumed residual input` and
+  `Consumes token input residual` assert that SOME occurrence-preserving
+  interleaving exists, not a canonical/leftmost one. With no `DecidableEq` on
+  `Formula`, an input with duplicate-shaped formulas admits several valid
+  `(consumed, residual)` pairs, so `Derives.hyp` is an EXISTENCE judgment, not a
+  deterministic accounting function. A deterministic, position-pinned checker is a
+  separate result (see `WitnessedResourceChecker.lean`, which pins consumption by
+  index via `removeAt` and proves it refines `Split`); do not read consumption here
+  as canonical.
+
+  Prior art (substrate is well-charted). Persistent floor `K` + linear context
+  `Gamma` is the dual-context split (DILL, Barber-Plotkin); threading a residual
+  `Delta` as leftover is the Hodas-Miller input/output model of linear context
+  management. The persistent floor is the `!`-zone / exponential ("of course")
+  modality of linear logic in ordinary vocabulary; `floor` is kept as established
+  corpus vocabulary (cite, do not rename). These are citations to make the layer
+  legible to proof theorists, not new machinery.
+
   Mathlib-free: imports only the Mathlib-free Witnessed sequent layer.
 -/
 
