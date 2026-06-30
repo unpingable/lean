@@ -25,6 +25,7 @@ import LeanProofs.Admissibility.AuthorityScope
 import LeanProofs.Admissibility.PublicReceiptRefinement
 import LeanProofs.Admissibility.Freshness
 import LeanProofs.Admissibility.AxisSkew
+import LeanProofs.Admissibility.ReachabilityClosure
 import LeanProofs.Admissibility.Composition
 import LeanProofs.Admissibility.LocalBoundary
 import LeanProofs.Admissibility.CrossBoundaryExposure
@@ -47,3 +48,6 @@ import LeanProofs.CollapsedSurface
 
 -- Witnessed Derivation Calculus (2.0 port; Mathlib-free, see LeanProofs/Witnessed.lean)
 import LeanProofs.Witnessed
+
+-- Reachability/refusal adapters for WDC paid paths (candidate; not public-surface promotion)
+import LeanProofs.Admissibility.WitnessedReachability

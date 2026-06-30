@@ -19,6 +19,11 @@
     global safety only after the fact.
 
   Sharper:
+    This file now adapts `ComponentReach` into the generic
+    `ReachabilityClosure.Reach` vocabulary, so the aperture consumes the
+    shared closed-lane/reachability spine instead of growing another isolated
+    closure proof.
+
     Slice 0 (`Composition.lean`) proved that process syntax alone does
     not create a calculus: under a global sealed boundary, every
     process is safe because the kernel `Step` already enforces
@@ -70,6 +75,7 @@
 -/
 
 import LeanProofs.Admissibility.Composition
+import LeanProofs.Admissibility.ReachabilityClosure
 
 set_option linter.dupNamespace false
 
@@ -77,6 +83,7 @@ namespace Admissibility.LocalBoundary
 
 open CrossBoundaryExposure
 open Composition
+open LeanProofs.Admissibility.ReachabilityClosure
 
 /-- A local boundary: per-component partition + authorization. -/
 structure LocalBoundary (Domain : Type) where
@@ -151,6 +158,40 @@ inductive ComponentReach {Domain Failure : Type}
         ComponentStep lb₁ lb₂ s₁ s₂ →
         ComponentReach lb₁ lb₂ s₀ s₂
 
+/-- A component reachability trace is an ordinary `Reach` path over `ComponentStep`. -/
+theorem componentReach_to_reach
+    {Domain Failure : Type}
+    [DecidableEq Domain] [DecidableEq Failure]
+    {lb₁ lb₂ : LocalBoundary Domain}
+    {s t : SystemState Domain Failure}
+    (h : ComponentReach lb₁ lb₂ s t) : Reach (ComponentStep lb₁ lb₂) s t := by
+  induction h with
+  | refl => exact Reach.refl
+  | tail _hReach hStep ih => exact Reach.tail ih hStep
+
+/-- The generic `Reach` path can be read back as `ComponentReach`. -/
+theorem reach_to_componentReach
+    {Domain Failure : Type}
+    [DecidableEq Domain] [DecidableEq Failure]
+    {lb₁ lb₂ : LocalBoundary Domain}
+    {s t : SystemState Domain Failure}
+    (h : Reach (ComponentStep lb₁ lb₂) s t) : ComponentReach lb₁ lb₂ s t := by
+  induction h with
+  | refl => exact ComponentReach.refl _
+  | tail _hReach hStep ih => exact ComponentReach.tail ih hStep
+
+/-- `ComponentReach` is the local name for the generic reachability closure over
+    `ComponentStep`; use this adapter instead of minting another closure theorem. -/
+theorem componentReach_iff_reach
+    {Domain Failure : Type}
+    [DecidableEq Domain] [DecidableEq Failure]
+    {lb₁ lb₂ : LocalBoundary Domain}
+    {s t : SystemState Domain Failure} :
+    ComponentReach lb₁ lb₂ s t ↔ Reach (ComponentStep lb₁ lb₂) s t := by
+  constructor
+  · exact componentReach_to_reach
+  · exact reach_to_componentReach
+
 /-- **MergeAdmissible** — the minimal merge predicate.
 
     Intentionally just two fields:
@@ -202,7 +243,20 @@ lemma component_step_preserves_invariant
         exact hMerge.right_sound _ hAllows hBad
       · exact hInv e' hOld hBad
 
-/-- ComponentReach preserves the merged-partition invariant. -/
+/-- A merge-admissible component step is closed over the merged-partition safety lane. -/
+lemma mergeAdmissible_closed_lane
+    {Domain Failure : Type}
+    [DecidableEq Domain] [DecidableEq Failure]
+    {lb₁ lb₂ lbₘ : LocalBoundary Domain}
+    (hMerge : MergeAdmissible (Failure := Failure) lb₁ lb₂ lbₘ) :
+    ClosedUnder (ComponentStep lb₁ lb₂)
+      (fun s : SystemState Domain Failure =>
+        NoInternalExternalExposure lbₘ.partition s.config) := by
+  intro _s _s' hInv hStep
+  exact component_step_preserves_invariant hMerge hInv hStep
+
+/-- ComponentReach preserves the merged-partition invariant. This is now the generic
+    closed-lane theorem specialized through the `ComponentReach` adapter. -/
 lemma component_reach_preserves_invariant
     {Domain Failure : Type}
     [DecidableEq Domain] [DecidableEq Failure]
@@ -211,11 +265,13 @@ lemma component_reach_preserves_invariant
     {s₀ s : SystemState Domain Failure}
     (hReach : ComponentReach lb₁ lb₂ s₀ s)
     (hInv₀ : NoInternalExternalExposure lbₘ.partition s₀.config) :
-    NoInternalExternalExposure lbₘ.partition s.config := by
-  induction hReach with
-  | refl => exact hInv₀
-  | tail _hReachPrev hStep ih =>
-      exact component_step_preserves_invariant hMerge ih hStep
+    NoInternalExternalExposure lbₘ.partition s.config :=
+  reach_stays_in_closed
+    (Step := ComponentStep lb₁ lb₂)
+    (S := fun s : SystemState Domain Failure =>
+      NoInternalExternalExposure lbₘ.partition s.config)
+    (mergeAdmissible_closed_lane hMerge)
+    (componentReach_to_reach hReach) hInv₀
 
 /-- **Aperture theorem — composition preserves global safety.**
 

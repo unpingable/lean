@@ -5,8 +5,9 @@
 `AbstractNormalization.normal_form_iff_of_commutes` is model-independent and axiom-free;
 `CommutesNecessity.commutes_is_necessary` proves the commutation law is load-bearing;
 `Normalization.bridge_path_normal_form` is now the freshness instance with its name,
-signature, and `[propext]` footprint unchanged. Everything else below remains
-NAMED-NOT-STARTED unless explicitly opened in a later slice.
+signature, and `[propext]` footprint unchanged. Direction #4 now has an initial
+consolidation/refusal-witness slice landed; the other directions remain NAMED-NOT-STARTED
+unless explicitly opened later.
 
 **Release boundary.** The public-surface packaging gate shipped in **1.4.0**. The reserved
 structural WDC milestone shipped in **2.0.0**. Future frontier items do not inherit the
@@ -50,15 +51,19 @@ open because it is **hard**, not because it is speculative.
    Likely needs a richer derivation object (resource/provenance semantics), not just
    another `Lift` lemma. This is the **dual** of `revoked_floor_derives_nothing` (not its inverse): manufacture creates on the revocation channel where it should refuse; suppression drops a refusal that should persist — two failure directions on one channel, not a function and its inverse.
 
-4. **Composition-classification via reachability (cheapest; returns to a retired
-   gate).** The `composition_classification` gate is RETIRED (naive exclusivity
-   failed; `naive_exclusivity_fails` is a recorded finding in
+4. **Reachability / witnessed refusal (initial consolidation slice LANDED).** The
+   `composition_classification` gate remains RETIRED (naive exclusivity failed;
+   `naive_exclusivity_fails` is a recorded finding in
    `../experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md` / the playground repo, **not** a theorem on
-   the ratified surface). Target: transitive closure of the one-step paid-bridge
-   relation; characterize which pairs land in it (reachability over the bridge graph);
-   non-reachability = refusal / gap / unbridgeable boundary. "Not composable" becomes
-   "not reachable under declared paid bridges" — harder to launder. De-risks the bridge
-   relation before normalization is built on it.
+   the ratified surface). The honest replacement is reachability under declared steps plus
+   witnessed obstruction when reachability fails. Landed slice: `ReachabilityClosure` now
+   carries Prop-valued closed-lane witnesses (`ClosedLaneRefusal` / `WitnessedRefusal`),
+   `WitnessedReachability` adapts WDC `PaidFrom` to the generic `Reach` vocabulary and
+   proves the current authority/freshness WDC embedding is lane-separated, and
+   `LocalBoundary` consumes the generic reach invariant via adapters rather than proving
+   another isolated reach induction. Remaining work: characterize any additional bridge
+   graph lanes forced by future adapters, and retire/adapter-localize duplicate RTC shapes
+   as those consumers stabilize. No classifier, no trichotomy, no exclusivity claim.
 
 5. **Receiver-facing: refusal legibility + propagation (feeds the broader project;
    already scaffolded).** *Legibility:* sound refusal → receiver-*usable* refusal
