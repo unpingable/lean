@@ -41,6 +41,7 @@ import LeanProofs.Witnessed.Embedding
 
 -- The calculus + its model-admission discipline
 import LeanProofs.Witnessed.Derivation        -- judgment `Lift`, composition, non-manufacture
+import LeanProofs.Witnessed.Sequent           -- contexted sequent presentation over `Lift`
 import LeanProofs.Witnessed.Normalization      -- normal-form factorization (freshness instance of AbstractNormalization)
 import LeanProofs.Witnessed.Discipline         -- four-axis WitnessedDiscipline (was Tightened)
 import LeanProofs.Witnessed.AxisIndependence   -- four separating finite models
