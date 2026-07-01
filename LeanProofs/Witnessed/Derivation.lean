@@ -94,7 +94,7 @@ theorem lift_floor_mono
     empty), no witnessed derivation survives. Bridges cannot resurrect a revoked
     claim: every derivation traces to a live floor origin (`no_free_lift`). This
     is the schema-level non-manufacture result — the calculus invents no standing
-    that the floor did not already admit. -/
+    that the floor did not already authorize. -/
 theorem revoked_floor_derives_nothing
     {K : Claim → Prop} {B : Claim → Claim → Prop} {c : Claim}
     (hrevoked : ∀ c₀, ¬ K c₀) (h : Lift K B c) : False :=

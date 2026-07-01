@@ -20,6 +20,8 @@ The **Witnessed Derivation Calculus** surface (the Mathlib-free
 
 - a witnessed-derivation judgment, `Lift`;
 - paid composition and multi-context cut;
+- a positive formula layer (`atom`, `top`, conjunction, disjunction) with explicit cut syntax and syntactic cut-elimination;
+- a canonical resource/residue layer with position-pinned validation and residue-preservation non-suppression;
 - soundness, provenance, and revocation non-manufacture results (schematic);
 - a model-independent normal-form factorization theorem over any admitting class
   satisfying the local commutation law, with the canonical freshness embedding as its
@@ -27,7 +29,7 @@ The **Witnessed Derivation Calculus** surface (the Mathlib-free
 - a separate four-axis model-admission filter, `WitnessedDiscipline` (`bridge_valid` / `semantic_nontrivial` / `bridge_selective` / `properly_live`);
 - a factorization showing the former `Discriminating` axis contributes no independent information beyond `SemanticNontrivial` under `BridgeValid`.
 
-The name is deliberately narrow. This is **not** a process calculus, a maximal admissibility logic, or a unification of every kernel in the repository. The calculus governs witnessed derivation across typed bridges; `WitnessedDiscipline` is a model filter beside it, not part of normalization, and the 2.0 normalization result is an admitting-class theorem, not universal normalization.
+The name is deliberately narrow. This is **not** a process calculus, a maximal admissibility logic, or a unification of every kernel in the repository. The calculus governs witnessed derivation across typed bridges; the formula/resource additions are the positive and canonical-residue slices only, not implication, full linear logic, or model-to-world transfer. `WitnessedDiscipline` is a model filter beside it, not part of normalization, and the 2.0 normalization result is an admitting-class theorem, not universal normalization.
 
 The ratified calculus lives in the canonical surface as `LeanProofs.Witnessed.*` — a separate **Mathlib-free** library (`import LeanProofs.Witnessed`), with its axiom footprint regression-gated by `scripts/check-witnessed-footprint.sh`. Its ratified source is preserved under `experiments/no_free_lift_wiring/`. The public surface remains **additive/non-breaking** relative to 1.x; 2.0.0 is the structural WDC milestone, not an API churn release. The historical promotion gate is recorded in [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md); the post-v2 frontier is tracked in [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
@@ -77,7 +79,7 @@ The point is not to prove an entire software system correct. It is to make inval
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
 - **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Ratifies the standalone safety axis, not any unified-calculus rename.
-- **Witnessed Derivation Calculus** *(ratified; canonical `LeanProofs.Witnessed.*` since 1.4.0, structurally strengthened in 2.0.0, Mathlib-free)* — witnessed movement and composition across typed bridges. See the release section above.
+- **Witnessed Derivation Calculus** *(ratified; canonical `LeanProofs.Witnessed.*` since 1.4.0, structurally strengthened in 2.0.0, Mathlib-free)* — witnessed movement and composition across typed bridges, now with the additive positive-formula and canonical resource/residue slices. See the release section above.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 

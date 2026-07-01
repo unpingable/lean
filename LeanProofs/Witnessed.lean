@@ -15,10 +15,11 @@
   (enforced by the separate `Witnessed` lean_lib — see lakefile.toml, A1).
 
   This is NOT a revival of the retired maximal "Admissibility Calculus": its scope is
-  witnessed derivation across typed boundaries; model→world transfer, universal
-  normalization, cut-elimination, non-suppression, and full composition-classification remain
-  fenced (see `docs/WITNESSED-FRONTIER-REGISTER.md`). Receipt names are frozen per
-  MIGRATION §C.
+  witnessed derivation across typed boundaries. The public surface now includes an
+  additive positive-formula cut-elimination layer and a canonical resource/residue
+  no-suppression slice. Model→world transfer, universal normalization, implication,
+  full linear logic, and full composition-classification remain fenced (see
+  `docs/WITNESSED-FRONTIER-REGISTER.md`). Receipt names are frozen per MIGRATION §C.
 
   Renames from the experiment surface: `Wired.Authority` → `AuthorityModel` (a study
   copy, NOT the 1.0 `Admissibility.Authority` kernel); `Successor.WitnessedDerivation`
@@ -42,6 +43,9 @@ import LeanProofs.Witnessed.Embedding
 -- The calculus + its model-admission discipline
 import LeanProofs.Witnessed.Derivation        -- judgment `Lift`, composition, non-manufacture
 import LeanProofs.Witnessed.Sequent           -- contexted sequent presentation over `Lift`
+import LeanProofs.Witnessed.Formula           -- positive formulas + explicit-cut elimination
+import LeanProofs.Witnessed.ResourceSequent   -- occurrence-sensitive resources + residue preservation
+import LeanProofs.Witnessed.ResourceChecker   -- position-pinned validation relation
 import LeanProofs.Witnessed.Normalization      -- normal-form factorization (freshness instance of AbstractNormalization)
 import LeanProofs.Witnessed.Discipline         -- four-axis WitnessedDiscipline (was Tightened)
 import LeanProofs.Witnessed.AxisIndependence   -- four separating finite models

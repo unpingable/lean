@@ -5,7 +5,7 @@
   Witnessed Derivation Calculus: it adds explicit finite contexts while reusing
   the existing `Lift` judgment as the proof engine.
 
-  Scope. This is claim-level sequent calculus, not a full formula grammar yet.
+  Scope. This is claim-level sequent calculus, not itself the formula grammar.
   A sequent `Derivable K B Gamma c` reads: from a local floor `K`, a paid bridge
   relation `B`, and a finite context `Gamma` of live assumptions, claim `c` is
   derivable. Formally, the context is folded into the WDC floor:
@@ -21,11 +21,9 @@
 
   This layer validates ordinary structural behavior for contexts; it is not
   occurrence-sensitive and cannot express resource consumption or denial of
-  contraction.
-
-  Formula connectives, explicit cut syntax, cut-elimination, and substructural
-  no-suppression remain future layers. This module is the small stable footing
-  those layers can stand on.
+  contraction. The public `Formula`, `ResourceSequent`, and `ResourceChecker`
+  modules build the positive-formula and residue-preservation layers on top of
+  this stable footing.
 -/
 
 import LeanProofs.Witnessed.Derivation
@@ -38,7 +36,7 @@ variable {Claim : Type}
 
 /-- A finite left context of live assumptions. Membership, not order, is what
     this first sequent layer exposes; substructural occurrence-sensitive work
-    belongs in a later formula/resource layer. -/
+    is handled by `ResourceSequent`; formula contexts are handled by `Formula`. -/
 abbrev Context (Claim : Type) := List Claim
 
 /-- Contexted WDC derivability. The context is an additional local floor. -/

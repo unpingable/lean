@@ -55,4 +55,71 @@ example {Kernel : Nat → Prop} {Bridge : Nat → Nat → Prop} {c : Nat}
 #check @LeanProofs.Witnessed.Embedding.embedded_lift_sound
 #check @LeanProofs.Witnessed.AuthorityModel.AuthorityVerdict
 
+
+/-! ### Positive formula and resource frontier receipts. -/
+
+#check LeanProofs.Witnessed.Formula.CutFree
+#check LeanProofs.Witnessed.Formula.Deriv
+#check LeanProofs.Witnessed.Formula.cut_admissible
+#check LeanProofs.Witnessed.Formula.cut_elimination
+#check LeanProofs.Witnessed.ResourceSequent.residue_preserved
+#check LeanProofs.Witnessed.ResourceSequent.erases_to_sequent
+#check LeanProofs.Witnessed.ResourceChecker.Checks
+#check LeanProofs.Witnessed.ResourceChecker.checks_sound
+#check LeanProofs.Witnessed.ResourceChecker.checks_complete
+#check LeanProofs.Witnessed.ResourceChecker.checks_iff_derives
+#check LeanProofs.Witnessed.ResourceChecker.validated_denial_sound
+
+namespace PositiveFormula
+
+open LeanProofs.Witnessed.Formula
+
+abbrev NatBridge : Nat -> Nat -> Prop := fun a b => b = a + 1
+
+def atomZeroDeriv :
+    Deriv (fun n : Nat => n = 0) NatBridge [] (Formula.atom 0) :=
+  Deriv.floor (Gamma := ([] : Context Nat)) rfl
+
+def atomZeroToOneBody :
+    Deriv (fun n : Nat => n = 0) NatBridge [Formula.atom 0] (Formula.atom 1) :=
+  Deriv.cross (Deriv.hyp (List.Mem.head _)) rfl
+
+def cutExampleDeriv :
+    Deriv (fun n : Nat => n = 0) NatBridge [] (Formula.atom 1) :=
+  Deriv.cut atomZeroDeriv atomZeroToOneBody
+
+example :
+    CutFree (fun n : Nat => n = 0) NatBridge [] (Formula.atom 1) :=
+  cut_elimination cutExampleDeriv
+
+example :
+    CutFree (fun n : Nat => n = 0) NatBridge []
+      (Formula.and Formula.top (Formula.atom 1)) :=
+  CutFree.and_intro CutFree.top_intro (cut_elimination cutExampleDeriv)
+
+end PositiveFormula
+
+namespace Resource
+
+open LeanProofs.Witnessed.ResourceSequent
+open LeanProofs.Witnessed.ResourceChecker
+
+abbrev NatBridge : Nat -> Nat -> Prop := fun a b => b = a + 1
+abbrev RContext := LeanProofs.Witnessed.ResourceSequent.Context Nat Unit
+
+example :
+    Derives (fun _ : Nat => False) NatBridge
+      ([ResourceFormula.claim 0, ResourceFormula.bridge 0 1] : RContext) 1 [] :=
+  bridge_token_suffices (by rfl)
+
+example :
+    LeanProofs.Witnessed.Sequent.Derivable (fun _ : Nat => False) NatBridge [0] 1 ∧
+    (forall Delta : RContext,
+      ¬ Checks (fun _ : Nat => False) NatBridge
+          ([ResourceFormula.claim 0] : RContext) 1 Delta) :=
+  validated_denial_sound (Claim := Nat) (Residue := Unit)
+    (B := NatBridge) (c := 0) (c' := 1) (by rfl) (by decide)
+
+end Resource
+
 end LeanProofs.Witnessed.Examples

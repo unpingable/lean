@@ -143,15 +143,18 @@ The **Witnessed Derivation Calculus** is a narrow, ratified, **Mathlib-free** pr
 
 - a defined inductive judgment `Lift K B c` (local kernel admission, plus one paid cross-rule that consumes a bridge);
 - **composition** along a paid path (`derivation_extends_along_paid_path`), **genuine multi-context cut** — admissibility, not elimination (`cut_admissible_general`), **soundness** (`paid_lift_sound`), **provenance** (`no_free_lift` — nothing lifts for free), and **non-manufacture** of revocations (`revoked_floor_derives_nothing`) — all schematic, axiom-free;
+- a positive formula sequent layer (`LeanProofs.Witnessed.Formula`) with `atom`, `top`, conjunction, disjunction, explicit cut syntax (`Deriv.cut`), syntactic cut-elimination (`cut_elimination`), and cut-free admissibility (`cut_admissible`);
+- a canonical resource/no-suppression layer (`ResourceSequent` / `ResourceChecker`) with consumable claim and bridge resources, opaque residue, position-pinned validation (`Checks`), residue preservation (`residue_preserved`), erasure to ordinary sequents (`erases_to_sequent`), checker soundness/completeness, and validated bridge-token denial (`validated_denial_sound`);
 - **normalization** — a model-independent **normal-form factorization** (`AbstractNormalization.normal_form_iff_of_commutes`, **axiom-free**) for any two-family paid bridge satisfying a local commutation law, with the freshness `bridge_path_normal_form` (footprint `[propext]`) now its **instance**, plus a necessity counterexample (`commutes_is_necessary`) showing the commutation law is load-bearing;
 - a separate four-axis model-admission filter `WitnessedDiscipline`, with each axis independent (`AxisIndependence`), and a factorization retiring the former `Discriminating` axis as exactly `SemanticNontrivial` under `BridgeValid` (`bridgeValid_discriminating_iff_semanticNontrivial`).
 
-All twelve ratified receipts carry axiom footprints ≤ `[propext, Quot.sound]`, re-attested in the canonical build by `scripts/check-witnessed-footprint.sh`. A consumer specimen (`LeanProofs/Witnessed/Examples.lean`) exercises the public API from outside the ported cone.
+The original ratified receipts carry axiom footprints <= [`propext, Quot.sound`], re-attested in the canonical build by `scripts/check-witnessed-footprint.sh`; the additive formula/resource receipts are Mathlib-free and compile through the same `Witnessed` surface. A consumer specimen (`LeanProofs/Witnessed/Examples.lean`) exercises the public API from outside the ported cone.
 
 ### What it does NOT prove
 
 - **not** universal normalization — the result is an *admitting-class* theorem (it holds for bridge systems satisfying the local commutation law, with the freshness model as one instance); it does not prove that all bridge systems normalize;
-- **not** non-suppression — only non-*manufacture* is proved, and one direction only;
+- **not** full substructural non-suppression or full linear logic — the shipped resource result is the canonical residue-preservation slice, not a global no-weakening/no-contraction calculus;
+- **not** implication, negation, or a complete formula logic — the shipped formula result is the positive additive fragment with syntactic cut-elimination;
 - **not** full composition-classification — that gate was prosecuted and **retired** (see `COMPOSITION-CLASSIFICATION-TARGET.md`), not left open;
 - **not** model→world transfer — a compiled theorem attests the math, never a world claim; the fence is load-bearing;
 - **not** the retired maximal "Admissibility Calculus" — the name is deliberately narrow, and `WitnessedDiscipline` is a filter *beside* the calculus, not part of normalization.

@@ -293,7 +293,7 @@ theorem WChain_collapse {f g : FreshClaim} (h : WChain f g) : f = g ∨ WeakenSt
 
 /-- **bridge_path_two_edge_normal_form** — the cruder corollary: every paid freshness
     path factors through a single intermediate `m` as two `Bridge` edges. Derived from
-    the segment form + segment collapse + self-loop padding. No `sorry`, no new axiom,
+    the segment form + segment collapse + self-loop padding. No proof holes, no new axiom,
     no strengthened constructor. -/
 theorem bridge_path_two_edge_normal_form {f h : FreshClaim}
     (p : PaidFrom Embedding.Bridge (Sum.inr f) (Sum.inr h)) :

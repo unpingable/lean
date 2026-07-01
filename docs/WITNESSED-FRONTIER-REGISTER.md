@@ -5,9 +5,11 @@
 `AbstractNormalization.normal_form_iff_of_commutes` is model-independent and axiom-free;
 `CommutesNecessity.commutes_is_necessary` proves the commutation law is load-bearing;
 `Normalization.bridge_path_normal_form` is now the freshness instance with its name,
-signature, and `[propext]` footprint unchanged. Direction #4 now has an initial
-consolidation/refusal-witness slice landed; the other directions remain NAMED-NOT-STARTED
-unless explicitly opened later.
+signature, and `[propext]` footprint unchanged. Post-2.0 additive slices have now
+landed for direction #2 (positive-formula explicit cut-elimination) and direction #3
+(canonical resource/residue non-suppression), and direction #4 has an initial
+consolidation/refusal-witness slice landed. The larger proof-theory claims named
+below remain fenced unless explicitly opened later.
 
 **Release boundary.** The public-surface packaging gate shipped in **1.4.0**. The reserved
 structural WDC milestone shipped in **2.0.0**. Future frontier items do not inherit the
@@ -33,23 +35,35 @@ open because it is **hard**, not because it is speculative.
    `AbstractNormalization.normal_form_iff_of_commutes`, whose only bridge-system hypothesis
    is the local commutation law `Commutes C W`. The necessity counterexample proves that
    hypothesis is load-bearing. This does **not** prove universal normalization, uniqueness
-   of representatives, cut-elimination, or a confluent rewrite system for arbitrary bridge
-   graphs; those remain separate future claims.
+   of representatives, full cut-elimination for arbitrary formula systems, or a confluent
+   rewrite system for arbitrary bridge graphs; the landed positive-fragment cut-elimination
+   lives separately in `LeanProofs.Witnessed.Formula`.
 
-2. **Cut-elimination (keep separate from normalization at first).** Today
-   `cut_admissible_general` proves cut-*admissibility*, not elimination. Target:
-   explicit derivation syntax + primitive `cut` + cut-rank; reduction decreases
-   lexicographically; cut-free replacement; subformula corollaries. The prize is a
-   consistency argument that does **not** route through the model. Hazard: do not let
-   the freshness model become a hidden semantic crutch.
+2. **Positive formula cut-elimination (LANDED slice; full proof theory remains separate).**
+   `LeanProofs.Witnessed.Formula` now supplies `Formula.atom`, `Formula.top`, conjunction,
+   disjunction, cut-free derivations (`CutFree`), explicit-cut derivations (`Deriv.cut`),
+   syntactic `cut_elimination`, and cut-free `cut_admissible`. This is the additive
+   positive fragment over WDC atoms and paid bridges. It does **not** claim implication,
+   negation, quantifiers, a full subformula theorem, or cut-elimination for arbitrary
+   future formula systems.
 
-3. **Non-suppression (the honest road to "substructural").** Today non-manufacture
-   is one direction (`revoked_floor_derives_nothing`); non-suppression is fenced.
-   Target is **not** global linear logic — it is a no-drop discipline for one resource
-   channel (live revocation / refusal / custody obligations): revocation present at
-   input cannot silently vanish through a bridge (frame / no-weakening invariant).
-   Likely needs a richer derivation object (resource/provenance semantics), not just
-   another `Lift` lemma. This is the **dual** of `revoked_floor_derives_nothing` (not its inverse): manufacture creates on the revocation channel where it should refuse; suppression drops a refusal that should persist — two failure directions on one channel, not a function and its inverse.
+3. **Canonical resource non-suppression (LANDED residue slice; not global linear logic).**
+   `LeanProofs.Witnessed.ResourceSequent` now supplies `ResourceFormula.claim`,
+   `ResourceFormula.bridge`, `ResourceFormula.residue`, resource derivations with residual
+   output, `residue_preserved`, and `erases_to_sequent`. `ResourceChecker` promotes the
+   deterministic validation relation `Checks` with `checks_sound`, `checks_complete`,
+   `checks_iff_derives`, and `validated_denial_sound`. This cashes non-suppression as
+   residue preservation: residue inputs cannot silently vanish through derivation or
+   checker validation. It does **not** claim full linear logic, global no-weakening,
+   global no-contraction, or a complete custody/refusal resource calculus.
+   *Deferred (not on the public surface):* a serializable `ResourceCertificate`
+   datatype. The witnessed object is the `Checks` *relation*, not a metadata shape;
+   a datatype is not validated merely because `Checks` is sound/complete. Re-admit
+   certificates only as (a) a proof-carrying `ValidatedResourceCertificate` bundling
+   a `Checks` proof, or (b) executable certificate data accepted by a `Bool` checker
+   with its own soundness/adequacy theorem. Until then the unchecked shape stays in
+   `LeanProofs/Scratch/UncheckedResourceCertificate.lean` only — keeping "certificate
+   exists + `Checks` valid ⇒ certificate is witnessed" off the public surface.
 
 4. **Reachability / witnessed refusal (initial consolidation slice LANDED).** The
    `composition_classification` gate remains RETIRED (naive exclusivity failed;
@@ -90,31 +104,31 @@ proof theory. Listed so it is on the register; not ranked against the proof-theo
 
 ## Execution-order note (post-2.0)
 
-For *slice discipline*: composition-closure (#4) remains the cheapest next formal move —
-bounded, legible, and useful before heavier proof theory. For *research leverage*: cut-
-elimination (#2) is now the remaining proof-theoretic prize after #1 landed. **A third
-edge, if the witnessed-clock lead (below) is live:** it adds a term *to the judgment* (new
-constructor/cases, perhaps a new termination-measure component), so it must precede **#2
-cut-elimination** — which builds a cut-rank induction *over* the judgment — or #2 must be
-written to anticipate a clock-carrying constructor, or the cut-rank argument gets redone.
-#2 and the clock work are **not** independent.
+For *slice discipline*: composition-closure (#4) remains bounded and useful before
+heavier proof theory. For *research leverage*: the landed #2 result is the positive
+fragment; broader cut-elimination for richer future formula systems remains a separate
+proof-theoretic prize. **A third edge, if the witnessed-clock lead (below) is live:** it
+adds a term *to the judgment* (new constructor/cases, perhaps a new termination-measure
+component), so it must precede any broader cut-rank argument over that judgment, or the
+argument must be written to anticipate clock-carrying constructors.
 
 ## What Made 2.0
 
 The packaging release (1.4.0) deliberately spent a *minor* bump and left the integer for a
 structural WDC result. `v2.0.0` earned that integer through direction #1: model-independent
 admitting-class normalization plus the necessity counterexample showing the commutation
-law is load-bearing. It did **not** claim cut-elimination, universal normalization,
-non-suppression, or an API break.
+law is load-bearing. It did **not** claim the later additive positive-formula
+cut-elimination slice, the resource/residue slice, universal normalization, full
+substructural non-suppression, or an API break.
 
 Future major-version candidates need the same discipline: a real change in what the
 calculus proves, or a breaking change forced by such a result. Current later-major-class
 leads are:
 
-1. **Cut-elimination.** Direction #2: explicit derivation syntax + primitive `cut` +
-   cut-rank; reduction decreases lexicographically; cut-free replacement.
-2. **Substructural non-suppression.** Direction #3: live revocation/refusal resources
-   cannot silently vanish through admissible transport.
+1. **Broader cut-elimination.** Beyond the landed positive fragment: implication,
+   richer left rules, subformula corollaries, or any clock-carrying judgment extension.
+2. **Broader substructural non-suppression.** Beyond the landed residue slice: live
+   revocation/refusal/custody resources through richer admissible transport.
 3. **Witnessed clocks / temporal custody.** Only major-class if solving it forces clock
    authority into the derivation judgment as a first-class term.
 4. **API-breaking consequence.** A stronger calculus may force an incompatible public
