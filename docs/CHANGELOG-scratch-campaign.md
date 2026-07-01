@@ -1,5 +1,25 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — post-v4 C1: the zoo opens
+`LeanProofs/Scratch/Zoo.lean` (new), `lakefile.toml` (post-v4 files + zoo
+added to the CI lib roots — the coverage rule, applied on schedule this time).
+
+- Two NEW catch mechanisms caged, joining the proven two (screen refutation;
+  inexpressibility):
+  - **summary-as-authority → discipline unsatisfiability** (zero-axiom,
+    two-line catch): a system where an emitted summary also funds
+    authorization cannot even STATE `EvidenceNeverConcluded` — it forfeits
+    every v4 wall visibly. Clean neighbor: logs exist, logs fund nothing
+    (`clean_summary_discipline`). *Log emission does not prove authorization.*
+  - **universal crossroads → MasterFree refutation**: `hubSystem` (A⇄H⇄B full
+    mediation) caught; TRUE minimal-pair contrast `sinkSystem` (drop only the
+    outbound rules — receiving from everyone is not mastery; mediating every
+    pair is) passes the screen.
+- Registry section records the resident cages (stamp, fluency, refresh,
+  cleanse, projection-as-mint, checkpoint-as-discharge, ticket/commit ANNEX
+  walls) — cited, not duplicated. TODO: skeleton replays of the four ANNEX
+  entries; `CaveatBlind` screen design before its cage.
+
 ## 2026-07-01 — post-v4 F3–F5: caveat inheritance + the two docs artifacts
 `LeanProofs/Scratch/CaveatSequent.lean` (new; **entirely zero-axiom**; codex
 first-pass GREEN — first of the campaign), `docs/AG-AUDIT-CHECKLIST.md` (F4),

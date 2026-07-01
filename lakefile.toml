@@ -61,4 +61,9 @@ roots = [
   "LeanProofs.Scratch.CustodyIndexedSequent",
   "LeanProofs.Scratch.StructuralPolicySequent",
   "LeanProofs.Scratch.EvidenceCalculusSequent",
+  # post-v4 cluster (F1-F3) + zoo (C1) -- same CI-coverage rule
+  "LeanProofs.Scratch.DeltaTSequent",
+  "LeanProofs.Scratch.FluencySequent",
+  "LeanProofs.Scratch.CaveatSequent",
+  "LeanProofs.Scratch.Zoo",
 ]
