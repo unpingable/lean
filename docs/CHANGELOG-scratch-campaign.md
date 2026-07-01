@@ -1,5 +1,21 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — post-v4 F6+F7: cluster verdict + the v5 seed
+`LeanProofs/Scratch/DerivationData.lean` (new), `docs/POST-V4-CAMPAIGN.md`
+(F6/F7 recorded), `lakefile.toml` (CI root).
+
+- **F6 verdict**: the F-cluster is v5-seed material, not a v4.1 release — no
+  cluster DOI; next release = v5.0.0.
+- **F7 finding (the honest one)**: under the v4 discipline THERE ARE NO
+  REDEXES — every derivation is already read-rooted normal, because the
+  discipline made detours unstatable. Proved as data:
+  `all_derivs_read_rooted` over reified derivation trees (`Deriv`), with the
+  reflection pair (`eentail_iff_nonempty_deriv`), purity of evidence
+  sub-derivations, and `chainOf` — the evidence chain as data, named as THE
+  invariant v5 normalization must preserve. v5 scope locked: structural
+  nodes create the detours; normalization returns to `ReadRooted` preserving
+  `chainOf`.
+
 ## 2026-07-01 — post-v4 C2: decidable screens (screening as computation)
 `LeanProofs/Scratch/DecidableScreens.lean` (new), `lakefile.toml` (CI root).
 

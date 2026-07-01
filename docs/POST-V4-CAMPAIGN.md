@@ -50,11 +50,20 @@ surfaces.
 
 ## Then Fable again
 
-- **F6** — review whether Δt + caveat + fluency justify v4.1 or are the v5
-  seed.
-- **F7** — sketch the custody-preserving normalization target (v5): *no
-  normalization step may erase custody evidence*; the read-rooted normal form
-  is the preserved invariant.
+- **F6 — DONE (verdict, 2026-07-01)**: the cluster is v5-SEED material, not a
+  v4.1 release. No cluster DOI (operator cadence ruling: majors at conceptual
+  boundaries only); a bare tag is available if a pin is ever wanted; the next
+  RELEASE is v5.0.0 when normalization lands.
+- **F7 — DONE (design + seed, 2026-07-01)**: the honest finding — under the
+  v4 discipline there are NO redexes; every derivation is already read-rooted
+  normal (`DerivationData.all_derivs_read_rooted`). Cut-elimination becomes a
+  real theorem only after structural rules enter as explicit, policy-priced
+  NODES. v5 plan: (1) `Deriv` reification — SEEDED; (2) structural nodes
+  (weakening/contraction/exchange) creating genuine detours; (3) `normalize`
+  eliminating them; (4) termination + back-into-ReadRooted + `chainOf`
+  invariance (the evidence chain defined in the seed is the invariant-to-be).
+  The classifier framing binds the design: normalization must provably never
+  leave the discipline class.
 
 ## Deferred, explicitly
 

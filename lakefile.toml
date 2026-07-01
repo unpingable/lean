@@ -67,4 +67,5 @@ roots = [
   "LeanProofs.Scratch.CaveatSequent",
   "LeanProofs.Scratch.Zoo",
   "LeanProofs.Scratch.DecidableScreens",
+  "LeanProofs.Scratch.DerivationData",
 ]
