@@ -12,17 +12,79 @@
   "invariant": "No artifact may testify beyond the stage it actually survived.",
   "admission_model": "A build_slice is admitted only against a ratified inline gap spec (acceptance criteria + zero-escape cold-codex validation). ChatGPT roadmap S19 Run specs are the draft gap specs.",
   "queue": [
-    {"id": "A", "kind": "hygiene", "status": "done", "note": "roadmap S10/S11 reconciliation (this session); standing ledger-update step, not a build slice"},
-    {"id": "B", "kind": "build_slice", "status": "admitted-parked", "file": "LeanProofs/Scratch/TemporalToSurfaceBridgeWiring.lean + TemporalSurfaceAdapter.lean", "note": "Temporal->Surface real-shape wiring already exists parked green; work = strengthen/verify, not create"},
-    {"id": "C", "kind": "spec_slice->build_slice", "status": "done-green", "note": "L3 no-free-cut wall. Parked wiring probe already had non-vacuous wall + non-transfer; codex audit found positive path temporally inert -> operator chose (ii); added reverse cut + bidirectional-independence capstone; GREEN. See c_audit."},
-    {"id": "D", "kind": "build_slice", "status": "admitted-parked", "file": "LeanProofs/Scratch/ExecutionCustody.lean", "note": "L4 execution custody already exists parked green; work = audit (E)"},
-    {"id": "E", "kind": "spec_slice", "status": "done-green", "note": "audited D: ladder genuinely witnessed; CommitUnknown was decorative -> filled with commitUnknown_testifies_to_neither (zero-axiom); ticket-linearity/actuator/obligation-decoupling parked. See e_audit."},
-    {"id": "F", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/BootKernel.lean", "note": "Boot ladder + witnessed settlement (presence + coverage invariants under composition), anti-skip wall (zero-axiom), trajectory freeze, ladder-entry inversions, capabilities_accumulate honesty theorem, omnipotence schema labeled thin. Codex YELLOW -> all findings closed."},
-    {"id": "G", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/CheckpointSettlement.lean", "note": "Occurrence-linear (Split-based) settlement: mints-nothing (zero-axiom), live multiplicity conserved (codex countermodel on membership-level draft -> Split reformulation), unknown-commit + observation-to-safety walls, minimal pair, compaction_is_real. Dead-entry policy flagged open. FAMILY COMPLETE."},
-    {"id": "SEQ0+1", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/BridgeSequent.lean", "note": "Indexed bridge cut + syntactic no-free-cross-cut wall + soundness into real modules + full provenance trace. Operator-ratified sequent ladder (2026-07-01, via ChatGPT relay). See seq01_audit."},
-    {"id": "SEQ2", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/ExecutionSequent.lean", "note": "Linear execution sequent over ResourceSequent Split/Consumes. Conservation of authority (trajectory_accounting, generic measure) + occurrence/id corollaries (codex-requested generalization), singleton no-double-spend walls, Dt wall (minimal fresh/stale pair at commit tick), residue preservation (reused engine), non-transfer to execution. Closes E-audit linearity item. Axioms <= [propext, Quot.sound]; 3 zero-axiom."},
-    {"id": "SEQ3", "kind": "build_slice", "status": "queued", "note": "Obligation/residue threaded through execution (ObligationResidue already imports ResourceSequent - natural join)."},
-    {"id": "SEQ4", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/BridgeCompositionSequent.lean", "note": "Composition as two explicit cuts (Temporal->Surface->Boundary), no composite-bridge index/judgment/rule. ZERO-AXIOM syntactic layer: composition_cannot_erase_bridge_evidence (bounded-normal-form provenance, scope stated per audit), mint_without_downstream_axioms_requires_all_three (forcing version, audit-requested), no_free_transitivity, first_bridge_alone_does_not_compose (upstream chain accumulates zero boundary authority), S1 wall re-established under extended rules. Soundness [propext] into real BoundaryArtifact.MayMint (specimen-typed hop, exposure class). Codex: pairing premise ruled syntactically load-bearing; cases complete for this rule set. LADDER S0-S4 COMPLETE."}
+    {
+      "id": "A",
+      "kind": "hygiene",
+      "status": "done",
+      "note": "roadmap S10/S11 reconciliation (this session); standing ledger-update step, not a build slice"
+    },
+    {
+      "id": "B",
+      "kind": "build_slice",
+      "status": "admitted-parked",
+      "file": "LeanProofs/Scratch/TemporalToSurfaceBridgeWiring.lean + TemporalSurfaceAdapter.lean",
+      "note": "Temporal->Surface real-shape wiring already exists parked green; work = strengthen/verify, not create"
+    },
+    {
+      "id": "C",
+      "kind": "spec_slice->build_slice",
+      "status": "done-green",
+      "note": "L3 no-free-cut wall. Parked wiring probe already had non-vacuous wall + non-transfer; codex audit found positive path temporally inert -> operator chose (ii); added reverse cut + bidirectional-independence capstone; GREEN. See c_audit."
+    },
+    {
+      "id": "D",
+      "kind": "build_slice",
+      "status": "admitted-parked",
+      "file": "LeanProofs/Scratch/ExecutionCustody.lean",
+      "note": "L4 execution custody already exists parked green; work = audit (E)"
+    },
+    {
+      "id": "E",
+      "kind": "spec_slice",
+      "status": "done-green",
+      "note": "audited D: ladder genuinely witnessed; CommitUnknown was decorative -> filled with commitUnknown_testifies_to_neither (zero-axiom); ticket-linearity/actuator/obligation-decoupling parked. See e_audit."
+    },
+    {
+      "id": "F",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/BootKernel.lean",
+      "note": "Boot ladder + witnessed settlement (presence + coverage invariants under composition), anti-skip wall (zero-axiom), trajectory freeze, ladder-entry inversions, capabilities_accumulate honesty theorem, omnipotence schema labeled thin. Codex YELLOW -> all findings closed."
+    },
+    {
+      "id": "G",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/CheckpointSettlement.lean",
+      "note": "Occurrence-linear (Split-based) settlement: mints-nothing (zero-axiom), live multiplicity conserved (codex countermodel on membership-level draft -> Split reformulation), unknown-commit + observation-to-safety walls, minimal pair, compaction_is_real. Dead-entry policy flagged open. FAMILY COMPLETE."
+    },
+    {
+      "id": "SEQ0+1",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/BridgeSequent.lean",
+      "note": "Indexed bridge cut + syntactic no-free-cross-cut wall + soundness into real modules + full provenance trace. Operator-ratified sequent ladder (2026-07-01, via ChatGPT relay). See seq01_audit."
+    },
+    {
+      "id": "SEQ2",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/ExecutionSequent.lean",
+      "note": "Linear execution sequent over ResourceSequent Split/Consumes. Conservation of authority (trajectory_accounting, generic measure) + occurrence/id corollaries (codex-requested generalization), singleton no-double-spend walls, Dt wall (minimal fresh/stale pair at commit tick), residue preservation (reused engine), non-transfer to execution. Closes E-audit linearity item. Axioms <= [propext, Quot.sound]; 3 zero-axiom."
+    },
+    {
+      "id": "SEQ3",
+      "kind": "build_slice",
+      "status": "queued",
+      "note": "Obligation/residue threaded through execution (ObligationResidue already imports ResourceSequent - natural join)."
+    },
+    {
+      "id": "SEQ4",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/BridgeCompositionSequent.lean",
+      "note": "Composition as two explicit cuts (Temporal->Surface->Boundary), no composite-bridge index/judgment/rule. ZERO-AXIOM syntactic layer: composition_cannot_erase_bridge_evidence (bounded-normal-form provenance, scope stated per audit), mint_without_downstream_axioms_requires_all_three (forcing version, audit-requested), no_free_transitivity, first_bridge_alone_does_not_compose (upstream chain accumulates zero boundary authority), S1 wall re-established under extended rules. Soundness [propext] into real BoundaryArtifact.MayMint (specimen-typed hop, exposure class). Codex: pairing premise ruled syntactically load-bearing; cases complete for this rule set. LADDER S0-S4 COMPLETE."
+    }
   ],
   "acceptance": [
     "every verify-run receipt exit-0 (exit_source=child_exit, masked_risk=false)",
@@ -88,15 +150,32 @@
   "release_boundary": "RATIFIED (operator 2026-07-01, via ChatGPT relay): v3 = bounded mini-calculi family (DOI); v3.x = sequent scratch / bridge sequents; v4 = indexed sequent system (custody-indexed Gentzen) if it earns the name. v3 bar: every family member has named judgment + positive rule + non-collapse/failed-cut + non-transfer where relevant + inventory/classification; aggregate import = compile marker only; no master Admissible; sequents named-not-claimed.",
   "v3_audit": {
     "verdict": "YELLOW - boundary properly scoped; sequents safely deferred",
-    "closed": ["L1 theorem inventory -> docs/V3-RELEASE-LEDGER.md (one row per family member: judgment, positive, non-collapse, strongest/weakest, shapes, re-attested axiom footprints)", "actuator-limit + compile-marker language stated in ledger"],
+    "closed": [
+      "L1 theorem inventory -> docs/V3-RELEASE-LEDGER.md (one row per family member: judgment, positive, non-collapse, strongest/weakest, shapes, re-attested axiom footprints)",
+      "actuator-limit + compile-marker language stated in ledger"
+    ],
     "operator_decision_pending": "Execution Custody / BootKernel / CheckpointSettlement release status: (a) promote into the release surface (custody act: header flip + move to BoundedCalculi/ + aggregate import + gate battery), or (b) ship v3 as 'six ANNEX calculi + fenced scratch evidence for the remaining family members'. Ledger takes no position.",
-    "safe_to_defer": ["sequents S0-S4", "real bridge authority", "non-toy non-transfer targets", "CheckpointSettlement dead-entry policy"]
+    "safe_to_defer": [
+      "sequents S0-S4",
+      "real bridge authority",
+      "non-toy non-transfer targets",
+      "CheckpointSettlement dead-entry policy"
+    ]
   },
   "v3_promotion": {
     "decision": "Option A EXECUTED (operator 2026-07-01): ExecutionCustody + BootKernel + CheckpointSettlement promoted Scratch -> BoundedCalculi/ ANNEX release surface with non-authority headers + goblin wards; MeasureAccounting extracted (ANNEX support) so release surface imports no scratch.",
     "naming": "umbrella=Custody-Aware Authority Semantics; release=v3.0.0 - Bounded Lifecycle Calculi; v3.x=Custody-Indexed Sequents; v4=Custody-Indexed Gentzen System (roadmap prose only).",
     "gate_battery": "full lake build green; audit-axioms/audit-native-decide/check-mathlib-pin/check-witnessed-footprint all exit 0; per-file sweep PASS (9 family + support + sequents); footprints re-attested post-move; no sorry/admit; LeanProofs.lean imports neither BoundedCalculi nor Scratch (promoted boundary unchanged); no scratch imports on release surface.",
-    "docs_updated": ["README.md (v3 current-release section)", "WHAT-THIS-PROVES.md (v3 proves / does-NOT-prove block)", "CHANGELOG.md (3.0.0 entry)", "docs/V3-RELEASE-LEDGER.md (decision + gate record + promoted rows)", "docs/ROADMAP-bounded-calculi.md (L4-L6 promoted; naming; SEQ4 next)", "docs/CHANGELOG-scratch-campaign.md (promotion entry)", "papers:working/tooltheory/roadmap-custody-aware-authority-semantics.md (lean-lane status pointer)", "LeanProofs/BoundedCalculi.lean (aggregate: 10 imports, hardened marker language)"]
+    "docs_updated": [
+      "README.md (v3 current-release section)",
+      "WHAT-THIS-PROVES.md (v3 proves / does-NOT-prove block)",
+      "CHANGELOG.md (3.0.0 entry)",
+      "docs/V3-RELEASE-LEDGER.md (decision + gate record + promoted rows)",
+      "docs/ROADMAP-bounded-calculi.md (L4-L6 promoted; naming; SEQ4 next)",
+      "docs/CHANGELOG-scratch-campaign.md (promotion entry)",
+      "papers:working/tooltheory/roadmap-custody-aware-authority-semantics.md (lean-lane status pointer)",
+      "LeanProofs/BoundedCalculi.lean (aggregate: 10 imports, hardened marker language)"
+    ]
   },
   "v4_candidate": {
     "file": "LeanProofs/Scratch/CustodyIndexedSequent.lean",
@@ -107,7 +186,10 @@
       "MasterFree DONE: master = UniversalCrossroads (substantive index with universal in+out bridges); crossroads_mediates_every_pair (the god-calculus signature theorem); s4_master_free (finite check, codex-confirmed non-vacuous). Honest caveats IN FILE per audit: universal-hub SCREENING not anti-authority enforcement - false negative = evidence-currency master (EvidenceCurrencyFree screening = named follow-up), false positive = benign router (index screening over-approximates by the file's own mismatch wall).",
       "SECOND INSTANCE DONE: DiamondInstance (branching A->B->D vs A->C->D; route-provenance chains distinguish routes; diamond_unfunded_route_closed genuinely uses the discipline; codex: real instance, not S4 re-skin). BONUS WALL: index_connectivity_does_not_imply_derivability (MidpointMismatch: bridges connect judgments not indices; deflates crossroads to smell detector; zero-axiom)."
     ],
-    "v4_blockers_remaining": ["derived-evidence extension (evidence minted through its own paid evidence-calculus - the validator/ResourceChecker shape; lifts the multi-role exclusion; hard theorem: derived evidence cannot become universal bridge currency)", "EvidenceCurrencyFree screening predicate (the side-channel master-turnstile screen; inspects evidence SHAPE not just index topology)"],
+    "v4_blockers_remaining": [
+      "derived-evidence extension (evidence minted through its own paid evidence-calculus - the validator/ResourceChecker shape; lifts the multi-role exclusion; hard theorem: derived evidence cannot become universal bridge currency)",
+      "EvidenceCurrencyFree screening predicate (the side-channel master-turnstile screen; inspects evidence SHAPE not just index topology)"
+    ],
     "v4_blocker3_closed_2026_07_01": "StructuralPolicySequent.lean: ContextPolicy (read-discipline parameterization, honestly scoped - no split/merge/exchange algebra claimed) + PEntail with threaded residuals; pricing pair (cartesian_contraction_free / linear_contraction_priced / linear_pay_twice) + strict payment; v4 stack re-proved parametrically (zero-axiom core); cartesian collapse recovers audited skeleton + S4 + diamond. Codex YELLOW -> claims tightened. Follow-ups named: structural-rule algebra; full SEQ2/SEQ3 equivalence."
   },
   "post_v4": {
@@ -116,7 +198,7 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "FABLE QUEUE F1-F5 COMPLETE (F1 DeltaT, F2 fluency, F3 caveats - all zero-axiom, F3 codex first-pass GREEN; F4 AG-AUDIT-CHECKLIST.md drafted for AG session; F5 ZOO-TEMPLATE.md cage schema + C1 inventory). Parked 4th refusal slice (caveat inheritance) CLOSED. NEXT per map: codex lane C1 (populate zoo cages from template) / C2 (decidable screens) / C3 (kernel-overlap runs) - wrench work, batchable; then F6 review (does DeltaT+fluency+caveats justify v4.1 or fold into v5 seed) and F7 (v5 custody-preserving normalization sketch). AG checklist handoff: operator routes docs/AG-AUDIT-CHECKLIST.md to the agent_gov session.",
+  "next_action": "F1-F5 + C1 + C2 DONE (all committed). Campaign remaining: C1 leftovers (skeleton-replay cages, CaveatBlind screen design), C3 kernel-overlap runs (needs candidates), F6 cluster review (v4.1 vs v5-seed + the one-release DOI decision - operator-adjacent), F7 v5 sketch (custody-preserving normalization; note from C1: the discipline is becoming a CLASSIFIER of systems - attacks fail by falling out of the class; F7 should chew on that). AG checklist awaiting routing to agent_gov session.",
   "last_verified_commit": "b9bb63d3ed57328136f46c5699027714a7f38e71",
   "last_verified_note": "smoke test #1: governor verify-run -- lake env lean LeanProofs/Scratch/ExecutionCustody.lean -> [pass] exit 0 (dirty tree; roadmap reconciliation + parked scratch uncommitted).",
   "completed_slices": [

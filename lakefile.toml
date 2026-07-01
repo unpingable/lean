@@ -66,4 +66,5 @@ roots = [
   "LeanProofs.Scratch.FluencySequent",
   "LeanProofs.Scratch.CaveatSequent",
   "LeanProofs.Scratch.Zoo",
+  "LeanProofs.Scratch.DecidableScreens",
 ]

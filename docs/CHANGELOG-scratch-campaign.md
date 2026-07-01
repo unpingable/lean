@@ -1,5 +1,24 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — post-v4 C2: decidable screens (screening as computation)
+`LeanProofs/Scratch/DecidableScreens.lean` (new), `lakefile.toml` (CI root).
+
+- `DecSystem`: finite systems as boolean rule tables + complete enumerations.
+  Every v4 screen gets an executable Bool version with a PROVED soundness iff
+  against the Prop screen: `fundableB`/`universalStampB`/
+  `evidenceCurrencyFreeB`/`crossBridgeB`/`substantiveB`/
+  `universalCrossroadsB`/`masterFreeB`.
+- **Screen verdicts by kernel computation**: the zoo's hub fails `MasterFree`
+  by `decide`; the sink PASSES — `sink_master_free_by_decision` is a
+  `MasterFree` proof obtained by computation + iff, not hand case analysis;
+  the stamp system fails the currency screen likewise. The proof-native seed
+  of the v6 checker.
+- Discipline note: `Classical.choice` crept in via `by_cases` on undecidable
+  Props and was purged (Bool-cases on the executable screens instead) —
+  everything within `[propext, Quot.sound]`. Kernel `decide` only; the native
+  decision procedure stays forbidden. Walls (derivability itself) are NOT
+  decided here — v6 work, stated.
+
 ## 2026-07-01 — post-v4 C1: the zoo opens
 `LeanProofs/Scratch/Zoo.lean` (new), `lakefile.toml` (post-v4 files + zoo
 added to the CI lib roots — the coverage rule, applied on schedule this time).
