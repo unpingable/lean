@@ -7,8 +7,10 @@
 `Normalization.bridge_path_normal_form` is now the freshness instance with its name,
 signature, and `[propext]` footprint unchanged. Post-2.0 additive slices have now
 landed for direction #2 (ND-style positive-fragment cut-elimination in `Formula`,
-plus a Gentzen sequent *presentation* in `Gentzen` — but **not** a Gentzen
-cut-elimination / Hauptsatz) and direction #3 (canonical resource/residue
+plus a Gentzen sequent *presentation* in `Gentzen` with **position-general left
+rules** — repaired after `HeadOnlyGentzenCutFailure` proved cut-elimination false for
+the head-only shape; the `Deriv → Seq` Hauptsatz over the repaired calculus is still
+unproven) and direction #3 (canonical resource/residue
 non-suppression), and direction #4 has an initial consolidation/refusal-witness
 slice landed. The larger proof-theory claims named below remain fenced unless
 explicitly opened later.
@@ -41,9 +43,9 @@ open because it is **hard**, not because it is speculative.
    rewrite system for arbitrary bridge graphs; the landed positive-fragment cut-elimination
    lives separately in `LeanProofs.Witnessed.Formula`.
 
-2. **Positive formula + Gentzen presentation (LANDED slice; the Gentzen Hauptsatz is
-   NOT among what landed).** Three distinct states, kept explicitly apart so
-   "presentation" is never read as "cut-elimination":
+2. **Positive formula + Gentzen presentation (LANDED slice; head-only cut-failure
+   found, calculus repaired, Hauptsatz still unproven).** Three distinct states, kept
+   explicitly apart so "presentation" is never read as "cut-elimination":
    - **(a) `Formula.lean` — ND-style positive-fragment cut-elimination LANDED.**
      Supplies `Formula.atom`, `Formula.top`, conjunction, disjunction, cut-free
      derivations (`CutFree`), explicit-cut derivations (`Deriv.cut`), syntactic
@@ -56,20 +58,28 @@ open because it is **hard**, not because it is speculative.
      inclusion `deriv_of_seq : Seq → Deriv`, soundness (`seq_sound` zero-axiom,
      `deriv_sound` propext) against a shallow `Holds` semantics, and an embedding
      `deriv_of_formula_cutFree : Formula.CutFree → Gentzen.Deriv`.
-   - **(c) Gentzen cut-elimination / Hauptsatz — NOT PROVEN.** There is no
-     `Deriv → Seq` eliminating the `cut` constructor by principal-cut reduction. The
-     stage machinery exists (left/right rules make principal cuts *possible*), but the
-     theorem that gives a Gentzen calculus its teeth is absent.
+   - **(c) Gentzen cut-elimination / Hauptsatz — obstruction FOUND, then REPAIRED;
+     the Hauptsatz itself is still unproven.** Slice B first proved cut-elimination
+     *false* for a **head-only** presentation: `HeadOnlyGentzenCutFailure.cut_elimination_fails`
+     exhibits `[atom 0, atom 1 ∧ atom 2] ⊢ atom 1`, derivable with head-only cut but not
+     head-only cut-free (exhaustive over the rules), because head-only `andL` cannot
+     reach a buried conjunction. **Slice B′ then repaired the live calculus**: `Gentzen.Seq`
+     / `Gentzen.Deriv` now use **position-general left rules** (`pre ++ _ :: post`),
+     re-proving soundness, and `Gentzen.buried_conjunction_now_cutfree` (zero-axiom)
+     proves the former obstruction witness is now cut-free — the regression receipt that
+     the repair works. The head-only failure is preserved only as an archived record
+     (`HeadOnlyGentzenCutFailure`), NOT a claim about the live calculus. All machine-checked,
+     `propext`-or-zero-axiom.
 
-   **The loop does not close yet.** `deriv_of_formula_cutFree` lands in `Deriv` (with
-   cut), not `Seq`: the `and_elim` cases still use `Deriv.cut`. So until (c) exists the
-   corpus **cannot** show ND-provable ⇒ cut-free-Gentzen-provable, and gets no
-   subformula property. All of this is the additive positive fragment `{∧, ∨, ⊤}` over
-   WDC atoms and paid bridges; it does **not** claim implication, negation, quantifiers,
-   classical logic, a full subformula theorem, or cut-elimination for arbitrary future
-   formula systems. *Next slice = the Gentzen Hauptsatz for positive additives (prove
-   `Deriv → Seq` for `{∧, ∨, ⊤}`): a mild fragment with real principal cuts, no
-   implication yet.*
+   **What remains (B″).** The actual `Deriv → Seq` cut-elimination over the *repaired*
+   position-general `Seq` is still unproven — it is a genuine cut-elimination proof
+   (principal-cut reductions, well-founded measure), not free. Until it lands,
+   `deriv_of_formula_cutFree` still lands in `Deriv` (with cut), so the corpus does not
+   yet show ND-provable ⇒ cut-free-Gentzen-provable and gets no subformula property. All
+   of this is the additive positive fragment `{∧, ∨, ⊤}` over WDC atoms and paid bridges;
+   it does **not** claim implication, negation, quantifiers, classical logic, a full
+   subformula theorem, or cut-elimination for arbitrary future formula systems.
+   *Next slice (B″) = attempt `Deriv → Seq` now that `Seq` is structurally honest.*
 
 3. **Canonical resource non-suppression (LANDED residue slice; not global linear logic).**
    `LeanProofs.Witnessed.ResourceSequent` now supplies `ResourceFormula.claim`,
@@ -80,6 +90,18 @@ open because it is **hard**, not because it is speculative.
    residue preservation: residue inputs cannot silently vanish through derivation or
    checker validation. It does **not** claim full linear logic, global no-weakening,
    global no-contraction, or a complete custody/refusal resource calculus.
+   *Executable gate (LANDED, Slice A):* `ResourceCheckerExec` runs `Checks` as a
+   `Bool`-computing pass over an untrusted derivation trace (base step + pinned bridge
+   indices), recomputing the residual via `removeAt`; `checkTrace_sound` forces a real
+   `Derives`, `checkTrace_iff_derives` characterizes acceptance. It **checks, it does
+   not search** (no rule/split branching) and is a validation pass, not a decidability
+   decision. The trace is an untrusted input witness syntax, not the deleted
+   output-`ResourceCertificate`.
+   *Adversarial corpus (LANDED, Slice C):* `LaunderingCorpus` runs named laundering
+   specimens through the executable gate — missing-token, spent-token-does-not-fund-
+   next-crossing, floor-fact-is-not-spend-authority, residue-cannot-be-omitted,
+   ordinary-reachable-is-not-executable — each a refusal of a validity-to-authority
+   laundering move, with a positive control. Not a parser suite: verdict-named refusals.
    *Deferred (not on the public surface):* a serializable `ResourceCertificate`
    datatype. The witnessed object is the `Checks` *relation*, not a metadata shape;
    a datatype is not validated merely because `Checks` is sound/complete. Re-admit

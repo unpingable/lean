@@ -45,8 +45,11 @@ import LeanProofs.Witnessed.Derivation        -- judgment `Lift`, composition, n
 import LeanProofs.Witnessed.Sequent           -- contexted sequent presentation over `Lift`
 import LeanProofs.Witnessed.Formula           -- positive formulas + explicit-cut elimination
 import LeanProofs.Witnessed.Gentzen           -- Gentzen left/right sequent presentation
+import LeanProofs.Witnessed.HeadOnlyGentzenCutFailure -- archived: head-only cut-elim fails (motivates the position-general repair)
 import LeanProofs.Witnessed.ResourceSequent   -- occurrence-sensitive resources + residue preservation
 import LeanProofs.Witnessed.ResourceChecker   -- position-pinned validation relation
+import LeanProofs.Witnessed.ResourceCheckerExec -- executable Bool gate over derivation traces (Slice A)
+import LeanProofs.Witnessed.LaunderingCorpus   -- named adversarial laundering specimens (Slice C)
 import LeanProofs.Witnessed.Normalization      -- normal-form factorization (freshness instance of AbstractNormalization)
 import LeanProofs.Witnessed.Discipline         -- four-axis WitnessedDiscipline (was Tightened)
 import LeanProofs.Witnessed.AxisIndependence   -- four separating finite models

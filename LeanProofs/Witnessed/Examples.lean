@@ -86,7 +86,7 @@ example :
       (([Formula.and (Formula.atom 0) (Formula.atom 1)] :
         LeanProofs.Witnessed.Gentzen.Context Nat))
       (Formula.atom 0) :=
-  LeanProofs.Witnessed.Gentzen.Seq.andL
+  LeanProofs.Witnessed.Gentzen.Seq.andL (pre := []) (post := [])
     (LeanProofs.Witnessed.Gentzen.Seq.init (List.Mem.head _))
 
 example :
@@ -94,7 +94,7 @@ example :
       (([Formula.or (Formula.atom 0) (Formula.atom 1)] :
         LeanProofs.Witnessed.Gentzen.Context Nat))
       Formula.top :=
-  LeanProofs.Witnessed.Gentzen.Seq.orL
+  LeanProofs.Witnessed.Gentzen.Seq.orL (pre := []) (post := [])
     LeanProofs.Witnessed.Gentzen.Seq.topR
     LeanProofs.Witnessed.Gentzen.Seq.topR
 

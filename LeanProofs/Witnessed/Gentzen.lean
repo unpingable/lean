@@ -10,6 +10,14 @@
   induced by WDC `Lift`: atoms mean witnessed derivability, top means `True`,
   conjunction means product, and disjunction means sum. It is not a full linear
   logic, implication calculus, classical calculus, or model-to-world transfer.
+
+  Position-general left rules. The left rules (`andL` / `orL` / `topL`) decompose
+  the named occurrence WHEREVER it appears in the context (`pre ++ _ :: post`), not
+  only at the head. An earlier head-only presentation made cut-elimination FALSE
+  (a buried conjunction could not be decomposed cut-free — see
+  `HeadOnlyGentzenCutFailure`); position-general left rules are the structural repair
+  that removes that obstruction, matching the position-pinned discipline used by the
+  resource checker.
 -/
 
 import LeanProofs.Witnessed.Formula
@@ -44,7 +52,8 @@ def ContextHolds
 
 /-! ## Cut-free Gentzen sequents -/
 
-/-- Cut-free Gentzen sequents for the positive WDC fragment. -/
+/-- Cut-free Gentzen sequents for the positive WDC fragment. Left rules are
+    position-general: they decompose the named occurrence at any position. -/
 inductive Seq
     (K : Claim -> Prop) (B : Claim -> Claim -> Prop) :
     Context Claim -> Formula Claim -> Prop where
@@ -57,21 +66,21 @@ inductive Seq
         Seq K B Gamma (Formula.atom c')
   | topR {Gamma : Context Claim} :
       Seq K B Gamma Formula.top
-  | topL {Gamma : Context Claim} {C : Formula Claim} :
-      Seq K B Gamma C -> Seq K B (Formula.top :: Gamma) C
+  | topL {pre post : Context Claim} {C : Formula Claim} :
+      Seq K B (pre ++ post) C -> Seq K B (pre ++ Formula.top :: post) C
   | andR {Gamma : Context Claim} {A Bf : Formula Claim} :
       Seq K B Gamma A -> Seq K B Gamma Bf ->
         Seq K B Gamma (Formula.and A Bf)
-  | andL {Gamma : Context Claim} {A Bf C : Formula Claim} :
-      Seq K B (A :: Bf :: Gamma) C ->
-        Seq K B (Formula.and A Bf :: Gamma) C
+  | andL {pre post : Context Claim} {A Bf C : Formula Claim} :
+      Seq K B (pre ++ A :: Bf :: post) C ->
+        Seq K B (pre ++ Formula.and A Bf :: post) C
   | orRLeft {Gamma : Context Claim} {A Bf : Formula Claim} :
       Seq K B Gamma A -> Seq K B Gamma (Formula.or A Bf)
   | orRRight {Gamma : Context Claim} {A Bf : Formula Claim} :
       Seq K B Gamma Bf -> Seq K B Gamma (Formula.or A Bf)
-  | orL {Gamma : Context Claim} {A Bf C : Formula Claim} :
-      Seq K B (A :: Gamma) C -> Seq K B (Bf :: Gamma) C ->
-        Seq K B (Formula.or A Bf :: Gamma) C
+  | orL {pre post : Context Claim} {A Bf C : Formula Claim} :
+      Seq K B (pre ++ A :: post) C -> Seq K B (pre ++ Bf :: post) C ->
+        Seq K B (pre ++ Formula.or A Bf :: post) C
 
 /-! ## Soundness -/
 
@@ -94,47 +103,60 @@ theorem seq_sound
   | topR =>
       intro _hctx
       trivial
-  | topL _ ih =>
+  | @topL pre post C _ ih =>
       intro hctx
-      exact ih (fun X hx => hctx X (List.Mem.tail _ hx))
+      refine ih ?_
+      intro X hX
+      rcases List.mem_append.mp hX with hpre | hpost
+      · exact hctx _ (List.mem_append.mpr (Or.inl hpre))
+      · exact hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_of_mem _ hpost)))
   | andR _ _ ihA ihB =>
       intro hctx
       exact ⟨ihA hctx, ihB hctx⟩
-  | andL _ ih =>
+  | @andL pre post A Bf C _ ih =>
       intro hctx
-      exact ih (fun X hx => by
-        cases hx with
-        | head =>
-            exact (hctx _ (List.Mem.head _)).left
-        | tail _ hxTail =>
-            cases hxTail with
-            | head =>
-                exact (hctx _ (List.Mem.head _)).right
-            | tail _ hxGamma =>
-                exact hctx _ (List.Mem.tail _ hxGamma))
+      have hconj : Holds K B (Formula.and A Bf) :=
+        hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_self)))
+      refine ih ?_
+      intro X hX
+      rcases List.mem_append.mp hX with hpre | hmid
+      · exact hctx _ (List.mem_append.mpr (Or.inl hpre))
+      · rcases List.mem_cons.mp hmid with rfl | hmid2
+        · exact hconj.left
+        · rcases List.mem_cons.mp hmid2 with rfl | hpost
+          · exact hconj.right
+          · exact hctx _ (List.mem_append.mpr
+              (Or.inr (List.mem_cons_of_mem _ hpost)))
   | orRLeft _ ih =>
       intro hctx
       exact Or.inl (ih hctx)
   | orRRight _ ih =>
       intro hctx
       exact Or.inr (ih hctx)
-  | orL _ _ ihA ihB =>
+  | @orL pre post A Bf C _ _ ihA ihB =>
       intro hctx
-      cases hctx _ (List.Mem.head _) with
-      | inl hA =>
-          exact ihA (fun X hx => by
-            cases hx with
-            | head => exact hA
-            | tail _ hxGamma => exact hctx X (List.Mem.tail _ hxGamma))
-      | inr hB =>
-          exact ihB (fun X hx => by
-            cases hx with
-            | head => exact hB
-            | tail _ hxGamma => exact hctx X (List.Mem.tail _ hxGamma))
+      have hdisj : Holds K B (Formula.or A Bf) :=
+        hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_self)))
+      rcases hdisj with hA | hB
+      · refine ihA ?_
+        intro X hX
+        rcases List.mem_append.mp hX with hpre | hmid
+        · exact hctx _ (List.mem_append.mpr (Or.inl hpre))
+        · rcases List.mem_cons.mp hmid with rfl | hpost
+          · exact hA
+          · exact hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_of_mem _ hpost)))
+      · refine ihB ?_
+        intro X hX
+        rcases List.mem_append.mp hX with hpre | hmid
+        · exact hctx _ (List.mem_append.mpr (Or.inl hpre))
+        · rcases List.mem_cons.mp hmid with rfl | hpost
+          · exact hB
+          · exact hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_of_mem _ hpost)))
 
 /-! ## Gentzen derivations with explicit cut -/
 
-/-- Gentzen derivations with an explicit cut constructor. -/
+/-- Gentzen derivations with an explicit cut constructor. Left rules are
+    position-general, matching `Seq`. -/
 inductive Deriv
     (K : Claim -> Prop) (B : Claim -> Claim -> Prop) :
     Context Claim -> Formula Claim -> Prop where
@@ -147,21 +169,21 @@ inductive Deriv
         Deriv K B Gamma (Formula.atom c')
   | topR {Gamma : Context Claim} :
       Deriv K B Gamma Formula.top
-  | topL {Gamma : Context Claim} {C : Formula Claim} :
-      Deriv K B Gamma C -> Deriv K B (Formula.top :: Gamma) C
+  | topL {pre post : Context Claim} {C : Formula Claim} :
+      Deriv K B (pre ++ post) C -> Deriv K B (pre ++ Formula.top :: post) C
   | andR {Gamma : Context Claim} {A Bf : Formula Claim} :
       Deriv K B Gamma A -> Deriv K B Gamma Bf ->
         Deriv K B Gamma (Formula.and A Bf)
-  | andL {Gamma : Context Claim} {A Bf C : Formula Claim} :
-      Deriv K B (A :: Bf :: Gamma) C ->
-        Deriv K B (Formula.and A Bf :: Gamma) C
+  | andL {pre post : Context Claim} {A Bf C : Formula Claim} :
+      Deriv K B (pre ++ A :: Bf :: post) C ->
+        Deriv K B (pre ++ Formula.and A Bf :: post) C
   | orRLeft {Gamma : Context Claim} {A Bf : Formula Claim} :
       Deriv K B Gamma A -> Deriv K B Gamma (Formula.or A Bf)
   | orRRight {Gamma : Context Claim} {A Bf : Formula Claim} :
       Deriv K B Gamma Bf -> Deriv K B Gamma (Formula.or A Bf)
-  | orL {Gamma : Context Claim} {A Bf C : Formula Claim} :
-      Deriv K B (A :: Gamma) C -> Deriv K B (Bf :: Gamma) C ->
-        Deriv K B (Formula.or A Bf :: Gamma) C
+  | orL {pre post : Context Claim} {A Bf C : Formula Claim} :
+      Deriv K B (pre ++ A :: post) C -> Deriv K B (pre ++ Bf :: post) C ->
+        Deriv K B (pre ++ Formula.or A Bf :: post) C
   | cut {Gamma Delta : Context Claim} {A C : Formula Claim} :
       Deriv K B Gamma A -> Deriv K B (A :: Delta) C ->
         Deriv K B (Gamma ++ Delta) C
@@ -173,26 +195,16 @@ theorem deriv_of_seq
     (h : Seq K B Gamma A) :
     Deriv K B Gamma A := by
   induction h with
-  | init hmem =>
-      exact Deriv.init hmem
-  | floor hk =>
-      exact Deriv.floor hk
-  | cross _ hb ih =>
-      exact Deriv.cross ih hb
-  | topR =>
-      exact Deriv.topR
-  | topL _ ih =>
-      exact Deriv.topL ih
-  | andR _ _ ihA ihB =>
-      exact Deriv.andR ihA ihB
-  | andL _ ih =>
-      exact Deriv.andL ih
-  | orRLeft _ ih =>
-      exact Deriv.orRLeft ih
-  | orRRight _ ih =>
-      exact Deriv.orRRight ih
-  | orL _ _ ihA ihB =>
-      exact Deriv.orL ihA ihB
+  | init hmem => exact Deriv.init hmem
+  | floor hk => exact Deriv.floor hk
+  | cross _ hb ih => exact Deriv.cross ih hb
+  | topR => exact Deriv.topR
+  | topL _ ih => exact Deriv.topL ih
+  | andR _ _ ihA ihB => exact Deriv.andR ihA ihB
+  | andL _ ih => exact Deriv.andL ih
+  | orRLeft _ ih => exact Deriv.orRLeft ih
+  | orRRight _ ih => exact Deriv.orRRight ih
+  | orL _ _ ihA ihB => exact Deriv.orL ihA ihB
 
 /-- Gentzen derivations with cut are sound for the WDC-induced formula semantics. -/
 theorem deriv_sound
@@ -213,43 +225,55 @@ theorem deriv_sound
   | topR =>
       intro _hctx
       trivial
-  | topL _ ih =>
+  | @topL pre post C _ ih =>
       intro hctx
-      exact ih (fun X hx => hctx X (List.Mem.tail _ hx))
+      refine ih ?_
+      intro X hX
+      rcases List.mem_append.mp hX with hpre | hpost
+      · exact hctx _ (List.mem_append.mpr (Or.inl hpre))
+      · exact hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_of_mem _ hpost)))
   | andR _ _ ihA ihB =>
       intro hctx
       exact ⟨ihA hctx, ihB hctx⟩
-  | andL _ ih =>
+  | @andL pre post A Bf C _ ih =>
       intro hctx
-      exact ih (fun X hx => by
-        cases hx with
-        | head =>
-            exact (hctx _ (List.Mem.head _)).left
-        | tail _ hxTail =>
-            cases hxTail with
-            | head =>
-                exact (hctx _ (List.Mem.head _)).right
-            | tail _ hxGamma =>
-                exact hctx _ (List.Mem.tail _ hxGamma))
+      have hconj : Holds K B (Formula.and A Bf) :=
+        hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_self)))
+      refine ih ?_
+      intro X hX
+      rcases List.mem_append.mp hX with hpre | hmid
+      · exact hctx _ (List.mem_append.mpr (Or.inl hpre))
+      · rcases List.mem_cons.mp hmid with rfl | hmid2
+        · exact hconj.left
+        · rcases List.mem_cons.mp hmid2 with rfl | hpost
+          · exact hconj.right
+          · exact hctx _ (List.mem_append.mpr
+              (Or.inr (List.mem_cons_of_mem _ hpost)))
   | orRLeft _ ih =>
       intro hctx
       exact Or.inl (ih hctx)
   | orRRight _ ih =>
       intro hctx
       exact Or.inr (ih hctx)
-  | orL _ _ ihA ihB =>
+  | @orL pre post A Bf C _ _ ihA ihB =>
       intro hctx
-      cases hctx _ (List.Mem.head _) with
-      | inl hA =>
-          exact ihA (fun X hx => by
-            cases hx with
-            | head => exact hA
-            | tail _ hxGamma => exact hctx X (List.Mem.tail _ hxGamma))
-      | inr hB =>
-          exact ihB (fun X hx => by
-            cases hx with
-            | head => exact hB
-            | tail _ hxGamma => exact hctx X (List.Mem.tail _ hxGamma))
+      have hdisj : Holds K B (Formula.or A Bf) :=
+        hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_self)))
+      rcases hdisj with hA | hB
+      · refine ihA ?_
+        intro X hX
+        rcases List.mem_append.mp hX with hpre | hmid
+        · exact hctx _ (List.mem_append.mpr (Or.inl hpre))
+        · rcases List.mem_cons.mp hmid with rfl | hpost
+          · exact hA
+          · exact hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_of_mem _ hpost)))
+      · refine ihB ?_
+        intro X hX
+        rcases List.mem_append.mp hX with hpre | hmid
+        · exact hctx _ (List.mem_append.mpr (Or.inl hpre))
+        · rcases List.mem_cons.mp hmid with rfl | hpost
+          · exact hB
+          · exact hctx _ (List.mem_append.mpr (Or.inr (List.mem_cons_of_mem _ hpost)))
   | cut _ _ ihCut ihBody =>
       intro hctx
       exact ihBody (fun X hx => by
@@ -261,19 +285,21 @@ theorem deriv_sound
 
 /-! ## Relation to the earlier formula layer -/
 
-/-- Gentzen can project the left conjunct from a conjunction assumption. -/
+/-- Gentzen can project the left conjunct from a conjunction assumption; the
+    position-general `andL` fires with empty `pre` / `post`. -/
 theorem and_projection_left
     {K : Claim -> Prop} {B : Claim -> Claim -> Prop}
     {A Bf : Formula Claim} :
     Deriv K B ([Formula.and A Bf] : Context Claim) A :=
-  Deriv.andL (Deriv.init (List.Mem.head _))
+  Deriv.andL (pre := []) (post := []) (Deriv.init (List.mem_cons_self))
 
 /-- Gentzen can project the right conjunct from a conjunction assumption. -/
 theorem and_projection_right
     {K : Claim -> Prop} {B : Claim -> Claim -> Prop}
     {A Bf : Formula Claim} :
     Deriv K B ([Formula.and A Bf] : Context Claim) Bf :=
-  Deriv.andL (Deriv.init (List.Mem.tail _ (List.Mem.head _)))
+  Deriv.andL (pre := []) (post := [])
+    (Deriv.init (List.mem_cons_of_mem _ (List.mem_cons_self)))
 
 /-- The earlier formula derivations embed into Gentzen derivations. Conjunction
     elimination uses an explicit Gentzen cut against the `andL` projection. -/
@@ -301,5 +327,19 @@ theorem deriv_of_formula_cutFree
       exact Deriv.orRLeft ih
   | or_intro_right _ ih =>
       exact Deriv.orRRight ih
+
+/-! ## Regression: the head-only obstruction is now cut-free
+
+    The witness that `HeadOnlyGentzenCutFailure` proves is NOT derivable in the
+    head-only presentation is now cut-free derivable here, because `andL` fires on
+    the buried conjunction directly (`pre = [atom 0]`). This is the receipt that the
+    structural repair actually fixed the named defect. -/
+theorem buried_conjunction_now_cutfree
+    {K : Nat -> Prop} {B : Nat -> Nat -> Prop} :
+    Seq K B
+      [Formula.atom 0, Formula.and (Formula.atom 1) (Formula.atom 2)]
+      (Formula.atom 1) :=
+  Seq.andL (pre := [Formula.atom 0]) (post := [])
+    (Seq.init (List.mem_cons_of_mem _ (List.mem_cons_self)))
 
 end LeanProofs.Witnessed.Gentzen
