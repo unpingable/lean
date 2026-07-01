@@ -133,6 +133,57 @@ Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibi
 
 ---
 
+## Custody-Indexed Sequents (v4, `LeanProofs/Scratch/`, fenced)
+
+> No custody chain, no derivation.
+
+### What v4 proves
+
+v4 proves that the bounded lifecycle calculi can be **crossed** — composed
+across judgment regimes — without silently erasing custody. The object is a
+parameterized indexed-sequent skeleton (fenced SCRATCH, CI-covered as the
+`CustodyIndexedSequents` build target):
+
+- a generic `System` of indexed judgments and bridge-cut rules, with ONE
+  discipline condition (*no rule concludes an evidence judgment*) from which
+  the walls follow by induction at arbitrary depth;
+- **the normal-form theorems** — `entail_iff_rooted` and, with derived
+  evidence, `eentail_iff_read_rooted`: derivability is *equivalent* to
+  evidence-rooted chaining. Every cut, at any depth, structurally carries its
+  evidence's read origin, derivation chain, and funding scope;
+- **structural read discipline as a parameter** — Cartesian (assumptions,
+  contraction free) and linear (resources, contraction priced) are instances
+  of one inductive, with a minimal theorem pair showing the parameter bites;
+- **non-transitivity with teeth** — composition exists only as paid
+  hop-by-hop derivation; there is no composite-bridge object; index
+  connectivity over-approximates derivability (bridges connect judgments,
+  not indices); route provenance distinguishes distinct paths to the same
+  target;
+- **both faces of the master screened** — `MasterFree` (universal indices)
+  and `EvidenceCurrencyFree` (universal evidence stamps), each with a
+  detection pair, each honestly labeled as *screening*, with named false
+  positives/negatives;
+- **derived evidence disciplined** — evidence may be minted by paid
+  derivations, but funding never widens along a step: universality is
+  inherited, never minted, and every crossing that consumes derived evidence
+  roots in read evidence whose original scope funded it.
+
+### What v4 does NOT prove
+
+- **No full Gentzen structural-rule algebra.** The parameterization covers
+  read/consumption discipline; split/merge/exchange/scope algebra is named
+  future work.
+- **No cut elimination.** Custody-preserving normalization — *normalization
+  cannot erase custody evidence* — is the named v5 target; the read-rooted
+  normal form is the shape v5 must preserve.
+- **No master `Admissible`,** no default bridge transitivity, no runtime
+  enforcement, no promotion by implication: the campaign modules are fenced
+  scratch, not promoted kernel authority.
+
+Per-theorem receipts: [`docs/V4-RELEASE-LEDGER.md`](docs/V4-RELEASE-LEDGER.md).
+
+---
+
 ## Bounded Lifecycle Calculi (v3, `LeanProofs/BoundedCalculi/`)
 
 > No artifact may testify beyond the stage it actually survived.

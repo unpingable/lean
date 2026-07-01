@@ -1,5 +1,166 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — v4.0.0 release prep (doc sweep)
+`CHANGELOG.md` (4.0.0 entry), `README.md` (v4 current release),
+`WHAT-THIS-PROVES.md` (v4 section), `docs/V4-RELEASE-LEDGER.md` (new),
+`CITATION.cff` (title/version/abstract — the 1.0-era "not a sequent calculus"
+non-claim explicitly re-scoped to the stable kernel surface, where it remains
+true), `lakefile.toml` (version 4.0.0; new `CustodyIndexedSequents` lean_lib +
+default target so the release object is CI-covered — the v3 lesson applied;
+build coverage ≠ promotion, modules remain SCRATCH),
+`docs/ROADMAP-bounded-calculi.md` (both releases recorded; v5 campaign named).
+
+- Release claim wording locked per audits: "structural READ discipline"
+  (not "all structural rules"); cut elimination explicitly deferred to
+  **v5 — Custody-Preserving Normalization**.
+
+## 2026-07-01 — final v4 blocker: derived evidence + evidence-currency screen
+`LeanProofs/Scratch/EvidenceCalculusSequent.lean` (new; additive). Codex
+verdict: **GREEN — v4 EARNED.**
+
+- **The coupled design**: `EvidenceCalculus` = a step relation with two laws —
+  `step_shape` (funding never widens along derivation: *the rule relation is
+  the sole authority map; derivation navigates it, never extends it*) and
+  `step_targets_evidence` (steps produce evidence only — fences the
+  derive-to-target bypass, a real hole found and closed at design time).
+  `EEntail` adds a `derive` rule to the policy-parameterized sequent;
+  derivation inputs are paid through the context policy.
+- **Enforcement (zero-axiom core)**: `echain_funding` (funding monotone
+  backward along chains); `stamps_are_inherited_not_minted` (universality
+  cannot be manufactured, only inherited — one line, the depth lives in the
+  laws); `derivation_funds_only_what_origin_funded` (every crossing consuming
+  derived evidence traces to a read origin whose original scope included that
+  crossing — existential inclusion, honestly scoped per audit);
+  **`eentail_iff_read_rooted`** (audit-requested capstone: derivability ≡
+  read-rooted normal form — every cut at any depth structurally carries its
+  read origin, chain, and funding; no derivation shape lacks its custody
+  chain).
+- **Screening**: `UniversalStamp` (shape inspection — the rule relation at the
+  evidence position, not index topology); `EvidenceCurrencyFree` (universality
+  exists only degenerately). Detection pair: fenced FORBIDDEN `stampSystem`
+  caught (`stamp_system_not_currency_free`), diamond clean
+  (`diamond_no_universal_stamp`). Named false negative: multi-currency
+  evidence below the universal threshold (consumer policy question).
+- Contract notes advertised: closed-index wall over `EEntail` requires the
+  evidence calculus to respect the index set (`hstepclosed`); over-wide rule
+  relations are honest authorization, not laundering.
+- **ALL v4 BLOCKERS CLOSED.** v4 tag decision → operator.
+
+## 2026-07-01 — v4 blocker 3: structural-policy parameterization
+`LeanProofs/Scratch/StructuralPolicySequent.lean` (new; additive — the audited
+skeleton is untouched and recovered as an instance)
+
+- **Context discipline is now a system parameter.** `ContextPolicy` abstracts
+  the one operation both disciplines share — `Reads c j c'` ("obtain a
+  judgment, leaving a residual") — with two laws; `PEntail` threads residuals
+  through both premises of every cut (`Γ ⊢ j ⊣ Γ'`). Cartesian instance:
+  reading is free. Linear instance: reading is `ResourceSequent.Consumes`.
+- **The pricing pair** (the slice's reason to exist): one system, one rule
+  citing the same judgment twice — `cartesian_contraction_free` derives from
+  a single occurrence; `linear_contraction_priced` proves the SAME derivation
+  impossible under the linear policy; `linear_pay_twice` shows two occurrences
+  fund it. Contraction is a policy with theorems, not an assumption. Plus
+  `linear_depletion` (monotone) and `linear_every_derivation_pays` (strict,
+  audit-requested: nothing derives for free).
+- **The v4 discipline stack re-proved parametrically** over any conforming
+  policy: evidence-only-by-reads, the normal form (`pentail_iff_rooted`),
+  provenance chains (`pentail_provenance` — each hop's evidence obtained by a
+  licensed read at its thread state), closed-index wall. Zero-axiom core.
+- **Cartesian collapse** (`pentail_cartesian_iff`, zero-axiom, bidirectional
+  induction): the parameterized skeleton collapses to the audited `Entail` —
+  S4 and the diamond recover compositionally.
+- Codex YELLOW → tightened: honestly named READ-DISCIPLINE parameterization
+  (no primitive split/merge/exchange algebra — named extension, not claimed);
+  strict payment theorem added. Confirmed remaining blockers: derived-evidence
+  extension; EvidenceCurrencyFree. Named follow-up: full SEQ2/SEQ3 equivalence
+  (not claimed here).
+
+## 2026-07-01 — v4 blockers 1+2: MasterFree + second instance (+ mismatch wall)
+`LeanProofs/Scratch/CustodyIndexedSequent.lean` (extended; operator ruling: no
+interim DOI, plow through)
+
+- **MasterFree** (blocker 1): a master is formalized as a **universal
+  crossroads** — a substantive index every other substantive index bridges
+  into and that bridges out to every other; `crossroads_mediates_every_pair`
+  states the god-calculus signature; `s4_master_free` proves the S4 system
+  clean by finite case analysis (codex: non-vacuous). Honest caveats in-file
+  per audit: this is universal-hub *screening*, not anti-authority
+  enforcement — false negative = evidence-currency master (an evidence-only
+  token funding every bridge; `EvidenceCurrencyFree` screening named as
+  follow-up), false positive = benign router (index-level screening
+  over-approximates).
+- **DiamondInstance** (blocker 2): genuinely independent second instance —
+  branching topology A→B→D vs A→C→D; provenance chains *name the route
+  taken*; `diamond_unfunded_route_closed` (reaching the target one way does
+  not open the other way; uses the discipline).
+- **MidpointMismatch wall** (surfaced by the MasterFree design):
+  `index_connectivity_does_not_imply_derivability` — A→B and B→C hold at the
+  index level, everything funded, composite still underivable because the
+  midpoint judgments differ (`b1` produced, `b2` consumed). Bridges connect
+  judgments, not indices; index analysis is a smell detector, not a
+  conversion license. Zero-axiom.
+- Remaining v4 blockers: structural-policy parameterization (linear contexts
+  as a system parameter — merge the Split lane); derived-evidence extension
+  (evidence minted through its own paid calculus — the validator shape);
+  EvidenceCurrencyFree screening.
+
+## 2026-07-01 — v4 CANDIDATE: generic custody-indexed sequent skeleton
+`LeanProofs/Scratch/CustodyIndexedSequent.lean` (new; post-v3.0.0; does NOT tag
+v4 — release classification is the operator's)
+
+- **The generalization slice**: `System (J, Ix, ix, Rule)` + generic `Entail`.
+  ONE discipline condition — `EvidenceNeverConcluded` (no rule concludes an
+  evidence judgment) — yields by induction, for every conforming system:
+  evidence enters only by assumption (generic no-default-transitivity: nothing
+  can synthesize evidence, composite or otherwise); **`entail_iff_rooted`, the
+  normal-form theorem** — derivability is EQUIVALENT to evidence-rooted
+  chaining, i.e. no derivation shape exists in which a cut's evidence is not
+  in custody, at any depth (the "cut cannot erase bridge evidence" target in
+  characterization form); provenance chains as first-class enumerable lists;
+  the generic index-closure wall (needs no discipline at all); weakening
+  declared as the Cartesian polarity (linear contexts = resource lane, named).
+- **S4 recovered as an instance**: `s4_entail_iff` bidirectional,
+  rule-for-rule; the generic machinery replays the specimen's provenance and
+  no-synthesis theorems. **ENTIRE FILE ZERO-AXIOM** (not even propext).
+- Codex verdict: **YELLOW, v3.1-first** — genuinely generic (binary Cartesian
+  rule class), normal form real (no erasure countermodel constructible), no
+  composite leak, recovery real. Fixed per audit: anti-master header overclaim
+  retracted (the skeleton provides no master but does not prevent one;
+  `MasterFree` predicate is v4 design work); multi-role exclusion stated
+  (derived certificates / evidence-producing subcalculi — the validator shape
+  — are the other v4 frontier).
+- **v4 blockers (named)**: MasterFree wellformedness predicate + theorem; a
+  second independent instance; structural-policy parameterization (merge the
+  Split-based linear lane); derived-evidence extension.
+
+## 2026-07-01 — Sequent 4: bridge composition + non-transitivity (ladder complete)
+`LeanProofs/Scratch/BridgeCompositionSequent.lean` (new; post-v3.0.0, opens the
+Custody-Indexed Sequents campaign)
+
+- Composition finally exists — as **two explicit cuts** through the shared
+  intermediate judgment (Temporal→Surface→Boundary, boundary hop specimen-typed
+  on the real `BoundaryArtifact.MayMint`, exposure class). Five calculus
+  indices; deliberately no `bridgeTB` index for a composite to live in; no
+  rule concludes evidence of any kind.
+- **Zero-axiom syntactic layer:** `composition_cannot_erase_bridge_evidence`
+  (every mint traces to its full custody chain; bounded-normal-form scope
+  stated per audit), `mint_without_downstream_axioms_requires_all_three`
+  (audit-requested forcing version: strip the assumed-outright escape hatches
+  and all three evidences are mandatory), `no_free_transitivity`,
+  `first_bridge_alone_does_not_compose` (deriving hop one accumulates zero
+  boundary authority), and the S1 temporal wall re-established under the
+  extended rule set (each new cut pays its preservation case).
+- Soundness `[propext]`: TS cut consumes the temporal premise (S0 discipline);
+  SB cut discharges from boundary evidence alone — declared as the
+  non-transitivity content; codex ruled the pairing premise **syntactically
+  load-bearing** (deleting it collapses the provenance chain).
+- Honesty pair: sealed-boundary evidence is syntactically assumable,
+  semantically unsatisfiable (`sealed_boundary_evidence_unsatisfiable`);
+  soundness never converts.
+- Sequent ladder S0–S4 COMPLETE. Next horizon: v4 custody-indexed Gentzen —
+  generalize the bounded-normal-form provenance to induction over a rule set
+  with real left/right structural rules.
+
 ## 2026-07-01 — v3 release prep addenda
 `lakefile.toml`, `WHAT-THIS-PROVES.md`, `README.md`, `CHANGELOG.md`
 

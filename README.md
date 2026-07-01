@@ -4,7 +4,55 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: 3.0.0 — Bounded Lifecycle Calculi
+## Current release: 4.0.0 — Custody-Indexed Sequents
+
+*A Lean proof release for custody-aware authority semantics.*
+
+**v4.0.0 introduces a parameterized indexed-sequent skeleton** — the proof
+discipline for how the v3 lifecycle calculi may be *crossed* without silently
+erasing custody. The campaign modules live under `LeanProofs/Scratch/`
+(custody class SCRATCH, fenced, CI-covered as their own build target
+`CustodyIndexedSequents` — build coverage, not promoted kernel authority).
+
+What v4 proves:
+
+- **structural read discipline is explicit** — context behavior is a system
+  parameter, and contraction is *priced*: the same rule from the same single
+  assumption derives under the Cartesian instance and is refused under the
+  linear instance (`cartesian_contraction_free` / `linear_contraction_priced`
+  / `linear_pay_twice`);
+- **bridge composition preserves provenance** — a composed crossing carries
+  every hop's evidence; nothing is fused or forgotten
+  (`composition_cannot_erase_bridge_evidence`);
+- **index connectivity does not imply derivability** — bridges connect
+  *judgments*, not indices; a mismatched midpoint kills the composite even
+  when the index graph says "connected";
+- **route provenance matters** — two routes to the same target carry distinct
+  evidence chains, and an unfunded route stays closed;
+- **master shapes are screened on both faces** — universal *indices*
+  (`MasterFree`) and universal *evidence* (`EvidenceCurrencyFree`), each with
+  a detection pair and honestly-named screening limits;
+- **derived evidence cannot become universal bridge currency** — evidence may
+  be produced by paid derivations, but funding never widens along derivation
+  (*the rule relation is the sole authority map; derivation navigates it,
+  never extends it*), and universality is inherited, never minted;
+- **every cross-index derivation roots in read evidence whose original scope
+  funded it** — the capstone `eentail_iff_read_rooted`: derivability is
+  *equivalent* to read-rooted normal form. No custody chain, no derivation.
+
+The central invariant remains: **no artifact may testify beyond the stage it
+actually survived.**
+
+v4 does not define a master `Admissible` judgment, does not introduce default
+bridge transitivity, does not claim runtime enforcement, and does not claim
+full Gentzen cut elimination — structural coverage is read discipline
+(contraction/consumption), not the full structural-rule algebra. The explicit
+follow-up is **v5: Custody-Preserving Normalization**.
+
+Release inventory with audited theorem receipts:
+[`docs/V4-RELEASE-LEDGER.md`](docs/V4-RELEASE-LEDGER.md).
+
+## 3.0.0 — Bounded Lifecycle Calculi
 
 *A Lean proof release for custody-aware authority semantics.*
 

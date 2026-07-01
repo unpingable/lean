@@ -163,17 +163,23 @@ Required theorem shapes:
 - **L6** — `CheckpointSettlement` scratch (§8). *(done, audited; occurrence-linear
   `Split` formulation, multiplicity conserved; **promoted 2026-07-01**)*
 
-Post-L6 — **release boundary ratified (2026-07-01):** the family ships as
-**v3.0.0 — Bounded Lifecycle Calculi** (umbrella: Custody-Aware Authority
-Semantics). The next campaign is **Custody-Indexed Sequents** (v3.x): S0–S3
-exist as fenced scratch (`BridgeSequent`, `ExecutionSequent`,
-`ExecutionObligationSequent`), **SEQ4 (bridge composition / non-transitivity
-law) is the next slice**, unbuilt by design until then. The v4 ambition — a
-custody-indexed Gentzen system, with *"no cross-index cut elimination can erase
-bridge evidence"* as the target theorem — stays roadmap prose, not a release
-name. Runtime (Bridge Foundry / compiled authority) stays out of this roadmap.
-Release inventory: `docs/V3-RELEASE-LEDGER.md`. Campaign log:
-`docs/CHANGELOG-scratch-campaign.md`.
+Post-L6 — **both release boundaries shipped (2026-07-01):** the family shipped
+as **v3.0.0 — Bounded Lifecycle Calculi**; the Custody-Indexed Sequents
+campaign then completed (S0–S4 + the generalization: generic skeleton,
+MasterFree + diamond + mismatch wall, structural-policy parameterization,
+derived evidence + currency screen) and ships as **v4.0.0 — Custody-Indexed
+Sequents** (ledgers: `docs/V3-RELEASE-LEDGER.md`, `docs/V4-RELEASE-LEDGER.md`;
+campaign log: `docs/CHANGELOG-scratch-campaign.md`). The capstone,
+`eentail_iff_read_rooted`: derivability is equivalent to read-rooted normal
+form — no custody chain, no derivation.
+
+**Next campaign: v5 — Custody-Preserving Normalization.** Target theorem: *no
+normalization/cut-elimination step may erase custody evidence*; the
+read-rooted normal form is the invariant normalization must preserve. Also
+queued: v3.x coverage odds (non-toy non-transfer targets, `MustSurvive`
+parameterization, execution-custody actuator boundary) and named follow-ups
+(structural-rule algebra; SEQ2/SEQ3 equivalence under the linear policy).
+Runtime (Bridge Foundry / compiled authority) stays out of this roadmap.
 
 Each slice is fenced ANNEX/SCRATCH until it clears §4; none imports into a promoted kernel
 without an operator decision.

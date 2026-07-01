@@ -6,6 +6,45 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 4.0.0 — Custody-Indexed Sequents (2026-07-01)
+
+*A Lean proof release for custody-aware authority semantics.*
+
+4.0.0 introduces a **parameterized indexed-sequent skeleton**: the proof
+discipline for crossing the v3 lifecycle calculi without silently erasing
+custody. Generalizes the post-v3 sequent ladder (S0–S4) into a proof theory
+where: structural **read discipline is explicit** (contraction priced across
+Cartesian and linear context instances — one rule, one assumption, derivable
+under one policy and refused under the other); **bridge composition preserves
+provenance** (`composition_cannot_erase_bridge_evidence`); **index
+connectivity does not imply derivability** (bridges connect judgments, not
+indices); **route provenance matters** (diamond instance; unfunded routes stay
+closed); **master shapes are screened on both faces** (`MasterFree` for
+universal indices, `EvidenceCurrencyFree` for universal evidence stamps, each
+with a detection pair and named screening limits); and **derived evidence
+cannot become universal bridge currency** (funding never widens along
+derivation; universality is inherited, never minted). The capstone,
+`eentail_iff_read_rooted` (zero-axiom): derivability with derived evidence is
+EQUIVALENT to read-rooted normal form — every cross-index derivation roots in
+read evidence whose original scope funded it.
+
+Custody: the campaign modules (`BridgeSequent`, `ExecutionSequent`,
+`ExecutionObligationSequent`, `BridgeCompositionSequent`,
+`CustodyIndexedSequent`, `StructuralPolicySequent`,
+`EvidenceCalculusSequent`) remain **Custody-Class: SCRATCH** — fenced sequent
+discipline, not promoted kernel authority — and are CI-covered as their own
+build target (`CustodyIndexedSequents`; build coverage ≠ promotion).
+`LeanProofs.lean` unchanged. No master `Admissible`; no default bridge
+transitivity; no runtime claim; structural coverage is read discipline, NOT
+the full structural-rule algebra; **full Gentzen cut elimination is not
+claimed** — the explicit follow-up is v5: Custody-Preserving Normalization.
+
+Inventory with audited theorem receipts: `docs/V4-RELEASE-LEDGER.md`. Campaign
+trail: `docs/CHANGELOG-scratch-campaign.md`.
+
+> v3 proved the family. v4 proves the family can be crossed without silently
+> erasing custody.
+
 ## 3.0.0 — Bounded Lifecycle Calculi (2026-07-01)
 
 *A Lean proof release for custody-aware authority semantics.*

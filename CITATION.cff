@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Bounded Lifecycle Calculi: A Lean Proof Release for Custody-Aware Authority Semantics"
-version: "3.0.0"
+title: "Custody-Indexed Sequents: A Lean Proof Release for Custody-Aware Authority Semantics"
+version: "4.0.0"
 date-released: "2026-07-01"
 type: software
 authors:
@@ -67,4 +67,23 @@ abstract: >-
   library, with a build-graph-enforced no-Mathlib boundary and an
   axiom-footprint regression gate. It is additive: the 1.x
   Admissibility surface is unchanged, and it is not a revival of the
-  retired maximal "Admissibility Calculus".)
+  retired maximal "Admissibility Calculus".) (3.0.0 completes the
+  bounded lifecycle-calculi family: nine ANNEX release-surface calculi
+  — temporal custody, surface projection, refusal/denial, boundary
+  artifacts, obligation/residue, safety preservation, execution
+  custody, boot/genesis, checkpoint settlement — with no master
+  Admissible judgment; the aggregate import proves checkability only.)
+  (4.0.0 adds the Custody-Indexed Sequents campaign: a parameterized
+  indexed-sequent skeleton, fenced under Scratch and CI-covered as its
+  own build target, where structural read discipline is explicit,
+  contraction is priced across Cartesian and linear instances, bridge
+  composition preserves provenance, index connectivity does not imply
+  derivability, master shapes are screened on both faces — universal
+  indices and universal evidence — and derived evidence cannot become
+  universal bridge currency: every cross-index derivation roots in
+  read evidence whose original scope funded it. The 1.0-era "not a
+  sequent calculus" non-claim was scoped to the stable kernel surface
+  and remains true of it; v4's sequent discipline is a distinct,
+  fenced object beside it, and full Gentzen cut elimination is
+  explicitly NOT claimed — custody-preserving normalization is the
+  named v5 target.)

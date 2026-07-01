@@ -1,7 +1,7 @@
 name = "lean_proofs"
-version = "3.0.0"
+version = "4.0.0"
 keywords = ["math"]
-defaultTargets = ["LeanProofs", "Witnessed", "BoundedCalculi"]
+defaultTargets = ["LeanProofs", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -44,3 +44,21 @@ name = "BoundedCalculi"
 srcDir = "."
 roots = ["LeanProofs.BoundedCalculi"]
 globs = ["LeanProofs.BoundedCalculi", "LeanProofs.BoundedCalculi.+"]
+
+# v4.0.0 (2026-07-01): the Custody-Indexed Sequents campaign modules. Build
+# coverage for the v4 release object (the v3 lesson: a release headline must
+# not be CI-invisible). The files remain Custody-Class: SCRATCH -- build
+# coverage is NOT promotion; these are fenced sequent-discipline modules, not
+# promoted kernel authority, and LeanProofs.lean does not import them.
+[[lean_lib]]
+name = "CustodyIndexedSequents"
+srcDir = "."
+roots = [
+  "LeanProofs.Scratch.BridgeSequent",
+  "LeanProofs.Scratch.ExecutionSequent",
+  "LeanProofs.Scratch.ExecutionObligationSequent",
+  "LeanProofs.Scratch.BridgeCompositionSequent",
+  "LeanProofs.Scratch.CustodyIndexedSequent",
+  "LeanProofs.Scratch.StructuralPolicySequent",
+  "LeanProofs.Scratch.EvidenceCalculusSequent",
+]
