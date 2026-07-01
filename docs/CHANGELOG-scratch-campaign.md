@@ -1,5 +1,71 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — post-v4 F2: fluency as evidence-currency attack
+`LeanProofs/Scratch/FluencySequent.lean` (new). **Entire file zero-axiom.**
+
+- **The thesis**: confidence/fluency is claim-BLIND; reliance bridges demand
+  claim-INDEXED provenance. The blindness is the load-bearing modeling choice
+  (a witnessed confidence-about-c would be a different, indexed evidence
+  species — stated, not smuggled).
+- **The root theorem** (`reliance_roots_in_provenance`): under ANY evidence
+  calculus over the clean system, a derivation of `mayRely c` either assumed
+  reliance outright or holds `provenance c` literally in context. Confidence,
+  recall, and claims cannot be the root. HighConfidence ⊬ MayRely as a
+  two-case normal form, at any depth.
+- **The upgrade killer** (`confidence_cannot_be_upgraded_to_provenance`, via
+  the one-shot `steps_into_provenance_come_from_provenance` + chain version):
+  no evidence calculus can derive provenance from confidence — provenance
+  requires its own read, at every confidence level. Fluency ⊬ Provenance,
+  constructively.
+- Corollaries with explicit contexts (`high_confidence_does_not_mint_may_rely`,
+  `recall_does_not_authorize_reliance`) + the positive pair
+  (`provenance_funds_reliance`).
+- **The attack specimen** (`fluentSystem`, fenced FORBIDDEN): the clean system
+  plus claim-blind sway rules — nothing dropped (codex caught the first
+  draft narrowing the obligation space; fixed to a true one-family minimal
+  pair). Confidence becomes a `UniversalStamp`; the currency screen catches
+  the system. *A system that lets fluency fund reliance has installed a
+  universal currency, and the screen names it.*
+- Doctrine source cited (readout arc: HighConfidence⊬MayRely, Fluency⊬
+  Provenance, Recall⊬Reliance): this is its sequent-theoretic face —
+  *confidence does not lie; confidence exceeds jurisdiction* — here,
+  jurisdiction = funding scope, and confidence has none.
+- Codex YELLOW → minimal-pair fix applied. Named for F3: entailment-root
+  theorem for provenance from arbitrary contexts, then caveat inheritance
+  from the provenance root into `mayRely`.
+
+## 2026-07-01 — post-v4 F1: Δt as derivation step (+ campaign map captured)
+`LeanProofs/Scratch/DeltaTSequent.lean` (new), `docs/POST-V4-CAMPAIGN.md`
+(new — ratified F1–F7/C1–C3 ordering, deferred list, the binding guard).
+Post-v4 work; v4.0.0 was tagged and released clean (CI green, DOI minted)
+before any of this landed.
+
+- **The thesis**: time passing is an evidence-derivation step; the v4
+  anti-currency law (`step_shape`) IS freshness decay. Evidence carries a
+  remaining-validity budget; a tick spends one unit; demanding uses require
+  minimum remaining budget.
+- **The killer theorem** (`refresh_is_inexpressible`, zero-axiom): no
+  evidence calculus over the Δt system can contain a refresh step — the
+  discipline's law makes it UNSTATABLE, not merely refused. Renewal requires
+  new evidence (a new read), never derivation from the old. Generalized per
+  audit to the full characterization `admissible_steps_decay` /
+  `admissible_chains_decay` (zero-axiom): ANY admissible step into evidence
+  comes from evidence with at least as much budget, for every calculus over
+  the system.
+- **The wall** (`stale_context_cannot_derive_demanding_use`, zero-axiom):
+  stale-holding contexts cannot derive demanding uses at any depth — proved
+  through the read-rooted machinery (roots-in-read + chain decay +
+  membership). Cartesian policy; linear version named follow-up.
+- **The exploit pair** (`delta_t_exploit_blocked`): same origin — the aging
+  chain `ev R →* ev (R−n)` exhibited, not asserted — funds at hold time,
+  refused after elapsed time. Valid-then ⊬ valid-now, formally.
+- Codex YELLOW → tightened: system-relative scope of the killer theorem
+  stated; model-encodes-decay honesty (hosting claim, not ontology of time —
+  per the campaign guard); Cartesian restriction flagged; correspondence to
+  TemporalCustody/ExecutionSequent kept as cited analogy, not wired
+  equivalence.
+- Next per the ratified order: **F2 — fluency as evidence-currency attack.**
+
 ## 2026-07-01 — v4.0.0 release prep (doc sweep)
 `CHANGELOG.md` (4.0.0 entry), `README.md` (v4 current release),
 `WHAT-THIS-PROVES.md` (v4 section), `docs/V4-RELEASE-LEDGER.md` (new),
