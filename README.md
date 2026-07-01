@@ -44,6 +44,10 @@ named-not-claimed).
 Release inventory with per-module theorem receipts:
 [`docs/V3-RELEASE-LEDGER.md`](docs/V3-RELEASE-LEDGER.md). Campaign audit
 trail: [`docs/CHANGELOG-scratch-campaign.md`](docs/CHANGELOG-scratch-campaign.md).
+Lineage — Gentzen, linear logic, authorization logic, proof-carrying
+code/authorization, TLA, PROV, IFC, scoped credentials, supply-chain
+attestation — and what is distinct here: see *Relation to prior work* in
+[`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md).
 The umbrella architecture (Custody-Aware Authority Semantics) and the runtime
 lanes (Bridge Foundry / compiled authority) live in the
 [papers repo](https://github.com/unpingable/papers)'s ToolTheory roadmap; v3

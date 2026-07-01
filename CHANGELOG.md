@@ -3,7 +3,8 @@
 Release history for **Admissibility Kernels** (Lean stack). Versions correspond
 to Zenodo deposits under the concept DOI
 [10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
-release tag drives the deposit. Versions prior to 1.2.0 are recorded on Zenodo.
+**release creation** (not the tag alone) mints the version DOI and drives the
+deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
 ## 3.0.0 — Bounded Lifecycle Calculi (2026-07-01)
 

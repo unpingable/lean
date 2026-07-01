@@ -176,6 +176,59 @@ footprints (all ≤ `[propext, Quot.sound]`, many zero-axiom):
 
 v3's proof claim is **local-family completion, not global admissibility**.
 
+### Relation to prior work
+
+This work combines proof-theoretic judgment discipline, provenance/custody,
+authorization logic, temporal validity, and substructural resource accounting
+into bounded lifecycle calculi for operational artifacts. It sits near several
+established lines of work, and is not proposed as a replacement for any of
+them. It composes their concerns around a narrower question: **when an
+operational artifact moves through a lifecycle, what later-stage authority may
+it claim — and which conversions must remain impossible without explicit
+bridge evidence?** The recurring theorem shape is
+`stage-n artifact ⇏ stage-(n+1) authority` unless the next stage's own witness
+or an explicit bridge exists.
+
+- **Gentzen-style sequent calculi / cut elimination** — the proof-theoretic
+  ancestor for explicit contexts, structural rules, and cut as a rule to be
+  licensed, not assumed. The v3.x custody-indexed sequent scratch borrows this
+  discipline to prevent unauthorized movement between judgment regimes.
+- **Linear and substructural logics** (Girard) — the ancestor for the resource
+  side: tickets, obligations, residue, and receipts that cannot be freely
+  duplicated or discarded. Here narrowed to operational custody.
+- **Access-control calculi / authorization logic** (Abadi, Burrows, Lampson,
+  Plotkin) — those systems ask whether a *principal's request* should be
+  granted; this work shifts the object to what an *artifact may testify to*
+  across lifecycle stages.
+- **Proof-carrying authentication/authorization** (Appel & Felten) and
+  **proof-carrying code** (Necula) — the producer/checker split: expensive
+  obligations discharged offline, a small deterministic checker at the point
+  of use. Bridge evidence resembles a proof-carrying artifact, but the target
+  is scoped authority *conversion* between judgments, not access permission.
+- **Temporal/action logics** (Lamport, TLA) — adjacent to Temporal Custody,
+  which is narrower: the anti-laundering wall between citation-time validity
+  and use-time authority.
+- **Provenance models** (W3C PROV/PROV-O) and **supply-chain attestation**
+  (in-toto, SLSA) — these bind artifacts to the processes that produced them.
+  Here, provenance alone is never authority: a receipt, log, checkpoint, or
+  attestation may establish where an artifact came from while still failing to
+  authorize a later-stage claim. The bounded calculi make those non-authorities
+  explicit theorems.
+- **Information-flow control** (Denning's lattice model) and **scoped
+  credentials** (SPKI/SDSI, macaroons) — related boundary disciplines,
+  reframed: a crossing must state what it carries, what it drops, and what it
+  explicitly does not transfer, as artifact-minting authority rather than
+  permitted flow.
+
+The distinct object is **bounded lifecycle calculi with explicit non-collapse
+walls for operational artifacts** — a proof discipline for preventing
+artifacts from testifying beyond the stage they survived. The novelty claim is
+the welding, not the ancestors.
+
+A fuller two-sided related-work map (representation-side authorization
+lineages and demand-side admissibility lineages) is maintained in the papers
+repo under `working/tooltheory/` (admissibility related-work map).
+
 ---
 
 ## Witnessed Derivation Calculus (`LeanProofs/Witnessed/`)

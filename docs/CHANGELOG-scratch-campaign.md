@@ -1,5 +1,26 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — v3 release prep addenda
+`lakefile.toml`, `WHAT-THIS-PROVES.md`, `README.md`, `CHANGELOG.md`
+
+- **CI-coverage gap closed (operator-spotted):** nothing globbed
+  `BoundedCalculi/` — the `LeanProofs` lib owns only its root module, which
+  deliberately does not import the aggregate — so the v3 release surface was
+  invisible to `lake build`/CI (explains the earlier full-build-green-while-
+  scratch-broken anomaly). Added a `BoundedCalculi` lean_lib + default target;
+  bumped package version to 3.0.0. Build coverage, not promotion: the
+  `LeanProofs.lean` boundary is unchanged. `Scratch/` stays uncovered by
+  design (compile-is-contact, checked per-file by the campaign loop).
+- **Prior-art section** added to `WHAT-THIS-PROVES.md` (Relation to prior
+  work): Gentzen/cut, Girard/linear logic, ABLP access-control calculus,
+  Appel–Felten PCA, Necula PCC, Lamport/TLA, W3C PROV, Denning IFC,
+  SPKI/SDSI + macaroons, in-toto/SLSA — with the anti-flattening claim (the
+  distinct object is bounded lifecycle calculi with explicit non-collapse
+  walls; the welding is the novelty, not the ancestors) and a pointer to the
+  fuller two-sided map in the papers repo. README links it.
+- **DOI wording corrected:** GitHub release creation mints the DOI, not the
+  tag alone.
+
 ## 2026-07-01 — v3 promotion executed (Option A): Bounded Lifecycle Calculi
 `LeanProofs/BoundedCalculi/{ExecutionCustody,BootKernel,CheckpointSettlement}.lean`
 (moved from Scratch, ANNEX release-surface headers),

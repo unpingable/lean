@@ -1,7 +1,7 @@
 name = "lean_proofs"
-version = "2.0.0"
+version = "3.0.0"
 keywords = ["math"]
-defaultTargets = ["LeanProofs", "Witnessed"]
+defaultTargets = ["LeanProofs", "Witnessed", "BoundedCalculi"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -30,3 +30,17 @@ name = "Witnessed"
 srcDir = "."
 roots = ["LeanProofs.Witnessed"]
 globs = ["LeanProofs.Witnessed", "LeanProofs.Witnessed.+"]
+
+# v3.0.0 (2026-07-01): the Bounded Lifecycle Calculi release surface. Its own
+# lean_lib + default target so `lake build` / CI covers the ANNEX family —
+# previously nothing globbed it (the LeanProofs lib owns only its root module,
+# which deliberately does not import BoundedCalculi), so the release surface
+# was invisible to the default build. Build coverage is NOT promotion: the
+# LeanProofs.lean import boundary is unchanged and the aggregate stays a
+# compile marker. Scratch/ remains uncovered by design (compile-is-contact,
+# checked per-file by the campaign loop, not by CI).
+[[lean_lib]]
+name = "BoundedCalculi"
+srcDir = "."
+roots = ["LeanProofs.BoundedCalculi"]
+globs = ["LeanProofs.BoundedCalculi", "LeanProofs.BoundedCalculi.+"]
