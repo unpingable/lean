@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Admissibility Kernels: A Lean Stack for Authority-Bound State Transitions"
+title: "Bounded Lifecycle Calculi: A Lean Proof Release for Custody-Aware Authority Semantics"
+version: "3.0.0"
+date-released: "2026-07-01"
 type: software
-version: "1.4.0"
-date-released: "2026-06-27"
 authors:
   - family-names: Beck
     given-names: James
