@@ -1,5 +1,35 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — post-v4 F3–F5: caveat inheritance + the two docs artifacts
+`LeanProofs/Scratch/CaveatSequent.lean` (new; **entirely zero-axiom**; codex
+first-pass GREEN — first of the campaign), `docs/AG-AUDIT-CHECKLIST.md` (F4),
+`docs/ZOO-TEMPLATE.md` (F5).
+
+- **F3 — the duality**: with demand semantics "a use must accept every caveat
+  its funding evidence carries," funding-antitone (`step_shape`) IS
+  burden-monotone. One law, two faces: Δt (funding narrows as budget decays)
+  and caveats (burdens grow as evidence derives).
+  `admissible_steps_grow_caveats` (one-shot, the F1/F2 pattern);
+  `caveat_dropping_is_inexpressible` (cleansing requires new evidence, never
+  derivation); `derived_evidence_inherits_caveats` (chains);
+  `burdened_evidence_cannot_fund_unaccepting_use` +
+  `all_burdened_context_cannot_fund_unaccepting_use` (audit-requested
+  context-general wall); positive + minimal pairs. **Closes the parked 4th
+  refusal slice** (burden preservation under derivation; boundary transfer
+  explicitly out of scope). Named unscreened attack: caveat-blind demand
+  (`CaveatBlind` screen = follow-up).
+- **F4 — AG audit checklist**: the v4/post-v4 screens and walls translated
+  into applicable questions over live constellation schemas (receipt kinds ×
+  gates; crossroads; midpoint matching; provenance rooting; refresh lanes;
+  burden survival; linearity; compaction custody) — each item citing its
+  backing theorem and its screening caveats. For the AG session to apply;
+  findings live in AG's loop, not here.
+- **F5 — zoo cage template**: the six-part cage schema (FORBIDDEN specimen /
+  attack shape / catch theorem / TRUE-minimal-pair contrast / caveats /
+  expected refusal) + the C1 inventory (11 cages; 4 effectively done, 7 TODO,
+  1 needs a new screen designed first). Pattern proven by `stampSystem` and
+  `fluentSystem`.
+
 ## 2026-07-01 — post-v4 F2: fluency as evidence-currency attack
 `LeanProofs/Scratch/FluencySequent.lean` (new). **Entire file zero-axiom.**
 
