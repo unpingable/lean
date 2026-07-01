@@ -6,10 +6,12 @@
 `CommutesNecessity.commutes_is_necessary` proves the commutation law is load-bearing;
 `Normalization.bridge_path_normal_form` is now the freshness instance with its name,
 signature, and `[propext]` footprint unchanged. Post-2.0 additive slices have now
-landed for direction #2 (positive-formula explicit cut-elimination) and direction #3
-(canonical resource/residue non-suppression), and direction #4 has an initial
-consolidation/refusal-witness slice landed. The larger proof-theory claims named
-below remain fenced unless explicitly opened later.
+landed for direction #2 (ND-style positive-fragment cut-elimination in `Formula`,
+plus a Gentzen sequent *presentation* in `Gentzen` — but **not** a Gentzen
+cut-elimination / Hauptsatz) and direction #3 (canonical resource/residue
+non-suppression), and direction #4 has an initial consolidation/refusal-witness
+slice landed. The larger proof-theory claims named below remain fenced unless
+explicitly opened later.
 
 **Release boundary.** The public-surface packaging gate shipped in **1.4.0**. The reserved
 structural WDC milestone shipped in **2.0.0**. Future frontier items do not inherit the
@@ -39,13 +41,35 @@ open because it is **hard**, not because it is speculative.
    rewrite system for arbitrary bridge graphs; the landed positive-fragment cut-elimination
    lives separately in `LeanProofs.Witnessed.Formula`.
 
-2. **Positive formula cut-elimination (LANDED slice; full proof theory remains separate).**
-   `LeanProofs.Witnessed.Formula` now supplies `Formula.atom`, `Formula.top`, conjunction,
-   disjunction, cut-free derivations (`CutFree`), explicit-cut derivations (`Deriv.cut`),
-   syntactic `cut_elimination`, and cut-free `cut_admissible`. This is the additive
-   positive fragment over WDC atoms and paid bridges. It does **not** claim implication,
-   negation, quantifiers, a full subformula theorem, or cut-elimination for arbitrary
-   future formula systems.
+2. **Positive formula + Gentzen presentation (LANDED slice; the Gentzen Hauptsatz is
+   NOT among what landed).** Three distinct states, kept explicitly apart so
+   "presentation" is never read as "cut-elimination":
+   - **(a) `Formula.lean` — ND-style positive-fragment cut-elimination LANDED.**
+     Supplies `Formula.atom`, `Formula.top`, conjunction, disjunction, cut-free
+     derivations (`CutFree`), explicit-cut derivations (`Deriv.cut`), syntactic
+     `cut_elimination`, and cut-free `cut_admissible`. This is *natural-deduction*
+     style (intro/elim, no left rules), so its "cut" is hypothesis substitution — a
+     real theorem, but it never performs a principal-cut reduction.
+   - **(b) `Gentzen.lean` — real LJ-style sequent PRESENTATION LANDED.** A
+     single-succedent calculus with genuine left/right rules (`andL`/`orL`/`topL`
+     decompose formulas in the context), cut-free `Seq`, with-cut `Deriv`, the trivial
+     inclusion `deriv_of_seq : Seq → Deriv`, soundness (`seq_sound` zero-axiom,
+     `deriv_sound` propext) against a shallow `Holds` semantics, and an embedding
+     `deriv_of_formula_cutFree : Formula.CutFree → Gentzen.Deriv`.
+   - **(c) Gentzen cut-elimination / Hauptsatz — NOT PROVEN.** There is no
+     `Deriv → Seq` eliminating the `cut` constructor by principal-cut reduction. The
+     stage machinery exists (left/right rules make principal cuts *possible*), but the
+     theorem that gives a Gentzen calculus its teeth is absent.
+
+   **The loop does not close yet.** `deriv_of_formula_cutFree` lands in `Deriv` (with
+   cut), not `Seq`: the `and_elim` cases still use `Deriv.cut`. So until (c) exists the
+   corpus **cannot** show ND-provable ⇒ cut-free-Gentzen-provable, and gets no
+   subformula property. All of this is the additive positive fragment `{∧, ∨, ⊤}` over
+   WDC atoms and paid bridges; it does **not** claim implication, negation, quantifiers,
+   classical logic, a full subformula theorem, or cut-elimination for arbitrary future
+   formula systems. *Next slice = the Gentzen Hauptsatz for positive additives (prove
+   `Deriv → Seq` for `{∧, ∨, ⊤}`): a mild fragment with real principal cuts, no
+   implication yet.*
 
 3. **Canonical resource non-suppression (LANDED residue slice; not global linear logic).**
    `LeanProofs.Witnessed.ResourceSequent` now supplies `ResourceFormula.claim`,
@@ -106,7 +130,7 @@ proof theory. Listed so it is on the register; not ranked against the proof-theo
 
 For *slice discipline*: composition-closure (#4) remains bounded and useful before
 heavier proof theory. For *research leverage*: the landed #2 result is the positive
-fragment; broader cut-elimination for richer future formula systems remains a separate
+formula/Gentzen fragment; broader cut-elimination for richer future formula systems remains a separate
 proof-theoretic prize. **A third edge, if the witnessed-clock lead (below) is live:** it
 adds a term *to the judgment* (new constructor/cases, perhaps a new termination-measure
 component), so it must precede any broader cut-rank argument over that judgment, or the

@@ -62,6 +62,11 @@ example {Kernel : Nat → Prop} {Bridge : Nat → Nat → Prop} {c : Nat}
 #check LeanProofs.Witnessed.Formula.Deriv
 #check LeanProofs.Witnessed.Formula.cut_admissible
 #check LeanProofs.Witnessed.Formula.cut_elimination
+#check LeanProofs.Witnessed.Gentzen.Seq
+#check LeanProofs.Witnessed.Gentzen.Deriv
+#check LeanProofs.Witnessed.Gentzen.seq_sound
+#check LeanProofs.Witnessed.Gentzen.deriv_sound
+#check LeanProofs.Witnessed.Gentzen.deriv_of_formula_cutFree
 #check LeanProofs.Witnessed.ResourceSequent.residue_preserved
 #check LeanProofs.Witnessed.ResourceSequent.erases_to_sequent
 #check LeanProofs.Witnessed.ResourceChecker.Checks
@@ -69,6 +74,31 @@ example {Kernel : Nat → Prop} {Bridge : Nat → Nat → Prop} {c : Nat}
 #check LeanProofs.Witnessed.ResourceChecker.checks_complete
 #check LeanProofs.Witnessed.ResourceChecker.checks_iff_derives
 #check LeanProofs.Witnessed.ResourceChecker.validated_denial_sound
+
+namespace GentzenPresentation
+
+open LeanProofs.Witnessed.Formula
+
+abbrev NatBridge : Nat -> Nat -> Prop := fun a b => b = a + 1
+
+example :
+    LeanProofs.Witnessed.Gentzen.Seq (fun _ : Nat => False) NatBridge
+      (([Formula.and (Formula.atom 0) (Formula.atom 1)] :
+        LeanProofs.Witnessed.Gentzen.Context Nat))
+      (Formula.atom 0) :=
+  LeanProofs.Witnessed.Gentzen.Seq.andL
+    (LeanProofs.Witnessed.Gentzen.Seq.init (List.Mem.head _))
+
+example :
+    LeanProofs.Witnessed.Gentzen.Seq (fun _ : Nat => False) NatBridge
+      (([Formula.or (Formula.atom 0) (Formula.atom 1)] :
+        LeanProofs.Witnessed.Gentzen.Context Nat))
+      Formula.top :=
+  LeanProofs.Witnessed.Gentzen.Seq.orL
+    LeanProofs.Witnessed.Gentzen.Seq.topR
+    LeanProofs.Witnessed.Gentzen.Seq.topR
+
+end GentzenPresentation
 
 namespace PositiveFormula
 

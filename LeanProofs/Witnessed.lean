@@ -16,8 +16,8 @@
 
   This is NOT a revival of the retired maximal "Admissibility Calculus": its scope is
   witnessed derivation across typed boundaries. The public surface now includes an
-  additive positive-formula cut-elimination layer and a canonical resource/residue
-  no-suppression slice. Model→world transfer, universal normalization, implication,
+  additive positive-formula cut-elimination layer, a Gentzen left/right sequent
+  presentation, and a canonical resource/residue no-suppression slice. Model→world transfer, universal normalization, implication,
   full linear logic, and full composition-classification remain fenced (see
   `docs/WITNESSED-FRONTIER-REGISTER.md`). Receipt names are frozen per MIGRATION §C.
 
@@ -44,6 +44,7 @@ import LeanProofs.Witnessed.Embedding
 import LeanProofs.Witnessed.Derivation        -- judgment `Lift`, composition, non-manufacture
 import LeanProofs.Witnessed.Sequent           -- contexted sequent presentation over `Lift`
 import LeanProofs.Witnessed.Formula           -- positive formulas + explicit-cut elimination
+import LeanProofs.Witnessed.Gentzen           -- Gentzen left/right sequent presentation
 import LeanProofs.Witnessed.ResourceSequent   -- occurrence-sensitive resources + residue preservation
 import LeanProofs.Witnessed.ResourceChecker   -- position-pinned validation relation
 import LeanProofs.Witnessed.Normalization      -- normal-form factorization (freshness instance of AbstractNormalization)

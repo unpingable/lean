@@ -177,7 +177,7 @@ inductive Derives
     (`ResourceChecker`), which is proved sound and complete against `Derives`; a
     metadata datatype is not validated merely because `Checks` is. Re-introducing
     certificates is a frontier item (see `docs/WITNESSED-FRONTIER-REGISTER.md`):
-    admit them only as a proof-carrying `ValidatedResourceCertificate` (a `Checks`
+    restore them only as a proof-carrying `ValidatedResourceCertificate` (a `Checks`
     proof rides along) or as executable data accepted by a Bool checker with a
     soundness/adequacy theorem. Until then the unchecked shape lives in
     `LeanProofs/Scratch/UncheckedResourceCertificate.lean` only (scratch, not on the
