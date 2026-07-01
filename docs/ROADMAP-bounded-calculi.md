@@ -147,14 +147,79 @@ Required theorem shapes:
 
 ## 10. Near-term Lean slice order
 
-- **L0** — capture this roadmap. *(this pass)*
+- **L0** — capture this roadmap. *(done — committed `b9bb63d`)*
 - **L1** — bounded-calculi theorem inventory (fill §2's strongest/weakest + §3
   classification per module) and anti-vacuity strengthening of the weakest.
-- **L2** — one bridge scratch, `Temporal → Surface` (§5).
-- **L3** — prove **no cross-calculus cut without an explicit bridge**.
-- **L4** — Execution Custody scratch (§6).
-- **L5** — `BootKernel` / `BaselineSettlement` scratch (§7).
-- **L6** — `CheckpointSettlement` scratch (§8).
+  *(done 2026-07-01 — `docs/V3-RELEASE-LEDGER.md`; anti-vacuity strengthenings
+  landed per-slice via the audit loop, see the campaign changelog)*
+- **L2** — one bridge scratch, `Temporal → Surface` (§5). *(done as scratch — see §11)*
+- **L3** — prove **no cross-calculus cut without an explicit bridge**. *(done as scratch:
+  real-shape wiring probe + `Scratch/BridgeSequent.lean`'s zero-axiom syntactic
+  `no_free_cross_cut` — the derivation-level wall)*
+- **L4** — Execution Custody scratch (§6). *(done, audited; `CommitUnknown` made
+  load-bearing; **promoted to `BoundedCalculi/` ANNEX release surface 2026-07-01**)*
+- **L5** — `BootKernel` / `BaselineSettlement` scratch (§7). *(done, audited;
+  witness/coverage invariants + anti-skip wall; **promoted 2026-07-01**)*
+- **L6** — `CheckpointSettlement` scratch (§8). *(done, audited; occurrence-linear
+  `Split` formulation, multiplicity conserved; **promoted 2026-07-01**)*
+
+Post-L6 — **release boundary ratified (2026-07-01):** the family ships as
+**v3.0.0 — Bounded Lifecycle Calculi** (umbrella: Custody-Aware Authority
+Semantics). The next campaign is **Custody-Indexed Sequents** (v3.x): S0–S3
+exist as fenced scratch (`BridgeSequent`, `ExecutionSequent`,
+`ExecutionObligationSequent`), **SEQ4 (bridge composition / non-transitivity
+law) is the next slice**, unbuilt by design until then. The v4 ambition — a
+custody-indexed Gentzen system, with *"no cross-index cut elimination can erase
+bridge evidence"* as the target theorem — stays roadmap prose, not a release
+name. Runtime (Bridge Foundry / compiled authority) stays out of this roadmap.
+Release inventory: `docs/V3-RELEASE-LEDGER.md`. Campaign log:
+`docs/CHANGELOG-scratch-campaign.md`.
 
 Each slice is fenced ANNEX/SCRATCH until it clears §4; none imports into a promoted kernel
 without an operator decision.
+
+## 11. Status ledger (as-built, 2026-07-01)
+
+Snapshot of what actually exists on disk, distinct from the plan above. Every entry
+is `Custody-Class: SCRATCH`, un-wired, Mathlib-free, and `#print axioms`-clean;
+**none is promoted, and none testifies about a real ANNEX module unless its row says
+so.** Some entries landed **ahead of the §10 slice order** during the codex L2 pass
+and are recorded here as *contact*, not as ratified slices.
+
+**L2 — `Temporal → Surface` bridge (landed).**
+`LeanProofs/Scratch/TemporalToSurfaceBridge.lean`, self-contained surrogate. Key
+shapes: `bridge_authorizes` (positive licensed crossing);
+`temporal_validity_does_not_authorize_projection` (failed cut isolated to dropped
+retention); `projection_authorization_does_not_imply_mint` (non-transfer to boundary
+minting). Scratch-only promotion-pressure additions:
+`projection_authorization_requires_bridge_evidence`,
+`temporal_validity_and_retention_do_not_authorize_unestablished_atom`. These do not
+promote the specimen.
+
+**L2 vocabulary alignment (landed).**
+`LeanProofs/Scratch/TemporalSurfaceAdapter.lean` imports the *real*
+`SurfaceProjection` vocabulary and makes the Temporal-gate → Surface-atom map
+explicit. It maps only `freshAtUse → Atom.freshness`; `liveEpoch`, `replaySafe`, and
+`versionMatch` are deliberately **unmapped**, each fenced by a no-laundering guard
+(`live_epoch_not_surface_demanded`, `replay_safe_not_surface_demanded`,
+`version_match_not_surface_demanded`). Real-shape pressure:
+`temporal_surface_bridge_authorizes`,
+`temporal_validity_does_not_authorize_dropped_mapped_freshness`. The full
+vocabulary-mapping table is archived at
+`docs/worked-examples/temporal-surface-vocabulary-alignment.md`.
+**Conclusion:** the remaining gap between the scratch surrogate and the real modules
+is *vocabulary shape, not proof strength* — real `ProjectionAuthorized` already
+demands every atom be supplied by retention or explicit conversion; extending the map
+past `freshness` needs new Surface vocabulary (or an explicit conversion) plus a
+re-check of the affected negative theorems.
+
+**Ahead of order — pending operator review (not yet slotted):**
+- `LeanProofs/Scratch/TemporalToSurfaceBridgeWiring.lean` — a real-shape wiring probe
+  (second probe importing the real vocabularies + the adapter; does **not** replace
+  the L2 surrogate). Runs ahead of L3.
+- `LeanProofs/Scratch/ExecutionCustody.lean` — the L4 execution-stage mini-calculus
+  (`MayAttempt` / `MayCommit` / `DidExecute` / `PreservedSafety` / …). Runs ahead of L3.
+
+Both are custody-clean scratch but arrived out of the §10 order; they are recorded as
+contact and await an operator decision before counting as ratified slices. Nothing
+here changes a promoted kernel or import boundary.

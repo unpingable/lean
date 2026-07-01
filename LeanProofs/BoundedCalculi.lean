@@ -1,12 +1,19 @@
 /-
   Custody-Class: ANNEX
 
-  Aggregate import for six bounded, candidate-family calculi. This module is
-  intentionally not imported by `LeanProofs.Admissibility.AdmissibilityKernels`.
+  Aggregate import for the bounded lifecycle-calculi family (v3.0.0 - Bounded
+  Lifecycle Calculi, under the Custody-Aware Authority Semantics umbrella).
+  Nine calculi plus one support module (MeasureAccounting, the generic
+  conservation engine -- not a calculus). This module is intentionally not
+  imported by `LeanProofs.lean` or `LeanProofs.Admissibility.AdmissibilityKernels`.
 
-  The marker theorem below proves only coexistence/checkability of these annex
-  modules. It does not prove that the calculi compose with one another. Any
-  cross-calculus composition would require separate bridge theorems.
+  THE MARKER THEOREM BELOW PROVES CHECKABILITY / COEXISTENCE ONLY. It does NOT
+  prove: intercalculus coherence, cross-calculus composition, default bridge
+  transitivity, global admissibility, or runtime authority. There is no master
+  `Admissible` judgment anywhere in this family, and this import cannot mint
+  one. Any cross-calculus movement requires explicit bridge evidence (see the
+  v3.x custody-indexed sequent scratch), and bridge composition is not
+  transitive by default.
 -/
 
 import LeanProofs.BoundedCalculi.RefusalDenial
@@ -15,6 +22,10 @@ import LeanProofs.BoundedCalculi.BoundaryArtifact
 import LeanProofs.BoundedCalculi.SafetyPreservation
 import LeanProofs.BoundedCalculi.SurfaceProjection
 import LeanProofs.BoundedCalculi.ObligationResidue
+import LeanProofs.BoundedCalculi.MeasureAccounting
+import LeanProofs.BoundedCalculi.ExecutionCustody
+import LeanProofs.BoundedCalculi.BootKernel
+import LeanProofs.BoundedCalculi.CheckpointSettlement
 
 namespace LeanProofs.BoundedCalculi
 

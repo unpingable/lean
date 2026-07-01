@@ -12,13 +12,19 @@
     Temporal validity of a source artifact does NOT imply projection authorization
     unless the projection retains (or explicitly converts) the demanded temporal atoms.
 
-  Three results:
+  Five results:
     1. `bridge_authorizes` — POSITIVE: with demanded atoms retained AND established, the
        crossing is licensed.
-    2. `temporal_validity_does_not_authorize_projection` — the FAILED CUT (the wall): a
+    2. `projection_authorization_requires_bridge_evidence` — NO FREE CUT: any authorized
+       projection exposes exactly the temporal validity, retention, and establishment
+       evidence supplied by the bridge.
+    3. `temporal_validity_does_not_authorize_projection` — the FAILED CUT (retention wall): a
        temporally-valid source alone does not authorize a use whose demanded atom the
        projection dropped.
-    3. `projection_authorization_does_not_imply_mint` — NON-TRANSFER: the bridge licenses a
+    4. `temporal_validity_and_retention_do_not_authorize_unestablished_atom` — the dual
+       FAILED CUT (establishment wall): retaining a demanded atom is still insufficient
+       when the source never established it.
+    5. `projection_authorization_does_not_imply_mint` — NON-TRANSFER: the bridge licenses a
        `[Surface]` use only; it does not cross into `[Boundary]` (`MayMint`). Same shape
        would give the safety / obligation non-transfers; there is deliberately no global
        `Admissible` judgment to transfer into.
@@ -87,6 +93,20 @@ theorem bridge_authorizes
     ProjectionAuthorized p u :=
   ProjectionAuthorized.bridge hvalid hretain hestab
 
+/-- There is no hidden/free cross-calculus cut inside `ProjectionAuthorized`: every
+    authorization in this scratch bridge exposes exactly the evidence supplied to the
+    bridge constructor. This is promotion pressure only — it does not wire the bridge to
+    the promoted Temporal/Surface calculi and does not create transitive composition. -/
+theorem projection_authorization_requires_bridge_evidence
+    {p : Projection} {u : Use}
+    (h : ProjectionAuthorized p u) :
+    TemporallyValid p.source ∧
+      (∀ a, a ∈ u.demanded → a ∈ p.retained) ∧
+      (∀ a, a ∈ u.demanded → a ∈ p.source.established) := by
+  cases h with
+  | bridge hvalid hretain hestab =>
+      exact ⟨hvalid, hretain, hestab⟩
+
 /-- Concrete authorized crossing (non-vacuity of the positive rule): a fresh source that
     ESTABLISHES `versionMatch`, projected while RETAINING it, authorizes a use demanding
     `versionMatch`. Compare `temporal_validity_does_not_authorize_projection` below: same
@@ -129,6 +149,37 @@ theorem temporal_validity_does_not_authorize_projection :
     | bridge _ hretain _ =>
         have hmem : TemporalAtom.versionMatch ∈ [TemporalAtom.freshAtUse] :=
           hretain TemporalAtom.versionMatch (by simp)
+        simp at hmem
+
+/-- **Temporal validity plus retention still does not imply projection authorization — the
+    establishment axis.** The source is temporally valid and the projection RETAINED
+    `versionMatch`; the use demands `versionMatch`; but the source never ESTABLISHED that
+    demanded atom. So the bridge cannot fire. This is the dual wall to
+    `temporal_validity_does_not_authorize_projection`: retained syntax is not witness
+    custody unless it came from source evidence. -/
+theorem temporal_validity_and_retention_do_not_authorize_unestablished_atom :
+    ∃ (p : Projection) (u : Use),
+      TemporallyValid p.source ∧
+        (∀ a, a ∈ u.demanded → a ∈ p.retained) ∧
+        ¬ ProjectionAuthorized p u := by
+  refine ⟨ { source := { action := 0,
+                         established := [TemporalAtom.freshAtUse] },
+             retained := [TemporalAtom.freshAtUse, TemporalAtom.versionMatch] },
+           { demanded := [TemporalAtom.versionMatch] }, ?_, ?_, ?_⟩
+  · -- the source is fresh at use, hence temporally valid
+    show TemporalAtom.freshAtUse ∈ [TemporalAtom.freshAtUse]
+    simp
+  · -- the projection retained the demanded atom
+    intro a ha
+    simp only [List.mem_singleton] at ha
+    subst ha
+    simp
+  · -- but no ProjectionAuthorized: the source never established the demanded atom
+    intro h
+    cases h with
+    | bridge _ _ hestab =>
+        have hmem : TemporalAtom.versionMatch ∈ [TemporalAtom.freshAtUse] :=
+          hestab TemporalAtom.versionMatch (by simp)
         simp at hmem
 
 /-! ## 3. Non-transfer (anti-master-turnstile) -/

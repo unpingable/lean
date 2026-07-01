@@ -3,3 +3,19 @@
 lean_proofs/
 __pycache__/
 .claude
+
+# .governor plane (own per-repo loop, mirroring nq): the program counter + its custody
+# trail live in git (loop-protocol: "the program counter is in git"); runtime receipt /
+# fact state is empirical and regenerable (durability = kernel hash chain, not git) -> ignored.
+.governor/verify_receipts/
+.governor/receipts/
+.governor/gate_receipts/
+.governor/facts/
+.governor/signals/
+.governor/evidence/
+.governor/decisions/
+.governor/manifests/
+.governor/overrides/
+.governor/runtime/
+.governor/receipt_kernel.db
+.governor/regime_state.json

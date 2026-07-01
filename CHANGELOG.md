@@ -5,6 +5,42 @@ to Zenodo deposits under the concept DOI
 [10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
 release tag drives the deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 3.0.0 — Bounded Lifecycle Calculi (2026-07-01)
+
+*A Lean proof release for custody-aware authority semantics.*
+
+3.0.0 completes the **bounded lifecycle-calculi family**: the six existing
+ANNEX bounded calculi (TemporalCustody, SurfaceProjection, RefusalDenial,
+BoundaryArtifact, ObligationResidue, SafetyPreservation) are joined by three
+promoted family members — **ExecutionCustody** (stage separation: ticket
+accepted / commit attempted / executed / safe / discharged do not collapse),
+**BootKernel** (genesis: witnessed settlement, anti-skip wall, no signed-root
+shortcut, accumulation-is-not-escalation), and **CheckpointSettlement**
+(occurrence-linear compaction: mints nothing, conserves live multiplicity,
+discharges no unknown commit, upgrades no observation to safety) — plus
+`MeasureAccounting` (generic conservation engine, support module).
+
+Promotion custody: Scratch → `BoundedCalculi/` ANNEX **release surface** by
+operator decision 2026-07-01. **No promoted kernel/import boundary changed**:
+`LeanProofs.lean` imports neither `BoundedCalculi` nor `Scratch`; the aggregate
+`BoundedCalculi.lean` remains a compile marker (checkability/coexistence only —
+not coherence, not composition, not global admissibility). There is **no master
+`Admissible` judgment** and no default bridge transitivity.
+
+Deferred, named-not-claimed: **custody-indexed sequents** (v3.x campaign;
+Sequents 0–3 exist as fenced scratch under `LeanProofs/Scratch/` — indexed
+bridge cut, zero-axiom syntactic no-free-cross-cut, execution-ticket linear
+sequent, obligation/receipt books; Sequent 4, bridge composition, unbuilt by
+design) and the longer-horizon custody-indexed Gentzen system (v4, if earned).
+
+Gate record: full build green; `audit-axioms` / `audit-native-decide` /
+`check-mathlib-pin` / `check-witnessed-footprint` all exit 0; no
+`sorry`/`admit`; footprints ≤ `[propext, Quot.sound]`, re-attested post-move.
+Inventory: [`docs/V3-RELEASE-LEDGER.md`](docs/V3-RELEASE-LEDGER.md). Campaign
+trail: [`docs/CHANGELOG-scratch-campaign.md`](docs/CHANGELOG-scratch-campaign.md).
+
+> v3 proves the family. v3.x starts proving the crossings.
+
 ## 2.0.0 — WDC: model-independent normalization and audit fence (2026-06-29)
 
 2.0.0 promotes Witnessed Derivation Calculus normalization from a freshness-*model* theorem

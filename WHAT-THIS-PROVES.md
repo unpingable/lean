@@ -133,6 +133,51 @@ Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibi
 
 ---
 
+## Bounded Lifecycle Calculi (v3, `LeanProofs/BoundedCalculi/`)
+
+> No artifact may testify beyond the stage it actually survived.
+
+### What v3 proves
+
+v3 proves that the custody-aware authority discipline can be factored into a
+**family of bounded local calculi** — nine of them, spanning the lifecycle:
+temporal custody, surface projection, refusal/denial, boundary artifacts,
+obligation/residue, safety preservation, execution custody, boot/genesis, and
+checkpoint settlement (plus `MeasureAccounting`, a generic conservation engine
+that is support machinery, not a calculus).
+
+Each calculus has:
+
+- a named local judgment form;
+- at least one positive construction rule;
+- at least one non-collapse or failed-cut theorem;
+- explicit refusal walls against a specific authority-laundering move.
+
+Per-module theorem receipts, proof-shape classification, and re-attested axiom
+footprints (all ≤ `[propext, Quot.sound]`, many zero-axiom):
+[`docs/V3-RELEASE-LEDGER.md`](docs/V3-RELEASE-LEDGER.md).
+
+### What v3 does NOT prove
+
+- **No master judgment.** There is no `Γ ⊢ Admissible(a)`; the family refuses
+  unification by design. The aggregate import proves checkability/coexistence
+  only — not coherence, not composition.
+- **No free composition.** Cross-calculus movement requires explicit bridge
+  evidence; bridge composition is not transitive by default. The bridge and
+  sequent work under `LeanProofs/Scratch/` is fenced v3.x evidence,
+  named-not-claimed.
+- **No runtime enforcement.** Bridge Foundry, compiled authority runtime,
+  actuator gates, and operational receipt handling are implementation lanes,
+  not v3 proof claims. Execution Custody is a stage-separation calculus
+  (`MayCommit ≠ DidExecute ≠ PreservedSafety`), not an actuator model.
+- **No boot escalation.** BootKernel's capability accumulation is staged,
+  witnessed, nested monotonicity — not root omnipotence, and there is no
+  signed-operator shortcut vocabulary for one to ride in on.
+
+v3's proof claim is **local-family completion, not global admissibility**.
+
+---
+
 ## Witnessed Derivation Calculus (`LeanProofs/Witnessed/`)
 
 > A compiled theorem is evidence into an admission gate, not the receipt the gate emits. Signed is not witnessed.

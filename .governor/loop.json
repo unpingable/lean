@@ -1,0 +1,129 @@
+{
+  "reconciled_note": "Own per-repo .governor loop for the Lean bounded-calculi slice campaign, mirroring the nq precedent (~/git/nq-root/nq/.governor). Global AG backlog is a recognition/custody registry; each repo runs its own program counter (loop-protocol S6: live probes win; S9 'single live program counter' is the stale artifact AG-Claude is correcting). Plan: ~/.claude/plans/okay-so-i-was-ethereal-quill.md.",
+  "campaign": "lean-bounded-calculi",
+  "phase": "PLAN",
+  "current_slice": null,
+  "lane": "lean-scratch-bounded-calculi",
+  "authorization_mode": "scratch_only_operator_committed",
+  "wip_limit": 1,
+  "coordinator": "Claude (paper/lean session)",
+  "builder": "codex (hybrid: codex drafts, Claude repairs env/mechanical blockers)",
+  "auditor": "codex read-only adversarial pass",
+  "invariant": "No artifact may testify beyond the stage it actually survived.",
+  "admission_model": "A build_slice is admitted only against a ratified inline gap spec (acceptance criteria + zero-escape cold-codex validation). ChatGPT roadmap S19 Run specs are the draft gap specs.",
+  "queue": [
+    {"id": "A", "kind": "hygiene", "status": "done", "note": "roadmap S10/S11 reconciliation (this session); standing ledger-update step, not a build slice"},
+    {"id": "B", "kind": "build_slice", "status": "admitted-parked", "file": "LeanProofs/Scratch/TemporalToSurfaceBridgeWiring.lean + TemporalSurfaceAdapter.lean", "note": "Temporal->Surface real-shape wiring already exists parked green; work = strengthen/verify, not create"},
+    {"id": "C", "kind": "spec_slice->build_slice", "status": "done-green", "note": "L3 no-free-cut wall. Parked wiring probe already had non-vacuous wall + non-transfer; codex audit found positive path temporally inert -> operator chose (ii); added reverse cut + bidirectional-independence capstone; GREEN. See c_audit."},
+    {"id": "D", "kind": "build_slice", "status": "admitted-parked", "file": "LeanProofs/Scratch/ExecutionCustody.lean", "note": "L4 execution custody already exists parked green; work = audit (E)"},
+    {"id": "E", "kind": "spec_slice", "status": "done-green", "note": "audited D: ladder genuinely witnessed; CommitUnknown was decorative -> filled with commitUnknown_testifies_to_neither (zero-axiom); ticket-linearity/actuator/obligation-decoupling parked. See e_audit."},
+    {"id": "F", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/BootKernel.lean", "note": "Boot ladder + witnessed settlement (presence + coverage invariants under composition), anti-skip wall (zero-axiom), trajectory freeze, ladder-entry inversions, capabilities_accumulate honesty theorem, omnipotence schema labeled thin. Codex YELLOW -> all findings closed."},
+    {"id": "G", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/CheckpointSettlement.lean", "note": "Occurrence-linear (Split-based) settlement: mints-nothing (zero-axiom), live multiplicity conserved (codex countermodel on membership-level draft -> Split reformulation), unknown-commit + observation-to-safety walls, minimal pair, compaction_is_real. Dead-entry policy flagged open. FAMILY COMPLETE."},
+    {"id": "SEQ0+1", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/BridgeSequent.lean", "note": "Indexed bridge cut + syntactic no-free-cross-cut wall + soundness into real modules + full provenance trace. Operator-ratified sequent ladder (2026-07-01, via ChatGPT relay). See seq01_audit."},
+    {"id": "SEQ2", "kind": "build_slice", "status": "done-green", "file": "LeanProofs/Scratch/ExecutionSequent.lean", "note": "Linear execution sequent over ResourceSequent Split/Consumes. Conservation of authority (trajectory_accounting, generic measure) + occurrence/id corollaries (codex-requested generalization), singleton no-double-spend walls, Dt wall (minimal fresh/stale pair at commit tick), residue preservation (reused engine), non-transfer to execution. Closes E-audit linearity item. Axioms <= [propext, Quot.sound]; 3 zero-axiom."},
+    {"id": "SEQ3", "kind": "build_slice", "status": "queued", "note": "Obligation/residue threaded through execution (ObligationResidue already imports ResourceSequent - natural join)."},
+    {"id": "SEQ4", "kind": "build_slice", "status": "queued", "note": "Bridge composition laws - ONLY after SEQ2/SEQ3; no composition rule exists anywhere yet, by design."}
+  ],
+  "acceptance": [
+    "every verify-run receipt exit-0 (exit_source=child_exit, masked_risk=false)",
+    "no sorry/admit; #print axioms clean (footprint <= [propext, Quot.sound])",
+    "file stays Custody-Class: SCRATCH; no import into BoundedCalculi.lean/LeanProofs.lean",
+    "no master Admissible / global-authority judgment; no default transitive bridge composition",
+    "read-only codex audit returns no Red gate finding",
+    "strongest theorem, weakest theorem, and proof-shape class named",
+    "AUDIT emits pass | deviations_named[] | halt_for_ratification"
+  ],
+  "blocked_on": "nothing (C resolved GREEN via option (ii)).",
+  "c_audit": {
+    "verdict": "YELLOW (deviations_named)",
+    "review_gates": "compile [pass] exit0; no sorry/admit/native_decide; #print axioms = [propext] on all 4 capstones (axiom-clean)",
+    "codex_verdict": "YELLOW (adversarial, gpt-5.5; bwrap shell sandbox failed -> audited from inlined source per field-report fallback)",
+    "findings": [
+      "wall NON-VACUOUS: temporal_validity_does_not_authorize_dropped_mapped_freshness witnessed by permissiveEnv/fullyCheckedAction/droppedFreshnessProjection; real obstruction = projectedUse demands freshness, droppedFreshnessProjection does not retain it, via real authorized_projection_retains_every_demanded_atom. Rests on Conversion being identity-only (honestly fenced in adapter).",
+      "POSITIVE PATH TEMPORALLY INERT: positive_bridge_authorizes_when_retained_or_converted ignores the temporal + mappedTemporalDemands fields; authorizes from sourceMatch + suppliedDemands alone. Temporal validity is dead weight in the positive direction (= the S11 vocabulary boundary: real Surface authorization does not consume temporal facts).",
+      "no master Admissible / no default transitive bridge composition (clean).",
+      "non-transfer bundle is SPECIMEN-backed (toy sealedBoundary/unrelatedReceipt/external-claim): shows coexistence with selected false targets, not a general cross-module non-implication."
+    ],
+    "coordinator_read": "The L3 no-free-cut WALL is real and axiom-clean. The weakness is that temporal validity is decoupled from Surface authorization by current vocabulary; making it load-bearing in the positive direction needs new Surface vocabulary (ANNEX change).",
+    "fork": {
+      "i_accept": "Record C as: wall proven non-vacuous; positive path Surface-real but temporally decoupled (documented limitation). Mark C substantially-done, move to E.",
+      "ii_in_vocab_strengthen": "Add reverse non-implication (surface-authorized-but-temporally-invalid witness) -> bidirectional temporal/surface independence, coupled only by explicit bridge evidence. No SurfaceProjection change. Small codex build.",
+      "iii_extend_surface": "Extend SurfaceProjection ANNEX to demand temporal establishment so the positive bridge makes temporal load-bearing. Bigger; modifies a real ANNEX module; opens the new-Surface-vocabulary decision the adapter fenced."
+    },
+    "resolution": {
+      "operator_choice": "(ii) in-vocabulary strengthening",
+      "built": "added surface_authorized_does_not_imply_temporally_valid (reverse cut) + temporal_surface_mutual_nonimplication (bidirectional independence capstone) to TemporalToSurfaceBridgeWiring.lean. Claude-authored (Hybrid fallback: codex bwrap-blocked from repo I/O). Both [propext] axiom-clean; module rebuild 347ms.",
+      "round2_codex": "YELLOW: witnesses real/non-degenerate (no vacuity), but reverse direction is a PRODUCT counterexample (unrelated objects) -> refutes unconditional free cut, NOT shared-config independence.",
+      "round2_fix": "mechanical, in-scope, comment-only: tightened capstone docstring to state product-orthogonality-at-current-vocabulary precisely and disclaim shared-config independence (adopts codex's own endorsed reading). Recompiled [pass].",
+      "verdict": "GREEN (wall real + non-vacuous; scope precisely stated; axiom-clean)."
+    }
+  },
+  "e_audit": {
+    "verdict": "YELLOW -> primary gap filled GREEN",
+    "review_gates": "compile [pass] exit0; no sorry/admit/native_decide",
+    "codex_verdict": "YELLOW (gpt-5.5, converged with coordinator's independent read)",
+    "findings": [
+      "6-step non-collapse ladder GENUINELY WITNESSED by concrete stages (specimen-backed existentials, not vacuous/hardcoded): MayAttempt!=>MayCommit!=>DidExecute!=>PreservedSafety!=>DischargedObligation, plus TicketSpent!=>DidExecute. Strong.",
+      "PRIMARY GAP (fixed): CommitUnknown was DECORATIVE - defined + positive specimen but no non-collapse theorem. Filled with commitUnknown_testifies_to_neither (unknown => neither DidExecute nor DidNotExecute), ZERO-axiom. CommitUnknown now load-bearing.",
+      "COMPLETENESS ITEM: ticket linearity is a single-stage Bool flip (commit_attempt_consumes_ticket), NOT a no-double-spend across a trajectory. Roadmap S6 wants ExecutionTicket aligned with Witnessed.ResourceSequent (trajectory + no-double-spend). Coverage inside the opened surface; bigger slice, not yet built (NOT forcing-case gated).",
+      "parked NOTE: actuator boundary hand-waved (commitSent and outcome are independent asserted fields, no causal transition). Acceptable for specimen.",
+      "parked NOTE: DischargedObligation testifies from obligationReceipt=true alone, decoupled from execution/safety (likely intended; preservedSafety!=>dischargedObligation shows the gap)."
+    ],
+    "built": "commitUnknown_testifies_to_neither (Claude-authored Hybrid fallback; codex bwrap-blocked from repo I/O but strong as auditor - independently converged with coordinator read). compile [pass], zero-axiom.",
+    "verdict_final": "GREEN for the tranche: audit complete, decorative-CommitUnknown gap closed; linearity/actuator/obligation-decoupling documented as parked candidates (not opened)."
+  },
+  "seq01_audit": {
+    "verdict": "GREEN (after 1 mechanical docstring qualification + 1 audit-requested theorem)",
+    "review_gates": "compile [pass] exit0; no sorry/admit/native_decide; ZERO-axiom syntactic layer (no_free_cross_cut, wall induction, inversions, provenance trace, bridge_cut_derives); entail_sound/concrete_sequent_sound = [propext]",
+    "codex_findings": [
+      "soundness GENUINELY consumes temporal: delete tValid premise and exactly mappedTemporalDemands breaks (closes the C-audit dead-weight finding at the sequent layer)",
+      "syntactic (env,a) pairing REAL: mismatched bridge evidence cannot fire bridgeCut (no conversion theorem exists)",
+      "no master judgment, no transitive composition; pAuth-by-assumption = ordinary sequent semantics, not laundering",
+      "QUALIFIED per audit: non-collapse-under-composition claim is relative to the declared rule set; new Entail rules must re-establish the induction case (docstring now states this; a rule that fails it is the wall working)",
+      "audit-requested strengthening BUILT: pAuth_derivation_roots_in_assumptions - every surface authorization traces to actual context MEMBERSHIP (assumed pAuth, or matched tValid+bEvid pair literally in context), zero-axiom"
+    ],
+    "overlap_note": "Witnessed.ResourceSequent already owns the token-linear wall (cannot_cross_without_bridge_token etc.); this file owns the calculus-index wall; SEQ2 reuses ResourceSequent rather than re-deriving linearity."
+  },
+  "operating_mode": "FULL AUTO (operator 2026-07-01): no git ceremony (versioning/releases are the operator's key-off; commits fungible); track changes in docs/CHANGELOG-scratch-campaign.md as slices land; governed gates + codex audits stay; promotion out of Scratch / version bumps remain operator-only.",
+  "release_boundary": "RATIFIED (operator 2026-07-01, via ChatGPT relay): v3 = bounded mini-calculi family (DOI); v3.x = sequent scratch / bridge sequents; v4 = indexed sequent system (custody-indexed Gentzen) if it earns the name. v3 bar: every family member has named judgment + positive rule + non-collapse/failed-cut + non-transfer where relevant + inventory/classification; aggregate import = compile marker only; no master Admissible; sequents named-not-claimed.",
+  "v3_audit": {
+    "verdict": "YELLOW - boundary properly scoped; sequents safely deferred",
+    "closed": ["L1 theorem inventory -> docs/V3-RELEASE-LEDGER.md (one row per family member: judgment, positive, non-collapse, strongest/weakest, shapes, re-attested axiom footprints)", "actuator-limit + compile-marker language stated in ledger"],
+    "operator_decision_pending": "Execution Custody / BootKernel / CheckpointSettlement release status: (a) promote into the release surface (custody act: header flip + move to BoundedCalculi/ + aggregate import + gate battery), or (b) ship v3 as 'six ANNEX calculi + fenced scratch evidence for the remaining family members'. Ledger takes no position.",
+    "safe_to_defer": ["sequents S0-S4", "real bridge authority", "non-toy non-transfer targets", "CheckpointSettlement dead-entry policy"]
+  },
+  "v3_promotion": {
+    "decision": "Option A EXECUTED (operator 2026-07-01): ExecutionCustody + BootKernel + CheckpointSettlement promoted Scratch -> BoundedCalculi/ ANNEX release surface with non-authority headers + goblin wards; MeasureAccounting extracted (ANNEX support) so release surface imports no scratch.",
+    "naming": "umbrella=Custody-Aware Authority Semantics; release=v3.0.0 - Bounded Lifecycle Calculi; v3.x=Custody-Indexed Sequents; v4=Custody-Indexed Gentzen System (roadmap prose only).",
+    "gate_battery": "full lake build green; audit-axioms/audit-native-decide/check-mathlib-pin/check-witnessed-footprint all exit 0; per-file sweep PASS (9 family + support + sequents); footprints re-attested post-move; no sorry/admit; LeanProofs.lean imports neither BoundedCalculi nor Scratch (promoted boundary unchanged); no scratch imports on release surface.",
+    "docs_updated": ["README.md (v3 current-release section)", "WHAT-THIS-PROVES.md (v3 proves / does-NOT-prove block)", "CHANGELOG.md (3.0.0 entry)", "docs/V3-RELEASE-LEDGER.md (decision + gate record + promoted rows)", "docs/ROADMAP-bounded-calculi.md (L4-L6 promoted; naming; SEQ4 next)", "docs/CHANGELOG-scratch-campaign.md (promotion entry)", "papers:working/tooltheory/roadmap-custody-aware-authority-semantics.md (lean-lane status pointer)", "LeanProofs/BoundedCalculi.lean (aggregate: 10 imports, hardened marker language)"]
+  },
+  "next_action": "v3 READY TO TAG. Operator: commit + tag v3.0.0 - Bounded Lifecycle Calculi (tag drives Zenodo DOI). Then v3.x campaign = Custody-Indexed Sequents: SEQ4 (bridge composition / non-transitivity law) first, plus non-toy non-transfer targets; v4 ambition = custody-indexed Gentzen (target theorem: no cross-index cut elimination can erase bridge evidence; BridgeSequent no_free_cross_cut + provenance trace are the zero-axiom seeds).",
+  "last_verified_commit": "b9bb63d3ed57328136f46c5699027714a7f38e71",
+  "last_verified_note": "smoke test #1: governor verify-run -- lake env lean LeanProofs/Scratch/ExecutionCustody.lean -> [pass] exit 0 (dirty tree; roadmap reconciliation + parked scratch uncommitted).",
+  "completed_slices": [
+    "A: roadmap S10/S11 hygiene reconciliation",
+    "phase-0: lean .governor plane stood up (loop.json + loop-receipts + gitignore split, nq precedent)",
+    "smoke-test-1: verify-run plumbing green on parked ExecutionCustody.lean ([pass] exit 0)",
+    "smoke-test-2: run_codex_governed returned in 4.4s (exit 0, ACK, 0 changes) - interim config defeats the hang, gpt-5.5 builds",
+    "C: L3 no-free-cut GREEN - audited parked wiring probe (2 codex rounds), added reverse cut + bidirectional-independence capstone (option ii), [propext] axiom-clean",
+    "E: L4 ExecutionCustody audit GREEN - ladder witnessed; filled decorative CommitUnknown with commitUnknown_testifies_to_neither (zero-axiom); linearity/actuator parked",
+    "SEQ0+1: BridgeSequent.lean GREEN - indexed bridge cut, zero-axiom syntactic no-free-cross-cut wall, soundness into real ProjectionAuthorized, full provenance trace; codex-audited",
+    "SEQ2: ExecutionSequent.lean GREEN - conservation of authority + no-double-spend + Dt wall; wsum generalized",
+    "SEQ3: ExecutionObligationSequent.lean GREEN - three linear books, receipt-linearity wall (codex-named hole closed), exact discharge inversion",
+    "F: BootKernel.lean GREEN - witnessed-settlement invariants + coverage, anti-skip (zero-axiom), trajectory freeze, ladder inversions, honesty fixes",
+    "G: CheckpointSettlement.lean GREEN - Split-based occurrence-linear compaction, mints-nothing, multiplicity conserved; FAMILY COMPLETE",
+    "v3: release-readiness audit YELLOW->addressed; docs/V3-RELEASE-LEDGER.md built (L1 closed); roadmap L0-L6 all closed"
+  ],
+  "dirty_tree_allowed": true,
+  "dirty_tree_reason": "roadmap reconciliation (docs/ROADMAP + worked-example) and parked scratch (B/D + adapter) are uncommitted; operator drives all git and commits at slice boundaries.",
+  "git_custody": "Claude never commits/pushes/amends. Operator commits each green slice per roadmap S24 grouping. loop.json + loop-receipts/ are tracked in the lean repo (operator commits); runtime receipt dirs are gitignored.",
+  "integration_notes": {
+    "codex_hang_fix": "agent_gov fix/codex-approval-hang @ 8d00d94 (CodexHookConfig approval_policy/sandbox); working tree feat/playbooks-synthetic-conveyor lacks it. Interim unblock applied: approval_policy=\"never\" in ~/.codex/config.toml (2026-07-01).",
+    "builder_model": "pass model=\"gpt-5.5\" explicitly to run_codex_governed (CodexHookConfig default o4-mini would override the config's gpt-5.5).",
+    "turnkey_runner_gap": "no `governor loop` CLI; driver script hand-authored (candidate for AG: `governor loop run`)."
+  },
+  "session_id": "lean-bounded-calculi-20260701",
+  "loop_master": "paper/lean coordinator session",
+  "last_updated": "2026-07-01T18:31:21Z"
+}

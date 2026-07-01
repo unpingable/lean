@@ -4,7 +4,52 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: 2.0.0 — WDC: model-independent normalization and audit fence
+## Current release: 3.0.0 — Bounded Lifecycle Calculi
+
+*A Lean proof release for custody-aware authority semantics.*
+
+**v3.0.0 completes the bounded lifecycle-calculi family.** The central invariant:
+
+> **No artifact may testify beyond the stage it actually survived.**
+
+v3 models this invariant across nine local, bounded judgment systems
+(`LeanProofs/BoundedCalculi/`, custody class ANNEX — release surface, not
+promoted kernel authority):
+
+- **Temporal Custody** — valid then does not imply valid now.
+- **Surface / Projection** — rendered or summarized does not imply authorized.
+- **Refusal / Denial** — silence or displayed refusal does not imply valid denial.
+- **Boundary Artifact** — internal evidence does not imply external mint authority.
+- **Obligation / Residue** — consumed resource does not imply obligations vanished.
+- **Safety Preservation** — authorized steps do not imply safe trajectory.
+- **Execution Custody** — ticket accepted or commit attempted does not imply
+  successful execution (a stage-separation calculus, not an actuator model).
+- **Boot / Genesis** — boot state does not imply root omnipotence; capability
+  accumulation is staged and nested, not escalation, and there is no signed
+  operator shortcut past discovery.
+- **Checkpoint Settlement** — compacted history mints no new authority,
+  discharges no unknown commit, and upgrades no observation to safety; live
+  occurrences are conserved exactly.
+
+**What v3 does not claim.** This is not a unified admissibility calculus:
+there is no master `Γ ⊢ Admissible(a)` judgment. The aggregate import
+(`LeanProofs/BoundedCalculi.lean`) establishes checkability and coexistence
+only — not intercalculus coherence, not default bridge composition, not
+runtime authority. Cross-calculus movement requires explicit bridge evidence,
+and bridge composition is not transitive by default. Sequents, bridge
+composition, and the broader custody-indexed sequent program are deferred to
+the next campaign (v3.x scratch exists under `LeanProofs/Scratch/`, fenced,
+named-not-claimed).
+
+Release inventory with per-module theorem receipts:
+[`docs/V3-RELEASE-LEDGER.md`](docs/V3-RELEASE-LEDGER.md). Campaign audit
+trail: [`docs/CHANGELOG-scratch-campaign.md`](docs/CHANGELOG-scratch-campaign.md).
+The umbrella architecture (Custody-Aware Authority Semantics) and the runtime
+lanes (Bridge Foundry / compiled authority) live in the
+[papers repo](https://github.com/unpingable/papers)'s ToolTheory roadmap; v3
+is the Lean proof slice only.
+
+## 2.0.0 — WDC: model-independent normalization and audit fence
 
 **2.0.0** is the reserved WDC structural milestone: normalization is lifted from a
 freshness-*model* theorem to a **model-independent admitting-class theorem**
