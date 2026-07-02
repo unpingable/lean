@@ -1,5 +1,37 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — v5 slice 4: the positional occurrence trace — WHO PAID
+`LeanProofs/Scratch/OccurrenceTrace.lean` (new), `lakefile.toml` (CI root).
+
+- **The refinement**: equal labels are not equal custody events. Contexts
+  become position-tagged (`List (Nat × J)`); `linearizeT` (the traced twin
+  of `linearize`, deterministic by construction — a function, no choice)
+  pays each read with the first occurrence carrying the demanded label and
+  RECORDS the consumed (position, label) pair, in read order.
+- **The traced spine law** (`linearizeT_ok_conserves`): for every measure,
+  context = trace + residual; `trace_determines_consumed_multiset` reads it
+  at pair indicators — the trace IS the consumed multiset.
+- **Trace refines the read spine** (`trace_labels_are_reads`):
+  trace.map snd = readsOf, in order. *Labels explain what was read;
+  occurrence traces prove who paid.*
+- **No occurrence pays twice** (`linearize_trace_occurrences_distinct`):
+  unambiguous input positions ⇒ no position appears twice in the trace —
+  two distinct reads cannot be funded by the same original occurrence.
+- **Nothing pays that was not there**
+  (`linearize_trace_occurrences_from_initial_context`, `trace_mem_initial`):
+  every traced payment is an occurrence of the initial context (count +
+  membership forms; `one_le_count_iff_mem` helper).
+- **The demo, kernel-evaluated** (`same_label_distinct_occurrences_traced`):
+  tagged [(0,res),(1,res)] normalizes with trace exactly [(0,res),(1,res)]
+  — equal labels, distinct recorded payments; a single tagged occurrence
+  still forges (`free_contraction_still_forges_tagged`).
+- Codex verdict: **v5.0.0 TAGGABLE** scoped to partial/policy-aware
+  normalization + count-level decision boundary + exact-offender refusal +
+  positional occurrence trace. Named-not-built (v6 lane): coherence theorem
+  linearizeT ↔ linearize on the label projection ("traced twin" framing is
+  the honest v5 claim). Strongest: `linearizeT_ok_conserves`. Docstring
+  fixes applied. Everything ≤ [propext, Quot.sound].
+
 ## 2026-07-01 — v5 slice 3: the decision theorem — counting decides normalization
 `LeanProofs/Scratch/LinearNormalization.lean` (extended in place).
 

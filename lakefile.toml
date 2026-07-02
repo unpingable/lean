@@ -70,4 +70,5 @@ roots = [
   "LeanProofs.Scratch.DerivationData",
   "LeanProofs.Scratch.StructuralNormalization",
   "LeanProofs.Scratch.LinearNormalization",
+  "LeanProofs.Scratch.OccurrenceTrace",
 ]
