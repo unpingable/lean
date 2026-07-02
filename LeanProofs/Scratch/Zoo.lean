@@ -44,6 +44,8 @@
   | caveat-blind gate            | CaveatSequent.blind_system_not_caveat_blind_free (screen + specimen resident; the attack SATISFIES the v4 discipline -- `blind_discipline` -- which is why it needed a new screen, not a replay) |
   | silence-as-denial            | OverlapAudits.silence_as_denial_violates_discipline (C3 audit 2026-07-02: mechanism 3 instance; protocol face resident in AuthenticatedDenial) |
   | parse-implies-authority      | ArtifactProfiles.parse_authority_breaks_jurisdiction (v7 slice 1: attack satisfies the discipline; caught by the LOCAL evidence-jurisdiction condition -- the escaped animal's local face, caged) |
+  | stage-self-promotion         | ProfileStages.self_promotion_violates_discipline (v7 slice 2: mechanism 3 -- standing cannot be its own promotion receipt; base-only variant caveat in the file) |
+  | stage-rung-skip              | ProfileStages.skip_breaks_step_discipline (v7 slice 2: attack satisfies the discipline; caught by LOCAL StageStepDiscipline -- SECOND member of the local jurisdiction family) |
 
   C1 inventory complete: every ZOO-TEMPLATE row is caged or resident-cited.
 

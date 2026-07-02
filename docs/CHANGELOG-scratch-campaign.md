@@ -1,5 +1,42 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — v7 slice 2: stage noncollapse — EVERY RUNG IS PAID
+`LeanProofs/Scratch/ProfileStages.lean` (new; ≤ [propext, Quot.sound],
+several zero-axiom, no choice), `lakefile.toml` (CI root), Zoo (two registry
+rows). Codex first-pass GREEN.
+
+- Nat-indexed ladder, ONE clean rule family (`ascend n`: profile n + rung n
+  → profile n+1). **`profile_stage_noncollapse`** — the gap-spec §4
+  theorem: without the n→n+1 receipt, stage-(n+1) standing is underivable,
+  any depth, any context, every n.
+- **`ascent_pays_every_rung`** (codex: strongest) — the strong wall via a
+  Rooted induction: any derivation of `profile k` either assumed it or
+  climbed from a held `profile j` with EVERY rung in [j, k) literally in
+  custody. No skipped rung, no bulk discount. (Profile-level analog of
+  BootKernel's anti-skip wall — cited, not duplicated.)
+- Positive pair: `paid_rung_ascends`, `two_rungs_ascend_two` (two stages
+  cost two receipts, concretely).
+- **TWO cages, two mechanisms:**
+  - **stage-self-promotion** (`selfPromote`: standing cited as its own
+    promotion evidence) — caught by resident mechanism 3, two lines
+    (`self_promotion_violates_discipline`); base-only-variant caveat
+    recorded per codex (it would evade mechanism 3 and fall to the step
+    condition — why both catches exist).
+  - **stage-rung-skip** (`skip`: one receipt promotes two stages) —
+    SATISFIES the discipline (`skip_satisfies_discipline`, the
+    load-bearing-negative family's third member), teeth demo
+    `skip_ascends_two_for_one`, caught by LOCAL **`StageStepDiscipline`**
+    (`skip_breaks_step_discipline`).
+- **THE FAMILY OBSERVATION (recorded, not minted):** `StageStepDiscipline`
+  is the SECOND local evidence-jurisdiction condition (after slice 1's
+  `AdmissionJurisdiction`; genus named by the C3 relation-promotion
+  audit). The local wall now provably repeats across v7 slices — this is
+  the repeat evidence the generic screen's admission decision asked for
+  (V7-GAP-SPEC §4). Generic screen still gated on operator admission.
+- Honesty: stages are Nat tags (no per-stage semantics claimed); descent/
+  revocation out of scope (standing-decay lane); rung-vs-bridge receipt
+  non-fungibility is a named later-slice candidate, not claimed.
+
 ## 2026-07-02 — v7 slice 1: the profile refusal skeleton — COURT FIRST, MAP LATER
 `LeanProofs/Scratch/ArtifactProfiles.lean` (new; **entirely zero-axiom**),
 `lakefile.toml` (CI root), `LeanProofs/Scratch/Zoo.lean` (registry row +
