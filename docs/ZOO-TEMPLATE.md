@@ -32,15 +32,16 @@ Every zoo entry is a section in a SCRATCH file with exactly these parts:
 |---|---|---|
 | universal stamp | one evidence funds every obligation | `EvidenceCurrencyFree` refuted (DONE: `stampSystem`) |
 | confidence-as-currency | claim-blind signal funds reliance | screen + root theorem (DONE: `fluentSystem`) |
-| universal crossroads | one index mediates every pair | `MasterFree` refuted (specimen TODO; predicate + `s4_master_free` exist) |
-| refresh stamp | validity extended by derivation | inexpressibility (DONE as theorem: `refresh_is_inexpressible`; cage = a system TRYING to install it and failing `step_shape`) |
-| caveat cleanse | burden dropped in transit | inexpressibility (DONE as theorem: `caveat_dropping_is_inexpressible`; cage form TODO) |
-| summary-as-authority | log/render/summary treated as authorization | `SurfaceProjection` walls replayed through the skeleton (TODO) |
-| projection-as-mint | surface authorization treated as boundary mint | S4 `no_free_transitivity` instance (TODO) |
-| checkpoint-as-discharge | compaction closes unknown commits | `checkpoint_cannot_discharge_unknown_commit` replay (TODO) |
-| ticket-spent-as-success | consumption read as execution | `ticketSpent_does_not_imply_didExecute` replay (TODO) |
-| commit-attempted-as-executed | attempt read as outcome | `commitAttempted_does_not_imply_didExecute` replay (TODO) |
-| caveat-blind gate | demand ignores burdens entirely | NEW screen needed (`CaveatBlind` — named in F3; design before caging) |
+| universal crossroads | one index mediates every pair | `MasterFree` refuted (DONE: Zoo C1 `hubSystem`/`sinkSystem`) |
+| refresh stamp | validity extended by derivation | inexpressibility (DONE as theorem: `refresh_is_inexpressible`; resident-cited in the Zoo registry) |
+| caveat cleanse | burden dropped in transit | inexpressibility (DONE as theorem: `caveat_dropping_is_inexpressible`; resident-cited in the Zoo registry) |
+| summary-as-authority | log/render/summary treated as authorization | DONE: Zoo C1 discipline-unsatisfiability cage (`summaryAuthSystem`) |
+| projection-as-mint | surface authorization treated as boundary mint | resident-cited: `BridgeCompositionSequent.first_bridge_alone_does_not_compose` |
+| checkpoint-as-discharge | compaction closes unknown commits | DONE 2026-07-02: Zoo skeleton replay (`DischargeCage`) + ANNEX wall cited |
+| observation-as-safety | checkpoint closes a safety question by summarizing it | DONE 2026-07-02: Zoo skeleton replay (`ObservationCage`) + ANNEX wall cited |
+| ticket-spent-as-success | consumption read as execution | DONE 2026-07-02: Zoo skeleton replay (`TicketCage`) + ANNEX wall cited |
+| commit-attempted-as-executed | attempt read as outcome | DONE 2026-07-02: Zoo skeleton replay (`AttemptCage`) + ANNEX wall cited |
+| caveat-blind gate | demand ignores burdens entirely | DONE 2026-07-02: `CaveatBlindFree`/`BurdenRespecting` screen + `blindSystem` specimen, resident in CaveatSequent; the attack satisfies the v4 discipline (`blind_discipline`) — screen was necessary, not a replay |
 
 ## Rules for the keeper
 

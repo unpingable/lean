@@ -1,5 +1,44 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — post-v5: the CaveatBlind screen (F3's named follow-up) — C1 CLOSES
+`LeanProofs/Scratch/CaveatSequent.lean` (extended in place — **file stays
+entirely zero-axiom**; first draft leaked propext through `Nat.le_max_left`,
+fixed by bounding fresh caveats with foldr-add instead of foldr-max),
+`LeanProofs/Scratch/Zoo.lean` (registry row; C1 inventory COMPLETE),
+`docs/ZOO-TEMPLATE.md` (inventory statuses swept).
+
+- **The screen** (dual of the currency screen in SHAPE: there, one evidence
+  funds every obligation; here, one demand funded at every burden):
+  `BlindDemand` (∀ cs, funded — total blindness), `CaveatBlindFree` (the
+  screen), `BurdenRespecting` (discipline-grade: every funding instance
+  forces cs ⊆ A; catches partial blindness too — codex: "the real
+  discipline-grade condition"). Bridge `burden_respecting_caveat_blind_free`
+  via `exists_fresh_caveat`: burden space unbounded vs finite acceptance
+  lists — NO degenerate escape, unlike the currency screen's one-obligation
+  system.
+- **The forcing fact** (`blind_discipline`): the blind specimen SATISFIES
+  `EvidenceNeverConcluded` — blindness launders inside the custody
+  discipline, so no wall replay could cage it; a new screen was necessary.
+  (Docstring precision on this fixed per codex YELLOW→addressed: the theorem
+  proves exactly the discipline predicate, not "all v4 walls".)
+- **The specimen** (`blindSystem`, fenced FORBIDDEN, true minimal pair —
+  `fund` retained, `blindGate` the only addition): `use []` funded at every
+  burden set. Caught twice (`blind_system_not_caveat_blind_free`,
+  `blind_system_not_burden_respecting`); teeth demo
+  `blind_system_funds_unaccepting_use` — the F3 sequent wall FAILS in the
+  blind system (same context, same use as `caveat_minimal_pair`, opposite
+  verdict).
+- **Screen-scope honesty** (`unburdened_evidence_is_universal_stamp`,
+  `cav_system_not_currency_free`): the CURRENCY screen fires on the CLEAN
+  caveat system — `ev []` honestly funds every use (no strings attached ≠
+  god-currency). Scope fact, codex-confirmed defensible: screens have home
+  vocabularies; porting one across vocabularies without re-derivation is
+  itself a laundering move.
+- Codex: strongest `burden_respecting_caveat_blind_free` ("the clean
+  diagonal reason"); weakest `blind_discipline` (prose, fixed); proof-shape
+  class: first-order constructor inversion + finite-list freshness
+  diagonalization, two countermodel witnesses (`blindGate`, `ev []`).
+
 ## 2026-07-02 — post-v5 C1 leftovers: the four ANNEX walls replayed in the zoo
 `LeanProofs/Scratch/Zoo.lean` (extended in place). **Entire slice zero-axiom**
 (all 20 new theorems `#print axioms`-clean); codex first-pass GREEN.

@@ -38,15 +38,36 @@
   * `accepted_caveats_fund` -- the positive pair: accept the burdens, the
     crossing funds.
 
+  * `CaveatBlindFree` / `BurdenRespecting` -- THE SCREEN (the F3-named
+    follow-up, built 2026-07-02): no use may be funded regardless of burden.
+    `blindSystem` is the forbidden specimen; it SATISFIES the v4 custody
+    discipline (blindness launders inside `EvidenceNeverConcluded` -- no
+    evidence is ever concluded), which is exactly why a NEW screen is needed
+    rather than a wall replay. `blind_system_funds_unaccepting_use` shows
+    what blindness buys: the F3 sequent wall fails in the blind system.
+  * `unburdened_evidence_is_universal_stamp` /
+    `cav_system_not_currency_free` -- screen-scope honesty: the CURRENCY
+    screen, read over the caveat vocabulary, fires on the CLEAN system
+    (evidence carrying no burdens funds every use -- the honest semantics of
+    no-strings-attached, not a god-currency). Screens have home
+    vocabularies; porting one across vocabularies without re-derivation is
+    itself a laundering move. "Dual of the currency screen" means dual
+    SHAPE, not nested scopes.
+
   Honesty notes:
   * Caveats bind CONSUMERS: `use A` carries the burdens in `A`. Which burdens
     a consumer dares accept is consumer policy; this calculus only guarantees
     burdens cannot be shed in transit.
-  * CAVEAT-BLIND DEMAND is the attack this file does NOT screen: a rule
-    relation that ignores caveats (funds any use from any evidence) makes
-    burdens decorative. A `CaveatBlind` screen (dual of the currency screen:
-    no rule family may accept evidence regardless of burden) is named
-    follow-up, not built here.
+  * The CaveatBlind screen flags TOTAL blindness (`BlindDemand`: funded at
+    EVERY burden set). The discipline-grade condition `BurdenRespecting`
+    (every funding instance forces acceptance) is strictly stronger
+    screening; `exists_fresh_caveat` (burden space unbounded, acceptance
+    lists finite) is why respecting systems can never be blind -- there is
+    no degenerate escape here, unlike the currency screen's one-obligation
+    system.
+  * Passing the screen is hygiene, not a non-laundering certificate (the
+    MasterFree caveat, inherited): a system can respect burdens and launder
+    elsewhere.
   * Caveats are abstract ids; real caveat semantics (AcceptedRisk vs
     Clearance vs Waiver -- the relaxation-valve vocabulary) live in the
     doctrine lane, cited not wired.
@@ -62,7 +83,8 @@ open LeanProofs.Scratch.CustodyIndexedSequent (System IsEvidence
   EvidenceNeverConcluded)
 open LeanProofs.Scratch.StructuralPolicySequent (ContextPolicy cartesian)
 open LeanProofs.Scratch.EvidenceCalculusSequent (EvidenceCalculus EChain
-  EEntail eentail_evidence_roots_in_read)
+  EEntail eentail_evidence_roots_in_read Fundable UniversalStamp
+  EvidenceCurrencyFree)
 
 /-! ## The caveat system -/
 
@@ -251,5 +273,156 @@ theorem caveat_minimal_pair {E : EvidenceCalculus cavSystem} :
   ⟨accepted_caveats_fund (fun _ hc => hc),
    fun _ => burdened_evidence_cannot_fund_unaccepting_use
      (List.Mem.head _) (fun h => by cases h)⟩
+
+/-! ## The CaveatBlind screen (the F3-named follow-up, built)
+
+    Dual of the currency screen in SHAPE: there, one evidence funds every
+    obligation (universality in the evidence position); here, one demand is
+    funded at every burden (universality in the burden dimension). A blind
+    demand makes burdens decorative -- the caveat calculus's whole guarantee
+    (burdens cannot be shed in transit) protects nothing if the consumer
+    never reads them on arrival. -/
+
+/-- BLIND DEMAND (shape inspection, burden dimension): a use funded by
+    evidence of EVERY burden set -- the demand never reads the caveats. -/
+def BlindDemand (S : System CJ CIx) (src : CJ) (A : List Nat) : Prop :=
+  ∀ cs : List Nat, S.Rule src (CJ.ev cs) (CJ.use A)
+
+/-- BURDEN-RESPECTING (the discipline-grade condition): every funding
+    instance forces acceptance -- rule-level `cs ⊆ A`. The clean rule's
+    defining condition, abstracted to any system over the caveat
+    vocabulary. -/
+def BurdenRespecting (S : System CJ CIx) : Prop :=
+  ∀ {src : CJ} {cs A : List Nat},
+    S.Rule src (CJ.ev cs) (CJ.use A) → ∀ c ∈ cs, c ∈ A
+
+/-- **The CaveatBlind screen:** a system passes when NO use is blindly
+    funded. Unlike the currency screen there is no degenerate escape
+    (`exists_fresh_caveat`): burden space is unbounded and acceptance lists
+    are finite, so blind funding is never honest. -/
+def CaveatBlindFree (S : System CJ CIx) : Prop :=
+  ∀ (src : CJ) (A : List Nat), ¬ BlindDemand S src A
+
+/-- Every list member is bounded by the element sum (Mathlib-free helper;
+    sum rather than max keeps the proof zero-axiom). -/
+theorem mem_le_foldr_add {x : Nat} {A : List Nat} (h : x ∈ A) :
+    x ≤ A.foldr (· + ·) 0 := by
+  induction A with
+  | nil => cases h
+  | cons a as ih =>
+      cases h with
+      | head => exact Nat.le_add_right _ _
+      | tail _ h' => exact Nat.le_trans (ih h') (Nat.le_add_left _ _)
+
+/-- Burden space outruns every finite acceptance list: some caveat is always
+    fresh. This is why the screen has no degenerate escape. -/
+theorem exists_fresh_caveat (A : List Nat) : ∃ c : Nat, c ∉ A :=
+  ⟨A.foldr (· + ·) 0 + 1, fun hmem =>
+    Nat.not_succ_le_self _ (mem_le_foldr_add hmem)⟩
+
+/-- Respecting burdens excludes blindness: a blind demand would have to
+    accept a fresh caveat its finite acceptance list cannot hold. -/
+theorem burden_respecting_caveat_blind_free {S : System CJ CIx}
+    (hR : BurdenRespecting S) : CaveatBlindFree S := by
+  intro src A hblind
+  obtain ⟨c, hc⟩ := exists_fresh_caveat A
+  exact hc (hR (hblind [c]) c (List.Mem.head _))
+
+/-- The CLEAN system respects burdens by construction. -/
+theorem cav_burden_respecting : BurdenRespecting cavSystem := by
+  intro _ _ _ hr
+  cases hr with
+  | fund hAcc => exact hAcc
+
+/-- The CLEAN system passes the screen. -/
+theorem cav_caveat_blind_free : CaveatBlindFree cavSystem :=
+  burden_respecting_caveat_blind_free cav_burden_respecting
+
+/-! ## The forbidden specimen: the blind gate -/
+
+/-- FORBIDDEN SPECIMEN: the clean system plus ONE rule family -- a gate that
+    funds `use []` (a use accepting NO burdens) from evidence of every burden
+    set. True minimal pair: `fund` is retained unchanged. Exists to prove the
+    screen has teeth, not as a pattern to instantiate. -/
+inductive BlindRule : CJ → CJ → CJ → Prop where
+  | fund {cs A : List Nat} :
+      (∀ c ∈ cs, c ∈ A) → BlindRule .src (.ev cs) (.use A)
+  | blindGate {cs : List Nat} : BlindRule .src (.ev cs) (.use [])
+
+def blindSystem : System CJ CIx :=
+  { ix := cjix, Rule := BlindRule }
+
+/-- **The attack launders INSIDE the custody discipline:** the blind system
+    still never concludes evidence -- `EvidenceNeverConcluded` holds, so the
+    discipline itself does not catch blindness (precisely: THIS predicate is
+    satisfied; the walls conditional on it apply to the blind system without
+    flagging the gate). This is the forcing fact for a NEW screen (the zoo's
+    caveat-blind row could not be caged by replay). -/
+theorem blind_discipline : EvidenceNeverConcluded blindSystem := by
+  intro _ _ _ hr _ _ hr'
+  cases hr <;> cases hr'
+
+/-- The gate is a blind demand: `use []` is funded at every burden set. -/
+theorem blind_gate_installs_blind_demand :
+    BlindDemand blindSystem CJ.src [] :=
+  fun _ => BlindRule.blindGate
+
+/-- **The catch: the blind system fails the screen.** -/
+theorem blind_system_not_caveat_blind_free :
+    ¬ CaveatBlindFree blindSystem :=
+  fun h => h CJ.src [] blind_gate_installs_blind_demand
+
+/-- The stronger catch: a single burden-violating instance (evidence
+    carrying caveat 0 funds the use accepting nothing). -/
+theorem blind_system_not_burden_respecting :
+    ¬ BurdenRespecting blindSystem := by
+  intro h
+  have h0 := h (BlindRule.blindGate (cs := [0])) 0 (List.Mem.head _)
+  cases h0
+
+/-- What blindness buys the attacker: the F3 sequent wall FAILS in the blind
+    system -- `use []` is derivable from burdened evidence. Contrast the
+    clean system's `caveat_minimal_pair` negative half: same context, same
+    use, opposite verdict. -/
+theorem blind_system_funds_unaccepting_use
+    {E : EvidenceCalculus blindSystem} :
+    EEntail blindSystem E (cartesian CJ)
+      [CJ.src, CJ.ev [0]] (CJ.use []) [CJ.src, CJ.ev [0]] :=
+  EEntail.cut BlindRule.blindGate
+    (EEntail.ax ⟨List.Mem.head _, rfl⟩)
+    (EEntail.ax ⟨List.Mem.tail _ (List.Mem.head _), rfl⟩)
+
+/-! ## Screen-scope honesty: the currency screen misreads this vocabulary -/
+
+/-- Read over the caveat vocabulary, unburdened evidence is a "universal
+    stamp": `ev []` funds every fundable use, by the demand semantics
+    themselves (nothing to accept). -/
+theorem unburdened_evidence_is_universal_stamp :
+    UniversalStamp cavSystem (CJ.ev []) := by
+  intro src tgt hf
+  obtain ⟨e, he⟩ := hf
+  cases he with
+  | fund _ => exact CRule.fund (fun c hc => nomatch hc)
+
+/-- **The currency screen fires on the CLEAN caveat system.** This is a
+    scope fact, not a defect of either object: no-strings-attached evidence
+    funding every use is the honest reading of an empty burden set, and the
+    currency screen was derived in a vocabulary where distinct evidences
+    fund distinct hops. Screens have home vocabularies; porting one across
+    vocabularies without re-derivation is itself a laundering move. The
+    CaveatBlind screen is the currency screen's DUAL SHAPE, not its
+    instance. -/
+theorem cav_system_not_currency_free :
+    ¬ EvidenceCurrencyFree cavSystem := by
+  intro h
+  have hcollapse := h (CJ.ev []) unburdened_evidence_is_universal_stamp
+    (src := CJ.src) (tgt := CJ.use [0])
+    (src' := CJ.src) (tgt' := CJ.use [1])
+    ⟨CJ.ev [], CRule.fund (fun c hc => nomatch hc)⟩
+    ⟨CJ.ev [], CRule.fund (fun c hc => nomatch hc)⟩
+  have h2 := hcollapse.2
+  injection h2 with hlist
+  injection hlist with h0
+  cases h0
 
 end LeanProofs.Scratch.CaveatSequent

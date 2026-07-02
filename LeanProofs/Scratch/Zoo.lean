@@ -41,8 +41,9 @@
   | observation-as-safety        | CheckpointSettlement.checkpoint_cannot_upgrade_observation_to_safety (ANNEX; skeleton replay CAGED HERE) |
   | ticket-spent-as-success      | ExecutionCustody.ticketSpent_does_not_imply_didExecute (ANNEX; skeleton replay CAGED HERE) |
   | commit-attempted-as-executed | ExecutionCustody.commitAttempted_does_not_imply_didExecute (ANNEX; skeleton replay CAGED HERE) |
+  | caveat-blind gate            | CaveatSequent.blind_system_not_caveat_blind_free (screen + specimen resident; the attack SATISFIES the v4 discipline -- `blind_discipline` -- which is why it needed a new screen, not a replay) |
 
-  TODO (later pass): `CaveatBlind` screen design before its cage (named in F3).
+  C1 inventory complete: every ZOO-TEMPLATE row is caged or resident-cited.
 
   Mathlib-free.
 -/
