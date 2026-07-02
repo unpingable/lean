@@ -1,5 +1,37 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — v5 slice 2: linear normalization — THE TEETH
+`LeanProofs/Scratch/LinearNormalization.lean` (new), `lakefile.toml` (CI root).
+
+- **The inversion, delivered**: classical normalization removes detours;
+  custody-preserving normalization REFUSES when removal would erase payment.
+  The liberal layer (slice-1 `Core`) can STATE free contraction; `linearize`
+  (computable, partial) pays every read with a distinct first-match
+  occurrence, threads residuals, and returns `ok` (a linear `Deriv`) or
+  `forgery offender`.
+- **The spine law** (`linearize_ok_conserves`): on success, context = reads +
+  residual for EVERY measure — payment neither erased nor duplicated.
+  `chainOf_linearize`: the evidence spine survives (labels + order).
+- **The general negative** (`excess_demand_forges`): demand above occurrence
+  supply for any label FORCES refusal — accounting-tied (via the conservation
+  law), not constructor-shaped; the offending trees are statable (codex
+  confirmed).
+- **The concrete pair**: `linear_pay_twice_normalizes` /
+  `linear_free_contraction_cannot_normalize` — same tree shape, same read
+  labels; two occurrences fund, one occurrence forges.
+  `occurrences_not_labels` packages it. `pay_twice_consumes_both`: both
+  occurrences consumed on success.
+- **Two disciplines, two verdicts** (`cartesian_statable_but_linearly_refused`):
+  the free-contraction tree embeds into the Prop layer under Cartesian and is
+  refused by linearization.
+- Codex verdict: **YELLOW, v5-candidate** — bar mapping complete
+  (`normalize_refuses_payment_erasure` = `excess_demand_forges`; the
+  chain/occurrence bar split across `chainOf_linearize` +
+  `linearize_ok_conserves`); named remaining before v5.0.0:
+  sufficient-count COMPLETENESS (counts suffice ⇒ ok) and a positional
+  occurrence trace (exact offender identity). `Classical.choice` intrusion
+  caught and purged; everything ≤ [propext, Quot.sound].
+
 ## 2026-07-01 — v5 slice 1: structural detours normalize, custody preserved
 `LeanProofs/Scratch/StructuralNormalization.lean` (new), `lakefile.toml` (CI
 root).
