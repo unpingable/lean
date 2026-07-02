@@ -1,7 +1,7 @@
 {
   "reconciled_note": "Own per-repo .governor loop for the Lean bounded-calculi slice campaign, mirroring the nq precedent (~/git/nq-root/nq/.governor). Global AG backlog is a recognition/custody registry; each repo runs its own program counter (loop-protocol S6: live probes win; S9 'single live program counter' is the stale artifact AG-Claude is correcting). Plan: ~/.claude/plans/okay-so-i-was-ethereal-quill.md.",
   "campaign": "lean-bounded-calculi / v7-artifact-authority-profiles",
-  "phase": "RELEASE-BOUNDARY",
+  "phase": "RELEASE-PREP",
   "current_slice": null,
   "lane": "lean-scratch-bounded-calculi",
   "authorization_mode": "scratch_only_operator_committed",
@@ -208,7 +208,7 @@
     "overlap_note": "Witnessed.ResourceSequent already owns the token-linear wall (cannot_cross_without_bridge_token etc.); this file owns the calculus-index wall; SEQ2 reuses ResourceSequent rather than re-deriving linearity."
   },
   "operating_mode": "FULL AUTO (operator 2026-07-01): no git ceremony (versioning/releases are the operator's key-off; commits fungible); track changes in docs/CHANGELOG-scratch-campaign.md as slices land; governed gates + codex audits stay; promotion out of Scratch / version bumps remain operator-only.",
-  "release_boundary": "v6.0.0 'Finite Custody Checking' (operator-chosen name, Option A): claim + non-claims = docs/V6-RELEASE-LEDGER.md; DecidableScreens (C2) claimed into the release surface; local tag operator-authorized 2026-07-02 ('you can tag it, I'll handle the release/push'); push tag + GitHub release (DOI mint) = operator, after work-hours; main may advance past the tag locally but v7-ish main should not be pushed before the v6 release is published (front-door optics).",
+  "release_boundary": "v7.0.0 'Artifact Authority Profiles': claim + non-claims = docs/V7-RELEASE-LEDGER.md (claim: profiles are local, crossings are paid, receipts are not fungible across obligations, coverage cannot be minted). Local tag recommended, awaiting operator word (v6 precedent: operator authorizes local tags explicitly). Push/publish operator-timed; v6 already public so main may advance.",
   "v3_audit": {
     "verdict": "YELLOW - boundary properly scoped; sequents safely deferred",
     "closed": [
@@ -259,9 +259,9 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v7 spine COMPLETE per the ratified gap spec + slice 4's coverage laws: profiles local / crossings paid / every rung paid / jurisdiction screened / animal caught / species non-fungible / derivational portfolio-widening killed / custody coverage priced. RELEASE-BOUNDARY DECISION IS OPERATOR'S: v7.0.0 'Artifact Authority Profiles' release-shaped NOW (recommended claim: 'profiles are local, crossings are paid, receipts are not fungible across obligations, and coverage cannot be minted'); named v7.x remainder = issuer-level provenance-correlated portfolio accounting + WLP doctrine lines (untouched, asleep). On operator go: release prep (V7-RELEASE-LEDGER + version bumps), local tag; push/publish operator-timed.",
-  "last_verified_commit": "68114e7",
-  "last_verified_note": "governor verify-run -- lake build JurisdictionScreen -> [pass] (receipt v7_slice4_v2); slice-4 theorems <= [propext, Quot.sound], face-1 kill zero-axiom.",
+  "next_action": "v7.0.0 RELEASE-PREPPED (ledger + CHANGELOG + README + WHAT-THIS-PROVES + CITATION + lakefile at 7.0.0). docs/NEXT-SURFACES.md filed: NEXT-A Portfolio Custody (forcing case = kernel-AG admission packets; overlap discipline vs slice 4 recorded), NEXT-B WLP envelope graphs (asleep), NEXT-C compiled checker boundary (AG-consumption-forced), NEXT-D model/semantics (paper lane). NO numerals past v8 minted. OPERATOR: authorize local v7 tag (or tag yourself), then release when ready.",
+  "last_verified_commit": "1558728",
+  "last_verified_note": "governor verify-run -- lake build all three v7 modules -> [pass] (receipt v7_release_prep); no sorry/admit; footprints attested per slice.",
   "completed_slices": [
     "A: roadmap S10/S11 hygiene reconciliation",
     "phase-0: lean .governor plane stood up (loop.json + loop-receipts + gitignore split, nq precedent)",

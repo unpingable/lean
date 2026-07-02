@@ -4,7 +4,57 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: 6.0.0 — Finite Custody Checking
+## Current release: 7.0.0 — Artifact Authority Profiles
+
+*A Lean proof release for custody-aware authority semantics.*
+
+**v7.0.0 proves the profile discipline**: profiles are local, crossings are
+paid, receipts are not fungible across obligations, and coverage cannot be
+minted. The campaign modules live under `LeanProofs/Scratch/` (custody
+class SCRATCH, fenced, CI-covered — build coverage, not promoted kernel
+authority); gap spec with the binding constitution (no shared custody
+language, no master profile, local profiles + paid pairwise bridges) at
+[`docs/V7-GAP-SPEC.md`](docs/V7-GAP-SPEC.md).
+
+What v7 proves:
+
+- **profiles do not compose for free** — holding two profiles' local
+  material is not holding their cross-profile authority; conversion
+  requires a declared paid bridge receipt, and with it the crossing
+  composes — the only difference is the receipt
+  (`profile_does_not_compose_for_free`,
+  `cross_profile_conversion_requires_bridge`);
+- **stage ascent pays each rung** — stage-n standing does not authorize
+  stage n+1 (`profile_stage_noncollapse`); any ascent from j to k holds
+  every intermediate rung receipt in custody, at any derivation depth
+  (`ascent_pays_every_rung`). *No skipped rung, no bulk discount.*
+- **receipts are jurisdiction-scoped, not fungible** — the generic
+  evidence-jurisdiction screen (per-vocabulary, opt-in scopes), with the
+  keeper wall `unmatched_context_cannot_convert`; the prior local walls
+  recovered as exact instance iffs; receipt cross-use (bridge-as-rung,
+  rung-as-bridge) caught; the once-escaped relation-promotion attack
+  caught (`relation_promotion_fails_jurisdiction_screen`);
+- **coverage cannot be minted** — derived evidence funds no obligation its
+  origin could not fund (`derived_evidence_covers_no_more`); in
+  single-scoped frames, covering k distinct obligations costs k distinct
+  held receipts, exactly (`coverage_costs_receipts` + the 3-for-3 price
+  witness). Broad custody is wealth, not forgery — when paid;
+- **the screens stay honest about themselves** — a fully paid two-way
+  bridge pair fails the index-level master screen
+  (`two_way_profiles_fail_master_screen`): failing it is a smell, not a
+  conviction; screening is not enforcement.
+
+v7 does not claim a shared custody language ("Constellation Custody
+Protocol" is a retired name), a master profile or universal artifact
+authority schema, WLP semantics (envelope-only, untouched), runtime/JSON
+schemas/AG integration, a profile registry, issuer-level
+provenance-correlated portfolio accounting (the named v7.x remainder), or
+a graded "too much coverage" policy screen.
+
+Release inventory with audited theorem receipts:
+[`docs/V7-RELEASE-LEDGER.md`](docs/V7-RELEASE-LEDGER.md).
+
+## 6.0.0 — Finite Custody Checking
 
 *A Lean proof release for custody-aware authority semantics.*
 

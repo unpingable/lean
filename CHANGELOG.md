@@ -6,6 +6,41 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 7.0.0 — Artifact Authority Profiles (2026-07-02)
+
+*A Lean proof release for custody-aware authority semantics.*
+
+7.0.0 proves the profile discipline: **profiles are local, crossings are
+paid, receipts are not fungible across obligations, and coverage cannot be
+minted.** Local profiles do not compose for free — holding two profiles'
+local material is not holding their cross-profile authority
+(`profile_does_not_compose_for_free`); conversion requires a declared paid
+bridge receipt, with which the crossing composes
+(`cross_profile_conversion_requires_bridge`). Stage ascent pays each rung:
+a stage-n profile does not authorize stage n+1
+(`profile_stage_noncollapse`), and any ascent holds every intermediate rung
+receipt in custody at any derivation depth (`ascent_pays_every_rung`). The
+generic evidence-jurisdiction screen (`JurisdictionRespecting`, minted on a
+two-instance family repeat, per-vocabulary and local) makes receipt species
+non-fungible: the prior local walls are recovered as exact instances (two
+iffs), receipt cross-use is caught, and the once-escaped relation-promotion
+attack is caught (`relation_promotion_fails_jurisdiction_screen`). Coverage
+cannot be minted: derived evidence funds no obligation its origin could not
+fund (`derived_evidence_covers_no_more`), and in single-scoped frames
+covering k distinct obligations costs k distinct held receipts
+(`coverage_costs_receipts`, with an exact-price witness). Coverage through
+custody is legitimate when paid — the theorem is *no bulk discount*, not
+suspicion of broad custody. **Non-claims:** no shared custody language (no
+"Constellation Custody Protocol"); no master profile or universal schema
+(the master screen's own false positive is demonstrated in-release); no WLP
+semantics (envelope-only, untouched); no runtime/JSON/AG integration; no
+profile registry; no issuer-level provenance-correlated portfolio
+accounting (the named v7.x remainder); no graded "too much coverage"
+policy screen. Screening, not enforcement. All modules `Custody-Class:
+SCRATCH`, CI-covered; footprints ≤ [propext, Quot.sound], no
+`Classical.choice`. Release inventory:
+[`docs/V7-RELEASE-LEDGER.md`](docs/V7-RELEASE-LEDGER.md).
+
 ## 6.0.0 — Finite Custody Checking (2026-07-02)
 
 *A Lean proof release for custody-aware authority semantics.*

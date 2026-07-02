@@ -133,6 +133,52 @@ Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibi
 
 ---
 
+## Artifact Authority Profiles (v7, `LeanProofs/Scratch/`, fenced)
+
+### What v7 proves
+
+- **Profiles are local; crossings are paid** (`ArtifactProfiles.lean`):
+  two profiles' local material does not compose into cross-profile
+  authority; conversion requires a declared paid bridge receipt, with
+  which the crossing composes as a two-cut chain — the only difference is
+  the receipt. The general wall holds at any depth
+  (`admission_requires_jurisdiction_receipt`). The master screen's own
+  false positive is demonstrated in-release: a fully paid two-way bridge
+  pair fails index-level `MasterFree` (a smell, not a conviction).
+- **Every rung is paid** (`ProfileStages.lean`): stage-n standing does not
+  authorize stage n+1; any ascent from j to k holds every intermediate
+  rung receipt literally in custody (`ascent_pays_every_rung`, at any
+  derivation depth). Two cages, two mechanisms: self-promotion fails the
+  custody discipline; the season-pass rung-skip satisfies it and falls to
+  the step-jurisdiction condition instead.
+- **A receipt funds only what it is scoped to** (`JurisdictionScreen.lean`):
+  the generic evidence-jurisdiction screen, minted on a two-instance
+  family repeat, per-vocabulary and local (opt-in scopes — no default
+  fungibility). Keeper wall: nothing in custody scoped to the demanded
+  obligation ⇒ underivable at any depth. The two prior local walls are
+  recovered as exact iffs; receipt species cross-use is caught; the
+  once-escaped relation-promotion attack is caught.
+- **Coverage cannot be minted** (`JurisdictionScreen.lean`, portfolio
+  section): derived evidence funds no obligation its origin could not
+  fund — the obligation-indexed sibling of "universality is inherited,
+  never minted." In single-scoped frames, covering k distinct obligations
+  costs exactly k held receipts (pigeonhole lower bound + exact witness).
+
+### What v7 does NOT prove
+
+- No shared custody language; no "Constellation Custody Protocol"; no
+  master profile; no universal artifact authority schema; no profile
+  registry (a registry may enumerate, never mediate — none is built).
+- No WLP semantics: WLP remains envelope-only and untouched; its
+  non-collapse lines are named in the gap spec, not built.
+- No runtime, no JSON schemas, no AG/NQ/Porter integration — the
+  constellation wire lane is not this lane.
+- No issuer-level / provenance-correlated portfolio accounting (the named
+  v7.x remainder — needs a provenance model this skeleton lacks) and no
+  graded "too much coverage" policy screen (rejected as arbitrary).
+- Screening, not enforcement: frames are local declarations; frame quality
+  is the instantiator's burden.
+
 ## Finite Custody Checking (v6, `LeanProofs/Scratch/`, fenced)
 
 ### What v6 proves
