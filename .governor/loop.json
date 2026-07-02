@@ -1,7 +1,7 @@
 {
   "reconciled_note": "Own per-repo .governor loop for the Lean bounded-calculi slice campaign, mirroring the nq precedent (~/git/nq-root/nq/.governor). Global AG backlog is a recognition/custody registry; each repo runs its own program counter (loop-protocol S6: live probes win; S9 'single live program counter' is the stale artifact AG-Claude is correcting). Plan: ~/.claude/plans/okay-so-i-was-ethereal-quill.md.",
-  "campaign": "lean-bounded-calculi",
-  "phase": "PLAN",
+  "campaign": "lean-bounded-calculi / v6-executable-custody-checking",
+  "phase": "BUILD",
   "current_slice": null,
   "lane": "lean-scratch-bounded-calculi",
   "authorization_mode": "scratch_only_operator_committed",
@@ -84,6 +84,20 @@
       "status": "done-green",
       "file": "LeanProofs/Scratch/BridgeCompositionSequent.lean",
       "note": "Composition as two explicit cuts (Temporal->Surface->Boundary), no composite-bridge index/judgment/rule. ZERO-AXIOM syntactic layer: composition_cannot_erase_bridge_evidence (bounded-normal-form provenance, scope stated per audit), mint_without_downstream_axioms_requires_all_three (forcing version, audit-requested), no_free_transitivity, first_bridge_alone_does_not_compose (upstream chain accumulates zero boundary authority), S1 wall re-established under extended rules. Soundness [propext] into real BoundaryArtifact.MayMint (specimen-typed hop, exposure class). Codex: pairing premise ruled syntactically load-bearing; cases complete for this rule set. LADDER S0-S4 COMPLETE."
+    },
+    {
+      "id": "V6-1",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/TracedCoherence.lean",
+      "note": "v6 slice 1 (operator-admitted 2026-07-02, ChatGPT-drafted gap spec): linearizeT/linearize coherence - success/failure agreement, same offender, residual projection, no new accepted/rejected cases from tracing -- LANDED: verdict iffs + same-offender + refinement package + canonical tagging bridge (past-spec); codex first-pass GREEN; <= [propext, Quot.sound], no choice"
+    },
+    {
+      "id": "V6-2",
+      "kind": "build_slice",
+      "status": "admitted",
+      "file": "LeanProofs/Scratch/FiniteSupportChecker.lean",
+      "note": "v6 slice 2: finite-support checker - typed result (ok trace | refusal offender), no bare Bool final API; soundness (ok => valid normalized derivation via coherence); refusal correctness (offender = real excess demand); finite-support decision (verdict decided on readsOf labels only)"
     }
   ],
   "acceptance": [
@@ -198,9 +212,9 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v5.0.0 RELEASED. C1 COMPLETE. C3 MACHINE STOOD UP (OverlapAudits.lean, 2 runs done; more candidates auditable on demand: residue-custody vs DeltaTSequent, control-path-independence). Remaining post-v5 queue: v3.x odds; AG-AUDIT-CHECKLIST routing (operator). v6 lane named-not-opened: linearizeT<->linearize coherence + finite-support checker.",
-  "last_verified_commit": "cdf8622",
-  "last_verified_note": "governor verify-run -- lake build OverlapAudits+Zoo -> [pass] (receipt c3_final_443c5081); #print axioms: all 12 OverlapAudits theorems zero-axiom.",
+  "next_action": "v6 CAMPAIGN OPEN (new surface, operator-admitted 2026-07-02): slice V6-1 coherence, then V6-2 finite-support checker. HARD PROHIBITIONS (binding): no master Admissible; no runtime/Bridge-Foundry claim; no all-systems checker claim; no relation-promotion screen unless separately admitted; no unchecked classical choice; no release claim without operator decision. Report at end: files/theorem inventory/coherence names/checker result type/soundness+refusal names/axiom footprint/candidate-vs-release-shaped.",
+  "last_verified_commit": "fddba5a",
+  "last_verified_note": "governor verify-run -- lake build TracedCoherence -> [pass] (receipt v6_coherence_v2_b6afedaa); footprint <= [propext, Quot.sound], no Classical.choice.",
   "completed_slices": [
     "A: roadmap S10/S11 hygiene reconciliation",
     "phase-0: lean .governor plane stood up (loop.json + loop-receipts + gitignore split, nq precedent)",

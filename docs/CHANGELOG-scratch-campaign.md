@@ -1,5 +1,39 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — v6 slice 1: traced/untraced coherence — THE TWINS AGREE
+`LeanProofs/Scratch/TracedCoherence.lean` (new), `lakefile.toml` (CI root).
+**v6 "Executable Custody Checking" CAMPAIGN OPENED** (new surface,
+operator-admitted 2026-07-02; gap spec ChatGPT-drafted, operator-ratified;
+hard prohibitions recorded in `.governor/loop.json`). Codex first-pass GREEN.
+
+- **The claim closed**: v5 slice 4's honesty note ("coherence named, not
+  built") is discharged. If tracing could change a verdict, the trace would
+  be an authority upgrade smuggled through instrumentation; now proved it
+  cannot: *tracing is testimony about payment, never a change to who gets
+  paid.*
+- `linearizeT_ok_projects` — traced success projects: untraced twin succeeds
+  on the label projection, residual = projection of traced residual, linear
+  `Deriv` delivered.
+- `linearizeT_forgery_projects` — traced refusal projects **with the same
+  offender** (refusal identity, not mere refusal existence; codex: "the `l`
+  is fixed on both sides").
+- `linearizeT_ok_iff_linearize_ok` / `linearizeT_forgery_iff_linearize_forgery`
+  / `tracing_preserves_verdicts` — the verdict iffs and the packaged
+  no-new-cases theorem (scope items 1a/1c).
+- `trace_refines_untraced_run` — the refinement package (scope 1b); codex:
+  strongest of the slice.
+- **Past the gap spec** (operator: "don't hold back"): the CANONICAL TAGGING
+  BRIDGE — `tagFrom`/`tagged` (+ `tagged_map_snd`, `tagged_unambiguous`,
+  count-level, no choice) and `untraced_runs_trace_canonically`: every
+  untraced run on a plain context lifts to a traced run, same verdict, same
+  offender, position-distinct trace. Slice 2's checker consumes this to
+  accept untagged input and return positional testimony.
+- Coherence holds over ANY tagged context (no unambiguity hypothesis
+  anywhere; codex confirmed nothing quietly assumes it). Footprint ≤
+  [propext, Quot.sound]; no Classical.choice (prohibition sweep clean).
+- Proof-shape class: structural induction over `Core` + remover-projection
+  lemmas; reverse coherence by total result-case exhaustion.
+
 ## 2026-07-02 — post-v5 C3: first kernel-overlap audit runs (the anti-fake-mustache machine)
 `LeanProofs/Scratch/OverlapAudits.lean` (new; **entirely zero-axiom**),
 `lakefile.toml` (CI root), `LeanProofs/Scratch/Zoo.lean` (registry row +
