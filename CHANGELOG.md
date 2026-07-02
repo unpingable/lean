@@ -6,6 +6,36 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 5.0.0 — Custody-Preserving Normalization (2026-07-01)
+
+*A Lean proof release for custody-aware authority semantics.*
+
+5.0.0 delivers the normalization layer for the v4 sequent skeleton, with the
+custody inversion as its thesis: **classical normalization removes detours
+and preserves derivability; custody-preserving normalization removes only
+policy-licensed detours and refuses when removal would erase payment.** A
+liberal structural derivation normalizes into the custody discipline **iff**
+its reads can be paid by occurrences — per-label occurrence counting decides
+normalization exactly (`linearize_ok_iff_counts_suffice`); refusal is a typed
+forgery whose named offender is itself a genuine excess-demand witness
+(`forgery_offender_is_excess`). Successful normalization conserves
+occurrences for every measure (`linearize_ok_conserves`), preserves the
+custody chain (`chainOf_linearize`), and carries a positional occurrence
+trace proving **who paid**: each read funded by a distinct original-context
+occurrence, no occurrence paying twice, nothing paying that was not there
+(`OccurrenceTrace`). The same liberal syntax, priced by two disciplines, gets
+two verdicts: Cartesian derives, linear refuses
+(`cartesian_statable_but_linearly_refused`). The starting point is made
+honest by the already-normal theorem (`all_derivs_read_rooted`): under the v4
+discipline there are no cut redexes — the detours v5 prices are structural
+(weakening/contraction/exchange), entering as explicit nodes
+(`StructuralNormalization`). **Non-claims:** not full Gentzen cut
+elimination; not a full structural-rule algebra (node-form linear rules are
+named follow-up); not runtime; traced-twin coherence and the executable
+finite-support checker are v6 lane. All modules `Custody-Class: SCRATCH`,
+CI-covered, ≤ `[propext, Quot.sound]`, per-slice adversarial audits; see
+`docs/V5-RELEASE-LEDGER.md`.
+
 ## 4.0.0 — Custody-Indexed Sequents (2026-07-01)
 
 *A Lean proof release for custody-aware authority semantics.*

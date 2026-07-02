@@ -4,7 +4,55 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: 4.0.0 — Custody-Indexed Sequents
+## Current release: 5.0.0 — Custody-Preserving Normalization
+
+*A Lean proof release for custody-aware authority semantics.*
+
+**v5.0.0 delivers the normalization layer for the v4 sequent skeleton.** The
+thesis is the custody inversion: *classical normalization removes detours and
+preserves derivability; custody-preserving normalization removes only
+policy-licensed detours and REFUSES when removal would erase payment.* The
+campaign modules live under `LeanProofs/Scratch/` (custody class SCRATCH,
+fenced, CI-covered under `CustodyIndexedSequents` — build coverage, not
+promoted kernel authority).
+
+What v5 proves:
+
+- **the already-normal theorem** — under the v4 discipline there are NO cut
+  redexes; every derivation is read-rooted normal (`all_derivs_read_rooted`),
+  so the detours worth pricing are *structural*, entering as explicit
+  weakening/contraction/exchange nodes whose elimination preserves the
+  custody chain (`chainOf_normalize`);
+- **normalization is partial and policy-aware** — `linearize` pays every read
+  with a distinct first-match occurrence and returns either a linear
+  derivation or a **typed forgery refusal**; on success, occurrences are
+  conserved for every measure (`linearize_ok_conserves`) and the evidence
+  spine survives (`chainOf_linearize`);
+- **counting decides normalization** — the decision theorem
+  (`linearize_ok_iff_counts_suffice`): success ⟺ every label's demanded
+  reads are covered by its occurrences; the refusal side is accounting-tied,
+  not constructor-shaped (`excess_demand_forges`), and the named offender is
+  itself a genuine excess-demand witness (`forgery_offender_is_excess`);
+- **the positional occurrence trace proves who paid** — `linearizeT` records
+  which original-context occurrence funded each read: no occurrence pays
+  twice (`linearize_trace_occurrences_distinct`), nothing pays that was not
+  there (`trace_mem_initial`), and the trace refines the read spine in order
+  (`trace_labels_are_reads`). *Labels explain what was read; occurrence
+  traces prove who paid.*
+- **the same syntax, two verdicts** — the free-contraction tree embeds
+  soundly under the Cartesian policy and is refused by linearization
+  (`cartesian_statable_but_linearly_refused`). **Normalization cannot forge
+  payment.**
+
+v5 does not claim full Gentzen cut elimination, a full structural-rule
+algebra (node-form linear rules are named follow-up), or runtime enforcement;
+traced-twin coherence and the executable finite-support checker are the named
+v6 lane.
+
+Release inventory with audited theorem receipts:
+[`docs/V5-RELEASE-LEDGER.md`](docs/V5-RELEASE-LEDGER.md).
+
+## 4.0.0 — Custody-Indexed Sequents
 
 *A Lean proof release for custody-aware authority semantics.*
 

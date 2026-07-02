@@ -133,6 +133,54 @@ Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibi
 
 ---
 
+## Custody-Preserving Normalization (v5, `LeanProofs/Scratch/`, fenced)
+
+> Normalization cannot forge payment.
+
+### What v5 proves
+
+v5 proves that the v4 skeleton's derivations can be **normalized** without
+laundering custody — and that this is an inversion of the classical picture:
+classical normalization removes detours and preserves derivability;
+custody-preserving normalization removes only policy-licensed detours and
+**refuses** when removal would erase payment.
+
+- **the already-normal theorem** — under the v4 discipline there are no cut
+  redexes (`all_derivs_read_rooted`); the detours worth pricing are
+  *structural* (weakening/contraction/exchange), added as explicit nodes
+  whose elimination preserves the custody chain (`chainOf_normalize`);
+- **normalization is partial and policy-aware** — `linearize` pays every
+  read with a distinct first-match occurrence, returning a linear derivation
+  or a **typed forgery refusal**; success conserves occurrences for every
+  measure (`linearize_ok_conserves`) and preserves the evidence spine
+  (`chainOf_linearize`);
+- **counting decides normalization** — `linearize_ok_iff_counts_suffice`:
+  success ⟺ per-label demand ≤ supply; refusal is accounting-tied, not
+  constructor-shaped (`excess_demand_forges`), and the named offender is
+  itself a genuine excess-demand witness (`forgery_offender_is_excess`);
+- **the positional trace proves who paid** — `linearizeT` records which
+  original-context occurrence funded each read: no occurrence pays twice,
+  nothing pays that was not there, and the trace refines the read spine in
+  order. *Labels explain what was read; occurrence traces prove who paid.*
+- **the same syntax, two verdicts** — the free-contraction tree embeds
+  soundly under the Cartesian policy and is refused by linearization
+  (`cartesian_statable_but_linearly_refused`).
+
+### What v5 does NOT prove
+
+- **No full Gentzen cut elimination** — there are no cut redexes to
+  eliminate under the discipline; that is a theorem, not an omission.
+- **No full structural-rule algebra** — node-form *linear* structural rules
+  are named follow-up.
+- **No runtime enforcement;** no traced-twin coherence theorem
+  (`linearizeT` ↔ `linearize`, v6 lane); no executable finite-support
+  checker (v6 lane). The modules are fenced scratch, not promoted kernel
+  authority.
+
+Per-theorem receipts: [`docs/V5-RELEASE-LEDGER.md`](docs/V5-RELEASE-LEDGER.md).
+
+---
+
 ## Custody-Indexed Sequents (v4, `LeanProofs/Scratch/`, fenced)
 
 > No custody chain, no derivation.
