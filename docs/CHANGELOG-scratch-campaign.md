@@ -1,5 +1,49 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — v6 slice 2: the finite-support checker — TYPED VERDICTS, EXECUTABLE REFUSAL
+`LeanProofs/Scratch/FiniteSupportChecker.lean` (new), `lakefile.toml` (CI
+root). v6 initial scope COMPLETE (both admitted slices landed same day the
+lane opened). Codex first-pass GREEN; its weakest-theorem note (trace
+provenance not public) closed same-slice with resident machinery.
+
+- **The API** (no bare Bool anywhere on the final surface): `CheckResult`
+  (ok positional-trace | refusal offender); `Core.check` (tagged context);
+  `Core.checkCtx` (PLAIN finite context — tags canonically via slice 1's
+  bridge, caller supplies no positions, still receives positional
+  testimony); `firstDeficient` (the counts-only decider, `Option J` — no
+  derivation built).
+- **Soundness** (`check_ok_sound` / `checkCtx_ok_sound`): ok ⇒ the untraced
+  normalizer succeeds and delivers a linear `Deriv` over the GIVEN context,
+  trace labels = the read spine, trace position-distinct. Codex: "real
+  soundness, not just verdict agreement... no circularity — untraced
+  `linearize` is the independent anchor."
+- **Refusal correctness** (`check_refusal_excess` / `checkCtx_refusal_excess`
+  / `check_refusal_offender_demanded`): a refusal names an offender whose
+  total demand genuinely exceeds supply, and the offender is genuinely
+  demanded. Never a mislabel.
+- **Completeness** (`check_complete`): sufficient counts on the finite
+  support ⇒ accept. Soundness + completeness close the checker into a
+  DECISION PROCEDURE for this skeleton, not a semi-decision.
+- **THE FINITE-SUPPORT DECISION THEOREM** (`firstDeficient_decides_check`,
+  with `support_covers_iff_all_covers`): the verdict is decided by finitely
+  many count comparisons over `readsOf` — the v5 decision theorem's
+  infinite-label quantifier (∀ l : J) reduced to the finite read support,
+  discharging the boundary v5 slice 3 explicitly left unclaimed.
+- **Trace provenance** (`checkCtx_trace_entries_from_context`, codex-
+  suggested, closed with resident `trace_mem_initial`): every accepted
+  trace entry is an occurrence of the tagged context; every traced label
+  was genuinely in the given context.
+- **Two-reporter honesty** (header note, codex-verified example): `check`'s
+  traversal offender and `firstDeficient`'s scan offender may DIFFER
+  (reads [a,b,a,a] vs supply [a,a]: traversal refuses b, scan flags a);
+  both are proved excess witnesses; offender identity across reporters
+  deliberately not claimed.
+- Kernel-evaluation demos: paid tree checks ok with exact positional trace;
+  free contraction refused naming the exhausted label; counts-only decider
+  agrees on both. Footprint ≤ [propext, Quot.sound]; prohibition sweep
+  clean (codex finding 6: no master Admissible, no all-systems/runtime/
+  release claim, no bare Bool, no Classical.choice).
+
 ## 2026-07-02 — v6 slice 1: traced/untraced coherence — THE TWINS AGREE
 `LeanProofs/Scratch/TracedCoherence.lean` (new), `lakefile.toml` (CI root).
 **v6 "Executable Custody Checking" CAMPAIGN OPENED** (new surface,

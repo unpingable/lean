@@ -1,7 +1,7 @@
 {
   "reconciled_note": "Own per-repo .governor loop for the Lean bounded-calculi slice campaign, mirroring the nq precedent (~/git/nq-root/nq/.governor). Global AG backlog is a recognition/custody registry; each repo runs its own program counter (loop-protocol S6: live probes win; S9 'single live program counter' is the stale artifact AG-Claude is correcting). Plan: ~/.claude/plans/okay-so-i-was-ethereal-quill.md.",
   "campaign": "lean-bounded-calculi / v6-executable-custody-checking",
-  "phase": "BUILD",
+  "phase": "REPORT",
   "current_slice": null,
   "lane": "lean-scratch-bounded-calculi",
   "authorization_mode": "scratch_only_operator_committed",
@@ -95,9 +95,9 @@
     {
       "id": "V6-2",
       "kind": "build_slice",
-      "status": "admitted",
+      "status": "done-green",
       "file": "LeanProofs/Scratch/FiniteSupportChecker.lean",
-      "note": "v6 slice 2: finite-support checker - typed result (ok trace | refusal offender), no bare Bool final API; soundness (ok => valid normalized derivation via coherence); refusal correctness (offender = real excess demand); finite-support decision (verdict decided on readsOf labels only)"
+      "note": "v6 slice 2: finite-support checker - typed result (ok trace | refusal offender), no bare Bool final API; soundness (ok => valid normalized derivation via coherence); refusal correctness (offender = real excess demand); finite-support decision (verdict decided on readsOf labels only) -- LANDED: CheckResult/check/checkCtx/firstDeficient; soundness+completeness = decision procedure; finite-support decision theorem; trace provenance (codex note closed same-slice); codex first-pass GREEN; <= [propext, Quot.sound]"
     }
   ],
   "acceptance": [
@@ -212,9 +212,9 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v6 CAMPAIGN OPEN (new surface, operator-admitted 2026-07-02): slice V6-1 coherence, then V6-2 finite-support checker. HARD PROHIBITIONS (binding): no master Admissible; no runtime/Bridge-Foundry claim; no all-systems checker claim; no relation-promotion screen unless separately admitted; no unchecked classical choice; no release claim without operator decision. Report at end: files/theorem inventory/coherence names/checker result type/soundness+refusal names/axiom footprint/candidate-vs-release-shaped.",
-  "last_verified_commit": "fddba5a",
-  "last_verified_note": "governor verify-run -- lake build TracedCoherence -> [pass] (receipt v6_coherence_v2_b6afedaa); footprint <= [propext, Quot.sound], no Classical.choice.",
+  "next_action": "v6 initial scope COMPLETE (both slices green, committed). Operator holds: push (after work-hours), v6 posture decision (candidate vs release-shaped -- report recommends CANDIDATE), AG-AUDIT-CHECKLIST routing. Named-not-opened past v6 scope: node-form structural rules; SEQ2/SEQ3 equivalence; #eval/CLI face of the checker (runtime-adjacent, needs its own admission).",
+  "last_verified_commit": "8f83bcd",
+  "last_verified_note": "governor verify-run -- lake build FiniteSupportChecker -> [pass] (receipt v6_checker_v2_4eef40c5); footprint <= [propext, Quot.sound], no Classical.choice.",
   "completed_slices": [
     "A: roadmap S10/S11 hygiene reconciliation",
     "phase-0: lean .governor plane stood up (loop.json + loop-receipts + gitignore split, nq precedent)",
@@ -230,7 +230,8 @@
     "v3: release-readiness audit YELLOW->addressed; docs/V3-RELEASE-LEDGER.md built (L1 closed); roadmap L0-L6 all closed",
     "post-v5 C1 leftovers: Zoo.lean four ANNEX-wall skeleton-replay cages (ticket/attempt/discharge/observation) GREEN - all 20 theorems zero-axiom, codex first-pass GREEN",
     "post-v5 CaveatBlind screen: CaveatSequent.lean BlindDemand/CaveatBlindFree/BurdenRespecting + blindSystem specimen GREEN zero-axiom; currency-screen scope honesty; codex YELLOW->addressed; C1 inventory COMPLETE",
-    "post-v5 C3 first runs: OverlapAudits.lean GREEN zero-axiom - relation-promotion (wall=instance x2, attack=first KNOWN ESCAPED ANIMAL, screen unminted/forcing-gated) + silence-as-denial (caught by resident mechanism 3); codex YELLOW->addressed"
+    "post-v5 C3 first runs: OverlapAudits.lean GREEN zero-axiom - relation-promotion (wall=instance x2, attack=first KNOWN ESCAPED ANIMAL, screen unminted/forcing-gated) + silence-as-denial (caught by resident mechanism 3); codex YELLOW->addressed",
+    "v6 slice 1+2: TracedCoherence.lean (verdict iffs, same offender, tagging bridge) + FiniteSupportChecker.lean (typed checker, decision procedure, finite-support theorem) - both codex GREEN first-pass, <= [propext, Quot.sound], no choice; v6 INITIAL SCOPE COMPLETE"
   ],
   "dirty_tree_allowed": true,
   "dirty_tree_reason": "roadmap reconciliation (docs/ROADMAP + worked-example) and parked scratch (B/D + adapter) are uncommitted; operator drives all git and commits at slice boundaries.",

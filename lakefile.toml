@@ -75,4 +75,5 @@ roots = [
   "LeanProofs.Scratch.OverlapAudits",
   # v6 executable custody checking
   "LeanProofs.Scratch.TracedCoherence",
+  "LeanProofs.Scratch.FiniteSupportChecker",
 ]
