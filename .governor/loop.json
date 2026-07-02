@@ -98,6 +98,25 @@
       "status": "done-green",
       "file": "LeanProofs/Scratch/FiniteSupportChecker.lean",
       "note": "v6 slice 2: finite-support checker - typed result (ok trace | refusal offender), no bare Bool final API; soundness (ok => valid normalized derivation via coherence); refusal correctness (offender = real excess demand); finite-support decision (verdict decided on readsOf labels only) -- LANDED: CheckResult/check/checkCtx/firstDeficient; soundness+completeness = decision procedure; finite-support decision theorem; trace provenance (codex note closed same-slice); codex first-pass GREEN; <= [propext, Quot.sound]"
+    },
+    {
+      "id": "V7-SPEC",
+      "kind": "gap_spec",
+      "status": "drafted-unratified",
+      "file": "docs/V7-GAP-SPEC.md",
+      "note": "v7 Artifact Authority Profiles gap spec: profiles + paid bridges, no shared custody language (no-unifier constitution), NoMasterProfile screen shapes, WLP = envelope not semantics, lane split Lean-laws/AG-wire. Operator ratifies before any V7 slice is admitted."
+    },
+    {
+      "id": "NAME-EARLY-1",
+      "kind": "candidate",
+      "status": "named-not-admitted",
+      "note": "Multi-currency coverage screen: portfolios of scoped evidence below the UniversalStamp threshold acting as de facto universal currency; requires coverage predicates over bridge families; FP/FN analysis before build (chatty chewy item 3, survives kernel-overlap check)"
+    },
+    {
+      "id": "NAME-EARLY-2",
+      "kind": "candidate",
+      "status": "named-not-admitted",
+      "note": "General structural-rule algebra: parameterized wk/ctr/exch/cut/split/merge policies with 'normalization preserves chainOf/trace/funding-scope for any admitted policy'; risk = smuggling free classical structure into the generic layer (chatty chewy item 1, survives kernel-overlap check; named follow-up since v5 ledger)"
     }
   ],
   "acceptance": [
@@ -212,7 +231,7 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v6.0.0 tagged locally at the release-prep commit. Operator: push tag + author release when ready. Next in-session: v7 gap spec (Artifact Authority Profiles, CANDIDATE/UNRATIFIED, no Lean); v7 build gated on operator ratification of the gap spec.",
+  "next_action": "v6.0.0 TAGGED LOCALLY (9efbf12); operator pushes tag + authors release (DOI) after work-hours; do NOT push v7-ish main before the v6 release is published. V7 gap spec drafted UNRATIFIED (docs/V7-GAP-SPEC.md) - operator ratifies/amends before any V7 slice. Name-early candidates registered: multi-currency coverage screen, structural-rule algebra. Kernel-overlap verdicts on the chewy list: delta-t-as-derivation-step = ALREADY LANDED (DeltaTSequent F1), caveat-inheritance-generalized = ALREADY LANDED (CaveatSequent F3) + discharge half is AG lane (relaxation valve), relation-promotion = C3-classified closure-genus/forcing-gated (v7 may be the forcing consumer).",
   "last_verified_commit": "8f83bcd",
   "last_verified_note": "governor verify-run -- lake build FiniteSupportChecker -> [pass] (receipt v6_checker_v2_4eef40c5); footprint <= [propext, Quot.sound], no Classical.choice.",
   "completed_slices": [
