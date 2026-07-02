@@ -1,5 +1,37 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — post-v5 C1 leftovers: the four ANNEX walls replayed in the zoo
+`LeanProofs/Scratch/Zoo.lean` (extended in place). **Entire slice zero-axiom**
+(all 20 new theorems `#print axioms`-clean); codex first-pass GREEN.
+
+- Four skeleton-replay cages, one per ANNEX wall: **ticket-spent-as-success**
+  (`ExecutionCustody.ticketSpent_does_not_imply_didExecute`),
+  **commit-attempted-as-executed**
+  (`ExecutionCustody.commitAttempted_does_not_imply_didExecute`),
+  **checkpoint-as-discharge**
+  (`CheckpointSettlement.checkpoint_cannot_discharge_unknown_commit`),
+  **observation-as-safety**
+  (`CheckpointSettlement.checkpoint_cannot_upgrade_observation_to_safety`).
+- Each cage is the same four-part shape (new catch mechanism 5 registered in
+  the Zoo header): clean neighbor where the RECORD (spent/attempted/
+  checkpoint/observation) is concluded but funds nothing; positive
+  non-vacuity witness (the honest receipt path composes); a **general
+  underivability wall** (outcome unreachable at any depth without its own
+  receipt in custody — two-case via `entail_iff_rooted`); the **wall replay
+  pair** (record derivable ∧ outcome underivable — the ANNEX statement's
+  `X ∧ ¬Y` as a derivability conjunction); FORBIDDEN specimen = clean + ONE
+  record-as-evidence rule, caught by discipline unsatisfiability (the
+  summary-as-authority mechanism, reused).
+- Honesty boundary in every docstring: custody shape only — stage semantics,
+  multiset conservation, survival-under-compaction stay with the ANNEX
+  theorems; cages are regression mass, not re-proofs.
+- Codex: strongest `execution_requires_substrate_receipt'` (arbitrary Γ,
+  attempts derivable, execution still receipt-rooted); weakest
+  `substrate_receipt_funds_execution` (intentional non-vacuity witness);
+  proof-shape class: finite-rule skeleton replay via
+  `EvidenceNeverConcluded` + `entail_iff_rooted`.
+- Zoo TODO shrinks to one line: `CaveatBlind` screen design (next).
+
 ## 2026-07-01 — v5 slice 4: the positional occurrence trace — WHO PAID
 `LeanProofs/Scratch/OccurrenceTrace.lean` (new), `lakefile.toml` (CI root).
 
