@@ -68,4 +68,5 @@ roots = [
   "LeanProofs.Scratch.Zoo",
   "LeanProofs.Scratch.DecidableScreens",
   "LeanProofs.Scratch.DerivationData",
+  "LeanProofs.Scratch.StructuralNormalization",
 ]

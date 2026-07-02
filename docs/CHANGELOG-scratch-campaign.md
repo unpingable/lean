@@ -1,5 +1,27 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — v5 slice 1: structural detours normalize, custody preserved
+`LeanProofs/Scratch/StructuralNormalization.lean` (new), `lakefile.toml` (CI
+root).
+
+- The frozen brief, executed on the Cartesian layer: `SDeriv` = derivation
+  trees with explicit `wk`/`ctr`/`exch` detour nodes; `normalize` eliminates
+  every structural node by membership TRANSPORT pushed to the ax leaves
+  (termination free — structural recursion; normality by TYPE — output is
+  `Core`).
+- **The sacred invariant** (`chainOf_normalize`): the custody spine is
+  preserved as LIST EQUALITY — one equation refuting erasure, reordering, and
+  synthesis. **The round trip** (`normalize_read_rooted`, zero-axiom):
+  normalized output re-enters the v4 read-rooted class; reflection
+  (`Core.toEntail`) puts every v4 wall in scope of normalized output.
+- Codex YELLOW → honesty applied: the Cartesian detours are cheap by design
+  (decorations, not cut-detours) — this slice earns the machinery and the
+  invariant discipline, not semantically thick normalization; `chainOf`
+  preserves labels/order, not ax-occurrence identity. **Slice 2 target
+  locked**: the linear layer, occurrence-sensitive spine, policy-paid
+  weakening/contraction — where free contraction FAILING to normalize is the
+  theorem.
+
 ## 2026-07-01 — post-v4 F6+F7: cluster verdict + the v5 seed
 `LeanProofs/Scratch/DerivationData.lean` (new), `docs/POST-V4-CAMPAIGN.md`
 (F6/F7 recorded), `lakefile.toml` (CI root).
