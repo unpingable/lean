@@ -71,4 +71,6 @@ roots = [
   "LeanProofs.Scratch.StructuralNormalization",
   "LeanProofs.Scratch.LinearNormalization",
   "LeanProofs.Scratch.OccurrenceTrace",
+  # post-v5 C3 audit runs -- same CI-coverage rule
+  "LeanProofs.Scratch.OverlapAudits",
 ]

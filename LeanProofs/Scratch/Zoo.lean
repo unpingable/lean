@@ -42,8 +42,17 @@
   | ticket-spent-as-success      | ExecutionCustody.ticketSpent_does_not_imply_didExecute (ANNEX; skeleton replay CAGED HERE) |
   | commit-attempted-as-executed | ExecutionCustody.commitAttempted_does_not_imply_didExecute (ANNEX; skeleton replay CAGED HERE) |
   | caveat-blind gate            | CaveatSequent.blind_system_not_caveat_blind_free (screen + specimen resident; the attack SATISFIES the v4 discipline -- `blind_discipline` -- which is why it needed a new screen, not a replay) |
+  | silence-as-denial            | OverlapAudits.silence_as_denial_violates_discipline (C3 audit 2026-07-02: mechanism 3 instance; protocol face resident in AuthenticatedDenial) |
 
   C1 inventory complete: every ZOO-TEMPLATE row is caged or resident-cited.
+
+  KNOWN ESCAPED ANIMAL (C3 audit record, 2026-07-02): relation-promotion
+  (derived-relations-need-witnesses candidate) is NOT caught by any resident
+  screen -- the attack satisfies the discipline (OverlapAudits.
+  promote_discipline) and is no stamp; its would-be screen is an index-typed
+  evidence-jurisdiction condition of the closure genus (OverlapAudits.
+  promote_breaks_closure names the exact violating shape). Screen unminted:
+  gated on a forcing consumer per the candidate's own fences.
 
   Mathlib-free.
 -/

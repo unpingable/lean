@@ -1,5 +1,46 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — post-v5 C3: first kernel-overlap audit runs (the anti-fake-mustache machine)
+`LeanProofs/Scratch/OverlapAudits.lean` (new; **entirely zero-axiom**),
+`lakefile.toml` (CI root), `LeanProofs/Scratch/Zoo.lean` (registry row +
+escaped-animal record). A C3 run instantiates a candidate primitive as a
+`System` and checks its claimed wall against the resident kernel; output is
+an AUDIT VERDICT (instance → deflate/cite; delta → name precisely, build
+stays gated), never a kernel.
+
+- **Run 1 — relation-promotion** (`derived-relations-need-witnesses`
+  candidate, tooltheory 2026-06-19). Two-sided verdict:
+  - Wall face = INSTANCE **twice over**: receipt-rooted underivability
+    (`relation_requires_relation_receipt`; the Zoo mechanism-5 genus) AND —
+    after codex caught the first draft flattening endpoint-evidence and
+    relation-evidence into one index — the resident index-closure machinery
+    (`relation_wall_is_closure_instance` via `no_free_cross_cut_generic`).
+    The replay pair `endpoint_verdicts_do_not_yield_relation` is the
+    candidate's law verbatim: verdict(A) ∧ verdict(B) derivable, relation
+    NOT.
+  - Attack face = **NOT resident-caught** (the file's load-bearing
+    negative): the promotion family satisfies the custody discipline
+    (`promote_discipline`), is no universal stamp, and
+    `promote_breaks_closure` names exactly where the would-be screen lives
+    (an evidence-jurisdiction condition of the closure genus). Screen
+    unminted — forcing-consumer gated per the candidate's own fences;
+    un-owned delta = `cannot_testify` as an output verdict type. Recorded
+    in the Zoo as the first KNOWN ESCAPED ANIMAL.
+- **Run 2 — silence-as-denial** (signal-authority, Lean previously
+  deferred). Verdict: CAUGHT BY RESIDENT MECHANISM — in sequent form the
+  timeout record is concluded-then-cited-as-evidence, discipline
+  unsatisfiability (`silence_as_denial_violates_discipline`), codex:
+  "correct mechanism ID." Wall replay `silence_records_without_denying`
+  (timeout recorded ∧ denial underivable). `AuthenticatedDenial.lean` stays
+  the protocol-face home; Zoo registry row added.
+- Codex YELLOW→addressed: indices split (`iEndpointEvid`/`iRelEvid`),
+  closure-instance + closure-violation theorems added, promotion family
+  mirrored (`promoteSym` — src/evid asymmetry is an encoding artifact),
+  meta-verdicts labeled as such in the header. Strongest:
+  `relation_requires_relation_receipt` / `denial_requires_signed_witness`;
+  weakest: `promote_not_universal` (narrow by design); proof-shape class:
+  finite constructor exhaustion + rooted-collapse underivability.
+
 ## 2026-07-02 — post-v5: the CaveatBlind screen (F3's named follow-up) — C1 CLOSES
 `LeanProofs/Scratch/CaveatSequent.lean` (extended in place — **file stays
 entirely zero-axiom**; first draft leaked propext through `Nat.le_max_left`,

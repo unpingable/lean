@@ -198,9 +198,9 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v5.0.0 RELEASED (2026-07-02). C1 COMPLETE (four ANNEX skeleton replays + CaveatBlind screen designed and caged; every ZOO-TEMPLATE row caged or resident-cited). Next: C3 kernel-overlap runs; v3.x odds; AG-AUDIT-CHECKLIST routing (operator). v6 lane still named-not-opened: linearizeT<->linearize coherence + finite-support checker.",
-  "last_verified_commit": "a659068",
-  "last_verified_note": "governor verify-run -- lake build CaveatSequent+Zoo -> [pass] (receipt caveat_blind_screen_v3_178f173d); #print axioms: all 12 new screen theorems zero-axiom (file keeps entirely-zero-axiom badge).",
+  "next_action": "v5.0.0 RELEASED. C1 COMPLETE. C3 MACHINE STOOD UP (OverlapAudits.lean, 2 runs done; more candidates auditable on demand: residue-custody vs DeltaTSequent, control-path-independence). Remaining post-v5 queue: v3.x odds; AG-AUDIT-CHECKLIST routing (operator). v6 lane named-not-opened: linearizeT<->linearize coherence + finite-support checker.",
+  "last_verified_commit": "cdf8622",
+  "last_verified_note": "governor verify-run -- lake build OverlapAudits+Zoo -> [pass] (receipt c3_final_443c5081); #print axioms: all 12 OverlapAudits theorems zero-axiom.",
   "completed_slices": [
     "A: roadmap S10/S11 hygiene reconciliation",
     "phase-0: lean .governor plane stood up (loop.json + loop-receipts + gitignore split, nq precedent)",
@@ -215,7 +215,8 @@
     "G: CheckpointSettlement.lean GREEN - Split-based occurrence-linear compaction, mints-nothing, multiplicity conserved; FAMILY COMPLETE",
     "v3: release-readiness audit YELLOW->addressed; docs/V3-RELEASE-LEDGER.md built (L1 closed); roadmap L0-L6 all closed",
     "post-v5 C1 leftovers: Zoo.lean four ANNEX-wall skeleton-replay cages (ticket/attempt/discharge/observation) GREEN - all 20 theorems zero-axiom, codex first-pass GREEN",
-    "post-v5 CaveatBlind screen: CaveatSequent.lean BlindDemand/CaveatBlindFree/BurdenRespecting + blindSystem specimen GREEN zero-axiom; currency-screen scope honesty; codex YELLOW->addressed; C1 inventory COMPLETE"
+    "post-v5 CaveatBlind screen: CaveatSequent.lean BlindDemand/CaveatBlindFree/BurdenRespecting + blindSystem specimen GREEN zero-axiom; currency-screen scope honesty; codex YELLOW->addressed; C1 inventory COMPLETE",
+    "post-v5 C3 first runs: OverlapAudits.lean GREEN zero-axiom - relation-promotion (wall=instance x2, attack=first KNOWN ESCAPED ANIMAL, screen unminted/forcing-gated) + silence-as-denial (caught by resident mechanism 3); codex YELLOW->addressed"
   ],
   "dirty_tree_allowed": true,
   "dirty_tree_reason": "roadmap reconciliation (docs/ROADMAP + worked-example) and parked scratch (B/D + adapter) are uncommitted; operator drives all git and commits at slice boundaries.",
