@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "Custody-Indexed Sequents: A Lean Proof Release for Custody-Aware Authority Semantics"
-version: "5.0.0"
-date-released: "2026-07-01"
+version: "6.0.0"
+date-released: "2026-07-02"
 type: software
 authors:
   - family-names: Beck

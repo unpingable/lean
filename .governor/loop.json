@@ -1,7 +1,7 @@
 {
   "reconciled_note": "Own per-repo .governor loop for the Lean bounded-calculi slice campaign, mirroring the nq precedent (~/git/nq-root/nq/.governor). Global AG backlog is a recognition/custody registry; each repo runs its own program counter (loop-protocol S6: live probes win; S9 'single live program counter' is the stale artifact AG-Claude is correcting). Plan: ~/.claude/plans/okay-so-i-was-ethereal-quill.md.",
   "campaign": "lean-bounded-calculi / v6-executable-custody-checking",
-  "phase": "REPORT",
+  "phase": "RELEASE-PREP",
   "current_slice": null,
   "lane": "lean-scratch-bounded-calculi",
   "authorization_mode": "scratch_only_operator_committed",
@@ -161,7 +161,7 @@
     "overlap_note": "Witnessed.ResourceSequent already owns the token-linear wall (cannot_cross_without_bridge_token etc.); this file owns the calculus-index wall; SEQ2 reuses ResourceSequent rather than re-deriving linearity."
   },
   "operating_mode": "FULL AUTO (operator 2026-07-01): no git ceremony (versioning/releases are the operator's key-off; commits fungible); track changes in docs/CHANGELOG-scratch-campaign.md as slices land; governed gates + codex audits stay; promotion out of Scratch / version bumps remain operator-only.",
-  "release_boundary": "RATIFIED (operator 2026-07-01, via ChatGPT relay): v3 = bounded mini-calculi family (DOI); v3.x = sequent scratch / bridge sequents; v4 = indexed sequent system (custody-indexed Gentzen) if it earns the name. v3 bar: every family member has named judgment + positive rule + non-collapse/failed-cut + non-transfer where relevant + inventory/classification; aggregate import = compile marker only; no master Admissible; sequents named-not-claimed.",
+  "release_boundary": "v6.0.0 'Finite Custody Checking' (operator-chosen name, Option A): claim + non-claims = docs/V6-RELEASE-LEDGER.md; DecidableScreens (C2) claimed into the release surface; local tag operator-authorized 2026-07-02 ('you can tag it, I'll handle the release/push'); push tag + GitHub release (DOI mint) = operator, after work-hours; main may advance past the tag locally but v7-ish main should not be pushed before the v6 release is published (front-door optics).",
   "v3_audit": {
     "verdict": "YELLOW - boundary properly scoped; sequents safely deferred",
     "closed": [
@@ -212,7 +212,7 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v6 initial scope COMPLETE (both slices green, committed). Operator holds: push (after work-hours), v6 posture decision (candidate vs release-shaped -- report recommends CANDIDATE), AG-AUDIT-CHECKLIST routing. Named-not-opened past v6 scope: node-form structural rules; SEQ2/SEQ3 equivalence; #eval/CLI face of the checker (runtime-adjacent, needs its own admission).",
+  "next_action": "v6.0.0 tagged locally at the release-prep commit. Operator: push tag + author release when ready. Next in-session: v7 gap spec (Artifact Authority Profiles, CANDIDATE/UNRATIFIED, no Lean); v7 build gated on operator ratification of the gap spec.",
   "last_verified_commit": "8f83bcd",
   "last_verified_note": "governor verify-run -- lake build FiniteSupportChecker -> [pass] (receipt v6_checker_v2_4eef40c5); footprint <= [propext, Quot.sound], no Classical.choice.",
   "completed_slices": [

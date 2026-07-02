@@ -4,7 +4,55 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: 5.0.0 — Custody-Preserving Normalization
+## Current release: 6.0.0 — Finite Custody Checking
+
+*A Lean proof release for custody-aware authority semantics.*
+
+**v6.0.0 makes the v5 payment discipline finitely checkable.** A Lean-native
+checker takes a liberal derivation tree and a finite context and returns a
+typed verdict — `ok` with a positional occurrence trace, or a typed refusal
+naming an offender. The campaign modules live under `LeanProofs/Scratch/`
+(custody class SCRATCH, fenced, CI-covered — build coverage, not promoted
+kernel authority).
+
+What v6 proves:
+
+- **the twins agree** — traced and untraced normalization return the same
+  verdicts, the SAME offender on refusal, and residuals equal up to label
+  projection (`tracing_preserves_verdicts`, `linearizeT_ok_projects`,
+  `linearizeT_forgery_projects`); coherence holds over any tagged context.
+  *Tracing is testimony about payment, never a change to who gets paid.*
+- **every untraced run traces for free** — the canonical tagging bridge
+  (`untraced_runs_trace_canonically`): tag a plain context with consecutive
+  positions (provably unambiguous) and the traced twin runs with the same
+  verdict and a position-distinct trace;
+- **the checker is a decision procedure** — `Core.checkCtx` returns typed
+  `CheckResult` (never bare Bool); soundness (`checkCtx_ok_sound`: ok ⇒ a
+  valid linear derivation over the given context, trace labels = the read
+  spine, no position pays twice, every trace entry from the given context)
+  AND completeness (`check_complete`: sufficient counts ⇒ accept);
+- **refusals are never mislabels** — the named offender's total demand
+  genuinely exceeds supply (`check_refusal_excess`) and the offender is
+  genuinely demanded (`check_refusal_offender_demanded`);
+- **the verdict is finitely many comparisons** — the finite-support decision
+  theorem (`firstDeficient_decides_check` + `support_covers_iff_all_covers`)
+  reduces v5's infinite-label quantifier to counts over the read spine — the
+  executable finite-support boundary v5 explicitly left unclaimed;
+- **screens are computations** — the resident C2 layer (`DecidableScreens`,
+  claimed into this surface): executable Bool forms of every v4 screen with
+  soundness iffs; the zoo's hub/sink/stamp verdicts obtained by kernel
+  `decide`. *Screening as computation, soundness as theorem.*
+
+v6 does not claim a CLI, a runtime checker, Bridge Foundry, an artifact
+profiler, a derivability decision procedure (it checks a given tree; no
+proof search), a checker for arbitrary future structural systems, or a
+master admissibility layer; offender identity across the two refusal
+reporters is deliberately not claimed.
+
+Release inventory with audited theorem receipts:
+[`docs/V6-RELEASE-LEDGER.md`](docs/V6-RELEASE-LEDGER.md).
+
+## 5.0.0 — Custody-Preserving Normalization
 
 *A Lean proof release for custody-aware authority semantics.*
 

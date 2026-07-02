@@ -133,6 +133,51 @@ Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibi
 
 ---
 
+## Finite Custody Checking (v6, `LeanProofs/Scratch/`, fenced)
+
+### What v6 proves
+
+- **Traced/untraced coherence** (`TracedCoherence.lean`): the traced
+  normalizer (`linearizeT`) and the untraced normalizer (`linearize`) agree
+  on success/failure, name the SAME offender on refusal, and produce
+  residuals equal up to label projection — over any tagged context, no
+  unambiguity hypothesis. Tracing introduces no new accepted case and no new
+  rejected case (`tracing_preserves_verdicts`). The canonical tagging bridge
+  (`untraced_runs_trace_canonically`) lifts every plain-context run to a
+  traced run with a position-distinct trace.
+- **A finite checker that is a decision procedure**
+  (`FiniteSupportChecker.lean`): `Core.checkCtx` takes a liberal tree and a
+  plain finite context and returns typed `CheckResult` — ok with positional
+  trace, or refusal with offender. Soundness: ok implies a valid linear
+  derivation over the given context, with the trace's labels exactly the
+  read spine, no position paying twice, and every trace entry an occurrence
+  of the given context. Completeness: sufficient per-label counts on the
+  read support imply acceptance. Refusal correctness: the offender's total
+  demand genuinely exceeds supply, and the offender is genuinely demanded.
+- **The finite-support decision theorem**
+  (`firstDeficient_decides_check`): the accept/refuse boundary is decided by
+  finitely many count comparisons over the read spine — v5's decision
+  theorem quantified over all labels; v6 reduces it to the finite support.
+- **Decidable screens** (`DecidableScreens.lean`, C2, claimed into the v6
+  surface): every v4 screen has an executable Bool form with a soundness iff
+  against the Prop screen; zoo verdicts (hub fails `MasterFree`, sink
+  passes, stamp fails `EvidenceCurrencyFree`) obtained by kernel `decide`.
+
+### What v6 does NOT prove
+
+- No CLI, no runtime checker, no Bridge Foundry, no artifact profiler —
+  proof discipline only; interfaces and enforcement are the NQ/AG lane.
+- No derivability decision: the checker checks a GIVEN tree's payment; it
+  does not search for derivations, and `Entail`/`EEntail` derivability is
+  not decided.
+- Not a checker for arbitrary structural systems: scoped to the current
+  liberal/linear skeleton; the general structural-rule algebra is named
+  follow-up.
+- No master admissibility layer; the checker's ok is relative to the
+  resident v5 normalization semantics.
+- Offender identity between the traversal checker and the counts-only
+  decider is not claimed (each is separately proved an excess witness).
+
 ## Custody-Preserving Normalization (v5, `LeanProofs/Scratch/`, fenced)
 
 > Normalization cannot forge payment.

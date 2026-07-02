@@ -6,6 +6,41 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 6.0.0 — Finite Custody Checking (2026-07-02)
+
+*A Lean proof release for custody-aware authority semantics.*
+
+6.0.0 makes the v5 payment discipline finitely checkable. A Lean-native
+checker takes a liberal derivation tree and a finite context and returns a
+typed result — `ok` with a positional occurrence trace, or a typed refusal
+naming an offender (`CheckResult`; no bare Bool on the final surface). The
+checker is **sound** (`check_ok_sound`/`checkCtx_ok_sound`: ok implies a
+valid linear derivation over the given context, with read-spine,
+position-distinct, context-provenant trace) and **complete**
+(`check_complete`) — a decision procedure, not a semi-decision — and its
+verdict is decided by finitely many count comparisons over the read spine
+(`firstDeficient_decides_check`), closing the executable finite-support
+boundary v5 explicitly left unclaimed. Refusals are never mislabels: the
+offender's total demand genuinely exceeds supply
+(`check_refusal_excess`), and the offender is genuinely demanded. Beneath
+the checker, **traced and untraced normalization provably agree** — same
+verdicts, the same offender on refusal, residuals equal up to label
+projection (`tracing_preserves_verdicts`, `linearizeT_ok_projects`,
+`linearizeT_forgery_projects`): tracing is testimony about payment, never a
+change to who gets paid. The canonical tagging bridge
+(`untraced_runs_trace_canonically`) lifts any plain-context run to a traced
+run at zero semantic cost. The resident C2 screen layer
+(`DecidableScreens`) is claimed into this release surface: executable Bool
+screens with soundness iffs against the v4 Prop screens — screening as
+computation, soundness as theorem. **Non-claims:** not a CLI, not a runtime
+checker, not Bridge Foundry, not an artifact profiler; not a derivability
+decision procedure (checks a given tree; no proof search); not a checker
+for arbitrary future structural systems; not a master admissibility layer;
+offender identity across the two refusal reporters not claimed. All modules
+`Custody-Class: SCRATCH`, CI-covered; footprints ≤ [propext, Quot.sound],
+no `Classical.choice`. Release inventory:
+[`docs/V6-RELEASE-LEDGER.md`](docs/V6-RELEASE-LEDGER.md).
+
 ## 5.0.0 — Custody-Preserving Normalization (2026-07-01)
 
 *A Lean proof release for custody-aware authority semantics.*
