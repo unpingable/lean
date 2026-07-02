@@ -1,5 +1,51 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — v7 slice 3: the jurisdiction screen minted — THE ANIMAL IS CAUGHT
+`LeanProofs/Scratch/JurisdictionScreen.lean` (new; ≤ [propext, Quot.sound],
+most theorems zero-axiom incl. the capture), `lakefile.toml` (CI root), Zoo
+(mechanism 6 registered; escaped-animal record CLOSED; two new rows). Codex
+first-pass GREEN — emperor check passed explicitly ("screen-shaped...
+screening, not enforcement").
+
+- **ADMITTED ON THE FAMILY REPEAT** (operator, 2026-07-02): the abstraction
+  was earned, not invented — slice 1's `AdmissionJurisdiction` and slice
+  2's `StageStepDiscipline` proved the same structural failure under two
+  vocabularies before this screen was allowed to exist.
+- **The screen**: `JurisdictionFrame` (per-vocabulary, LOCAL: `demands`
+  classifies conversions to obligations, `scopedTo` is opt-in — no default
+  fungibility) + `JurisdictionRespecting`. Derivational faces:
+  `conversion_requires_jurisdiction_receipt` and
+  **`unmatched_context_cannot_convert`** (codex: strongest — "lifts the
+  rule-local screen through derivations via rootedness": nothing in
+  custody scoped to the demanded obligation ⇒ underivable at any depth).
+- **The instance iffs** (the recovery theorems — the screen abstracts, the
+  locals survive, both directions, for every system over each vocabulary):
+  `admission_jurisdiction_iff_jurisdiction_screen`,
+  `stage_step_discipline_iff_jurisdiction_screen`; pass/fail corollaries
+  recovered one-line from resident theorems (clean systems pass;
+  parse-implies-authority, season-pass skip fail; self-promotion fails
+  this screen TOO — the base-only variant that evades mechanism 3 does not
+  evade this).
+- **THE ESCAPED ANIMAL, CAUGHT** (zero-axiom): `relFrame` +
+  `relation_promotion_fails_jurisdiction_screen` — the C3 audit's
+  relation-promotion attack, which satisfied the discipline and evaded
+  every screen resident at audit time, fails the minted screen; the clean
+  relation system passes (non-vacuous, codex-confirmed). One day:
+  escaped (C3) → cornered (slice 1) → caught (slice 3).
+- **No default receipt fungibility** (combined two-species vocabulary):
+  `bridgeAsRung` and `rungAsBridge` cross-use cages — both SATISFY the
+  discipline (load-bearing-negative family members 4 and 5), both fail the
+  screen; `combined_universal_receipt_free` (total-form only — codex:
+  "should not be read as solving broader multi-currency"; the
+  many-but-not-all currency face stays open and gated).
+- `UniversalReceipt`/`UniversalReceiptFree` +
+  `disjoint_scopes_forbid_universal_receipt` — the god-currency signature
+  at the receipt layer, total form.
+- Honesty ledger: screen not enforcement; demands=none conversions
+  invisible by declaration (FN); frame quality is the instantiator's
+  burden (FP); frames do not compose across vocabularies — the generic
+  parameter is proof machinery, not semantics (the POST-V4 guard).
+
 ## 2026-07-02 — v7 slice 2: stage noncollapse — EVERY RUNG IS PAID
 `LeanProofs/Scratch/ProfileStages.lean` (new; ≤ [propext, Quot.sound],
 several zero-axiom, no choice), `lakefile.toml` (CI root), Zoo (two registry

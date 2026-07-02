@@ -79,4 +79,5 @@ roots = [
   # v7 artifact authority profiles
   "LeanProofs.Scratch.ArtifactProfiles",
   "LeanProofs.Scratch.ProfileStages",
+  "LeanProofs.Scratch.JurisdictionScreen",
 ]

@@ -27,6 +27,11 @@
                                  for stays underivable without its own
                                  receipt -- `entail_iff_rooted` makes the
                                  refusal a two-case analysis
+    6. jurisdiction refutation  (JurisdictionScreen, v7 slice 3 -- a receipt
+                                 funds only the obligation it is scoped to;
+                                 catches the discipline-satisfying family:
+                                 relation-promotion, parse-implies-authority,
+                                 rung-skip, receipt cross-use)
 
   ## Registry of resident cages (caught elsewhere, cited not duplicated)
 
@@ -44,22 +49,27 @@
   | caveat-blind gate            | CaveatSequent.blind_system_not_caveat_blind_free (screen + specimen resident; the attack SATISFIES the v4 discipline -- `blind_discipline` -- which is why it needed a new screen, not a replay) |
   | silence-as-denial            | OverlapAudits.silence_as_denial_violates_discipline (C3 audit 2026-07-02: mechanism 3 instance; protocol face resident in AuthenticatedDenial) |
   | parse-implies-authority      | ArtifactProfiles.parse_authority_breaks_jurisdiction (v7 slice 1: attack satisfies the discipline; caught by the LOCAL evidence-jurisdiction condition -- the escaped animal's local face, caged) |
-  | stage-self-promotion         | ProfileStages.self_promotion_violates_discipline (v7 slice 2: mechanism 3 -- standing cannot be its own promotion receipt; base-only variant caveat in the file) |
-  | stage-rung-skip              | ProfileStages.skip_breaks_step_discipline (v7 slice 2: attack satisfies the discipline; caught by LOCAL StageStepDiscipline -- SECOND member of the local jurisdiction family) |
+  | stage-self-promotion         | ProfileStages.self_promotion_violates_discipline (v7 slice 2: mechanism 3 -- standing cannot be its own promotion receipt; base-only variant also caught by JurisdictionScreen) |
+  | stage-rung-skip              | ProfileStages.skip_breaks_step_discipline (v7 slice 2: attack satisfies the discipline; caught by LOCAL StageStepDiscipline = JurisdictionScreen instance) |
+  | bridge-receipt-as-rung       | JurisdictionScreen.bridge_as_rung_fails_jurisdiction_screen (v7 slice 3: satisfies the discipline; no default receipt fungibility) |
+  | rung-receipt-as-bridge       | JurisdictionScreen.rung_as_bridge_fails_jurisdiction_screen (v7 slice 3: satisfies the discipline; no default receipt fungibility) |
 
   C1 inventory complete: every ZOO-TEMPLATE row is caged or resident-cited.
 
-  KNOWN ESCAPED ANIMAL (C3 audit record, 2026-07-02): relation-promotion
-  (derived-relations-need-witnesses candidate) is NOT caught by any resident
-  screen -- the attack satisfies the discipline (OverlapAudits.
-  promote_discipline) and is no stamp; its would-be screen is an index-typed
-  evidence-jurisdiction condition of the closure genus (OverlapAudits.
-  promote_breaks_closure names the exact violating shape). STATUS UPDATE
-  (v7 slice 1, same day): the forcing consumer ARRIVED -- parse-implies-
-  authority is the same shape, and its LOCAL face is caged in
-  ArtifactProfiles (AdmissionJurisdiction). The vocabulary-GENERIC screen
-  remains unminted pending its own admission (V7-GAP-SPEC §4); the animal
-  is cornered, not caught.
+  ESCAPED ANIMAL RECORD, CLOSED (all 2026-07-02): relation-promotion
+  (derived-relations-need-witnesses candidate) ESCAPED at the C3 audit --
+  satisfies the discipline (OverlapAudits.promote_discipline), no stamp;
+  would-be screen named as an evidence-jurisdiction condition of the
+  closure genus (OverlapAudits.promote_breaks_closure). CORNERED at v7
+  slice 1 -- parse-implies-authority is the same shape; local face caged
+  (ArtifactProfiles.AdmissionJurisdiction). CAUGHT at v7 slice 3 -- the
+  generic screen was minted on the family repeat (AdmissionJurisdiction +
+  StageStepDiscipline, operator-admitted) and
+  JurisdictionScreen.relation_promotion_fails_jurisdiction_screen catches
+  the original attack under relFrame. Mechanism 6 registered: jurisdiction
+  refutation (a receipt funds only what it is scoped to). The catch is a
+  SCREEN, not enforcement; the multi-currency (many-but-not-all) face
+  remains open and gated.
 
   Mathlib-free.
 -/

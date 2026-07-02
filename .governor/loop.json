@@ -131,6 +131,13 @@
       "status": "done-green",
       "file": "LeanProofs/Scratch/ProfileStages.lean",
       "note": "v7 slice 2 stage noncollapse LANDED: profile_stage_noncollapse + ascent_pays_every_rung (strong wall, Rooted induction) + two cages (self-promotion = mechanism 3; rung-skip = satisfies discipline, caught by LOCAL StageStepDiscipline). FAMILY REPEAT CONFIRMED: second local jurisdiction condition -- generic screen admission evidence now exists, screen still gated. Codex first-pass GREEN. <= [propext, Quot.sound]."
+    },
+    {
+      "id": "V7-3",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/JurisdictionScreen.lean",
+      "note": "v7 slice 3 GENERIC JURISDICTION SCREEN MINTED (operator-admitted on the family repeat): JurisdictionFrame/JurisdictionRespecting + derivational walls + instance IFFS recovering slice-1/slice-2 locals + relFrame CATCHING the C3 escaped animal (zero-axiom capture) + receipt cross-use cages (no default fungibility) + UniversalReceiptFree (total form only). Codex first-pass GREEN, emperor check passed. Escaped-animal record CLOSED; Zoo mechanism 6 registered."
     }
   ],
   "acceptance": [
@@ -245,9 +252,9 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v6.0.0 tagged locally (operator: push tag + release when timing allows; NO pushes now). v7 slices 1+2 GREEN. The generic evidence-jurisdiction screen now has its repeat evidence (AdmissionJurisdiction + StageStepDiscipline) -- ADMISSION DECISION IS OPERATOR'S. Other v7 candidates: rung-vs-bridge receipt non-fungibility (currency separation face); WLP non-collapse lines (when envelopes enter); profile-conversion refusal breadth. Gated elsewhere: multi-currency coverage screen, structural-rule algebra.",
-  "last_verified_commit": "3b02142",
-  "last_verified_note": "governor verify-run -- lake build ProfileStages+Zoo -> [pass] (receipt v7_slice2_final); all 12 ProfileStages theorems <= [propext, Quot.sound], several zero-axiom, no choice.",
+  "next_action": "v6.0.0 RELEASED (operator pushed tag + published, 2026-07-02). v7 slices 1-3 GREEN (skeleton, stage noncollapse, jurisdiction screen; escaped->cornered->caught arc closed). Local main is ahead of the published release -- pushes at operator's timing. Next v7 candidates (operator picks): WLP non-collapse doctrine lines (envelope work would now have the jurisdiction vocabulary to lean on); profile-conversion refusal breadth; multi-currency coverage screen (many-but-not-all -- name-early, would build on UniversalReceiptFree's honest gap); v7 release boundary discussion when the spine feels complete. Gated: structural-rule algebra.",
+  "last_verified_commit": "2e93778",
+  "last_verified_note": "governor verify-run -- lake build JurisdictionScreen+Zoo -> [pass] (receipt v7_slice3_final); all 20 JurisdictionScreen theorems <= [propext, Quot.sound], capture theorem zero-axiom.",
   "completed_slices": [
     "A: roadmap S10/S11 hygiene reconciliation",
     "phase-0: lean .governor plane stood up (loop.json + loop-receipts + gitignore split, nq precedent)",
