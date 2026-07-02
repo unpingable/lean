@@ -1,5 +1,44 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — v7 slice 1: the profile refusal skeleton — COURT FIRST, MAP LATER
+`LeanProofs/Scratch/ArtifactProfiles.lean` (new; **entirely zero-axiom**),
+`lakefile.toml` (CI root), `LeanProofs/Scratch/Zoo.lean` (registry row +
+escaped-animal status update), `docs/V7-GAP-SPEC.md` (RATIFIED by operator
+2026-07-02 with the §9 failure-class wording amendment + explicit
+no-registry non-goal). **v7 "Artifact Authority Profiles" OPENS** per the
+ratified gap spec §10: the refusal skeleton, NOT the profile schema.
+
+- Two-kind specimen (observer profile / authority profile, distinct
+  evidence indices — the relation-promotion audit's flattening lesson
+  applied) + ONE declared paid bridge.
+- **`profile_does_not_compose_for_free`** — both profiles' local material
+  in custody, no bridge receipt: observer verdict derives, admission does
+  NOT. **`cross_profile_conversion_requires_bridge`** — with the bridge
+  receipt the crossing composes (two-cut chain); the only difference is the
+  paid receipt. **`admission_requires_jurisdiction_receipt`** — the general
+  wall (codex: strongest of the slice).
+- **`no_master_profile`** (MasterFree at the profile index) + — per codex
+  YELLOW finding, the screen's scope limit DEMONSTRATED rather than
+  footnoted: **`two_way_profiles_fail_master_screen`** — a fully PAID
+  two-way bridge pair fails the index-level screen while satisfying the
+  discipline (`two_way_profiles_satisfy_discipline`): the resident
+  benign-router false positive instantiated at the profile level. Failing
+  MasterFree is a smell, not a conviction.
+- **FORBIDDEN specimen: parse-implies-authority** (`parseAuthority`:
+  foreign receipt cited directly as admission evidence, no bridge; true
+  minimal pair; codex: "real laundering specimen, not a strawman").
+  **`parse_authority_satisfies_discipline`** — the load-bearing negative:
+  the attack launders inside `EvidenceNeverConcluded`, the relation-
+  promotion shape again. Catch: **`AdmissionJurisdiction`** (LOCAL
+  evidence-jurisdiction condition, explicitly the local face of the
+  still-gated general screen; observer side explicitly out of scope per
+  codex) — clean satisfies, attack breaks at the named rule
+  (`parse_authority_breaks_jurisdiction`). The C3 escaped animal is
+  CORNERED (local face caged), not caught (generic screen still gated).
+- Constitution sweep clean (codex): no shared language, no master profile,
+  no universal schema, no registry. Codex YELLOW→addressed (both findings
+  closed in-slice).
+
 ## 2026-07-02 — v6 slice 2: the finite-support checker — TYPED VERDICTS, EXECUTABLE REFUSAL
 `LeanProofs/Scratch/FiniteSupportChecker.lean` (new), `lakefile.toml` (CI
 root). v6 initial scope COMPLETE (both admitted slices landed same day the

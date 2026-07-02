@@ -1,7 +1,7 @@
 {
   "reconciled_note": "Own per-repo .governor loop for the Lean bounded-calculi slice campaign, mirroring the nq precedent (~/git/nq-root/nq/.governor). Global AG backlog is a recognition/custody registry; each repo runs its own program counter (loop-protocol S6: live probes win; S9 'single live program counter' is the stale artifact AG-Claude is correcting). Plan: ~/.claude/plans/okay-so-i-was-ethereal-quill.md.",
-  "campaign": "lean-bounded-calculi / v6-executable-custody-checking",
-  "phase": "RELEASE-PREP",
+  "campaign": "lean-bounded-calculi / v7-artifact-authority-profiles",
+  "phase": "BUILD",
   "current_slice": null,
   "lane": "lean-scratch-bounded-calculi",
   "authorization_mode": "scratch_only_operator_committed",
@@ -102,9 +102,9 @@
     {
       "id": "V7-SPEC",
       "kind": "gap_spec",
-      "status": "drafted-unratified",
+      "status": "ratified",
       "file": "docs/V7-GAP-SPEC.md",
-      "note": "v7 Artifact Authority Profiles gap spec: profiles + paid bridges, no shared custody language (no-unifier constitution), NoMasterProfile screen shapes, WLP = envelope not semantics, lane split Lean-laws/AG-wire. Operator ratifies before any V7 slice is admitted."
+      "note": "v7 Artifact Authority Profiles gap spec: profiles + paid bridges, no shared custody language (no-unifier constitution), NoMasterProfile screen shapes, WLP = envelope not semantics, lane split Lean-laws/AG-wire. Operator ratifies before any V7 slice is admitted. -- RATIFIED by operator 2026-07-02 (ChatGPT co-review; s9 failure-class wording amendment; no-registry non-goal added)"
     },
     {
       "id": "NAME-EARLY-1",
@@ -117,6 +117,13 @@
       "kind": "candidate",
       "status": "named-not-admitted",
       "note": "General structural-rule algebra: parameterized wk/ctr/exch/cut/split/merge policies with 'normalization preserves chainOf/trace/funding-scope for any admitted policy'; risk = smuggling free classical structure into the generic layer (chatty chewy item 1, survives kernel-overlap check; named follow-up since v5 ledger)"
+    },
+    {
+      "id": "V7-1",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/ArtifactProfiles.lean",
+      "note": "v7 slice 1 refusal skeleton LANDED: profile_does_not_compose_for_free / cross_profile_conversion_requires_bridge / admission wall / no_master_profile + two-way false-positive demonstration / parse-implies-authority specimen caught by LOCAL AdmissionJurisdiction (escaped animal cornered; generic screen still gated). Entirely zero-axiom; codex YELLOW->addressed in-slice."
     }
   ],
   "acceptance": [
@@ -231,9 +238,9 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v6.0.0 TAGGED LOCALLY (9efbf12); operator pushes tag + authors release (DOI) after work-hours; do NOT push v7-ish main before the v6 release is published. V7 gap spec drafted UNRATIFIED (docs/V7-GAP-SPEC.md) - operator ratifies/amends before any V7 slice. Name-early candidates registered: multi-currency coverage screen, structural-rule algebra. Kernel-overlap verdicts on the chewy list: delta-t-as-derivation-step = ALREADY LANDED (DeltaTSequent F1), caveat-inheritance-generalized = ALREADY LANDED (CaveatSequent F3) + discharge half is AG lane (relaxation valve), relation-promotion = C3-classified closure-genus/forcing-gated (v7 may be the forcing consumer).",
-  "last_verified_commit": "8f83bcd",
-  "last_verified_note": "governor verify-run -- lake build FiniteSupportChecker -> [pass] (receipt v6_checker_v2_4eef40c5); footprint <= [propext, Quot.sound], no Classical.choice.",
+  "next_action": "v6.0.0 tagged locally (operator: push tag + release when timing allows; v7-ish main stays local until v6 release published). v7 slice 1 GREEN. Candidate next v7 slices (operator picks): profile_stage_noncollapse (stage-n profile does not authorize stage n+1); the GENERIC evidence-jurisdiction screen (forcing consumer arrived -- needs its own admission per V7-GAP-SPEC s4); WLP non-collapse doctrine lines (s6) if/when a v7 slice touches envelopes. Gated elsewhere: multi-currency coverage screen, structural-rule algebra (name-early).",
+  "last_verified_commit": "ff4aadf",
+  "last_verified_note": "governor verify-run -- lake build ArtifactProfiles+Zoo -> [pass] (receipt v7_slice1_final); all 11 ArtifactProfiles theorems zero-axiom.",
   "completed_slices": [
     "A: roadmap S10/S11 hygiene reconciliation",
     "phase-0: lean .governor plane stood up (loop.json + loop-receipts + gitignore split, nq precedent)",

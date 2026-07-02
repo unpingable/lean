@@ -43,6 +43,7 @@
   | commit-attempted-as-executed | ExecutionCustody.commitAttempted_does_not_imply_didExecute (ANNEX; skeleton replay CAGED HERE) |
   | caveat-blind gate            | CaveatSequent.blind_system_not_caveat_blind_free (screen + specimen resident; the attack SATISFIES the v4 discipline -- `blind_discipline` -- which is why it needed a new screen, not a replay) |
   | silence-as-denial            | OverlapAudits.silence_as_denial_violates_discipline (C3 audit 2026-07-02: mechanism 3 instance; protocol face resident in AuthenticatedDenial) |
+  | parse-implies-authority      | ArtifactProfiles.parse_authority_breaks_jurisdiction (v7 slice 1: attack satisfies the discipline; caught by the LOCAL evidence-jurisdiction condition -- the escaped animal's local face, caged) |
 
   C1 inventory complete: every ZOO-TEMPLATE row is caged or resident-cited.
 
@@ -51,8 +52,12 @@
   screen -- the attack satisfies the discipline (OverlapAudits.
   promote_discipline) and is no stamp; its would-be screen is an index-typed
   evidence-jurisdiction condition of the closure genus (OverlapAudits.
-  promote_breaks_closure names the exact violating shape). Screen unminted:
-  gated on a forcing consumer per the candidate's own fences.
+  promote_breaks_closure names the exact violating shape). STATUS UPDATE
+  (v7 slice 1, same day): the forcing consumer ARRIVED -- parse-implies-
+  authority is the same shape, and its LOCAL face is caged in
+  ArtifactProfiles (AdmissionJurisdiction). The vocabulary-GENERIC screen
+  remains unminted pending its own admission (V7-GAP-SPEC §4); the animal
+  is cornered, not caught.
 
   Mathlib-free.
 -/

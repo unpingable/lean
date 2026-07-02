@@ -76,4 +76,6 @@ roots = [
   # v6 executable custody checking
   "LeanProofs.Scratch.TracedCoherence",
   "LeanProofs.Scratch.FiniteSupportChecker",
+  # v7 artifact authority profiles
+  "LeanProofs.Scratch.ArtifactProfiles",
 ]

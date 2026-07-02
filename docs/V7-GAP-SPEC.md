@@ -1,11 +1,10 @@
 # v7 Gap Spec — Artifact Authority Profiles
 
-**Status: CANDIDATE / UNRATIFIED.** A gap spec is a handle for review, not
-authorization to build. No Lean code is admitted by this document; the
-operator ratifies (possibly amended) before any V7 slice is admitted.
-Drafted 2026-07-02 (Fable, from the operator's post-v6 direction; naming
-correction over the earlier "Constellation Custody Protocol" draft —
-see §7).
+**Status: RATIFIED (operator, 2026-07-02),** with the §9 wording amendment
+(failure-class grounds, not prior-art grounds) from the ChatGPT co-review.
+Local v7 work authorized; slices admitted per §10 first. Drafted 2026-07-02
+(Fable, from the operator's post-v6 direction; naming correction over the
+earlier "Constellation Custody Protocol" draft — see §7).
 
 ## 0. The constitution (binding on every v7 slice)
 
@@ -140,6 +139,9 @@ not citizenship.
 - No AG/NQ/Porter integration built from this lane.
 - No new screens minted without their own admission (relation-promotion and
   multi-currency remain gated as stated in §4).
+- **No profile registry in this campaign.** A registry may enumerate, never
+  mediate — and v7 does not build one at all; a registry is how the master
+  index sneaks back in wearing a conference lanyard.
 
 ## 9. Admissibility verdict (drafting Fable's, non-binding)
 
@@ -151,9 +153,10 @@ map later; (3) the wire/schema half is explicitly AG's from day one.
 **Recommended forcing case:** the first real cross-tool consumption event —
 e.g. AG wanting to treat an NQ probe receipt as admission evidence, or
 Claimdocs scores appearing in an AG decision basis. If no such event is
-live, v7 can still open on prior-art grounds (the failure class is named:
-parse-implies-authority), but the profile FIELD design should wait for a
-real artifact in hand.
+live, v7 can still open on known failure-class grounds:
+parse-implies-authority is already named and caged as the minimal forbidden
+specimen. Profile FIELD design should still wait for a real artifact in
+hand.
 
 ## 10. Smallest first slice (when ratified)
 
