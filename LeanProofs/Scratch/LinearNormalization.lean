@@ -48,11 +48,16 @@
     policy (slice 1's reflection) and is REFUSED by linearization. Cartesian
     freedom does not license linear contraction.
 
+  Slice 3 (same file, decision boundary completed):
+  * `counts_suffice_for_linearize` -- the general positive: sufficient
+    per-label counts imply success. First-match is order-safe because
+    consumption is by-label; no ordered-supply hypothesis needed.
+  * `linearize_ok_iff_counts_suffice` -- THE DECISION THEOREM: occurrence
+    counting decides normalization exactly (one iff).
+  * `forgery_offender_is_excess` -- the offender is a witness, not a
+    symptom: the reported label's demand genuinely exceeds supply.
+
   Honesty notes:
-  * `linearize` consumes FIRST-MATCH occurrences; completeness (sufficient
-    counts for every label imply success) is plausible for by-label
-    consumption but NOT proved here -- named follow-up, so the positive
-    results are concrete/evaluated rather than general.
   * The custody spine on success is the linear tree's own structure
     (`Consumes` splits per read) plus the conservation law; a first-class
     positional-occurrence trace object is a refinement, named not built.
@@ -337,5 +342,221 @@ theorem cartesian_statable_but_linearly_refused :
     (dupTree.linearize [PJ.res]).isOk = false :=
   ⟨⟨LeanProofs.Scratch.StructuralNormalization.Core.toEntail dupTree⟩,
     linear_free_contraction_cannot_normalize⟩
+
+/-! ## Slice 3: sufficient-count completeness (the decision theorem)
+
+    The positive complement to `excess_demand_forges`, closing the pair into a
+    DECISION BOUNDARY: for this liberal language and the first-match
+    linearizer, per-label occurrence counting decides normalization exactly.
+    First-match consumption is order-safe here BECAUSE consumption is
+    by-label: a read of one label never removes another label's occurrences,
+    so per-label counts are invariant across interleavings -- no stronger
+    ordered-supply hypothesis is needed. -/
+
+/-- A positive per-label count means first-match removal succeeds. -/
+theorem removeFirstC_isSome [DecidableEq J] {j : J} :
+    ∀ {Γ : List J}, 1 ≤ wsum (fun x => if x = j then 1 else 0) Γ →
+      ∃ p, removeFirstC j Γ = some p := by
+  intro Γ h
+  induction Γ with
+  | nil => simp [wsum] at h
+  | cons a as ih =>
+      by_cases ha : a = j
+      · refine ⟨⟨as, by subst ha; exact Split.left split_nil_left⟩, ?_⟩
+        simp only [removeFirstC]
+        rw [dif_pos ha]
+      · have h' : 1 ≤ wsum (fun x => if x = j then 1 else 0) as := by
+          simp only [wsum, if_neg ha] at h
+          omega
+        obtain ⟨p, hp⟩ := ih h'
+        refine ⟨⟨a :: p.1, Split.right p.2⟩, ?_⟩
+        simp only [removeFirstC]
+        rw [dif_neg ha, hp]
+        rfl
+
+/-- **Sufficient counts linearize:** if the context supplies at least as many
+    occurrences of every label as the tree's reads demand, `linearize`
+    succeeds. The exact positive complement of `excess_demand_forges`. -/
+theorem counts_suffice_for_linearize [DecidableEq J]
+    {S : System J Ix} {E : EvidenceCalculus S}
+    {Γ : List J} {j : J} (d : Core S E Γ j) :
+    ∀ {Δ : List J},
+      (∀ l : J, wsum (fun x => if x = l then 1 else 0) d.readsOf
+        ≤ wsum (fun x => if x = l then 1 else 0) Δ) →
+      (d.linearize Δ).isOk = true := by
+  induction d with
+  | ax _ =>
+      intro Δ hsuff
+      rename_i jj hmem
+      have h := hsuff jj
+      have h1 : 1 ≤ wsum (fun x => if x = jj then 1 else 0) Δ := by
+        simp only [Core.readsOf, wsum, if_true] at h
+        omega
+      obtain ⟨p, hp⟩ := removeFirstC_isSome h1
+      simp [Core.linearize, hp, LinResult.isOk]
+  | cut r ds de ih1 ih2 =>
+      intro Δ hsuff
+      have hs1 : ∀ l : J, wsum (fun x => if x = l then 1 else 0) ds.readsOf
+          ≤ wsum (fun x => if x = l then 1 else 0) Δ := by
+        intro l
+        have h := hsuff l
+        simp only [Core.readsOf, wsum_append] at h
+        omega
+      have hok1 := ih1 hs1
+      cases h1 : ds.linearize Δ with
+      | forgery l =>
+          rw [h1] at hok1
+          simp [LinResult.isOk] at hok1
+      | ok Δ₁ ds' =>
+          have hcons : ∀ l : J, wsum (fun x => if x = l then 1 else 0) Δ
+              = wsum (fun x => if x = l then 1 else 0) ds.readsOf
+                + wsum (fun x => if x = l then 1 else 0) Δ₁ :=
+            fun l => linearize_ok_conserves
+              (w := fun x => if x = l then 1 else 0) ds h1
+          have hs2 : ∀ l : J, wsum (fun x => if x = l then 1 else 0) de.readsOf
+              ≤ wsum (fun x => if x = l then 1 else 0) Δ₁ := by
+            intro l
+            have ha := hsuff l
+            have hb := hcons l
+            simp only [Core.readsOf, wsum_append] at ha
+            omega
+          have hok2 := ih2 hs2
+          cases h2 : de.linearize Δ₁ with
+          | forgery l =>
+              rw [h2] at hok2
+              simp [LinResult.isOk] at hok2
+          | ok Δ₂ de' =>
+              simp [Core.linearize, h1, h2, LinResult.isOk]
+  | derive s d ih =>
+      intro Δ hsuff
+      have hs : ∀ l : J, wsum (fun x => if x = l then 1 else 0) d.readsOf
+          ≤ wsum (fun x => if x = l then 1 else 0) Δ := by
+        intro l
+        have h := hsuff l
+        simp only [Core.readsOf] at h
+        exact h
+      have hok := ih hs
+      cases h1 : d.linearize Δ with
+      | forgery l =>
+          rw [h1] at hok
+          simp [LinResult.isOk] at hok
+      | ok Δ' d' =>
+          simp [Core.linearize, h1, LinResult.isOk]
+
+/-- **THE DECISION THEOREM: occurrence counting decides normalization.**
+    `linearize` succeeds exactly when every label's demanded reads are
+    covered by that label's occurrences in the context. Enough payments ->
+    ok; not enough -> forgery. One iff: `counts_suffice_for_linearize` and
+    `excess_demand_forges` are the two directions of a single decision
+    boundary. (Semantic boundary: the RHS quantifies over all labels; an
+    executable finite checker restricts to labels occurring in `readsOf` --
+    v6-checker lane, not claimed here.) -/
+theorem linearize_ok_iff_counts_suffice [DecidableEq J]
+    {S : System J Ix} {E : EvidenceCalculus S}
+    {Γ Δ : List J} {j : J} (d : Core S E Γ j) :
+    (d.linearize Δ).isOk = true ↔
+      ∀ l : J, wsum (fun x => if x = l then 1 else 0) d.readsOf
+        ≤ wsum (fun x => if x = l then 1 else 0) Δ := by
+  constructor
+  · intro hok l
+    cases hres : d.linearize Δ with
+    | forgery l' =>
+        rw [hres] at hok
+        simp [LinResult.isOk] at hok
+    | ok Δ' d' =>
+        have := linearize_ok_conserves
+          (w := fun x => if x = l then 1 else 0) d hres
+        omega
+  · exact counts_suffice_for_linearize d
+
+/-! ## The exact offender: forgery names a genuinely excess label -/
+
+/-- First-match removal fails only on a zero count. -/
+theorem removeFirstC_none_count_zero [DecidableEq J] {j : J} {Γ : List J}
+    (h : removeFirstC j Γ = none) :
+    wsum (fun x => if x = j then 1 else 0) Γ = 0 := by
+  cases hc : wsum (fun x => if x = j then 1 else 0) Γ with
+  | zero => rfl
+  | succ n =>
+      obtain ⟨p, hp⟩ := removeFirstC_isSome (j := j) (Γ := Γ) (by omega)
+      rw [hp] at h
+      exact nomatch h
+
+/-- **The offender is a witness, not a symptom:** when linearization refuses,
+    the named offender label's total demand genuinely exceeds the context's
+    supply. Refusal never mislabels -- the reported label is itself an
+    excess-demand witness for `excess_demand_forges`. (Witness validity
+    only: uniqueness/minimality of the offender is not claimed.) -/
+theorem forgery_offender_is_excess [DecidableEq J]
+    {S : System J Ix} {E : EvidenceCalculus S}
+    {Γ : List J} {j : J} (d : Core S E Γ j) :
+    ∀ {Δ : List J} {l' : J},
+      d.linearize Δ = .forgery l' →
+      wsum (fun x => if x = l' then 1 else 0) Δ
+        < wsum (fun x => if x = l' then 1 else 0) d.readsOf := by
+  induction d with
+  | ax _ =>
+      intro Δ l' h
+      rename_i jj hmem
+      cases hrf : removeFirstC jj Δ with
+      | some p =>
+          simp only [Core.linearize, hrf] at h
+          exact nomatch h
+      | none =>
+          simp only [Core.linearize, hrf] at h
+          cases h
+          have h0 := removeFirstC_none_count_zero hrf
+          simp [Core.readsOf, wsum]
+          omega
+  | cut r ds de ih1 ih2 =>
+      intro Δ l' h
+      simp only [Core.linearize] at h
+      cases h1 : ds.linearize Δ with
+      | forgery l =>
+          simp only [h1] at h
+          cases h
+          have hd := ih1 h1
+          simp only [Core.readsOf, wsum_append]
+          omega
+      | ok Δ₁ ds' =>
+          simp only [h1] at h
+          cases h2 : de.linearize Δ₁ with
+          | ok Δ₂ de' =>
+              simp only [h2] at h
+              exact nomatch h
+          | forgery l =>
+              simp only [h2] at h
+              cases h
+              have hd := ih2 h2
+              have hc := linearize_ok_conserves
+                (w := fun x => if x = l' then 1 else 0) ds h1
+              simp only [Core.readsOf, wsum_append]
+              omega
+  | derive s d ih =>
+      intro Δ l' h
+      simp only [Core.linearize] at h
+      cases h1 : d.linearize Δ with
+      | ok Δ' d' =>
+          simp only [h1] at h
+          exact nomatch h
+      | forgery l =>
+          simp only [h1] at h
+          cases h
+          simpa only [Core.readsOf] using ih h1
+
+/-- The refusal side, packaged as an iff: linearization forges exactly when
+    some label's demand exceeds its supply. Dual face of
+    `linearize_ok_iff_counts_suffice`. -/
+theorem linearize_forges_iff_excess [DecidableEq J]
+    {S : System J Ix} {E : EvidenceCalculus S}
+    {Γ Δ : List J} {j : J} (d : Core S E Γ j) :
+    (∃ l', d.linearize Δ = .forgery l') ↔
+      ∃ l : J, wsum (fun x => if x = l then 1 else 0) Δ
+        < wsum (fun x => if x = l then 1 else 0) d.readsOf := by
+  constructor
+  · rintro ⟨l', h⟩
+    exact ⟨l', forgery_offender_is_excess d h⟩
+  · rintro ⟨l, h⟩
+    exact excess_demand_forges d h
 
 end LeanProofs.Scratch.LinearNormalization

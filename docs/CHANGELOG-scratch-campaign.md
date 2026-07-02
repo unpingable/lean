@@ -1,5 +1,27 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-01 — v5 slice 3: the decision theorem — counting decides normalization
+`LeanProofs/Scratch/LinearNormalization.lean` (extended in place).
+
+- **The general positive** (`counts_suffice_for_linearize`): sufficient
+  per-label occurrence counts ⇒ `linearize` succeeds. First-match is
+  order-safe because consumption is by-label (a read of one label never
+  removes another's occurrences) — no ordered-supply hypothesis needed;
+  codex confirmed no fairness hole.
+- **THE DECISION THEOREM** (`linearize_ok_iff_counts_suffice`): success ⟺
+  every label's demand ≤ supply. One iff — the completed decision boundary
+  (semantic; executable finite checker is v6 lane).
+- **The exact offender** (`forgery_offender_is_excess`): on refusal, the
+  NAMED offender label's demand genuinely exceeds supply — the offender is
+  a witness, not a symptom (validity, not uniqueness/minimality).
+  `linearize_forges_iff_excess` packages the refusal side as an iff.
+- Helpers: `removeFirstC_isSome`, `removeFirstC_none_count_zero`.
+- Codex verdict: **count-level GREEN, positional-trace YELLOW** — the two
+  count-level slice-2 gaps are closed; remaining before v5.0.0 is the
+  positional occurrence trace (which occurrence paid which read) OR an
+  explicitly count-level-scoped release claim. Docstring cautions applied.
+  Everything ≤ [propext, Quot.sound].
+
 ## 2026-07-01 — v5 slice 2: linear normalization — THE TEETH
 `LeanProofs/Scratch/LinearNormalization.lean` (new), `lakefile.toml` (CI root).
 
