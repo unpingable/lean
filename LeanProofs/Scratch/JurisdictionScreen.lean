@@ -472,4 +472,224 @@ theorem combined_universal_receipt_free :
 
 end CombinedInstance
 
+/-! ## Portfolio coverage (v7 slice 4, in place): multi-currency, priced
+
+    The multi-currency question ("a portfolio of scoped receipts becomes de
+    facto universal") splits into three faces with three different fates:
+
+    1. COVERAGE THROUGH DERIVATION -- minting a receipt that covers
+       obligations its origin could not fund. KILLED HERE, generically:
+       `derived_evidence_covers_no_more` is a one-line consequence of the
+       resident anti-currency law (`echain_funding`, funding-antitone).
+       Coverage is inherited, never minted -- the obligation-indexed
+       generalization of `stamps_are_inherited_not_minted`.
+    2. COVERAGE THROUGH CUSTODY -- holding many receipts. NOT an attack:
+       under the custody discipline every held receipt entered by
+       assumption (was individually acquired). The honest theorem is a
+       PRICE: in single-scoped frames, covering k distinct obligations
+       requires k distinct receipts (`coverage_costs_receipts`).
+       Portfolio breadth is paid per obligation, by pigeonhole.
+    3. COVERAGE BY DECLARATION -- a frame declaring role-erasing scopes.
+       The TOTAL form is `UniversalReceiptFree`; the graded form is frame
+       quality (the instantiator's visible choice), and a threshold screen
+       ("too much coverage") would be arbitrary and false-positive-riddled
+       -- deliberately NOT built. What remains genuinely open is
+       ISSUER-LEVEL accounting (coverage acquired across acquisitions,
+       provenance-correlated) -- that needs a provenance model this
+       skeleton does not have; honestly deferred, named for v7.x. -/
+
+section PortfolioCoverage
+
+open LeanProofs.Scratch.EvidenceCalculusSequent (EvidenceCalculus EChain
+  echain_funding)
+
+variable {J : Type} {Ix : Type} {Ob : Type}
+
+/-- DECLARED portfolio coverage: some held receipt is scoped to `o`. -/
+def Covers (F : JurisdictionFrame J Ob) (Γ : List J) (o : Ob) : Prop :=
+  ∃ e ∈ Γ, F.scopedTo e o
+
+/-- OPERATIONAL funding power: `e` actually funds some rule discharging a
+    conversion that demands `o`. -/
+def FundsOb (S : System J Ix) (F : JurisdictionFrame J Ob)
+    (e : J) (o : Ob) : Prop :=
+  ∃ src tgt, S.Rule src e tgt ∧ F.demands src tgt = some o
+
+/-- In a respecting system, operational funding power never exceeds
+    declared scope: what a receipt can actually do is bounded by what its
+    frame says it may do. -/
+theorem operational_power_is_declared
+    {S : System J Ix} {F : JurisdictionFrame J Ob}
+    (hJ : JurisdictionRespecting S F) {e : J} {o : Ob}
+    (h : FundsOb S F e o) : F.scopedTo e o := by
+  obtain ⟨src, tgt, hr, hdem⟩ := h
+  exact hJ hr hdem
+
+/-- **Coverage is inherited, never minted** (face 1, killed): whatever
+    obligation a DERIVED receipt can fund, its origin could already fund
+    -- at any chain length, in any evidence calculus over the system. A
+    portfolio cannot be widened by derivation; it can only be assembled by
+    custody (each element individually acquired) or narrowed. This is
+    OPERATIONAL coverage (`FundsOb` -- demand-bearing rule use); declared
+    scope is static frame data and cannot change under derivation at all.
+    The obligation-indexed sibling of the resident
+    `stamps_are_inherited_not_minted`. -/
+theorem derived_evidence_covers_no_more
+    {S : System J Ix} {E : EvidenceCalculus S}
+    {F : JurisdictionFrame J Ob}
+    {e₀ e : J} (hchain : EChain E e₀ e) {o : Ob}
+    (h : FundsOb S F e o) : FundsOb S F e₀ o := by
+  obtain ⟨src, tgt, hr, hdem⟩ := h
+  exact ⟨src, tgt, echain_funding hchain hr, hdem⟩
+
+/-- A frame is single-scoped when each receipt is scoped to at most one
+    obligation. OPT-IN frame property, not a required screen:
+    multi-obligation receipts are legitimate when declared -- a frame that
+    declares them makes coverage cheaper BY DECLARATION, visibly. -/
+def SingleScoped (F : JurisdictionFrame J Ob) : Prop :=
+  ∀ (e : J) (o o' : Ob), F.scopedTo e o → F.scopedTo e o' → o = o'
+
+/-- Membership in an erased list (local helper, Mathlib-free). -/
+theorem mem_erase_of_ne_local [DecidableEq J] {a b : J} :
+    ∀ {l : List J}, a ∈ l → a ≠ b → a ∈ l.erase b
+  | [], h, _ => nomatch h
+  | c :: cs, h, hne => by
+      by_cases hcb : c = b
+      · subst hcb
+        rw [List.erase_cons_head]
+        cases h with
+        | head => exact absurd rfl hne
+        | tail _ h' => exact h'
+      · rw [List.erase_cons_tail (by simp [hcb])]
+        cases h with
+        | head => exact List.Mem.head _
+        | tail _ h' =>
+            exact List.Mem.tail _ (mem_erase_of_ne_local h' hne)
+
+/-- Erasing a member shortens by one (local helper, Mathlib-free). -/
+theorem length_erase_of_mem_local [DecidableEq J] {a : J} :
+    ∀ {l : List J}, a ∈ l → l.length = (l.erase a).length + 1
+  | [], h => nomatch h
+  | c :: cs, h => by
+      by_cases hca : c = a
+      · subst hca
+        rw [List.erase_cons_head]
+        rfl
+      · rw [List.erase_cons_tail (by simp [hca])]
+        cases h with
+        | head => exact absurd rfl (fun h' => hca h'.symm)
+        | tail _ h' =>
+            simp [List.length_cons, length_erase_of_mem_local h']
+
+/-- **Coverage costs receipts** (face 2, priced): in a single-scoped
+    frame, a portfolio covering k DISTINCT obligations holds at least k
+    distinct receipts. Pigeonhole: each covered obligation consumes its
+    own witness. There is no bulk discount on jurisdiction. -/
+theorem coverage_costs_receipts [DecidableEq J]
+    {F : JurisdictionFrame J Ob} (hS : SingleScoped F) :
+    ∀ (os : List Ob), os.Nodup →
+    ∀ (Γ : List J), (∀ o ∈ os, Covers F Γ o) →
+      os.length ≤ Γ.length := by
+  intro os
+  induction os with
+  | nil => intro _ Γ _; exact Nat.zero_le _
+  | cons o rest ih =>
+      intro hnd Γ hcov
+      have hnotmem : o ∉ rest := (List.nodup_cons.mp hnd).1
+      have hndrest : rest.Nodup := (List.nodup_cons.mp hnd).2
+      obtain ⟨e, heΓ, hesc⟩ := hcov o (List.Mem.head _)
+      have hrest : ∀ o' ∈ rest, Covers F (Γ.erase e) o' := by
+        intro o' ho'
+        obtain ⟨e', he'Γ, he'sc⟩ := hcov o' (List.Mem.tail _ ho')
+        have hne : e' ≠ e := by
+          intro heq
+          subst heq
+          exact hnotmem (hS e' o' o he'sc hesc ▸ ho')
+        exact ⟨e', mem_erase_of_ne_local he'Γ hne, he'sc⟩
+      have hlen := ih hndrest (Γ.erase e) hrest
+      have hΓ := length_erase_of_mem_local heΓ
+      simp only [List.length_cons]
+      omega
+
+end PortfolioCoverage
+
+/-! ## The price, concretely (combined frame) -/
+
+section ConcretePrice
+
+/-- The combined frame is single-scoped: each rung receipt funds exactly
+    its own single-step ascent, the bridge receipt exactly the crossing. -/
+theorem mFrame_single_scoped : SingleScoped mFrame := by
+  intro e o o' h h'
+  cases e with
+  | stage n => exact h.elim
+  | crossed => exact h.elim
+  | rungR n =>
+      cases o with
+      | crossOb => exact h.elim
+      | ascendOb j k =>
+          cases o' with
+          | crossOb => exact h'.elim
+          | ascendOb j' k' =>
+              obtain ⟨hj, hk⟩ := h
+              obtain ⟨hj', hk'⟩ := h'
+              subst hj
+              subst hj'
+              subst hk
+              subst hk'
+              rfl
+  | bridgeR =>
+      cases o with
+      | ascendOb j k => exact h.elim
+      | crossOb =>
+          cases o' with
+          | ascendOb j' k' => exact h'.elim
+          | crossOb => rfl
+
+instance : DecidableEq MOb := fun a b => by
+  cases a <;> cases b <;>
+    first
+      | exact isFalse (fun h => MOb.noConfusion h)
+      | exact isTrue rfl
+      | · rename_i j k j' k'
+          by_cases hj : j = j'
+          · by_cases hk : k = k'
+            · subst hj; subst hk; exact isTrue rfl
+            · exact isFalse (fun h => by injection h with h1 h2; exact hk h2)
+          · exact isFalse (fun h => by injection h with h1 h2; exact hj h1)
+
+/-- **Two ascents and a crossing cost three receipts**, concretely: no
+    two-receipt portfolio covers them. There is no season pass and no
+    dual-use token in a single-scoped frame. -/
+theorem three_obligations_cost_three_receipts {Γ : List MJ}
+    (hcov : ∀ o ∈ [MOb.ascendOb 0 1, MOb.ascendOb 1 2, MOb.crossOb],
+      Covers mFrame Γ o) :
+    3 ≤ Γ.length :=
+  coverage_costs_receipts mFrame_single_scoped
+    [MOb.ascendOb 0 1, MOb.ascendOb 1 2, MOb.crossOb]
+    (by decide) Γ hcov
+
+/-- The price is EXACT (codex-suggested exactness witness): a three-receipt
+    portfolio achieves the coverage -- the bound is met, not just stated.
+    Three obligations cost exactly three receipts. -/
+theorem three_receipts_cover_three_obligations :
+    ∀ o ∈ [MOb.ascendOb 0 1, MOb.ascendOb 1 2, MOb.crossOb],
+      Covers mFrame [MJ.rungR 0, MJ.rungR 1, MJ.bridgeR] o := by
+  intro o ho
+  cases ho with
+  | head => exact ⟨MJ.rungR 0, List.Mem.head _, rfl, rfl⟩
+  | tail _ h1 =>
+      cases h1 with
+      | head =>
+          exact ⟨MJ.rungR 1, List.Mem.tail _ (List.Mem.head _), rfl, rfl⟩
+      | tail _ h2 =>
+          cases h2 with
+          | head =>
+              exact ⟨MJ.bridgeR,
+                List.Mem.tail _ (List.Mem.tail _ (List.Mem.head _)),
+                trivial⟩
+          | tail _ h3 => exact nomatch h3
+
+end ConcretePrice
+
 end LeanProofs.Scratch.JurisdictionScreen

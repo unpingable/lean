@@ -1,5 +1,38 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — v7 slice 4: portfolio coverage, priced — NO BULK DISCOUNT ON JURISDICTION
+`LeanProofs/Scratch/JurisdictionScreen.lean` (extended in place). Codex
+first-pass GREEN. Answers the release-boundary question ("is multi-currency
+a v7 blocker?") by SPLITTING it into three faces and building what is
+buildable, instead of deferring wholesale:
+
+- **Face 1 — coverage through derivation: KILLED, generically**
+  (`derived_evidence_covers_no_more`, zero-axiom, codex: strongest — "closes
+  the derivational widening face for all chain lengths with no extra frame
+  assumptions"): whatever obligation a derived receipt can fund, its origin
+  could already fund — one line via the resident anti-currency law
+  (`echain_funding`). A portfolio cannot be widened by derivation; the
+  obligation-indexed sibling of `stamps_are_inherited_not_minted`. Plus
+  `operational_power_is_declared` (respecting ⇒ funding power ⊆ declared
+  scope).
+- **Face 2 — coverage through custody: PRICED** (`SingleScoped` opt-in
+  frame property + `coverage_costs_receipts`, Mathlib-free pigeonhole with
+  local erase lemmas): covering k distinct obligations requires k distinct
+  receipts. Concretely on the combined frame (`mFrame_single_scoped`):
+  `three_obligations_cost_three_receipts` (lower bound) +
+  `three_receipts_cover_three_obligations` (exactness witness, codex-
+  suggested) — three obligations cost EXACTLY three receipts. Custody
+  assembly is not an attack inside this skeleton: evidence enters only by
+  assumption, so every held receipt was individually acquired.
+- **Face 3 — coverage by declaration: honestly assigned.** Total form =
+  resident `UniversalReceiptFree`; a graded threshold screen deliberately
+  NOT built (arbitrary, FP-riddled); the genuinely open remainder is
+  ISSUER-LEVEL provenance-correlated accounting — needs a provenance model
+  this skeleton does not have; named for v7.x, not silently deferred.
+- Codex release-verdict input: "this materially supports releasing v7
+  without a portfolio screen as a blocker; the remaining issuer-level
+  accounting is real, named, and outside this skeleton."
+
 ## 2026-07-02 — v7 slice 3: the jurisdiction screen minted — THE ANIMAL IS CAUGHT
 `LeanProofs/Scratch/JurisdictionScreen.lean` (new; ≤ [propext, Quot.sound],
 most theorems zero-axiom incl. the capture), `lakefile.toml` (CI root), Zoo

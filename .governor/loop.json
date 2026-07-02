@@ -1,7 +1,7 @@
 {
   "reconciled_note": "Own per-repo .governor loop for the Lean bounded-calculi slice campaign, mirroring the nq precedent (~/git/nq-root/nq/.governor). Global AG backlog is a recognition/custody registry; each repo runs its own program counter (loop-protocol S6: live probes win; S9 'single live program counter' is the stale artifact AG-Claude is correcting). Plan: ~/.claude/plans/okay-so-i-was-ethereal-quill.md.",
   "campaign": "lean-bounded-calculi / v7-artifact-authority-profiles",
-  "phase": "BUILD",
+  "phase": "RELEASE-BOUNDARY",
   "current_slice": null,
   "lane": "lean-scratch-bounded-calculi",
   "authorization_mode": "scratch_only_operator_committed",
@@ -138,6 +138,13 @@
       "status": "done-green",
       "file": "LeanProofs/Scratch/JurisdictionScreen.lean",
       "note": "v7 slice 3 GENERIC JURISDICTION SCREEN MINTED (operator-admitted on the family repeat): JurisdictionFrame/JurisdictionRespecting + derivational walls + instance IFFS recovering slice-1/slice-2 locals + relFrame CATCHING the C3 escaped animal (zero-axiom capture) + receipt cross-use cages (no default fungibility) + UniversalReceiptFree (total form only). Codex first-pass GREEN, emperor check passed. Escaped-animal record CLOSED; Zoo mechanism 6 registered."
+    },
+    {
+      "id": "V7-4",
+      "kind": "build_slice",
+      "status": "done-green",
+      "file": "LeanProofs/Scratch/JurisdictionScreen.lean (extended in place)",
+      "note": "v7 slice 4 portfolio coverage: three-face split of multi-currency. Face 1 derivational widening KILLED (derived_evidence_covers_no_more, zero-axiom, via echain_funding); face 2 custody PRICED (SingleScoped + coverage_costs_receipts pigeonhole; exact price demo 3-for-3); face 3 declaration honestly assigned (total=UniversalReceiptFree; graded threshold rejected as FP-riddled; issuer-level provenance accounting = the named v7.x remainder). Codex GREEN: 'materially supports releasing v7 without a portfolio screen as blocker.'"
     }
   ],
   "acceptance": [
@@ -252,9 +259,9 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v6.0.0 RELEASED (operator pushed tag + published, 2026-07-02). v7 slices 1-3 GREEN (skeleton, stage noncollapse, jurisdiction screen; escaped->cornered->caught arc closed). Local main is ahead of the published release -- pushes at operator's timing. Next v7 candidates (operator picks): WLP non-collapse doctrine lines (envelope work would now have the jurisdiction vocabulary to lean on); profile-conversion refusal breadth; multi-currency coverage screen (many-but-not-all -- name-early, would build on UniversalReceiptFree's honest gap); v7 release boundary discussion when the spine feels complete. Gated: structural-rule algebra.",
-  "last_verified_commit": "2e93778",
-  "last_verified_note": "governor verify-run -- lake build JurisdictionScreen+Zoo -> [pass] (receipt v7_slice3_final); all 20 JurisdictionScreen theorems <= [propext, Quot.sound], capture theorem zero-axiom.",
+  "next_action": "v7 spine COMPLETE per the ratified gap spec + slice 4's coverage laws: profiles local / crossings paid / every rung paid / jurisdiction screened / animal caught / species non-fungible / derivational portfolio-widening killed / custody coverage priced. RELEASE-BOUNDARY DECISION IS OPERATOR'S: v7.0.0 'Artifact Authority Profiles' release-shaped NOW (recommended claim: 'profiles are local, crossings are paid, receipts are not fungible across obligations, and coverage cannot be minted'); named v7.x remainder = issuer-level provenance-correlated portfolio accounting + WLP doctrine lines (untouched, asleep). On operator go: release prep (V7-RELEASE-LEDGER + version bumps), local tag; push/publish operator-timed.",
+  "last_verified_commit": "68114e7",
+  "last_verified_note": "governor verify-run -- lake build JurisdictionScreen -> [pass] (receipt v7_slice4_v2); slice-4 theorems <= [propext, Quot.sound], face-1 kill zero-axiom.",
   "completed_slices": [
     "A: roadmap S10/S11 hygiene reconciliation",
     "phase-0: lean .governor plane stood up (loop.json + loop-receipts + gitignore split, nq precedent)",
