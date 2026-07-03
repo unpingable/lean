@@ -162,7 +162,13 @@ If the forcing cases arrive in their natural order:
 But the register is not a queue: an entry opens when ITS forcing case
 arrives, not when its predecessor closes. If AG consumption arrives
 before packets do, NEXT-C jumps the line. No entry opens on Lean theorem
-momentum alone.
+momentum alone — with one standing exception: **the operator may open an
+entry by decision** (the v6 precedent: opened by ratified gap spec, not
+by disaster; not every next step needs a forcing event, it needs an
+admission). What the register actually forbids is opening one by DRIFT —
+sliding into a surface mid-session without a spec. If future-you wants
+NEXT-A before AG brings a packet, the price is the same as ever: gap spec
+first, overlap discipline cited, synthetic specimen labeled synthetic.
 
 ## Provenance
 
