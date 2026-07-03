@@ -229,3 +229,35 @@ re-check of the affected negative theorems.
 Both are custody-clean scratch but arrived out of the §10 order; they are recorded as
 contact and await an operator decision before counting as ratified slices. Nothing
 here changes a promoted kernel or import boundary.
+
+## 12. Release ladder and post-v7 direction (as-built addendum, 2026-07-02)
+
+The campaign's release ladder, each rung a theorem, all shipped:
+
+| Release | One-line claim | Ledger |
+|---|---|---|
+| v3 — Bounded Lifecycle Calculi | local walls per lifecycle calculus | `docs/V3-RELEASE-LEDGER.md` |
+| v4 — Custody-Indexed Sequents | crossings are paid; evidence enters only by assumption | `docs/V4-RELEASE-LEDGER.md` |
+| v5 — Custody-Preserving Normalization | normalization cannot forge payment | `docs/V5-RELEASE-LEDGER.md` |
+| v6 — Finite Custody Checking | finite checking decides whether payment exists | `docs/V6-RELEASE-LEDGER.md` |
+| v7 — Artifact Authority Profiles | profiles are local, crossings are paid, receipts are not fungible across obligations, coverage cannot be minted | `docs/V7-RELEASE-LEDGER.md` |
+
+v7's ratified gap spec (constitution: no shared custody language, no master
+profile, local profiles + paid pairwise bridges; WLP = envelope, never
+semantics) is `docs/V7-GAP-SPEC.md`. The post-v4 scratch campaign trail —
+every slice, every codex audit, every honesty note — is
+`docs/CHANGELOG-scratch-campaign.md`.
+
+**Post-v7 direction lives in `docs/NEXT-SURFACES.md`** (name-early register,
+candidate weight, no numerals minted past v8). The forcing sentence: the
+next surface opens when the object of analysis stops being *one artifact
+profile crossing one bridge* and becomes *a set/registry/graph of profiles
+and receipts whose combined coverage may launder authority*. Register
+entries: NEXT-A Portfolio Custody (forcing case: kernel-AG admission
+packets; overlap discipline vs the v7 slice-4 three-face split recorded
+in the entry), NEXT-B WLP Envelope Graph Noncollapse (asleep until WLP
+enters the proof surface), NEXT-C Compiled Authority Checker Boundary
+(forced by AG consumption, never by Lean momentum), NEXT-D
+Artifact-Authority Model/Semantics (paper lane, deprioritized). Runtime
+(Bridge Foundry / compiled authority) remains out of this roadmap, as §
+above already rules.

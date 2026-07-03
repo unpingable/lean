@@ -1,7 +1,7 @@
 {
   "reconciled_note": "Own per-repo .governor loop for the Lean bounded-calculi slice campaign, mirroring the nq precedent (~/git/nq-root/nq/.governor). Global AG backlog is a recognition/custody registry; each repo runs its own program counter (loop-protocol S6: live probes win; S9 'single live program counter' is the stale artifact AG-Claude is correcting). Plan: ~/.claude/plans/okay-so-i-was-ethereal-quill.md.",
   "campaign": "lean-bounded-calculi / v7-artifact-authority-profiles",
-  "phase": "RELEASE-PREP",
+  "phase": "PARKED",
   "current_slice": null,
   "lane": "lean-scratch-bounded-calculi",
   "authorization_mode": "scratch_only_operator_committed",
@@ -259,7 +259,7 @@
     "F1": "DONE GREEN (DeltaTSequent.lean): refresh_is_inexpressible + admissible_steps_decay/admissible_chains_decay (zero-axiom full characterization: every admissible step into evidence decays); stale wall at any depth via read-rooted machinery; delta_t_exploit_blocked with exhibited aging chain. Codex YELLOW -> scope tightened (system-relative; hosting-not-ontology; cartesian-only flagged)."
   },
   "git_authority": "GRANTED (operator 2026-07-01): Claude commits green slices to main directly; terse repo-style subjects + one attribution trailer, no paragraphs. Tags/releases/promotions remain operator-only. Release cadence recommendation: majors at conceptual boundaries only, batch the F-cluster into one release at F6; DOI only for citable pins.",
-  "next_action": "v7.0.0 RELEASE-PREPPED (ledger + CHANGELOG + README + WHAT-THIS-PROVES + CITATION + lakefile at 7.0.0). docs/NEXT-SURFACES.md filed: NEXT-A Portfolio Custody (forcing case = kernel-AG admission packets; overlap discipline vs slice 4 recorded), NEXT-B WLP envelope graphs (asleep), NEXT-C compiled checker boundary (AG-consumption-forced), NEXT-D model/semantics (paper lane). NO numerals past v8 minted. OPERATOR: authorize local v7 tag (or tag yourself), then release when ready.",
+  "next_action": "SESSION PARKED (operator break, 2026-07-02). Standing state: v7.0.0 release-prepped at b9860aa, LOCAL TAG NOT YET CREATED (operator authorizes or tags); push/publish operator-timed (v6 public, main 9 ahead). Roadmap consolidated: ROADMAP s12 release ladder + NEXT-SURFACES.md register. On resume: (1) tag+release v7 when operator says; (2) then next surface only when forced -- NEXT-A needs a real kernel-AG admission packet specimen from AG-Claude; (3) v3.x odds / AG-AUDIT-CHECKLIST routing still parked.",
   "last_verified_commit": "1558728",
   "last_verified_note": "governor verify-run -- lake build all three v7 modules -> [pass] (receipt v7_release_prep); no sorry/admit; footprints attested per slice.",
   "completed_slices": [
