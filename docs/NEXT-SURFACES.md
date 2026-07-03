@@ -48,12 +48,40 @@ It is **obligation-targeting and issuer accounting**:
    coverage across many acquisitions) — the v7.x remainder named in the
    v7 ledger; needs a provenance model the current skeleton lacks.
 
+**The packet decomposition (the thread, kept whole):** when a real
+admission packet arrives, the five things that must be provable —
+1. each receipt funds only its declared obligation (HAVE: the
+   jurisdiction screen, v7 slice 3);
+2. packet coverage is scoped to a SPECIFIC admission target — a packet is
+   presented AGAINST a target obligation set, not as general standing
+   (NEW: the targeting judgment);
+3. unused coverage does not become ambient authority — what the packet
+   could fund but was not asked to fund stays inert at the decision
+   surface (NEW: the inertness wall; the anti-"lanyard" theorem);
+4. parentage/envelope validity does not imply semantic derivability
+   (WLP lane — NEXT-B's border, cite not build);
+5. missing obligations produce a TYPED refusal naming the missing
+   obligation, never "close enough" (the v6 `CheckResult` pattern lifted
+   to packets: ok-with-obligation-coverage-map | refusal-with-missing-set).
+
+Theorem-shape sketches (names candidate, not minted):
+`packet_coverage_funds_only_declared_obligations`,
+`unused_coverage_is_inert`, `packet_parentage_does_not_imply_admission`,
+`missing_packet_obligation_returns_typed_refusal`,
+`coverage_requires_obligation_partition` (the partition face: coverage
+claims decompose per-obligation, no residue funds anything).
+
+The dangerous move it blocks, in one line: *packet covers enough local
+gates ⇒ packet is generally admissible* — the artifact-layer god-calculus
+wearing a lanyard.
+
 **Lane split:** the packet SPECIMEN comes from AG-Claude (a real admission
 packet shape, not an invented one); Lean owns the coverage/targeting
 refusal laws. Do not invent AdmissionPacket fields in the Lean lane.
 
 **Title candidates:** "Portfolio Custody" (proof-theory face) /
-"Admission Packet Coverage" (AG-forcing face).
+"Admission Packet Coverage" (AG-forcing face) /
+"Coverage-Limited Authority".
 
 ---
 
@@ -63,10 +91,20 @@ refusal laws. Do not invent AdmissionPacket fields in the Lean lane.
 surface — and nothing else. Do not wake it for fun; it bites.
 
 Content is already fully named in V7-GAP-SPEC §6 (envelope-not-semantics;
-the five non-collapse lines + the one narrow positive). The graph-level
-additions when forced: `wlp_parent_graph_does_not_imply_profile_derivation`,
+the five non-collapse lines + the one narrow positive:
+`wlp_envelope_preserves_declared_payload_and_parent_digests` — that is
+WLP's whole job; important, not emperor). The graph-level additions when
+forced: `wlp_parent_graph_does_not_imply_profile_derivation`,
 `wlp_envelope_validity_does_not_imply_bridge_validity`,
-`same_wlp_kind_does_not_imply_same_authority_profile`.
+`same_wlp_kind_does_not_imply_same_authority_profile`. Working title if
+it ever versions: "Envelope Graph Noncollapse."
+
+The stack position (from the gap spec, repeated because it is the whole
+safety argument): WLP sits BELOW the profile — local event → local
+payload → WLP envelope → local authority profile → explicit bridges. A
+customs form is not citizenship. The safe slogan: *all projects may carry
+receipts in WLP envelopes; no project inherits another project's
+semantics without a bridge.*
 
 **Overlap note:** parentage-vs-derivability is the derived-relations /
 jurisdiction genus one level down (an edge in the parent graph is a
@@ -83,25 +121,58 @@ wanting to emit it). Until then, v6's boundary holds: Lean-native finite
 decision procedure, kernel evaluation only, no interface authority.
 
 When forced, the boundary spec (not necessarily pure Lean): what Lean
-proves (`compiled_checker_sound`, `compiled_checker_refusal_correct`),
-what runtime may execute, what runtime must NOT claim
-(`signature_does_not_imply_semantic_validity` — the doctrine line already
-exists as *timestamp-signed ≠ timestamp-witnessed*). Likely shape: Lean
-spec + AG/Rust executable witness. This is the first entry that is
-explicitly NOT a Lean-lane-only object.
+proves (`compiled_checker_sound`, `compiled_checker_refusal_correct`,
+`bridge_instance_validity_is_checker_derived`), what runtime may execute,
+what runtime must NOT claim (`signature_does_not_imply_semantic_validity`
+— the doctrine line already exists as *timestamp-signed ≠
+timestamp-witnessed*). The smallest runtime prototype shape, per the old
+ToolTheory roadmap: artifact + requested use + compiled schema → judgment
+or typed refusal. Likely shape: Lean spec + AG/Rust executable witness.
+This is the first entry that is explicitly NOT a Lean-lane-only object,
+and the boundary question is the v6 naming decision replayed one level
+up: Lean-native decidability vs operational checker interface — the v6
+answer (name it for what it is, non-claims for the rest) is the template.
 
 ---
 
 ## NEXT-D: Artifact-Authority Model / Semantics (paper-only lane)
 
 **Forcing case:** wanting the formal note — "what model are these indexed
-sequents sound for?" (`soundness_against_artifact_authority_model`,
-non-collapse validity in the model). Academically chewy, a known time
-sink, deprioritized by standing decision (chewy-list audit 2026-07-02).
-Venue posture if ever opened: Zenodo-grade formal note, NOT a cs.LO
-submission ambition.
+sequents sound for?" Theorem shapes:
+`soundness_against_artifact_authority_model`,
+`noncollapse_valid_in_model`,
+`bridge_obligation_semantics_preserve_locality`. Academically chewy, a
+known time sink, deprioritized by standing decision (chewy-list audit
+2026-07-02). Venue posture if ever opened: Zenodo-grade formal note, NOT
+a cs.LO submission ambition. This is the only entry with no laundering
+move to block — it is legibility work, and it competes with paper-lane
+time, not Lean-lane time.
 
 ---
+
+## Likely order (sketch, not schedule)
+
+If the forcing cases arrive in their natural order:
+
+    v8 (when kernel-AG brings a packet)  = NEXT-A Portfolio Custody
+    later, only if WLP enters the surface = NEXT-B Envelope Graph Noncollapse
+    later, only if AG consumes checker output = NEXT-C Checker Boundary
+    eventually, paper lane = NEXT-D Model / formal note
+
+But the register is not a queue: an entry opens when ITS forcing case
+arrives, not when its predecessor closes. If AG consumption arrives
+before packets do, NEXT-C jumps the line. No entry opens on Lean theorem
+momentum alone.
+
+## Provenance
+
+Operator + ChatGPT roadmap noodling, 2026-07-02 (same day v7 spine
+completed); Fable overlap-audited against the resident corpus before
+filing — in particular NEXT-A's overlap discipline against v7 slice 4's
+three-face split, and NEXT-B's derived-relations kinship. ChatGPT's
+instinct to defer implementation was kept; its instinct to defer NAMING
+was overruled by the operator (name early, ratify lazily — this file is
+the naming).
 
 ## What none of these are
 
