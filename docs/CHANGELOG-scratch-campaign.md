@@ -1,5 +1,34 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+## 2026-07-02 — post-v7: PathVerdict Tier-1 extraction lands from skunkworks
+`LeanProofs/Scratch/PathVerdict/{Core,Edges}.lean` (new, extracted),
+`lakefile.toml` (CI roots). NOT part of the v7.0.0 release surface — the
+v7 tag point precedes this commit.
+
+- Clean-room extraction of the private skunkworks Tier-1 kernel (the two
+  "Yes" rows of its publication posture table): the obstruction-log free
+  monoid (`PathVerdict δ`: authority IS the empty log; no `clean|blocked`
+  garbage states), core-kernel/domain-parameter split (`ObstructionKind δ`
+  — not a junk-drawer enum, not an unconstrained parameter), edge layer +
+  fold with the tether theorems (`fold_authority_iff`,
+  `authority_append_iff`, `render_clean_iff_authority` — renderers can
+  decorate, they cannot mint admissibility).
+- Landed as SCRATCH (arrival goes through the custody ladder; the
+  skunkworks README's `Admissibility/PathVerdict/` target is the eventual
+  PROMOTED home — operator ceremony, not this landing). Header carries the
+  Tier-1 scope brutality (the does-NOT-prove list) and the C3 overlap note
+  (verdict algebra ≠ sequent walls ≠ jurisdiction screen: adjacent
+  doctrine, disjoint proof objects; any bridge is its own slice).
+- Recompiled + axiom-re-attested on arrival: all theorems zero-axiom or
+  [propext], as the skunkworks README claimed. Codex review passes
+  happened skunkworks-side (provenance noted in headers).
+- NOT extracted (stays private per the posture table): Domains/Located
+  (the noted second wave — "plausibly ride with Tier-1", decide at next
+  extraction), custody-gradient basics (maybe-soon), recomposition
+  boundary (maybe), weathering/linear-spend/nightshift/fiction (Tier 0,
+  operational advantage). Tier 2 (the essay/proof portal) is a
+  paper-lane decision, untouched.
+
 ## 2026-07-02 — v7 slice 4: portfolio coverage, priced — NO BULK DISCOUNT ON JURISDICTION
 `LeanProofs/Scratch/JurisdictionScreen.lean` (extended in place). Codex
 first-pass GREEN. Answers the release-boundary question ("is multi-currency

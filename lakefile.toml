@@ -80,4 +80,7 @@ roots = [
   "LeanProofs.Scratch.ArtifactProfiles",
   "LeanProofs.Scratch.ProfileStages",
   "LeanProofs.Scratch.JurisdictionScreen",
+  # post-v7: tier-1 extraction from private skunkworks
+  "LeanProofs.Scratch.PathVerdict.Core",
+  "LeanProofs.Scratch.PathVerdict.Edges",
 ]
