@@ -1,5 +1,5 @@
 name = "lean_proofs"
-version = "7.0.0"
+version = "8.0.0"
 keywords = ["math"]
 defaultTargets = ["LeanProofs", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory"]
 

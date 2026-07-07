@@ -6,6 +6,42 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 8.0.0 — Sequent Admissibility Island (2026-07-06)
+
+*A Mathlib-free proof-theory specimen/library release.*
+
+8.0.0 lands a kernel-checked single-succedent intuitionistic sequent calculus
+over `{atom, ⊥, ∧, ∨, →}` in which **no structural rule is primitive and all
+four — weakening, contraction, exchange, cut — are admissible**, together with
+a multiplicity-faithful textbook presentation proved derivability-equivalent
+to it. The modules live under `LeanProofs/ProofTheory/` (custody class
+UNRATIFIED-CANDIDATE; own Mathlib-free `ProofTheory` `lean_lib`, build-graph
+enforced).
+
+- **MembershipG3** — contexts read by membership/subset; one `monotone`
+  theorem (Γ ⊆ Δ) subsumes weakening/contraction/exchange, size-preserving;
+  general identity derivable (`initGen`); `cut` as a computable cut-free
+  transformer (degree-primary, size-secondary induction); `consistency` and
+  `disjunction_property` immediate (cut-free by construction).
+- **TextbookG3ip** — multiset-faithful G3ip as lists-quotiented-by-permutation
+  (erasing left rules, multiplicity real, contraction not absorbed); admissible
+  size-preserving exchange; size-nonincreasing inversion package
+  (`invAnd`/`invOr`/`invImp`) funding **admissible contraction** (`contractT`).
+- **Equivalence** — `textbook_iff_membership` (the specimen→textbook direction
+  pays the contraction bill); cut/weakening/identity for the textbook calculus
+  transport as corollaries (`cutT`, `weakenT`, `initGenT`).
+- **Audit** — `Audit.lean` prints `#print axioms` receipts in the build: zero
+  user axiom declarations, everything ≤ `{propext, Quot.sound}`, zero
+  `Classical.choice` (fully constructive). Two core-library constructivity
+  footguns caught and documented (`LeanProofs/ProofTheory/SCARS.md`).
+
+Non-claims: not a governance kernel or doctrine unifier ("admissible" is
+literal Gentzen admissibility, the referent the vocabulary borrows; no
+`Tier`/`Verdict`/`cap` coupling, no typeclass, no unifier; build coverage is
+not promotion); not Mathlib `Multiset`-typed; not height-preserving cut; no
+proof search; no semantics/completeness; no runtime enforcement. Inventory:
+`docs/V8-RELEASE-LEDGER.md`.
+
 ## 7.0.0 — Artifact Authority Profiles (2026-07-02)
 
 *A Lean proof release for custody-aware authority semantics.*

@@ -4,7 +4,52 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: 7.0.0 — Artifact Authority Profiles
+## Current release: 8.0.0 — Sequent Admissibility Island
+
+*A Mathlib-free proof-theory specimen/library release.*
+
+**v8.0.0 lands a kernel-checked sequent calculus in which no structural rule
+is primitive and all four — weakening, contraction, exchange, cut — are
+admissible**, plus a multiplicity-faithful textbook presentation proved
+derivability-equivalent to it. The modules live under
+`LeanProofs/ProofTheory/` (custody class UNRATIFIED-CANDIDATE; own
+Mathlib-free `ProofTheory` `lean_lib`, build-graph enforced), with the
+register fence and theorem inventory at
+[`LeanProofs/ProofTheory/README.md`](LeanProofs/ProofTheory/README.md).
+
+What v8 proves:
+
+- **MembershipG3** — single-succedent intuitionistic `{atom, ⊥, ∧, ∨, →}`,
+  contexts read by membership/subset, NO primitive structural rules; one
+  `monotone` theorem (Γ ⊆ Δ) subsumes weakening/contraction/exchange
+  size-preserving; general identity derivable (`initGen`); `cut` a
+  **computable cut-free transformer** (degree-primary, size-secondary);
+  `consistency` and `disjunction_property` immediate (cut-free by
+  construction);
+- **TextbookG3ip** — multiset-faithful G3ip as lists-quotiented-by-permutation
+  (erasing left rules, multiplicity real, contraction not absorbed); admissible
+  size-preserving exchange; the size-nonincreasing inversion package funds
+  **admissible contraction** (`contractT`);
+- **equivalence** — `textbook_iff_membership` (the specimen→textbook direction
+  pays the contraction bill), discharging the specimen's original "not proved
+  equivalent to textbook G3ip" caveat; cut/weakening/identity for the textbook
+  calculus transport as corollaries (`cutT`, `weakenT`, `initGenT`);
+- **audit in the build** — `Audit.lean` prints `#print axioms` receipts every
+  build: zero user axiom declarations, everything ≤ `{propext, Quot.sound}`,
+  **zero `Classical.choice`** (fully constructive).
+
+v8 is **not** a governance kernel or doctrine unifier ("admissible" here is
+literal Gentzen admissibility, the referent the governance vocabulary borrows;
+no `Tier`/`Verdict`/`cap` coupling, no typeclass, no unifier; build coverage
+is not promotion), not Mathlib `Multiset`-typed (List+Perm is the multiset with
+its quotient explicit), not height-preserving cut, not proof search, and not
+runtime enforcement.
+
+Release inventory with audited theorem receipts:
+[`docs/V8-RELEASE-LEDGER.md`](docs/V8-RELEASE-LEDGER.md); constructivity
+footguns caught in-release: [`LeanProofs/ProofTheory/SCARS.md`](LeanProofs/ProofTheory/SCARS.md).
+
+## 7.0.0 — Artifact Authority Profiles
 
 *A Lean proof release for custody-aware authority semantics.*
 
