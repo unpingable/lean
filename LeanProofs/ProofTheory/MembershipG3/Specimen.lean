@@ -1,11 +1,21 @@
 /-
-  LeanProofs.Scratch.SequentAdmissibility -- a kernel-checked admissibility
-  specimen: a single-succedent intuitionistic sequent calculus (atoms, bot,
-  and, or, imp) in which ALL FOUR structural operations -- weakening,
-  contraction, exchange, and cut -- are admissible, and none is primitive.
+  LeanProofs.ProofTheory.MembershipG3.Specimen -- a kernel-checked
+  admissibility specimen: a single-succedent intuitionistic sequent calculus
+  (atoms, bot, and, or, imp) in which ALL FOUR structural operations --
+  weakening, contraction, exchange, and cut -- are admissible, and none is
+  primitive.
 
-  Custody-Class: SCRATCH. Unpromoted, compile-is-contact only. Not imported by
-  `LeanProofs.lean` or any promoted kernel. Mathlib-free (core List only).
+  Custody-Class: UNRATIFIED-CANDIDATE
+  Promoted out of Scratch 2026-07-06 (operator-directed; stage plan: "wire
+  as specimen/library, do not wire as doctrine/kernel/unifier"). Moved
+  verbatim from LeanProofs/Scratch/SequentAdmissibility.lean -- the only
+  edits at promotion were this header block and the namespace. Built as its
+  own `ProofTheory` lean_lib (Mathlib-free by build-graph enforcement, like
+  Witnessed). Not imported by `LeanProofs.lean` or any governance kernel,
+  and MUST NOT be: specimen/library, not doctrine. Neighbor note:
+  LeanProofs/Witnessed has its own cut-admissibility for the Lift judgment
+  (witnessed movement across typed boundaries) -- different substrate, no
+  shared code; cite, don't conflate. Mathlib-free (core List only).
   Provenance: operator-supplied 2026-07-06, downstream of an external
   (ChatGPT) design autopsy that located the correct encoding after repeated
   representation failures: derivations as data (`Deriv : ... -> Type`, not
@@ -96,7 +106,7 @@
   acknowledged and quarantined: nothing here composes with Tier/Verdict/cap.
 -/
 
-namespace LeanProofs.Scratch.SequentAdmissibility
+namespace LeanProofs.ProofTheory.MembershipG3
 
 /-- Propositional intuitionistic formulas: atoms, falsum, conjunction,
 disjunction, implication. Negation is `imp A bot` as usual. -/
@@ -560,4 +570,4 @@ def pairing (A B : Formula) :
     (initGen A (.tail _ (.head _)))
     (initGen B (.head _))))
 
-end LeanProofs.Scratch.SequentAdmissibility
+end LeanProofs.ProofTheory.MembershipG3

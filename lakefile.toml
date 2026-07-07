@@ -1,7 +1,7 @@
 name = "lean_proofs"
 version = "7.0.0"
 keywords = ["math"]
-defaultTargets = ["LeanProofs", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents"]
+defaultTargets = ["LeanProofs", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -84,3 +84,18 @@ roots = [
   "LeanProofs.Scratch.PathVerdict.Core",
   "LeanProofs.Scratch.PathVerdict.Edges",
 ]
+
+# 2026-07-06: the proof-theory island (sequent-calculus specimens). Its own
+# lean_lib so the no-Mathlib property is build-graph ENFORCED, same rule as
+# Witnessed: `lake build ProofTheory` cannot reach Mathlib, and every
+# receipt's axiom footprint stays at core Lean (<= propext, Quot.sound) and
+# re-attestable in isolation. Custody-Class of the modules is
+# UNRATIFIED-CANDIDATE: specimen/library, NOT doctrine -- no governance
+# kernel imports these modules, and none may (the "admissibility" here is
+# literal Gentzen admissibility, the referent the governance vocabulary
+# borrows from; rhyme acknowledged, composition refused).
+[[lean_lib]]
+name = "ProofTheory"
+srcDir = "."
+roots = ["LeanProofs.ProofTheory"]
+globs = ["LeanProofs.ProofTheory", "LeanProofs.ProofTheory.+"]
