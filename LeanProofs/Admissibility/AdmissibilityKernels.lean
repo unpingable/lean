@@ -162,7 +162,9 @@
     Admissibility.StateTransition.amend_policy_targets_policy_store
     Admissibility.Derivation.decide_authorized_requires_all_green
     Admissibility.Derivation.revoked_basis_never_authorized
+    Admissibility.Derivation.revoked_standing_never_authorized
     Admissibility.Execution.revoked_basis_cannot_be_authorized_step
+    Admissibility.Execution.revoked_standing_cannot_be_authorized_step
     Admissibility.Corrective.corrective_not_forward
     Admissibility.Corrective.corrective_no_authority_laundering
     Admissibility.Corrective.recovery_monotone

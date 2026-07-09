@@ -1,7 +1,10 @@
 name = "lean_proofs"
 version = "8.0.0"
 keywords = ["math"]
-defaultTargets = ["LeanProofs", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory"]
+# Default builds stay on Mathlib-free custody/release surfaces. The root
+# `LeanProofs` aggregate remains buildable explicitly; it intentionally imports
+# paper/specimen modules that can reach Mathlib.
+defaultTargets = ["AdmissibilityCustodyAnnex", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -16,6 +19,54 @@ rev = "6ef8cc2731780be866bf243afcb7732f4da5f406"  # pinned to lake-manifest.json
 
 [[lean_lib]]
 name = "LeanProofs"
+
+# Mathlib-free admissibility custody coverage: public kernels plus the ANNEX
+# modules that do not cross into the Finset-backed cross-boundary/composition
+# island. This is the cheap target for custody ANNEX regression checks.
+[[lean_lib]]
+name = "AdmissibilityCustodyAnnex"
+srcDir = "."
+roots = [
+  "LeanProofs.Admissibility.AdmissibilityKernels",
+  "LeanProofs.Admissibility.CorrectiveBoundary",
+  "LeanProofs.Admissibility.PublicReceiptRefinement",
+  "LeanProofs.Admissibility.RecoveryMargin",
+  "LeanProofs.Admissibility.ClosureEligibility",
+  "LeanProofs.Admissibility.DeferredWitness",
+  "LeanProofs.Admissibility.FiatAdmissibility",
+  "LeanProofs.Admissibility.NumericalAdmissibility",
+  "LeanProofs.Admissibility.AxisSkew",
+  "LeanProofs.Admissibility.PredicateWitnessSeparation",
+  "LeanProofs.Admissibility.AuthorityScope",
+  "LeanProofs.Admissibility.DynamicTrace",
+  "LeanProofs.Admissibility.FreshnessDynamicTrace",
+  "LeanProofs.Admissibility.AuthorizedNotSafe",
+  "LeanProofs.Admissibility.AuthorizedNotSafeWitness",
+  "LeanProofs.Admissibility.SafetyBridge",
+  "LeanProofs.Admissibility.SafetyBridgeWitness",
+  "LeanProofs.Admissibility.AuthorizedStepNotSafe",
+  "LeanProofs.Admissibility.AuthorizedStepNotSafeWitness",
+  "LeanProofs.Admissibility.SafetyTrajectory",
+  "LeanProofs.Admissibility.AttestationLedger",
+  "LeanProofs.Admissibility.ConsolidationDenial",
+  "LeanProofs.Admissibility.RefusalPropagation",
+  "LeanProofs.Admissibility.Examples",
+]
+
+# Explicit heavy admissibility island. These modules are still ANNEX, but they
+# depend on Mathlib through Finset-backed cross-boundary specimens and are not
+# part of the cheap custody target above.
+[[lean_lib]]
+name = "AdmissibilityMathlibIslands"
+srcDir = "."
+roots = [
+  "LeanProofs.Admissibility.CrossBoundaryExposure",
+  "LeanProofs.Admissibility.CrossBoundaryDegradation",
+  "LeanProofs.Admissibility.CrossBoundaryFailureMint",
+  "LeanProofs.Admissibility.CrossBoundaryCascade",
+  "LeanProofs.Admissibility.Composition",
+  "LeanProofs.Admissibility.LocalBoundary",
+]
 
 # A1 (signed 2026-06-26): the Witnessed Derivation Calculus, ported from the
 # ratified experiment surface (experiments/no_free_lift_wiring, artifact 5eb5629).
@@ -83,6 +134,8 @@ roots = [
   # post-v7: tier-1 extraction from private skunkworks
   "LeanProofs.Scratch.PathVerdict.Core",
   "LeanProofs.Scratch.PathVerdict.Edges",
+  "LeanProofs.Scratch.PathVerdict.StandardObstructions",
+  "LeanProofs.Scratch.PathVerdict.EvidencePromotionCoverage",
 ]
 
 # 2026-07-06: the proof-theory island (sequent-calculus specimens). Its own

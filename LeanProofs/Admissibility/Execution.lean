@@ -26,8 +26,9 @@
 
   AuthorizedStep is a structure that bundles a Step with *both*
   proofs. By construction, you cannot get one without the other. The
-  bridge invariant is then a load-bearing theorem:
-  `revoked_basis_cannot_be_authorized_step`.
+  bridge invariants are then load-bearing theorems:
+  `revoked_basis_cannot_be_authorized_step` and
+  `revoked_standing_cannot_be_authorized_step`.
 
   Governor-neutral. Imports the three sibling Admissibility modules.
 
@@ -151,6 +152,34 @@ theorem revoked_basis_cannot_be_authorized_step
     (env.claimForStep state actor step)
     hrevoked hauth
 
+/--
+  If the AuthorityClaim that would justify a Step has its invocation standing
+  revoked for the actor, then no `AuthorizedStep` for that Step can exist.
+  This is the standing-side analogue of
+  `revoked_basis_cannot_be_authorized_step`.
+-/
+theorem revoked_standing_cannot_be_authorized_step
+    {env : ExecutionEnv}
+    {state : GovState}
+    {actor : Actor}
+    {step : Step}
+    (hrevoked :
+      env.derivation.standing.standingRevoked
+        state
+        actor
+        (env.claimForStep state actor step)) :
+    ¬ ∃ s : AuthorizedStep env state actor, s.step = step := by
+  intro h
+  rcases h with ⟨s, hstep⟩
+  have hauth : stepAuthorityVerdict env state actor step =
+      AuthorityVerdict.authorized := by
+    rw [← hstep]; exact s.authorityAuthorized
+  unfold stepAuthorityVerdict at hauth
+  exact revoked_standing_never_authorized
+    env.derivation state actor
+    (env.claimForStep state actor step)
+    hrevoked hauth
+
 /-! ### Lifted store-isolation invariants
 
   The three negative trapdoor invariants from StateTransition.lean
@@ -217,11 +246,13 @@ theorem authorized_amend_policy_targets_policy_store
     requires concrete claim/scope structure — deferred along with
     `AuthorityClaim`'s schema.
 
-  - Symmetric bridge theorems for the other dimensions, when their
+  - Symmetric bridge theorems for the remaining dimensions, when their
     spec obligations are added in Derivation.lean:
-      revoked_standing_cannot_be_authorized_step
       conflicting_precedence_cannot_be_authorized_step
       gap_implies_no_authorized_step
+
+    Closed 2026-07-08: standing revocation now has
+    `revoked_standing_cannot_be_authorized_step` above.
 
   - Bridge between this module's `AuthorizedStep` and a concrete
     governor execution loop (operational scheduler, retry policy,

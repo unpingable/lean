@@ -4,10 +4,10 @@
 
 **Public surface (1.0).** Eight modules aggregated via `AdmissibilityKernels.lean`: an authority kernel (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`) plus three sibling kernels (`Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). These names form the 1.0 compatibility claim and carry the `Custody-Class: PUBLIC-SHIPPED` marker.
 
-**Five custody classes.** The 55 `.lean` files in this directory are partitioned by per-file `Custody-Class:` markers (regression-checked by `scripts/check-custody-classes.sh`):
+**Five custody classes.** The 57 `.lean` files in this directory are partitioned by per-file `Custody-Class:` markers (regression-checked by `scripts/check-custody-classes.sh`):
 
 - **PUBLIC-SHIPPED (9).** The 8 surface modules above plus the `AdmissibilityKernels.lean` aggregator. Signatures are the 1.0 compatibility claim.
-- **ANNEX (27).** Compiled supporting material imported by `LeanProofs.lean` for build coverage but explicitly outside the 1.0 promise. Splits into **16 kernel-adjacent** modules (recovery, cross-boundary, numerical/artifact-kind axes, deferred-witness lapse, experimental composition) and **11 consumer specimens** (SafetyBridge / AuthorizedNotSafe families, `ConsolidationDenial`, `RefusalPropagation`, `Examples`). Annex builds green and is sorry-free; future versions may rename, refactor, or absorb without notice.
+- **ANNEX (29).** Compiled supporting material outside the 1.0 promise. The Mathlib-free subset is covered by `AdmissibilityCustodyAnnex`; the Finset-backed cross-boundary/composition subset is covered by `AdmissibilityMathlibIslands` and the explicit `LeanProofs` root aggregate. Splits into **18 kernel-adjacent** modules (recovery, cross-boundary, numerical/artifact-kind axes, deferred-witness lapse, dynamic traces, experimental composition) and **11 consumer specimens** (SafetyBridge / AuthorizedNotSafe families, `ConsolidationDenial`, `RefusalPropagation`, `Examples`). Annex builds green and is sorry-free; future versions may rename, refactor, or absorb without notice.
 - **UNRATIFIED-CANDIDATE (16).** Named-but-not-promoted material with pending forcing-case discriminators. Most are unwired and build when invoked directly; `ReachabilityClosure` and `WitnessedReachability` are root-imported for regression coverage only, not public-surface promotion.
 - **SCRATCH (2).** Fenced exploratory material (`BoundaryWitness`, `GuardCollapse`). Not imported by `LeanProofs.lean`.
 - **DEPRECATED (1).** `CalculusOne` shim; scheduled for 2.0 removal.
@@ -25,6 +25,13 @@ Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespa
 > **Composition discipline:** The modules form a typed federation of kernels, not a unified calculus. Cross-kernel implications require an explicit bridge theorem stating which kernel-owned refusal condition is being preserved and how. The companion working note `no-unifier-without-laundering.md` (in the papers repo) records the discipline in full.
 
 ## Changelog
+
+### Unreleased - Mathlib import-surface split (2026-07-08)
+
+- `AdmissibilityCustodyAnnex` is the cheap Mathlib-free custody target: public kernels plus the ANNEX modules that do not import the cross-boundary/composition island.
+- `AdmissibilityMathlibIslands` names the explicit heavy admissibility island: `CrossBoundaryExposure`, `CrossBoundaryDegradation`, `CrossBoundaryFailureMint`, `CrossBoundaryCascade`, `Composition`, and `LocalBoundary`.
+- Default `lake build` no longer names the root `LeanProofs` aggregate. Build the full aggregate explicitly with `lake build LeanProofs`; it reaches Mathlib through `Paper24SharedVision`, `Paper25EpistemicBorderControl`, and the Finset-backed cross-boundary modules.
+- `scripts/check-mathlib-free-targets.sh` guards the cheap custody target and fails if it imports Mathlib or the known heavy roots.
 
 ### Unreleased — DeferredWitness promoted SCRATCH → ANNEX (2026-06-26)
 
@@ -127,11 +134,11 @@ Seven specimen consumers live in `Examples.lean` (imports `AdmissibilityKernels`
 
 ## Annex — compiled, not promised
 
-Annex modules carry `Custody-Class: ANNEX` and are imported by `LeanProofs.lean` for build coverage. They are green and sorry-free, but their signatures are *not* part of the 1.0 compatibility claim — future versions may rename, refactor, or absorb without notice. ANNEX splits into two sub-groups by role.
+Annex modules carry `Custody-Class: ANNEX` and are compiled for build coverage. The Mathlib-free subset is in the default `AdmissibilityCustodyAnnex` target; the Finset-backed cross-boundary/composition subset is in `AdmissibilityMathlibIslands` and the explicit `LeanProofs` root aggregate. They are green and sorry-free, but their signatures are *not* part of the 1.0 compatibility claim — future versions may rename, refactor, or absorb without notice. ANNEX splits into two sub-groups by role.
 
-### Kernel-adjacent annex (14 modules)
+### Kernel-adjacent annex (17 modules)
 
-Extend the kernel surface along axes (recovery, cross-boundary composition, numerical/artifact-kind axes, communicating processes) that the 1.0 surface explicitly does not promise. Per scope-fence points 2–5 above.
+Extend the kernel surface along axes (recovery, cross-boundary composition, numerical/artifact-kind axes, scoped witness surfaces, dynamic traces, communicating processes) that the 1.0 surface explicitly does not promise. Per scope-fence points 2–5 above.
 
 | Module                       | Role                                                      |
 | ---------------------------- | --------------------------------------------------------- |
@@ -143,6 +150,9 @@ Extend the kernel surface along axes (recovery, cross-boundary composition, nume
 | `FiatAdmissibility`          | Artifact-kind × use-kind axis                             |
 | `NumericalAdmissibility`     | Numerical-kind × use-kind axis                            |
 | `AxisSkew`                   | Directional comparison axis (lagging/matched/leading)     |
+| `PredicateWitnessSeparation` | Predicate satisfaction vs admissibility-witness wall        |
+| `AuthorityScope`             | Scoped conversion receipt / no-universal-key specimen      |
+| `DynamicTrace`               | State-threaded trace calculus over authorized static steps  |
 | `CrossBoundaryExposure`      | Cross-boundary exposure mint specimen                     |
 | `CrossBoundaryDegradation`   | Cross-boundary degradation provenance specimen            |
 | `CrossBoundaryFailureMint`   | Cross-boundary failure-to-exposure mint specimen          |
@@ -201,13 +211,13 @@ Governance state partitioned into four orthogonal stores (`PolicyStore`, `Eviden
 
 ### Layer 2 — `Derivation.lean` `[1.0]`
 
-Read-side bridge from `GovState × Actor × AuthorityClaim` to component verdicts. Bundled-structure design: `BasisDerivation` etc. carry both the function (`deriveBasis`) **and** its proof obligations (`revoked_never_admissible`) — concrete implementations must discharge spec at construction. One revocation-shaped safety consequence (`revoked_basis_never_authorized`).
+Read-side bridge from `GovState × Actor × AuthorityClaim` to component verdicts. Bundled-structure design: `BasisDerivation` etc. carry both the function (`deriveBasis`) **and** its proof obligations (`revoked_never_admissible`, `revoked_standing_never_standing`) — concrete implementations must discharge spec at construction. Basis and standing revocation consequences (`revoked_basis_never_authorized`, `revoked_standing_never_authorized`).
 
 ### Layer 4 — `Execution.lean` `[1.0]`
 
 Combines mutation standing (`StepAllowed`) with claim authorization (`decideAuthority`). `AuthorizedStep env state actor` is a structure that bundles a `Step` with *both* permission proofs by construction — no half.
 
-**Load-bearing theorem:** `revoked_basis_cannot_be_authorized_step` — if a claim's basis is revoked, no `AuthorizedStep` for that step can exist. Plus four lifted store-isolation theorems through `executeAuthorizedStep`.
+**Load-bearing theorems:** `revoked_basis_cannot_be_authorized_step` and `revoked_standing_cannot_be_authorized_step` — if a claim's basis or invocation standing is revoked, no `AuthorizedStep` for that step can exist. Plus four lifted store-isolation theorems through `executeAuthorizedStep`.
 
 ### Layer 5 — `Corrective.lean` `[1.0]` (added 2026-05-01)
 
@@ -448,7 +458,7 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-Thirty-five of the 51 `LeanProofs/Admissibility/*.lean` files are wired into `LeanProofs.lean` root: 9 PUBLIC-SHIPPED (8 surface modules + the `AdmissibilityKernels` aggregator), 25 ANNEX (14 kernel-adjacent + 11 consumer specimens), and 1 DEPRECATED (`CalculusOne` shim). The remaining 16 files (UNRATIFIED-CANDIDATE + SCRATCH) are fenced — they build only when invoked directly and are not part of the default regression set. The default `lake build` (no args) covers the wired set; `scripts/check-custody-classes.sh` validates that every file in the directory declares one of the five ratified custody classes.
+Forty of the 57 `LeanProofs/Admissibility/*.lean` files are wired into `LeanProofs.lean` root: 9 PUBLIC-SHIPPED (8 surface modules + the `AdmissibilityKernels` aggregator), 28 ANNEX (17 kernel-adjacent + 11 consumer specimens), 1 DEPRECATED (`CalculusOne` shim), and 2 root-imported UNRATIFIED-CANDIDATE modules (`ReachabilityClosure`, `WitnessedReachability`). One additional ANNEX module, `FreshnessDynamicTrace`, is covered by the default `AdmissibilityCustodyAnnex` target rather than the root aggregate. The remaining 16 files (14 UNRATIFIED-CANDIDATE + 2 SCRATCH) are fenced — they build only when invoked directly. The root `LeanProofs` aggregate is now an explicit heavy build because it reaches Mathlib through paper specimens and the cross-boundary family. The default `lake build` covers the Mathlib-free custody target plus the other Mathlib-free release targets; `scripts/check-custody-classes.sh` validates custody markers, and `scripts/check-mathlib-free-targets.sh` validates the cheap import surface.
 
 Public-surface gate: `lake build LeanProofs.Admissibility.AdmissibilityKernels` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
 
@@ -456,11 +466,17 @@ No Lean proof holes as of 2026-05-28 in the wired stack. The word `sorry` does a
 
 ### Cascade repair note
 
-`CrossBoundaryCascade.lean` had a pre-existing parse error in its `Step.exposeFromExposure` constructor (multi-line `insert (...)` inside a structure update not parsing without parentheses). The fix was two characters; the file is now wired and covered by the default `lake build`. This bug had been silent since 2026-05-21 because the module was unwired.
+`CrossBoundaryCascade.lean` had a pre-existing parse error in its `Step.exposeFromExposure` constructor (multi-line `insert (...)` inside a structure update not parsing without parentheses). The fix was two characters; the file is now wired and covered by the explicit `AdmissibilityMathlibIslands` / `LeanProofs` heavy builds. This bug had been silent since 2026-05-21 because the module was unwired.
 
-The modules below are the 35 wired into `LeanProofs.lean` root and covered by `lake build` (no args). Individual builds are listed for narrow regression checks. The 16 fenced files (UNRATIFIED-CANDIDATE / SCRATCH, enumerated in §Annex above) build individually but are not part of the default regression set.
+The modules below are the 40 wired into `LeanProofs.lean` root. Individual builds are listed for narrow regression checks. The 16 fenced files (UNRATIFIED-CANDIDATE / SCRATCH, enumerated in §Annex above) build individually but are not part of the cheap default custody target.
 
 ```bash
+# Target-level gates
+lake build AdmissibilityCustodyAnnex
+bash scripts/check-mathlib-free-targets.sh
+lake build AdmissibilityMathlibIslands
+lake build LeanProofs
+
 # Public 1.0 surface (aggregator + specimens)
 lake build LeanProofs.Admissibility.AdmissibilityKernels
 lake build LeanProofs.Admissibility.Examples
@@ -484,6 +500,9 @@ lake build LeanProofs.Admissibility.ClosureEligibility
 lake build LeanProofs.Admissibility.ConsolidationDenial
 lake build LeanProofs.Admissibility.RecoveryMargin
 lake build LeanProofs.Admissibility.AxisSkew
+lake build LeanProofs.Admissibility.PredicateWitnessSeparation
+lake build LeanProofs.Admissibility.AuthorityScope
+lake build LeanProofs.Admissibility.DynamicTrace
 
 # Annex — cross-boundary artifact specimens
 lake build LeanProofs.Admissibility.CrossBoundaryExposure
