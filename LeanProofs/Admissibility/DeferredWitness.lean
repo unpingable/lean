@@ -172,8 +172,10 @@ theorem stale_evidence_rejected {u}
 
 Disjoint, named, countable. `firstViolation` is the executable classifier. Its
 agreement with `LawfulCompletion` — `firstViolation u = none ↔ LawfulCompletion u`
-— is the natural reflection lemma; it is left to the host environment rather than
-proved here, to keep the kernel proof-light. Counts of these are admissible
+— is the natural reflection lemma, proved below as
+`firstViolation_none_iff_lawful` (2026-07-09; previously left to the host
+environment). The classifier is now theorem-backed: `none` is a proof that every
+refusal surface was checked, not a default. Counts of these are admissible
 telemetry. A severity score is not. -/
 
 inductive Backflow
@@ -200,6 +202,73 @@ def firstViolation (u : LateWitnessUse) : Option Backflow :=
   else if u.claim.kind ≠ u.grant.terms.claim_kind then some .kind_mismatch
   else if ¬ Covers u.grant.terms.scope u.claim.scope then some .scope_escape
   else none
+
+/-- Reflection: the executable classifier agrees exactly with the spec. `none` is
+    not a default — it certifies that all nine refusal surfaces were checked and
+    passed. Each `ite` guard in `firstViolation` is the negation of the
+    corresponding `LawfulCompletion` field, in field order; this lemma is the
+    proof that the mirroring is exact (no surface dropped, none weakened). -/
+theorem firstViolation_none_iff_lawful (u : LateWitnessUse) :
+    firstViolation u = none ↔ LawfulCompletion u := by
+  constructor
+  · intro h
+    unfold firstViolation at h
+    split at h
+    · cases h
+    next h1 =>
+    split at h
+    · cases h
+    next h2 =>
+    split at h
+    · cases h
+    next h3 =>
+    split at h
+    · cases h
+    next h4 =>
+    split at h
+    · cases h
+    next h5 =>
+    split at h
+    · cases h
+    next h6 =>
+    split at h
+    · cases h
+    next h7 =>
+    split at h
+    · cases h
+    next h8 =>
+    split at h
+    · cases h
+    next h9 =>
+    exact
+      { grant_terms_witnessed := Decidable.of_not_not h1
+      , grant_witness_prior   := Nat.not_lt.mp h2
+      , window_front          := Nat.not_lt.mp h3
+      , window_back           := Nat.not_lt.mp h4
+      , evidence_is_late      := Decidable.of_not_not h5
+      , evidence_in_window    := Nat.not_lt.mp h6
+      , evidence_form_ok      := Decidable.of_not_not h7
+      , kind_matches          := Decidable.of_not_not h8
+      , scope_covered         := Decidable.of_not_not h9 }
+  · intro hc
+    unfold firstViolation
+    rw [ if_neg (fun h => h hc.grant_terms_witnessed)
+       , if_neg (Nat.not_lt.mpr hc.grant_witness_prior)
+       , if_neg (Nat.not_lt.mpr hc.window_front)
+       , if_neg (Nat.not_lt.mpr hc.window_back)
+       , if_neg (fun h => h hc.evidence_is_late)
+       , if_neg (Nat.not_lt.mpr hc.evidence_in_window)
+       , if_neg (fun h => h hc.evidence_form_ok)
+       , if_neg (fun h => h hc.kind_matches)
+       , if_neg (fun h => h hc.scope_covered) ]
+
+/-- Corollary: a violation is reported iff the completion is unlawful. The
+    classifier can neither invent a violation for a lawful use nor stay silent
+    on an unlawful one. -/
+theorem firstViolation_isSome_iff_not_lawful (u : LateWitnessUse) :
+    (firstViolation u).isSome ↔ ¬ LawfulCompletion u := by
+  rw [← firstViolation_none_iff_lawful]
+  cases firstViolation u <;> simp
 
 /-! ## Lifecycle and the lapse path
 

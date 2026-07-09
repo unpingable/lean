@@ -6,6 +6,116 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 9.0.0 — Dynamic Traces and Profile Semantics (2026-07-09)
+
+*Dynamic execution over static witnesses, and checker-facing profile semantics.*
+
+9.0.0 opens the dynamic-claims campaign: state-threaded traces in which
+**every hop carries the exact static `AuthorizedStep` witness it consumes** —
+no global `Admissible` judgment, no free composition — plus a minimal
+profile-checker semantics specimen for the RRP admissibility-gate prototype
+(its first named external forcing consumer).
+
+- **`DynamicTrace` (ANNEX)** — `DynamicStep` wraps the static execution
+  bridge (target state is `executeAuthorizedStep`, never guessed);
+  `AuthorizedTrace` threads steps; revoked basis and revoked standing block
+  dynamic steps (`revoked_basis_blocks_dynamic_step`,
+  `revoked_standing_blocks_dynamic_step`); mutation-side standing without
+  claim-side authority blocks (`step_allowed_without_authority_blocks_dynamic_step`);
+  actor-indexed variants (any-actor traces, schedules, `traceHopsByActor`
+  with actor-attribution theorems); corrective traces; non-amend traces
+  preserve the policy store (`non_amend_trace_preserves_policy`).
+- **`FreshnessDynamicTrace` (ANNEX)** — connects dynamic steps to the public
+  metric-time freshness kernel: a stale, expired, not-yet-valid, incoherent,
+  non-preceding, or divergence-excessive observation
+  **cannot discharge the current obligation** (one theorem per failure mode).
+- **1.0 surface, additive** — `Execution.revoked_standing_cannot_be_authorized_step`
+  lifts the derivation-level revoked-standing consequence to the execution
+  layer; kernel manifest updated. No existing 1.0 signature changed.
+- **`RRPProfileSpecimen` (UNRATIFIED-CANDIDATE, unwired)** — finite symbolic
+  model of profile-checker semantics (`Receipt`/`Claim`/`ClaimRule`/
+  `EffectRule`/`Profile`, `deriveClaims`, `decision`): claims derive only
+  through admitting rules; effects require claims; missing / cannot-testify /
+  stale / revoked evidence refuses; `profile_id` cannot substitute for
+  `profile_digest`; a requester's self-witnessed receipt does not testify.
+  Proves nothing about the RRP Python/Rust checkers — it pins the semantics
+  they are supposed to have. Promotion gates on RRP citing named theorems.
+- **`DeferredWitness` reflection lemma proved (ANNEX)** —
+  `firstViolation_none_iff_lawful`: the executable violation classifier
+  agrees exactly with `LawfulCompletion` (previously documented as left to
+  the host environment), plus `firstViolation_isSome_iff_not_lawful`.
+- **Build/audit surfaces** — Mathlib import-surface split:
+  `AdmissibilityCustodyAnnex` (cheap, Mathlib-free custody target, now in
+  default targets) vs `AdmissibilityMathlibIslands` (explicit Finset-backed
+  heavy island); default `lake build` no longer includes the root
+  `LeanProofs` aggregate (build it explicitly);
+  `scripts/check-mathlib-free-targets.sh` walks the cheap target's static
+  import closure and fails closed on Mathlib or heavy-island reach.
+- **Nine further specimen laws (all UNRATIFIED-CANDIDATE, unwired,
+  formalization leading implementation)** —
+  `StandingProfileSpecimen` (schedule / operator ack / model output are not
+  standing; revocation reaches the derivation; standing is
+  (actor, project)-scoped and non-transferable),
+  `WLPAppendAckSpecimen` (append acks and publication receipts are custody
+  evidence, never claim authority; volume is not conversion),
+  `BridgeCustomsSpecimen` (pairwise crossing: source permit alone is no
+  target permit, the bridge claim carries the cap and cannot widen,
+  promotion is digest-addressed, refusals do not cross),
+  `ActorTraceSpecimen` (actor A's hop is not actor B's standing absent an
+  explicit directional transfer rule; a truncated trace is no evidence),
+  `LocalBoundaryPressure` (concrete hostile instance: dropping
+  `MergeAdmissible.left_sound` accepts a merge that leaks in one step —
+  the load-bearing field named by construction),
+  `ScopedCertification` (the *quis custodiet* seam: certification force is
+  claim-class × scope confined; delegation does not compose for free;
+  self-claims mint nothing; challenge ≠ revocation, filed ≠ admitted;
+  universal authority unrepresentable by construction; the bootstrap —
+  "this profile is rightly active here" — explicitly NOT formalized),
+  `SpendabilitySpecimen` (the LA seam: eligibility is contractible and
+  never payment, capacity is linear, deposits cite admission, replays
+  refuse, counts conserve — conserved ≠ safe; fork residue: revocation
+  blocks the future, unwinds no effect, refunds no count, erases no
+  record),
+  `CustodyFreshnessSpecimen` (fresh-here ≠ fresh-there: freshness reads
+  the producer clock only; custody hops never refresh; an absent producer
+  clock is never fresh; the tempting "recently checked somewhere"
+  evaluator is modeled and refuted by inhabited countermodels),
+  `TemporalBasis` (time assurance for the NQ seam, written before NQ
+  implements its temporal track: freshness is admitted elapsed time under
+  a declared witness contract; a fresh packet does not refresh old
+  testimony; a timestamp proves existence, not current truth; silence
+  never clears; late success is not timely success; a retired source does
+  not come back by time passing; two clocks are not an order without a
+  shared or bridged basis; no GlobalTrustedTime).
+- **CI widened to the release envelope** — explicit
+  `lake build LeanProofs AdmissibilityMathlibIslands` step plus the repo
+  audit scripts, so "CI green" means "release claim green" after the
+  default-target split.
+- **Docs wiring (no Lean edits)** — three crosswalks with custody classes in
+  every citation and scratch never testifying: `docs/RRP-LEAN-CROSSWALK.md`
+  (RRP gate doctrine → theorems);
+  `docs/AG-TRANSITION-KERNEL-CROSSWALK.md` (inverse index into the
+  transition-kernel's own `LEAN_OBLIGATIONS.md` ledger, plus folklore
+  corrections against live AG/LA doctrine);
+  `docs/NQ-NIGHTSHIFT-CROSSWALK.md` (deferring to NQ's
+  `ROADMAP_EXPECTATIONS_FROM_LEAN_KERNEL.md` pinning discipline; maps
+  refusal shape, not vocabulary — the runtime and Lean lifecycles are
+  deliberately different cuts).
+- **Scratch (fenced)** — PathVerdict tier-1 extraction continues
+  (`StandardObstructions`, `EvidencePromotionCoverage`).
+
+Non-claims: not a unified dynamic calculus and not process semantics or
+runtime authority (per-hop static witnesses are the whole point); ANNEX
+modules remain outside the 1.0 compatibility claim; the ten specimen-law
+candidates (RRP profile, Standing, WLP, bridge, actor trace, boundary
+pressure, scoped certification, spendability, custody freshness, temporal
+basis) are candidate formal laws for their runtime seams — **they do not
+testify for RRP or any runtime's compliance until cited by runtime
+artifacts and admitted under the same promotion discipline as
+DeferredWitness** (theorem exists → runtime cites/adopts → status changes);
+no JSON/digest/transport/PKI is modeled anywhere in them.
+Inventory: `docs/V9-RELEASE-LEDGER.md`.
+
 ## 8.0.0 — Sequent Admissibility Island (2026-07-06)
 
 *A Mathlib-free proof-theory specimen/library release.*

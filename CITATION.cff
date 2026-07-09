@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Custody-Indexed Sequents: A Lean Proof Release for Custody-Aware Authority Semantics"
-version: "8.0.0"
-date-released: "2026-07-06"
+title: "Dynamic Traces and Profile Semantics: A Lean Release of Admissibility Kernels with Dynamic Execution over Static Witnesses"
+version: "9.0.0"
+date-released: "2026-07-09"
 type: software
 authors:
   - family-names: Beck
@@ -31,9 +31,37 @@ keywords:
   - refusal-gate
   - witness-invariance
 abstract: >-
-  The Lean work did not produce a unified calculus. It produced a set
-  of small admissibility kernels, each isolating a different refusal
-  boundary. The stack exposes a typed-verdict algebra (basis ×
+  v9.0.0 — Dynamic Traces and Profile Semantics — opens the
+  dynamic-claims campaign: state-threaded traces in which every hop
+  carries the exact static AuthorizedStep witness it consumes (no
+  global Admissible judgment, no free composition), with refusal
+  theorems showing revoked basis, revoked standing, and stale
+  observations reach through to dynamic execution; plus a minimal
+  profile-checker semantics specimen (UNRATIFIED-CANDIDATE) pinning
+  the doctrine of a receipt-indexed admissibility gate — claims derive
+  only through admitting rules, effects require claims,
+  missing/cannot-testify/stale/revoked evidence refuses, and a profile
+  id cannot substitute for the profile digest. Nine sibling specimen
+  laws land under the same fence (standing sources, append-ack custody
+  vs authority, pairwise bridge customs, actor-indexed trace spending,
+  a concrete merge-obligation pressure test, scoped certification —
+  watchers confined by claim class and scope, delegation non-transitive
+  without a rule, challenge distinct from revocation, universal
+  authority unrepresentable — plus three anti-free-conversion laws:
+  eligibility never converts to spendable capacity and a revoked fork
+  unwinds no effect; custody hops never refresh a producer clock; and
+  temporal basis — time is testimony, a fresh packet does not refresh
+  old testimony, a timestamp proves existence not current freshness,
+  silence never clears, late success is not timely success, no global
+  trusted time). The dynamic layer is
+  ANNEX, outside the 1.0 compatibility claim; the specimen laws are
+  candidates that prove nothing about any checker implementation and
+  do not testify for runtime compliance until cited. Full release
+  history is in CHANGELOG.md; per-release inventories in
+  docs/V*-RELEASE-LEDGER.md.
+  The stable frame: the Lean work did not produce a unified calculus.
+  It produced a set of small admissibility kernels, each isolating a
+  different refusal boundary. The stack exposes a typed-verdict algebra (basis ×
   precedence × standing) over partitioned governance state, with a
   typed pipeline from claim derivation through authorized execution,
   plus refusal-gate kernels for metric-time freshness, collapsed-surface

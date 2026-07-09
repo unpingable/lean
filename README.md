@@ -4,7 +4,81 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Current release: 8.0.0 — Sequent Admissibility Island
+## Current release: 9.0.0 — Dynamic Traces and Profile Semantics
+
+*Dynamic execution over static witnesses, and checker-facing profile semantics.*
+
+**v9.0.0 opens the dynamic-claims campaign**: state-threaded traces in which
+every hop carries the exact static `AuthorizedStep` witness it consumes — no
+global `Admissible` judgment, no free composition — plus a minimal
+profile-checker semantics specimen for the RRP admissibility-gate prototype,
+the stack's first named external forcing consumer.
+
+What v9 lands:
+
+- **`Admissibility/DynamicTrace.lean` (ANNEX)** — `DynamicStep` wraps the
+  static execution bridge (the target state is `executeAuthorizedStep`,
+  never guessed); `AuthorizedTrace` threads steps through governance state;
+  revoked basis and revoked standing block dynamic steps; mutation-side
+  standing without claim-side authority blocks; actor-indexed trace variants
+  with attribution theorems; non-amend traces preserve the policy store.
+- **`Admissibility/FreshnessDynamicTrace.lean` (ANNEX)** — freshness-gated
+  discharge: a stale, expired, not-yet-valid, incoherent, non-preceding, or
+  divergence-excessive observation cannot discharge the current obligation
+  (one theorem per failure mode, riding the public `Freshness` kernel).
+- **1.0 surface, additive** —
+  `Execution.revoked_standing_cannot_be_authorized_step` lifts revoked
+  standing to the execution layer. No existing 1.0 signature changed.
+- **Ten specimen laws (all UNRATIFIED-CANDIDATE, unwired, formalization
+  leading implementation)** — candidate formal laws for runtime seams,
+  written before the runtimes that will cite them:
+  `RRPProfileSpecimen` (claims derive only through admitting rules; effects
+  require claims; missing/cannot-testify/stale/revoked evidence refuses;
+  `profile_id` cannot substitute for `profile_digest`),
+  `StandingProfileSpecimen` (schedule / operator ack / model output are not
+  standing; standing is scoped and non-transferable),
+  `WLPAppendAckSpecimen` (append acks and publications are custody
+  evidence, never claim authority),
+  `BridgeCustomsSpecimen` (source permit alone is no target permit; the
+  bridge claim carries the cap; promotion is digest-addressed),
+  `ActorTraceSpecimen` (actor A's hop is not actor B's standing; a
+  truncated trace is no evidence),
+  `LocalBoundaryPressure` (dropping `MergeAdmissible.left_sound` accepts a
+  merge that leaks — the load-bearing field named by construction),
+  `ScopedCertification` (watchers confined by claim class × scope;
+  delegation does not compose for free; self-claims mint nothing;
+  challenge ≠ revocation; universal authority unrepresentable),
+  `SpendabilitySpecimen` (eligibility is contractible and never payment;
+  capacity is linear; replays refuse; counts conserve — conserved ≠ safe;
+  a revoked fork blocks the future but unwinds no effect),
+  `CustodyFreshnessSpecimen` (freshness reads the producer clock only;
+  custody hops never refresh; "recently checked somewhere" is modeled as
+  the tempting evaluator and refuted by countermodel),
+  `TemporalBasis` (time is testimony: freshness is admitted elapsed time
+  under a declared witness contract; a fresh packet does not refresh old
+  testimony; silence never clears; late success is not timely success;
+  no GlobalTrustedTime).
+  None of these testify for any runtime's compliance until cited by
+  runtime artifacts and promoted under the DeferredWitness precedent.
+- **`Admissibility/DeferredWitness.lean` (ANNEX)** — the classifier
+  reflection lemma `firstViolation_none_iff_lawful` is now proved (was
+  documented as left to the host environment).
+- **Build/audit surfaces** — Mathlib import-surface split
+  (`AdmissibilityCustodyAnnex` cheap Mathlib-free custody target vs
+  `AdmissibilityMathlibIslands`; the root `LeanProofs` aggregate builds
+  explicitly, not by default), guarded by
+  `scripts/check-mathlib-free-targets.sh`; CI builds the full aggregate and
+  Mathlib islands explicitly and runs the repo audit scripts, so CI green
+  means release-claim green; RRP↔Lean crosswalk at
+  [`docs/RRP-LEAN-CROSSWALK.md`](docs/RRP-LEAN-CROSSWALK.md).
+
+v9 is **not** a unified dynamic calculus, not process semantics, and not
+runtime authority — per-hop static witnesses are the design. ANNEX and
+UNRATIFIED-CANDIDATE material stays outside the 1.0 compatibility claim.
+
+Release inventory: [`docs/V9-RELEASE-LEDGER.md`](docs/V9-RELEASE-LEDGER.md).
+
+## 8.0.0 — Sequent Admissibility Island
 
 *A Mathlib-free proof-theory specimen/library release.*
 

@@ -16,9 +16,27 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: leanprover/lean-action@v1
+      # Full-aggregate gate (v9): the 2026-07-08 import-surface split removed the
+      # root `LeanProofs` aggregate from the default targets, so a bare
+      # `lake build` (what lean-action runs) no longer covers the Mathlib-reaching
+      # paper/specimen modules or the Finset-backed cross-boundary island.
+      # "CI green" must mean "release claim green" — build both explicitly.
+      - name: Full aggregate + Mathlib islands
+        run: lake build LeanProofs AdmissibilityMathlibIslands
       # Gate 5: re-attest the Witnessed Derivation Calculus axiom footprint in the
       # canonical build context. Fail-closed; protects the now-public Mathlib-free
       # surface against axiom drift / sorry. Runs after lean-action so elan/lake are
       # on PATH. Cheap — the Witnessed lib is Mathlib-free.
       - name: Witnessed footprint gate
         run: bash scripts/check-witnessed-footprint.sh
+      # Repo audit gates (cheap, grep/toml-based; no Lean invocation):
+      # axiom classification, native_decide policy, custody-class registry,
+      # Mathlib pin agreement, and the Mathlib-free import closure of the
+      # cheap custody target.
+      - name: Audit scripts
+        run: |
+          bash scripts/audit-axioms.sh
+          bash scripts/audit-native-decide.sh
+          bash scripts/check-custody-classes.sh
+          bash scripts/check-mathlib-pin.sh
+          bash scripts/check-mathlib-free-targets.sh
