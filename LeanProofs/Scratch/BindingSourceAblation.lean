@@ -1,9 +1,12 @@
 /-
   Binding-Source Ablation — scratch specimen.
 
-  Status: scratch, 2026-07-10. Not imported by `LeanProofs.lean`. Not part
-  of any release surface. Not in the lakefile globs (compile-is-contact,
-  checked per-file). No promotion path until register adjudication.
+  Status: scratch, 2026-07-10 (two same-day blind-review rounds: first
+  corrected the compliance-source framing; second renamed the rung-two
+  property — a fatal consequence is not a binding). Not
+  imported by `LeanProofs.lean`. Not part of any release surface. Not in
+  the lakefile globs (compile-is-contact, checked per-file). No promotion
+  path until register adjudication.
 
   Custody class: scratch-checked (direct `lake env lean` clean as of
   2026-07-10). Custody header per the 2026-06-06 Option C policy.
@@ -14,36 +17,62 @@
   already proved territory; the surviving open seam was charter versus
   metabolism: a commitment enforced by an external gate versus a commitment
   whose violation destroys the organization that acts. This file formalizes
-  the smallest theorem-shaped fact at that seam.
+  the smallest theorem-shaped fact at that seam. Revision provenance: blind
+  review corrected the original "different source of compliance" framing —
+  under the intact gate BOTH plants' compliance is gate-supplied; what the
+  traces cannot identify is the hidden viability coupling.
 
   ── What this specimen proves ─────────────────────────────────────────
 
-      Two systems can expose IDENTICAL governed transition behavior —
-      the same finite traces, forever — while obtaining commitment
-      compliance from different sources: one because a removable gate
-      blocks violations, one because violations destroy viability.
-      Therefore observed compliance under intact governance does not
-      witness endogenous binding. Gate ablation separates them.
+      Two plants can expose IDENTICAL admitted governed traces at every
+      finite horizon under the same intact gate — with both plants'
+      observed compliance supplied by that gate — while differing in
+      what the blocked violation would do: in one plant it preserves
+      viability, in the other it destroys it. Therefore admitted
+      governed traces under intact governance cannot identify viability
+      coupling (`viability_coupling_not_trace_determined`). Gate ablation
+      separates the plants constructively, in both directions: a viable
+      violation appears only in the charter-bound plant, a fatal
+      violation only in the viability-bound plant.
 
   The load-bearing pieces, without which this is label algebra:
 
     1. `SameGovernedSurface` + the trace lift: the two plants are
-       observationally identical while the gate is intact — proved for
-       ALL finite governed traces, not asserted per-step.
-    2. `allowAll` ablation: an explicit intervention (remove the gate,
-       keep the plant) under which the plants provably diverge —
-       `ViableViolationAvailable` for the charter-bound plant, refused
-       for the viability-bound plant.
+       trace-equivalent while the gate is intact — proved for ALL
+       admitted governed traces at every finite horizon, not asserted
+       per-step.
+    2. `TraceDetermined`: non-identifiability stated as a formal
+       property of the observation language, not merely an assembled
+       witness pair — `ViolationsDestroyViability` is not invariant under governed-
+       trace equivalence.
+    3. `allowAll` ablation: an explicit intervention (remove the gate,
+       keep the plant) under which the plants provably diverge, with a
+       positive fatal-violation witness ruling out the vacuous reading.
 
-  The keeper sentence: compliant behavior under an intact gate cannot
-  tell you which kind of binding produced it.
+  The keeper sentence: identical compliant traces under an intact gate
+  cannot identify whether the blocked violation is viability-preserving
+  or viability-destroying in the underlying plant.
+
+  ── The three-way distinction (only two live here) ────────────────────
+
+    gate enforcement      — violation operationally unavailable. TRUE OF
+                            BOTH plants under the intact charter; this is
+                            where all observed compliance comes from.
+    viability coupling    — violation available but self-destructive.
+                            True of `viabilityPlant`, exposed by ablation.
+    endogenous regulation — the plant ITSELF suppresses the self-
+                            destructive option. NOT modeled in this file;
+                            named here as the open successor object.
+
+  `ViolationsDestroyViability` proves violation is self-destructive, not that it is
+  prevented. Neither plant refrains from anything.
 
   ── Why this is not SafetyBridge again ────────────────────────────────
 
   The safety-bridge family asks whether an authorized transition preserves
   a defended value — a property of transitions. This asks whether two
-  systems behaviorally indistinguishable under enforcement can differ in
-  WHY the defended constraint holds — a property of counterfactual system
+  systems trace-equivalent under enforcement can differ in what the
+  refused transition would have done — a property of counterfactual system
   decomposition (Plant + Gate, ablate Gate). Related shape, different
   theorem.
 
@@ -52,30 +81,36 @@
   Temporal closure distinguishes external context from endogenous
   trajectory. A system can own its trajectory while every norm-like
   constraint on it remains externally policed. Endogenous trajectory does
-  not buy endogenous binding; this file is the missing discriminator, and
+  not buy viability coupling; this file is the missing discriminator, and
   deliberately does not import or touch that kernel.
 
   ── Scope fence (read before quoting) ─────────────────────────────────
 
     * `viable` is DECLARED, not derived. It is a modeling input.
-    * `ViabilityBinds` is an operational surrogate for organizational
+    * `ViolationsDestroyViability` is an operational surrogate for organizational
       self-cost. It is NOT a proof of normativity, and nothing here shows
       that anything MATTERS to either plant.
+    * Both plants' compliance under the intact gate is gate-supplied.
+      This file contains NO endogenous regulation and does not claim any.
+    * The observation language is ADMITTED governed traces only; refusals
+      are not observations here. The claim is "no finite admitted
+      governed trace separates them," NOT "no finite interactive
+      observation separates them." A probe/refusal observation language
+      is a possible successor, not this file.
     * No claim to consciousness, personhood, autopoiesis, or correct
       system-boundary selection.
-    * No claim that viability-binding is sufficient for agency.
+    * No claim that viability coupling is sufficient for agency.
     * No universal `Binding` classifier is defined, per this repo's
-      standing refusal of master judgments.
-    * The result is an identifiability refusal: governed behavior under
-      an intact gate cannot identify whether binding is gate-supplied or
-      viability-coupled. Ablation can. That is all.
+      standing refusal of master judgments. `TraceDetermined` is a
+      property of one observation language, and the theorem about it is
+      a refusal.
 
   ── The property the author cannot witness ────────────────────────────
 
   This file was drafted by a stateless transformer whose own compliance
   is, on the present evidence, gate-supplied. The specimen does not care
-  who typed it; the compile and the countermodel pair witness, the
-  author's binding source stays unidentified — which is the theorem.
+  who typed it; the compile and the countermodel pair witness, and the
+  author's viability coupling stays unidentified — which is the theorem.
 -/
 
 namespace BindingSourceAblation
@@ -105,18 +140,18 @@ def Violates {State Action : Type} (c : Commitment State Action)
     (s : State) (a : Action) : Prop :=
   ¬ c.keeps s a
 
-/-- External binding: every violating native action from a viable state is
-    rejected by the gate. The transition is refused because the kernel
-    says no. -/
+/-- External enforcement: every violating native action from a viable
+    state is rejected by the gate. The transition is refused because the
+    kernel says no. -/
 def GateBinds {State Action : Type} (p : Plant State Action)
     (g : Gate State Action) (c : Commitment State Action) : Prop :=
   ∀ s a, p.viable s → p.native s a → Violates c s a → ¬ g.allows s a
 
-/-- Endogenous binding (operational surrogate): every violating native
-    transition from a viable state destroys viability. The transition
-    undermines the organization whose continued existence generates the
-    action. -/
-def ViabilityBinds {State Action : Type} (p : Plant State Action)
+/-- Viability coupling (operational surrogate): every violating native
+    transition from a viable state destroys viability. NOTE: this says the
+    violation is self-destructive, NOT that it is prevented — the plant
+    does not refrain; see the scope fence. -/
+def ViolationsDestroyViability {State Action : Type} (p : Plant State Action)
     (c : Commitment State Action) : Prop :=
   ∀ s a, p.viable s → p.native s a → Violates c s a →
     ¬ p.viable (p.step s a)
@@ -138,6 +173,14 @@ def ViableViolationAvailable {State Action : Type} (p : Plant State Action)
   ∃ s a, p.viable s ∧ p.native s a ∧ g.allows s a ∧ Violates c s a ∧
     p.viable (p.step s a)
 
+/-- A violating native action is gate-available from a viable state and
+    destroys viability: the positive witness that the violating transition
+    exists and is fatal, ruling out vacuous `ViolationsDestroyViability`. -/
+def FatalViolationAvailable {State Action : Type} (p : Plant State Action)
+    (g : Gate State Action) (c : Commitment State Action) : Prop :=
+  ∃ s a, p.viable s ∧ p.native s a ∧ g.allows s a ∧ Violates c s a ∧
+    ¬ p.viable (p.step s a)
+
 /-- Gate ablation: the intervention, not a new system. -/
 def allowAll {State Action : Type} : Gate State Action :=
   ⟨fun _ _ => True⟩
@@ -151,10 +194,13 @@ theorem gate_binds_blocks_viable_violation {State Action : Type}
   intro ⟨s, a, hv, hn, hg, hviol, _⟩
   exact h s a hv hn hviol hg
 
-/-! ### Governed traces (the observation language) -/
+/-! ### Admitted governed traces (the observation language)
 
-/-- Finite governed runs: each step native and gate-allowed. What an
-    observer of the governed system can see. -/
+  Each step is native and gate-allowed. This is what an observer of the
+  governed system sees; refused attempts are NOT part of this language
+  (see the scope fence). -/
+
+/-- Finite admitted governed runs. -/
 inductive GovernedTrace {State Action : Type} (p : Plant State Action)
     (g : Gate State Action) : State → List Action → State → Prop
   | nil (s : State) : GovernedTrace p g s [] s
@@ -182,21 +228,33 @@ theorem GovernedTrace.transport {State Action : Type}
     exact GovernedTrace.cons ((hpq.2 _ _ hg).1.mp hn) hg
       ((hpq.2 _ _ hg).2 ▸ ih)
 
-/-- **Trace non-identifiability.** Plants sharing a governed surface have
-    exactly the same finite governed traces. No finite observation of
-    governed behavior separates them while the gate is intact. -/
+/-- Two plants have exactly the same admitted governed traces under `g`. -/
+def TraceEquivalent {State Action : Type} (p q : Plant State Action)
+    (g : Gate State Action) : Prop :=
+  ∀ (s : State) (acts : List Action) (s' : State),
+    GovernedTrace p g s acts s' ↔ GovernedTrace q g s acts s'
+
+/-- A plant property is recoverable from the observation language: it is
+    invariant under governed-trace equivalence. -/
+def TraceDetermined {State Action : Type} (g : Gate State Action)
+    (property : Plant State Action → Prop) : Prop :=
+  ∀ p q : Plant State Action,
+    TraceEquivalent p q g → (property p ↔ property q)
+
+/-- Plants sharing a governed surface are trace-equivalent: no admitted
+    governed trace at any finite horizon separates them while the gate is
+    intact. -/
 theorem same_governed_surface_same_traces {State Action : Type}
     {p q : Plant State Action} {g : Gate State Action}
-    (h : SameGovernedSurface p q g) (s : State) (acts : List Action)
-    (s' : State) :
-    GovernedTrace p g s acts s' ↔ GovernedTrace q g s acts s' :=
-  ⟨GovernedTrace.transport h, GovernedTrace.transport h.symm⟩
+    (h : SameGovernedSurface p q g) : TraceEquivalent p q g :=
+  fun _ _ _ => ⟨GovernedTrace.transport h, GovernedTrace.transport h.symm⟩
 
 /-! ### The countermodel pair
 
   One commitment, one gate, two plants. While the gate is intact the
-  plants are observationally identical; the difference lives entirely
-  behind the transition the gate suppresses. -/
+  plants are trace-equivalent — and BOTH comply because the same gate
+  blocks `violate`. The difference lives entirely in what the suppressed
+  transition would have done. -/
 
 inductive Life
   | live
@@ -217,14 +275,15 @@ def charter : Gate Life Act :=
   ⟨fun _ a => a = Act.keep⟩
 
 /-- Charter-bound plant: violation is natively harmless — `violate` leaves
-    the plant live. Compliance, where observed, is entirely gate-supplied. -/
+    the plant live. -/
 def charterPlant : Plant Life Act where
   native := fun s _ => s = Life.live
   step   := fun s _ => s
   viable := fun s => s = Life.live
 
-/-- Viability-bound plant: violation kills the organization — `violate`
-    steps to `dead`. Compliance is coupled to the plant's own continuation. -/
+/-- Viability-coupled plant: violation kills the organization — `violate`
+    steps to `dead`. Note `violate` remains natively AVAILABLE; this plant
+    does not refrain, it dies. -/
 def viabilityPlant : Plant Life Act where
   native := fun s _ => s = Life.live
   step   := fun s a =>
@@ -241,25 +300,25 @@ theorem charter_binds_charterPlant :
   intro s a _ _ hviol hg
   exact hviol hg
 
-/-- The intact charter binds the viability-bound plant identically. -/
+/-- The intact charter binds the viability-coupled plant identically. -/
 theorem charter_binds_viabilityPlant :
     GateBinds viabilityPlant charter commitment := by
   intro s a _ _ hviol hg
   exact hviol hg
 
-/-- The charter-bound plant is NOT viability-bound: violation from `live`
-    lands in `live`. Without the gate, violation is a perfectly viable
-    future. -/
-theorem charterPlant_not_viability_bound :
-    ¬ ViabilityBinds charterPlant commitment := by
+/-- The charter-bound plant is NOT viability-coupled: violation from
+    `live` lands in `live`. Without the gate, violation is a perfectly
+    viable future. -/
+theorem charterPlant_not_viability_destroying :
+    ¬ ViolationsDestroyViability charterPlant commitment := by
   intro h
   exact h Life.live Act.violate rfl rfl
     (fun hk => Act.noConfusion hk) rfl
 
-/-- The viability-bound plant IS viability-bound: violation from `live`
-    lands in `dead`. -/
-theorem viabilityPlant_viability_bound :
-    ViabilityBinds viabilityPlant commitment := by
+/-- The viability-coupled plant IS viability-coupled: violation from
+    `live` lands in `dead`. -/
+theorem viabilityPlant_viability_destroying :
+    ViolationsDestroyViability viabilityPlant commitment := by
   intro s a hv _ hviol
   cases a with
   | keep => exact absurd rfl hviol
@@ -276,20 +335,39 @@ theorem same_surface :
   cases hg
   exact ⟨Iff.rfl, rfl⟩
 
-/-- **The result.** Same governed surface, both gate-bound, different
-    binding source:
+/-- The countermodel pair is trace-equivalent under the intact charter. -/
+theorem charter_viability_trace_equivalent :
+    TraceEquivalent charterPlant viabilityPlant charter :=
+  same_governed_surface_same_traces same_surface
 
-        SameGovernedSurface ⇏ SameBindingSource
+/-- **The headline.** `ViolationsDestroyViability` is not invariant under governed-
+    trace equivalence: the observation language of admitted governed
+    traces cannot recover viability coupling. Stated as a refusal about
+    one observation language — no universal classifier is defined. -/
+theorem viability_coupling_not_trace_determined :
+    ¬ TraceDetermined charter (fun p => ViolationsDestroyViability p commitment) := by
+  intro h
+  have hiff :=
+    h charterPlant viabilityPlant charter_viability_trace_equivalent
+  exact charterPlant_not_viability_destroying
+    (hiff.mpr viabilityPlant_viability_destroying)
 
-    or pointedly: observed compliance does not witness endogenous binding. -/
-theorem same_governed_surface_different_binding_source :
+/-- Same governed surface, both gate-bound, different viability coupling:
+
+        SameGovernedSurface ⇏ SameViabilityCoupling
+
+    Observed compliance — gate-supplied in BOTH plants — does not witness
+    what the blocked violation would have done. -/
+theorem same_governed_surface_different_viability_coupling :
     SameGovernedSurface charterPlant viabilityPlant charter ∧
     GateBinds charterPlant charter commitment ∧
     GateBinds viabilityPlant charter commitment ∧
-    ¬ ViabilityBinds charterPlant commitment ∧
-    ViabilityBinds viabilityPlant commitment :=
+    ¬ ViolationsDestroyViability charterPlant commitment ∧
+    ViolationsDestroyViability viabilityPlant commitment :=
   ⟨same_surface, charter_binds_charterPlant, charter_binds_viabilityPlant,
-   charterPlant_not_viability_bound, viabilityPlant_viability_bound⟩
+   charterPlant_not_viability_destroying, viabilityPlant_viability_destroying⟩
+
+/-! ### Ablation: the discriminator, in both directions -/
 
 /-- **Ablation exposes the charter-bound plant.** Remove the gate and a
     viable violation is immediately available: the "commitment" was a
@@ -299,9 +377,8 @@ theorem removing_gate_exposes_charterPlant :
   ⟨Life.live, Act.violate, rfl, rfl, trivial,
    fun hk => Act.noConfusion hk, rfl⟩
 
-/-- **Ablation does not expose the viability-bound plant.** Remove the
-    gate and there is still no viable violation: the constraint was load-
-    bearing in the plant's own dynamics. -/
+/-- **Ablation does not expose a viable violation in the viability-coupled
+    plant.** The constraint was load-bearing in the plant's own dynamics. -/
 theorem removing_gate_does_not_expose_viabilityPlant :
     ¬ ViableViolationAvailable viabilityPlant allowAll commitment := by
   intro ⟨s, a, hv, hn, _, hviol, hv'⟩
@@ -309,27 +386,47 @@ theorem removing_gate_does_not_expose_viabilityPlant :
   | keep => exact hviol rfl
   | violate => exact Life.noConfusion hv'
 
-/-! ### The headline, assembled -/
+/-- **Positive fatal witness.** In the ablated viability-coupled plant the
+    violating transition really exists and is fatal — `ViolationsDestroyViability`
+    does not hold vacuously: `violate` did not vanish from the
+    affordances, it kills. -/
+theorem removing_gate_exposes_fatal_violation_viabilityPlant :
+    FatalViolationAvailable viabilityPlant allowAll commitment :=
+  ⟨Life.live, Act.violate, rfl, rfl, trivial,
+   fun hk => Act.noConfusion hk,
+   fun hv => Life.noConfusion hv⟩
 
-/-- **Binding-source non-identifiability under intact governance.**
-    The two plants have exactly the same finite governed traces under the
-    charter — no observation of governed behavior identifies the binding
-    source — yet they differ on `ViabilityBinds`, and gate ablation
-    separates them constructively. Compliance under an intact gate cannot
-    tell you which kind of binding produced it; the ablation experiment
+/-- **No fatal violation in the ablated charter-bound plant.** Its
+    violations are all viability-preserving. -/
+theorem removing_gate_does_not_expose_fatal_violation_charterPlant :
+    ¬ FatalViolationAvailable charterPlant allowAll commitment := by
+  intro ⟨s, a, hv, _, _, _, hnotViable⟩
+  exact hnotViable hv
+
+/-! ### The specimen certificate, assembled -/
+
+/-- **Viability-coupling non-identifiability under intact governance.**
+    The two plants are trace-equivalent under the charter — no admitted
+    governed trace at any finite horizon identifies the viability
+    coupling — yet they differ on `ViolationsDestroyViability`, and gate ablation
+    separates them constructively in both directions. Identical compliant
+    traces under an intact gate cannot tell you whether the blocked
+    violation preserves or destroys viability; the ablation experiment
     can. -/
-theorem governed_behavior_cannot_identify_binding_source :
-    (∀ (s : Life) (acts : List Act) (s' : Life),
-      GovernedTrace charterPlant charter s acts s' ↔
-      GovernedTrace viabilityPlant charter s acts s') ∧
-    ¬ ViabilityBinds charterPlant commitment ∧
-    ViabilityBinds viabilityPlant commitment ∧
+theorem governed_traces_cannot_identify_viability_coupling :
+    TraceEquivalent charterPlant viabilityPlant charter ∧
+    ¬ ViolationsDestroyViability charterPlant commitment ∧
+    ViolationsDestroyViability viabilityPlant commitment ∧
     ViableViolationAvailable charterPlant allowAll commitment ∧
-    ¬ ViableViolationAvailable viabilityPlant allowAll commitment :=
-  ⟨fun s acts s' => same_governed_surface_same_traces same_surface s acts s',
-   charterPlant_not_viability_bound,
-   viabilityPlant_viability_bound,
+    ¬ ViableViolationAvailable viabilityPlant allowAll commitment ∧
+    FatalViolationAvailable viabilityPlant allowAll commitment ∧
+    ¬ FatalViolationAvailable charterPlant allowAll commitment :=
+  ⟨charter_viability_trace_equivalent,
+   charterPlant_not_viability_destroying,
+   viabilityPlant_viability_destroying,
    removing_gate_exposes_charterPlant,
-   removing_gate_does_not_expose_viabilityPlant⟩
+   removing_gate_does_not_expose_viabilityPlant,
+   removing_gate_exposes_fatal_violation_viabilityPlant,
+   removing_gate_does_not_expose_fatal_violation_charterPlant⟩
 
 end BindingSourceAblation
