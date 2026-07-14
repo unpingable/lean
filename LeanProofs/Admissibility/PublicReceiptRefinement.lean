@@ -74,7 +74,9 @@
     then, the connection is by convention: a consumer claiming
     `[Breaker.preservedHistory]` should hold a `Refines` proof, but
     the Lean kernel does not enforce the binding. Concretization
-    awaits a forcing case.
+    is a formal modeling task: refine `Breaker` to carry the evidence
+    and admittance relation, then prove the adapter. No forcing case is
+    required.
 -/
 
 import LeanProofs.CollapsedSurface

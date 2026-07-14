@@ -419,7 +419,8 @@ theorem dropping_right_sound_permits_merged_partition_violation
     3. **ComponentStep determinism + confluence**:
        Lemmas about ComponentStep that downstream propagation-kernel
        theorems (refinement, trace equivalence) would need. Status:
-       deferred until a forcing case appears.
+       open formal work once the statements are fixed by the resident
+       `ComponentStep` semantics; downstream demand is not required.
 
     4. **Restriction (ν)**:
        Local hiding of names so that exposures on a hidden domain

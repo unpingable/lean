@@ -17,13 +17,14 @@ explicitly opened later.
 
 **Release boundary.** The public-surface packaging gate shipped in **1.4.0**. The reserved
 structural WDC milestone shipped in **2.0.0**. Future frontier items do not inherit the
-integer just because they are adjacent; each needs its own forcing case, receipt, and
-release decision.
+integer just because they are adjacent; each needs its own formal delta, proof receipt,
+and release decision. Runtime consumption is not a prerequisite for theorem work.
 
 **Provenance:** synthesized 2026-06-26 from a multi-model pass (Claude + ChatGPT),
 then located against the actual ratified surface. The directions are real and the
-ranking is advisory, not a commitment. Each item earns its own forcing case at
-promotion time — not here. Name early, ratify lazily.
+ranking is advisory, not a commitment. Each item's promotion requires its own
+formal delta, proof receipt, and custody decision. Name and formalize early;
+ratify lazily.
 
 ## The locator principle
 

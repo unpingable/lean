@@ -14,7 +14,7 @@
   explicit by proving the classification depends on the (prior, observed)
   argument ordering, not on either value alone.
 
-  Forcing residue:
+  Open formal residue:
     Stale-binding is the substrate-rich primitive for the lagging
     direction (caches, hat-x estimates, briefings, P23–P27). The leading
     direction — prior overclaims observed state — has no equivalent
@@ -28,8 +28,8 @@
                    (leading) and `Expired` (lagging).
     Corrective   — corrective transitions; composition with AxisSkew
                    (e.g., "lagging may authorize correction, not
-                   mutation") is deferred until a live consumer forces
-                   the bridge.
+                   mutation") is open formal work. Its statement must
+                   specify the bridge from skew to corrective standing.
 
   Companion working primitive:
     papers/working/primitives/memory-skew.md
@@ -45,8 +45,8 @@
       that taxonomy is operator-facing and lives in the prose primitive.
     - Does NOT formalize the operational claim "lagging may justify
       correction but not authorize mutation." That theorem would
-      compose with Corrective/Authority and is deferred until a live
-      consumer needs it. Named as candidate; refusing to write it.
+      compose with Corrective/Authority and may be developed in Scratch
+      once its bridge assumptions are stated; no consumer is required.
     - Does NOT pin `Nat` or any concrete rank type. The relation is
       consumer-supplied so domain-specific orderings (partial, preorder,
       lattice, total) can each be its argument.

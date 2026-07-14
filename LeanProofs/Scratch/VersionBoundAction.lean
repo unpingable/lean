@@ -7,9 +7,9 @@
   ResidueCustodyNoncollapse.lean (this is "valid at t₀ ↛ valid at t₁" on the version axis).
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean;
-  not in the build graph or CI. May clarify shape; may not testify. Promotion (cited as
-  warrant, imported by code, CI-adopted) requires the forcing case: NQ adds a
-  revision-bound preflight (substrate already on the wire: warning_state.last_basis_generation).
+  not in the build graph or CI. May clarify shape; may not testify. NQ's revision-bound
+  preflight is a runtime correspondence target (substrate already on the wire:
+  warning_state.last_basis_generation). Promotion is a separate custody decision.
 
   FORBIDDEN INFERENCE: "I once observed version v, therefore I may write now."
   Past witness does not authorize present mutation. The discriminator is commit-point

@@ -261,7 +261,7 @@ theorem conflict_merge_restores
     without extra admissibility evidence.
 
   Deferred (do not promote until ≥2 more bad-merge specimens land
-  per the Axis 2 forcing-case discipline):
+  per the Axis 2 counterexample-family / anti-vacuity discipline):
 
     * `MergeAdmissible` positive object. Defining it before the
       bad-case family exists risks a definition that proves itself.

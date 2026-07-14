@@ -33,9 +33,10 @@
   ({recordReceipt, declarePolicyGap, recordRevocation, amendPolicy})
   no constructor is *both* classified corrective *and* able to widen
   AuthorizedSet, so the non-laundering corollary holds trivially.
-  That is not a defect — it is exactly the audit. The forcing case
-  is whichever future Step constructor first tempts both
-  classifications.
+  That is an explicit abstraction boundary, not a concrete
+  non-laundering result. The next formal step is to specify
+  nondegenerate store semantics and prove or refute monotonicity for
+  that model; no future Step or runtime consumer is a prerequisite.
 
   Governor-neutral. Imports only sibling Admissibility modules.
 
@@ -328,8 +329,9 @@ theorem corrective_sequence_monotone
   Narrow gate placement: analysis tools, audit tools, and ordinary
   forward-authorization paths still take raw `DerivationEnv`. The
   obligation becomes load-bearing only at the recovery boundary. The
-  kernel makes monotonicity expressible; the runtime makes it
-  non-optional.
+  `RecoveryEnv` makes the obligation non-optional at the formal recovery
+  boundary. Runtime code may claim conformance only by implementing or
+  citing that contract.
 -/
 
 /--
@@ -397,10 +399,9 @@ theorem recovery_monotone
   4. `CorrectiveMonotone env` is currently an empty obligation
      vacuously satisfiable for any `env`, because behavioral laws on
      `appendRevocation` and `appendGap` are not yet present in the
-     Derivation module. The forcing case for moving the laws out of
-     deferred status is the first concrete `BasisDerivation` that
-     reads `RevocationStore` — at which point the proof obligation
-     bites.
+     Derivation module. The formal debt is to state nondegenerate store
+     laws and instantiate `BasisDerivation` against them; that work may
+     proceed before any runtime reads `RevocationStore`.
 
   5. Environment mutation. `WeaklyLessPermissive` fixes `env`. A future
      theorem must address the case where `env` itself changes (e.g.
@@ -420,9 +421,8 @@ theorem recovery_monotone
      explicit-witness structure carried by `RecoveryEnv`. Promoting to
      a typeclass (so any `DerivationEnv` in scope automatically resolves
      a monotonicity instance) is premature while the obligation shape
-     is still moving. Reconsider after the first concrete
-     `BasisDerivation` reading `RevocationStore` lands and the
-     obligation stops being vacuous.
+     is still moving. Reconsider after nondegenerate store semantics
+     fixes that shape and the obligation stops being vacuous.
 -/
 
 end Admissibility.Corrective

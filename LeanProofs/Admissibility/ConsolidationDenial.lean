@@ -89,9 +89,10 @@
     - Does NOT model the three-clock dynamics; the dynamics are
       named in this header as cybernetic provenance only.
     - Does NOT include the consolidation interrupt controller
-      (Schmitt-trigger safety invariant, mode-specific bounds).
-      That lives in the companion formal sketch (papers repo) and
-      may earn a separate module if a forcing case appears.
+      in this static module. Its Schmitt-trigger safety invariant and
+      mode-specific bounds are checked separately in
+      `LeanProofs/Scratch/ConsolidationController.lean`; that separation
+      does not imply public-custody promotion.
     - Does NOT model retention, compression, or reauthorization
       attacks (separate axes).
     - Does NOT model what constitutes adequate settlement (the
@@ -113,9 +114,9 @@ namespace Admissibility.ConsolidationDenial
     demoted, or promoted to durable structure.
 
     `unsettled_buffer` counts provisional outputs not yet audited.
-    A non-empty buffer with zero completed passes is the
-    decay-governed attractor: the buffer can stay bounded by forgetting
-    while settlement debt accrues unseen. -/
+    This is the static witness shape used below. The companion controller
+    dynamics motivate its interpretation but do not prove attraction,
+    forgetting, debt accrual, or liveness in this module. -/
 structure System where
   coherent_output   : Bool
   settlement_passes : Nat

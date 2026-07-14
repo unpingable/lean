@@ -5,7 +5,7 @@
   formalization leading implementation: this is NQ-T4 of the temporal-basis
   track — the theorem set NQ's doctrine doc, fixtures, and preflight
   verdicts (NQ-T0..T3) are meant to cite, written BEFORE NQ implements
-  them. Forcing consumer: NQ (`~/git/nq-root/nq`), whose live doctrine
+  them. Runtime correspondence target: NQ (`~/git/nq-root/nq`), whose live doctrine
   already carries the debts this file pins:
 
     "Present tense requires a live basis. … Retirement is explicit, not
@@ -50,9 +50,10 @@
 
   Unwired: not imported by `LeanProofs.lean` or any default target. Build
   directly: `lake build LeanProofs.Admissibility.TemporalBasis`.
-  Promotion to ANNEX gates on NQ citing named theorems under its
-  `[annex]` pinning discipline (the DeferredWitness precedent — whose
-  forcing consumer was also NQ).
+  Formalization does not wait on NQ implementation. Under the current custody
+  fence, ANNEX promotion still requires NQ to identify the named theorems it
+  adopts under its pinning discipline. Citation names the intended contract;
+  conformance still requires a mapping plus runtime evidence or refinement.
 -/
 
 /-!

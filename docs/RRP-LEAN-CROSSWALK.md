@@ -65,9 +65,10 @@ The Lean neighbors:
   `StandingProfileSpecimen`, `WLPAppendAckSpecimen`, `BridgeCustomsSpecimen`,
   `ActorTraceSpecimen`, `LocalBoundaryPressure`, `ScopedCertification` — all
   UNRATIFIED-CANDIDATE, unwired). They are candidate formal laws written
-  formalization-first; they do not testify for RRP runtime compliance until
-  cited by RRP artifacts and admitted under the same promotion discipline as
-  DeferredWitness.
+  formalization-first; they do not testify for RRP runtime compliance by
+  themselves. Citation/adoption identifies the intended contract; conformance
+  requires an explicit mapping plus runtime evidence or a refinement proof.
+  Lean custody promotion is a separate review.
 - It does not claim the abstract kernel instantiates the RRP artifact ABI.
   `Derivation.BasisDerivation` is abstract over derivation functions; deciding
   what `requiredFor`/`witnesses` mean inside the public authority kernel is a

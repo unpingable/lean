@@ -15,7 +15,7 @@
   a borrow gate admits a bounded credit draw against a threatened larger
   crossing ("spend $500 now because the admissible alternative is plausibly
   a $50,000 crossing later -- but make the system show its work before it
-  reaches for the corporate AmEx"). Forcing consumer named at filing:
+  reaches for the corporate AmEx"). Runtime correspondence target at filing:
   NQ → Nightshift → expensive-API preflight.
 
   THE SPLIT (three quantities, never two):

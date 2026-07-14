@@ -8,7 +8,8 @@
   separation, not a denial protocol.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  Promotion requires the forcing case: NQ ships signed `cannot_testify` witnesses.
+  Signed NQ `cannot_testify` witnesses are a runtime correspondence target.
+  Promotion is a separate custody decision and does not wait on NQ.
 
   FORBIDDEN INFERENCE: "No positive answer arrived, so nonexistence is established."
   Silence (timeout / SERVFAIL / unsigned NXDOMAIN) is absence of information; signed denial

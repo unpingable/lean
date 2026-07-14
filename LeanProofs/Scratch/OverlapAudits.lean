@@ -43,10 +43,11 @@
     conclusion outside. So the would-be screen is an index-typed
     evidence-jurisdiction condition ("relation-indexed judgments conclude
     only from relation-indexed evidence") -- an instance of the closure
-    GENUS whose screen predicate is NOT minted here: the candidate's own
-    fences gate any build on a forcing consumer, and the remaining un-owned
-    delta (`cannot_testify` as an output VERDICT type, distinct from mere
-    underivability) is outside the derivability vocabulary entirely.
+    GENUS whose screen predicate is NOT minted here: its exact statement and
+    overlap boundary remain open. The remaining un-owned delta
+    (`cannot_testify` as an output VERDICT type, distinct from mere
+    underivability) is outside the derivability vocabulary entirely. No
+    consumer is required to formalize either result once its shape is fixed.
 
   ## Run 2 — silence-as-denial (signal-authority)
 

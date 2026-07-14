@@ -10,8 +10,9 @@
   here, not as `sorry`.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  Promotion (to `Admissibility.ControlPathIndependence`, a reserved name) requires the
-  forcing case: NQ / Wicket / Governor needs to refuse a captured-checker claim.
+  NQ / Wicket / Governor refusal of a captured-checker claim is a runtime
+  correspondence target. Promotion to `Admissibility.ControlPathIndependence`
+  is a separate custody decision and does not wait on that target.
 
   THE CUT (three axes, only one architectural): a captured checker — one whose sensing /
   power / logic / refusal path is controlled by the thing it checks — cannot mint an

@@ -2,10 +2,11 @@
   Custody-Class: SCRATCH  —  compile-is-contact only.
 
   A ToolTheory object — the three-way disposition partition. Picks up the SignalAuthority
-  null-laundering seam (missing ACK ≠ NACK / null ≠ revocation) that was Lean-deferred for
-  want of a forcing case; the micro-calculi menagerie audit (2026-06-29,
-  playground/wired/MICRO-CALCULI-MENAGERIE.md #7 "Failure-Custody Ledger") is that case —
-  the deferral condition ("no forcing consumer, too close to social semantics") expired.
+  null-laundering seam (missing ACK ≠ NACK / null ≠ revocation). Earlier notes deferred
+  it for want of a consumer; that policy is superseded. The intrinsic three-way
+  noncollapse result justifies this formalization. The micro-calculi menagerie audit
+  (2026-06-29, playground/wired/MICRO-CALCULI-MENAGERIE.md #7
+  "Failure-Custody Ledger") later supplied a correspondence specimen, not permission.
 
   Siblings: SignalAuthority (null-laundering, prose), Mandamus.lean (owed answer / deemed
   refusal), AuthenticatedDenial.lean (explicit signed denial), RefusalPropagation.lean. The
@@ -16,7 +17,8 @@
   owns only: a preserved failure must not become refusal, denial, falsity, or absence.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  Promotion requires a consumer that ingests dispositions (the NQ verdict pipeline).
+  The NQ verdict pipeline is a runtime correspondence target. Promotion is a
+  separate custody decision and does not wait on it.
 
   Self-contained (no imports). Check: cd ~/git/lean && lake env lean <abs path>.
 -/

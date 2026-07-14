@@ -55,11 +55,11 @@
 
   Honesty notes:
   * `AdmissionJurisdiction` is the LOCAL FACE, for THIS system, of the
-    still-gated general relation-promotion/evidence-jurisdiction screen
-    (C3 audit: closure genus, forcing-consumer gated). v7 slice 1 is the
-    forcing consumer ARRIVING for the local face; the vocabulary-generic
-    screen remains unminted pending its own admission -- flagged, not
-    smuggled.
+    still-open general relation-promotion/evidence-jurisdiction screen
+    (C3 audit: closure genus). The local face is formalized first; the
+    vocabulary-generic screen remains unminted pending a precise statement
+    and overlap review -- flagged, not smuggled. Runtime specimens do not
+    authorize formal work.
   * Profile field names here (probe/decision/etc.) are specimen vocabulary,
     not shared semantics; two profiles sharing field NAMES do not share
     meanings (V7-GAP-SPEC §2).

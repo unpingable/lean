@@ -3,7 +3,7 @@
 
   Admissibility — Axis 2, Slice 1: stale-evidence merge.
 
-  Second forcing-case specimen for the composition axis. Distinct failure
+  Second counterexample specimen for the composition axis. Distinct failure
   mode from Slice 0 (SharedBudgetMerge). Where the budget specimen showed
   that branch-local bridge evidence cannot see *joint usage* at the
   reconciliation boundary, this specimen shows that branch-local bridge
@@ -32,8 +32,8 @@
       temporal — two honest local witnesses, each valid at action time, are
       reused at a reconciliation time outside their horizon.
 
-  Two genuinely different obstacles. Together they begin to force the shape
-  of `MergeAdmissible` (see the forcing note at the bottom).
+  Two genuinely different obstacles. Together they begin to reveal the shape
+  of `MergeAdmissible` (see the extraction note at the bottom).
 
   Honesty of the operator (this is NOT ConflictMerge's cheat):
 

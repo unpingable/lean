@@ -18,9 +18,9 @@
   Scope fence: this models exactly the C4 spine (tip-binding + success + single-use burn), schematic over
   scope/class/version/policy (elided, not characterized). No receipt internals, no cross-office unifier.
 
-  Proof→world fence: a green build here is evidence the spine is coherent and achievable; it is NOT the
-  grant the kernel emits. Lean follows the deployed gate (the forcing consumer), not an inspirational
-  poster. The forcing consumer now exists (C3 enforce + C4 trajectory), which is why this is worth stating.
+  Proof→world fence: a green build here establishes the formal spine; it is NOT the grant the kernel
+  emits and does not prove runtime conformance. Lean supplies the contract and may lead deployment.
+  C3 enforce + C4 trajectory are correspondence evidence, not why the theorem is worth stating.
 -/
 
 namespace NoFreeContinuation

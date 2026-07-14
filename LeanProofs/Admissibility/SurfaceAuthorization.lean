@@ -18,8 +18,9 @@
     Derived from the cross-primitive recurrence of the recovery-side
     question across testimony-vs-self-theory, Signal Authority,
     CollapsedSurface, and Paper 25's observation-equivalence framework.
-    Deferral was correct until Governor identified a concrete use case
-    requiring runtime adjudication of cause-from-output inference.
+    The abstract refusal statement was identified before runtime
+    adjudication. Governor later supplied a correspondence specimen; it
+    did not authorize the formalization.
 
   Scope fence:
     - Encodes the *refusal gate*: collapsed + cause-specific + no
@@ -47,9 +48,9 @@
     (independent measurement, admissible perturbation) remain
     unformalized; that asymmetry is intentional, not an oversight.
     A future refusal-repair kernel (NOT a unified calculus — that
-    framing was retired 2026-06-03) would extend
-    `PublicReceiptRefinement`'s pattern over the unformalized channels
-    if a forcing case appeared.
+    framing was retired 2026-06-03) may extend
+    `PublicReceiptRefinement`'s pattern once the two remaining evidence
+    predicates are specified. Runtime demand is not a formalization gate.
 
   Custody:
     Public 1.0 surface; imported by the AdmissibilityKernels aggregator;

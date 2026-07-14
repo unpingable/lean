@@ -78,7 +78,8 @@ SufficientDetachedCommits : List PEvent → PConfig → PSys → Prop
 
 and concludes `∃ prefix suffix, trace = prefix ++ suffix ∧ entry-hysteretic ∧ internally
 absorbing`. This needs the trace predicates defined and a prefix-extraction argument — a
-new wing, not packaging. Leave it here until forced.
+new wing, not packaging. It is open formal work once those predicates and the prefix
+measure are specified; no runtime consumer is required.
 
 ## Guardrails (each hypothesis blocks a false theorem)
 

@@ -64,7 +64,8 @@ promoted.* Promotion pressure requires, all of:
 - axiom audit clean (footprint ≤ `[propext, Quot.sound]`);
 - no `sorry` / `admit` / `native_decide`;
 - **no import into a promoted kernel without an explicit operator decision**;
-- a connected forcing case from existing WDC/Witnessed doctrine.
+- a distinct formal delta connected to existing WDC/Witnessed doctrine,
+  with overlap and anti-vacuity review.
 
 Promotion is per-module, through these gates — never by roadmap pressure, never by
 aggregate import.
@@ -249,15 +250,14 @@ every slice, every codex audit, every honesty note — is
 `docs/CHANGELOG-scratch-campaign.md`.
 
 **Post-v7 direction lives in `docs/NEXT-SURFACES.md`** (name-early register,
-candidate weight, no numerals minted past v8). The forcing sentence: the
-next surface opens when the object of analysis stops being *one artifact
-profile crossing one bridge* and becomes *a set/registry/graph of profiles
-and receipts whose combined coverage may launder authority*. Register
-entries: NEXT-A Portfolio Custody (forcing case: kernel-AG admission
-packets; overlap discipline vs the v7 slice-4 three-face split recorded
-in the entry), NEXT-B WLP Envelope Graph Noncollapse (asleep until WLP
-enters the proof surface), NEXT-C Compiled Authority Checker Boundary
-(forced by AG consumption, never by Lean momentum), NEXT-D
-Artifact-Authority Model/Semantics (paper lane, deprioritized). Runtime
-(Bridge Foundry / compiled authority) remains out of this roadmap, as §
-above already rules.
+candidate weight, no numerals minted past v8). A promoted surface becomes
+relevant when the object of analysis stops being *one artifact profile
+crossing one bridge* and becomes *a set/registry/graph of profiles and
+receipts whose combined coverage may launder authority*. Register entries:
+NEXT-A Portfolio Custody (runtime correspondence target: kernel-AG admission
+packets; overlap discipline vs the v7 slice-4 three-face split recorded in
+the entry), NEXT-B WLP Envelope Graph Noncollapse, NEXT-C Compiled Authority
+Checker Boundary, NEXT-D Artifact-Authority Model/Semantics (paper lane,
+deprioritized). Formal work on any entry may lead implementation; promotion
+and runtime release remain separate decisions. Runtime (Bridge Foundry /
+compiled authority) remains out of this roadmap, as § above already rules.

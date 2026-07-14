@@ -54,12 +54,12 @@
       ledger entries, NQ testimony packets) require a separate substrate
       bridge.
     * Not a composition model. Single-bundle / single-requirement-set;
-      composing multiple bundles or chains of joins lives at
-      NoSilentSurfaceComposition (Frontier; do not build).
+      composing multiple bundles or chains of joins is not modeled here;
+      any later composition module must preserve indexed join evidence.
     * Not a finite-domain model. `bundleSatisfies` uses `∃` over
       `b.parts : List`; concrete decidability is the consumer's problem.
-    * No promotion path implied. If a downstream consumer earns
-      promotion, this file points back at the candidate working note.
+    * No promotion path implied. Any future promotion requires separate
+      custody review; a downstream consumer is not an admission gate.
 
   Theorem-strength caveat: `unjoined_bundle_not_admissible_as_unified`
   is intentionally toy-simple. The real refusal lives at the type

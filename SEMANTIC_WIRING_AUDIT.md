@@ -1,5 +1,12 @@
 # Semantic Wiring Audit
 
+> **Policy/status update (2026-07-14):** this dated audit contains historical
+> consumer-gated recommendations that are no longer operative. Formalization
+> may lead adoption; consumers are correspondence targets, not permission to
+> build. In particular, `firstViolation_none_iff_lawful` landed in
+> `DeferredWitness.lean` on 2026-07-09. Custody and public promotion remain
+> separate operator decisions.
+
 This is a semantic wiring audit, not an inventory audit. It asks what already
 exists in the repo that should be connected, factored, generalized, exercised,
 or made legible as a dependency, without promoting scratch into doctrine.
@@ -684,15 +691,14 @@ structure ProjectsToExposure
   checks. The current bespoke lemmas make it obvious which rich constructors
   project to exposure steps and which are inert.
 
-### Deferred classifier reflection
+### Classifier reflection (subsequently landed)
 
 - Implied by:
   - `DeferredWitness.LawfulCompletion`
   - `DeferredWitness.firstViolation`
   - file comment naming `firstViolation u = none <-> LawfulCompletion u`
   - `DeferredWitness.statusOf`
-- Likely home: ANNEX only if a consumer needs executable reflection.
-- Minimal possible Lean shape, not to implement now:
+- Current home: ANNEX. The audit's proposed shape subsequently landed:
 
 ```lean
 theorem firstViolation_none_iff_lawful
@@ -700,9 +706,8 @@ theorem firstViolation_none_iff_lawful
     firstViolation u = none <-> LawfulCompletion u := ...
 ```
 
-- What would be laundered if promoted too early: an executable classifier could
-  become a de facto admission gate for downstream systems before operator review
-  decides whether the host environment should own the reflection lemma.
+- Runtime use still requires correspondence and admission review; that concern
+  did not make consumer demand a prerequisite for the theorem.
 
 ### Receiver-relative verdict nucleus
 
@@ -761,8 +766,8 @@ def HasGlobalSection (force : Consumer -> Artifact -> Verdict) : Prop := ...
   `cross_consumer_adoption_does_not_imply`,
   `local_adoption_does_not_imply_global`, and
   `not_all_local_adoption_globalizes`. This is the cleanest scratch seed for
-  receiver-relative refusal legibility. Keep scratch unless a downstream
-  consumer forces an ANNEX specimen.
+  receiver-relative refusal legibility. Keep scratch unless a separate
+  custody review establishes an ANNEX-worthy formal delta.
 - `LeanProofs/Scratch/QuorumCustody.lean`: models quorum intersection and
   custody limits. Current worktree has user modifications here; do not touch in
   this audit. Quorum intersection is explicitly not singular custody.

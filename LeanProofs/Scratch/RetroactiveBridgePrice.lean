@@ -82,11 +82,11 @@
       not approval. Freshness.not_yet_valid_not_fresh is its single-moment
       negative. NOT built here — one temporal demon per PR.
 
-  ## Observer axis — untouched (still a warrant, not a slice)
+  ## Observer axis — outside this slice
 
-  No consumer-relative force here. `Force : Consumer → Artifact → Prop`
-  and the no-universal-root theorem stay parked (see TemporalTrajectory's
-  header warrant). The observer waits for time to produce case-law.
+  No consumer-relative force is defined here. The observer-axis formal work
+  now lives in `ConsumerRelativeFreshness`, `ConsumerRelativeForce`,
+  `AbsoluteForceStampBridgePrice`, and `NoUniversalRoot`.
 -/
 
 namespace Admissibility.Scratch.RetroactiveBridgePrice

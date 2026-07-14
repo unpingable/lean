@@ -81,8 +81,9 @@
     gate*. Lean-first is allowed here because pinning the joint shape
     formally now prevents NQ from hardening an implicit composition
     theorem in `crates/nq-core/`. It does NOT open Phase D, does NOT
-    promote 2.0, and does NOT make NQ a forcing case in the strict
-    sense — see `working/tooltheory/nq-forcing-case-audit.md`.
+    promote 2.0. NQ is a correspondence target, not a prerequisite for
+    the formalization — see the historically named
+    `working/tooltheory/nq-forcing-case-audit.md`.
 
   Honest finding (C.1):
     Refusal narrowing is statable as case analysis over existing
@@ -468,10 +469,9 @@ end Admissibility.RefusalPropagation.Examples.ClaimAuthorizationProposal
   Concrete three-finding model: device_enumeration_witness →
   smart_witness → disk_state.
 
-  This is a *conformance probe*, not an unblocking forcing case.
-  Authorized under the construction-discipline gate (Lean-first to
-  pin the joint before NQ hardens the runtime), NOT under the
-  public-promotion gate.
+  This is a *conformance probe*. Lean-first construction pins the joint
+  before NQ hardens the runtime; the probe neither grants permission to
+  formalize nor promotes the result publicly.
 
   Maps onto NQ's shipped wire:
     - `crates/nq-core` cascade producing `cannot_testify` /
@@ -485,7 +485,7 @@ end Admissibility.RefusalPropagation.Examples.ClaimAuthorizationProposal
     - Standing / Precedence (consumer-side; not NQ).
     - Coverage / freshness / declaration metadata.
     - Multi-witness composition (latent WITNESS_COMPOSITION tripwire;
-      separate forcing case if it ever cashes out).
+      requires a separate formal statement and overlap review if developed).
     - Scope, time, use-kind, provenance fields.
 
   If any of those try to enter, the model has grown beyond
@@ -572,7 +572,7 @@ theorem disk_state_cannot_bind_via_refusal_composes
 
 end Admissibility.RefusalPropagation.Annex.NQDependency
 
-/-! ## NQ-on-NQ aggregate forcing-case adapter
+/-! ## NQ-on-NQ aggregate correspondence adapter
 
   Second concrete consumer of `Composition.refusal_composes_two_hop`.
   Models the aggregate NQ-on-NQ chain: NQ-A's substrate health →
@@ -584,6 +584,7 @@ end Admissibility.RefusalPropagation.Annex.NQDependency
 
   Companion working note:
     `~/git/papers/working/tooltheory/nq-on-nq-forcing-case.md`
+    (historical filename; not a formalization gate)
 
   Status: experimental rebar, not promoted, deletion-eligible. Same
   posture as `NQDependency`. NOT in `AdmissibilityKernels.lean`.

@@ -50,7 +50,7 @@ specimen pinning the doctrine of the RRP admissibility gate.*
 | Actor-trace specimen | `LeanProofs/Admissibility/ActorTraceSpecimen.lean` | UNRATIFIED-CANDIDATE (unwired) | this prep (GPT-Pro audit L6) |
 | LocalBoundary concrete pressure test | `LeanProofs/Admissibility/LocalBoundaryPressure.lean` | UNRATIFIED-CANDIDATE (unwired, Mathlib-reaching) | this prep (GPT-Pro audit L7; operator-gated, gate opened 2026-07-09) |
 | Scoped certification (*quis custodiet* seam) | `LeanProofs/Admissibility/ScopedCertification.lean` | UNRATIFIED-CANDIDATE (unwired) | this prep (operator-adjacent thought + ChatGPT-Pro sketch, 2026-07-09) |
-| Spendability: eligibility/capacity split + fork residue (LA seam) | `LeanProofs/Admissibility/SpendabilitySpecimen.lean` | UNRATIFIED-CANDIDATE (unwired) | this prep (gap-closure pass, 2026-07-09; sources: LA README, budget-admission forcing case, revoked-fork-residue hazard) |
+| Spendability: eligibility/capacity split + fork residue (LA seam) | `LeanProofs/Admissibility/SpendabilitySpecimen.lean` | UNRATIFIED-CANDIDATE (unwired) | this prep (gap-closure pass, 2026-07-09; sources: LA README, budget-admission scenario, revoked-fork-residue hazard) |
 | Custody freshness non-transitivity (NQ/Nightshift seam) | `LeanProofs/Admissibility/CustodyFreshnessSpecimen.lean` | UNRATIFIED-CANDIDATE (unwired) | this prep (gap-closure pass, 2026-07-09; sources: GAP-imported-basis-freshness, nightshiftd freshness.rs, NQ VERDICTS stale_testimony) |
 | Temporal basis / time assurance (NQ seam, NQ-T4) | `LeanProofs/Admissibility/TemporalBasis.lean` | UNRATIFIED-CANDIDATE (unwired) | this prep (2026-07-09; operator-directed, formalize-before-NQ-implements; sources: NQ EVIDENCE_RETIREMENT_GAP, BASIS_STALE_CONTRACT, VERDICTS stale_testimony/cannot_testify, ChatGPT-Pro time-assurance track TA-0..5/NQ-T0..5) |
 | CI release-envelope widening | `.github/workflows/lean_action_ci.yml` (full aggregate + islands + audit scripts) | CI surface | this prep |
@@ -171,10 +171,11 @@ Key theorem receipts (all sorry-free, custody-classed):
 - **The specimen laws do not testify for runtime compliance.** v9 contains
   candidate formal laws for the Standing / WLP / bridge / actor-trace /
   local-boundary seams, written formalization-first. **They do not testify
-  for RRP or any runtime's compliance until cited by runtime artifacts and
-  admitted under the same promotion discipline as DeferredWitness** —
-  theorem exists → runtime cites/adopts it → custody status changes. No
-  vibes-based canonization.
+  for RRP or any runtime's compliance by themselves.** Citation/adoption
+  identifies the intended contract; conformance requires an explicit mapping
+  plus runtime evidence or a refinement proof. Lean custody promotion is a
+  separate review; none of these reviews is permission to begin the formal
+  work. No vibes-based canonization.
 - **The profile specimen is not the RRP implementation.** No canonical JSON,
   no SHA-256, no parser, no transport, no bridge custody (the bridge
   specimen's verifier is a stipulated flag; the RRP placeholder verifier is

@@ -2,26 +2,34 @@
 
 **Status: CANDIDATE REGISTER, NON-BINDING.** Filed 2026-07-02 (operator +
 ChatGPT noodling, Fable-audited against the resident corpus). A register
-entry is a handle for review, not authorization to build. **No version
+entry is a handle for review, not authorization to promote or release. **No version
 number past v8 is minted here**; entries carry labels. A label becomes a
-version only when its forcing case actually arrives. The goblin stays in
-the drywall.
+version only after an explicit release decision, scope specification,
+overlap audit, and custody receipt. Formal work may begin before that.
+The goblin stays in the drywall.
 
-Rule of the register (the forcing sentence): the next surface opens when
+Rule of the register: a next *promoted surface* is justified when
 the object of analysis stops being *one artifact profile crossing one
 bridge* and becomes *a set/registry/graph of profiles and receipts whose
 combined coverage may launder authority*.
+
+This register controls promoted/versioned surfaces, not permission to do
+Scratch or candidate theorem work. Formalization may begin from a coherent
+proposition, countermodel, or abstraction boundary and may lead the code.
+Runtime adoption supplies correspondence evidence; it is never formalization
+admission.
 
 ---
 
 ## NEXT-A: Portfolio Custody (the v8 favorite)
 
-**Forcing case (the real one): kernel-AG admission packets.** AG receives
+**Motivating runtime application: kernel-AG admission packets.** AG receives
 a packet — NQ witness receipt + Porter courier receipt + Claimdocs score +
 AG review receipt + bridge receipts (+ WLP envelope parentage) — and asks:
 *do these jointly fund this admission?* No single receipt is universal,
 but the packet may collectively cover every gate. That is portfolio
-territory, and it is the point where v8 stops being theoretical.
+territory and a concrete correspondence target, not permission to begin the
+formal laws.
 
 **OVERLAP DISCIPLINE (binding on the eventual gap spec — cite, don't
 re-derive):** v7 slice 4 already split multi-currency into three faces and
@@ -75,20 +83,22 @@ The dangerous move it blocks, in one line: *packet covers enough local
 gates ⇒ packet is generally admissible* — the artifact-layer god-calculus
 wearing a lanyard.
 
-**Lane split:** the packet SPECIMEN comes from AG-Claude (a real admission
-packet shape, not an invented one); Lean owns the coverage/targeting
-refusal laws. Do not invent AdmissionPacket fields in the Lean lane.
+**Lane split:** real packet fields come from AG; Lean owns the
+coverage/targeting refusal laws and may use an explicitly synthetic abstract
+packet while developing them. Synthetic structure must not be passed off as
+the AG wire schema.
 
 **Title candidates:** "Portfolio Custody" (proof-theory face) /
-"Admission Packet Coverage" (AG-forcing face) /
+"Admission Packet Coverage" (AG-correspondence face) /
 "Coverage-Limited Authority".
 
 ---
 
 ## NEXT-B: WLP Envelope Graph Noncollapse
 
-**Forcing case:** WLP parent graphs actually entering the Lean proof
-surface — and nothing else. Do not wake it for fun; it bites.
+**Motivating runtime application:** WLP parent graphs entering the Lean proof
+surface. The formal work remains bounded by its graph-level theorem delta and
+overlap audit, not by WLP adoption.
 
 Content is already fully named in V7-GAP-SPEC §6 (envelope-not-semantics;
 the five non-collapse lines + the one narrow positive:
@@ -116,11 +126,11 @@ instantiates over envelope vocabularies before minting anything new.
 
 ## NEXT-C: Compiled Authority Checker Boundary
 
-**Forcing case:** AG actually wanting to CONSUME checker output (not Lean
-wanting to emit it). Until then, v6's boundary holds: Lean-native finite
-decision procedure, kernel evaluation only, no interface authority.
+**Motivating runtime application:** AG consuming checker output. Independently,
+v6's boundary holds: Lean-native finite decision procedure, kernel evaluation
+only, no interface authority.
 
-When forced, the boundary spec (not necessarily pure Lean): what Lean
+The boundary spec (not necessarily pure Lean) should state what Lean
 proves (`compiled_checker_sound`, `compiled_checker_refusal_correct`,
 `bridge_instance_validity_is_checker_derived`), what runtime may execute,
 what runtime must NOT claim (`signature_does_not_imply_semantic_validity`
@@ -137,7 +147,7 @@ answer (name it for what it is, non-claims for the rest) is the template.
 
 ## NEXT-D: Artifact-Authority Model / Semantics (paper-only lane)
 
-**Forcing case:** wanting the formal note — "what model are these indexed
+**Formal target:** a note answering "what model are these indexed
 sequents sound for?" Theorem shapes:
 `soundness_against_artifact_authority_model`,
 `noncollapse_valid_in_model`,
@@ -152,37 +162,32 @@ time, not Lean-lane time.
 
 ## Likely order (sketch, not schedule)
 
-If the forcing cases arrive in their natural order:
+If the runtime applications arrive in their natural order, release work may
+line up as follows:
 
     v8 (when kernel-AG brings a packet)  = NEXT-A Portfolio Custody
     later, only if WLP enters the surface = NEXT-B Envelope Graph Noncollapse
     later, only if AG consumes checker output = NEXT-C Checker Boundary
     eventually, paper lane = NEXT-D Model / formal note
 
-But the register is not a queue: an entry opens when ITS forcing case
-arrives, not when its predecessor closes. If AG consumption arrives
-before packets do, NEXT-C jumps the line. No entry opens on Lean theorem
-momentum alone — with one standing exception: **the operator may open an
-entry by decision** (the v6 precedent: opened by ratified gap spec, not
-by disaster; not every next step needs a forcing event, it needs an
-admission). What the register actually forbids is opening one by DRIFT —
-sliding into a surface mid-session without a spec. If future-you wants
-NEXT-A before AG brings a packet, the price is the same as ever: gap spec
-first, overlap discipline cited, synthetic specimen labeled synthetic.
+But the register is not a queue. Formal work on any entry may proceed when its
+statement is coherent. A *promoted/versioned surface* still opens only by an
+operator decision with a gap spec, overlap discipline, custody receipt, and
+honestly labeled specimens. What the register forbids is promotion by DRIFT —
+sliding into a compatibility surface mid-session without a spec.
 
 ## Provenance
 
 Operator + ChatGPT roadmap noodling, 2026-07-02 (same day v7 spine
 completed); Fable overlap-audited against the resident corpus before
 filing — in particular NEXT-A's overlap discipline against v7 slice 4's
-three-face split, and NEXT-B's derived-relations kinship. ChatGPT's
-instinct to defer implementation was kept; its instinct to defer NAMING
-was overruled by the operator (name early, ratify lazily — this file is
-the naming).
+three-face split, and NEXT-B's derived-relations kinship. **Policy update
+2026-07-14:** the old consumer-gated deferral is superseded. Name and
+formalize early; ratify and release deliberately.
 
 ## What none of these are
 
 Not Bridge Foundry. Not the Constellation Custody Protocol. Not JSON
-schemas. Not "all tools exchange artifacts now." Runtime gets a version
-only when forced by a real AG/NQ/Porter integration need, never by Lean
-theorem momentum.
+schemas. Not "all tools exchange artifacts now." Runtime releases require
+their own conformance evidence and operator admission; Lean may specify the
+governing laws first.

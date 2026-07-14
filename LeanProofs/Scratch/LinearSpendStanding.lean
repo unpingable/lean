@@ -12,7 +12,8 @@
   fork-modes-contraction-asymmetry (papers; "info copyable, authority linear").
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  Promotion requires the forcing case: linearaccountant wires a budget-decrementing spend.
+  A linearaccountant budget-decrementing spend is a runtime correspondence
+  target. Promotion is a separate custody decision and does not wait on it.
 
   Self-contained (no imports). Check: cd ~/git/lean && lake env lean <abs path>.
 -/

@@ -25,8 +25,10 @@
 
   Unwired: not imported by `LeanProofs.lean` or any default target. Build
   directly: `lake build LeanProofs.Admissibility.ActorTraceSpecimen`.
-  Promotion to ANNEX gates on a runtime artifact citing named theorems
-  under the pinning discipline (the DeferredWitness precedent).
+  Formalization does not wait on runtime adoption. Under the current custody
+  fence, ANNEX promotion still requires a runtime artifact to identify the
+  named theorems it adopts. Citation names the intended contract; conformance
+  still requires a mapping plus runtime evidence or a refinement proof.
 -/
 
 /-!

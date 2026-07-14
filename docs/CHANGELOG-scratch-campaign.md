@@ -285,7 +285,9 @@ stays gated), never a kernel.
     (`promote_discipline`), is no universal stamp, and
     `promote_breaks_closure` names exactly where the would-be screen lives
     (an evidence-jurisdiction condition of the closure genus). Screen
-    unminted — forcing-consumer gated per the candidate's own fences;
+    unminted — then recorded as forcing-consumer gated per the candidate's
+    own fences (policy superseded 2026-07-14; consumers no longer gate
+    formalization);
     un-owned delta = `cannot_testify` as an output verdict type. Recorded
     in the Zoo as the first KNOWN ESCAPED ANIMAL.
 - **Run 2 — silence-as-denial** (signal-authority, Lean previously

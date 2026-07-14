@@ -7,18 +7,15 @@
   `LeanProofs.lean`. Not part of any 1.0 surface. No paper anchor.
   No promotion path. NOT used as discharge for any doctrine.
 
-  Custody: scratch-checked (this file). One of three already-named
-  candidates in `~/git/papers/working/bridge-obligation-lattice.md`:
+  Custody: scratch-checked (this file). Drawn from three already-named
+  shapes in `~/git/papers/working/bridge-obligation-lattice.md`:
     NoSilentDelegation   ({non-amplification, type-fidelity})
     NoSilentException    ({temporal-bounding, anti-precedent})
     NoSilentProjection   ({non-amplification, type-fidelity, freshness})
-  This file lifts the Projection family to Lean. The other two remain
-  named-not-built per the doctrine file's "no candidate without a
-  forcing case" rule. This one is built because Projection's obligation
-  set strictly extends Lift's, giving the cleanest first negative
-  theorem against an existing artifact (Lift carries only
-  `type-fidelity`; Projection demands two atoms — `freshness` and
-  `non-amplification` — that Lift does not).
+  This file checks Projection against Lift and, using the same resident
+  obligation table, checks both directions between Deform and Exception.
+  The theorem-only additions avoid parallel modules while allowing the
+  formal obligation distinctions to lead later code work.
 
   Filing category (per the doctrine map's Lean filing discipline):
     Fenced scratch proof-of-encodability. Pays its rent by forcing the
@@ -223,6 +220,59 @@ theorem lift_does_not_silently_discharge_projection :
   exact lift_cannot_discharge_projection_freshness
     (h freshness projection_demands_freshness)
 
+/-! ## Paired Exception / Deform separation
+
+    The two families share `temporal-bounding`, but neither discharges the
+    other. Deform lacks Exception's `anti-precedent`; Exception lacks Deform's
+    `type-fidelity`. Keeping both directions prevents a shared atom from being
+    mistaken for family equivalence. -/
+
+theorem deform_does_not_carry_anti_precedent :
+    ¬ carries Deform «anti-precedent» := by
+  intro h
+  exact Bool.noConfusion h
+
+theorem deform_cannot_discharge_exception_anti_precedent :
+    ¬ CanDischarge Deform Exception «anti-precedent» := by
+  intro h
+  cases h with
+  | direct hc => exact deform_does_not_carry_anti_precedent hc
+  | viaConversion _ conversion => cases conversion
+
+theorem exception_demands_anti_precedent :
+    demands Exception «anti-precedent» := by
+  rfl
+
+/-- A Deform bridge cannot silently stand in for an Exception bridge. -/
+theorem deform_does_not_silently_discharge_exception :
+    ¬ FamilyDischarges Deform Exception := by
+  intro h
+  exact deform_cannot_discharge_exception_anti_precedent
+    (h «anti-precedent» exception_demands_anti_precedent)
+
+theorem exception_does_not_carry_type_fidelity :
+    ¬ carries Exception «type-fidelity» := by
+  intro h
+  exact Bool.noConfusion h
+
+theorem exception_cannot_discharge_deform_type_fidelity :
+    ¬ CanDischarge Exception Deform «type-fidelity» := by
+  intro h
+  cases h with
+  | direct hc => exact exception_does_not_carry_type_fidelity hc
+  | viaConversion _ conversion => cases conversion
+
+theorem deform_demands_type_fidelity :
+    demands Deform «type-fidelity» := by
+  rfl
+
+/-- An Exception bridge cannot silently stand in for a Deform bridge. -/
+theorem exception_does_not_silently_discharge_deform :
+    ¬ FamilyDischarges Exception Deform := by
+  intro h
+  exact exception_cannot_discharge_deform_type_fidelity
+    (h «type-fidelity» deform_demands_type_fidelity)
+
 /-! ## Falsifiability witness — strip-and-restore log
 
     The kernel's load-bearing claim is that the keystone negative
@@ -286,10 +336,9 @@ theorem lift_does_not_silently_discharge_projection :
     each declared rule to the specific `(source, target)` pair it was
     justified for.
 
-    The same two-rule pattern would refute `NoSilentDelegation` (would
-    need conversions covering `{non-amplification, type-fidelity}`) and
-    `NoSilentException` (would need conversions covering
-    `{temporal-bounding, anti-precedent}`) once those candidates are
-    built. -/
+    The same constructor-sensitivity applies to the paired Exception / Deform
+    results above: a declared Deform→Exception conversion to
+    `anti-precedent`, or an Exception→Deform conversion to `type-fidelity`,
+    would refute the corresponding theorem. -/
 
 end Admissibility.Scratch.NoSilentProjection

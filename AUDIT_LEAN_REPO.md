@@ -290,7 +290,7 @@ Potential semantic weakness to keep fenced:
 | P27 skeleton wiring | DO_NOT_TOUCH | Intentionally unwired and has `True` placeholders. |
 | 16 fenced Admissibility files | DO_NOT_TOUCH | Current status is unratified/scratch; direct builds only, no root import. |
 | Scratch receiver/quorum/temporal work | SCRATCH_EXPANSION | Useful exploration, but compile-is-contact only. |
-| Witnessed frontier work | PROMOTION_CANDIDATE | Real future theorem work, but requires forcing case and operator review. |
+| Witnessed frontier work | PROMOTION_CANDIDATE | Real future theorem work; formalization may proceed on theorem merit, while promotion still requires operator review. |
 | Root-level sketch files | DO_NOT_TOUCH | Outside canonical module tree and lack current custody/wiring story. |
 | Experiment tree wiring | DO_NOT_TOUCH | Non-canonical provenance/integration witness by design. |
 

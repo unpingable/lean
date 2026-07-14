@@ -7,7 +7,8 @@
   BoundaryTransit.lean; only the temporal epoch-fencing is genuinely uncovered.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  Promotion requires the forcing case: agent_gov / Wicket adds epoch-bounded authority.
+  agent_gov / Wicket epoch-bounded authority is a runtime correspondence target.
+  Promotion is a separate custody decision and does not wait on that code.
 
   FORBIDDEN INFERENCE: "I held authority once, therefore I still hold it now."
   A stale holder may retain a perfectly fresh, signed artifact and replay it long after its

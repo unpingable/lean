@@ -1,7 +1,7 @@
 /-
   Custody-Class: UNRATIFIED-CANDIDATE
 
-  Minimal RRP profile-checker semantics (2026-07-09). Forcing consumer: the RRP
+  Minimal RRP profile-checker semantics (2026-07-09). Runtime correspondence target: the RRP
   admissibility-gate prototype (~/git/rrp — receipt-indexed gate, Python
   reference checker + Rust parity). This file models the checker's SEMANTIC
   kernel only — the doctrine its corpus cases test — not the implementation:
@@ -25,8 +25,10 @@
 
   Unwired: not imported by `LeanProofs.lean` or any default target. Build
   directly: `lake build LeanProofs.Admissibility.RRPProfileSpecimen`.
-  Promotion to ANNEX gates on the RRP repo actually citing named theorems
-  under its pinning discipline (the DeferredWitness precedent).
+  Formalization does not wait on RRP. Under the current custody fence, ANNEX
+  promotion still requires RRP to identify the named theorems it adopts.
+  Citation identifies the intended contract; conformance still requires an
+  explicit mapping plus runtime evidence or a refinement proof.
 -/
 
 /-!

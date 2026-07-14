@@ -14,7 +14,7 @@ deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 **every hop carries the exact static `AuthorizedStep` witness it consumes** —
 no global `Admissible` judgment, no free composition — plus a minimal
 profile-checker semantics specimen for the RRP admissibility-gate prototype
-(its first named external forcing consumer).
+(its first named runtime correspondence target).
 
 - **`DynamicTrace` (ANNEX)** — `DynamicStep` wraps the static execution
   bridge (target state is `executeAuthorizedStep`, never guessed);
@@ -39,7 +39,9 @@ profile-checker semantics specimen for the RRP admissibility-gate prototype
   stale / revoked evidence refuses; `profile_id` cannot substitute for
   `profile_digest`; a requester's self-witnessed receipt does not testify.
   Proves nothing about the RRP Python/Rust checkers — it pins the semantics
-  they are supposed to have. Promotion gates on RRP citing named theorems.
+  they are supposed to have. RRP citation identifies the intended contract and
+  may enter custody review; it does not prove RRP conformance by itself and is
+  not a prerequisite for formalization.
 - **`DeferredWitness` reflection lemma proved (ANNEX)** —
   `firstViolation_none_iff_lawful`: the executable violation classifier
   agrees exactly with `LawfulCompletion` (previously documented as left to
@@ -110,9 +112,10 @@ modules remain outside the 1.0 compatibility claim; the ten specimen-law
 candidates (RRP profile, Standing, WLP, bridge, actor trace, boundary
 pressure, scoped certification, spendability, custody freshness, temporal
 basis) are candidate formal laws for their runtime seams — **they do not
-testify for RRP or any runtime's compliance until cited by runtime
-artifacts and admitted under the same promotion discipline as
-DeferredWitness** (theorem exists → runtime cites/adopts → status changes);
+testify for RRP or any runtime's compliance by themselves**. Citation/adoption
+identifies the intended contract; conformance requires an explicit mapping plus
+runtime evidence or a refinement proof. Lean custody is independently reviewed;
+none of these reviews is permission to begin formalization.
 no JSON/digest/transport/PKI is modeled anywhere in them.
 Inventory: `docs/V9-RELEASE-LEDGER.md`.
 

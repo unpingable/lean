@@ -61,8 +61,9 @@
     *schema* below plus the three concrete instantiations, not a unified
     theorem statement.
   - Not minted as canonical. Scratch annex per the working/tooltheory
-    convention; promotion requires either a downstream consumer or the
-    basis-layer companion landing first.
+    convention. Promotion requires a separate custody review; completing
+    the basis-layer companion would strengthen that review, while a
+    downstream consumer is not a prerequisite.
 -/
 
 import LeanProofs.Admissibility.SafetyBridge
@@ -720,9 +721,10 @@ end StaleNecessity
   both honest, and is exactly what "small kernels, not a unified
   calculus" looks like in practice.
 
-  Promotion gate. This module is not root-wired. Promote when either
-  (a) a downstream consumer needs the generic shape, or (b) a second
-  slice instantiates `MergeRestoresBasis` (forcing the basis layer
-  beyond a Slice-1 specimen). Until then, candidate. -/
+  Promotion gate. This module is not root-wired. Promotion requires an
+  explicit custody decision based on the generic shape's formal merit and
+  overlap. A second slice instantiating `MergeRestoresBasis` would provide
+  useful anti-vacuity evidence, but no downstream consumer is required.
+  Until then, candidate. -/
 
 end Admissibility.ParameterizedMerge

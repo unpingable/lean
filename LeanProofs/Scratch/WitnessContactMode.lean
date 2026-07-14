@@ -13,8 +13,9 @@
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
   The `Testifies` wiring below is a CANDIDATE schema; NQ supplies the real relation and the
-  worldly specimens. Promotion to annex stays gated on NQ specimens (the atlas gate); this
-  file only proves the shape is non-vacuous and the mode-blind collapse launders it.
+  worldly specimens. Those specimens can establish runtime correspondence; ANNEX
+  promotion is a separate custody decision. This file proves the shape is non-vacuous
+  and that the mode-blind collapse launders it.
 
   Null/absence contact is NOT owned here — `missing ACK ≠ NACK / null ≠ verdict` lives in
   FailureCustodyDisposition.lean. This file owns only the POSITIVE mode distinctions.

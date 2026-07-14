@@ -73,12 +73,13 @@ Target refusals, in the series' house shape (escalating negative results):
   n+1 (custody-ladder noncollapse at the profile level).
 - Conditional admissions from the resident escaped-animal ledger:
   - the **relation-promotion screen** (C3 audit 2026-07-02: closure-genus,
-    forcing-consumer gated) — v7 profiles citing relations between
-    artifacts would BE the forcing consumer; admit the screen only if a v7
-    slice actually needs it.
+    still requiring a precise vocabulary-generic statement and overlap
+    review) — v7 profiles supply a local instantiation, not permission to
+    formalize the general screen.
   - a **multi-currency coverage screen** (below-universal-threshold
     portfolios acting as de facto universal currency) — name-early
-    candidate; false-positive/false-negative analysis before any build.
+    candidate; false-positive/false-negative analysis before promotion or
+    generalization.
 
 ## 5. Lane split (binding)
 
@@ -89,8 +90,9 @@ Target refusals, in the series' house shape (escalating negative results):
   gates.
 
 Lean does not define the operational constellation; it proves the profile
-discipline AG may later consume. (Precedent stop sign: admission-gate P0 =
-AG-Claude's build, no Lean.)
+discipline AG may later consume. Lean may establish those laws before AG
+implements them; runtime correspondence remains AG-owned and separately
+evidenced.
 
 ## 6. WLP: envelope, not semantics
 
@@ -150,13 +152,14 @@ not citizenship.
 slice is the refusal skeleton (§10), not the profile schema — court first,
 map later; (3) the wire/schema half is explicitly AG's from day one.
 
-**Recommended forcing case:** the first real cross-tool consumption event —
+**Runtime correspondence target:** the first real cross-tool consumption event —
 e.g. AG wanting to treat an NQ probe receipt as admission evidence, or
-Claimdocs scores appearing in an AG decision basis. If no such event is
-live, v7 can still open on known failure-class grounds:
+Claimdocs scores appearing in an AG decision basis. Such an event validates
+the model but is not permission to formalize it; v7 can open on known
+failure-class grounds:
 parse-implies-authority is already named and caged as the minimal forbidden
-specimen. Profile FIELD design should still wait for a real artifact in
-hand.
+specimen. Wire-schema fields remain runtime-owned; an explicitly abstract
+formal profile may precede the real artifact.
 
 ## 10. Smallest first slice (when ratified)
 

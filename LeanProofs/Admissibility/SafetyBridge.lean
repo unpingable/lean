@@ -28,8 +28,8 @@
   Actor-inertness decision (safety-axis kernel base). The base safety
   bridge is actor-inert: `bridge : σ → α → Prop`. Actor-relative
   evidence remains in `Allowed`; safety preservation is over the
-  transition effect. Actor-sensitive bridges are deferred until a
-  concrete bridge candidate requires actor identity. If actor identity
+  transition effect. An actor-sensitive extension requires an
+  actor-indexed transition semantics or a separating formal model. If actor identity
   affects transition semantics, the transition relation itself must
   become actor-indexed (`run : σ → ρ → α → σ`) rather than smuggling
   actor-dependence through `bridge`. Reason: in the current safety-axis
@@ -71,8 +71,8 @@
 
   v0 simplifications (deferred, not hidden):
     * `value` codomain is `Nat`. Generalizing to `[Preorder V]` with a
-      partial-order defended observable is mechanical; deferred until a
-      forcing case needs a non-total order.
+      partial-order defended observable is an independent formal
+      generalization, simply outside v0's chosen scope.
     * Preservation is a *floor* (`value st ≤ value (run st x)`:
       non-decrease). Strengthening to conservation (`=`) is a doctrinal
       choice a stricter env may make; the floor is the weaker, safer
@@ -84,7 +84,8 @@
       results over the concrete miniature.
     * `bridge` is actor-inert by design (see Actor-inertness decision
       above). The actor-sensitive variant is `ActorSensitiveBridgeEnv`,
-      named-but-not-implemented; awaits a forcing-case candidate.
+      named-but-not-implemented; it needs a separating formal model, not
+      a downstream consumer.
 
   Governor-neutral. Lean core only; no Mathlib, no sibling imports.
 -/
@@ -412,11 +413,11 @@ theorem maximal_bridge_implies_complete
      the verdict-layer specimens in `SafetyTrajectory.lean`.
 
   3. Bridge-candidate ratification. Choosing among
-     witness-encapsulation / non-contamination / receipt-persistence is
-     deferred to doctrine. The forcing case is the first concrete
-     consumer whose safety claim cannot be stated under one candidate
-     but can under another. `nonContamination` (witness module) is the
-     specimen, not the ratified choice.
+     witness-encapsulation / non-contamination / receipt-persistence
+     requires a formal discriminator or countermodel, or an explicit
+     doctrinal choice. Runtime adoption is correspondence evidence, not
+     permission to formalize a candidate. `nonContamination` (witness
+     module) is the specimen, not the ratified choice.
 
   4. `ActorSensitiveBridgeEnv` — named deferred extension.
 
@@ -427,8 +428,8 @@ theorem maximal_bridge_implies_complete
            ∀ st a x, actorBridge st a x → bridge st x
 
      Not implemented. The current base is actor-inert; an actor-
-     sensitive refinement waits on a bridge candidate that genuinely
-     needs actor identity. If actor identity actually changes the
+     sensitive refinement needs a formal model in which actor identity
+     is genuinely load-bearing. If actor identity actually changes the
      transition semantics, the right move is `run : σ → ρ → α → σ`,
      not a smuggled `ρ` in the predicate.
 -/

@@ -3,13 +3,12 @@
 
   A ToolTheory object — uncertainty custody ⊥ risk custody. Math home: (papers)
   working/tooltheory/uncertainty-custody.md (filled in the two countermodels that note
-  left as `sorry`). The note's own gate: "do not build unless a consumer forces it OR it
-  crystallizes <30 lines naturally" — the math was already done in-note and is tiny, so
-  this satisfies the second clause as scratch incubation. Not promotion.
+  left as `sorry`). The note's old consumer-or-30-lines gate is superseded: the
+  coherent noncollapse result is enough to justify scratch incubation. Not promotion.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  Promotion to Admissibility/ still needs a live consumer (paper draft / Wicket fixture /
-  Governor doctrine) per the note's anti-goals.
+  Paper, Wicket, and Governor artifacts may supply correspondence evidence.
+  Promotion to Admissibility/ is a separate custody decision and does not wait on them.
 
   KEEPERS:
     "Reported uncertainty does not witness uncertainty-governed action."

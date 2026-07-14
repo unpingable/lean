@@ -195,7 +195,10 @@ evidence, or evaluator versions.
 
 An actual boundary consumes the coherent receipt when making or comparing a
 consequential decision. A dashboard that merely displays the fields is not a
-consumer. No implementation campaign opens until such a forcing case exists.
+consumer. A formal application may proceed once the semantics and anti-vacuity
+requirements below are fixed. Runtime implementation may follow that contract;
+a runtime-conformance claim requires correspondence evidence, while promotion
+requires a separate operator decision.
 
 ## 6. Anti-vacuity requirements
 
@@ -235,8 +238,8 @@ versioned environment/liveness model exists.
 
 ## 8. Campaign and release boundary
 
-If a forcing consumer arrives and a later campaign is separately ratified, one
-possible home is an initially unrooted
+If a later formal campaign is separately ratified, one possible home is an
+initially unrooted
 `ViewSemantics/Applications/AdjudicationProvenance.lean` adapter, not a new
 foundation. It must not be imported by the current candidate roots or counted
 toward the v10 release argument. The generic theorem alone earns no version or

@@ -63,10 +63,11 @@
     - LeanProofs/Scratch/RetroactiveBridgePrice.lean       (the temporal sibling: stale-at-consumption)
     - LeanProofs/Scratch/TemporalTrajectory.lean           (hopwise-fresh ⇏ trajectory-fresh)
 
-  ## Observer axis — untouched (still a warrant, not a slice)
+  ## Observer axis — outside this slice
 
-  No consumer-relative force here. The observer axis stays parked (see
-  TemporalTrajectory's header warrant).
+  No consumer-relative force is defined here. See
+  `ConsumerRelativeFreshness`, `ConsumerRelativeForce`,
+  `AbsoluteForceStampBridgePrice`, and `NoUniversalRoot`.
 -/
 
 namespace Admissibility.Scratch.AnticipatoryBridgePrice

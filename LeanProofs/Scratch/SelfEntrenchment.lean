@@ -62,8 +62,9 @@
   Headline package: `transition_cannot_mint_its_own_reversal_authority`.
 
   SCOPE FENCE: concrete fixtures only -- the general n-of-k threshold claim
-  ("downstream members capture iff they reach blocking power") stays prose
-  until a consumer asks for it. `Captured` is possibilistic (CAN force
+  ("downstream members capture iff they reach blocking power") is outside
+  this slice and may be generalized once its n-of-k blocking semantics and
+  theorem statement are fixed. `Captured` is possibilistic (CAN force
   refusal), says nothing about whether refusal occurs. No (O,C,T,L)
   optionality model, no optionality calculus, no claim about restoration
   cost/time (those route to P26 window machinery and RecoveryMargin, per

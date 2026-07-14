@@ -19,11 +19,15 @@ the right fence for both directions:
 
 That file also defines NQ's **pinning discipline**: `[1.0]` modules may pin
 testimony shape; `[annex]` modules may be *cited as evidence* but never pin a
-wire field; scratch "must not steer NQ implementation unless they graduate."
+wire field; it currently says scratch "must not steer NQ implementation unless
+they graduate." Under this repo's 2026-07-14 development-order policy, that
+last sentence is read narrowly as a no-pinning/no-testimony rule, not a gate on
+formalization-leading candidate contracts. Scratch and candidates cannot claim
+runtime conformance before separate custody and correspondence review.
 This repo's custody classes map onto it as: PUBLIC-SHIPPED → `[1.0]`,
 ANNEX → `[annex]`, and both UNRATIFIED-CANDIDATE and SCRATCH fall under the
-"do not steer" rule (candidates are *named*, which scratch is not, but
-neither may pin). NQ's tier tags predate this repo's UNRATIFIED-CANDIDATE
+non-pinning rule (candidates are *named*, which scratch is not, but neither
+may testify). NQ's tier tags predate this repo's UNRATIFIED-CANDIDATE
 class; one known drift is recorded below.
 
 ## Doctrine rows

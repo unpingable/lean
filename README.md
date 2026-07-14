@@ -4,6 +4,24 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
+## Development order: formalization leads code
+
+A downstream consumer, running implementation, or "forcing case" is never a
+prerequisite to state, prove, or incubate a coherent formal result. Lean may
+establish the contract first and subsequent code should implement or cite that
+contract. Opening or incubating formal work requires an intrinsically coherent,
+non-tautological statement, honest hypotheses, bounded scope, and overlap
+review. Proof completion and axiom disclosure govern what the work ultimately
+discharges and whether it is eligible for promotion.
+
+Custody and conformance remain separate. Compiling a theorem does not promote
+it into a public compatibility surface, and a theorem does not prove that a
+runtime conforms to it. Promotion requires an explicit custody/release
+decision and may consider runtime evidence under the applicable custody rules.
+Citation or adoption identifies the intended contract; a runtime-conformance
+claim still requires an explicit mapping plus runtime evidence or a refinement
+proof. None of those decisions grants permission to begin the formalization.
+
 ## Current release: 9.0.0 — Dynamic Traces and Profile Semantics
 
 *Dynamic execution over static witnesses, and checker-facing profile semantics.*
@@ -12,7 +30,7 @@ Small, auditable Lean 4 formalizations for reasoning about evidence, standing, f
 every hop carries the exact static `AuthorizedStep` witness it consumes — no
 global `Admissible` judgment, no free composition — plus a minimal
 profile-checker semantics specimen for the RRP admissibility-gate prototype,
-the stack's first named external forcing consumer.
+the stack's first named runtime correspondence target.
 
 What v9 lands:
 
@@ -58,8 +76,10 @@ What v9 lands:
   under a declared witness contract; a fresh packet does not refresh old
   testimony; silence never clears; late success is not timely success;
   no GlobalTrustedTime).
-  None of these testify for any runtime's compliance until cited by
-  runtime artifacts and promoted under the DeferredWitness precedent.
+  None of these testify for any runtime's compliance by themselves. Citation
+  or adoption identifies the intended contract; conformance still requires an
+  explicit mapping plus runtime evidence or a refinement proof. Lean custody
+  and promotion remain a separate review.
 - **`Admissibility/DeferredWitness.lean` (ANNEX)** — the classifier
   reflection lemma `firstViolation_none_iff_lawful` is now proved (was
   documented as left to the host environment).

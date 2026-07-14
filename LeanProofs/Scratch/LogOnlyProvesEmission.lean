@@ -66,8 +66,8 @@
     * Not a generalized LogTruth calculus. Six LogClaim constructors,
       one positive case, five `False` cases. Adding constructors or
       generalizing the inductive would be cathedral expansion; refuse.
-    * No promotion path implied. If a downstream consumer earns
-      promotion, this file points back at the candidate working note.
+    * No promotion path implied. Any future promotion requires separate
+      custody review; a downstream consumer is not an admission gate.
 -/
 
 namespace Admissibility

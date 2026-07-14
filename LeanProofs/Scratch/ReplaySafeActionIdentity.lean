@@ -8,9 +8,9 @@
   ResidueCustodyNoncollapse.lean.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean;
-  not in the build graph or CI. May clarify shape; may not testify. Promotion requires the
-  forcing case: any consumer that retries side-effecting actions (Nightshift proposal
-  execution, agent_gov action issuance).
+  not in the build graph or CI. May clarify shape; may not testify. Nightshift proposal
+  execution and agent_gov action issuance are runtime correspondence targets for the
+  retry law. Promotion is a separate custody decision and does not wait on them.
 
   FORBIDDEN INFERENCES:
     "Timeout means no effect occurred."

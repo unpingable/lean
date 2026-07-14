@@ -297,9 +297,9 @@ end Axis2Budget
     gating per-axis." See `axis-2-cross-axis-keystone.md` title
     implications.
 
-  Not root-wired. Promotion gate: a downstream consumer (paper draft)
-  needs the schema for exposition, or a second Axis 2 specimen
-  (Stale / Conflict) is instantiated to confirm the BudgetMerge
-  wiring isn't a one-off. -/
+  Not root-wired. Promotion requires a separate custody decision. A second
+  Axis 2 specimen (Stale / Conflict) instantiating the schema would provide
+  anti-vacuity evidence that the BudgetMerge wiring is not a one-off; a
+  downstream paper or consumer is not a prerequisite. -/
 
 end Admissibility.BoundaryWitness

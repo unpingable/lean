@@ -3,7 +3,7 @@
 
   Admissibility — Axis 2, Slice 0: shared-budget merge.
 
-  Forcing-case specimen for the composition axis. The keeper result is
+  Counterexample specimen for the composition axis. The keeper result is
   a shared-cap counterexample: two locally bridged trajectories, each
   spending within a viable margin, merge into a globally non-viable
   state where joint usage exceeds the shared cap.
@@ -211,7 +211,7 @@ theorem locally_bridged_fragments_can_merge_to_value_loss :
   the joint usage at the reconciliation boundary. The local
   merge-admissibility predicate is exactly that missing piece: the combined
   usage is within the shared cap. Defined per-slice on purpose; the generic
-  abstraction is deferred until the bad-case family forces its shape (see
+  abstraction is deferred until the bad-case family reveals its shape (see
   `working/axis-2-composition-boundary.md`).
 
   `@[reducible]` so the restoration theorem can discharge it definitionally. -/
@@ -268,7 +268,7 @@ theorem budget_merge_viable_iff_admissible (a b : BudgetState) :
     under shared resource composition. The missing evidence is
     joint-margin admissibility at the reconciliation boundary.
 
-  Deferred (per the Axis 2 forcing-case discipline; do not promote
+  Deferred (per the Axis 2 counterexample-family / anti-vacuity discipline; do not promote
   `MergeAdmissible` until Case C lands):
     * `MergeAdmissible` positive object — the bad-case family must
       include a stale-evidence specimen before the positive object

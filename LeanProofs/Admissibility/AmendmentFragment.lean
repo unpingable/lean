@@ -40,7 +40,7 @@
   What this file is NOT.
 
     Not a maximal calculus. Codex's outside-aperture audit, the
-    forcing-case register, and amendment-cut.md all agree the
+    historically named forcing-case register, and amendment-cut.md all agree the
     surrounding shapes are missing — and the operator has
     explicitly chosen not to open them in this closeout. The
     fragment does NOT cover:
