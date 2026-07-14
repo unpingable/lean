@@ -51,7 +51,9 @@
     - No multi-witness aggregation.
     - No compositional shape for `ObservedNonRefinement`.
     - Not certified safe for any specific platform.
-    - Not imported into `LeanProofs.lean`; build only via
+    - Not imported into `LeanProofs.lean`; imported by the unminted
+      `ViewSemantics` candidate target for vocabulary reuse and still
+      buildable directly via
       `lake build LeanProofs.Admissibility.ConsequencePartition`.
 
   Custody:
@@ -59,6 +61,8 @@
     A definition matching this signature elsewhere does not
     inherit canonical anchoring from this file.
 -/
+
+import LeanProofs.ViewSemantics.Core
 
 namespace Admissibility.ConsequencePartition
 
@@ -81,27 +85,29 @@ abbrev Control (S : Type u) := S → Visibility
 abbrev Policy (S : Type u) := Control S
 
 /-- A control `c` factors through a projection `p` iff `c` cannot
-    distinguish states collapsed by `p`. -/
+    distinguish states collapsed by `p`.  Compatibility alias for the
+    shared view-semantics determination predicate. -/
 def FactorsThrough {S : Type u} {L : Type v}
     (p : S → L) (c : Control S) : Prop :=
-  ∀ s t : S, p s = p t → c s = c t
+  LeanProofs.ViewSemantics.Determines p c
 
 /-- Projection `q` refines projection `p` iff `q` is at least as
-    fine as `p` (every distinction `p` makes, `q` also makes). -/
+    fine as `p` (every distinction `p` makes, `q` also makes).
+    Compatibility alias for the shared view-semantics refinement relation. -/
 def Refines {S : Type u} {L : Type v} {M : Type w}
     (q : S → M) (p : S → L) : Prop :=
-  ∀ s t : S, q s = q t → p s = p t
+  LeanProofs.ViewSemantics.Refines q p
 
 theorem refines_refl {S : Type u} {L : Type v}
     (p : S → L) : Refines p p :=
-  fun _ _ h => h
+  LeanProofs.ViewSemantics.refines_refl p
 
 theorem refines_trans
     {S : Type u} {L : Type v} {M : Type w} {N : Type x}
     {r : S → N} {q : S → M} {p : S → L}
     (hrq : Refines r q) (hqp : Refines q p) :
     Refines r p :=
-  fun s t hr => hqp s t (hrq s t hr)
+  LeanProofs.ViewSemantics.refines_trans hrq hqp
 
 /-- A policy is expressible through a projection iff it factors
     through that projection. -/

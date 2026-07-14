@@ -23,6 +23,11 @@ jobs:
       # "CI green" must mean "release claim green" — build both explicitly.
       - name: Full aggregate + Mathlib islands
         run: lake build LeanProofs AdmissibilityMathlibIslands
+      # Candidate v10 campaign. Explicit contact is not release or promotion.
+      - name: View Semantics candidate
+        run: lake build ViewSemantics ViewSemanticsApplications ViewSemanticsMathlibIslands
+      - name: View Semantics footprint gate
+        run: bash scripts/check-viewsemantics-footprint.sh
       # Gate 5: re-attest the Witnessed Derivation Calculus axiom footprint in the
       # canonical build context. Fail-closed; protects the now-public Mathlib-free
       # surface against axiom drift / sorry. Runs after lean-action so elan/lake are
@@ -40,3 +45,4 @@ jobs:
           bash scripts/check-custody-classes.sh
           bash scripts/check-mathlib-pin.sh
           bash scripts/check-mathlib-free-targets.sh
+          bash scripts/check-viewsemantics-isolation.sh

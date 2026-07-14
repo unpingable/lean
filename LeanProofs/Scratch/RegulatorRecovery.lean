@@ -2,6 +2,8 @@
   Regulator Recovery — scratch specimen. Successor to
   `BindingSourceAblation.lean` (rung three of the intervention ladder).
 
+  Custody-Class: SCRATCH
+
   Status: scratch, 2026-07-10 (revised same day per blind review:
   `RestoresSuppression` strengthened to same-option tracking; rung-two
   property renamed — a fatal consequence is not a binding). Not

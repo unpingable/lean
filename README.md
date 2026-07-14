@@ -516,13 +516,20 @@ The audit's first recorded finding, kept here as the chronological anchor for th
 Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 
 ```bash
-lake build                  # stable Admissibility surface + Witnessed calculus + regression-wired modules
+lake build                  # v9 surfaces plus unminted ViewSemantics candidate/application targets
 lake build Witnessed        # the Witnessed Derivation Calculus in isolation (Mathlib-free)
 bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
+bash scripts/check-viewsemantics-footprint.sh # candidate theorem/checker footprints (fail-closed)
+bash scripts/check-viewsemantics-isolation.sh # cheap roots Mathlib-free; P25 isolated
 bash scripts/audit-axioms.sh                # repo axiom classifier (signature/interface-law/specimen; 0 forbidden)
 bash scripts/audit-native-decide.sh         # native_decide confined to finite-witness modules
 bash scripts/check-mathlib-pin.sh           # lakefile mathlib rev == manifest SHA (no silent drift)
 ```
+
+The ViewSemantics campaign remains `UNRATIFIED-CANDIDATE`: default build
+coverage is compile contact, not a v10 tag, DOI, or custody promotion. Its P25
+adapter remains outside the default cheap graph and builds explicitly with
+`lake build ViewSemanticsMathlibIslands`.
 
 **Custody posture: the repository is not axiom-free; it is *axiom-classified*. WDC promoted
 receipts remain footprint-attested.** See [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for

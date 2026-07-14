@@ -9,7 +9,8 @@ abstract carriers, uninterpreted stores, abstract time, and fenced scenario spec
 job is to make the **trust bill impossible to hide**: every hole is classified, and the
 forbidden class — claim-bodied placeholders — is held at zero.
 
-Four independent gates, run from `scripts/`:
+The independent gates are run from `scripts/`. The sections below explain the
+receipt-specific gates and the repository-wide classifiers.
 
 ## 1. WDC receipt footprint — `check-witnessed-footprint.sh`
 
@@ -51,6 +52,25 @@ admissibility kernels, and structural public receipts. Not a purity cult; a clas
 full 40-char SHA, never a moving ref like `master`). Moving mathlib is explicit: `lake
 update` → inspect → repin → rerun gates. Never silent.
 
+## 5. ViewSemantics candidate footprint — `check-viewsemantics-footprint.sh`
+
+Builds the three candidate targets and re-attests the exact footprints of the
+shared semantics, bounded-projection theorems, proof-carrying checker,
+composition specimens, reuse adapters, resident bridge-ontology adjudication,
+authorized-trace adapter, non-XOR application, and P25 island. Structural and
+checker receipts must be axiom-free; the BindingSource quotient adapter is
+exactly `[propext, Quot.sound]`; the P25 bridge is exactly
+`[propext, Classical.choice, Quot.sound]`; and trace separation receipts must
+match the v9 authorization walls they reuse.
+
+## 6. ViewSemantics import/custody isolation — `check-viewsemantics-isolation.sh`
+
+Walks the static import closures of the cheap shared and application targets.
+Both must remain Mathlib-free, P25 must remain in its explicit island, the
+shared root may not absorb application or Scratch modules, and the only raw
+Scratch dependencies admitted to the application root are explicitly
+allowlisted and retain `Custody-Class: SCRATCH`.
+
 ## What "clean" means, by surface
 
 - **WDC promoted receipts** — axiom-free or tiny known footprints (propext / Quot.sound), build-graph-enforced Mathlib-free.
@@ -65,7 +85,11 @@ update` → inspect → repin → rerun gates. Never silent.
 ```
 lake build
 scripts/check-witnessed-footprint.sh
+scripts/check-viewsemantics-footprint.sh
+scripts/check-viewsemantics-isolation.sh
 scripts/audit-axioms.sh
 scripts/audit-native-decide.sh
+scripts/check-custody-classes.sh
 scripts/check-mathlib-pin.sh
+scripts/check-mathlib-free-targets.sh
 ```

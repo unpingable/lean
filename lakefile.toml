@@ -4,7 +4,7 @@ keywords = ["math"]
 # Default builds stay on Mathlib-free custody/release surfaces. The root
 # `LeanProofs` aggregate remains buildable explicitly; it intentionally imports
 # paper/specimen modules that can reach Mathlib.
-defaultTargets = ["AdmissibilityCustodyAnnex", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory"]
+defaultTargets = ["AdmissibilityCustodyAnnex", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory", "ViewSemantics", "ViewSemanticsApplications"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -152,3 +152,31 @@ name = "ProofTheory"
 srcDir = "."
 roots = ["LeanProofs.ProofTheory"]
 globs = ["LeanProofs.ProofTheory", "LeanProofs.ProofTheory.+"]
+
+# Candidate v10 campaign target. Coverage keeps the in-progress semantics in
+# contact with CI; it does not declare a release or promote a custody class.
+[[lean_lib]]
+name = "ViewSemantics"
+srcDir = "."
+roots = [
+  "LeanProofs.ViewSemantics",
+]
+
+# Explicit Mathlib-reaching adapter island for the candidate campaign.  P25's
+# matrix semantics stays out of the cheap/default `ViewSemantics` import graph.
+[[lean_lib]]
+name = "ViewSemanticsMathlibIslands"
+srcDir = "."
+roots = [
+  "LeanProofs.ViewSemantics.P25Adapter",
+]
+
+# Separate non-XOR application/annex root.  The imported source specimen keeps
+# SCRATCH custody; explicit build ownership and reachability are not promotion.
+[[lean_lib]]
+name = "ViewSemanticsApplications"
+srcDir = "."
+roots = [
+  "LeanProofs.ViewSemantics.Applications",
+  "LeanProofs.Scratch.BindingSourceAblation",
+]

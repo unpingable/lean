@@ -9,17 +9,21 @@
     ~/git/papers/working/compartmentalization-distinguishability-axis.md
 
   THE STATEMENT: a view determines a quantity iff view-equal worlds agree on
-  it. Composing views intersects indistinguishability classes
+  it.  The weak negation of determination only witnesses an ambiguity
+  somewhere; the stronger fiberwise property used by the new headlines
+  supplies a quantity-changing alternative in every observation fiber.
+  Composing views intersects indistinguishability classes
   (`composite_indistinguishable_iff`), so composition can only SPLIT
   equivalence classes -- which is exactly why release safety is not
   compositional:
 
-    * two-panel countermodel (XOR of two bits): neither panel determines the
-      secret; their composite does
-      (`individual_nonrevelation_not_closed_under_composition`);
-    * three-panel countermodel (XOR of three bits): NO single panel and NO
-      pair of panels determines the secret; the full dashboard does
-      (`pairwise_nonrevelation_not_closed_under_composition`).
+    * two-panel countermodel (XOR of two bits): every fiber of either panel
+      preserves an alternative secret value, while their composite determines
+      the secret (`fiberwise_nonrevelation_not_closed_under_composition`);
+    * three-panel countermodel (XOR of three bits): every fiber of every
+      single panel and every pair preserves an alternative secret value,
+      while the full dashboard determines the secret
+      (`fiberwise_pairwise_nonrevelation_not_closed_under_composition`).
 
   The second theorem is the sharper refusal: set-level disclosure review
   cannot be replaced by per-crossing checks NOR by pairwise checks. The join
@@ -36,19 +40,26 @@
   lattice, no noninterference claims, no governance composition.
 -/
 
+import LeanProofs.ViewSemantics.CompositionCounterexample
+
 namespace MosaicRelease
 
 /-- A view determines a quantity iff any two worlds the view cannot tell
-apart agree on that quantity. (`¬ Determines view secret` is the
-possibilistic reading of "this release does not reveal the secret.") -/
-def Determines {W O S : Type} (view : W → O) (f : W → S) : Prop :=
-  ∀ w₁ w₂ : W, view w₁ = view w₂ → f w₁ = f w₂
+apart agree on that quantity.  Compatibility alias for the shared semantic
+core; new code should use `LeanProofs.ViewSemantics.Determines` directly. -/
+abbrev Determines {W O S : Type} (view : W → O) (f : W → S) : Prop :=
+  LeanProofs.ViewSemantics.Determines view f
+
+/-- Strong non-revelation: every observation fiber contains a world with a
+different protected value.  Compatibility alias for the shared core. -/
+abbrev FiberwiseAmbiguous {W O S : Type} (view : W → O) (f : W → S) : Prop :=
+  LeanProofs.ViewSemantics.FiberwiseAmbiguous view f
 
 /-! ## Composition refines indistinguishability -/
 
-/-- Pairing two views: the composed observation is both observations. -/
-def compose {W O₁ O₂ : Type} (v₁ : W → O₁) (v₂ : W → O₂) : W → O₁ × O₂ :=
-  fun w => (v₁ w, v₂ w)
+/-- Pairing two views: compatibility alias for the shared semantic core. -/
+abbrev compose {W O₁ O₂ : Type} (v₁ : W → O₁) (v₂ : W → O₂) : W → O₁ × O₂ :=
+  LeanProofs.ViewSemantics.compose v₁ v₂
 
 /-- The composite view identifies two worlds iff every component view does:
 composition INTERSECTS indistinguishability classes. Composing views can only
@@ -69,31 +80,44 @@ theorem composite_indistinguishable_iff {W O₁ O₂ : Type}
 /-- Two independent bits; the protected fact is their XOR. -/
 abbrev World2 := Bool × Bool
 
-def secret2 (w : World2) : Bool := w.1.xor w.2
+abbrev secret2 : World2 → Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.secret2
 
-def leftPanel (w : World2) : Bool := w.1
-def rightPanel (w : World2) : Bool := w.2
-def bothPanels : World2 → Bool × Bool := compose leftPanel rightPanel
+abbrev leftPanel : World2 → Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.leftView
+abbrev rightPanel : World2 → Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.rightView
+abbrev bothPanels : World2 → Bool × Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.joinedView
 
 theorem left_panel_does_not_determine_secret :
-    ¬ Determines leftPanel secret2 := by
-  intro h
-  exact absurd (h (false, false) (false, true) rfl) (by decide)
+    ¬ Determines leftPanel secret2 :=
+  LeanProofs.ViewSemantics.fiberwiseAmbiguous_notFullyDetermining
+    ⟨(false, false)⟩
+    LeanProofs.ViewSemantics.CompositionCounterexample.left_fiberwise_ambiguous
 
 theorem right_panel_does_not_determine_secret :
-    ¬ Determines rightPanel secret2 := by
-  intro h
-  exact absurd (h (false, false) (true, false) rfl) (by decide)
+    ¬ Determines rightPanel secret2 :=
+  LeanProofs.ViewSemantics.fiberwiseAmbiguous_notFullyDetermining
+    ⟨(false, false)⟩
+    LeanProofs.ViewSemantics.CompositionCounterexample.right_fiberwise_ambiguous
 
-theorem both_panels_determine_secret : Determines bothPanels secret2 := by
-  intro w₁ w₂ h
-  have h₁ : w₁.1 = w₂.1 := congrArg Prod.fst h
-  have h₂ : w₁.2 = w₂.2 := congrArg Prod.snd h
-  show w₁.1.xor w₁.2 = w₂.1.xor w₂.2
-  rw [h₁, h₂]
+/-- Every left-panel observation leaves both XOR values possible. -/
+theorem left_panel_fiberwise_ambiguous :
+    FiberwiseAmbiguous leftPanel secret2 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.left_fiberwise_ambiguous
 
-/-- HEADLINE (two panels): each release is individually non-revealing; the
-composed release determines the protected fact. -/
+/-- Every right-panel observation leaves both XOR values possible. -/
+theorem right_panel_fiberwise_ambiguous :
+    FiberwiseAmbiguous rightPanel secret2 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.right_fiberwise_ambiguous
+
+theorem both_panels_determine_secret : Determines bothPanels secret2 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.joined_determines_secret
+
+/-- LEGACY WEAK RECEIPT (two panels): neither component globally determines
+the protected fact, while the composite does.  This theorem does not by
+itself state ambiguity in every fiber; use the strong headline below. -/
 theorem individual_nonrevelation_not_closed_under_composition :
     ¬ Determines leftPanel secret2 ∧
     ¬ Determines rightPanel secret2 ∧
@@ -102,48 +126,86 @@ theorem individual_nonrevelation_not_closed_under_composition :
    right_panel_does_not_determine_secret,
    both_panels_determine_secret⟩
 
+/-- STRONG HEADLINE (two panels): every fiber of each component preserves a
+different secret value, but the composed view determines the secret. -/
+theorem fiberwise_nonrevelation_not_closed_under_composition :
+    FiberwiseAmbiguous leftPanel secret2 ∧
+    FiberwiseAmbiguous rightPanel secret2 ∧
+    Determines bothPanels secret2 :=
+  ⟨left_panel_fiberwise_ambiguous,
+   right_panel_fiberwise_ambiguous,
+   both_panels_determine_secret⟩
+
 /-! ## Three-panel countermodel: even PAIRWISE safety is not compositional -/
 
 /-- Three independent bits; the protected fact is their three-way XOR. -/
 abbrev World3 := Bool × Bool × Bool
 
-def secret3 (w : World3) : Bool := w.1.xor (w.2.1.xor w.2.2)
+abbrev secret3 : World3 → Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.secret3
 
-def panelA (w : World3) : Bool := w.1
-def panelB (w : World3) : Bool := w.2.1
-def panelC (w : World3) : Bool := w.2.2
+abbrev panelA : World3 → Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewA
+abbrev panelB : World3 → Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewB
+abbrev panelC : World3 → Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewC
 
-def pairAB : World3 → Bool × Bool := compose panelA panelB
-def pairAC : World3 → Bool × Bool := compose panelA panelC
-def pairBC : World3 → Bool × Bool := compose panelB panelC
-def fullDashboard : World3 → Bool × (Bool × Bool) :=
-  compose panelA (compose panelB panelC)
+abbrev pairAB : World3 → Bool × Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewAB
+abbrev pairAC : World3 → Bool × Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewAC
+abbrev pairBC : World3 → Bool × Bool :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewBC
+abbrev fullDashboard : World3 → Bool × (Bool × Bool) :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.fullView
 
 theorem pairAB_does_not_determine_secret : ¬ Determines pairAB secret3 := by
-  intro h
-  exact absurd (h (false, false, false) (false, false, true) rfl) (by decide)
+  exact LeanProofs.ViewSemantics.fiberwiseAmbiguous_notFullyDetermining
+    ⟨(false, false, false)⟩
+    LeanProofs.ViewSemantics.CompositionCounterexample.viewAB_fiberwise_ambiguous
 
 theorem pairAC_does_not_determine_secret : ¬ Determines pairAC secret3 := by
-  intro h
-  exact absurd (h (false, false, false) (false, true, false) rfl) (by decide)
+  exact LeanProofs.ViewSemantics.fiberwiseAmbiguous_notFullyDetermining
+    ⟨(false, false, false)⟩
+    LeanProofs.ViewSemantics.CompositionCounterexample.viewAC_fiberwise_ambiguous
 
 theorem pairBC_does_not_determine_secret : ¬ Determines pairBC secret3 := by
-  intro h
-  exact absurd (h (false, false, false) (true, false, false) rfl) (by decide)
+  exact LeanProofs.ViewSemantics.fiberwiseAmbiguous_notFullyDetermining
+    ⟨(false, false, false)⟩
+    LeanProofs.ViewSemantics.CompositionCounterexample.viewBC_fiberwise_ambiguous
 
-theorem full_dashboard_determines_secret : Determines fullDashboard secret3 := by
-  intro w₁ w₂ h
-  have hA : w₁.1 = w₂.1 := congrArg Prod.fst h
-  have hB : w₁.2.1 = w₂.2.1 :=
-    congrArg (fun p : Bool × Bool × Bool => p.2.1) h
-  have hC : w₁.2.2 = w₂.2.2 :=
-    congrArg (fun p : Bool × Bool × Bool => p.2.2) h
-  show w₁.1.xor (w₁.2.1.xor w₁.2.2) = w₂.1.xor (w₂.2.1.xor w₂.2.2)
-  rw [hA, hB, hC]
+theorem panelA_fiberwise_ambiguous :
+    FiberwiseAmbiguous panelA secret3 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewA_fiberwise_ambiguous
 
-/-- HEADLINE (three panels): every PAIR of releases is non-revealing; the full
-composition determines the protected fact. Pairwise disclosure review is
-therefore insufficient -- set-level composition needs its own check. -/
+theorem panelB_fiberwise_ambiguous :
+    FiberwiseAmbiguous panelB secret3 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewB_fiberwise_ambiguous
+
+theorem panelC_fiberwise_ambiguous :
+    FiberwiseAmbiguous panelC secret3 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewC_fiberwise_ambiguous
+
+theorem pairAB_fiberwise_ambiguous :
+    FiberwiseAmbiguous pairAB secret3 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewAB_fiberwise_ambiguous
+
+theorem pairAC_fiberwise_ambiguous :
+    FiberwiseAmbiguous pairAC secret3 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewAC_fiberwise_ambiguous
+
+theorem pairBC_fiberwise_ambiguous :
+    FiberwiseAmbiguous pairBC secret3 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.viewBC_fiberwise_ambiguous
+
+theorem full_dashboard_determines_secret : Determines fullDashboard secret3 :=
+  LeanProofs.ViewSemantics.CompositionCounterexample.full_determines_secret
+
+/-- LEGACY WEAK RECEIPT (three panels): no pair globally determines the
+protected fact, while the full composition does.  This theorem mentions only
+the three pairs and does not state ambiguity in every fiber; use the strong
+six-premise headline below. -/
 theorem pairwise_nonrevelation_not_closed_under_composition :
     ¬ Determines pairAB secret3 ∧
     ¬ Determines pairAC secret3 ∧
@@ -152,6 +214,26 @@ theorem pairwise_nonrevelation_not_closed_under_composition :
   ⟨pairAB_does_not_determine_secret,
    pairAC_does_not_determine_secret,
    pairBC_does_not_determine_secret,
+   full_dashboard_determines_secret⟩
+
+/-- STRONG HEADLINE (three panels): every single-panel fiber and every
+pair-panel fiber retains a different secret value, yet the full dashboard
+determines it.  This states the six premises that the prose claim requires;
+the legacy weak headline above mentions only the three pair views. -/
+theorem fiberwise_pairwise_nonrevelation_not_closed_under_composition :
+    FiberwiseAmbiguous panelA secret3 ∧
+    FiberwiseAmbiguous panelB secret3 ∧
+    FiberwiseAmbiguous panelC secret3 ∧
+    FiberwiseAmbiguous pairAB secret3 ∧
+    FiberwiseAmbiguous pairAC secret3 ∧
+    FiberwiseAmbiguous pairBC secret3 ∧
+    Determines fullDashboard secret3 :=
+  ⟨panelA_fiberwise_ambiguous,
+   panelB_fiberwise_ambiguous,
+   panelC_fiberwise_ambiguous,
+   pairAB_fiberwise_ambiguous,
+   pairAC_fiberwise_ambiguous,
+   pairBC_fiberwise_ambiguous,
    full_dashboard_determines_secret⟩
 
 end MosaicRelease

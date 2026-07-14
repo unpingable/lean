@@ -1,15 +1,18 @@
 /-
   Binding-Source Ablation — scratch specimen.
 
+  Custody-Class: SCRATCH
+
   Status: scratch, 2026-07-10 (two same-day blind-review rounds: first
   corrected the compliance-source framing; second renamed the rung-two
   property — a fatal consequence is not a binding). Not
-  imported by `LeanProofs.lean`. Not part of any release surface. Not in
-  the lakefile globs (compile-is-contact, checked per-file). No promotion
-  path until register adjudication.
+  imported by `LeanProofs.lean`. Not part of any public release surface.
+  Explicitly build-rooted as the unchanged source dependency of the
+  `ViewSemanticsApplications` candidate adapter; build contact is not custody
+  promotion. No public promotion path until register adjudication.
 
-  Custody class: scratch-checked (direct `lake env lean` clean as of
-  2026-07-10). Custody header per the 2026-06-06 Option C policy.
+  Custody class: SCRATCH (direct compile plus candidate application build
+  contact). Custody header per the 2026-06-06 Option C policy.
 
   Provenance: three-way dialogue (operator / ChatGPT / Claude), 2026-07-09
   – 2026-07-10, on whether neural networks are an incomplete substrate for
