@@ -24,7 +24,9 @@
   The rename is doctrine, not refactor: "calculus" overclaimed the
   shape of the artifact. Migration is mechanical — namespace
   `Admissibility.CalculusOne` is now `Admissibility.Kernels`, and the
-  marker theorem `calculus_one_compiles` is now `kernels_compile`.)
+  marker theorem `calculus_one_compiles` is now `kernels_compile`. The
+  deprecated compatibility shim shipped through v9 and was removed in
+  v10.0.0.)
 
   ## Slogan
 

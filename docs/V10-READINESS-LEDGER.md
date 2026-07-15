@@ -1,7 +1,8 @@
 # v10 Readiness Ledger — View Semantics and Bounded Projection
 
 **Status: GATE-COMPLETE / OPERATOR-ACCEPTED, RELEASE-PREPPED (2026-07-14).
-Tag, GitHub release, and DOI remain operator actions.**
+The annotated tag and GitHub release remain operator actions; release creation
+drives the Zenodo deposit and version-DOI mint.**
 
 This is the as-built evidence ledger requested by
 [`V10-GAP-SPEC.md`](V10-GAP-SPEC.md). It is not a tag, GitHub release, DOI,
@@ -137,6 +138,20 @@ proof content) landed in the same release-prep window. None of these enter
 the candidate release claim; they are listed so this inventory's
 "complete" is honest about its cut point.
 
+### Final pre-mint hygiene
+
+The release-prep follow-up removes the deprecated
+`LeanProofs.Admissibility.CalculusOne` compatibility shim and its root import.
+The shim was scheduled for removal in 2.0 but retained through v9; v10 completes
+that breaking cleanup and leaves the eight-module `AdmissibilityKernels` public
+surface unchanged. The custody registry is now 66 files: 9 PUBLIC-SHIPPED,
+29 ANNEX, 26 UNRATIFIED-CANDIDATE, 2 SCRATCH, and 0 DEPRECATED.
+
+The template workflow that could automatically create a GitHub release on a
+`lean-toolchain` change is also removed. Toolchain updates can no longer create
+an unintended Zenodo deposit; the annotated project tag and GitHub release stay
+explicit operator actions. Neither cleanup changes the v10 theorem claim.
+
 ## Trust and executable audit
 
 `scripts/check-viewsemantics-footprint.sh` currently attests:
@@ -177,9 +192,16 @@ scripts/check-mathlib-free-targets.sh
 git diff --check
 ```
 
+After the final compatibility/workflow cleanup, the targeted root and
+ViewSemantics builds, custody-count gate, Mathlib-free closure gate,
+ViewSemantics isolation gate, metadata parsers, workflow parsers, and
+`git diff --check` were rerun and passed.
+
 ## Minting boundary
 
 Gate C earns a release argument; it does not perform the external release.
-Before minting, the operator must accept this ledger and separately authorize
-the v10 version/CFF/changelog/README transition, tag, GitHub release, and DOI.
-None of those mutations has been made in this campaign working tree.
+The operator accepted this ledger and authorized the v10
+version/CFF/changelog/README transition, which is present in this tree. The
+annotated `v10.0.0` tag and GitHub release remain operator actions; GitHub
+release creation drives the Zenodo deposit and version-DOI mint. This ledger
+performs neither action and changes no custody class.

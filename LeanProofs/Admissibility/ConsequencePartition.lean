@@ -52,8 +52,8 @@
     - No multi-witness aggregation.
     - No compositional shape for `ObservedNonRefinement`.
     - Not certified safe for any specific platform.
-    - Not imported into `LeanProofs.lean`; imported by the unminted
-      `ViewSemantics` candidate target for vocabulary reuse and still
+    - Not imported into `LeanProofs.lean`; imported by the
+      `ViewSemantics` candidate-custody target for vocabulary reuse and still
       buildable directly via
       `lake build LeanProofs.Admissibility.ConsequencePartition`.
 

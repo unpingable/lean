@@ -13,19 +13,19 @@
 
 **Public surface (1.0).** Eight modules aggregated via `AdmissibilityKernels.lean`: an authority kernel (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`) plus three sibling kernels (`Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). These names form the 1.0 compatibility claim and carry the `Custody-Class: PUBLIC-SHIPPED` marker.
 
-**Five custody classes.** The 67 `.lean` files in this directory are partitioned by per-file `Custody-Class:` markers (regression-checked by `scripts/check-custody-classes.sh`):
+**Five custody classes.** The 66 `.lean` files in this directory are partitioned by per-file `Custody-Class:` markers (regression-checked by `scripts/check-custody-classes.sh`):
 
 - **PUBLIC-SHIPPED (9).** The 8 surface modules above plus the `AdmissibilityKernels.lean` aggregator. Signatures are the 1.0 compatibility claim.
 - **ANNEX (29).** Compiled supporting material outside the 1.0 promise. The Mathlib-free subset is covered by `AdmissibilityCustodyAnnex`; the Finset-backed cross-boundary/composition subset is covered by `AdmissibilityMathlibIslands` and the explicit `LeanProofs` root aggregate. Splits into **18 kernel-adjacent** modules (recovery, cross-boundary, numerical/artifact-kind axes, deferred-witness lapse, dynamic traces, experimental composition) and **11 consumer specimens** (SafetyBridge / AuthorizedNotSafe families, `ConsolidationDenial`, `RefusalPropagation`, `Examples`). Annex builds green and is sorry-free; future versions may rename, refactor, or absorb without notice.
-- **UNRATIFIED-CANDIDATE (26).** Named-but-not-promoted material pending theorem-shape, overlap, scope, or custody review. Most are unwired and build when invoked directly; `ReachabilityClosure` and `WitnessedReachability` are root-imported for regression coverage only, not public-surface promotion.
+- **UNRATIFIED-CANDIDATE (26).** Named-but-not-promoted material pending theorem-shape, overlap, scope, or custody review. `ReachabilityClosure` and `WitnessedReachability` are root-imported, while `ConsequencePartition` is default-covered through `ViewSemantics`; all three contacts are regression coverage only, not public-surface promotion. The other 23 candidates build only when invoked directly.
 - **SCRATCH (2).** Fenced exploratory material (`BoundaryWitness`, `GuardCollapse`). Not imported by `LeanProofs.lean`.
-- **DEPRECATED (1).** `CalculusOne` shim; scheduled for 2.0 removal.
+- **DEPRECATED (0).** The `CalculusOne` shim shipped through v9 and was removed in v10.0.0.
 
 Adding `Custody-Class: PUBLIC-SHIPPED` to a file does not promote it. Promotion is the import in the aggregator; the marker is the receipt. Class vocabulary is ratified in the papers repo at `working/custody-classes.md`.
 
 **What this is for.** Infrastructure substrate, not a paper. No paper anchor; the kernel modules are intended to be cited by downstream operational work (a future Governor / `agent_gov` implementation, and the consumer tools listed below).
 
-(Migration note: the aggregator was previously `CalculusOne.lean` under an "Admissibility Calculus 1.0" framing. The rename is doctrine — "calculus" overclaimed the shape of the artifact, and the word is now reserved for the unified object this stack refuses to be. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`. Build, public claims, and theorem content are unchanged.)
+(Migration note: the aggregator was previously `CalculusOne.lean` under an "Admissibility Calculus 1.0" framing. The rename is doctrine — "calculus" overclaimed the shape of the artifact, and the word is now reserved for the unified object this stack refuses to be. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`. The deprecated import shim shipped through v9 and was removed in v10.0.0; the eight-module kernel surface itself is unchanged.)
 
 Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
 
@@ -34,6 +34,18 @@ Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespa
 > **Composition discipline:** The modules form a typed federation of kernels, not a unified calculus. Cross-kernel implications require an explicit bridge theorem stating which kernel-owned refusal condition is being preserved and how. The companion working note `no-unifier-without-laundering.md` (in the papers repo) records the discipline in full.
 
 ## Changelog
+
+### 10.0.0 — deprecated compatibility shim retired (2026-07-14)
+
+- Removed `LeanProofs/Admissibility/CalculusOne.lean` and the deprecated
+  `Admissibility.CalculusOne.calculus_one_compiles` marker. The removal was
+  originally scheduled for 2.0 but deferred through v9; v10 completes the
+  breaking cleanup. Downstream code must import
+  `LeanProofs.Admissibility.AdmissibilityKernels` and use
+  `Admissibility.Kernels.kernels_compile`.
+- Reconciled the live registry and build map after removal: 66 files total;
+  38 imported by the root aggregate, three more covered only by default targets
+  (two ANNEX plus `ConsequencePartition`), and 25 files covered by neither.
 
 ### Unreleased — formalization-leading specimen laws L3–L7 (2026-07-09, second pass)
 
@@ -209,10 +221,10 @@ Exercise the public surface in concrete settings. The SafetyBridge / AuthorizedS
 
 ### Fenced and candidate material — UNRATIFIED-CANDIDATE / SCRATCH
 
-Status declared per file via `Custody-Class:` markers; reasons typically captured in companion working notes in the papers repo. Most candidates are not imported by `LeanProofs.lean` and build only when invoked directly (`lake build LeanProofs.Admissibility.<name>`). Two reachability candidates are root-imported for regression coverage only, not public-surface promotion.
+Status declared per file via `Custody-Class:` markers; reasons typically captured in companion working notes in the papers repo. Most candidates are not imported by `LeanProofs.lean` and build only when invoked directly (`lake build LeanProofs.Admissibility.<name>`). Two reachability candidates are root-imported and `ConsequencePartition` is default-covered through `ViewSemantics`; all three contacts are regression coverage only, not public-surface promotion.
 
 - **Root-imported candidates (2)** — `ReachabilityClosure`, `WitnessedReachability`; opened as the reachability/refusal consolidation slice.
-- **Remaining fenced candidates (24)** — named candidates pending theorem-shape, overlap, scope, or custody adjudication: `AmendmentFragment`, `BudgetMerge`, `CarryLaws`, `Conductance`, `ConsequencePartition`, `ContractionHinge`, `Mandamus`, `MergeConflict`, `NoFreeLift`, `NoFreeStandingBridge`, `ParameterizedMerge`, `ProjectionLaundering`, `RetroactiveLegitimation`, `StaleEvidenceMerge`, plus the ten formalization-leading specimen laws of the 2026-07-09 pass: `RRPProfileSpecimen`, `StandingProfileSpecimen`, `WLPAppendAckSpecimen`, `BridgeCustomsSpecimen`, `ActorTraceSpecimen`, `LocalBoundaryPressure`, `ScopedCertification`, `SpendabilitySpecimen`, `CustodyFreshnessSpecimen`, `TemporalBasis`. All ten share the same fence: candidate formal laws written before their runtimes. Runtime citation/adoption may be required promotion evidence and identifies the intended contract; it does not prove conformance without an explicit mapping plus runtime evidence or a refinement proof.
+- **Remaining fenced candidates (23)** — named candidates pending theorem-shape, overlap, scope, or custody adjudication: `AmendmentFragment`, `BudgetMerge`, `CarryLaws`, `Conductance`, `ContractionHinge`, `Mandamus`, `MergeConflict`, `NoFreeLift`, `NoFreeStandingBridge`, `ParameterizedMerge`, `ProjectionLaundering`, `RetroactiveLegitimation`, `StaleEvidenceMerge`, plus the ten formalization-leading specimen laws of the 2026-07-09 pass: `RRPProfileSpecimen`, `StandingProfileSpecimen`, `WLPAppendAckSpecimen`, `BridgeCustomsSpecimen`, `ActorTraceSpecimen`, `LocalBoundaryPressure`, `ScopedCertification`, `SpendabilitySpecimen`, `CustodyFreshnessSpecimen`, `TemporalBasis`. All ten share the same fence: candidate formal laws written before their runtimes. Runtime citation/adoption may be required promotion evidence and identifies the intended contract; it does not prove conformance without an explicit mapping plus runtime evidence or a refinement proof.
 - **SCRATCH (2)** — fenced exploratory material: `BoundaryWitness` (expository schema, not kernel content), `GuardCollapse` (interferometer probe).
 
 ### Refusal kernel taxonomy
@@ -487,7 +499,7 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-Forty of the 57 `LeanProofs/Admissibility/*.lean` files are wired into `LeanProofs.lean` root: 9 PUBLIC-SHIPPED (8 surface modules + the `AdmissibilityKernels` aggregator), 28 ANNEX (17 kernel-adjacent + 11 consumer specimens), 1 DEPRECATED (`CalculusOne` shim), and 2 root-imported UNRATIFIED-CANDIDATE modules (`ReachabilityClosure`, `WitnessedReachability`). One additional ANNEX module, `FreshnessDynamicTrace`, is covered by the default `AdmissibilityCustodyAnnex` target rather than the root aggregate. The remaining 16 files (14 UNRATIFIED-CANDIDATE + 2 SCRATCH) are fenced — they build only when invoked directly. The root `LeanProofs` aggregate is now an explicit heavy build because it reaches Mathlib through paper specimens and the cross-boundary family. The default `lake build` covers the Mathlib-free custody target plus the other Mathlib-free release targets; `scripts/check-custody-classes.sh` validates custody markers, and `scripts/check-mathlib-free-targets.sh` validates the cheap import surface.
+Thirty-eight of the 66 `LeanProofs/Admissibility/*.lean` files are wired into `LeanProofs.lean` root: 9 PUBLIC-SHIPPED (8 surface modules + the `AdmissibilityKernels` aggregator), 27 ANNEX (16 kernel-adjacent + 11 consumer specimens), and 2 root-imported UNRATIFIED-CANDIDATE modules (`ReachabilityClosure`, `WitnessedReachability`). Two additional ANNEX modules, `DynamicTrace` and `FreshnessDynamicTrace`, are covered by the default `AdmissibilityCustodyAnnex` target, and `ConsequencePartition` is covered through the default `ViewSemantics` target. The remaining 25 files (23 UNRATIFIED-CANDIDATE + 2 SCRATCH) are covered by neither the root nor any default target and build only when invoked directly. The root `LeanProofs` aggregate is now an explicit heavy build because it reaches Mathlib through paper specimens and the cross-boundary family. The default `lake build` covers the Mathlib-free custody target plus the other Mathlib-free release targets; `scripts/check-custody-classes.sh` validates custody markers, and `scripts/check-mathlib-free-targets.sh` validates the cheap import surface.
 
 Public-surface gate: `lake build LeanProofs.Admissibility.AdmissibilityKernels` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
 
@@ -497,7 +509,10 @@ No Lean proof holes as of 2026-05-28 in the wired stack. The word `sorry` does a
 
 `CrossBoundaryCascade.lean` had a pre-existing parse error in its `Step.exposeFromExposure` constructor (multi-line `insert (...)` inside a structure update not parsing without parentheses). The fix was two characters; the file is now wired and covered by the explicit `AdmissibilityMathlibIslands` / `LeanProofs` heavy builds. This bug had been silent since 2026-05-21 because the module was unwired.
 
-The modules below are the 40 wired into `LeanProofs.lean` root. Individual builds are listed for narrow regression checks. The 16 fenced files (UNRATIFIED-CANDIDATE / SCRATCH, enumerated in §Annex above) build individually but are not part of the cheap default custody target.
+Representative narrow regression commands follow; the target-level gates above
+are the authoritative coverage checks. The 25 files covered by neither the root
+nor a default target (23 UNRATIFIED-CANDIDATE + 2 SCRATCH, enumerated in §Annex
+above) remain directly buildable.
 
 ```bash
 # Target-level gates

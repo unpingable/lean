@@ -34,7 +34,6 @@ import LeanProofs.Admissibility.CrossBoundaryFailureMint
 import LeanProofs.Admissibility.CrossBoundaryCascade
 import LeanProofs.Admissibility.RefusalPropagation
 import LeanProofs.Admissibility.AdmissibilityKernels
-import LeanProofs.Admissibility.CalculusOne  -- deprecated 1.1 shim; removed in 2.0
 import LeanProofs.Admissibility.Examples
 import LeanProofs.Admissibility.AuthorizedNotSafe
 import LeanProofs.Admissibility.AuthorizedNotSafeWitness

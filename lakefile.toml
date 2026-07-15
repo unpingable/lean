@@ -153,8 +153,8 @@ srcDir = "."
 roots = ["LeanProofs.ProofTheory"]
 globs = ["LeanProofs.ProofTheory", "LeanProofs.ProofTheory.+"]
 
-# Candidate v10 campaign target. Coverage keeps the in-progress semantics in
-# contact with CI; it does not declare a release or promote a custody class.
+# v10 ViewSemantics target. Default build coverage keeps the release surface in
+# contact with CI; it does not promote its UNRATIFIED-CANDIDATE custody class.
 [[lean_lib]]
 name = "ViewSemantics"
 srcDir = "."
@@ -162,7 +162,7 @@ roots = [
   "LeanProofs.ViewSemantics",
 ]
 
-# Explicit Mathlib-reaching adapter island for the candidate campaign.  P25's
+# Explicit Mathlib-reaching adapter island for v10. P25's
 # matrix semantics stays out of the cheap/default `ViewSemantics` import graph.
 [[lean_lib]]
 name = "ViewSemanticsMathlibIslands"

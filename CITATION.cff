@@ -19,11 +19,14 @@ license: Apache-2.0
 keywords:
   - admissibility
   - authority
+  - bounded-projection
+  - disclosure-bounds
   - formal-methods
   - Lean
   - Lean4
   - mathlib
   - state-transition
+  - view-semantics
   - boundary-kernels
   - admissibility-kernels
   - delta-t-framework
@@ -51,9 +54,11 @@ abstract: >-
   through canonical determination; and a scoped negative adjudication
   that disclosure is an orthogonal view-context axis, not a sixth
   bridge-family atom (the literal all-five bridge premise is
-  uninhabited in the resident ontology). All ViewSemantics roots are
-  Mathlib-free and UNRATIFIED-CANDIDATE; the release archives the
-  tree and promotes no custody. No information-flow, noninterference,
+  uninhabited in the resident ontology). The shared and application
+  ViewSemantics roots are Mathlib-free; the P25 adapter is confined to
+  an explicit Mathlib island. Modules under LeanProofs/ViewSemantics
+  are UNRATIFIED-CANDIDATE; the release archives the tree and promotes
+  no custody. No information-flow, noninterference,
   probabilistic-leakage, side-channel, runtime-compliance, or
   transition-authority claim is included. Full release history is in
   CHANGELOG.md; per-release inventories in docs/V*-RELEASE-LEDGER.md
@@ -79,8 +84,9 @@ abstract: >-
   modules build green and are available but are not part of the 1.0
   compatibility claim. (Renamed 2026-06-03 from "Admissibility
   Calculus 1.0"; a deprecated compatibility shim at
-  LeanProofs/Admissibility/CalculusOne.lean preserves the old import
-  path through the 1.x line — see the aggregator's migration note.)
+  LeanProofs/Admissibility/CalculusOne.lean preserved the old import
+  path through v9 and was removed in v10.0.0 — see the aggregator's
+  migration note.)
   (v1.2 adds fenced UNRATIFIED-CANDIDATE No-Free-Lift candidate annexes
   and an experimental attestation-boundary wiring tree under
   experiments/, shipped with module names de-placarded and a

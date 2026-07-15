@@ -72,6 +72,16 @@ bounded release claim, gate receipts, and verification envelope are in
   `[propext, Classical.choice, Quot.sound]`; the trace adapter adds no new
   foundation) and `scripts/check-viewsemantics-isolation.sh` (shared and
   application closures Mathlib-free and custody-separated).
+- **Compatibility cleanup** — removes the deprecated
+  `LeanProofs.Admissibility.CalculusOne` import shim and its
+  `calculus_one_compiles` marker. The shim was scheduled for removal in 2.0 but
+  retained through v9; v10 completes that breaking cleanup. Downstream imports
+  must use `LeanProofs.Admissibility.AdmissibilityKernels` and
+  `Admissibility.Kernels.kernels_compile`.
+- **Release control** — removes the workflow that automatically created a
+  GitHub release when `lean-toolchain` changed. Toolchain updates can no longer
+  mint an unintended GitHub release or Zenodo deposit; releases remain explicit
+  operator actions.
 - **Also landed since v9, outside the release claim** — SCRATCH incubations
   (`RegulatorRecovery`, `SelfEntrenchment`, `BorrowedSpend`,
   `SignalAuthority`, `StatusConversionBinding`, `CommitmentStanding`,

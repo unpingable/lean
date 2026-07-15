@@ -70,6 +70,11 @@ What v10 lands:
   explicitly; CI builds all three and runs the fail-closed footprint gate
   (36 receipts axiom-free; application/island footprints pinned exactly) and
   the isolation gate (closures Mathlib-free and custody-separated).
+- **Compatibility and release control** — v10 removes the deprecated
+  `LeanProofs.Admissibility.CalculusOne` import shim after retaining it through
+  v9; downstream code must use `AdmissibilityKernels`. The template workflow
+  that could create a GitHub release on a `lean-toolchain` change is also
+  removed, keeping release and DOI minting under explicit operator control.
 
 v10 makes **no** information-flow, noninterference, probabilistic-leakage,
 side-channel, runtime-compliance, or transition-authority claim. All
@@ -534,7 +539,7 @@ Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight stabl
 
 > Admissibility Kernels models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
 
-(Migration note: this aggregator was previously named `CalculusOne` under an "Admissibility Calculus 1.0" framing. The rename retires "calculus" from the *stable* public surface; the Witnessed Derivation Calculus reintroduces it only for that narrow witnessed-derivation object. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`.)
+(Migration note: this aggregator was previously named `CalculusOne` under an "Admissibility Calculus 1.0" framing. The rename retires "calculus" from the *stable* public surface; the Witnessed Derivation Calculus reintroduces it only for that narrow witnessed-derivation object. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`. The deprecated import shim shipped through v9 and was removed in v10.0.0.)
 
 ## Repository custody and compatibility
 
