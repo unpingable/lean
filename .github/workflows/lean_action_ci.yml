@@ -34,6 +34,10 @@ jobs:
       # on PATH. Cheap — the Witnessed lib is Mathlib-free.
       - name: Witnessed footprint gate
         run: bash scripts/check-witnessed-footprint.sh
+      # v11: occurrence-exact paid recomposition. Re-attest exact custody,
+      # stable-root isolation, fenced evidence, frozen API names, and footprints.
+      - name: Paid recomposition footprint gate
+        run: bash scripts/check-paid-recomposition-footprint.sh
       # Repo audit gates (cheap, grep/toml-based; no Lean invocation):
       # axiom classification, native_decide policy, custody-class registry,
       # Mathlib pin agreement, and the Mathlib-free import closure of the

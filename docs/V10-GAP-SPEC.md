@@ -1,21 +1,24 @@
 # v10 Gap Spec — View Semantics and Bounded Projection
 
-**Status: CANDIDATE / UNMINTED (2026-07-14).** This document authorizes a
-campaign, not a version, tag, GitHub release, or DOI. The earlier untracked
+**Status: CAMPAIGN CLOSED / LOCALLY TAGGED (2026-07-14).** This document
+authorized a campaign, not a version, tag, GitHub release, or DOI. The earlier untracked
 `V10-RELEASE-LEDGER.md` draft has been retired; its relevant green build and
 scratch receipts are summarized here as starting evidence, not as evidence
-that v10 exists.
+that v10 existed at the campaign's opening.
 
 The landed Gate A–C evidence and actual file dispositions are recorded in
 [`V10-READINESS-LEDGER.md`](V10-READINESS-LEDGER.md). That ledger was
 accepted by the operator on 2026-07-14 and the v10 metadata transition
-performed; the tag/release/DOI mint remains the operator's action.
+performed.  The annotated local `v10.0.0` tag now exists and peels to commit
+`20b8da5`; this local fact does not establish GitHub release, Zenodo deposit,
+or version-DOI status.
 
 > **Gate B earns the mathematics. Gate C earns the release.**
 
-Gate A alone is a useful library surface. Gate B may justify a major theorem
-campaign. Nothing is v10 until Gate C is complete and the operator accepts a
-new release ledger.
+Gate A alone was a useful library surface. Gate B could justify a major theorem
+campaign. Under this campaign contract, nothing became v10 until Gate C was
+complete and the operator accepted the readiness ledger; both conditions were
+subsequently satisfied before the local tag was created.
 
 ## 1. Starting evidence, not a release claim
 

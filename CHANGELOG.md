@@ -6,6 +6,66 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 11.0.0 — Occurrence-Exact Paid Recomposition (2026-07-15)
+
+*Exact occurrence payment and exact-attempt catalog custody, without replacing
+the evidence that was actually checked.*
+
+Ordered payments admit proof-relevant, occurrence-indexed checking with exact
+computed residue. Under exact attempt-level catalog completeness, paid global
+plans and paid catalog plans are equivalent without replacing native receipts,
+expected-payment evidence, payment traces, or residue. Endpoint-only
+completeness is insufficient.
+
+- **Occurrence-exact payment** — `PaymentTrace` carries the exact
+  `ResourceChecker.removeAt` equation for each context-relative occurrence and
+  therefore computes a precise residue. `PaymentRefusal.sound` rules out a
+  trace for the same submitted order and wallet; `checkPayment` is total,
+  `checkPayment_accepts_iff` reflects trace existence, and
+  `PaymentTrace.length_conservation` records the resource count.
+- **Exact catalog adequacy** — paid edges retain the exact attempt and its
+  dependent native positive receipt. `ExactPaidCatalogComplete` ranges over
+  admitted attempts, not plans or search output. Catalog-to-global conversion
+  forgets only membership; exact completeness supplies membership in the
+  reverse direction. `exact_catalog_adequate` proves the resulting existence
+  equivalence and `exact_complete_globalizes_refusal` derives the scoped
+  global-refusal corollary.
+- **Evidence, outside the stable import graph** —
+  `Applications.ResourceTraceOneCrossing` is a Mathlib-free, public-only
+  end-to-end application retaining the resident `ResourceCheckerExec` receipt,
+  expected map, payment, and residue. `Countermodels.EndpointCompleteness`
+  separates authorized and forged attempts with identical endpoints and proves
+  endpoint coverage insufficient. `Applications.FiniteSupportOneCrossing`
+  retains native positive and negative finite-support checker results as annex
+  evidence with an explicit SCRATCH dependency. The fixed three-cycle fixture
+  was intentionally not promoted because it adds no independent evidence.
+- **Custody and build surface** — the stable
+  `LeanProofs.Witnessed.PaidRecomposition` root imports only `Payment` and
+  `Catalog`; it is Mathlib-free and transitively SCRATCH-free. Applications and
+  countermodels remain separately buildable evidence and are excluded from the
+  stable root. The paid-recomposition footprint gate fixes this import and
+  theorem/axiom boundary.
+
+**Claim scopes.** One native checker equation accepts one submitted attempt.
+`¬ Nonempty (PaidCatalogPlan ...)` rejects realization only in the named
+catalog. Global nonexistence follows only when an
+`ExactPaidCatalogComplete` premise is supplied.
+
+**Non-claims.** No new cut connective or proof calculus; no Hall, matching,
+3DM, CSP, or complexity novelty; no general plan synthesis; occurrence indices
+are context-relative positions, not persistent serials;
+`ResourceCheckerExec.checkTrace = none` means only rejection of that submitted
+trace; no refusal transition, refusal debt-preservation, dynamic authority,
+resource creation, or temporal debt. The singleton corpus application supplies
+no nontrivial injectivity or matching evidence: `injectiveOn` is inherited plan
+plumbing. PC-1 and PC-2 remain closed. Stateful bounded
+realization/refusal is the next frontier and is not part of v11.
+
+Release inventory and verification boundary:
+[`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md). Tagging,
+GitHub release creation, and Zenodo/DOI actions remain operator-only and are not
+performed by this preparation.
+
 ## 10.0.0 — View Semantics and Bounded Projection (2026-07-14)
 
 *Distinguishability as a first-class axis: view refinement changes what is

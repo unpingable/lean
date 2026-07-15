@@ -70,6 +70,7 @@ lake build                                    # default Mathlib-free surfaces
 lake build Witnessed                          # WDC in isolation
 lake build ViewSemanticsMathlibIslands        # Mathlib islands, explicit only
 bash scripts/check-witnessed-footprint.sh     # ratified WDC axiom footprint
+bash scripts/check-paid-recomposition-footprint.sh # v11 stable/evidence custody + footprint
 bash scripts/check-viewsemantics-footprint.sh
 bash scripts/check-viewsemantics-isolation.sh
 bash scripts/audit-axioms.sh                  # axiom classifier; 0 forbidden

@@ -6,9 +6,9 @@
   This root keeps the shared, Mathlib-free view-semantics campaign in build
   contact. Importing it is not a release, custody promotion, information-flow
   calculus, or authority grant. Every Gate C receipt has landed, the operator
-  has accepted `docs/V10-READINESS-LEDGER.md`, and package metadata is 10.0.0.
-  The annotated v10.0.0 tag and GitHub release remain operator actions; release
-  creation drives the Zenodo deposit and version-DOI mint.
+  has accepted `docs/V10-READINESS-LEDGER.md`, and the annotated local
+  `v10.0.0` tag exists at peeled commit `20b8da5`.  A local tag does not by
+  itself establish GitHub release, Zenodo deposit, or version-DOI status.
 -/
 
 import LeanProofs.ViewSemantics.Core

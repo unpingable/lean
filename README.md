@@ -9,7 +9,70 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
-## Current release: 10.0.0 — View Semantics and Bounded Projection
+## v11 — Occurrence-Exact Paid Recomposition
+
+**Release status: release-ready; operator tag, release, and DOI actions remain.**
+
+*Ordered payments admit proof-relevant, occurrence-indexed checking with exact
+computed residue. Under exact attempt-level catalog completeness, paid global
+plans and paid catalog plans are equivalent without replacing native receipts,
+expected-payment evidence, payment traces, or residue. Endpoint-only
+completeness is insufficient.*
+
+The stable, Mathlib-free surface is
+`LeanProofs.Witnessed.PaidRecomposition`: its root imports only `Payment` and
+`Catalog`. `PaymentTrace` retains the exact `ResourceChecker.removeAt` equation
+for each context-relative occurrence; `checkPayment` returns either the exact
+computed residue and trace or a typed refusal of that submitted payment order.
+`Catalog` retains exact attempts, dependent native positive receipts, the
+expected-payment map, payment trace, and residue. Under
+`ExactPaidCatalogComplete`, `exact_catalog_adequate` proves equivalence between
+nonempty paid catalog and global plans, and
+`exact_complete_globalizes_refusal` derives the scoped negative corollary.
+
+Three claim scopes remain distinct:
+
+1. acceptance or rejection of one submitted attempt or payment order;
+2. no accepted paid plan in one named catalog;
+3. global nonexistence only under exact attempt-level catalog completeness.
+
+Evidence is public but excluded from the stable root:
+
+- `Applications/ResourceTraceOneCrossing.lean` is the Mathlib-free,
+  non-SCRATCH corpus application. It preserves the resident
+  `ResourceCheckerExec.Trace Nat` attempt and native positive checker equation,
+  expected-payment map, occurrence-indexed payment, and computed residue
+  end-to-end.
+- `Countermodels/EndpointCompleteness.lean` is the premise-ablation
+  countermodel. Authorized and forged attempts share endpoints but differ in
+  exact identity, dependent receipt content, and expected payment; a
+  forged-only endpoint-complete catalog cannot globalize refusal and is not
+  exact-complete.
+- `Applications/FiniteSupportOneCrossing.lean` is annex evidence with an
+  explicit SCRATCH `FiniteSupportChecker` dependency. It retains resident
+  positive and negative checker results, positional provenance, the native
+  excess/offender interpretation, exact payment residue, and accepted-path
+  obligation residue.
+
+The fixed three-cycle fixture was intentionally not promoted because it adds
+no independent evidence.
+
+v11 makes **no** new cut-connective or proof-calculus claim; no Hall, matching,
+3DM, CSP, complexity, or general plan-synthesis novelty claim; and no
+persistent-token-serial claim. Occurrence indices are positions in the current
+submitted context. `ResourceCheckerExec.checkTrace = none` means only that the
+submitted trace was rejected. `PaidGlobalPlan.injectiveOn` is inherited plan
+plumbing, and the singleton corpus application supplies no nontrivial
+injectivity or matching evidence. The release has no refusal transition,
+refusal debt-preservation, dynamic-authority, resource-creation, or
+temporal-debt theorem. PC-1 and PC-2 remain closed. Stateful bounded
+realization/refusal remains the next frontier and is not part of v11.
+
+Tagging, publishing, and DOI actions remain under explicit operator control.
+Release inventory and gate receipts:
+[`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md).
+
+## 10.0.0 — View Semantics and Bounded Projection
 
 *Distinguishability as a first-class axis: view refinement changes what is
 distinguishable without minting transition authority.*
@@ -455,6 +518,8 @@ The **Witnessed Derivation Calculus** surface (the Mathlib-free
 - a positive formula layer (`atom`, `top`, conjunction, disjunction) with explicit cut syntax and syntactic cut-elimination;
 - a Gentzen-style single-succedent presentation with explicit left/right rules and soundness against the WDC-induced formula semantics;
 - a canonical resource/residue layer with position-pinned validation and residue-preservation non-suppression;
+- occurrence-exact ordered payment checking and exact-attempt catalog adequacy
+  through the focused `LeanProofs.Witnessed.PaidRecomposition` stable root;
 - soundness, provenance, and revocation non-manufacture results (schematic);
 - a model-independent normal-form factorization theorem over any admitting class
   satisfying the local commutation law, with the canonical freshness embedding as its
@@ -513,6 +578,10 @@ The point is not to prove an entire software system correct. It is to make inval
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
 - **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Ratifies the standalone safety axis, not any unified-calculus rename.
 - **Witnessed Derivation Calculus** *(ratified; canonical `LeanProofs.Witnessed.*` since 1.4.0, structurally strengthened in 2.0.0, Mathlib-free)* — witnessed movement and composition across typed bridges, now with the additive positive-formula and canonical resource/residue slices. See the release section above.
+- **Occurrence-Exact Paid Recomposition** *(v11 stable Witnessed family,
+  Mathlib-free)* — proof-relevant ordered payments with exact computed residue
+  and exact-attempt catalog adequacy. Applications and the endpoint
+  countermodel are evidence outside its stable import graph.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
@@ -530,7 +599,7 @@ Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight stabl
 
 ## Repository custody and compatibility
 
-Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition, reachability/refusal adapters, safety-bridge family) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the stable compatibility claim. Many `LeanProofs/Admissibility/` modules are wired into `LeanProofs.lean` for regression coverage; fenced UNRATIFIED-CANDIDATE / SCRATCH material may still build only when invoked directly. Wiring is build-coverage, not public-surface promotion — promotion lives in the `AdmissibilityKernels.lean` aggregator's import list. Per-file custody status is regression-checked via `scripts/check-custody-classes.sh`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
+Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition, reachability/refusal adapters, safety-bridge family) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the stable compatibility claim. Many `LeanProofs/Admissibility/` modules are wired into `LeanProofs.lean` for regression coverage; fenced UNRATIFIED-CANDIDATE / SCRATCH material may still build only when invoked directly. Wiring is build-coverage, not public-surface promotion — promotion lives in the `AdmissibilityKernels.lean` aggregator's import list. The separate Witnessed stable surface is controlled by `LeanProofs/Witnessed.lean`; its paid-recomposition root imports only `Payment` and `Catalog`, while `Applications/*` and `Countermodels/*` remain evidence outside that graph. Per-file custody status is regression-checked via `scripts/check-custody-classes.sh`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) and [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
 ### `experiments/` — tracked wiring witnesses (non-canonical)
 
@@ -588,7 +657,9 @@ Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 ```bash
 lake build                  # Mathlib-free custody/release surfaces incl. ViewSemantics candidate/application targets
 lake build Witnessed        # the Witnessed Derivation Calculus in isolation (Mathlib-free)
+lake build PaidRecompositionEvidence # v11 evidence only; excluded from stable Witnessed
 bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
+bash scripts/check-paid-recomposition-footprint.sh # v11 stable custody/import/theorem footprint
 bash scripts/check-viewsemantics-footprint.sh # candidate theorem/checker footprints (fail-closed)
 bash scripts/check-viewsemantics-isolation.sh # cheap roots Mathlib-free; P25 isolated
 bash scripts/audit-axioms.sh                # repo axiom classifier (signature/interface-law/specimen; 0 forbidden)
@@ -617,6 +688,7 @@ is the provenance record, not the canonical import path.
 - [`historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md`](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md) — **closed audit artifact**: the dated 2026-05-10 AGI-requirements reverse-gap audit (gaps where *that one requirements document* demands more than the kernel delivers). Not the project's live open-problems register, not a promotion queue.
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
+- [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) — Witnessed frontier and the v11 paid-recomposition claim/evidence boundary
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
 - [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
 - [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
@@ -624,6 +696,11 @@ is the provenance record, not the canonical import path.
 - Papers repo: [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) — paper → module inverse view
 
 ## Status
+
+**`v11.0.0` is release-ready:** Occurrence-Exact Paid Recomposition is
+promoted into the stable Witnessed import surface; tagging, GitHub release
+creation, and Zenodo/DOI actions remain operator-only. Final gate receipts are
+recorded in [`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md).
 
 **`v2.0.0` released** — the Witnessed Derivation Calculus now has model-independent admitting-class normalization and an explicit audit fence, while the stable 1.x Admissibility Kernels surface remains unchanged. All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Gaps surfaced by the dated 2026-05-10 AGI-requirements reverse-gap audit are recorded in [the closed reverse-gap audit](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md) — a **closed audit artifact** scoped to that one requirements document, not the project's live open-problems register.
 

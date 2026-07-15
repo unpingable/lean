@@ -11,7 +11,8 @@ plus a Gentzen sequent *presentation* in `Gentzen` with **position-general left
 rules** — repaired after `HeadOnlyGentzenCutFailure` proved cut-elimination false for
 the head-only shape; the `Deriv → Seq` Hauptsatz over the repaired calculus is still
 unproven) and direction #3 (canonical resource/residue
-non-suppression), and direction #4 has an initial consolidation/refusal-witness
+non-suppression, now including the v11 occurrence-exact paid-recomposition
+integration family), and direction #4 has an initial consolidation/refusal-witness
 slice landed. The larger proof-theory claims named below remain fenced unless
 explicitly opened later.
 
@@ -133,7 +134,66 @@ open because it is **hard**, not because it is speculative.
    propagation (a refusal that won't compose across a boundary is a laundering seam —
    the negative result is the stronger one). Scaffolding already exists in `Scratch`
    (`ConsumerRelative*` / `MultiConsumerAdoption` / `QuorumCustody` / `ShardedCustody`).
-   *Refusal-legibility was not required for 1.4.0 or 2.0.0; it remains a post-release frontier.*
+   *Refusal-legibility was not required for 1.4.0, 2.0.0, or v11; it remains a post-release frontier.*
+
+## v11 promotion boundary — Occurrence-Exact Paid Recomposition
+
+**Status: PROMOTED STABLE THEOREM FAMILY; release actions remain operator-only.**
+The stable Mathlib-free root `LeanProofs.Witnessed.PaidRecomposition` imports
+only `Payment` and `Catalog`.
+
+Frozen release claim:
+
+> Ordered payments admit proof-relevant, occurrence-indexed checking with
+> exact computed residue. Under exact attempt-level catalog completeness,
+> paid global plans and paid catalog plans are equivalent without replacing
+> native receipts, expected-payment evidence, payment traces, or residue.
+> Endpoint-only completeness is insufficient.
+
+The types keep three scopes separate:
+
+1. `checkPayment` accepts or refuses one submitted payment order; a resident
+   `ResourceCheckerExec.checkTrace` equation likewise concerns one submitted
+   trace only.
+2. `¬ Nonempty (PaidCatalogPlan ... catalog ...)` refuses a plan only relative
+   to that named catalog.
+3. `exact_complete_globalizes_refusal` reaches global nonexistence only from
+   catalog-relative refusal plus `ExactPaidCatalogComplete`; equivalently,
+   `exact_catalog_adequate` gives catalog/global existence equivalence under
+   that exact attempt-level premise.
+
+Evidence remains outside the stable import graph. Public-only
+`Applications.ResourceTraceOneCrossing` retains a resident
+`ResourceCheckerExec.Trace Nat` and its native positive equation through both
+catalog conversions, reconstructing the resident resource derivation while
+preserving the exact expected map, occurrence-indexed payment, and residue.
+Public `Countermodels.EndpointCompleteness` is the premise-ablation witness:
+authorized and forged attempts share endpoints but differ in exact identity,
+dependent positive content, and expected payment, so endpoint coverage cannot
+globalize paid refusal. `Applications.FiniteSupportOneCrossing` is annex
+evidence because its finite-support checker dependency is explicitly SCRATCH;
+it supplies native positive and negative forcing cases plus accepted-path
+obligation-residue preservation. The fixed three-cycle enumeration was
+intentionally not promoted because it adds no independent evidence.
+
+The v11 boundary makes no new cut-connective or proof-calculus claim and no
+Hall, matching, 3DM, CSP, complexity, or general plan-synthesis claim.
+Occurrence indices are positions in the current submitted context, never
+persistent serial identities. `ResourceCheckerExec.checkTrace = none` is only
+rejection of that submitted trace. The `PaidGlobalPlan.injectiveOn` field is
+inherited plan plumbing; the singleton corpus demonstrates no nontrivial
+injectivity or matching fact. Catalog refusal has no transition semantics in
+this family, hence there is no refusal non-transition theorem, refusal
+debt-preservation theorem, dynamic-authority theorem, resource-creation
+theorem, or temporal-debt theorem. PC-1 (heterogeneous certificates as a new
+connective) and PC-2 (static admission as new matching/planning machinery)
+remain closed.
+
+**Next frontier, not begun here:** stateful bounded realization/refusal. It
+would require explicit transition semantics rather than reinterpreting the
+absence of transitions in v11 as a theorem. Dynamic authority, resource
+creation, and temporal debt remain outside that frontier until separately
+opened and specified.
 
 ## Anti-recommendation (do NOT build)
 
@@ -168,9 +228,17 @@ law is load-bearing. It did **not** claim the later additive positive-formula
 cut-elimination slice, the resource/residue slice, universal normalization, full
 substructural non-suppression, or an API break.
 
-Future major-version candidates need the same discipline: a real change in what the
-calculus proves, or a breaking change forced by such a result. Current later-major-class
-leads are:
+**Numbering reconciliation at v11.** The repository's post-v2 campaign series uses
+integer release numbers for bounded public theorem architectures as well as for
+proof-theoretic milestones. The classification below therefore measures
+*proof-theoretic depth*, not whether a repository tag may use an integer. V11 is
+earned as an occurrence-exact repository-integration theorem family with an exact
+premise-ablation countermodel; it is not represented as a new calculus or a new
+proof-theoretic connective.
+
+Future structural WDC milestones still need a real change in what the calculus
+proves, or a breaking change forced by such a result. Current proof-theoretic
+milestone leads are:
 
 1. **Broader cut-elimination.** Beyond the landed positive fragment: implication,
    richer left rules, subformula corollaries, or any clock-carrying judgment extension.
@@ -181,13 +249,15 @@ leads are:
 4. **API-breaking consequence.** A stronger calculus may force an incompatible public
    definition. Manufacturing a break for a number remains forbidden by the release fence.
 
-Packaging, documentation, additional public surfaces, and model-scoped extensions remain
-minor releases unless they break the public API.
+Packaging, documentation, additional public surfaces, and model-scoped extensions do
+not by themselves earn a *structural WDC milestone*. Repository version/tag eligibility
+is decided by the bounded claim and release ledger for that campaign.
 
-## Operational track (1.5–1.7) + the witnessed-clock later-major lead
+## Historical operational-track labels (1.5–1.7) + the witnessed-clock structural lead
 
-A 2026-06-27 multi-model pass surfaced a later-major candidate and an *operational adapter
-track* that must not steal major-version semantics. Full synthesis (with the validator tool-theory and
+A 2026-06-27 multi-model pass surfaced a structural candidate and an *operational adapter
+track*. Its 1.5–1.7 labels are historical planning labels, not current release-number
+promises. Full synthesis (with the validator tool-theory and
 the non-collapse table) lives in an **internal working note, not part of this public
 surface** — `working/tooltheory/validator-as-bounded-witness.md` in the papers working tree
 (may not resolve for an external reader). Sorted here by the rule above —

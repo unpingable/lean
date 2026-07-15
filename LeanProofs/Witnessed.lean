@@ -50,6 +50,7 @@ import LeanProofs.Witnessed.ResourceSequent   -- occurrence-sensitive resources 
 import LeanProofs.Witnessed.ResourceChecker   -- position-pinned validation relation
 import LeanProofs.Witnessed.ResourceCheckerExec -- executable Bool gate over derivation traces (Slice A)
 import LeanProofs.Witnessed.LaunderingCorpus   -- named adversarial laundering specimens (Slice C)
+import LeanProofs.Witnessed.PaidRecomposition  -- occurrence-exact payments + exact catalog adequacy (v11)
 import LeanProofs.Witnessed.Normalization      -- normal-form factorization (freshness instance of AbstractNormalization)
 import LeanProofs.Witnessed.Discipline         -- four-axis WitnessedDiscipline (was Tightened)
 import LeanProofs.Witnessed.AxisIndependence   -- four separating finite models

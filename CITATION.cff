@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "View Semantics and Bounded Projection: A Lean Release of Admissibility Kernels in which Visibility Mints No Authority"
-version: "10.0.0"
-date-released: "2026-07-14"
+title: "Occurrence-Exact Paid Recomposition"
+version: "11.0.0"
+date-released: "2026-07-15"
 type: software
 authors:
   - family-names: Beck
@@ -25,6 +25,10 @@ keywords:
   - Lean
   - Lean4
   - mathlib
+  - occurrence-indexed
+  - paid-recomposition
+  - proof-relevant
+  - exact-catalog
   - state-transition
   - view-semantics
   - boundary-kernels
@@ -34,35 +38,31 @@ keywords:
   - refusal-gate
   - witness-invariance
 abstract: >-
-  v10.0.0 — View Semantics and Bounded Projection — lands the
-  view-semantics campaign: a canonical distinguishability core over
-  finite view systems (views, indistinguishability, fine-to-coarse
-  refinement, determination) with composition laws and rooted
-  counterexamples showing weak nondetermination is not closed under
-  composition while declared disclosure bounds compose; an exact
-  refinement-sandwich characterization of deterministic bounded
-  projection, with constructive existence boundaries that choose the
-  required-action projection, never the budget; a finite checker whose
-  typed certificates and conflicts (inhabited observation fibers,
-  concrete forbidden distinctions) are proved sound and reflective in
-  both directions, with all four disclosure-by-sufficiency audit cells
-  executing without native_decide or a collapsed validity bit; an
-  authorized-trace adapter proving greater visibility constructs no
-  AuthorizedStep, DynamicStep, or AuthorizedTrace — full visibility
-  overrides no revoked basis and supplies no missing authority; a
-  non-XOR binding-source-ablation application factoring exactly
-  through canonical determination; and a scoped negative adjudication
-  that disclosure is an orthogonal view-context axis, not a sixth
-  bridge-family atom (the literal all-five bridge premise is
-  uninhabited in the resident ontology). The shared and application
-  ViewSemantics roots are Mathlib-free; the P25 adapter is confined to
-  an explicit Mathlib island. Modules under LeanProofs/ViewSemantics
-  are UNRATIFIED-CANDIDATE; the release archives the tree and promotes
-  no custody. No information-flow, noninterference,
-  probabilistic-leakage, side-channel, runtime-compliance, or
-  transition-authority claim is included. Full release history is in
-  CHANGELOG.md; per-release inventories in docs/V*-RELEASE-LEDGER.md
-  (v10: docs/V10-READINESS-LEDGER.md).
+  v11.0.0 — Occurrence-Exact Paid Recomposition — promotes a
+  Mathlib-free Witnessed theorem family for ordered payments and exact
+  catalog adequacy. Ordered payments carry proof-relevant,
+  occurrence-indexed removal equations and an exact computed residue;
+  the total checker returns either such a trace or a scoped refusal and
+  accepts exactly when a trace exists. Under exact attempt-level catalog
+  completeness, paid global plans and paid catalog plans are equivalent
+  without replacing native dependent receipts, expected-payment evidence,
+  payment traces, or residue. A separate authorized/forged countermodel
+  proves that endpoint-only completeness is insufficient. A public-only
+  resource-trace application retains a resident checker receipt through the
+  catalog conversions; a finite-support one-crossing application remains
+  annex evidence because it imports a SCRATCH checker. The stable root
+  imports only Payment and Catalog, and the evidence modules remain outside
+  it. Acceptance of one submitted attempt, refusal in one named catalog, and
+  global nonexistence under ExactPaidCatalogComplete are distinct scopes.
+  This release claims no new cut connective or proof calculus, no Hall,
+  matching, 3DM, CSP, or complexity novelty, no general plan synthesis, no
+  persistent token serial, and no refusal transition, refusal
+  debt-preservation, dynamic authority, resource creation, or temporal debt.
+  ResourceCheckerExec.checkTrace = none means only rejection of that
+  submitted trace; PC-1 and PC-2 remain closed, and stateful bounded
+  realization/refusal remains outside v11. Full release history is in
+  CHANGELOG.md; the v11 inventory and gates are in
+  docs/V11-READINESS-LEDGER.md.
   The stable frame: the Lean work did not produce a unified calculus.
   It produced a set of small admissibility kernels, each isolating a
   different refusal boundary. The stack exposes a typed-verdict algebra (basis ×

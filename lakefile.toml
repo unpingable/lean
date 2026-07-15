@@ -1,5 +1,5 @@
 name = "lean_proofs"
-version = "10.0.0"
+version = "11.0.0"
 keywords = ["math"]
 # Default builds stay on Mathlib-free custody/release surfaces. The root
 # `LeanProofs` aggregate remains buildable explicitly; it intentionally imports
@@ -70,17 +70,54 @@ roots = [
 
 # A1 (signed 2026-06-26): the Witnessed Derivation Calculus, ported from the
 # ratified experiment surface (experiments/no_free_lift_wiring, artifact 5eb5629).
-# Mathlib-FREE by construction — no module under LeanProofs/Witnessed/ may
-# `import Mathlib`. Its own lean_lib so the no-Mathlib property is build-graph
-# ENFORCED (`lake build Witnessed` cannot reach Mathlib) and the axiom footprint
-# stays re-attestable in isolation (gate 5). The LeanProofs lib uses default globs
-# and owns only its root module, so LeanProofs.Witnessed.* is import-reachable from
-# it but glob-owned only here — no double ownership.
+# Mathlib-FREE by construction. Its own lean_lib makes the no-Mathlib property
+# build-graph enforced and keeps evidence modules out of `lake build Witnessed`.
+# Exact globs are intentional: a recursive `LeanProofs.Witnessed.+` glob would
+# absorb PaidRecomposition applications/countermodels into the stable target.
 [[lean_lib]]
 name = "Witnessed"
 srcDir = "."
 roots = ["LeanProofs.Witnessed"]
-globs = ["LeanProofs.Witnessed", "LeanProofs.Witnessed.+"]
+globs = [
+  "LeanProofs.Witnessed",
+  "LeanProofs.Witnessed.AbstractNormalization",
+  "LeanProofs.Witnessed.AuthorityModel",
+  "LeanProofs.Witnessed.AxisIndependence",
+  "LeanProofs.Witnessed.CarryLaws",
+  "LeanProofs.Witnessed.CommutesNecessity",
+  "LeanProofs.Witnessed.Coordinates",
+  "LeanProofs.Witnessed.Derivation",
+  "LeanProofs.Witnessed.Discipline",
+  "LeanProofs.Witnessed.Divergence",
+  "LeanProofs.Witnessed.Embedding",
+  "LeanProofs.Witnessed.Examples",
+  "LeanProofs.Witnessed.Formula",
+  "LeanProofs.Witnessed.Freshness",
+  "LeanProofs.Witnessed.Gentzen",
+  "LeanProofs.Witnessed.HeadOnlyGentzenCutFailure",
+  "LeanProofs.Witnessed.LaunderingCorpus",
+  "LeanProofs.Witnessed.NoFreeLift",
+  "LeanProofs.Witnessed.Normalization",
+  "LeanProofs.Witnessed.Obstruction",
+  "LeanProofs.Witnessed.ResourceChecker",
+  "LeanProofs.Witnessed.ResourceCheckerExec",
+  "LeanProofs.Witnessed.ResourceSequent",
+  "LeanProofs.Witnessed.Sequent",
+  "LeanProofs.Witnessed.PaidRecomposition",
+  "LeanProofs.Witnessed.PaidRecomposition.Payment",
+  "LeanProofs.Witnessed.PaidRecomposition.Catalog",
+]
+
+# V11 evidence custody. These focused roots remain explicitly buildable but are
+# neither default targets nor members of the stable `Witnessed` library graph.
+[[lean_lib]]
+name = "PaidRecompositionEvidence"
+srcDir = "."
+roots = [
+  "LeanProofs.Witnessed.PaidRecomposition.Applications.ResourceTraceOneCrossing",
+  "LeanProofs.Witnessed.PaidRecomposition.Countermodels.EndpointCompleteness",
+  "LeanProofs.Witnessed.PaidRecomposition.Applications.FiniteSupportOneCrossing",
+]
 
 # v3.0.0 (2026-07-01): the Bounded Lifecycle Calculi release surface. Its own
 # lean_lib + default target so `lake build` / CI covers the ANNEX family —

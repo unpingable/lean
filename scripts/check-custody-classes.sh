@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Check that every LeanProofs/Admissibility/*.lean file carries a
-# Custody-Class: marker drawn from the ratified vocabulary.
+# Check the registered custody surfaces:
+#   * every LeanProofs/Admissibility/*.lean file carries a ratified marker;
+#   * the PaidRecomposition stable root/core and fenced evidence carry their
+#     exact release classifications.
 #
 # Ratified classes are defined in:
 #   ~/git/papers/working/custody-classes.md
@@ -11,6 +13,7 @@
 #   1 — at least one file is missing the marker
 #   2 — at least one file declares an unratified class string
 #   3 — README prose counts have drifted from the live tally
+#   4 — the PaidRecomposition registry is missing, unexpected, or misclassified
 #
 # This is the Phase 3 grep-target promise made executable.
 
@@ -18,6 +21,8 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ADMISS="$REPO_ROOT/LeanProofs/Admissibility"
+PAID_ROOT="$REPO_ROOT/LeanProofs/Witnessed/PaidRecomposition.lean"
+PAID_DIR="$REPO_ROOT/LeanProofs/Witnessed/PaidRecomposition"
 
 RATIFIED=( PUBLIC-SHIPPED ANNEX SCRATCH UNRATIFIED-CANDIDATE DEPRECATED )
 
@@ -78,8 +83,57 @@ if [ -f "$README" ]; then
   fi
 fi
 
-# 4. Report.
+# 4. Exact PaidRecomposition custody registry. This is intentionally
+# fail-closed: adding a new stable or evidence module requires an explicit
+# custody decision here rather than inheriting one from its directory name.
+declare -A paid_expected=(
+  ["$PAID_ROOT"]="PUBLIC-SHIPPED"
+  ["$PAID_DIR/Payment.lean"]="PUBLIC-SHIPPED"
+  ["$PAID_DIR/Catalog.lean"]="PUBLIC-SHIPPED"
+  ["$PAID_DIR/Applications/ResourceTraceOneCrossing.lean"]="ANNEX"
+  ["$PAID_DIR/Countermodels/EndpointCompleteness.lean"]="ANNEX"
+  ["$PAID_DIR/Applications/FiniteSupportOneCrossing.lean"]="ANNEX"
+)
+
+paid_fail=0
+for f in "${!paid_expected[@]}"; do
+  if [ ! -f "$f" ]; then
+    echo "FAIL: registered PaidRecomposition source is missing: $f" >&2
+    paid_fail=1
+    continue
+  fi
+  marker_count=$(sed -n '1,40p' "$f" |
+    grep -cE '^[[:space:]]*Custody-Class:[[:space:]]*' || true)
+  declared=$(sed -n '1,40p' "$f" |
+    grep -m1 -E '^[[:space:]]*Custody-Class:[[:space:]]*' |
+    sed -E 's/^[[:space:]]*Custody-Class:[[:space:]]*//; s/[[:space:]]+$//' || true)
+  if [ "$marker_count" -ne 1 ] || [ "$declared" != "${paid_expected[$f]}" ]; then
+    echo "FAIL: $f custody is '${declared:-<missing>}'" >&2
+    echo "      expected: ${paid_expected[$f]}" >&2
+    paid_fail=1
+  fi
+done
+
+mapfile -t paid_actual < <(
+  {
+    [ -f "$PAID_ROOT" ] && printf '%s\n' "$PAID_ROOT"
+    find "$PAID_DIR" -type f -name '*.lean' -print 2>/dev/null
+  } | sort
+)
+for f in "${paid_actual[@]}"; do
+  if [ -z "${paid_expected[$f]+registered}" ]; then
+    echo "FAIL: unregistered PaidRecomposition source has no custody decision: $f" >&2
+    paid_fail=1
+  fi
+done
+
+if [ "$paid_fail" -ne 0 ]; then exit 4; fi
+
+# 5. Report.
 echo "OK: $total files; all carry ratified Custody-Class markers; README counts match"
 for cls in "${RATIFIED[@]}"; do
   printf "  %-24s %d\n" "$cls" "${counts[$cls]}"
 done
+echo "OK: ${#paid_expected[@]} PaidRecomposition files match the exact custody registry"
+echo "  PUBLIC-SHIPPED           3"
+echo "  ANNEX                    3 (one imports an explicit SCRATCH dependency)"

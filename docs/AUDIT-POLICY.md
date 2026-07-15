@@ -40,6 +40,16 @@ The distinction that matters mechanically: *is the axiom a proof of a propositio
 uninterpreted symbol used to state a generic theory?* `Time.le` returns `Prop` but is a
 predicate symbol (signature); `∀ x, Time.le x x` would be a law (interface-law).
 
+## 2a. PaidRecomposition stable footprint — `check-paid-recomposition-footprint.sh`
+
+Re-attests the v11 stable `LeanProofs.Witnessed.PaidRecomposition` surface. The gate
+checks the exact PUBLIC-SHIPPED/ANNEX source registry, the two-import stable root,
+`Witnessed` build ownership excluding evidence, the Mathlib/SCRATCH-free transitive
+closure, the frozen public API names, absence of holes/placeholders, and seven exact
+axiom footprints. It also builds the separate, non-default evidence target. Applications
+and countermodels cannot enter the stable root or the `Witnessed` target through a
+recursive glob.
+
 ## 3. native_decide policy — `audit-native-decide.sh` + `native-decide-policy.tsv`
 
 `native_decide` is allowed only in finite-computational-witness modules
@@ -85,6 +95,7 @@ allowlisted and retain `Custody-Class: SCRATCH`.
 ```
 lake build
 scripts/check-witnessed-footprint.sh
+scripts/check-paid-recomposition-footprint.sh
 scripts/check-viewsemantics-footprint.sh
 scripts/check-viewsemantics-isolation.sh
 scripts/audit-axioms.sh

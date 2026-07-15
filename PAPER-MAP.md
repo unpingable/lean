@@ -161,6 +161,66 @@ Eight modules forming the safety-axis brick set, addressing the Frontier 1 wound
 
 **Related records:** spine page (above); tier map `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md`; ρ-drop decision `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`; Calculus 2.0 exit criteria reconciliation `~/git/papers/working/calculus-2-exit-criteria.md` (status update 2026-05-29); kernel-overlap audit `~/git/papers/working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md` (closes the second safety-axis minting gate). The "Calculus 2.0" label as a unifying-promotion target is moot post-2026-06-03 synthesis closure (see `~/git/papers/working/source-basis-discipline-synthesis.md`); the composition and self-amendment axes are now species under the "disciplined premise production" umbrella, not pending unification gates.
 
+## `LeanProofs/Witnessed/PaidRecomposition/` (v11 repository-integration family)
+
+**Release title:** *v11 — Occurrence-Exact Paid Recomposition*.
+
+> Ordered payments admit proof-relevant, occurrence-indexed checking with
+> exact computed residue. Under exact attempt-level catalog completeness,
+> paid global plans and paid catalog plans are equivalent without replacing
+> native receipts, expected-payment evidence, payment traces, or residue.
+> Endpoint-only completeness is insufficient.
+
+The stable, Mathlib-free `Payment.lean` module checks one submitted order of
+payments by retaining the exact `ResourceChecker.removeAt` equation at each
+context-relative occurrence position and computes the exact residue.
+`Catalog.lean` retains exact submitted attempts, dependent native positive
+receipts, expected-payment evidence, payment traces, and residue; under
+`ExactPaidCatalogComplete`, `exact_catalog_adequate` proves equivalence of
+nonempty paid catalog and global plans. The catalog-to-global direction is
+unconditional, while `exact_complete_globalizes_refusal` uses exact
+attempt-level completeness.
+
+The claim has three deliberately separate scopes:
+
+1. one submitted attempt or payment order is accepted;
+2. no accepted plan exists in one named catalog;
+3. no global plan exists only when the named catalog is
+   `ExactPaidCatalogComplete`.
+
+**Evidence custody:**
+
+- `Applications/ResourceTraceOneCrossing.lean` is public, non-SCRATCH corpus
+  evidence outside the stable import graph. It carries the resident
+  `ResourceCheckerExec.Trace Nat` attempt and its native positive checker
+  equation end-to-end, reconstructs the resident derivation, and preserves the
+  expected map, exact payment occurrence, and computed residue across
+  catalog/global conversion.
+- `Countermodels/EndpointCompleteness.lean` is public premise-ablation evidence
+  outside the stable import graph. Authorized and forged attempts have the
+  same endpoints but different exact identities, dependent native receipts,
+  and expected payments; a forged-only endpoint-complete catalog therefore
+  cannot globalize refusal and is not exact-complete.
+- `Applications/FiniteSupportOneCrossing.lean` is annex evidence with an
+  explicit `LeanProofs.Scratch.FiniteSupportChecker` dependency. It preserves
+  the native acceptance and refusal equations, positional provenance, native
+  excess/offender interpretation, exact payment residue, and accepted-path
+  obligation residue. It is not part of the stable root.
+- The fixed three-cycle fixture was intentionally not promoted: exhaustive
+  enumeration of that specimen supplies no evidence independent of the
+  generic payment family, corpus application, and endpoint countermodel.
+
+**No current paper cashout.** This is a repository-integration theorem family,
+not a new proof calculus or proof-theory result. It claims no Hall, matching,
+3DM, CSP, complexity, or general plan-synthesis novelty. Occurrence indices are
+context-relative positions, not persistent serials. `ResourceCheckerExec`
+`checkTrace = none` rejects only that submitted trace. `injectiveOn` is
+inherited plan plumbing; the singleton corpus is no nontrivial injectivity or
+matching witness. There is no refusal transition, refusal debt-preservation,
+dynamic authority, resource creation, or temporal-debt theorem. PC-1 and PC-2
+remain closed; stateful bounded realization/refusal remains a separate
+frontier.
+
 ## Open / axiomatic boundaries
 
 - **`persistence_normalizes` axiom** in `PersistenceModel.lean` — intentionally weak, marks where static formalization ends. Relevant to the dynamic-claims roadmap (three-bucket split: explicit specifications / transition-system or temporal model / simulation). See memory `project-lean-dynamic-roadmap.md` in the papers project memory.
@@ -182,3 +242,4 @@ Eight modules forming the safety-axis brick set, addressing the Frontier 1 wound
 - **2026-05-08** — Added `Admissibility/CorrectiveBoundary.lean` Site 3 (`Witness.DoesNotPreBlock` predicate naming the structural condition the witness construction relies on; `Witness.witnessCorrective_doesNotPreBlock_witnessClaim` discharges via concrete `999 ≠ 1`). Site 2 inspection (factor `mixed_class_witness` via `DoesNotPreBlock`): no Lean change — the abstract `NondegenerateStoreSemantics` layer cannot decompose the conclusion further without env-specific commitments; refusing to launder the conclusion into a shiny new predicate is the discipline (filed as `feedback-failed-factoring-as-honest-boundary.md`). Site 1: prose honesty patch — top doc-block extended with structural-mirror section (what's preserved vs collapsed); `mixed_class_witness` field comment forward-points to `Witness.DoesNotPreBlock`. Three-site batch closed.
 
 - **2026-05-29** — Added safety-bridge family section (paper anchor: planned formal-methods preprint "An Admissibility Calculus: Authorization, Safety Bridges, and Value Decay"; secondary anchor: paper 28). Previously the safety-bridge work had no paper anchor; the spine-page decision at `~/git/papers/working/admissibility-suite-spine-2026-05-28.md` resolved the topology fork (Fork B — preprint as sibling outside Δt numbering; paper 28 as interpretation paper that cites it). Eight modules covered (brick 0 + bricks 1a/1b + brick 2 + tier-1 ledger): `AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger`. Status: formalized YES; preprint scaffold pending. Earned preprint status via one irreducible theorem family (trajectory triple + no-lift) replicated across two distinct witnesses (receipt-poison miniature + attestation-ledger).
+- **2026-07-15** — Added the v11 Occurrence-Exact Paid Recomposition stable theorem family and its evidence-custody map. The stable root contains only `Payment` and `Catalog`; the public corpus application and endpoint countermodel remain evidence outside that graph; the finite-support integration remains SCRATCH-dependent annex evidence; the three-cycle fixture was intentionally omitted.

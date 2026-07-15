@@ -441,6 +441,60 @@ The **Witnessed Derivation Calculus** is a narrow, ratified, **Mathlib-free** pr
 
 The original ratified receipts carry axiom footprints <= [`propext, Quot.sound`], re-attested in the canonical build by `scripts/check-witnessed-footprint.sh`; the additive formula/resource receipts are Mathlib-free and compile through the same `Witnessed` surface. A consumer specimen (`LeanProofs/Witnessed/Examples.lean`) exercises the public API from outside the ported cone.
 
+### v11 — Occurrence-Exact Paid Recomposition
+
+> Ordered payments admit proof-relevant, occurrence-indexed checking with
+> exact computed residue. Under exact attempt-level catalog completeness,
+> paid global plans and paid catalog plans are equivalent without replacing
+> native receipts, expected-payment evidence, payment traces, or residue.
+> Endpoint-only completeness is insufficient.
+
+The focused stable root `LeanProofs.Witnessed.PaidRecomposition` adds two
+Mathlib-free modules to the Witnessed surface:
+
+- `Payment` validates one submitted order of expected payments. Every step
+  retains the exact `ResourceChecker.removeAt` equation for a
+  context-relative occurrence and computes the exact residual wallet.
+  `PaymentRefusal.sound` rules out a payment trace for that same order and
+  wallet; `checkPayment_accepts_iff` reflects success; and
+  `PaymentTrace.length_conservation` accounts for every consumed occurrence.
+- `Catalog` retains exact attempts, dependent native positive receipts,
+  expected-payment evidence, payment traces, and residue. Catalog-to-global
+  conversion forgets only exact membership. Under
+  `ExactPaidCatalogComplete`, global-to-catalog conversion replaces none of
+  those fields, `exact_catalog_adequate` proves equivalence of nonempty paid
+  catalog and global plans, and `exact_complete_globalizes_refusal` gives the
+  negative corollary.
+
+The theorem family separates three claim scopes: acceptance of one submitted
+attempt/payment order; nonexistence of an accepted plan relative to one named
+catalog; and global nonexistence only under exact attempt-level completeness.
+
+Two public evidence modules remain outside the stable import graph.
+`Applications.ResourceTraceOneCrossing` retains the resident
+`ResourceCheckerExec.Trace Nat` and native positive checker equation through
+the catalog conversions and reconstructs the resident derivation.
+`Countermodels.EndpointCompleteness` gives authorized and forged attempts the
+same endpoints but different exact identities, dependent positive content,
+and expected payments, proving endpoint completeness insufficient. The
+SCRATCH-dependent `Applications.FiniteSupportOneCrossing` is annex evidence:
+it retains native positive and negative finite-support checker results,
+positional provenance, exact payment residue, native offender/excess meaning,
+and accepted-path obligation residue. The fixed three-cycle fixture was
+intentionally not promoted because it contributes no independent evidence.
+
+This is a repository-integration theorem family, not a new cut connective,
+proof calculus, matching result, or planner. It claims no Hall, 3DM, CSP,
+complexity, or general synthesis novelty. Occurrence indices are positions in
+the current context, not persistent serials. An equation
+`ResourceCheckerExec.checkTrace = none` rejects only the submitted trace.
+`PaidGlobalPlan.injectiveOn` is
+inherited plumbing and the singleton application supplies no nontrivial
+injectivity evidence. No transition or refusal-debt semantics are modeled; no
+dynamic authority, resource creation, or temporal debt follows. PC-1 and PC-2
+remain closed. Stateful bounded realization/refusal is the next separate
+frontier.
+
 ### What it does NOT prove
 
 - **not** universal normalization — the result is an *admitting-class* theorem (it holds for bridge systems satisfying the local commutation law, with the freshness model as one instance); it does not prove that all bridge systems normalize;

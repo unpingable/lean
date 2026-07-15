@@ -1,8 +1,9 @@
 # v10 Readiness Ledger — View Semantics and Bounded Projection
 
-**Status: GATE-COMPLETE / OPERATOR-ACCEPTED, RELEASE-PREPPED (2026-07-14).
-The annotated tag and GitHub release remain operator actions; release creation
-drives the Zenodo deposit and version-DOI mint.**
+**Status: GATE-COMPLETE / OPERATOR-ACCEPTED / LOCALLY TAGGED (2026-07-14).
+The annotated local tag `v10.0.0` exists and peels to commit `20b8da5`.  This
+local receipt does not by itself establish the status of a GitHub release,
+Zenodo deposit, or version DOI.**
 
 This is the as-built evidence ledger requested by
 [`V10-GAP-SPEC.md`](V10-GAP-SPEC.md). It is not a tag, GitHub release, DOI,
@@ -10,9 +11,11 @@ or custody promotion. Written 2026-07-14 as GATE-COMPLETE CANDIDATE /
 UNMINTED with the repository still advertising `9.0.0`; later the same day
 the operator accepted the ledger and directed the v10 metadata transition
 (lakefile `10.0.0`, CHANGELOG 10.0.0 entry, CITATION.cff title + abstract +
-version + date, README current-release section). The mint itself — tag,
-GitHub release creation, Zenodo deposit — is the operator's, and no custody
-class changes at mint.
+version + date, README current-release section).  The operator subsequently
+created the annotated local `v10.0.0` tag on 2026-07-14; its tag object is
+`d174c9c` and its peeled target is `20b8da5`.  GitHub release creation and any
+Zenodo deposit/version DOI remain external operator state not inferred from
+the local tag, and no custody class changes at mint.
 
 ## Candidate release claim
 
@@ -201,7 +204,9 @@ ViewSemantics isolation gate, metadata parsers, workflow parsers, and
 
 Gate C earns a release argument; it does not perform the external release.
 The operator accepted this ledger and authorized the v10
-version/CFF/changelog/README transition, which is present in this tree. The
-annotated `v10.0.0` tag and GitHub release remain operator actions; GitHub
-release creation drives the Zenodo deposit and version-DOI mint. This ledger
-performs neither action and changes no custody class.
+version/CFF/changelog/README transition, which is present in the tagged tree.
+The annotated local `v10.0.0` tag was then created on 2026-07-14 and peels to
+`20b8da5`.  The tag alone neither creates nor proves the existence of a GitHub
+release, Zenodo deposit, or version DOI; those remain separately operated
+external actions.  Neither metadata preparation nor tagging changes custody
+class.
