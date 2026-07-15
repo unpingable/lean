@@ -4,23 +4,10 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
-## Development order: formalization leads code
-
-A downstream consumer, running implementation, or "forcing case" is never a
-prerequisite to state, prove, or incubate a coherent formal result. Lean may
-establish the contract first and subsequent code should implement or cite that
-contract. Opening or incubating formal work requires an intrinsically coherent,
-non-tautological statement, honest hypotheses, bounded scope, and overlap
-review. Proof completion and axiom disclosure govern what the work ultimately
-discharges and whether it is eligible for promotion.
-
-Custody and conformance remain separate. Compiling a theorem does not promote
-it into a public compatibility surface, and a theorem does not prove that a
-runtime conforms to it. Promotion requires an explicit custody/release
-decision and may consider runtime evidence under the applicable custody rules.
-Citation or adoption identifies the intended contract; a runtime-conformance
-claim still requires an explicit mapping plus runtime evidence or a refinement
-proof. None of those decisions grants permission to begin the formalization.
+Development-order and custody discipline for contributors and coding agents
+lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
+compiling a theorem is neither a custody promotion nor a runtime-conformance
+claim).
 
 ## Current release: 10.0.0 — View Semantics and Bounded Projection
 
