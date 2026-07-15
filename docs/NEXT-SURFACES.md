@@ -16,8 +16,8 @@ combined coverage may launder authority*.
 This register controls promoted/versioned surfaces, not permission to do
 Scratch or candidate theorem work. Formalization may begin from a coherent
 proposition, countermodel, or abstraction boundary and may lead the code.
-Runtime adoption supplies correspondence evidence; it is never formalization
-admission.
+Runtime adoption may supply promotion/correspondence evidence, but does not by
+itself prove conformance and is never formalization admission.
 
 ---
 
@@ -104,7 +104,7 @@ Content is already fully named in V7-GAP-SPEC §6 (envelope-not-semantics;
 the five non-collapse lines + the one narrow positive:
 `wlp_envelope_preserves_declared_payload_and_parent_digests` — that is
 WLP's whole job; important, not emperor). The graph-level additions when
-forced: `wlp_parent_graph_does_not_imply_profile_derivation`,
+formally opened are: `wlp_parent_graph_does_not_imply_profile_derivation`,
 `wlp_envelope_validity_does_not_imply_bridge_validity`,
 `same_wlp_kind_does_not_imply_same_authority_profile`. Working title if
 it ever versions: "Envelope Graph Noncollapse."

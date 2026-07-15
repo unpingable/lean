@@ -336,7 +336,7 @@ def ModalityBridge.decide (s t : State) : BridgeDecision :=
     ModalityBridge fires first and ClaimKindBridge never runs — so the
     flat bridge is not asked to disambiguate. The flat policy refuses
     *any* claim-kind drift; whether that's the right policy is a
-    separate question the next forcing specimen would have to address. -/
+    separate question for a separating formal specimen to address. -/
 def ClaimKindBridge.decide (s t : State) : BridgeDecision :=
   if Policies.allowedClaimKindTransition s.claimKind t.claimKind then
     .accept
@@ -682,7 +682,7 @@ example : (cascade s4_source s4_target).severityDelta = some (.constraining, .re
   Caveat the flat policy carries: identity-only `allowedClaimKindTransition`
   refuses *every* claim-kind drift. It captures S6a correctly but cannot
   distinguish a force-bearing escalation (descriptive → interventional)
-  from a force-neutral refinement. The next forcing specimen — one that
+  from a force-neutral refinement. A separating specimen — one that
   legitimately wants a claim-kind transition — would be the test of
   whether ClaimKind owns its column flatly or whether a ForceGrade
   diagnostic is needed (claimKind/modality bounded coupling).

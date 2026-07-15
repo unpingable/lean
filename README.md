@@ -22,7 +22,65 @@ Citation or adoption identifies the intended contract; a runtime-conformance
 claim still requires an explicit mapping plus runtime evidence or a refinement
 proof. None of those decisions grants permission to begin the formalization.
 
-## Current release: 9.0.0 — Dynamic Traces and Profile Semantics
+## Current release: 10.0.0 — View Semantics and Bounded Projection
+
+*Distinguishability as a first-class axis: view refinement changes what is
+distinguishable without minting transition authority.*
+
+**v10.0.0 lands the view-semantics campaign**: a canonical distinguishability
+core over finite view systems, an exact characterization of deterministic
+bounded projection, a sound-and-complete finite checker with typed
+certificates, and a custody adapter proving greater visibility constructs no
+authority.
+
+What v10 lands:
+
+- **`ViewSemantics` core (UNRATIFIED-CANDIDATE, Mathlib-free)** — `View`,
+  `Indistinguishable`, fine-to-coarse `Refines`, `Determines`, the weak/strong
+  determination boundary with inhabited witnesses, composition laws with a
+  finite-family join API, and rooted counterexamples: weak nondetermination is
+  **not** closed under composition, while declared disclosure bounds compose.
+- **Bounded projection** — `OperationallySufficient` stays existential (the
+  general-safe fence); deterministic bounded sufficiency is characterized
+  exactly by a refinement sandwich
+  (`deterministicallyBoundedSufficient_iff_refinement_sandwich`); existence
+  boundaries choose the required-action projection, never the budget; all
+  four disclosure × sufficiency audit cells are inhabited.
+- **Sixth-atom adjudication (negative, scoped)** — the axis adapter imports
+  the resident bridge atom/family ontology; `no_resident_bridge_pair_pays_all_five`
+  shows the literal all-five bridge premise is uninhabited there; disclosure
+  is recorded as an **orthogonal view-context axis, deliberately not a sixth
+  family atom**.
+- **Finite checker** — `ViewAudit` returns two independent typed results
+  (`PolicyCertificate`/`ActionConflict`, `BoundCertificate`/`ForbiddenDistinction`),
+  each carrying concrete witnesses; soundness and reflection proved in both
+  directions; all four quadrants execute without `native_decide` or a
+  collapsed validity bit.
+- **Authorized-trace custody adapter** — consumes a v9 `AuthorizedTrace`;
+  observation refinement/join preserve the exact evidence and step sequence;
+  `full_visibility_does_not_override_revoked_basis` and
+  `full_visibility_does_not_supply_missing_authority` reuse the v9 walls.
+- **Applications** — `BindingSourceAblation` factors its determination
+  predicate exactly through canonical `Determines` (non-XOR, governed-trace
+  quotient view); `MosaicRelease` and `CompartmentConflict` retained as
+  SCRATCH compatibility wrappers over the canonical core; the P25 observation
+  adapter is confined to an explicit Mathlib island.
+- **Build/audit surfaces** — `ViewSemantics` and `ViewSemanticsApplications`
+  join the default Mathlib-free targets; `ViewSemanticsMathlibIslands` builds
+  explicitly; CI builds all three and runs the fail-closed footprint gate
+  (36 receipts axiom-free; application/island footprints pinned exactly) and
+  the isolation gate (closures Mathlib-free and custody-separated).
+
+v10 makes **no** information-flow, noninterference, probabilistic-leakage,
+side-channel, runtime-compliance, or transition-authority claim. All
+ViewSemantics material is UNRATIFIED-CANDIDATE: the release archives the
+tree; it is not a custody promotion. SCRATCH incubations landed since v9
+(reversal-authority, credit/standing, signal-authority, and sibling
+campaigns) ship in the archive and testify for nothing.
+
+Release inventory: [`docs/V10-READINESS-LEDGER.md`](docs/V10-READINESS-LEDGER.md).
+
+## 9.0.0 — Dynamic Traces and Profile Semantics
 
 *Dynamic execution over static witnesses, and checker-facing profile semantics.*
 
@@ -79,7 +137,7 @@ What v9 lands:
   None of these testify for any runtime's compliance by themselves. Citation
   or adoption identifies the intended contract; conformance still requires an
   explicit mapping plus runtime evidence or a refinement proof. Lean custody
-  and promotion remain a separate review.
+  promotion remains a separate review.
 - **`Admissibility/DeferredWitness.lean` (ANNEX)** — the classifier
   reflection lemma `firstViolation_none_iff_lawful` is now proved (was
   documented as left to the host environment).
@@ -536,7 +594,7 @@ The audit's first recorded finding, kept here as the chronological anchor for th
 Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 
 ```bash
-lake build                  # v9 surfaces plus unminted ViewSemantics candidate/application targets
+lake build                  # Mathlib-free custody/release surfaces incl. ViewSemantics candidate/application targets
 lake build Witnessed        # the Witnessed Derivation Calculus in isolation (Mathlib-free)
 bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
 bash scripts/check-viewsemantics-footprint.sh # candidate theorem/checker footprints (fail-closed)
@@ -546,10 +604,10 @@ bash scripts/audit-native-decide.sh         # native_decide confined to finite-w
 bash scripts/check-mathlib-pin.sh           # lakefile mathlib rev == manifest SHA (no silent drift)
 ```
 
-The ViewSemantics campaign remains `UNRATIFIED-CANDIDATE`: default build
-coverage is compile contact, not a v10 tag, DOI, or custody promotion. Its P25
-adapter remains outside the default cheap graph and builds explicitly with
-`lake build ViewSemanticsMathlibIslands`.
+The ViewSemantics campaign remains `UNRATIFIED-CANDIDATE`: the v10 release
+archives the tree, and neither the tag/DOI nor default build coverage is a
+custody promotion. Its P25 adapter remains outside the default cheap graph and
+builds explicitly with `lake build ViewSemanticsMathlibIslands`.
 
 **Custody posture: the repository is not axiom-free; it is *axiom-classified*. WDC promoted
 receipts remain footprint-attested.** See [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for

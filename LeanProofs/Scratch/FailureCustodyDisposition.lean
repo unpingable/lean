@@ -17,8 +17,9 @@
   owns only: a preserved failure must not become refusal, denial, falsity, or absence.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  The NQ verdict pipeline is a runtime correspondence target. Promotion is a
-  separate custody decision and does not wait on it.
+  Formalization does not wait on the NQ verdict pipeline. Under the current
+  custody fence, promotion requires a disposition-ingestion specimen as
+  correspondence evidence plus operator review; it does not prove conformance.
 
   Self-contained (no imports). Check: cd ~/git/lean && lake env lean <abs path>.
 -/

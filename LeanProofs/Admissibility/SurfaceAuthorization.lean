@@ -18,9 +18,10 @@
     Derived from the cross-primitive recurrence of the recovery-side
     question across testimony-vs-self-theory, Signal Authority,
     CollapsedSurface, and Paper 25's observation-equivalence framework.
-    The abstract refusal statement was identified before runtime
-    adjudication. Governor later supplied a correspondence specimen; it
-    did not authorize the formalization.
+    Earlier policy deferred this until Governor identified a concrete
+    runtime use. That consumer gate is superseded as of 2026-07-14: the
+    abstract refusal statement stands on its formal merits. Governor later
+    supplied correspondence evidence; it did not authorize the theorem.
 
   Scope fence:
     - Encodes the *refusal gate*: collapsed + cause-specific + no

@@ -7,8 +7,9 @@ scratch receipts are summarized here as starting evidence, not as evidence
 that v10 exists.
 
 The landed Gate A–C evidence and actual file dispositions are recorded in
-[`V10-READINESS-LEDGER.md`](V10-READINESS-LEDGER.md). That ledger remains
-unminted pending operator acceptance.
+[`V10-READINESS-LEDGER.md`](V10-READINESS-LEDGER.md). That ledger was
+accepted by the operator on 2026-07-14 and the v10 metadata transition
+performed; the tag/release/DOI mint remains the operator's action.
 
 > **Gate B earns the mathematics. Gate C earns the release.**
 

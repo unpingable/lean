@@ -10,9 +10,10 @@
   here, not as `sorry`.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  NQ / Wicket / Governor refusal of a captured-checker claim is a runtime
-  correspondence target. Promotion to `Admissibility.ControlPathIndependence`
-  is a separate custody decision and does not wait on that target.
+  Formalization does not wait on NQ / Wicket / Governor. Under the current
+  custody fence, promotion to `Admissibility.ControlPathIndependence` requires
+  a captured-checker refusal specimen as correspondence evidence plus operator
+  review; the specimen does not prove conformance alone.
 
   THE CUT (three axes, only one architectural): a captured checker — one whose sensing /
   power / logic / refusal path is controlled by the thing it checks — cannot mint an

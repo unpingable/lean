@@ -26,7 +26,9 @@
 
   Bounded scope: declare bridge signatures, prove composition theorem,
   one revocation-shaped consequence. AG-specific rule families remain
-  opaque predicates until a particular laundering path forces detail.
+  opaque in this module because its selected theorem does not require
+  their internal structure. A separate, precise theorem or countermodel
+  may expose that structure before a runtime laundering path exists.
 
   Derivation strategies are bundled into structures (`BasisDerivation`
   etc.) that carry the function AND its proof obligations. Concrete
@@ -37,8 +39,9 @@
   `deriveStanding` here is standing for *invoking* an authority claim.
   It is intentionally separate from `StateTransition.StepAllowed`,
   which is standing for *mutating* governance state. Related, not
-  identical; bridge them later if a concrete `amendPolicy` claim
-  forces it.
+  identical. A bridge should be developed when its statement, semantics,
+  overlap, and non-vacuity controls are precise; it may lead a later
+  concrete `amendPolicy` implementation rather than wait for one.
 
   Governor-neutral. Imports only sibling Admissibility modules.
 

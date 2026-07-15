@@ -59,7 +59,8 @@
     - That cascade preserves any "ultimate origin" property.
       Immediate-origin discipline means the endpoint exposure's
       `origin` is the penultimate hop, not the root failure
-      domain. Ultimate provenance is a separate slice if forced.
+      domain. Ultimate provenance is a separate formal extension that
+      would require explicit `CascadeChain` semantics.
     - Anything about degradation. Cascade is exposure
       propagation; `CrossBoundaryDegradation` is intentionally
       not imported.

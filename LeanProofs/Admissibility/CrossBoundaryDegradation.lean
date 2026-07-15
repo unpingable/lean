@@ -39,7 +39,7 @@
       concern of provenance discipline.
     - That internal failures can or cannot occur. Failure is still
       not modeled; the next slice
-      (`Admissibility/CrossBoundaryFailureMint.lean`, when forced)
+      (`Admissibility/CrossBoundaryFailureMint.lean`)
       is where `fail` becomes a step and where exposure minting
       from failure receives a separate authorization gate.
     - Any cascade theorem. Cascade is downstream of failure-to-

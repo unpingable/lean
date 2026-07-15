@@ -31,7 +31,7 @@
   keyed rather than metric-keyed; it stays in the kernel's ordinal
   apparatus and is not formalized here.
 
-  Forcing receipt:
+  Runtime correspondence receipt (historically the promotion context):
     Standing's `AssessmentResult::AssessmentCompromised` is exactly the
     kernel's "gap" verdict applied to metric-time admissibility — and
     the Lean kernel previously could not express that the gap was

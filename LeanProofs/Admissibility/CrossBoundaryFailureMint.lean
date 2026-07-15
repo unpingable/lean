@@ -70,8 +70,9 @@
 
   Scope fence
     - No `CrossBoundaryDegradation` import. Composing failure-mint
-      with degradation is the concern of a downstream cascade
-      module, if forced.
+      with degradation belongs to a separate future composition
+      module, not this file; no consumer is required once that module's
+      statement and semantics are fixed.
     - No `TaxonomyGraph` import. Boundary partition stays
       operator-supplied over abstract `Domain`.
     - No `PersistenceModel` import. Failure here is a discrete

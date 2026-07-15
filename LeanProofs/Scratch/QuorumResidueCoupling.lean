@@ -8,9 +8,9 @@
   (c(t) side); memory: project-residue-custody-candidate.md.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by
-  LeanProofs.lean; not in the build graph or CI. A stranded-fork runtime is a
-  correspondence target, not permission to formalize. Promotion is a separate
-  custody decision, including c(t) scope/overlap review in
+  LeanProofs.lean; not in the build graph or CI. Formalization does not wait
+  on a stranded fork. Under the current custody fence, promotion requires one
+  as correspondence evidence plus c(t) scope/overlap review in
   premature-belated-duality.md. May clarify shape; may not testify.
 
   Synchronic half (already built, scratch): QuorumCustody.no_conflicting_quorum_certificates

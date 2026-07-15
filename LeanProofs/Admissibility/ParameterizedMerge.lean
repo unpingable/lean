@@ -46,11 +46,11 @@
   does no work in this shape. That asymmetry is the right outcome and is
   the diagnostic, not a bug: Slice 1's restoration is at the *basis*
   layer (bridge constructibility for future value-preserving steps), not
-  at the value-floor layer. Capturing it would need a sibling predicate
-  `MergeRestoresBasis`, which is filed as deferred — the basis story
-  already lives non-vacuously in `GuardCollapse.lean` and Slice 1b's
-  `stale_useEvidence_authorized_not_safe`. Folding it into this generic
-  is the next move, not this one.
+  at the value-floor layer. The sibling predicate `MergeRestoresBasis`
+  and Stale instance `staleFrame_restores_basis` now capture that story
+  below, alongside the non-vacuous witnesses in `GuardCollapse.lean` and
+  Slice 1b's `stale_useEvidence_authorized_not_safe`. A second independent
+  basis-layer instantiation remains the anti-vacuity debt.
 
   What this module does NOT claim:
 
@@ -61,9 +61,10 @@
     *schema* below plus the three concrete instantiations, not a unified
     theorem statement.
   - Not minted as canonical. Scratch annex per the working/tooltheory
-    convention. Promotion requires a separate custody review; completing
-    the basis-layer companion would strengthen that review, while a
-    downstream consumer is not a prerequisite.
+    convention. Promotion requires a second independent
+    `MergeRestoresBasis` instantiation as anti-vacuity evidence plus
+    separate custody review. A downstream consumer is not a prerequisite
+    for the formalization.
 -/
 
 import LeanProofs.Admissibility.SafetyBridge
@@ -721,10 +722,10 @@ end StaleNecessity
   both honest, and is exactly what "small kernels, not a unified
   calculus" looks like in practice.
 
-  Promotion gate. This module is not root-wired. Promotion requires an
-  explicit custody decision based on the generic shape's formal merit and
-  overlap. A second slice instantiating `MergeRestoresBasis` would provide
-  useful anti-vacuity evidence, but no downstream consumer is required.
-  Until then, candidate. -/
+  Promotion gate. This module is not root-wired. Before promotion, a second
+  independent slice must instantiate `MergeRestoresBasis`, followed by an
+  explicit custody/overlap decision.
+  No downstream consumer is required for theorem development. Until then,
+  candidate. -/
 
 end Admissibility.ParameterizedMerge

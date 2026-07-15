@@ -7,8 +7,9 @@
   coherent noncollapse result is enough to justify scratch incubation. Not promotion.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  Paper, Wicket, and Governor artifacts may supply correspondence evidence.
-  Promotion to Admissibility/ is a separate custody decision and does not wait on them.
+  Formalization does not wait on a paper, Wicket, or Governor artifact. Under
+  the current custody fence, promotion to Admissibility/ requires a concrete
+  correspondence artifact plus operator review; it does not prove conformance.
 
   KEEPERS:
     "Reported uncertainty does not witness uncertainty-governed action."

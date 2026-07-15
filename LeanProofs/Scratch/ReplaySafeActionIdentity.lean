@@ -8,9 +8,10 @@
   ResidueCustodyNoncollapse.lean.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean;
-  not in the build graph or CI. May clarify shape; may not testify. Nightshift proposal
-  execution and agent_gov action issuance are runtime correspondence targets for the
-  retry law. Promotion is a separate custody decision and does not wait on them.
+  not in the build graph or CI. May clarify shape; may not testify. Formalization
+  does not wait on runtime retries. Under the current custody fence, promotion
+  requires a Nightshift or agent_gov retry specimen as correspondence evidence
+  plus operator review; the specimen does not prove conformance alone.
 
   FORBIDDEN INFERENCES:
     "Timeout means no effect occurred."

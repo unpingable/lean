@@ -414,10 +414,11 @@ theorem maximal_bridge_implies_complete
 
   3. Bridge-candidate ratification. Choosing among
      witness-encapsulation / non-contamination / receipt-persistence
-     requires a formal discriminator or countermodel, or an explicit
-     doctrinal choice. Runtime adoption is correspondence evidence, not
-     permission to formalize a candidate. `nonContamination` (witness
-     module) is the specimen, not the ratified choice.
+     requires a formal discriminator or countermodel plus an explicit
+     doctrinal/custody choice. Runtime evidence may inform that review but
+     is not permission to formalize a candidate and does not replace the
+     discriminator. `nonContamination` (witness module) is the specimen,
+     not the ratified choice.
 
   4. `ActorSensitiveBridgeEnv` — named deferred extension.
 

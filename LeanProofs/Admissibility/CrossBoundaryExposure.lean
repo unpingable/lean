@@ -62,10 +62,10 @@
     - No rates / stochastic semantics.
     - No replication.
     - No recovery action.
-    - No failure action — the failure → exposure mint is a downstream
-      slice if forced.
-    - No degradation action — degradation provenance is a downstream
-      slice; that slice's keeper is
+    - No failure action in this module — the formal downstream slice is
+      `CrossBoundaryFailureMint`.
+    - No degradation action in this module — the downstream slice is
+      `CrossBoundaryDegradation`; that slice's keeper is
       *This is degradation provenance only. Not damage. Not failure
       leakage. Not cascade.*
     - No `TaxonomyGraph` import. Composition with the concrete

@@ -202,7 +202,8 @@ theorem componentReach_iff_reach
     These are exactly the obligations the aperture theorem will
     demand. The five bad cases (boundary collision, authority
     widening, etc.) will become derivable corollaries — or
-    counterexamples to specific instantiations — only if later forced.
+    counterexamples to specific instantiations — once their formal
+    statements and models are fixed. No consumer is required.
     They are NOT encoded here, and the pressure tests below do not
     promote this ANNEX aperture into a complete merge theory. -/
 structure MergeAdmissible {Domain Failure : Type}

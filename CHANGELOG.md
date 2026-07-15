@@ -6,6 +6,87 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 10.0.0 — View Semantics and Bounded Projection (2026-07-14)
+
+*Distinguishability as a first-class axis: view refinement changes what is
+distinguishable without minting transition authority.*
+
+10.0.0 lands the view-semantics campaign: a canonical distinguishability core
+over finite view systems, an exact characterization of deterministic bounded
+projection, a sound-and-complete finite checker with typed certificates, and a
+custody adapter proving that greater visibility constructs no authority. The
+bounded release claim, gate receipts, and verification envelope are in
+[`docs/V10-READINESS-LEDGER.md`](docs/V10-READINESS-LEDGER.md).
+
+- **`ViewSemantics` core (UNRATIFIED-CANDIDATE, Mathlib-free)** — `View`,
+  `Indistinguishable`, fine-to-coarse `Refines`, `Determines`,
+  `NotFullyDetermining`, `FiberwiseAmbiguous`; the weak/strong boundary with
+  inhabited (non-vacuous) witnesses and a closed three-world non-converse;
+  composition laws (`compose_indistinguishable_iff`, `refines_compose_iff`,
+  `compose_mono`, `determines_compose_iff`) with `finiteJoin` exposing the
+  finite-family API; rooted counterexamples showing weak nondetermination is
+  **not** closed under composition while declared disclosure bounds compose.
+- **Bounded projection** — `OperationallySufficient` stays existential (the
+  general-safe fence); deterministic bounded sufficiency has an exact
+  refinement-sandwich characterization
+  (`deterministicallyBoundedSufficient_iff_refinement_sandwich`) and
+  constructive existence boundaries that choose the required-action
+  projection, never the budget; all four disclosure × sufficiency audit cells
+  are inhabited.
+- **Sixth-atom adjudication (negative, scoped)** — the axis adapter imports
+  the resident bridge `Atom`/`Family` ontology rather than recreating it;
+  `no_resident_bridge_pair_pays_all_five` shows the literal all-five bridge
+  premise is uninhabited in the resident ontology; disclosure is recorded as
+  an **orthogonal view-context axis, deliberately not a sixth family atom**
+  (`disclosure_is_orthogonal_to_resident_bridge_ontology`).
+- **Finite checker** — `ViewAudit` returns two independent typed results:
+  `PolicyCertificate` / `ActionConflict` (conflicts carry an inhabited
+  observation fiber and a rejecting same-fiber world per action) and
+  `BoundCertificate` / `ForbiddenDistinction` (concrete worlds equal under
+  the budget, unequal under the view); `checkActionability_*_iff` and
+  `checkDisclosure_*_iff` prove soundness and reflection in both directions;
+  all four quadrants execute without `native_decide` and without a collapsed
+  validity bit.
+- **Authorized-trace custody adapter** — `DynamicTraceAdapter.AuthorizedRun`
+  consumes an existing v9 `AuthorizedTrace`; observation refinement and join
+  preserve the exact evidence and step sequence; separation receipts
+  (`full_visibility_does_not_override_revoked_basis`,
+  `full_visibility_does_not_supply_missing_authority`) reuse the v9 walls:
+  visibility constructs no `AuthorizedStep`, `DynamicStep`, or
+  `AuthorizedTrace`.
+- **Non-XOR application** — `BindingSourceAblation` factors its
+  `TraceDetermined` predicate exactly through canonical `Determines` via the
+  quotient governed-trace view: intact trace fibers remain ambiguous about
+  viability coupling; actual gate ablation strictly refines the observation
+  and determines it. Existing specimens `MosaicRelease` and
+  `CompartmentConflict` are retained as directly-checked SCRATCH
+  compatibility wrappers over the canonical core; `ConsequencePartition`,
+  `CollapsedSurface`, and `WitnessInvariance` are bridged by generic
+  adapters; the P25 observation adapter is confined to an explicit Mathlib
+  island.
+- **Build/audit surfaces** — new `lean_lib` roots `ViewSemantics` and
+  `ViewSemanticsApplications` join the default (Mathlib-free) targets;
+  `ViewSemanticsMathlibIslands` builds explicitly; CI builds all three and
+  runs `scripts/check-viewsemantics-footprint.sh` (36 receipts axiom-free;
+  BindingSourceAblation exactly `[propext, Quot.sound]`; P25 exactly
+  `[propext, Classical.choice, Quot.sound]`; the trace adapter adds no new
+  foundation) and `scripts/check-viewsemantics-isolation.sh` (shared and
+  application closures Mathlib-free and custody-separated).
+- **Also landed since v9, outside the release claim** — SCRATCH incubations
+  (`RegulatorRecovery`, `SelfEntrenchment`, `BorrowedSpend`,
+  `SignalAuthority`, `StatusConversionBinding`, `CommitmentStanding`,
+  `ConsolidationController`, `AffectiveCouplingClassification`, expanded
+  `NoSilentProjection`) and the 2026-07-14 formalization-leads-code
+  doc/header sweep. These ship in the archive because the archive is the
+  tree; they carry `SCRATCH` custody and testify for nothing.
+
+**Non-claims.** No information-flow, noninterference, probabilistic-leakage,
+side-channel, runtime-compliance, or transition-authority claim is made. All
+`ViewSemantics` material is UNRATIFIED-CANDIDATE and unwired: the release
+archives the tree; it is not a custody promotion, and no runtime's compliance
+is testified to until a runtime artifact cites named theorems.
+Inventory: `docs/V10-READINESS-LEDGER.md`.
+
 ## 9.0.0 — Dynamic Traces and Profile Semantics (2026-07-09)
 
 *Dynamic execution over static witnesses, and checker-facing profile semantics.*
@@ -116,7 +197,7 @@ testify for RRP or any runtime's compliance by themselves**. Citation/adoption
 identifies the intended contract; conformance requires an explicit mapping plus
 runtime evidence or a refinement proof. Lean custody is independently reviewed;
 none of these reviews is permission to begin formalization.
-no JSON/digest/transport/PKI is modeled anywhere in them.
+No JSON/digest/transport/PKI is modeled anywhere in them.
 Inventory: `docs/V9-RELEASE-LEDGER.md`.
 
 ## 8.0.0 — Sequent Admissibility Island (2026-07-06)

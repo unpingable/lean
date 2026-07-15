@@ -47,7 +47,8 @@
 
   Scope fence:
     - No ATProto vocabulary. No labels, labelers, or moderation
-      ontology. Those are downstream example modules if forced.
+      ontology. Those may live in downstream example modules; they are
+      not prerequisites for this formal result.
     - No multi-witness aggregation.
     - No compositional shape for `ObservedNonRefinement`.
     - Not certified safe for any specific platform.

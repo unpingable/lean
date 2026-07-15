@@ -201,8 +201,9 @@ theorem axis1_no_step_section
   bending BudgetMerge's existing definitions — the non-forced test.
 
   Budget first per the verdict note. Stale and Conflict specimens
-  follow the same shape and can be added once a second instantiation
-  is forced (currently candidate, not minted). -/
+  follow the same shape; a second formal instantiation is required before
+  promotion and does not wait on a consumer (currently candidate, not
+  minted). -/
 
 section Axis2Budget
 
@@ -297,9 +298,9 @@ end Axis2Budget
     gating per-axis." See `axis-2-cross-axis-keystone.md` title
     implications.
 
-  Not root-wired. Promotion requires a separate custody decision. A second
-  Axis 2 specimen (Stale / Conflict) instantiating the schema would provide
-  anti-vacuity evidence that the BudgetMerge wiring is not a one-off; a
-  downstream paper or consumer is not a prerequisite. -/
+  Not root-wired. Promotion requires a second Axis 2 specimen (Stale /
+  Conflict) instantiating the schema, so the BudgetMerge wiring is not a
+  one-off, followed by a separate custody decision. A downstream paper or
+  consumer is not a prerequisite for theorem development. -/
 
 end Admissibility.BoundaryWitness

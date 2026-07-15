@@ -28,8 +28,9 @@ The active contradictions were corrected in this repository:
 - `docs/NEXT-SURFACES.md`, the bounded-calculi roadmap, frontier register,
   release ledger, crosswalks, claim register, and semantic audit no longer use
   runtime arrival as formalization admission.
-- Candidate and Scratch headers now describe runtimes as correspondence
-  targets rather than promotion or build prerequisites.
+- Candidate and Scratch headers now state that formalization does not wait on
+  runtimes, while retaining runtime correspondence evidence as a separate
+  promotion condition where the existing custody rule requires it.
 - `Corrective`, `AxisSkew`, `SafetyBridge`, `LocalBoundary`,
   `SurfaceAuthorization`, and `PublicReceiptRefinement` now identify the real
   formal debts: nondegenerate semantics, explicit bridge assumptions,
@@ -81,7 +82,8 @@ Current contradictions:
 These say a deployed operational gate must precede or justify a Lean theorem.
 Keep the valid proof-to-world fence—a green Lean build does not prove Rust
 conformance—but reverse the development order: Lean may state the abstract
-invariant first; deployment later discharges correspondence.
+invariant first; an explicit mapping plus deployment evidence or a refinement
+proof may later discharge correspondence.
 
 ### `~/git/research`
 

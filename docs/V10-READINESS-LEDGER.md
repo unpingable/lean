@@ -1,11 +1,17 @@
 # v10 Readiness Ledger — View Semantics and Bounded Projection
 
-**Status: GATE-COMPLETE CANDIDATE / UNMINTED (2026-07-14).**
+**Status: GATE-COMPLETE / OPERATOR-ACCEPTED, RELEASE-PREPPED (2026-07-14).
+Tag, GitHub release, and DOI remain operator actions.**
 
 This is the as-built evidence ledger requested by
 [`V10-GAP-SPEC.md`](V10-GAP-SPEC.md). It is not a tag, GitHub release, DOI,
-or custody promotion. The repository still advertises version `9.0.0`; v10
-metadata may move only after the operator accepts this ledger.
+or custody promotion. Written 2026-07-14 as GATE-COMPLETE CANDIDATE /
+UNMINTED with the repository still advertising `9.0.0`; later the same day
+the operator accepted the ledger and directed the v10 metadata transition
+(lakefile `10.0.0`, CHANGELOG 10.0.0 entry, CITATION.cff title + abstract +
+version + date, README current-release section). The mint itself — tag,
+GitHub release creation, Zenodo deposit — is the operator's, and no custody
+class changes at mint.
 
 ## Candidate release claim
 
@@ -103,7 +109,7 @@ worlds are intervention-specific plants and governed traces, not XOR bits.
 an allowlisted source dependency of the actual-ontology adapter only. It keeps
 `Custody-Class: SCRATCH`; import and build contact do not promote it.
 
-## Complete post-v9 six-file inventory
+## Complete post-v9 six-file inventory (as of candidate commit `6f5e6b8`)
 
 | File | Provenance | Actual disposition |
 | --- | --- | --- |
@@ -115,6 +121,21 @@ an allowlisted source dependency of the actual-ontology adapter only. It keeps
 | `BorrowedSpend.lean` | `b9f960f`, 2026-07-12 | `SCRATCH`; explicitly deferred to the credit/standing campaign. |
 
 Inventory is classification, not a demand to absorb all six files.
+
+### Post-candidate additions (after `6f5e6b8`, outside the release claim)
+
+The completeness claim above is scoped to the candidate commit. Two commits
+landed after it and before release-prep:
+
+| Commit | Contents | Disposition |
+| --- | --- | --- |
+| `bdf714f` (adjudication provenance) | Provenance notes for the sixth-atom adjudication | Documentation; no proof-surface change |
+| `eb1ee75` (codex audit + scraps) | New `SCRATCH` incubations — `SignalAuthority`, `StatusConversionBinding`, `CommitmentStanding`, `ConsolidationController`, `AffectiveCouplingClassification` — plus expanded `NoSilentProjection` and header/doc touch-ups across Admissibility and Scratch | All `SCRATCH`, unrooted from the candidate targets; custody and isolation gates pass; ship in the archive, testify for nothing |
+
+A 2026-07-14 formalization-leads-code doc/header sweep (comment-only; no
+proof content) landed in the same release-prep window. None of these enter
+the candidate release claim; they are listed so this inventory's
+"complete" is honest about its cut point.
 
 ## Trust and executable audit
 

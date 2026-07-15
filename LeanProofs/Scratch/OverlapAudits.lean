@@ -10,9 +10,9 @@
   wall is checked against the resident kernel. The output is an AUDIT
   VERDICT, not a kernel: either the wall is an INSTANCE of a resident
   theorem/mechanism (deflate -- cite, do not re-mint), or a precisely-named
-  delta remains (record it; building it stays gated on its own forcing
-  case). Verdicts are recorded per-section and mirrored in the campaign
-  changelog.
+  delta remains (record it; formalize it when its statement, overlap boundary,
+  and anti-vacuity witness are fixed). A consumer is not an admission gate.
+  Verdicts are recorded per-section and mirrored in the campaign changelog.
 
   ## Run 1 — relation-promotion (derived-relations-need-witnesses)
 

@@ -7,8 +7,9 @@
   BoundaryTransit.lean; only the temporal epoch-fencing is genuinely uncovered.
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  agent_gov / Wicket epoch-bounded authority is a runtime correspondence target.
-  Promotion is a separate custody decision and does not wait on that code.
+  Formalization does not wait on agent_gov / Wicket. Under the current custody
+  fence, promotion requires an epoch-bounded runtime specimen as correspondence
+  evidence plus operator review; the specimen does not prove conformance alone.
 
   FORBIDDEN INFERENCE: "I held authority once, therefore I still hold it now."
   A stale holder may retain a perfectly fresh, signed artifact and replay it long after its

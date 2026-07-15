@@ -12,8 +12,9 @@
   fork-modes-contraction-asymmetry (papers; "info copyable, authority linear").
 
   Not doctrine. Not discharge. Not build authorization. Not imported by LeanProofs.lean.
-  A linearaccountant budget-decrementing spend is a runtime correspondence
-  target. Promotion is a separate custody decision and does not wait on it.
+  Formalization does not wait on linearaccountant. Under the current custody
+  fence, promotion requires a budget-decrementing spend specimen as
+  correspondence evidence plus operator review; it does not prove conformance.
 
   Self-contained (no imports). Check: cd ~/git/lean && lake env lean <abs path>.
 -/

@@ -675,7 +675,8 @@ inductive RefusalShape
   - repeated `step_to_exposure_reach`
   - repeated `reach_to_exposure_reach`
   - shared target `CrossBoundaryExposure.no_external_exposure_without_authorized_edge`
-- Likely home: ANNEX support, only when another richer artifact family forces it.
+- Likely home: ANNEX support, once another richer artifact family demonstrates
+  that the abstraction preserves visible constructor discipline.
 - Minimal possible Lean shape, not to implement now:
 
 ```lean
