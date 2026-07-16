@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Occurrence-Exact Paid Recomposition"
-version: "11.0.0"
-date-released: "2026-07-15"
+title: "Judgment Orientation"
+version: "12.0.0"
+date-released: "2026-07-16"
 type: software
 authors:
   - family-names: Beck
@@ -35,34 +35,34 @@ keywords:
   - admissibility-kernels
   - delta-t-framework
   - governance-state
+  - judgment-orientation
+  - exact-origin
+  - finite-support
+  - provenance
+  - trace-attribution
   - refusal-gate
   - witness-invariance
 abstract: >-
-  v11.0.0 — Occurrence-Exact Paid Recomposition — promotes a
-  Mathlib-free Witnessed theorem family for ordered payments and exact
-  catalog adequacy. Ordered payments carry proof-relevant,
-  occurrence-indexed removal equations and an exact computed residue;
-  the total checker returns either such a trace or a scoped refusal and
-  accepts exactly when a trace exists. Under exact attempt-level catalog
-  completeness, paid global plans and paid catalog plans are equivalent
-  without replacing native dependent receipts, expected-payment evidence,
-  payment traces, or residue. A separate authorized/forged countermodel
-  proves that endpoint-only completeness is insufficient. A public-only
-  resource-trace application retains a resident checker receipt through the
-  catalog conversions; a finite-support one-crossing application remains
-  annex evidence because it imports a SCRATCH checker. The stable root
-  imports only Payment and Catalog, and the evidence modules remain outside
-  it. Acceptance of one submitted attempt, refusal in one named catalog, and
-  global nonexistence under ExactPaidCatalogComplete are distinct scopes.
-  This release claims no new cut connective or proof calculus, no Hall,
-  matching, 3DM, CSP, or complexity novelty, no general plan synthesis, no
-  persistent token serial, and no refusal transition, refusal
-  debt-preservation, dynamic authority, resource creation, or temporal debt.
-  ResourceCheckerExec.checkTrace = none means only rejection of that
-  submitted trace; PC-1 and PC-2 remain closed, and stateful bounded
-  realization/refusal remains outside v11. Full release history is in
-  CHANGELOG.md; the v11 inventory and gates are in
-  docs/V11-READINESS-LEDGER.md.
+  v12.0.0 — Judgment Orientation — promotes a Mathlib-free sibling theorem
+  family separating inquiry posture from protected judgment state. Pure
+  orientation traces preserve certification, probe authority, and action
+  authority; protected endpoint differences across mixed traces localize to
+  privileged change points without thereby justifying them. Ordered raw
+  occurrence custody projects to an abstract finite-support join-semilattice
+  in which replay of an exact origin remains visible but contributes only
+  once. Sequence append maps to support join, streaming and batch accounting
+  agree, and a one-way bridge shows that an endpoint-visible,
+  orientation-invariant difference across an attributed trace has a
+  privileged step whose caller-supplied origin is in the trace's effective
+  support. The stable root contains exactly Core, Attribution, Provenance,
+  OriginSupport, and Bridge; fixtures remain in a separately imported ANNEX.
+  The release does not authenticate origin issuance, establish Sybil or
+  common-cause independence, make reusable orientation evidence linear,
+  justify privileged transitions, prove the bridge converse, or claim runtime
+  conformance. Its thirteen frozen receipts have a disclosed maximum axiom
+  footprint of propext, Classical.choice, and Quot.sound. Full release history
+  is in CHANGELOG.md; the v12 inventory and gates are in
+  docs/V12-READINESS-LEDGER.md.
   The stable frame: the Lean work did not produce a unified calculus.
   It produced a set of small admissibility kernels, each isolating a
   different refusal boundary. The stack exposes a typed-verdict algebra (basis ×

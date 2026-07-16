@@ -1,9 +1,11 @@
 /-
   LeanProofs.Witnessed.Sequent -- contexted sequent presentation of WDC.
 
-  Custody class: ANNEX (Mathlib-free). This is a conservative layer over the
-  Witnessed Derivation Calculus: it adds explicit finite contexts while reusing
-  the existing `Lift` judgment as the proof engine.
+  Custody-Class: PUBLIC-SHIPPED
+  This unchanged module is part of the v11 stable paid-recomposition import
+  closure. Mathlib-free. This is a conservative layer over the Witnessed
+  Derivation Calculus: it adds explicit finite contexts while reusing the
+  existing `Lift` judgment as the proof engine.
 
   Scope. This is claim-level sequent calculus, not itself the formula grammar.
   A sequent `Derivable K B Gamma c` reads: from a local floor `K`, a paid bridge

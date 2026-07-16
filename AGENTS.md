@@ -68,9 +68,11 @@ Pass/fail is the exit code of the bare command — never eyeball piped output.
 ```bash
 lake build                                    # default Mathlib-free surfaces
 lake build Witnessed                          # WDC in isolation
+lake build JudgmentOrientation JudgmentOrientationExamples # v12 stable family + ANNEX fixtures
 lake build ViewSemanticsMathlibIslands        # Mathlib islands, explicit only
 bash scripts/check-witnessed-footprint.sh     # ratified WDC axiom footprint
-bash scripts/check-paid-recomposition-footprint.sh # v11 stable/evidence custody + footprint
+bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
+bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
 bash scripts/check-viewsemantics-footprint.sh
 bash scripts/check-viewsemantics-isolation.sh
 bash scripts/audit-axioms.sh                  # axiom classifier; 0 forbidden

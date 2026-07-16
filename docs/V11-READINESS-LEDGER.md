@@ -1,18 +1,46 @@
 # v11 Readiness Ledger — Occurrence-Exact Paid Recomposition
 
-**Status: RELEASE-READY / OPERATOR ACTIONS REMAIN (2026-07-15).** Version and
-citation metadata are prepared as `11.0.0`, and every V11-C post-wiring gate
-below exits zero. This ledger does not create a git tag, GitHub release, Zenodo
-deposit, or DOI. Those remain explicit operator actions.
+**Historical status: RELEASE-READY / OPERATOR ACTIONS REMAIN (2026-07-15).**
+At the time of this receipt, version and citation metadata were prepared as
+`11.0.0`, and every V11-C post-wiring gate below exited zero. The ledger itself
+created no git tag, GitHub release, Zenodo deposit, or DOI.
+
+## Post-release custody correction (2026-07-16)
+
+A local annotated `v11.0.0` tag now exists: tag object
+`d77ee38b9c50da715baff1e907c7becd07cc61d0`, peeled commit
+`7cf3a6afedf4f1f93ebdf677e0fdcafd331fa52c`. This is a local repository fact
+only. External GitHub-release and Zenodo-deposit status were not verified and
+are not asserted here.
+
+The tagged v11 stable paid-recomposition graph already had the exact
+eight-module closure recorded later in this ledger. `Payment` depended on
+`ResourceChecker.removeAt`, and the closure continued through
+`ResourceChecker`, `ResourceSequent`, `Sequent`, `Derivation`, and
+`NoFreeLift`. The first four foundation files still carried legacy ANNEX
+headers, while `NoFreeLift` carried the older `SCHEMA` label. The v12 tree
+corrects those five headers to exact `Custody-Class: PUBLIC-SHIPPED` and makes
+the paid/custody gates enforce all eight stable modules as public. Lean
+declarations, theorem statements, proofs, and imports in the foundation are
+unchanged. This repairs custody classification of the v11 closure; it is not
+new v12 mathematics or capability and does not rewrite the tagged tree.
+
+The v12 tree also closes one enforcement gap in the v11 paid gate. The tagged
+gate required one direct import of
+`LeanProofs.Scratch.FiniteSupportChecker` from the finite-support ANNEX, but
+did not reject an additional direct `LeanProofs.Scratch.*` import. The
+corrected rule requires the complete direct Scratch-import set to equal that
+singleton, including when several modules share one import command.
 
 Prior release: `v10.0.0` — View Semantics and Bounded Projection. The annotated
 local v10 tag exists, with tag object `d174c9c` and peeled target `20b8da5`.
 This local fact does not establish external GitHub release or Zenodo state and
 does not rewrite v10 history.
 
-Repository version metadata is `11.0.0` in `lakefile.toml`; `CITATION.cff`
-carries the frozen v11 title, version, date, abstract, and concept DOI. As in
-v9/v10, this repository has no `.zenodo.json`; no substitute file is created.
+In the tagged v11 tree, repository version metadata is `11.0.0` in
+`lakefile.toml`; `CITATION.cff` carries the frozen v11 title, version, date,
+abstract, and concept DOI. As in v9/v10, that tree has no `.zenodo.json`; no
+substitute file was created.
 
 ## Frozen release claim
 
@@ -28,8 +56,12 @@ complexity result.
 The extraction campaign closed in three bounded stages: V11-A froze the
 generic `Payment` and `Catalog` API after duplicate-removal review; V11-B
 passed with an independent premise-ablation countermodel, a public-only corpus
-application, and SCRATCH-dependent annex forcing evidence; V11-C promotes only
-the two-module stable core and records the evidence without importing it.
+application, and SCRATCH-dependent annex forcing evidence; V11-C directly
+promoted the two new paid modules and recorded the evidence without importing
+it. As the post-release addendum records, that direct root already inherited
+the five-module checker/WDC foundation whose legacy custody labels were later
+corrected; “two-module” described the new paid layer, not the complete stable
+import closure.
 
 ## Stable public theorem family
 
@@ -142,8 +174,9 @@ post-wiring tree:
    `LeanProofs.Witnessed` imports that root;
 2. stable import closure is transitively Mathlib-free and SCRATCH-free, and
    excludes all applications/countermodels;
-3. custody enforcement classifies the stable core, public evidence, and
-   SCRATCH-dependent annex evidence exactly as recorded above;
+3. custody enforcement classifies the directly promoted paid layer and the
+   evidence exactly as recorded at v11 readiness time; the post-release
+   addendum records the later correction of its inherited foundation;
 4. `check-paid-recomposition-footprint.sh` enforces source custody markers,
    frozen import closure, placeholder/sorry absence, theorem/API footprint,
    expected axiom classes, Mathlib freedom, and evidence exclusion;
@@ -202,7 +235,7 @@ The `Witnessed` target owns those stable modules explicitly. It does not own
 the application or countermodel modules; those remain in the separate,
 non-default `PaidRecompositionEvidence` target.
 
-## Operator boundary
+## Operator boundary at readiness time
 
 After every gate above is green and the release-prep commit is selected, the
 remaining actions are operator-only:

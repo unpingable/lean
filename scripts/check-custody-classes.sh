@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Check the registered custody surfaces:
 #   * every LeanProofs/Admissibility/*.lean file carries a ratified marker;
-#   * the PaidRecomposition stable root/core and fenced evidence carry their
-#     exact release classifications.
+#   * the eight-module PaidRecomposition stable closure and three fenced
+#     evidence modules carry their exact release classifications.
 #   * the JudgmentOrientation stable root/core and examples annex carry their
 #     exact promotion classifications.
 #
@@ -26,6 +26,11 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ADMISS="$REPO_ROOT/LeanProofs/Admissibility"
 PAID_ROOT="$REPO_ROOT/LeanProofs/Witnessed/PaidRecomposition.lean"
 PAID_DIR="$REPO_ROOT/LeanProofs/Witnessed/PaidRecomposition"
+NO_FREE_LIFT="$REPO_ROOT/LeanProofs/Witnessed/NoFreeLift.lean"
+DERIVATION="$REPO_ROOT/LeanProofs/Witnessed/Derivation.lean"
+SEQUENT="$REPO_ROOT/LeanProofs/Witnessed/Sequent.lean"
+RESOURCE_SEQUENT="$REPO_ROOT/LeanProofs/Witnessed/ResourceSequent.lean"
+RESOURCE_CHECKER="$REPO_ROOT/LeanProofs/Witnessed/ResourceChecker.lean"
 ORIENTATION_ROOT="$REPO_ROOT/LeanProofs/JudgmentOrientation.lean"
 ORIENTATION_DIR="$REPO_ROOT/LeanProofs/JudgmentOrientation"
 
@@ -95,6 +100,11 @@ declare -A paid_expected=(
   ["$PAID_ROOT"]="PUBLIC-SHIPPED"
   ["$PAID_DIR/Payment.lean"]="PUBLIC-SHIPPED"
   ["$PAID_DIR/Catalog.lean"]="PUBLIC-SHIPPED"
+  ["$RESOURCE_CHECKER"]="PUBLIC-SHIPPED"
+  ["$RESOURCE_SEQUENT"]="PUBLIC-SHIPPED"
+  ["$SEQUENT"]="PUBLIC-SHIPPED"
+  ["$DERIVATION"]="PUBLIC-SHIPPED"
+  ["$NO_FREE_LIFT"]="PUBLIC-SHIPPED"
   ["$PAID_DIR/Applications/ResourceTraceOneCrossing.lean"]="ANNEX"
   ["$PAID_DIR/Countermodels/EndpointCompleteness.lean"]="ANNEX"
   ["$PAID_DIR/Applications/FiniteSupportOneCrossing.lean"]="ANNEX"
@@ -135,7 +145,7 @@ done
 if [ "$paid_fail" -ne 0 ]; then exit 4; fi
 
 # 5. Exact JudgmentOrientation custody registry. The stable root imports only
-# the four theorem modules; examples remain a separately imported ANNEX.
+# the five theorem modules; examples remain a separately imported ANNEX.
 declare -A orientation_expected=(
   ["$ORIENTATION_ROOT"]="PUBLIC-SHIPPED"
   ["$ORIENTATION_DIR/Core.lean"]="PUBLIC-SHIPPED"
@@ -208,7 +218,7 @@ for cls in "${RATIFIED[@]}"; do
   printf "  %-24s %d\n" "$cls" "${counts[$cls]}"
 done
 echo "OK: ${#paid_expected[@]} PaidRecomposition files match the exact custody registry"
-echo "  PUBLIC-SHIPPED           3"
+echo "  PUBLIC-SHIPPED           8 (exact stable import closure)"
 echo "  ANNEX                    3 (one imports an explicit SCRATCH dependency)"
 echo "OK: ${#orientation_expected[@]} JudgmentOrientation files match the exact custody registry"
 echo "  PUBLIC-SHIPPED           6"

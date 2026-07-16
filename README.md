@@ -9,7 +9,9 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
-## Judgment Orientation — stable mainline family
+## v12 — Judgment Orientation
+
+**Release status: release-ready; operator tag, release, and DOI actions remain.**
 
 *Raw custody is a sequence; effective exact-origin contribution is its
 finite-support join-semilattice projection.*
@@ -49,12 +51,16 @@ privileged transitions, or prove runtime conformance. Its disclosed maximum
 footprint is `[propext, Classical.choice, Quot.sound]`, enforced fail-closed
 per receipt by `scripts/check-judgment-orientation-footprint.sh` in CI.
 
-This mainline promotion is not a tag, GitHub release, Zenodo deposit, DOI mint,
-or version change. Source provenance: skunkworks commit `4f8e076`.
+Release inventory and gate receipts:
+[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md). This preparation
+does not create a tag, GitHub release, Zenodo deposit, or DOI. Source
+provenance for the first four modules: skunkworks commit `4f8e076`; `Bridge`
+was authored during promotion review.
 
 ## v11 — Occurrence-Exact Paid Recomposition
 
-**Release status: release-ready; operator tag, release, and DOI actions remain.**
+**Release status: locally tagged; external GitHub and Zenodo state is not
+asserted here.**
 
 *Ordered payments admit proof-relevant, occurrence-indexed checking with exact
 computed residue. Under exact attempt-level catalog completeness, paid global
@@ -79,7 +85,7 @@ Three claim scopes remain distinct:
 2. no accepted paid plan in one named catalog;
 3. global nonexistence only under exact attempt-level catalog completeness.
 
-Evidence is public but excluded from the stable root:
+Evidence remains source-visible ANNEX and is excluded from the stable root:
 
 - `Applications/ResourceTraceOneCrossing.lean` is the Mathlib-free,
   non-SCRATCH corpus application. It preserves the resident
@@ -111,8 +117,8 @@ refusal debt-preservation, dynamic-authority, resource-creation, or
 temporal-debt theorem. PC-1 and PC-2 remain closed. Stateful bounded
 realization/refusal remains the next frontier and is not part of v11.
 
-Tagging, publishing, and DOI actions remain under explicit operator control.
-Release inventory and gate receipts:
+The local annotated `v11.0.0` tag exists; that local fact does not establish a
+GitHub release or Zenodo deposit. Release inventory and gate receipts:
 [`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md).
 
 ## 10.0.0 — View Semantics and Bounded Projection
@@ -625,6 +631,10 @@ The point is not to prove an entire software system correct. It is to make inval
   Mathlib-free)* — proof-relevant ordered payments with exact computed residue
   and exact-attempt catalog adequacy. Applications and the endpoint
   countermodel are evidence outside its stable import graph.
+- **Judgment Orientation** *(v12 stable sibling family, Mathlib-free)* —
+  protected-state confinement, privileged change-point attribution, exact-
+  origin provenance, finite-support algebra, and their one-way bridge. Fixtures
+  remain in a separately imported ANNEX.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
@@ -642,7 +652,7 @@ Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight stabl
 
 ## Repository custody and compatibility
 
-Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition, reachability/refusal adapters, safety-bridge family) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the stable compatibility claim. Many `LeanProofs/Admissibility/` modules are wired into `LeanProofs.lean` for regression coverage; fenced UNRATIFIED-CANDIDATE / SCRATCH material may still build only when invoked directly. Wiring is build-coverage, not public-surface promotion — promotion lives in the `AdmissibilityKernels.lean` aggregator's import list. The separate Witnessed stable surface is controlled by `LeanProofs/Witnessed.lean`; its paid-recomposition root imports only `Payment` and `Catalog`, while `Applications/*` and `Countermodels/*` remain evidence outside that graph. Per-file custody status is regression-checked via `scripts/check-custody-classes.sh`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) and [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
+Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition, reachability/refusal adapters, safety-bridge family) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the stable compatibility claim. Many `LeanProofs/Admissibility/` modules are wired into `LeanProofs.lean` for regression coverage; fenced UNRATIFIED-CANDIDATE / SCRATCH material may still build only when invoked directly. Wiring is build-coverage, not public-surface promotion — promotion lives in the `AdmissibilityKernels.lean` aggregator's import list. The separate Witnessed stable surface is controlled by `LeanProofs/Witnessed.lean`; its paid-recomposition root imports only `Payment` and `Catalog`, and its exact eight-module stable closure is `PUBLIC-SHIPPED`, while the three `Applications/*` / `Countermodels/*` evidence modules remain ANNEX outside that root. The Judgment Orientation surface is controlled by its exact five-import root; `Examples` remains ANNEX. Per-file custody status is regression-checked via `scripts/check-custody-classes.sh`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) and [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
 ### `experiments/` — tracked wiring witnesses (non-canonical)
 
@@ -701,8 +711,10 @@ Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 lake build                  # Mathlib-free custody/release surfaces incl. ViewSemantics candidate/application targets
 lake build Witnessed        # the Witnessed Derivation Calculus in isolation (Mathlib-free)
 lake build PaidRecompositionEvidence # v11 evidence only; excluded from stable Witnessed
+lake build JudgmentOrientation JudgmentOrientationExamples # v12 stable family + ANNEX fixtures
 bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
-bash scripts/check-paid-recomposition-footprint.sh # v11 stable custody/import/theorem footprint
+bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
+bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
 bash scripts/check-viewsemantics-footprint.sh # candidate theorem/checker footprints (fail-closed)
 bash scripts/check-viewsemantics-isolation.sh # cheap roots Mathlib-free; P25 isolated
 bash scripts/audit-axioms.sh                # repo axiom classifier (signature/interface-law/specimen; 0 forbidden)
@@ -732,6 +744,7 @@ is the provenance record, not the canonical import path.
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
 - [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) — Witnessed frontier and the v11 paid-recomposition claim/evidence boundary
+- [`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md) — v12 Judgment Orientation claim, custody inventory, and verification boundary
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
 - [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
 - [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
@@ -740,10 +753,15 @@ is the provenance record, not the canonical import path.
 
 ## Status
 
-**`v11.0.0` is release-ready:** Occurrence-Exact Paid Recomposition is
-promoted into the stable Witnessed import surface; tagging, GitHub release
-creation, and Zenodo/DOI actions remain operator-only. Final gate receipts are
-recorded in [`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md).
+**`v12.0.0` is release-ready:** Judgment Orientation is promoted as an exact
+five-module stable sibling surface; tagging, GitHub release creation, and
+Zenodo/DOI actions remain operator-only. Final gate receipts are recorded in
+[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md).
+
+**`v11.0.0` is locally tagged:** Occurrence-Exact Paid Recomposition is in the
+stable Witnessed import surface. The local annotated tag does not establish
+external GitHub release or Zenodo state; see
+[`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md).
 
 **`v2.0.0` released** — the Witnessed Derivation Calculus now has model-independent admitting-class normalization and an explicit audit fence, while the stable 1.x Admissibility Kernels surface remains unchanged. All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Gaps surfaced by the dated 2026-05-10 AGI-requirements reverse-gap audit are recorded in [the closed reverse-gap audit](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md) — a **closed audit artifact** scoped to that one requirements document, not the project's live open-problems register.
 

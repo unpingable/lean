@@ -18,7 +18,11 @@ The result is not a grander theory. It is a sharper one. Some slogans died. Some
 
 ---
 
-## Sibling family: Judgment Orientation
+## v12 sibling family: Judgment Orientation
+
+The exact release inventory, thirteen frozen footprint receipts, and custody
+boundary are recorded in
+[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md).
 
 ### What it proves
 
@@ -489,7 +493,7 @@ The **Witnessed Derivation Calculus** is a narrow, ratified, **Mathlib-free** pr
 - **composition** along a paid path (`derivation_extends_along_paid_path`), **genuine multi-context cut** — admissibility, not elimination (`cut_admissible_general`), **soundness** (`paid_lift_sound`), **provenance** (`no_free_lift` — nothing lifts for free), and **non-manufacture** of revocations (`revoked_floor_derives_nothing`) — all schematic, axiom-free;
 - a positive formula sequent layer (`LeanProofs.Witnessed.Formula`) with `atom`, `top`, conjunction, disjunction, explicit cut syntax (`Deriv.cut`), syntactic cut-elimination (`cut_elimination`), and cut-free admissibility (`cut_admissible`);
 - a Gentzen presentation (`LeanProofs.Witnessed.Gentzen`) with single-succedent sequents, explicit **position-general** left/right rules, with-cut derivations, semantic soundness (`seq_sound`, `deriv_sound`), and an embedding from the earlier formula derivations (`deriv_of_formula_cutFree`) — this is the *presentation* only. An earlier head-only shape made cut-elimination provably false (`HeadOnlyGentzenCutFailure.cut_elimination_fails`, archived: `[atom 0, atom 1 ∧ atom 2] ⊢ atom 1` derivable with cut but not head-only cut-free); the position-general left rules are the repair, and `buried_conjunction_now_cutfree` (zero-axiom) proves that witness is now cut-free;
-- a canonical resource/no-suppression layer (`ResourceSequent` / `ResourceChecker`) with consumable claim and bridge resources, opaque residue, position-pinned validation (`Checks`), residue preservation (`residue_preserved`), erasure to ordinary sequents (`erases_to_sequent`), checker soundness/completeness, and validated bridge-token denial (`validated_denial_sound`);
+- a canonical resource/no-suppression layer (`ResourceSequent` / `ResourceChecker`) with consumable claim and bridge resources, opaque residue, position-pinned validation (`Checks`), residue preservation (`residue_preserved`), erasure to ordinary sequents (`erases_to_sequent`), checker soundness/completeness, and validated bridge-token denial (`validated_denial_sound`). This unchanged `NoFreeLift` → `Derivation` → `Sequent` → `ResourceSequent` → `ResourceChecker` foundation is `PUBLIC-SHIPPED`: v12 corrects the custody label of the stable closure already inherited by v11; it adds no theorem or capability;
 - an **executable** resource gate (`ResourceCheckerExec`) that runs the checker as a `Bool`-computing pass over an untrusted derivation TRACE (base step + pinned bridge indices), recomputing the residual via `removeAt` rather than trusting a stated one: `checkTrace_sound` (an accepted trace forces a real `Checks`/`Derives` derivation), `checks_to_checkTrace` (completeness), and `checkTrace_iff_derives` (some trace accepts iff derivable). It **checks, it does not search**: no branching over rules or splits. It is a validation pass, not a decidability decision;
 - a corpus of **named adversarial laundering specimens** (`LaunderingCorpus`) run through the executable gate — `missing_token_refused`, `spent_token_does_not_fund_next_crossing`, `floor_fact_is_not_spend_authority`, `residue_cannot_be_omitted`, and `ordinary_reachable_is_not_executable` — each a concrete refusal of an attempt to launder validity (a valid relation, a floor fact, ordinary reachability, a spent token) into spend authority, plus a `valid_crossing_accepted` positive control so the corpus is not vacuously refusing everything;
 - **normalization** — a model-independent **normal-form factorization** (`AbstractNormalization.normal_form_iff_of_commutes`, **axiom-free**) for any two-family paid bridge satisfying a local commutation law, with the freshness `bridge_path_normal_form` (footprint `[propext]`) now its **instance**, plus a necessity counterexample (`commutes_is_necessary`) showing the commutation law is load-bearing;

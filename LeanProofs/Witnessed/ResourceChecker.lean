@@ -1,9 +1,11 @@
 /-
   LeanProofs.Witnessed.ResourceChecker -- position-pinned resource validation.
 
-  Custody class: ANNEX (Mathlib-free public surface). This is the public checker
-  relation for `ResourceSequent`: consumption is pinned by an index through
-  `removeAt`, and the checker is proved sound and complete against `Derives`.
+  Custody-Class: PUBLIC-SHIPPED
+  This unchanged module is part of the v11 stable paid-recomposition import
+  closure. Mathlib-free public surface. This is the public checker relation for
+  `ResourceSequent`: consumption is pinned by an index through `removeAt`, and
+  the checker is proved sound and complete against `Derives`.
 
   Scope. This is a Prop-level validation relation, not a Bool-executable
   decision procedure. Executability would require decidability assumptions for

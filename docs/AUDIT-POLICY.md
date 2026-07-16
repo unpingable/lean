@@ -42,13 +42,39 @@ predicate symbol (signature); `∀ x, Time.le x x` would be a law (interface-law
 
 ## 2a. PaidRecomposition stable footprint — `check-paid-recomposition-footprint.sh`
 
-Re-attests the v11 stable `LeanProofs.Witnessed.PaidRecomposition` surface. The gate
-checks the exact PUBLIC-SHIPPED/ANNEX source registry, the two-import stable root,
-`Witnessed` build ownership excluding evidence, the Mathlib/SCRATCH-free transitive
-closure, the frozen public API names, absence of holes/placeholders, and seven exact
-axiom footprints. It also builds the separate, non-default evidence target. Applications
-and countermodels cannot enter the stable root or the `Witnessed` target through a
-recursive glob.
+Re-attests the v11 `LeanProofs.Witnessed.PaidRecomposition` surface after the
+v12 custody correction. The gate fixes the exact eight-module stable closure as
+`PUBLIC-SHIPPED`: the paid root, `Payment`, `Catalog`, `ResourceChecker`,
+`ResourceSequent`, `Sequent`, `Derivation`, and `NoFreeLift`. It fixes the three
+evidence modules as ANNEX, requires the two-import paid root, checks `Witnessed`
+build ownership excluding evidence, and rejects Mathlib, SCRATCH, application,
+or countermodel modules in the stable transitive closure. The foundation's
+reclassification changes no definition or theorem; it records the closure on
+which the v11 stable API already depended.
+
+The same gate freezes the paid API plus the entire named foundation surface:
+15 types/definitions, all 18 constructors, both scoped notations, and all 45
+public foundation theorems. The promoted theorem footprints are exactly 30
+axiom-free and 15 using `propext`; the seven pre-existing paid receipts retain
+their separately fixed footprints. It scans the entire stable/evidence
+registry for holes and builds the separate non-default evidence target.
+`Applications.FiniteSupportOneCrossing` has one narrow direct-
+import exception: the complete set of its direct `LeanProofs.Scratch.*`
+imports must equal the singleton
+`LeanProofs.Scratch.FiniteSupportChecker`. Additional direct Scratch imports
+are rejected even when they share an import line. The expected transitive
+Scratch closure behind that one edge is not misreported as a second direct
+exception.
+
+## 2b. Judgment Orientation footprint — `check-judgment-orientation-footprint.sh`
+
+Builds the stable `JudgmentOrientation` family and its separately imported
+`JudgmentOrientationExamples` ANNEX, then re-attests thirteen frozen receipts
+across `Core`, `Attribution`, `Provenance`, `OriginSupport`, and `Bridge`.
+Every receipt must match its exact expected footprint. The disclosed family
+maximum is `[propext, Classical.choice, Quot.sound]`; the core confinement
+laws are constructive. Missing or renamed receipts, `sorryAx`, added axioms,
+or footprint drift fail closed.
 
 ## 3. native_decide policy — `audit-native-decide.sh` + `native-decide-policy.tsv`
 
@@ -94,8 +120,14 @@ allowlisted and retain `Custody-Class: SCRATCH`.
 
 ```
 lake build
+lake build Witnessed
+lake build PaidRecompositionEvidence
+lake build JudgmentOrientation JudgmentOrientationExamples
+lake build LeanProofs AdmissibilityMathlibIslands
+lake build ViewSemantics ViewSemanticsApplications ViewSemanticsMathlibIslands
 scripts/check-witnessed-footprint.sh
 scripts/check-paid-recomposition-footprint.sh
+scripts/check-judgment-orientation-footprint.sh
 scripts/check-viewsemantics-footprint.sh
 scripts/check-viewsemantics-isolation.sh
 scripts/audit-axioms.sh

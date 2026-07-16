@@ -1,10 +1,12 @@
 /-
   LeanProofs.Witnessed.ResourceSequent -- occurrence-sensitive WDC resources.
 
-  Custody class: ANNEX (Mathlib-free public surface). This promotes the
-  compiling scratch resource sequent slice into the canonical Witnessed
-  namespace. Claim and bridge resource occurrences can be consumed; residue
-  occurrences cannot.
+  Custody-Class: PUBLIC-SHIPPED
+  This unchanged module is part of the v11 stable paid-recomposition import
+  closure. Mathlib-free public surface. Its occurrence-sensitive resource
+  sequent slice is the canonical Witnessed foundation used by that closure.
+  Claim and bridge resource occurrences can be consumed; residue occurrences
+  cannot.
 
   Scope. This is not full linear logic. It is the canonical resource/no-drop
   slice for WDC: persistent floor `K`, linear input resources, derivations with

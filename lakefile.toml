@@ -1,5 +1,5 @@
 name = "lean_proofs"
-version = "11.0.0"
+version = "12.0.0"
 keywords = ["math"]
 # Default builds stay on Mathlib-free custody/release surfaces. The root
 # `LeanProofs` aggregate remains buildable explicitly; it intentionally imports
@@ -219,7 +219,7 @@ roots = [
 ]
 
 # Stable exact-origin judgment-orientation family. The root imports exactly
-# the four promoted theorem modules and excludes the examples annex.
+# the five promoted theorem modules and excludes the examples annex.
 [[lean_lib]]
 name = "JudgmentOrientation"
 srcDir = "."

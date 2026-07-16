@@ -6,20 +6,20 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
-## Unreleased — Judgment Orientation mainline promotion
+## 12.0.0 — Judgment Orientation (2026-07-16)
 
 *Raw custody is a sequence; effective exact-origin contribution is its
 finite-support join-semilattice projection.*
 
-- Promoted the four Mathlib-free theorem modules `Core`, `Attribution`,
-  `Provenance`, and `OriginSupport` from skunkworks commit `4f8e076` under the
-  stable `LeanProofs.JudgmentOrientation` root.
+- Promoted the five Mathlib-free theorem modules `Core`, `Attribution`,
+  `Provenance`, `OriginSupport`, and `Bridge` under the exact stable
+  `LeanProofs.JudgmentOrientation` root. The first four originated in
+  skunkworks commit `4f8e076`; `Bridge` was authored during promotion review.
 - Added structural inquiry/judgment confinement, privileged change-point
   attribution, exact-origin replay accounting, an abstract finite-support
   join-semilattice, operational trace/state projections, and explicit
   information-loss boundaries.
-- Added the fifth stable module `Bridge` (authored in the promotion review,
-  not part of `4f8e076`): an endpoint-visible difference in an
+- `Bridge` proves that an endpoint-visible difference in an
   orientation-invariant observation across an attributed mixed trace
   localizes to a privileged step whose caller-supplied origin is contained
   in the effective support of the trace's privileged provenance. Attribution
@@ -35,10 +35,21 @@ finite-support join-semilattice projection.*
   `EffectiveSupport` representation, and renamed `MayOrient.paid` to
   `MayOrient.admitted` so reusable standing is not mislabeled as linear spend.
 - Added exact build and custody wiring without changing the 1.x
-  `AdmissibilityKernels` import list or any release/DOI metadata.
+  `AdmissibilityKernels` import list.
+- Corrected the inherited v11 paid-recomposition custody registry: the
+  unchanged `NoFreeLift` → `Derivation` → `Sequent` → `ResourceSequent` →
+  `ResourceChecker` foundation was already in the stable eight-module import
+  closure and is now classified `PUBLIC-SHIPPED`. This is classification-debt
+  repair, not new v12 mathematics or capability.
+- Hardened the paid-recomposition gate so the ANNEX finite-support evidence
+  may directly import exactly the singleton
+  `LeanProofs.Scratch.FiniteSupportChecker`, with no additional direct Scratch
+  imports hidden on the same or another import line.
 
-This entry records repository state only. No tag, GitHub release, Zenodo
-deposit, DOI, or version action is implied or performed.
+Release inventory and verification boundary:
+[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md). Tagging,
+GitHub release creation, and Zenodo/DOI actions remain operator-only and are
+not performed by this preparation.
 
 ## 11.0.0 — Occurrence-Exact Paid Recomposition (2026-07-15)
 

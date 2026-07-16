@@ -1,8 +1,11 @@
 /-
   LeanProofs.Witnessed.NoFreeLift — the customs-office spine.
 
-  Custody class: SCHEMA. Abstract over `Claim`/`Kernel`/`Bridge`/`Sem`; imports
-  NO model code. Mirrors canonical `Admissibility/NoFreeLift.lean`.
+  Custody-Class: PUBLIC-SHIPPED
+  Role: schema foundation. This unchanged module is part of the v11 stable
+  paid-recomposition import closure. Abstract over
+  `Claim`/`Kernel`/`Bridge`/`Sem`; imports NO model code. Mirrors canonical
+  `Admissibility/NoFreeLift.lean`.
 
   This is the breaker box's upstream rail: because this module imports nothing
   modeled, no theorem here can depend on a modeled embedding. The audit relies
