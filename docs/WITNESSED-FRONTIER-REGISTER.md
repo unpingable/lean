@@ -138,7 +138,7 @@ open because it is **hard**, not because it is speculative.
 
 ## v11 promotion boundary — Occurrence-Exact Paid Recomposition
 
-**Status: PROMOTED STABLE THEOREM FAMILY; release actions remain operator-only.**
+**Status: PROMOTED STABLE THEOREM FAMILY; FROZEN v11.0.0 BOUNDARY.**
 The stable Mathlib-free root `LeanProofs.Witnessed.PaidRecomposition` imports
 only `Payment` and `Catalog`.
 

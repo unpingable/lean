@@ -62,7 +62,7 @@ abstract: >-
   conformance. Its thirteen frozen receipts have a disclosed maximum axiom
   footprint of propext, Classical.choice, and Quot.sound. Full release history
   is in CHANGELOG.md; the v12 inventory and gates are in
-  docs/V12-READINESS-LEDGER.md.
+  docs/V12-RELEASE-LEDGER.md.
   The stable frame: the Lean work did not produce a unified calculus.
   It produced a set of small admissibility kernels, each isolating a
   different refusal boundary. The stack exposes a typed-verdict algebra (basis ×

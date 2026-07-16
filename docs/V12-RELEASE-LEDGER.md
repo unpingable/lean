@@ -1,9 +1,8 @@
-# v12 Readiness Ledger — Judgment Orientation
+# v12 Release Ledger — Judgment Orientation
 
-**Status: RELEASE-READY / OPERATOR ACTIONS REMAIN (2026-07-16).** Version and
-citation metadata are prepared as `12.0.0`, and the verification envelope
-below defines the release gate. This ledger does not create a git tag, GitHub
-release, Zenodo deposit, or DOI. Those remain explicit operator actions.
+**Released: v12.0.0 — Judgment Orientation (2026-07-16).** This ledger records
+the frozen claim, public surface, custody classification, and verification
+receipt for the released tree.
 
 Prior release: `v11.0.0` — Occurrence-Exact Paid Recomposition. A local
 annotated v11 tag exists, with tag object
@@ -14,7 +13,9 @@ external GitHub-release or Zenodo-deposit state.
 Repository version metadata is `12.0.0` in `lakefile.toml`; `CITATION.cff`
 carries the title `Judgment Orientation`, version `12.0.0`, release date
 `2026-07-16`, and concept DOI `10.5281/zenodo.20369489`. The repository has no
-`.zenodo.json`; no substitute file is created.
+`.zenodo.json`; no substitute file is created. Zenodo assigns the
+version-specific DOI externally when the GitHub release drives the deposit, so
+that DOI is intentionally not guessed or hard-coded here.
 
 ## Frozen release claim
 
@@ -150,8 +151,8 @@ SCRATCH `PathVerdict.Core` dependency.
 ## Verification receipt
 
 The commands and checks below were run directly from the repository root on
-the final preflight tree. The recorded values are their bare exit statuses,
-never piped or visually inferred statuses:
+the released v12 tree. The recorded values are their bare exit statuses, never
+piped or visually inferred statuses:
 
 | Command | Exit |
 | --- | ---: |
@@ -178,16 +179,13 @@ never piped or visually inferred statuses:
 | CFF YAML/title/version/date/DOI and lake-version agreement | 0 |
 | `git diff --check` | 0 |
 
-## Operator boundary
+## Release record
 
-After every gate above is green and the release-prep tree is reviewed, the
-remaining actions are operator-only:
+The `v12.0.0` tag and associated GitHub release archive this exact verified
+tree. GitHub release creation drives the corresponding Zenodo version deposit
+and version DOI beneath concept DOI `10.5281/zenodo.20369489`; the
+version-specific DOI is assigned externally and is therefore not hard-coded
+in this source tree.
 
-1. select and commit the reviewed v12 tree;
-2. create the annotated `v12.0.0` tag on that exact commit;
-3. push the commit and tag as intended;
-4. create the GitHub release from the prepared v12 changelog/ledger text; and
-5. verify the resulting Zenodo deposit/version DOI through the operator's
-   release workflow.
-
-This ledger performs none of those actions.
+Publication changes no custody class, import boundary, API, theorem, or proof
+footprint, and it proves no runtime conformance.

@@ -22,7 +22,7 @@ The result is not a grander theory. It is a sharper one. Some slogans died. Some
 
 The exact release inventory, thirteen frozen footprint receipts, and custody
 boundary are recorded in
-[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md).
+[`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md).
 
 ### What it proves
 

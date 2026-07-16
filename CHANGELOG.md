@@ -47,9 +47,7 @@ finite-support join-semilattice projection.*
   imports hidden on the same or another import line.
 
 Release inventory and verification boundary:
-[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md). Tagging,
-GitHub release creation, and Zenodo/DOI actions remain operator-only and are
-not performed by this preparation.
+[`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md).
 
 ## 11.0.0 — Occurrence-Exact Paid Recomposition (2026-07-15)
 
@@ -107,9 +105,7 @@ plumbing. PC-1 and PC-2 remain closed. Stateful bounded
 realization/refusal is the next frontier and is not part of v11.
 
 Release inventory and verification boundary:
-[`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md). Tagging,
-GitHub release creation, and Zenodo/DOI actions remain operator-only and are not
-performed by this preparation.
+[`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md).
 
 ## 10.0.0 — View Semantics and Bounded Projection (2026-07-14)
 

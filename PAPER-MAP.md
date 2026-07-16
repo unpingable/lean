@@ -224,7 +224,7 @@ frontier.
 ## `LeanProofs/JudgmentOrientation/` (v12 stable sibling theorem family)
 
 **Release title:** *v12 — Judgment Orientation*. Exact inventory and gates:
-[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md).
+[`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md).
 
 > Raw custody is a sequence; effective exact-origin contribution is its
 > finite-support join-semilattice projection.
@@ -272,4 +272,4 @@ own interpretation boundary.
 
 - **2026-05-29** — Added safety-bridge family section (paper anchor: planned formal-methods preprint "An Admissibility Calculus: Authorization, Safety Bridges, and Value Decay"; secondary anchor: paper 28). Previously the safety-bridge work had no paper anchor; the spine-page decision at `~/git/papers/working/admissibility-suite-spine-2026-05-28.md` resolved the topology fork (Fork B — preprint as sibling outside Δt numbering; paper 28 as interpretation paper that cites it). Eight modules covered (brick 0 + bricks 1a/1b + brick 2 + tier-1 ledger): `AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger`. Status: formalized YES; preprint scaffold pending. Earned preprint status via one irreducible theorem family (trajectory triple + no-lift) replicated across two distinct witnesses (receipt-poison miniature + attestation-ledger).
 - **2026-07-15** — Added the v11 Occurrence-Exact Paid Recomposition stable theorem family and its evidence-custody map. The stable root contains only `Payment` and `Catalog`; the public corpus application and endpoint countermodel remain evidence outside that graph; the finite-support integration remains SCRATCH-dependent annex evidence; the three-cycle fixture was intentionally omitted.
-- **2026-07-16** — Prepared v12 Judgment Orientation. The first four stable Mathlib-free modules came from skunkworks commit `4f8e076`; the fifth, `Bridge`, was authored in promotion review. The exact five-module root, abstract `EffectiveSupport`, separately imported examples ANNEX, and fail-closed 13-receipt footprint gate define the release boundary. No paper cashout or runtime-conformance claim assigned.
+- **2026-07-16** — Released v12 Judgment Orientation. The first four stable Mathlib-free modules came from skunkworks commit `4f8e076`; the fifth, `Bridge`, was authored in promotion review. The exact five-module root, abstract `EffectiveSupport`, separately imported examples ANNEX, and fail-closed 13-receipt footprint gate define the release boundary. No paper cashout or runtime-conformance claim assigned.

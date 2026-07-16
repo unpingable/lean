@@ -9,9 +9,9 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
-## v12 — Judgment Orientation
+## Current release: 12.0.0 — Judgment Orientation
 
-**Release status: release-ready; operator tag, release, and DOI actions remain.**
+**Released 2026-07-16.**
 
 *Raw custody is a sequence; effective exact-origin contribution is its
 finite-support join-semilattice projection.*
@@ -52,10 +52,10 @@ footprint is `[propext, Classical.choice, Quot.sound]`, enforced fail-closed
 per receipt by `scripts/check-judgment-orientation-footprint.sh` in CI.
 
 Release inventory and gate receipts:
-[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md). This preparation
-does not create a tag, GitHub release, Zenodo deposit, or DOI. Source
-provenance for the first four modules: skunkworks commit `4f8e076`; `Bridge`
-was authored during promotion review.
+[`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md). The v12 GitHub
+release archives this tree and drives its Zenodo version deposit beneath the
+concept DOI shown above. Source provenance for the first four modules:
+skunkworks commit `4f8e076`; `Bridge` was authored during promotion review.
 
 ## v11 — Occurrence-Exact Paid Recomposition
 
@@ -744,7 +744,7 @@ is the provenance record, not the canonical import path.
 - [`PAPER-MAP.md`](PAPER-MAP.md) — module → paper crosswalk (which Lean modules cash out into which preprints, and whether the mapping is paper-ready)
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
 - [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) — Witnessed frontier and the v11 paid-recomposition claim/evidence boundary
-- [`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md) — v12 Judgment Orientation claim, custody inventory, and verification boundary
+- [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md) — v12 Judgment Orientation claim, custody inventory, and verification receipt
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
 - [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
 - [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
@@ -753,10 +753,10 @@ is the provenance record, not the canonical import path.
 
 ## Status
 
-**`v12.0.0` is release-ready:** Judgment Orientation is promoted as an exact
-five-module stable sibling surface; tagging, GitHub release creation, and
-Zenodo/DOI actions remain operator-only. Final gate receipts are recorded in
-[`docs/V12-READINESS-LEDGER.md`](docs/V12-READINESS-LEDGER.md).
+**`v12.0.0` released (2026-07-16):** Judgment Orientation is promoted as an
+exact five-module stable sibling surface. Its frozen inventory and final gate
+receipts are recorded in
+[`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md).
 
 **`v11.0.0` is locally tagged:** Occurrence-Exact Paid Recomposition is in the
 stable Witnessed import surface. The local annotated tag does not establish
