@@ -48,5 +48,8 @@ import LeanProofs.CollapsedSurface
 -- Witnessed Derivation Calculus (2.0 port; Mathlib-free, see LeanProofs/Witnessed.lean)
 import LeanProofs.Witnessed
 
+-- Judgment orientation and exact-origin support (stable, Mathlib-free sibling axis)
+import LeanProofs.JudgmentOrientation
+
 -- Reachability/refusal adapters for WDC paid paths (candidate; not public-surface promotion)
 import LeanProofs.Admissibility.WitnessedReachability

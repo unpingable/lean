@@ -4,7 +4,7 @@ keywords = ["math"]
 # Default builds stay on Mathlib-free custody/release surfaces. The root
 # `LeanProofs` aggregate remains buildable explicitly; it intentionally imports
 # paper/specimen modules that can reach Mathlib.
-defaultTargets = ["AdmissibilityCustodyAnnex", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory", "ViewSemantics", "ViewSemanticsApplications"]
+defaultTargets = ["AdmissibilityCustodyAnnex", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory", "ViewSemantics", "ViewSemanticsApplications", "JudgmentOrientation", "JudgmentOrientationExamples"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -217,3 +217,17 @@ roots = [
   "LeanProofs.ViewSemantics.Applications",
   "LeanProofs.Scratch.BindingSourceAblation",
 ]
+
+# Stable exact-origin judgment-orientation family. The root imports exactly
+# the four promoted theorem modules and excludes the examples annex.
+[[lean_lib]]
+name = "JudgmentOrientation"
+srcDir = "."
+roots = ["LeanProofs.JudgmentOrientation"]
+
+# Explicit examples/countermodels target. Default build coverage is not stable
+# import membership; `LeanProofs.JudgmentOrientation` does not import it.
+[[lean_lib]]
+name = "JudgmentOrientationExamples"
+srcDir = "."
+roots = ["LeanProofs.JudgmentOrientation.Examples"]

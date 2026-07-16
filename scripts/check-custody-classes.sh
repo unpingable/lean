@@ -3,6 +3,8 @@
 #   * every LeanProofs/Admissibility/*.lean file carries a ratified marker;
 #   * the PaidRecomposition stable root/core and fenced evidence carry their
 #     exact release classifications.
+#   * the JudgmentOrientation stable root/core and examples annex carry their
+#     exact promotion classifications.
 #
 # Ratified classes are defined in:
 #   ~/git/papers/working/custody-classes.md
@@ -14,6 +16,7 @@
 #   2 — at least one file declares an unratified class string
 #   3 — README prose counts have drifted from the live tally
 #   4 — the PaidRecomposition registry is missing, unexpected, or misclassified
+#   5 — the JudgmentOrientation registry is missing, unexpected, or misclassified
 #
 # This is the Phase 3 grep-target promise made executable.
 
@@ -23,6 +26,8 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ADMISS="$REPO_ROOT/LeanProofs/Admissibility"
 PAID_ROOT="$REPO_ROOT/LeanProofs/Witnessed/PaidRecomposition.lean"
 PAID_DIR="$REPO_ROOT/LeanProofs/Witnessed/PaidRecomposition"
+ORIENTATION_ROOT="$REPO_ROOT/LeanProofs/JudgmentOrientation.lean"
+ORIENTATION_DIR="$REPO_ROOT/LeanProofs/JudgmentOrientation"
 
 RATIFIED=( PUBLIC-SHIPPED ANNEX SCRATCH UNRATIFIED-CANDIDATE DEPRECATED )
 
@@ -129,7 +134,75 @@ done
 
 if [ "$paid_fail" -ne 0 ]; then exit 4; fi
 
-# 5. Report.
+# 5. Exact JudgmentOrientation custody registry. The stable root imports only
+# the four theorem modules; examples remain a separately imported ANNEX.
+declare -A orientation_expected=(
+  ["$ORIENTATION_ROOT"]="PUBLIC-SHIPPED"
+  ["$ORIENTATION_DIR/Core.lean"]="PUBLIC-SHIPPED"
+  ["$ORIENTATION_DIR/Attribution.lean"]="PUBLIC-SHIPPED"
+  ["$ORIENTATION_DIR/Provenance.lean"]="PUBLIC-SHIPPED"
+  ["$ORIENTATION_DIR/OriginSupport.lean"]="PUBLIC-SHIPPED"
+  ["$ORIENTATION_DIR/Bridge.lean"]="PUBLIC-SHIPPED"
+  ["$ORIENTATION_DIR/Examples.lean"]="ANNEX"
+)
+
+orientation_fail=0
+for f in "${!orientation_expected[@]}"; do
+  if [ ! -f "$f" ]; then
+    echo "FAIL: registered JudgmentOrientation source is missing: $f" >&2
+    orientation_fail=1
+    continue
+  fi
+  marker_count=$(sed -n '1,40p' "$f" |
+    grep -cE '^[[:space:]]*Custody-Class:[[:space:]]*' || true)
+  declared=$(sed -n '1,40p' "$f" |
+    grep -m1 -E '^[[:space:]]*Custody-Class:[[:space:]]*' |
+    sed -E 's/^[[:space:]]*Custody-Class:[[:space:]]*//; s/[[:space:]]+$//' || true)
+  if [ "$marker_count" -ne 1 ] || [ "$declared" != "${orientation_expected[$f]}" ]; then
+    echo "FAIL: $f custody is '${declared:-<missing>}'" >&2
+    echo "      expected: ${orientation_expected[$f]}" >&2
+    orientation_fail=1
+  fi
+done
+
+mapfile -t orientation_actual < <(
+  {
+    [ -f "$ORIENTATION_ROOT" ] && printf '%s\n' "$ORIENTATION_ROOT"
+    find "$ORIENTATION_DIR" -type f -name '*.lean' -print 2>/dev/null
+  } | sort
+)
+for f in "${orientation_actual[@]}"; do
+  if [ -z "${orientation_expected[$f]+registered}" ]; then
+    echo "FAIL: unregistered JudgmentOrientation source has no custody decision: $f" >&2
+    orientation_fail=1
+  fi
+done
+
+# Import custody is exact as well: the stable root cannot silently absorb the
+# examples annex, and no theorem module can acquire a Scratch/Mathlib edge.
+declare -A orientation_imports_expected=(
+  ["$ORIENTATION_ROOT"]="LeanProofs.JudgmentOrientation.Core LeanProofs.JudgmentOrientation.Attribution LeanProofs.JudgmentOrientation.Provenance LeanProofs.JudgmentOrientation.OriginSupport LeanProofs.JudgmentOrientation.Bridge"
+  ["$ORIENTATION_DIR/Core.lean"]=""
+  ["$ORIENTATION_DIR/Attribution.lean"]="LeanProofs.JudgmentOrientation.Core"
+  ["$ORIENTATION_DIR/Provenance.lean"]=""
+  ["$ORIENTATION_DIR/OriginSupport.lean"]="LeanProofs.JudgmentOrientation.Provenance"
+  ["$ORIENTATION_DIR/Bridge.lean"]="LeanProofs.JudgmentOrientation.Core LeanProofs.JudgmentOrientation.Attribution LeanProofs.JudgmentOrientation.Provenance LeanProofs.JudgmentOrientation.OriginSupport"
+  ["$ORIENTATION_DIR/Examples.lean"]="LeanProofs.JudgmentOrientation.Core LeanProofs.JudgmentOrientation.Attribution LeanProofs.JudgmentOrientation.Provenance LeanProofs.JudgmentOrientation.OriginSupport LeanProofs.JudgmentOrientation.Bridge"
+)
+
+for f in "${!orientation_imports_expected[@]}"; do
+  actual_imports=$({ grep -E '^import ' "$f" || true; } |
+    awk '{print $2}' | paste -sd ' ' -)
+  if [ "$actual_imports" != "${orientation_imports_expected[$f]}" ]; then
+    echo "FAIL: $f imports '$actual_imports'" >&2
+    echo "      expected: '${orientation_imports_expected[$f]}'" >&2
+    orientation_fail=1
+  fi
+done
+
+if [ "$orientation_fail" -ne 0 ]; then exit 5; fi
+
+# 6. Report.
 echo "OK: $total files; all carry ratified Custody-Class markers; README counts match"
 for cls in "${RATIFIED[@]}"; do
   printf "  %-24s %d\n" "$cls" "${counts[$cls]}"
@@ -137,3 +210,6 @@ done
 echo "OK: ${#paid_expected[@]} PaidRecomposition files match the exact custody registry"
 echo "  PUBLIC-SHIPPED           3"
 echo "  ANNEX                    3 (one imports an explicit SCRATCH dependency)"
+echo "OK: ${#orientation_expected[@]} JudgmentOrientation files match the exact custody registry"
+echo "  PUBLIC-SHIPPED           6"
+echo "  ANNEX                    1 (examples; excluded from the stable root)"

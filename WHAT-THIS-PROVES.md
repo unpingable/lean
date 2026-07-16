@@ -2,13 +2,69 @@
 
 ## The short version
 
-The Lean stack proves two kinds of things.
+The Lean stack proves three kinds of things.
 
 First, it audits selected claims from the Δt framework. That work found three places where the prose was collapsing distinct claim types into single sentences. Machine-checked formalization forced each claim to declare its type, then proved or falsified it on those terms.
 
 Second, it defines a set of small admissibility kernels: authority, standing, freshness, surface authorization, witness invariance, state transition, execution, and corrective layers. Those kernels do not prove whole systems correct. They prove that specific boundary-crossing upgrades are impossible by construction.
 
+Third, it now has a sibling judgment-orientation family. That family separates
+inquiry posture from protected judgment state, localizes protected endpoint
+differences to privileged transitions, and projects ordered occurrence custody into an
+abstract finite-support join-semilattice that counts exact origins without
+counting replay as corroboration.
+
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
+
+---
+
+## Sibling family: Judgment Orientation
+
+### What it proves
+
+- `Core` structurally confines orientation writes to inquiry posture. Finite
+  pure-orientation traces preserve certification, probe authority, and action
+  authority; governed application requires separate reusable admission
+  evidence.
+- `Attribution` proves that any endpoint difference for an
+  orientation-invariant observation across a mixed trace decomposes around a
+  privileged step that changes it at that point. This gives the endpoint
+  difference an address, not a justification; it does not detect a change that
+  is later reverted.
+- `Provenance` retains every occurrence in ordered raw custody while deriving
+  effective heat from the unique exact-origin roster. Replay stays visible but
+  does not create counterfeit contribution.
+- `OriginSupport` exposes an abstract finite-support carrier with bottom, join,
+  membership, inclusion, partial-order and least-upper-bound laws. Sequence
+  append maps to join, and streaming and batch accounting agree. The
+  payload-conflict annex separately proves that support alone cannot recover
+  erased payload.
+- `Bridge` composes the two halves one way: an endpoint-visible difference in
+  an orientation-invariant observation across an attributed mixed trace
+  localizes to a privileged step whose caller-supplied origin is contained in
+  the effective support of the trace's privileged provenance. The privileged
+  constructor carries its occurrence, so attribution cannot be retrofitted by
+  a convenient function or hypothesis; the annex proves the converse false
+  with a no-op witness.
+
+The optional `Examples` annex supplies Streetlamp, source-blind laundering,
+four-relay, accumulator-repair, payload-conflict, and bridge witnesses. The
+stable five theorem modules do not depend on those fixtures.
+
+### What it does NOT prove
+
+- Origin authentication, trusted issuance, Sybil resistance, or common-cause
+  independence
+- That one exact origin always carries one stable payload without an additional
+  `OriginFaithful`/compatibility witness
+- That reusable `MayOrient` evidence is expiring, revocable, one-shot, or linear
+- That an attributed privileged transition was admissible, witnessed, safe, or
+  approved
+- The converse of the bridge: an origin in effective support does not imply
+  any endpoint-visible change (no-op, reverted, replayed, and
+  payload-irrelevant occurrences all defeat it)
+- Any runtime correspondence, deployment correctness, or ledger-promotion
+  authority
 
 ---
 

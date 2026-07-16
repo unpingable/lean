@@ -9,6 +9,49 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
+## Judgment Orientation — stable mainline family
+
+*Raw custody is a sequence; effective exact-origin contribution is its
+finite-support join-semilattice projection.*
+
+`LeanProofs.JudgmentOrientation` is a stable, Mathlib-free sibling axis beside
+admissibility, witnessing, and authority. Its exact five-module root proves:
+
+- pure orientation may change inquiry posture but cannot write certification,
+  probe authority, or action authority;
+- any protected endpoint difference across a mixed trace localizes to a
+  privileged step, without claiming that step was justified;
+- raw replay remains in ordered custody while exact-origin accounting counts
+  one caller-supplied origin once;
+- abstract finite origin support has bottom, join, membership, inclusion,
+  least-upper-bound laws, support cardinality, and trace/state projection laws;
+  and
+- composing the halves one way (`Bridge`): an endpoint-visible difference in
+  an orientation-invariant observation across an attributed mixed trace names
+  a privileged step whose caller-supplied origin is contained in the effective
+  support of the trace's privileged provenance. Attribution is structural — a
+  privileged step enters an attributed trace only together with its
+  `Occurrence` — and the converse is false, with the no-op witness proved in
+  the annex.
+
+The stable root excludes `LeanProofs.JudgmentOrientation.Examples`, which keeps
+the Streetlamp, source-blind laundering, four-relay, accumulator-repair, and
+payload-conflict fixtures as ANNEX evidence rather than dependencies of the
+general laws. Import with `import LeanProofs.JudgmentOrientation`; build the
+stable surface with `lake build JudgmentOrientation` and the fixtures with
+`lake build JudgmentOrientationExamples`.
+
+`EffectiveSupport` has a private representation; consumers receive its
+algebraic operations and laws rather than a frozen quotient carrier. The family
+does not authenticate origin issuance, provide Sybil or common-cause
+independence, turn reusable `MayOrient` evidence into a linear permit, justify
+privileged transitions, or prove runtime conformance. Its disclosed maximum
+footprint is `[propext, Classical.choice, Quot.sound]`, enforced fail-closed
+per receipt by `scripts/check-judgment-orientation-footprint.sh` in CI.
+
+This mainline promotion is not a tag, GitHub release, Zenodo deposit, DOI mint,
+or version change. Source provenance: skunkworks commit `4f8e076`.
+
 ## v11 — Occurrence-Exact Paid Recomposition
 
 **Release status: release-ready; operator tag, release, and DOI actions remain.**

@@ -221,6 +221,32 @@ dynamic authority, resource creation, or temporal-debt theorem. PC-1 and PC-2
 remain closed; stateful bounded realization/refusal remains a separate
 frontier.
 
+## `LeanProofs/JudgmentOrientation/` (stable sibling theorem family)
+
+> Raw custody is a sequence; effective exact-origin contribution is its
+> finite-support join-semilattice projection.
+
+The five-module stable root separates inquiry posture from protected judgment,
+localizes protected endpoint differences across mixed traces to privileged
+steps, retains raw replay while deduplicating exact-origin contribution,
+proves the bottom/join/order/LUB and trace-projection laws of abstract finite
+origin support, and composes the halves one way: `Bridge` shows an
+endpoint-visible orientation-invariant difference across an attributed mixed
+trace names a privileged step whose caller-supplied origin lies in the
+effective support of the trace's privileged provenance (converse refuted in
+the annex). The optional
+`Examples.lean` ANNEX retains the Streetlamp, source-blind laundering,
+accumulator-repair, four-relay, payload-conflict, and bridge witnesses without
+placing fixtures in the stable dependency graph.
+
+**No current paper cashout.** This is reusable mathematics and a correspondence
+target, not evidence that any paper or runtime instantiates it. In particular,
+the formal family does not prove the external Agent Governor laundering
+mapping, authenticate origin issuance, provide Sybil/common-cause
+independence, justify attributed privileged steps, or authorize ledger
+promotion. A future paper mapping must name the exact theorem and supply its
+own interpretation boundary.
+
 ## Open / axiomatic boundaries
 
 - **`persistence_normalizes` axiom** in `PersistenceModel.lean` — intentionally weak, marks where static formalization ends. Relevant to the dynamic-claims roadmap (three-bucket split: explicit specifications / transition-system or temporal model / simulation). See memory `project-lean-dynamic-roadmap.md` in the papers project memory.
@@ -243,3 +269,5 @@ frontier.
 
 - **2026-05-29** — Added safety-bridge family section (paper anchor: planned formal-methods preprint "An Admissibility Calculus: Authorization, Safety Bridges, and Value Decay"; secondary anchor: paper 28). Previously the safety-bridge work had no paper anchor; the spine-page decision at `~/git/papers/working/admissibility-suite-spine-2026-05-28.md` resolved the topology fork (Fork B — preprint as sibling outside Δt numbering; paper 28 as interpretation paper that cites it). Eight modules covered (brick 0 + bricks 1a/1b + brick 2 + tier-1 ledger): `AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger`. Status: formalized YES; preprint scaffold pending. Earned preprint status via one irreducible theorem family (trajectory triple + no-lift) replicated across two distinct witnesses (receipt-poison miniature + attestation-ledger).
 - **2026-07-15** — Added the v11 Occurrence-Exact Paid Recomposition stable theorem family and its evidence-custody map. The stable root contains only `Payment` and `Catalog`; the public corpus application and endpoint countermodel remain evidence outside that graph; the finite-support integration remains SCRATCH-dependent annex evidence; the three-cycle fixture was intentionally omitted.
+- **2026-07-16** — Promoted the Judgment Orientation theorem family from skunkworks commit `4f8e076`: four stable Mathlib-free modules under an exact root, abstract `EffectiveSupport`, and a separately imported examples ANNEX. No paper cashout or runtime-conformance claim assigned.
+- **2026-07-16 (later)** — Promoted the fifth stable module `Bridge` (authored in the promotion review, not in `4f8e076`): one-way composition from endpoint-visible protected change to a supported privileged origin, with structural attribution, a non-vacuity specimen, and an explicit converse refutation in the annex. Added the fail-closed 13-receipt footprint gate `scripts/check-judgment-orientation-footprint.sh` to CI.

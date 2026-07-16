@@ -38,6 +38,12 @@ jobs:
       # stable-root isolation, fenced evidence, frozen API names, and footprints.
       - name: Paid recomposition footprint gate
         run: bash scripts/check-paid-recomposition-footprint.sh
+      # Judgment orientation (v12 candidate): re-attest the five-module stable
+      # family's axiom footprint and receipt names; annex builds but stays
+      # outside the stable root (import custody is enforced by the custody
+      # registry script below).
+      - name: Judgment orientation footprint gate
+        run: bash scripts/check-judgment-orientation-footprint.sh
       # Repo audit gates (cheap, grep/toml-based; no Lean invocation):
       # axiom classification, native_decide policy, custody-class registry,
       # Mathlib pin agreement, and the Mathlib-free import closure of the

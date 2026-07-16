@@ -6,6 +6,40 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## Unreleased — Judgment Orientation mainline promotion
+
+*Raw custody is a sequence; effective exact-origin contribution is its
+finite-support join-semilattice projection.*
+
+- Promoted the four Mathlib-free theorem modules `Core`, `Attribution`,
+  `Provenance`, and `OriginSupport` from skunkworks commit `4f8e076` under the
+  stable `LeanProofs.JudgmentOrientation` root.
+- Added structural inquiry/judgment confinement, privileged change-point
+  attribution, exact-origin replay accounting, an abstract finite-support
+  join-semilattice, operational trace/state projections, and explicit
+  information-loss boundaries.
+- Added the fifth stable module `Bridge` (authored in the promotion review,
+  not part of `4f8e076`): an endpoint-visible difference in an
+  orientation-invariant observation across an attributed mixed trace
+  localizes to a privileged step whose caller-supplied origin is contained
+  in the effective support of the trace's privileged provenance. Attribution
+  is structural — `AttributedStep.privileged` carries its `Occurrence` — and
+  the converse is refuted by a no-op witness in the annex.
+- Kept Streetlamp, source-blind laundering, accumulator-repair, four-relay,
+  payload-conflict, and bridge fixtures in a separately imported ANNEX.
+- Added `scripts/check-judgment-orientation-footprint.sh` and its CI step:
+  a fail-closed gate asserting the exact axiom footprint of thirteen frozen
+  receipts across the five-module family, matching the Witnessed and
+  PaidRecomposition gate pattern.
+- Replaced the scratch-era reducible quotient carrier with a private
+  `EffectiveSupport` representation, and renamed `MayOrient.paid` to
+  `MayOrient.admitted` so reusable standing is not mislabeled as linear spend.
+- Added exact build and custody wiring without changing the 1.x
+  `AdmissibilityKernels` import list or any release/DOI metadata.
+
+This entry records repository state only. No tag, GitHub release, Zenodo
+deposit, DOI, or version action is implied or performed.
+
 ## 11.0.0 — Occurrence-Exact Paid Recomposition (2026-07-15)
 
 *Exact occurrence payment and exact-attempt catalog custody, without replacing
