@@ -10,7 +10,7 @@ the wrong one.
 **v13 correction:** custody now distinguishes exact stable roots, terminal
 public evidence, and skunkworks incubation. This reclassification changes no
 runtime-correspondence claim. See
-[`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+[`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 **Citation discipline.** Custody class is part of the citation:
 

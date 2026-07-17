@@ -16,7 +16,7 @@ counting replay as corroboration.
 
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
 
-## v13 custody note (working-tree migration complete; not released)
+## v13 release note — Repository Custody Migration
 
 v13 adds no theorem claim. It corrects where already-finished work lives and
 what compatibility it promises. Stable APIs are exact-root closures; finished
@@ -25,7 +25,8 @@ skunkworks. The v4-v7 material described below now lives under
 `LeanProofs/CustodyIndexed/`, and PathVerdict under
 `LeanProofs/Admissibility/PathVerdict/`. Historical release ledgers retain the
 old paths and labels. See
-[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md). This is a
+compatibility/custody release, not a new theorem claim.
 
 ---
 

@@ -6,7 +6,7 @@
 > shipped material with exact stable/evidence ownership; the released v4-v7
 > checker/sequent substrate is rehomed under `LeanProofs/CustodyIndexed/`.
 > Superseded fossils were removed and live incubation moves to skunkworks.
-> Current migration status: [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+> Current custody record: [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 ## 1. Status / custody
 

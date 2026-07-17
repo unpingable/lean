@@ -18,7 +18,7 @@ claim remains aggregated by `AdmissibilityKernels.lean`: `Authority`,
 already-coherent DynamicTrace pair, `SafetyBridge`, and PathVerdict as separate
 exact stable families; none widens the eight-module 1.0 root.
 
-**Current custody contract (v13 working tree; not released).** Public source uses
+**Current custody contract (v13 release).** Public source uses
 `Custody-Class: PUBLIC-SHIPPED` plus `Surface-Role: STABLE-SURFACE` or
 `PUBLIC-EVIDENCE`.  Stable status is the transitive closure of a registered
 exact family root.  Finished examples, countermodels, applications, and audit
@@ -28,8 +28,8 @@ incubation moves to the sibling skunkworks; `ANNEX`, `Scratch/`, and
 
 Adding a public header or a build target does not promote a module.  Promotion
 is an explicit operator decision recorded by the applicable exact root and
-registry. The completed migration receipt and pending operator review are in
-[`../../docs/V13-MIGRATION-LEDGER.md`](../../docs/V13-MIGRATION-LEDGER.md).
+registry. The completed release receipt is in
+[`../../docs/V13-RELEASE-LEDGER.md`](../../docs/V13-RELEASE-LEDGER.md).
 
 **What this is for.** Infrastructure substrate, not a paper. No paper anchor; the kernel modules are intended to be cited by downstream operational work (a future Governor / `agent_gov` implementation, and the consumer tools listed below).
 
@@ -151,9 +151,9 @@ Initial named public surface. Eight modules in the 1.0 aggregator (originally na
 
 Forward-looking version discipline (not a release plan, a promotion gate):
 
-- **v13** — custody/path correction only. The skunkworks transfer and
-  fail-closed registries are complete and the integrated verification passes;
-  finish operator review before opening a new mathematical campaign.
+- **v13** — released custody/path correction only. The skunkworks transfer,
+  fail-closed registries, and integrated verification are complete; no new
+  mathematical campaign was added.
 - **Public evidence** — new finished countermodels or specimens may return
   from skunkworks without entering `AdmissibilityKernels`; an evidence target
   is a legitimate terminal home.
@@ -273,7 +273,7 @@ non-default `formalization/MathlibIncubation/` island. Their public originals
 are deleted.
 
 `BoundaryWitness`, `GuardCollapse`, `CarryLaws`, and `NoFreeLift` were
-superseded and are deleted in the v13 working tree; Git/v12 preserves their
+superseded and are absent from the v13 release tree; Git/v12 preserves their
 history.
 
 The former candidate specimens not listed above have been adjudicated as

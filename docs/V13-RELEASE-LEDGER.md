@@ -1,9 +1,16 @@
-# v13 Custody Migration Ledger
+# v13 Release Ledger — Repository Custody Migration
 
-**Status:** working-tree migration complete; operator review pending; not a
-release record. Baseline:
-`v12.0.0` (`b528af8`, 2026-07-16).  No tag, GitHub release, Zenodo deposit,
-DOI mint, or release-metadata edit is asserted or authorized by this ledger.
+**Released: v13.0.0 — Repository Custody Migration (2026-07-16).** Baseline:
+`v12.0.0` (`b528af8`, 2026-07-16). This ledger records the frozen custody
+boundary, source accounting, compatibility classification, and verification
+receipt for the released tree.
+
+Repository version metadata is `13.0.0` in `lakefile.toml`; `CITATION.cff`
+carries the title `Repository Custody Migration`, version `13.0.0`, release
+date `2026-07-16`, and concept DOI `10.5281/zenodo.20369489`. The repository
+has no `.zenodo.json`; no substitute file is created. Zenodo assigns the
+version-specific DOI externally when the GitHub release drives the deposit,
+so that DOI is intentionally not guessed or hard-coded here.
 
 ## Scope
 
@@ -71,7 +78,7 @@ stable root.
 
 ## Corrective public rehomes
 
-The working migration recognizes existing released dependency truth; it does
+The v13 release recognizes existing released dependency truth; it does
 not introduce new capability.
 
 - The v4-v7 checker/sequent substrate moves unchanged from
@@ -131,11 +138,11 @@ have been removed.
 | `LeanProofs/Admissibility/ParameterizedMerge.lean` | `formalization/Calculi/Scratch/ParameterizedMerge.lean` |
 | `non-reciprocal-admissibility-flow-sketch.lean` | `formalization/Calculi/Scratch/NonReciprocalAdmissibilityFlowSketch.lean` |
 
-Accordingly, the public working tree now contains exactly 179 Lean modules.
+Accordingly, the released public tree contains exactly 179 Lean modules.
 
 Twenty Scratch/Admissibility fossils were classified for deletion or
 deprecation after citation repair.  The separate obsolete
-`experiments/no_free_lift_wiring` Lean project is also being retired: its
+`experiments/no_free_lift_wiring` Lean project is also retired: its
 ratification prose remains as historical provenance while the superseded
 source is recoverable from v12 and Git history.
 
@@ -160,9 +167,8 @@ above. There are zero unaccounted removals. Of the 179 retained public modules,
 171 retained/rehomed theorem sources are token-equivalent to v12 and eight are
 new import-only roots; the migration adds no theorem body.
 
-No public module or manifest imports the old Scratch namespace. Transfer and
-verification are complete, but operator review remains pending; working-tree
-completion is not release completion.
+No public module or manifest imports the old Scratch namespace. Transfer,
+verification, and operator review are complete.
 
 ## BreakGlass disposition
 
@@ -182,9 +188,9 @@ later public return needs all of the following:
 That work is post-v13 mathematical incubation.  It is not part of this
 custody-only release boundary and is not presumed to be a v12 point release.
 
-## Fail-closed completion condition
+## Fail-closed release condition
 
-The migration is not complete merely because all files compile. The whole-tree
+The release is not attested merely because all files compile. The whole-tree
 custody gate must enumerate the entire existing tracked-or-untracked Lean tree
 and fail on:
 
@@ -203,10 +209,11 @@ Build targets, footprint gates, axiom/native-decision classifiers, and sibling
 parity checks remain independent receipts.  Whole-tree custody enforcement
 does not replace them.
 
-## Verification checkpoint
+## Verification receipt
 
 All independent public-repository build, theorem-footprint, axiom,
-`native_decide`, Mathlib-pin/isolation, and diff gates pass at this checkpoint.
+`native_decide`, Mathlib-pin/isolation, and diff gates pass in this release
+receipt.
 All 53 returned incubations pass the sibling's 26-check skunkworks migration
 audit, including sibling imports and PathVerdict parity.
 
@@ -224,16 +231,16 @@ registered target owner. The nested downstream fixture's bare build completes
 The final integrated rerun is earned: the complete public suite passes on the
 post-transfer tree; a clean temporary-copy sibling build completes 149 jobs;
 the Mathlib incubation aggregate and all four member modules pass; and the
-sibling's full `formalization_audit.py ci` passes 29 checks. Operator review is
-the remaining release-candidate decision.
+sibling's full `formalization_audit.py ci` passes 29 checks. Operator review
+accepted this exact boundary for release.
 
 ## Completion checklist
 
 - [x] Audit the full v12 source tree, including candidate/unmarked modules.
 - [x] Define stable API, public evidence, and repository aggregate roles.
-- [x] Rehome the v4-v7 and PathVerdict public families in the working tree.
+- [x] Rehome the v4-v7 and PathVerdict public families in the release tree.
 - [x] Separate stable roots from evidence roots for the major public families.
-- [x] Identify fossils and remove superseded Lean source in the working tree.
+- [x] Identify fossils and remove superseded Lean source in the release tree.
 - [x] Transfer all 53 live incubations to skunkworks with provenance.
 - [x] Complete all four Mathlib-bound transfers in the explicit skunkworks
   island.
@@ -243,13 +250,21 @@ the remaining release-candidate decision.
 - [x] Pass the strengthened target gate over its exact closure, Mathlib,
   ownership manifests, and reverse-complete 179/179 source coverage.
 - [x] Pass the independent build, footprint, axiom, native-decision, Mathlib,
-  and diff gates at the current checkpoint.
+  and diff gates for the release receipt.
 - [x] Re-run the entire battery, including sibling/parity and whole-tree
   custody, on the final post-transfer tree.
-- [ ] Complete operator review of the final tree.
+- [x] Complete operator review of the final tree.
 
-Only after every unchecked item is discharged may this become a release
-ledger.  This file performs no release action.
+## Release record
+
+The `v13.0.0` tag and associated GitHub release archive this exact verified
+tree. GitHub release creation drives the corresponding Zenodo version deposit
+and version DOI beneath concept DOI `10.5281/zenodo.20369489`; the
+version-specific DOI is assigned externally and is therefore not hard-coded
+in this source tree.
+
+Publication changes no custody class, import boundary, API, theorem, or proof
+footprint, and it proves no runtime conformance.
 
 ## Historical-record policy
 

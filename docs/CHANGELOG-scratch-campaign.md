@@ -6,7 +6,7 @@
 > `LeanProofs/CustodyIndexed/`, its finished fixtures under
 > `LeanProofs/CustodyIndexed/Evidence/`, and live incubation in the sibling
 > skunkworks. Exact pre-migration source remains in the v12 tag and Git
-> history. See [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+> history. See [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 ## 2026-07-02 — post-v7: PathVerdict Tier-1 extraction lands from skunkworks
 `LeanProofs/Scratch/PathVerdict/{Core,Edges}.lean` (new, extracted),

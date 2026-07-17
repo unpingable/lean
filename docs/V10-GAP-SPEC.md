@@ -2,7 +2,7 @@
 
 > **Historical specification.** Candidate/Scratch custody below describes the
 > v10 campaign. Current stable/evidence paths follow
-> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 **Status: CAMPAIGN CLOSED / LOCALLY TAGGED (2026-07-14).** This document
 authorized a campaign, not a version, tag, GitHub release, or DOI. The earlier untracked

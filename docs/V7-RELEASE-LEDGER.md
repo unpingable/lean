@@ -3,7 +3,7 @@
 > **Historical record.** The Scratch paths/labels below describe the v7 tree.
 > v13 rehomes the unchanged released family under
 > `LeanProofs/CustodyIndexed/`, with finished fixtures in its evidence root.
-> See [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+> See [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 **Release: v7.0.0 — Artifact Authority Profiles** (*A Lean proof release for
 custody-aware authority semantics*). Umbrella: Custody-Aware Authority

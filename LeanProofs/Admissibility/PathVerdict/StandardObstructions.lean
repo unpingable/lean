@@ -42,7 +42,7 @@ inductive StandardObstruction where
   | refusedStaleBasis
 deriving DecidableEq, Repr
 
-/-- Scratch-facing name for the standard evidence-promotion obstruction codes. -/
+/-- Compatibility-facing name for the standard evidence-promotion obstruction codes. -/
 abbrev ObstructionCode := StandardObstruction
 
 /-- Embed a standard promotion obstruction as the domain side of PathVerdict. -/

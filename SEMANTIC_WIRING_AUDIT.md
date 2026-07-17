@@ -11,7 +11,7 @@
 > this report are historical. Finished work is now stable API or public
 > evidence; live incubation is in skunkworks; superseded fossils remain in
 > v12/Git history. Current state:
-> [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
+> [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md).
 
 This is a semantic wiring audit, not an inventory audit. It asks what already
 exists in the repo that should be connected, factored, generalized, exercised,

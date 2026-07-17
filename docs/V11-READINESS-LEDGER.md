@@ -3,7 +3,7 @@
 > **Historical record.** ANNEX/Scratch labels and paths below describe the v11
 > review. v13 makes all three fixtures public evidence and rehomes their
 > finite-support foundation under `LeanProofs/CustodyIndexed/`; the v11 stable
-> claim is unchanged. See [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+> claim is unchanged. See [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 **Historical status: RELEASE-READY / OPERATOR ACTIONS REMAIN (2026-07-15).**
 At the time of this receipt, version and citation metadata were prepared as

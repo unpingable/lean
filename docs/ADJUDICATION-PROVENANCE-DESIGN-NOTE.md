@@ -10,7 +10,7 @@ promotion, versioning, tags, and DOI actions remain separate decisions.
 The v13 custody migration retired ANNEX/Scratch as live repository lanes.
 Historical paths below are identified explicitly; current public foundations
 use their stable/evidence homes, while unfinished applications belong in
-skunkworks. See [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+skunkworks. See [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 ## 1. Keeper and exact scope
 

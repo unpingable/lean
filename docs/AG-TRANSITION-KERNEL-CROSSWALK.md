@@ -11,7 +11,7 @@ from the live repos on 2026-07-09, not from cached memory.
 **v13 correction:** custody labels below now use stable API, terminal public
 evidence, or skunkworks-bound/historical. Theorems did not acquire runtime
 correspondence through reclassification. See
-[`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+[`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 **This crosswalk is the INVERSE view of an existing runtime ledger.** The
 transition-kernel already maintains the authoritative Rust→Lean obligation

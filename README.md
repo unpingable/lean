@@ -9,12 +9,14 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
-## Working tree: v13 custody migration complete (not released)
+## Current release: 13.0.0 — Repository Custody Migration
 
-v12 is the current release.  The post-release working tree has completed a
-custody-only v13 migration: no new mathematical campaign, but a real module-
-path and enforcement boundary.  It replaces the old ANNEX/Scratch/candidate
-sedimentary layers with three explicit dispositions:
+**Released 2026-07-16.**
+
+v13 is a custody-only compatibility release: no new mathematical campaign and
+no theorem-body change, but a real module-path and enforcement boundary. It
+replaces the old ANNEX/Scratch/candidate sedimentary layers with three explicit
+dispositions:
 
 - **stable API** — compatibility-bearing modules in a registered exact root
   closure;
@@ -29,15 +31,13 @@ checker/sequent substrate is recognized under
 `LeanProofs.Admissibility.PathVerdict`; both were already authoritative inputs
 to later work despite their old `Scratch/` paths.  The full 271-file audit,
 completed 53-file skunkworks transfer, deletion decisions, fail-closed gate,
-and completed release-candidate checks are recorded in
-[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
+and final release checks are recorded in
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md). Versioned sections
+below retain archive-time custody wording where it explains what those
+releases actually contained; current paths and roles are governed by the v13
+ledger.
 
-No v13 tag, release, DOI mint, or release-metadata update has occurred.  The
-versioned sections below retain archive-time custody wording where it explains
-what those releases actually contained; current paths and roles are governed
-by the v13 ledger.
-
-Current verification checkpoint: all 53 incubations have canonical sibling
+Release verification: all 53 incubations have canonical sibling
 homes and pass its 26-check migration audit. The public tree now contains
 exactly 179 Lean modules — 82 stable, 96 public evidence, and one aggregate —
 and the whole-tree custody gate passes across ten stable roots and 98
@@ -46,14 +46,17 @@ repo-owned Lake projects: 23 public targets, 23 exact local closures, 19
 Mathlib-free current-tree targets, 463 local target/module ownerships, one
 pinned-external target, and one locked external boundary; its reverse check
 also gives every public source a role-compatible target owner (179/179). The
-downstream fixture's 19-job bare build passes. The final post-transfer public suite, clean
-149-job sibling build, four-module Mathlib incubation island, and 29-check
-sibling CI all pass. The v12-to-v13 integrity audit accounts for every source
+downstream fixture's 19-job bare build passes. The final post-transfer public
+suite, clean 149-job sibling build, four-module Mathlib incubation island, and
+29-check sibling CI all pass. The v12-to-v13 integrity audit accounts for every source
 deletion and confirms 171 retained/rehomed modules token-equivalent to v12
-plus eight import-only roots. Operator review remains before any release
-action.
+plus eight import-only roots.
 
-## Current release: 12.0.0 — Judgment Orientation
+The GitHub release archives this tree and drives its Zenodo version deposit
+beneath the concept DOI shown above. The version-specific DOI is assigned by
+Zenodo and is not guessed in the source tree.
+
+## 12.0.0 — Judgment Orientation
 
 **Released 2026-07-16.**
 
@@ -731,8 +734,8 @@ public module.
 The whole-tree custody gate, exact surface registries, family-specific
 footprint gates, and Mathlib-isolation checks are independent receipts.  This
 corrects the pre-v13 partial checker, which covered only a subset of the tree.
-See [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md) for the
-current migration state and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
+See [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the
+release record and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
 what each gate establishes.
 
 ### `experiments/` — tracked wiring witnesses (non-canonical)
@@ -812,7 +815,7 @@ lake build AdmissibilityEvidenceMathlib ViewSemanticsEvidenceMathlib
 bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
 bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
 bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
-bash scripts/check-viewsemantics-footprint.sh # candidate theorem/checker footprints (fail-closed)
+bash scripts/check-viewsemantics-footprint.sh # theorem/checker footprints (fail-closed)
 bash scripts/check-viewsemantics-isolation.sh # cheap roots Mathlib-free; P25 isolated
 bash scripts/audit-axioms.sh                # repo axiom classifier (signature/interface-law/specimen; 0 forbidden)
 bash scripts/audit-native-decide.sh         # native_decide confined to finite-witness modules
@@ -841,7 +844,7 @@ archive, not a buildable canonical path.
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
 - [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) — Witnessed frontier and the v11 paid-recomposition claim/evidence boundary
 - [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md) — v12 Judgment Orientation claim, custody inventory, and verification receipt
-- [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md) — completed post-v12 working-tree custody/path correction; operator review pending; not a release record
+- [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) — v13 custody/path correction, exact source accounting, compatibility boundary, and verification receipt
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
 - [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
 - [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
@@ -850,15 +853,16 @@ archive, not a buildable canonical path.
 
 ## Status
 
+**`v13.0.0` released (2026-07-16):** Repository Custody Migration makes the
+public tree's lifecycle classification match its actual dependency graph. It
+adds no theorem claim; the exact source accounting, stable/evidence split, and
+fail-closed verification receipts are recorded in
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md).
+
 **`v12.0.0` released (2026-07-16):** Judgment Orientation is promoted as an
 exact five-module stable sibling surface. Its frozen inventory and final gate
 receipts are recorded in
 [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md).
-
-**v13 release preparation:** current working-tree paths and custody roles have
-been corrected under
-[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md). Operator review
-remains pending. No v13 release or DOI action is asserted.
 
 **`v11.0.0` is locally tagged:** Occurrence-Exact Paid Recomposition is in the
 stable Witnessed import surface. The local annotated tag does not establish

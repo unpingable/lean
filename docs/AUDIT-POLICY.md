@@ -9,8 +9,8 @@
 > live returns now have sibling homes, and the public whole-tree gate passes
 > exactly over the 179 retained modules. The custody gate is independent of
 > the axiom and footprint gates described here; a green result from one never
-> substitutes for another. Migration
-> status: [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+> substitutes for another. Release record:
+> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 That is the honest fence. An `axiom` in Lean is a hole the kernel agrees not to inspect — a
 trust import. The job of these gates is not to ban axioms (this repo legitimately uses
@@ -44,7 +44,7 @@ Every declared `axiom`/`constant` under `LeanProofs/` must be classified. Fail-c
 | **specimen** | concrete scenario stipulation for a fenced counterexample (`defendedValue_initial : … = 1`) | allowed only inside a labeled specimen module; must not silently support a broad structural receipt |
 | **forbidden** | claim-bodied placeholder (the fake-mustache class: a theorem-shaped axiom standing in for a desired doctrine — e.g. the removed `persistence_normalizes : ∀ d, d≠.dh → True`) | **zero tolerance** |
 
-Current v13-migration checkpoint census: 23 signature, 0 interface-law, 8
+Current v13 release census: 23 signature, 0 interface-law, 8
 specimen, **0 forbidden**, and 0 unclassified. The authoritative receipt is
 always the bare exit and report of `scripts/audit-axioms.sh`, not this prose
 count.
@@ -130,11 +130,11 @@ membership from a custody role.
 This corrects the pre-v13 checker, which examined 84 of 244 modules under
 `LeanProofs/` while the full v12 source tree contained 271 Lean files.  The old
 green receipt remains historical evidence about its partial registry only.
-At the current checkpoint, the actual public tree passes exactly at 179 files
+At the v13 release baseline, the actual public tree passes exactly at 179 files
 (82 stable, 96 evidence, one aggregate), ten roots, and 98 ownership
 relations. The strengthened public-target gate separately passes its exact
 target closures and declared Mathlib-free and ownership manifests at this
-checkpoint. Its exact receipt is described separately below.
+release baseline. Its exact receipt is described separately below.
 
 ## 8. Exact public targets and Mathlib closure — `check-mathlib-free-targets.sh`
 

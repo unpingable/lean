@@ -12,7 +12,7 @@ repos on 2026-07-09, not from cached memory.
 **v13 correction:** this repo now distinguishes exact stable roots, terminal
 public evidence, and skunkworks incubation. Reclassification changes no
 runtime-conformance claim. See
-[`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+[`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 **NQ already governs its own side of this seam.** The authoritative
 consumer-side document is

@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Judgment Orientation"
-version: "12.0.0"
+title: "Repository Custody Migration"
+version: "13.0.0"
 date-released: "2026-07-16"
 type: software
 authors:
@@ -39,30 +39,35 @@ keywords:
   - exact-origin
   - finite-support
   - provenance
+  - public-custody
+  - public-evidence
+  - compatibility-surface
   - trace-attribution
   - refusal-gate
   - witness-invariance
 abstract: >-
-  v12.0.0 — Judgment Orientation — promotes a Mathlib-free sibling theorem
-  family separating inquiry posture from protected judgment state. Pure
-  orientation traces preserve certification, probe authority, and action
-  authority; protected endpoint differences across mixed traces localize to
-  privileged change points without thereby justifying them. Ordered raw
-  occurrence custody projects to an abstract finite-support join-semilattice
-  in which replay of an exact origin remains visible but contributes only
-  once. Sequence append maps to support join, streaming and batch accounting
-  agree, and a one-way bridge shows that an endpoint-visible,
-  orientation-invariant difference across an attributed trace has a
-  privileged step whose caller-supplied origin is in the trace's effective
-  support. The stable root contains exactly Core, Attribution, Provenance,
-  OriginSupport, and Bridge; fixtures remain in a separately imported ANNEX.
-  The release does not authenticate origin issuance, establish Sybil or
-  common-cause independence, make reusable orientation evidence linear,
-  justify privileged transitions, prove the bridge converse, or claim runtime
-  conformance. Its thirteen frozen receipts have a disclosed maximum axiom
-  footprint of propext, Classical.choice, and Quot.sound. Full release history
-  is in CHANGELOG.md; the v12 inventory and gates are in
-  docs/V12-RELEASE-LEDGER.md.
+  v13.0.0 — Repository Custody Migration — is a custody-only compatibility
+  release with no new mathematical campaign and no theorem-body changes. It
+  rehomes the unchanged v4-v7 checker/sequent substrate under
+  LeanProofs.CustodyIndexed and PathVerdict under
+  LeanProofs.Admissibility.PathVerdict; distinguishes compatibility-bearing
+  stable API from terminal public evidence; removes redundant and historical
+  source; and transfers all 53 live incubations to the sibling skunkworks.
+  Fail-closed custody enforcement classifies the full public tree of 179 Lean
+  modules as 82 stable, 96 public evidence, and one repository aggregate,
+  across ten exact stable roots and 98 stable ownership relations. The
+  registered-target gate gives all 179 sources role-compatible ownership
+  across two Lake projects and 23 exact targets, with explicit Mathlib
+  boundaries and a pinned downstream fixture. The v12-to-v13 integrity audit
+  accounts for all 138 removed paths: 38 public rehomes, 53 skunkworks
+  transfers, 23 retired experiment sources, 20 fossils, and four separately
+  recorded deletions. All 171 retained or rehomed theorem sources are
+  token-equivalent to v12 after normalizing comments, imports, and declared
+  namespace moves; eight new roots are import-only. The release changes paths,
+  namespaces, custody roles, roots, targets, and enforcement contracts; it
+  adds no mathematical capability and claims no runtime conformance. Full
+  release history is in CHANGELOG.md; the v13 inventory and gates are in
+  docs/V13-RELEASE-LEDGER.md.
   The stable frame: the Lean work did not produce a unified calculus.
   It produced a set of small admissibility kernels, each isolating a
   different refusal boundary. The stack exposes a typed-verdict algebra (basis ×
@@ -80,10 +85,10 @@ abstract: >-
   across the surface, freshness, witness, and authority axes. Not a
   sequent calculus, not a process calculus, not a proof-theoretic
   admissibility logic, not a unified maximal calculus — see the
-  repository's scope fence for the full list of non-claims. Annex
-  modules build green and are available but are not part of the 1.0
-  compatibility claim. (Renamed 2026-06-03 from "Admissibility
-  Calculus 1.0"; a deprecated compatibility shim at
+  repository's scope fence for the full list of non-claims. Finished public
+  evidence builds green but is outside the exact stable compatibility roots;
+  live incubation is external to this repository. (Renamed 2026-06-03 from
+  "Admissibility Calculus 1.0"; a deprecated compatibility shim at
   LeanProofs/Admissibility/CalculusOne.lean preserved the old import
   path through v9 and was removed in v10.0.0 — see the aggregator's
   migration note.)

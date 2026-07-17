@@ -5,7 +5,7 @@
 > live scaffolding named below moves to skunkworks. The v4-v7 checker substrate,
 > including `FiniteSupportChecker`, now lives under
 > `LeanProofs.CustodyIndexed`. See
-> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 **Status: POST-2.0 REGISTER.** Direction #1 (admitting-class normalization) has shipped in
 `v2.0.0` (peeled tag target `b4bd02b`, 2026-06-29):

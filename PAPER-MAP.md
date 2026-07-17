@@ -12,7 +12,7 @@ This file exists so that a reader in the Lean repo can go the other direction: p
 
 **v13 custody note:** v13 changes paths and terminal roles, not paper cashouts
 or theorem claims. Stable roots, public evidence, and skunkworks dispositions
-follow [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md). Dated
+follow [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md). Dated
 changelog entries below preserve archive-time ANNEX/Scratch labels.
 
 ## Stable identifiers
@@ -286,10 +286,10 @@ own interpretation boundary.
 - **2026-05-29** — Added safety-bridge family section (paper anchor: planned formal-methods preprint "An Admissibility Calculus: Authorization, Safety Bridges, and Value Decay"; secondary anchor: paper 28). Previously the safety-bridge work had no paper anchor; the spine-page decision at `~/git/papers/working/admissibility-suite-spine-2026-05-28.md` resolved the topology fork (Fork B — preprint as sibling outside Δt numbering; paper 28 as interpretation paper that cites it). Eight modules covered (brick 0 + bricks 1a/1b + brick 2 + tier-1 ledger): `AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger`. Status: formalized YES; preprint scaffold pending. Earned preprint status via one irreducible theorem family (trajectory triple + no-lift) replicated across two distinct witnesses (receipt-poison miniature + attestation-ledger).
 - **2026-07-15** — Added the v11 Occurrence-Exact Paid Recomposition stable theorem family and its evidence-custody map. The stable root contains only `Payment` and `Catalog`; the public corpus application and endpoint countermodel remain evidence outside that graph; the finite-support integration remains SCRATCH-dependent annex evidence; the three-cycle fixture was intentionally omitted.
 - **2026-07-16** — Released v12 Judgment Orientation. The first four stable Mathlib-free modules came from skunkworks commit `4f8e076`; the fifth, `Bridge`, was authored in promotion review. The exact five-module root, abstract `EffectiveSupport`, separately imported examples ANNEX, and fail-closed 13-receipt footprint gate define the release boundary. No paper cashout or runtime-conformance claim assigned.
-- **2026-07-16 (post-release v13 working-tree correction complete; operator review pending)** — No paper mapping
+- **2026-07-16 — Released v13 Repository Custody Migration.** No paper mapping
   or mathematical claim changed. The 271-file custody audit rehomes the v4-v7
   substrate under `LeanProofs.CustodyIndexed`, PathVerdict under
   `LeanProofs.Admissibility.PathVerdict`, and finished fixtures as terminal
-  public evidence; live incubation moves to skunkworks. See the v13 migration
-  ledger for exact verification and the pending operator review. No tag or DOI
-  action is asserted.
+  public evidence; live incubation moves to skunkworks. See the v13 release
+  ledger for exact source accounting, compatibility decisions, and
+  verification receipts.

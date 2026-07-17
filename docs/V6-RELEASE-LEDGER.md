@@ -3,7 +3,7 @@
 > **Historical record.** The Scratch paths/labels below describe the v6 tree.
 > v13 rehomes the unchanged released checker under
 > `LeanProofs/CustodyIndexed/`. See
-> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
 **Release: v6.0.0 — Finite Custody Checking** (*A Lean proof release for
 custody-aware authority semantics*). Umbrella: Custody-Aware Authority

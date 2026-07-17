@@ -46,7 +46,7 @@
       that taxonomy is operator-facing and lives in the prose primitive.
     - Does NOT formalize the operational claim "lagging may justify
       correction but not authorize mutation." That theorem would
-      compose with Corrective/Authority and may be developed in Scratch
+      compose with Corrective/Authority and may be developed in skunkworks
       once its bridge assumptions are stated; no consumer is required.
     - Does NOT pin `Nat` or any concrete rank type. The relation is
       consumer-supplied so domain-specific orderings (partial, preorder,

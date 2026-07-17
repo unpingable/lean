@@ -92,13 +92,13 @@ bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
 ```
 
-At the current v13 checkpoint, the custody gate must pass without exclusions
+At the v13 release baseline, the custody gate must pass without exclusions
 over exactly 179 public Lean files: 82 stable, 96 public evidence, and one
 aggregate, across ten stable roots and 98 ownership relations. Any drift or
 failure is a regression. The separate target gate must also report
 role-compatible registered target ownership for all 179/179 public sources;
 see
-[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md).
 
 Repo axiom posture: not axiom-free, **axiom-classified** — see
 [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md). Keep new default-target
@@ -112,5 +112,5 @@ target.
 - Claim-level audit (BROKEN / STALE / SOUND / OPEN): [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md)
 - Module → paper crosswalk: [`PAPER-MAP.md`](PAPER-MAP.md)
 - Release ledgers and gap specs: `docs/V*-{RELEASE-LEDGER,GAP-SPEC,READINESS-LEDGER}.md`
-- Current custody migration: [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md)
+- Current release ledger: [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md)
 - Constructivity footguns already hit once: [`LeanProofs/ProofTheory/SCARS.md`](LeanProofs/ProofTheory/SCARS.md)

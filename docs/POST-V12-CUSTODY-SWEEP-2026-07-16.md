@@ -3,8 +3,8 @@
 **Status:** historical discovery/decision ledger.  This records the first
 post-v12 ANNEX/Scratch pass before migration work began.  Its original counts
 and proposed dispositions are preserved as audit history; the broader
-candidate/unmarked audit and live execution status are recorded in
-[`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).  Baseline: `v12.0.0`,
+candidate/unmarked audit and final release disposition are recorded in
+[`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).  Baseline: `v12.0.0`,
 commit `b528af8`, 2026-07-16.
 
 > **Post-audit correction.** The first pass covered the 54 ANNEX and 103

@@ -1,6 +1,6 @@
 /-
   LeanProofs.CustodyIndexed.CustodyIndexedSequent -- the generic custody-indexed
-  sequent skeleton (v4 CANDIDATE object).
+  sequent skeleton released in v4.
 
   Custody-Class: PUBLIC-SHIPPED
   Surface-Role: STABLE-SURFACE

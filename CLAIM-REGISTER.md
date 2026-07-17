@@ -7,7 +7,7 @@ Generated 2026-04-03 after static topology and persistence model results.
 
 **v13 custody correction:** claim status is unchanged. Current source paths
 and stable/evidence roles follow
-[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md); dated release
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md); dated release
 records retain their archive-time labels. In particular, the v4-v7 substrate
 now lives under `LeanProofs/CustodyIndexed/`, and finished fixtures are
 `PUBLIC-EVIDENCE` rather than ANNEX/Scratch.

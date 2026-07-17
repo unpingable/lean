@@ -5,7 +5,7 @@
   Custody-Class: PUBLIC-SHIPPED
   Surface-Role: PUBLIC-EVIDENCE
 
-  These are candidate-library fixtures, not a general information-flow
+  These are terminal public-evidence fixtures, not a general information-flow
   calculus.  The weak receipts are explicit corollaries of the stronger
   fiberwise theorems.  They are separate from the compositional policy law:
   views inside one declared disclosure budget remain inside it when joined.
