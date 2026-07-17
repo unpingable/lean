@@ -5,7 +5,7 @@
   Surface-Role: PUBLIC-EVIDENCE
   #print axioms receipts for every load-bearing name in the MembershipG3
   development. This module exists so the audit is part of the BUILD: the
-  axiom footprint prints on every `lake build ProofTheory`, and drift is
+  axiom footprint prints on every `lake build ProofTheoryEvidence`, and drift is
   visible in CI logs, not in narrative.
 
   Expected footprint (2026-07-06 baseline):

@@ -142,7 +142,11 @@ Validates every repository-owned Lake project and `lean_lib` against the
 project-keyed five-column `scripts/public-targets.tsv` registry: project,
 target, target role, import policy, and build policy. It computes each exact
 local target closure, checks target/module ownership, and rejects Mathlib
-reachability from current-tree targets declared Mathlib-free.
+reachability from current-tree targets declared Mathlib-free. It also checks
+the reverse direction: every custody-registered public source must have at
+least one role-compatible registered target owner (stable through a stable
+target, evidence through an evidence target or the exact repository aggregate,
+and the aggregate through its aggregate target).
 
 For a `pinned-external` target, the gate does not mislabel an external release
 closure as current-tree or Mathlib-free. It instead requires explicit Git
@@ -154,8 +158,9 @@ that the whole-tree custody gate deliberately does not provide.
 Current exact receipt: two repository-owned Lake projects, 23 public targets,
 23 exact local closures, 19 Mathlib-free current-tree targets, 463 local
 target/module ownerships, one pinned-external target, and one locked external
-boundary. Mathlib-reaching targets remain explicit-only. The nested downstream
-consumer's bare build completes 19 jobs in CI.
+boundary, with role-compatible target ownership for 179/179 public sources.
+Mathlib-reaching targets remain explicit-only. The nested downstream consumer's
+bare build completes 19 jobs in CI.
 
 ## What "clean" means, by surface
 

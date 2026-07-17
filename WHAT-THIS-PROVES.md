@@ -16,7 +16,7 @@ counting replay as corroboration.
 
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
 
-## v13 custody note (migration in progress)
+## v13 custody note (working-tree migration complete; not released)
 
 v13 adds no theorem claim. It corrects where already-finished work lives and
 what compatibility it promises. Stable APIs are exact-root closures; finished

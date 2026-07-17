@@ -9,9 +9,9 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
-## Working tree: v13 custody migration (not released)
+## Working tree: v13 custody migration complete (not released)
 
-v12 is the current release.  The post-release working tree is performing a
+v12 is the current release.  The post-release working tree has completed a
 custody-only v13 migration: no new mathematical campaign, but a real module-
 path and enforcement boundary.  It replaces the old ANNEX/Scratch/candidate
 sedimentary layers with three explicit dispositions:
@@ -24,12 +24,12 @@ sedimentary layers with three explicit dispositions:
   corpus may still change.
 
 Public evidence is a terminal state, not unfinished API.  The v4-v7
-checker/sequent substrate is being recognized under
+checker/sequent substrate is recognized under
 `LeanProofs.CustodyIndexed`, and PathVerdict under
 `LeanProofs.Admissibility.PathVerdict`; both were already authoritative inputs
 to later work despite their old `Scratch/` paths.  The full 271-file audit,
 completed 53-file skunkworks transfer, deletion decisions, fail-closed gate,
-and pending release checks are recorded in
+and completed release-candidate checks are recorded in
 [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
 
 No v13 tag, release, DOI mint, or release-metadata update has occurred.  The
@@ -44,8 +44,9 @@ and the whole-tree custody gate passes across ten stable roots and 98
 root-ownership relations. The strengthened target gate passes across two
 repo-owned Lake projects: 23 public targets, 23 exact local closures, 19
 Mathlib-free current-tree targets, 463 local target/module ownerships, one
-pinned-external target, and one locked external boundary. The downstream
-fixture's 19-job bare build passes. The final post-transfer public suite, clean
+pinned-external target, and one locked external boundary; its reverse check
+also gives every public source a role-compatible target owner (179/179). The
+downstream fixture's 19-job bare build passes. The final post-transfer public suite, clean
 149-job sibling build, four-module Mathlib incubation island, and 29-check
 sibling CI all pass. The v12-to-v13 integrity audit accounts for every source
 deletion and confirms 171 retained/rehomed modules token-equivalent to v12
@@ -840,7 +841,7 @@ archive, not a buildable canonical path.
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
 - [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) — Witnessed frontier and the v11 paid-recomposition claim/evidence boundary
 - [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md) — v12 Judgment Orientation claim, custody inventory, and verification receipt
-- [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md) — in-progress post-v12 custody/path correction; not a release record
+- [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md) — completed post-v12 working-tree custody/path correction; operator review pending; not a release record
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
 - [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
 - [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
@@ -854,10 +855,10 @@ exact five-module stable sibling surface. Its frozen inventory and final gate
 receipts are recorded in
 [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md).
 
-**v13 migration in progress:** current working-tree paths and custody roles are
-being corrected under
-[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).  No v13 release
-or DOI action is asserted.
+**v13 release preparation:** current working-tree paths and custody roles have
+been corrected under
+[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md). Operator review
+remains pending. No v13 release or DOI action is asserted.
 
 **`v11.0.0` is locally tagged:** Occurrence-Exact Paid Recomposition is in the
 stable Witnessed import surface. The local annotated tag does not establish

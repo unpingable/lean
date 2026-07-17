@@ -6,7 +6,7 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
-## Unreleased — v13 custody migration (in progress)
+## Unreleased — v13 custody migration (operator review pending)
 
 No new mathematical campaign. This working-tree migration corrects module
 paths, terminal roles, exact roots/targets, and whole-tree enforcement after a
@@ -32,8 +32,9 @@ described the repository honestly.
   and 98 ownership relations. The strengthened target gate passes across two
   Lake projects with 23 public targets, 23 exact local closures, 19
   Mathlib-free current-tree targets, 463 local ownerships, one pinned-external
-  target, and one locked boundary; the downstream fixture's 19-job bare build
-  passes. The final public and sibling suites pass, including a clean 149-job
+  target, and one locked boundary, and reverse-closes role-compatible target
+  ownership over all 179/179 public sources; the downstream fixture's 19-job
+  bare build passes. The final public and sibling suites pass, including a clean 149-job
   sibling build, all four Mathlib incubations, and the sibling's 29-check CI.
   The exact deletion audit accounts for 38 public rehomes, 53 skunkworks
   transfers, 23 archived experiment sources, 20 fossils, and four separately

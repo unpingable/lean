@@ -2,7 +2,7 @@
   Custody-Class: PUBLIC-SHIPPED
   Surface-Role: STABLE-SURFACE
 
-  Admissibility — Safety bridge (candidate, non-binding).
+  Admissibility — Stable generic safety bridge (non-authorizing).
 
   Frontier 1 (FRONTIERS.md): Admissibility ≠ Safety. The kernel can
   say a transition is *authorized* (`Execution.AuthorizedStep`); it

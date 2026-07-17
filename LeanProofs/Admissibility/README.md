@@ -18,7 +18,7 @@ claim remains aggregated by `AdmissibilityKernels.lean`: `Authority`,
 already-coherent DynamicTrace pair, `SafetyBridge`, and PathVerdict as separate
 exact stable families; none widens the eight-module 1.0 root.
 
-**Current custody contract (v13 migration).** Public source uses
+**Current custody contract (v13 working tree; not released).** Public source uses
 `Custody-Class: PUBLIC-SHIPPED` plus `Surface-Role: STABLE-SURFACE` or
 `PUBLIC-EVIDENCE`.  Stable status is the transitive closure of a registered
 exact family root.  Finished examples, countermodels, applications, and audit
@@ -28,7 +28,7 @@ incubation moves to the sibling skunkworks; `ANNEX`, `Scratch/`, and
 
 Adding a public header or a build target does not promote a module.  Promotion
 is an explicit operator decision recorded by the applicable exact root and
-registry.  The migration and pending completion checks are in
+registry. The completed migration receipt and pending operator review are in
 [`../../docs/V13-MIGRATION-LEDGER.md`](../../docs/V13-MIGRATION-LEDGER.md).
 
 **What this is for.** Infrastructure substrate, not a paper. No paper anchor; the kernel modules are intended to be cited by downstream operational work (a future Governor / `agent_gov` implementation, and the consumer tools listed below).

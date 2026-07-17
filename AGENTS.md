@@ -95,7 +95,9 @@ bash scripts/check-mathlib-free-targets.sh
 At the current v13 checkpoint, the custody gate must pass without exclusions
 over exactly 179 public Lean files: 82 stable, 96 public evidence, and one
 aggregate, across ten stable roots and 98 ownership relations. Any drift or
-failure is a regression; see
+failure is a regression. The separate target gate must also report
+role-compatible registered target ownership for all 179/179 public sources;
+see
 [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
 
 Repo axiom posture: not axiom-free, **axiom-classified** — see

@@ -2,7 +2,7 @@
   Custody-Class: PUBLIC-SHIPPED
   Surface-Role: STABLE-SURFACE
 
-  Admissibility — Corrective monotonicity (candidate, non-binding).
+  Admissibility — Corrective monotonicity (stable formal enforcement surface).
 
   Reference: governor doctrine; sibling to
   LeanProofs/Admissibility/Authority.lean (verdict algebra),
@@ -23,10 +23,10 @@
     failed basis with a newly admissible one through the ordinary
     forward path.
 
-  This module is candidate / non-binding. It earns its keep as an
-  enforcement surface: every existing and future Step constructor
-  must be classifiable as corrective / forward / neutral, and a
-  corrective constructor must not also be authority-granting.
+  This module is a stable formal enforcement surface; it does not itself bind
+  any runtime or policy. It earns its keep by requiring that every existing
+  and future Step constructor be classifiable as corrective / forward /
+  neutral, and that a corrective constructor not also be authority-granting.
   Adding a new Step constructor without extending `classify` is a
   Lean non-exhaustive-match error; that is the tripwire.
 
@@ -35,9 +35,9 @@
   no constructor is *both* classified corrective *and* able to widen
   AuthorizedSet, so the non-laundering corollary holds trivially.
   That is an explicit abstraction boundary, not a concrete
-  non-laundering result. The next formal step is to specify
-  nondegenerate store semantics and prove or refute monotonicity for
-  that model; no future Step or runtime consumer is a prerequisite.
+  non-laundering result. Specifying nondegenerate store semantics and proving
+  or refuting monotonicity for that model is outside this stable theorem claim;
+  no future Step or runtime consumer is a prerequisite to that formal work.
 
   Governor-neutral. Imports only sibling Admissibility modules.
 
@@ -375,7 +375,7 @@ theorem recovery_monotone
   exact corrective_sequence_monotone renv.correctiveMonotone Γ steps hAll
 
 /-
-  Open questions (pinned — this is candidate / non-binding):
+  Open questions (pinned — outside the stable theorem claim):
 
   1. Could a future receipt schema make `recordReceipt` authority-
      relevant? If so, split the transition: `recordReceipt` remains

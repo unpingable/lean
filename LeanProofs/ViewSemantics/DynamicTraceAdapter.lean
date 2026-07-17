@@ -358,7 +358,7 @@ theorem full_visibility_does_not_supply_missing_authority
     step_allowed_without_authority_blocks_dynamic_step
       hAllowed hNotAuthorized⟩
 
-/-! ## Candidate axiom-footprint receipts -/
+/-! ## Axiom-footprint receipts -/
 
 #print axioms endpointView_refines
 #print axioms refineObservation_reuses_trace

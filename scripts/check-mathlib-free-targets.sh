@@ -5,7 +5,8 @@
 # its lean_libs must appear exactly once in public-targets.tsv. Direct roots are
 # explicit, glob-free, and custody-correct. Current-tree targets are walked
 # through their complete local import closure; stable targets remain exact with
-# stable-surfaces.tsv and Mathlib-free targets may not reach Mathlib.
+# stable-surfaces.tsv, every registered source has role-compatible target
+# ownership, and Mathlib-free targets may not reach Mathlib.
 # Pinned-external fixtures instead prove that every direct dependency is an
 # exact Git requirement whose committed Lake lock resolves to a commit SHA.
 
@@ -305,6 +306,7 @@ mathlib_free_targets = 0
 pinned_external_targets = 0
 ownerships = 0
 external_boundaries = 0
+role_owned_sources: dict[str, set[str]] = defaultdict(set)
 
 for key, target in sorted(targets.items()):
     data = project_data.get(target.project)
@@ -365,7 +367,10 @@ for key, target in sorted(targets.items()):
             fail(f"{target.project}/{target.name} reaches missing local source: {module} -> {repo_rel(path)}")
             continue
 
-        path_role = source_role.get(repo_rel(path), "<unregistered>")
+        relative_path = repo_rel(path)
+        path_role = source_role.get(relative_path, "<unregistered>")
+        if path_role != "<unregistered>":
+            role_owned_sources[target.role].add(relative_path)
         if target.role == "stable-surface" and path_role != "STABLE-SURFACE":
             fail(f"stable target {target.name} reaches {repo_rel(path)} ({path_role})")
         elif target.role == "public-evidence" and path_role not in {"PUBLIC-EVIDENCE", "STABLE-SURFACE"}:
@@ -410,6 +415,27 @@ for target_name in sorted(stable_roots):
         fail(f"stable-surfaces.tsv names no root-project stable target: {target_name}")
 
 
+allowed_target_roles_by_source_role = {
+    "STABLE-SURFACE": {"stable-surface"},
+    # The exact repository aggregate may own historical top-level evidence
+    # modules that do not belong to a narrower family.
+    "PUBLIC-EVIDENCE": {"public-evidence", "repository-aggregate"},
+    "REPOSITORY-AGGREGATE": {"repository-aggregate"},
+}
+role_owned_source_count = 0
+for path, source_surface_role in sorted(source_role.items()):
+    target_roles = allowed_target_roles_by_source_role.get(source_surface_role)
+    if target_roles is None:
+        fail(f"public source has no target-role policy: {path} ({source_surface_role})")
+    elif not any(path in role_owned_sources[target_role] for target_role in target_roles):
+        fail(
+            f"public source belongs to no role-compatible registered target: "
+            f"{path} ({source_surface_role}; expected one of {sorted(target_roles)})"
+        )
+    else:
+        role_owned_source_count += 1
+
+
 if failures:
     for message in failures:
         print(f"FAIL: {message}", file=sys.stderr)
@@ -421,6 +447,7 @@ print(f"  exact local target closures walked: {walked_targets}")
 print(f"  Mathlib-free current-tree targets:  {mathlib_free_targets}")
 print(f"  pinned-external targets:            {pinned_external_targets}")
 print(f"  local target/module ownerships:     {ownerships}")
+print(f"  public sources target-owned:        {role_owned_source_count}/{len(source_role)}")
 print(f"  locked external import boundaries:  {external_boundaries}")
 print("  Mathlib-reaching targets:           explicit-only")
 PY

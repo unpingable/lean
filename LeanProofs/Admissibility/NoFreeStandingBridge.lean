@@ -4,10 +4,10 @@
 
   Admissibility — NoFreeStandingBridge (standing-bridge price theorem).
 
-  Status: CANDIDATE. Not wired into `LeanProofs.lean`. Builds only when
-  invoked directly:
+  Status: terminal PUBLIC-EVIDENCE. Wired through the exact
+  `AdmissibilityEvidence` target and outside every stable root:
 
-      lake build LeanProofs.Admissibility.NoFreeStandingBridge
+      lake build AdmissibilityEvidence
 
   ## What this is
 

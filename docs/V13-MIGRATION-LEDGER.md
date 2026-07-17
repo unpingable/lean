@@ -1,6 +1,7 @@
 # v13 Custody Migration Ledger
 
-**Status:** migration in progress; not a release record.  Baseline:
+**Status:** working-tree migration complete; operator review pending; not a
+release record. Baseline:
 `v12.0.0` (`b528af8`, 2026-07-16).  No tag, GitHub release, Zenodo deposit,
 DOI mint, or release-metadata edit is asserted or authorized by this ledger.
 
@@ -90,6 +91,19 @@ not introduce new capability.
   Admissibility families receive explicit stable/evidence ownership rather
   than inheriting status from directory folklore.
 
+The Bounded Calculi split follows the corrected v4 stable import closure, not
+a new ranking of the v3 family.  `BoundaryArtifact` is imported by the stable
+`BridgeCompositionSequent` and `TemporalToSurfaceBridgeWiring` modules, and
+the latter also imports `SafetyPreservation`; their disclosed surrogate
+boundary records and toy safety specimen are therefore accepted as part of
+that unchanged module-level compatibility substrate.  `CheckpointSettlement`
+and `RefusalDenial` remain terminal public evidence because no registered
+stable root imports either module.  Avoiding the first result would require
+splitting or reworking released bridge modules, or shrinking the corrected v4
+stable root; promoting the latter pair would require new stable roots or
+imports. None of those changes is a content-neutral custody correction, so
+v13 performs none of them.
+
 These are corrective reclassifications of already-compiled material.  v13
 must not describe them as new v13 mathematics.
 
@@ -146,9 +160,9 @@ above. There are zero unaccounted removals. Of the 179 retained public modules,
 171 retained/rehomed theorem sources are token-equivalent to v12 and eight are
 new import-only roots; the migration adds no theorem body.
 
-No public module or manifest imports the old Scratch namespace. This ledger
-remains `in progress` because operator review is still pending; transfer and
-verification completion are not release completion.
+No public module or manifest imports the old Scratch namespace. Transfer and
+verification are complete, but operator review remains pending; working-tree
+completion is not release completion.
 
 ## BreakGlass disposition
 
@@ -182,7 +196,8 @@ and fail on:
 
 The separate public-target gate must fail on an exact evidence/stable target
 that absorbs a role outside its declaration, an owned source missing from its
-manifest, or Mathlib reaching a target declared Mathlib-free.
+manifest, any public source with no role-compatible registered target owner,
+or Mathlib reaching a target declared Mathlib-free.
 
 Build targets, footprint gates, axiom/native-decision classifiers, and sibling
 parity checks remain independent receipts.  Whole-tree custody enforcement
@@ -202,7 +217,9 @@ root-ownership relations. The strengthened public-target gate separately
 passes across two repository-owned Lake projects with 23 public targets and
 23 exact local closures, 19 Mathlib-free current-tree targets, 463 local
 target/module ownerships, one pinned-external target, and one locked external
-boundary. The nested downstream fixture's bare build completes 19 jobs.
+boundary. Its reverse check gives all 179/179 public sources a role-compatible
+registered target owner. The nested downstream fixture's bare build completes
+19 jobs.
 
 The final integrated rerun is earned: the complete public suite passes on the
 post-transfer tree; a clean temporary-copy sibling build completes 149 jobs;
@@ -223,8 +240,8 @@ the remaining release-candidate decision.
 - [x] Repair sibling imports and PathVerdict parity manifests.
 - [x] Land fail-closed whole-tree custody enforcement and pass its exact
   179-file final shape on the actual tree.
-- [x] Pass the strengthened target gate over its exact closure, Mathlib, and
-  ownership manifests.
+- [x] Pass the strengthened target gate over its exact closure, Mathlib,
+  ownership manifests, and reverse-complete 179/179 source coverage.
 - [x] Pass the independent build, footprint, axiom, native-decision, Mathlib,
   and diff gates at the current checkpoint.
 - [x] Re-run the entire battery, including sibling/parity and whole-tree
