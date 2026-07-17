@@ -6,7 +6,7 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
-## 13.0.0 — Repository Custody Migration (2026-07-16)
+## 13.0.0 — Repository Custody Migration (2026-07-17)
 
 No new mathematical campaign. This custody-only compatibility release corrects
 module paths, terminal roles, exact roots/targets, and whole-tree enforcement after a

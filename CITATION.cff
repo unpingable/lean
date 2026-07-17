@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "Repository Custody Migration"
 version: "13.0.0"
-date-released: "2026-07-16"
+date-released: "2026-07-17"
 type: software
 authors:
   - family-names: Beck

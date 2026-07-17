@@ -11,7 +11,7 @@ claim).
 
 ## Current release: 13.0.0 — Repository Custody Migration
 
-**Released 2026-07-16.**
+**Released 2026-07-17.**
 
 v13 is a custody-only compatibility release: no new mathematical campaign and
 no theorem-body change, but a real module-path and enforcement boundary. It
@@ -853,7 +853,7 @@ archive, not a buildable canonical path.
 
 ## Status
 
-**`v13.0.0` released (2026-07-16):** Repository Custody Migration makes the
+**`v13.0.0` released (2026-07-17):** Repository Custody Migration makes the
 public tree's lifecycle classification match its actual dependency graph. It
 adds no theorem claim; the exact source accounting, stable/evidence split, and
 fail-closed verification receipts are recorded in

@@ -1,13 +1,13 @@
 # v13 Release Ledger — Repository Custody Migration
 
-**Released: v13.0.0 — Repository Custody Migration (2026-07-16).** Baseline:
+**Released: v13.0.0 — Repository Custody Migration (2026-07-17).** Baseline:
 `v12.0.0` (`b528af8`, 2026-07-16). This ledger records the frozen custody
 boundary, source accounting, compatibility classification, and verification
 receipt for the released tree.
 
 Repository version metadata is `13.0.0` in `lakefile.toml`; `CITATION.cff`
 carries the title `Repository Custody Migration`, version `13.0.0`, release
-date `2026-07-16`, and concept DOI `10.5281/zenodo.20369489`. The repository
+date `2026-07-17`, and concept DOI `10.5281/zenodo.20369489`. The repository
 has no `.zenodo.json`; no substitute file is created. Zenodo assigns the
 version-specific DOI externally when the GitHub release drives the deposit,
 so that DOI is intentionally not guessed or hard-coded here.
