@@ -1,10 +1,11 @@
 /-
   LeanProofs.Admissibility.ReachabilityClosure — reachability/refusal hygiene slice.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  Status: de-risking slice. Root-imported for build coverage once opened,
-  but NOT promoted into the `AdmissibilityKernels` public surface and NOT the retired
+  Status: terminal public evidence, deliberately outside the exact
+  `AdmissibilityKernels` compatibility surface and distinct from the retired
   composition classifier.
 
   Purpose (the guardrail, not the prize): pin one honest meaning of "composable" /

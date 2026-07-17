@@ -2,7 +2,8 @@
   LeanProofs.ViewSemantics.Core -- shared semantics for views, refinement,
   determination, and fiberwise ambiguity.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   This module is the Gate A semantic core for the v10 view-semantics
   campaign.  It deliberately has no imports: the kernel is constructive,

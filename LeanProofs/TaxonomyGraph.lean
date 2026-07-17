@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   Cybernetic Failure Taxonomy: Formal Graph Sketch
 
   Encoding the 15 domains (14 primitive + 1 composite) and their

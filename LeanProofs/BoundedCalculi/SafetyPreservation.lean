@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   BoundedCalculi.SafetyPreservation -- authorization plus a separate safety
   bridge. Authorization alone is intentionally insufficient.

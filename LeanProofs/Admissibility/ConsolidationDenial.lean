@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Admissibility — ConsolidationDenial.
 
@@ -91,7 +92,7 @@
     - Does NOT include the consolidation interrupt controller
       in this static module. Its Schmitt-trigger safety invariant and
       mode-specific bounds are checked separately in
-      `LeanProofs/Scratch/ConsolidationController.lean`; that separation
+      skunkworks `MathlibIncubation/ConsolidationController.lean`; that separation
       does not imply public-custody promotion.
     - Does NOT model retention, compression, or reauthorization
       attacks (separate axes).

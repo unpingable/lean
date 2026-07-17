@@ -1,5 +1,13 @@
 # Changelog — bounded-calculi / sequent-ladder scratch campaign
 
+> **Archived at the v13 custody boundary.** This is a chronological record of
+> the paths and labels under which the v3-v7 campaigns originally landed. It
+> is not a current source map. The released public substrate now lives under
+> `LeanProofs/CustodyIndexed/`, its finished fixtures under
+> `LeanProofs/CustodyIndexed/Evidence/`, and live incubation in the sibling
+> skunkworks. Exact pre-migration source remains in the v12 tag and Git
+> history. See [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 ## 2026-07-02 — post-v7: PathVerdict Tier-1 extraction lands from skunkworks
 `LeanProofs/Scratch/PathVerdict/{Core,Edges}.lean` (new, extracted),
 `lakefile.toml` (CI roots). NOT part of the v7.0.0 release surface — the

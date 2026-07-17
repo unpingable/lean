@@ -1,7 +1,8 @@
 /-
   LeanProofs.ViewSemantics.FiniteCheckerExamples
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Kernel-evaluation fixtures for all four cells of Examples' independent
   sufficiency/disclosure matrix.  Each theorem reduces the proof-carrying

@@ -1,5 +1,6 @@
 /-
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Admissibility — SurfaceAuthorization (Governor-facing refusal gate).
 

@@ -1,5 +1,13 @@
 # ROADMAP — Bounded Calculi (Lean proof work order)
 
+> **v13 correction (2026-07-16).** This document is principally the historical
+> work order by which v3-v7 were built. Its ANNEX/Scratch labels and paths are
+> snapshots, not current custody. `LeanProofs/BoundedCalculi/` is now public
+> shipped material with exact stable/evidence ownership; the released v4-v7
+> checker/sequent substrate is rehomed under `LeanProofs/CustodyIndexed/`.
+> Superseded fossils were removed and live incubation moves to skunkworks.
+> Current migration status: [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 ## 1. Status / custody
 
 - **Candidate Lean roadmap. Documentation only.** No code implementation in this pass.
@@ -16,10 +24,10 @@
 
 ## 2. Existing bounded calculi inventory
 
-Live under `LeanProofs/BoundedCalculi/` — all `Custody-Class: ANNEX`, un-wired, green,
-axiom-clean (`#print axioms`: 5 zero-axiom, `SurfaceProjection` `propext`), **zero
-`True`-shaped theorems** across all six. Local judgment forms and a sample theorem below;
-**full strongest/weakest + proof-shape classification is Slice L1 work, not yet done.**
+Live under `LeanProofs/BoundedCalculi/` as `PUBLIC-SHIPPED` modules in the
+`BoundedCalculi` target. The table below is the original six-module inventory;
+the released family was subsequently completed and audited in
+[`V3-RELEASE-LEDGER.md`](V3-RELEASE-LEDGER.md).
 
 | Module | Local judgment | Blocks | Sample theorem | Surrogate/specimen flag |
 |---|---|---|---|---|
@@ -182,16 +190,15 @@ parameterization, execution-custody actuator boundary) and named follow-ups
 (structural-rule algebra; SEQ2/SEQ3 equivalence under the linear policy).
 Runtime (Bridge Foundry / compiled authority) stays out of this roadmap.
 
-Each slice is fenced ANNEX/SCRATCH until it clears §4; none imports into a promoted kernel
-without an operator decision.
+Historical development used ANNEX/Scratch fences. Current incubation uses the
+sibling skunkworks; a return to public stable API or public evidence remains an
+explicit operator decision.
 
-## 11. Status ledger (as-built, 2026-07-01)
+## 11. Historical status ledger (as-built, 2026-07-01)
 
-Snapshot of what actually exists on disk, distinct from the plan above. Every entry
-is `Custody-Class: SCRATCH`, un-wired, Mathlib-free, and `#print axioms`-clean;
-**none is promoted, and none testifies about a real ANNEX module unless its row says
-so.** Some entries landed **ahead of the §10 slice order** during the codex L2 pass
-and are recorded here as *contact*, not as ratified slices.
+Snapshot of what existed on 2026-07-01, distinct from both the plan above and
+the current v13 tree. The old labels and paths are deliberately preserved here
+as release provenance; consult the correction banner for current ownership.
 
 **L2 — `Temporal → Surface` bridge (landed).**
 `LeanProofs/Scratch/TemporalToSurfaceBridge.lean`, self-contained surrogate. Key

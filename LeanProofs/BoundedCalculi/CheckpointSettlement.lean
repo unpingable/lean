@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   BoundedCalculi.CheckpointSettlement -- custody-preserving compaction
   (settlement calculus, roadmap S8), occurrence-linear formulation.
@@ -7,13 +8,14 @@
   Calculi).
 
   RELEASE-SURFACE, NOT AUTHORITY:
-    * NOT imported by promoted kernels (`LeanProofs.lean` untouched).
+    * public terminal evidence, outside every exact stable root;
     * NOT a unified admissibility calculus; no master `Admissible` judgment.
     * NOT runtime authority; the digest/Merkle machinery is abstracted.
-    * NOT sequent composition (custody-indexed sequents are v3.x scratch).
+    * NOT sequent composition (custody-indexed sequents are a separate stable family).
     * The aggregate import (`BoundedCalculi.lean`) proves checkability /
       coexistence only.
-  Promoted Scratch -> ANNEX by operator decision 2026-07-01 (v3 release fork).
+  Historical custody: promoted Scratch -> ANNEX by operator decision
+  2026-07-01; v13 recognizes the released artifact as public evidence.
   Audit trail: docs/CHANGELOG-scratch-campaign.md + .governor/loop.json.
 
   PROVENANCE OF THE LAW (release-ledger requirement): membership-level
@@ -33,8 +35,8 @@
 
   REUSE: `Witnessed.ResourceSequent.Split` (the occurrence-preserving
   interleaving engine) and `BoundedCalculi.MeasureAccounting` (the generic
-  measure machinery -- extracted at promotion so the release surface imports
-  no scratch; import direction: ANNEX -> Witnessed/ANNEX only).
+  measure machinery -- extracted at promotion and now recognized as stable
+  shared substrate).
 
   Load-bearing results:
   * `settlement_preserves_live_multiplicity` -- for every measure vanishing on

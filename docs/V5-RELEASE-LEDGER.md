@@ -1,5 +1,10 @@
 # v5 Release Ledger — Custody-Preserving Normalization
 
+> **Historical record.** The Scratch paths/labels below describe the v5 tree.
+> v13 rehomes the unchanged released substrate under
+> `LeanProofs/CustodyIndexed/`. See
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Release: v5.0.0 — Custody-Preserving Normalization** (*A Lean proof release
 for custody-aware authority semantics*). Umbrella: Custody-Aware Authority
 Semantics. Prior release: v4.0.0 — Custody-Indexed Sequents.

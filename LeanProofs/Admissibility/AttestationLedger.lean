@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Admissibility — Attestation-ledger protocol (second concrete witness).
 

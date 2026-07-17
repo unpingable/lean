@@ -2,7 +2,8 @@
   LeanProofs.JudgmentOrientation.Examples
     -- forcing cases and countermodels for the stable theorem family
 
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Transplanted from skunkworks commit
   4f8e07606eb14537e0a0876ee9082178754ae436.
@@ -11,7 +12,7 @@
   accumulator-repair, four-relay, payload-conflict, and bridge fixtures. It
   is deliberately excluded from the stable `LeanProofs.JudgmentOrientation`
   import root. The five public theorem modules do not depend on these
-  fixtures; importing this annex is an explicit request for examples.
+  fixtures; importing this evidence root is an explicit request for examples.
 
   These are bounded countermodels and witnesses. They establish no runtime
   correspondence, origin authentication, Sybil resistance, common-cause
@@ -723,4 +724,3 @@ theorem supported_origin_without_change :
 end Specimen
 
 end LeanProofs.JudgmentOrientation.Bridge
-

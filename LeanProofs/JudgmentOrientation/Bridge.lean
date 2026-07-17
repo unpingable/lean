@@ -3,6 +3,7 @@
     -- an endpoint-visible protected change has a supported privileged origin
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Authored 2026-07-16 during the mainline promotion review of skunkworks
   commit 4f8e07606eb14537e0a0876ee9082178754ae436; the bridge itself is not
@@ -31,7 +32,7 @@
   Scope fence:
 
   * One direction only. The converse — a supported origin implies an
-    endpoint-visible change — is FALSE; the examples annex exhibits the
+    endpoint-visible change — is FALSE; the example evidence exhibits the
     no-op witness (`supported_origin_without_change`). Replayed origins,
     reverted changes, and payload-irrelevant occurrences fail it the same
     way; support erases order, multiplicity, payload, and effect.
@@ -206,7 +207,7 @@ theorem contains_ofTrace_of_mem_originProjection
 
     Localization plus containment is an address with a provenance entry, not
     a justification, an authentication, or a causal-independence claim. The
-    converse is false; the examples annex exhibits the no-op witness. -/
+    converse is false; the example evidence exhibits the no-op witness. -/
 theorem changed_protected_has_supported_privileged_origin
     {Origin : Type uOrigin} {Relay : Type uRelay} {Payload : Type uPayload}
     {Context : Type uContext}

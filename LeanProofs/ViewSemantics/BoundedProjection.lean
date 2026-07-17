@@ -1,7 +1,8 @@
 /-
   LeanProofs.ViewSemantics.BoundedProjection
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Gate B of the v10 view-semantics campaign: an operational view must be
   sufficient for its assigned task and no finer than its declared disclosure

@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.AuthorityModel — the authority verdict kernel.
 
-  Custody class: MODELED KERNEL (a study copy of the authority verdict algebra;
-  NOT the canonical `Admissibility/AuthorityModel.lean`). A NO-BRIDGE kernel: it
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Stable modeled kernel (a study copy of the authority verdict algebra, NOT
+  the canonical `Admissibility/Authority.lean`). A NO-BRIDGE kernel: it
   admits locally and exposes no transport, so in the customs office it is
   bridge-inert (see `LeanProofs.Witnessed.Embedding.authority_is_conservative`).
 -/

@@ -3,6 +3,7 @@
     -- attention is not evidence; inquiry choice is a governed layer
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Promoted from skunkworks commit 4f8e07606eb14537e0a0876ee9082178754ae436.
   This module is the stable structural core. It does not testify about any
@@ -33,7 +34,7 @@
   posture; that fact does not prove it had standing to redirect a governed
   inquiry.
 
-  Two forcing cases in the optional `Examples` annex keep the calculus honest:
+  Two forcing cases in optional `Examples` evidence keep the calculus honest:
 
   * STREETLAMP: a story genuinely changes salience, suggestions, and
     priority without certifying the newly salient claim or authorizing the
@@ -45,7 +46,7 @@
     probe authority, or action authority changes. This is positive
     feedback in inquiry posture, not evidentiary corroboration.
 
-  The annex's flagship negative result is stronger than ordinary
+  The example evidence's flagship negative result is stronger than ordinary
   no-laundering:
 
     protected-frame preservation does not imply fair inquiry.

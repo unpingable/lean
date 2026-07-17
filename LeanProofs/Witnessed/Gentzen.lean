@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.Gentzen -- Gentzen presentation for positive WDC formulas.
 
-  Custody class: ANNEX (Mathlib-free public surface). This is a Gentzen-style
-  single-succedent sequent presentation over the positive WDC formula grammar:
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Stable Mathlib-free Gentzen-style single-succedent sequent presentation over
+  the positive WDC formula grammar:
   atoms, top, conjunction, and disjunction.
 
   Scope. This module adds explicit left/right sequent rules and a with-cut syntax

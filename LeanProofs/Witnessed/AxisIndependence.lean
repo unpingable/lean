@@ -2,8 +2,10 @@
   LeanProofs.Witnessed.AxisIndependence — the four axes of `WitnessedDiscipline` are independent
   (irredundant) under the present definitions.
 
-  Custody class: ANNEX (Mathlib-free public surface). In the default build; isolate with
-  `lake build Witnessed`. Schematic over a 3-element model; axiom-free.
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Mathlib-free stable surface, isolated by `lake build Witnessed`. Schematic
+  over a 3-element model; axiom-free.
 
   CLAIM (exact): for each of the four axes, there is a compiled finite model in which
   **exactly that axis fails** while the other three hold. Equivalently, no axis follows

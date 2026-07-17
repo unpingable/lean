@@ -1,7 +1,11 @@
 /-
   LeanProofs.Witnessed.CommutesNecessity — teeth for the 2.0 normalization theorem.
 
-  Custody class: ANNEX (Mathlib-free). Imports only the spine + AbstractNormalization.
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+
+  Mathlib-free stable surface importing only the spine and
+  `AbstractNormalization`.
 
   `AbstractNormalization.normal_form_iff_of_commutes` is an ADMITTING-CLASS theorem: it
   holds for bridge systems whose carry/weaken families satisfy the local commutation law

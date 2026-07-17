@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.Coordinates — the interval/order coordinate.
 
-  Custody class: ABSTRACT COORDINATE (schema-level, axiom-free, no model).
-  Polymorphic over a carrier `Time` and a bare relation `before`. The transport
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Abstract stable coordinate, polymorphic over a carrier `Time` and a bare
+  relation `before`. The transport
   soundness here consumes ONLY transitivity (`btrans`) — see `LeanProofs.Witnessed.CarryLaws`
   for why that is exactly the cost.
 -/

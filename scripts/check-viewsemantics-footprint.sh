@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Candidate v10 campaign footprint gate.  The mathematical/checker/specimen
+# v10 ViewSemantics stable/public-evidence footprint gate. The mathematical/checker/specimen
 # receipts must be axiom-free.  The quotient applications may use only their
 # disclosed foundations, and the authorized-trace separation receipts must
 # have exactly the footprint of the v9 authorization walls they reuse.
@@ -9,11 +9,9 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
-if ! lake build ViewSemantics ViewSemanticsApplications \
-    ViewSemanticsMathlibIslands \
-    LeanProofs.Scratch.MosaicRelease \
-    LeanProofs.Scratch.CompartmentConflict >/dev/null 2>&1; then
-  echo "FAIL: candidate ViewSemantics targets did not build" >&2
+if ! lake build ViewSemantics ViewSemanticsEvidence \
+    ViewSemanticsEvidenceMathlib >/dev/null 2>&1; then
+  echo "FAIL: ViewSemantics stable/evidence targets did not build" >&2
   exit 1
 fi
 
@@ -70,10 +68,8 @@ TMP="$(mktemp "${TMPDIR:-/tmp}/viewsemantics-footprint-XXXXXX.lean")"
 trap 'rm -f "$TMP"' EXIT
 {
   echo "import LeanProofs.ViewSemantics"
-  echo "import LeanProofs.ViewSemantics.Applications"
-  echo "import LeanProofs.ViewSemantics.P25Adapter"
-  echo "import LeanProofs.Scratch.MosaicRelease"
-  echo "import LeanProofs.Scratch.CompartmentConflict"
+  echo "import LeanProofs.ViewSemantics.Evidence"
+  echo "import LeanProofs.ViewSemantics.EvidenceMathlib"
   for receipt in "${ZERO_RECEIPTS[@]}"; do
     echo "#print axioms $receipt"
   done
@@ -95,7 +91,7 @@ if ! OUT="$(lake env lean "$TMP" 2>&1)"; then
 fi
 
 if grep -q 'sorryAx' <<<"$OUT"; then
-  echo "FAIL: a candidate receipt depends on sorryAx" >&2
+  echo "FAIL: a ViewSemantics receipt depends on sorryAx" >&2
   exit 3
 fi
 
@@ -166,4 +162,4 @@ done
 
 if [ "$fail" -ne 0 ]; then exit 4; fi
 
-echo "PASS — ${#ZERO_RECEIPTS[@]} campaign receipts axiom-free; quotient/P25 footprints exact; trace receipts match their v9 walls"
+echo "PASS — ${#ZERO_RECEIPTS[@]} stable/evidence receipts axiom-free; quotient/P25 footprints exact; trace receipts match their v9 walls"

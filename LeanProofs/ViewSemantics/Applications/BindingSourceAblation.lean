@@ -1,12 +1,13 @@
 /-
   LeanProofs.ViewSemantics.Applications.BindingSourceAblation
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   This application factors the generic observation and determination layer of
-  `Scratch.BindingSourceAblation` through the shared view-semantics core.  The
-  source specimen remains SCRATCH: its plant, gate, governed-trace, viability,
-  and ablation definitions are intervention-specific and remain there.
+  the public `Evidence.BindingSourceAblation` specimen through the shared
+  view-semantics core. Its plant, gate, governed-trace, viability, and ablation
+  definitions remain intervention-specific terminal evidence.
 
   A governed-trace observation is the equivalence class of a plant under the
   source module's all-finite-horizons `TraceEquivalent` relation.  Quotienting
@@ -21,8 +22,8 @@
   * gate ablation distinguishes the same two plants and determines coupling;
   * the ablation observation strictly refines the intact observation.
 
-  This is an application/annex candidate, not a promotion of the imported
-  scratch file and not a claim that observation authorizes an intervention.
+  This public application evidence is not a stable-surface addition and does
+  not claim that observation authorizes an intervention.
 
   Axiom-Footprint: `propext`, `Quot.sound`.  These arise only from converting
   the source's extensional `↔` relations to equality of quotient observations;
@@ -30,7 +31,7 @@
 -/
 
 import LeanProofs.ViewSemantics.Core
-import LeanProofs.Scratch.BindingSourceAblation
+import LeanProofs.ViewSemantics.Evidence.BindingSourceAblation
 
 namespace LeanProofs.ViewSemantics.Applications.BindingSourceAblation
 
@@ -113,7 +114,7 @@ theorem truthView_indistinguishable_iff
 
 /-! ## Exact factorization of the source generic predicate -/
 
-/-- `Scratch.BindingSourceAblation.TraceDetermined` is not a parallel
+/-- The source specimen's `BindingSourceAblation.TraceDetermined` is not a parallel
 determination vocabulary: it is exactly shared `Determines` for the quotient
 trace view and quotient truth view. -/
 theorem traceDetermined_iff_determines

@@ -2,9 +2,10 @@
   LeanProofs.ViewSemantics.Applications.NoSilentProjectionAxis -- adapter from
   the resident five-atom bridge ontology to an orthogonal view context.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  This module imports the actual SCRATCH `NoSilentProjection` ontology.  It
+  This module imports the public-evidence `NoSilentProjection` ontology. It
   proves two facts that decide the proposed "sixth atom" question honestly:
 
   * no resident bridge-family pair can pay all five atoms, so the literal
@@ -15,21 +16,21 @@
   The resulting representation is an orthogonal context axis, not a sixth
   constructor added to the family-only atom enum.  This is scoped to the
   resident model: a future parameterized bridge ontology could internalize a
-  disclosure bound explicitly.  Import/build reachability does not promote
-  the source SCRATCH module.
+  disclosure bound explicitly. Neither source nor adapter belongs to the
+  exact stable ViewSemantics root.
 -/
 
 import LeanProofs.ViewSemantics.ObligationIndependence
 import LeanProofs.ViewSemantics.Examples
-import LeanProofs.Scratch.NoSilentProjection
+import LeanProofs.ViewSemantics.Evidence.NoSilentProjection
 
 namespace LeanProofs.ViewSemantics.Applications.NoSilentProjectionAxis
 
 open LeanProofs.ViewSemantics.ObligationIndependence
 open LeanProofs.ViewSemantics.Examples
-open Admissibility.Scratch.NoSilentProjection
-open Admissibility.Scratch.NoSilentProjection.Atom
-open Admissibility.Scratch.NoSilentProjection.Family
+open Admissibility.NoSilentProjection
+open Admissibility.NoSilentProjection.Atom
+open Admissibility.NoSilentProjection.Family
 
 /-! ## Exact negative boundary of the resident atom ontology -/
 

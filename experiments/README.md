@@ -1,61 +1,56 @@
-# experiments/ — tracked wiring witnesses
+# experiments/ — historical wiring records
 
-This tree contains **tracked, reproducible integration artifacts** that are
-**not imported by the canonical proof surface** (`LeanProofs.lean` / the
-`LeanProofs` lib). Each subdirectory is its own Lake project with its own
-toolchain pin.
+This tree now contains the prose/audit record of retired integration
+witnesses.  During the v13 custody cleanup, the superseded
+`no_free_lift_wiring` Lean project was deleted from live source after its
+ratified successor had long since become `LeanProofs.Witnessed.*`.  The exact
+project remains recoverable from the v12 tag and Git history.
 
-> A successful build under `experiments/` **attests that the wiring checks**.
-> It does **not** promote any result into the archive's relied-upon theorem
-> surface. Build-exit-0 is attestation of the math, never admission of a world
-> claim.
+> The remaining documents are provenance, not current build targets. Their
+> historical green receipts do not promote a theorem, attest the current tree,
+> or prove runtime conformance.
 
-Three tiers, kept distinct:
+Current ownership is kept distinct:
 
 | tier | what it is |
 | --- | --- |
-| `LeanProofs/` (canonical) | stable artifacts, importable, cited carefully |
-| `experiments/` | integration witnesses — reproducible, tracked, **explicitly non-canonical** |
-| `LeanProofs/Scratch/` | working edge, volatile |
+| `LeanProofs/` | public stable API and terminal public evidence |
+| sibling skunkworks | live formal incubation |
+| `experiments/` | historical integration/audit prose; non-canonical |
 
-## Custody contract for every project under `experiments/`
+## Historical custody contract
 
 ```
 Custody-Class:  EXPERIMENTAL-WIRING
-Build status:   observed (reproducible)
+Build status:   observed in the archived tree; not live in v13
 Citation tier:  non-authoritative integration witness
 May cite:       module graph, axiom footprint, counterexamples, audit findings
 May NOT cite:   doctrine ratification, runtime admission, canonical surface membership
 ```
 
-The audit travels **with** the wiring (e.g. `WIRING-AUDIT.md`,
-`RATIFICATION-PENDING.md` next to the code). Without the audit, a wiring witness
-reads as a quiet promotion attempt with extra steps.
+The audit remains beside the ratification and migration records. Git history
+supplies the source to which those dated receipts refer.
 
 ---
 
 ## `no_free_lift_wiring/`
 
-The wired customs-office stack (schema spine + modeled freshness/authority
-embeddings), transplanted frozen from the `~/git/playground` sandbox. Schema
-theorems are axiom-free even inside the composed build; modeled embeddings carry
-exactly `[propext, Quot.sound]` (no import-continuity laundering). It currently
-has **no actuator** — pure `lean_lib` of `Prop`s, so it admits nothing
-operationally.
+The wired customs-office stack was the promotion provenance for the Witnessed
+Derivation Calculus. Its ratification and migration documents remain useful;
+its Lean source is no longer a second live implementation.
 
-Two standing fences for work done here:
+Two standing fences on interpreting the archive:
 
-1. **Actuators are bench verbs, not admissions.** This is the room where an
-   `lean_exe` / `IO` actuator *may* be added to experiment. An actuator here is a
-   test-bench verb — it does **not** become an admission or enforcement action,
-   and adding one changes nothing about the canonical surface until a human
-   admits it. The moment an actuator is wired toward a real consumer, that path
-   is subordinated to the receipt gate (proof as input to the gate, never a
-   substitute for it).
+1. **The historical wiring was never runtime admission.** Its proofs and build
+   receipts do not establish that a consumer conforms.
 
-2. **The atlas correspondence is a candidate, join unverified.** `ATLAS-MAP.md`
+2. **The atlas correspondence remains unverified.** `ATLAS-MAP.md`
    maps this stack to `~/git/intake-composition-atlas` (a real receipt-enforcing
    linter). That Rosetta is a **candidate correspondence**; whether the atlas
    actually exhibits the mapped behaviors (`fixtures/fail/no-receipt.yaml`,
    `signed_is_not_witnessed`, depth-1 cap) is **not verified from this repo**.
-   Treat it as a map to chase, not a proven bridge.
+   Treat it as a historical map to chase, not a proven bridge.
+
+New integration experiments should be opened only with an explicit current
+purpose and custody plan; live theorem incubation belongs in skunkworks rather
+than recreating a second `Scratch/` lane here.

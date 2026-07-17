@@ -3,11 +3,13 @@
   projection, collapsed-surface, and witness-invariance kernels into the
   shared view-semantics vocabulary.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   This module preserves the custody and public names of the imported kernels.
-  It does not import Paper 25, authorize cause-specific inference, or promote
-  any imported annex.  All bridges are constructive and Mathlib-free.
+  It does not import Paper 25, authorize cause-specific inference, or move any
+  imported evidence into the exact stable root. All bridges are constructive
+  and Mathlib-free.
 -/
 
 import LeanProofs.ViewSemantics.Core

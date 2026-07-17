@@ -1,8 +1,10 @@
 # ProofTheory island
 
-Custody-Class: **UNRATIFIED-CANDIDATE**. Mathlib-free (own `ProofTheory`
-`lean_lib`, build-graph enforced — `lake build ProofTheory` cannot reach
-Mathlib). Promoted out of `LeanProofs/Scratch/` on 2026-07-06.
+Custody: **PUBLIC-SHIPPED stable specimen/library**, with audit receipts in a
+separate **PUBLIC-EVIDENCE** root. Mathlib-free (own `ProofTheory` `lean_lib`,
+build-graph enforced — `lake build ProofTheory` cannot reach Mathlib).
+Historically promoted out of `LeanProofs/Scratch/` on 2026-07-06; v13 records
+the already-released theorem family under its honest terminal roles.
 
 ## Register fence (read this first)
 
@@ -78,7 +80,8 @@ This is NOT "zero axioms" in the absolute kernel sense: `#print axioms cut`
 shows `propext` and `Quot.sound` (the standard core cost of well-founded
 recursion). Several names depend on no axioms at all (`monotone`, `weaken`,
 `contract`, `exchange`, `initGen`, `consistency`, `disjunction_property`).
-Receipts print on every build via `Audit.lean`.
+Receipts print when the separate evidence target is built:
+`lake build ProofTheoryEvidence`.
 
 ## Non-claims
 

@@ -1,11 +1,11 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  Admissibility — ConsequencePartition (scratch annex).
+  Admissibility — ConsequencePartition (terminal public evidence).
 
-  Status: scratch / annex / candidate. Not in LeanProofs.lean.
-  Not promoted to public surface. Build-test for whether the
-  candidate slice has independent shape distinct from the existing
+  Adjudicated in v13 as public evidence outside the exact stable surface. The
+  completed slice has independent shape distinct from the existing
   WitnessInvariance / SurfaceAuthorization / projection-laundering
   family.
 
@@ -52,10 +52,8 @@
     - No multi-witness aggregation.
     - No compositional shape for `ObservedNonRefinement`.
     - Not certified safe for any specific platform.
-    - Not imported into `LeanProofs.lean`; imported by the
-      `ViewSemantics` candidate-custody target for vocabulary reuse and still
-      buildable directly via
-      `lake build LeanProofs.Admissibility.ConsequencePartition`.
+    - Regression-built through `lake build AdmissibilityEvidence`; publication
+      does not make it a member of the exact stable kernel root.
 
   Custody:
     Canonical anchoring of `Admissibility.ConsequencePartition`.

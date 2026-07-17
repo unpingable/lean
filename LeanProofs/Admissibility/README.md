@@ -4,36 +4,58 @@
 
 > **Development order:** formalization leads code. A consumer or runtime
 > specimen is not permission to begin a theorem and is never a prerequisite
-> for Scratch or candidate formalization. Intrinsic theorem-shape,
+> for skunkworks formalization. Intrinsic theorem-shape,
 > non-vacuity, overlap, and scope govern opening the formal work; proof and
 > axiom checks govern its discharge. Custody promotion is a separate
 > operator/release decision and may consider runtime evidence. Citation names
 > an intended contract; conformance still needs a mapping plus runtime evidence
 > or a refinement proof.
 
-**Public surface (1.0).** Eight modules aggregated via `AdmissibilityKernels.lean`: an authority kernel (`Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`) plus three sibling kernels (`Freshness`, `SurfaceAuthorization`, `WitnessInvariance`). These names form the 1.0 compatibility claim and carry the `Custody-Class: PUBLIC-SHIPPED` marker.
+**Stable Admissibility surfaces.** The original eight-module 1.0 compatibility
+claim remains aggregated by `AdmissibilityKernels.lean`: `Authority`,
+`StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`,
+`SurfaceAuthorization`, and `WitnessInvariance`.  v13 also records the
+already-coherent DynamicTrace pair, `SafetyBridge`, and PathVerdict as separate
+exact stable families; none widens the eight-module 1.0 root.
 
-**Five custody classes.** The 66 `.lean` files in this directory are partitioned by per-file `Custody-Class:` markers (regression-checked by `scripts/check-custody-classes.sh`):
+**Current custody contract (v13 migration).** Public source uses
+`Custody-Class: PUBLIC-SHIPPED` plus `Surface-Role: STABLE-SURFACE` or
+`PUBLIC-EVIDENCE`.  Stable status is the transitive closure of a registered
+exact family root.  Finished examples, countermodels, applications, and audit
+specimens are terminal public evidence outside those closures.  Live
+incubation moves to the sibling skunkworks; `ANNEX`, `Scratch/`, and
+`UNRATIFIED-CANDIDATE` are retired as live public-repository lanes.
 
-- **PUBLIC-SHIPPED (9).** The 8 surface modules above plus the `AdmissibilityKernels.lean` aggregator. Signatures are the 1.0 compatibility claim.
-- **ANNEX (29).** Compiled supporting material outside the 1.0 promise. The Mathlib-free subset is covered by `AdmissibilityCustodyAnnex`; the Finset-backed cross-boundary/composition subset is covered by `AdmissibilityMathlibIslands` and the explicit `LeanProofs` root aggregate. Splits into **18 kernel-adjacent** modules (recovery, cross-boundary, numerical/artifact-kind axes, deferred-witness lapse, dynamic traces, experimental composition) and **11 consumer specimens** (SafetyBridge / AuthorizedNotSafe families, `ConsolidationDenial`, `RefusalPropagation`, `Examples`). Annex builds green and is sorry-free; future versions may rename, refactor, or absorb without notice.
-- **UNRATIFIED-CANDIDATE (26).** Named-but-not-promoted material pending theorem-shape, overlap, scope, or custody review. `ReachabilityClosure` and `WitnessedReachability` are root-imported, while `ConsequencePartition` is default-covered through `ViewSemantics`; all three contacts are regression coverage only, not public-surface promotion. The other 23 candidates build only when invoked directly.
-- **SCRATCH (2).** Fenced exploratory material (`BoundaryWitness`, `GuardCollapse`). Not imported by `LeanProofs.lean`.
-- **DEPRECATED (0).** The `CalculusOne` shim shipped through v9 and was removed in v10.0.0.
-
-Adding `Custody-Class: PUBLIC-SHIPPED` to a file does not promote it. Promotion is the import in the aggregator; the marker is the receipt. Class vocabulary is ratified in the papers repo at `working/custody-classes.md`.
+Adding a public header or a build target does not promote a module.  Promotion
+is an explicit operator decision recorded by the applicable exact root and
+registry.  The migration and pending completion checks are in
+[`../../docs/V13-MIGRATION-LEDGER.md`](../../docs/V13-MIGRATION-LEDGER.md).
 
 **What this is for.** Infrastructure substrate, not a paper. No paper anchor; the kernel modules are intended to be cited by downstream operational work (a future Governor / `agent_gov` implementation, and the consumer tools listed below).
 
 (Migration note: the aggregator was previously `CalculusOne.lean` under an "Admissibility Calculus 1.0" framing. The rename is doctrine — "calculus" overclaimed the shape of the artifact, and the word is now reserved for the unified object this stack refuses to be. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`. The deprecated import shim shipped through v9 and was removed in v10.0.0; the eight-module kernel surface itself is unchanged.)
 
-Sibling file `../Admissibility.lean` is the **P27 obligation skeleton** (namespace `P27`) — independent from the five kernel modules below. The P27 skeleton is post-transition obligation accounting; the kernel is pre-action authorization. Complementary, not duplicate. As of 2026-05-01 the P27 skeleton is `sorry`-free (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally unwired; sorry-elimination does not imply wiring.
+The v12 sibling file `../Admissibility.lean` was the **P27 obligation
+skeleton** (namespace `P27`) — independent from the kernels below. It is
+sorry-free but contains two `True`-placeholder discharges rather than the
+missing substantive predicates, so its current canonical home is skunkworks
+at `formalization/Calculi/Scratch/P27ObligationSkeleton.lean`. The public
+original is deleted; green elaboration did not make it public evidence.
 
-> **Architecture in one breath:** `AdmissibilityKernels` defines the public admissibility path. The annex contains **refusal kernels** — small formal countermodels that block recurring inadmissible witness moves (e.g. `RecoveryMargin` blocks *visible green → recovery capacity*; `ClosureEligibility` blocks *survival → closure*; `ConsolidationDenial` blocks *fluency → settlement*). Each annex module that opens its docstring with "Refusal kernel for the gap between X and Y" is doing one thing: exhibiting a concrete countermodel where X holds and Y fails, breaking the inference *X therefore Y*.
+> **Architecture in one breath:** `AdmissibilityKernels` defines the original
+> compatibility path. Public evidence contains **refusal kernels** — small
+> formal countermodels that block recurring inadmissible witness moves (for
+> example, `RecoveryMargin` blocks *visible green → recovery capacity* and
+> `ConsolidationDenial` blocks *fluency → settlement*) without turning every
+> specimen signature into stable API.
 
 > **Composition discipline:** The modules form a typed federation of kernels, not a unified calculus. Cross-kernel implications require an explicit bridge theorem stating which kernel-owned refusal condition is being preserved and how. The companion working note `no-unifier-without-laundering.md` (in the papers repo) records the discipline in full.
 
-## Changelog
+## Historical changelog through v12
+
+Custody labels and target names in this dated changelog describe the trees in
+which those entries landed.  They are not current v13 classifications.  See
+the migration ledger above for present paths and roles.
 
 ### 10.0.0 — deprecated compatibility shim retired (2026-07-14)
 
@@ -129,13 +151,22 @@ Initial named public surface. Eight modules in the 1.0 aggregator (originally na
 
 Forward-looking version discipline (not a release plan, a promotion gate):
 
-- **1.x** — documentation / coordination releases. Annex continues compiled-not-promised; new refusal kernels land in the annex without changing the public surface. The architecture-headline (above) is the 1.x kind of move.
-- *(optional)* `RefusalKernels.lean` aggregator — a possible *future* non-public annex aggregator over refusal kernels (`RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`, `SurfaceAuthorization`, `FiatAdmissibility`, etc.). Explicitly **not part of the 1.0 aggregator (`AdmissibilityKernels.lean`)**. Annex semantics with **no 1.0 / 1.x public compatibility promise** across version lines. It remains **named-not-built / deferred** because no stable grouped API has been selected; creating that packaging layer is independent of theorem development and does not wait on a downstream consumer.
+- **v13** — custody/path correction only. The skunkworks transfer and
+  fail-closed registries are complete and the integrated verification passes;
+  finish operator review before opening a new mathematical campaign.
+- **Public evidence** — new finished countermodels or specimens may return
+  from skunkworks without entering `AdmissibilityKernels`; an evidence target
+  is a legitimate terminal home.
+- *(optional)* `RefusalKernels.lean` — a possible future exact stable root over
+  selected generic refusal laws.  It is not part of the 1.0 aggregator and is
+  not earned by accumulating specimens.
 - **2.0** — two candidate axes for future kernel families. Neither is a step toward a unified calculus; both are separate kernel families whose promotion would land independently:
   - *Composition axis* — refusal-propagation kernels. Promotion requires at least one theorem of the shape *if A cannot witness B and B is required as basis for C, then A cannot witness C for binding use*. Not earned by additional specimens alone.
   - *Safety axis* — value-preservation discipline over authorized transitions, where `Allowed` is authorization and `bridge` is a separate preservation witness. Skeleton present in the safety-bridge family (`SafetyBridge`, `SafetyTrajectory`, `AttestationLedger`). The safety-axis publication path is a standalone formal-methods preprint, not a unified-calculus rename.
 
-> **Specimens land in the annex. Composition rules would require a separate kernel family, not a unified-calculus rename.**
+> **Specimens mature in skunkworks and may return as public evidence.
+> Composition rules would require a separate kernel family, not a
+> unified-calculus rename.**
 
 > **A refusal kernel blocks one laundering move. A propagation kernel would explain how blocked moves compose. Neither is a unified calculus.**
 
@@ -167,19 +198,28 @@ Seven specimen consumers live in `Examples.lean` (imports `AdmissibilityKernels`
 ## Scope fence — what 1.0 does NOT claim
 
 1. 1.0 does not prove a general theory of institutions.
-2. 1.0 does not claim recovery doctrine. Recovery sits in the annex via `PublicReceiptRefinement` and `RecoveryMargin`.
-3. 1.0 does not claim cross-boundary process composition. The `CrossBoundary*` family is annex.
-4. 1.0 does not claim numerical-kind or artifact-kind axes. `NumericalAdmissibility`, `FiatAdmissibility`, `AxisSkew` are annex.
-5. 1.0 does not claim a calculus of communicating processes. `Composition` and `LocalBoundary` are experimental.
-6. 1.0 does not claim formal verification of any real-world institution, system, or paper. Root-level consumer modules (`Paper24SharedVision`, `Paper25EpistemicBorderControl`, `TaxonomyGraph`, `BranchSelector`, `OpsMasking`, `RepairOperator`, `CollapsedSurface`, `Basic`, `PersistenceModel`, the P27 skeleton at `../Admissibility.lean`) are specimens, not contents. Consumer specimens internal to this directory (`AttestationLedger`, `AuthorizedNotSafe`, `AuthorizedNotSafeWitness`, `AuthorizedStepNotSafe`, `AuthorizedStepNotSafeWitness`, `SafetyBridge`, `SafetyBridgeWitness`, `SafetyTrajectory`, `ConsolidationDenial`, `RefusalPropagation`, `Examples`) are ANNEX-classified — they exercise the public surface in concrete settings without becoming part of it.
+2. 1.0 does not claim recovery doctrine. `PublicReceiptRefinement` and
+   `RecoveryMargin` are public evidence outside the root.
+3. 1.0 does not claim cross-boundary process composition. The
+   `CrossBoundary*` family is public Mathlib evidence.
+4. 1.0 does not claim numerical-kind or artifact-kind axes.
+   `NumericalAdmissibility`, `FiatAdmissibility`, and `AxisSkew` are public
+   evidence.
+5. 1.0 does not claim a calculus of communicating processes. `Composition` is
+   diagnostic public evidence; `LocalBoundary` now lives in skunkworks.
+6. 1.0 does not claim formal verification of any real-world institution,
+   system, or paper. Root-level paper consumers and internal specimens remain
+   outside the exact eight-module closure, whether public evidence or
+   skunkworks incubation.
 
-## Annex — compiled, not promised
+## Public evidence and separate stable siblings
 
-Annex modules carry `Custody-Class: ANNEX` and are compiled for build coverage. The Mathlib-free subset is in the default `AdmissibilityCustodyAnnex` target; the Finset-backed cross-boundary/composition subset is in `AdmissibilityMathlibIslands` and the explicit `LeanProofs` root aggregate. They are green and sorry-free, but their signatures are *not* part of the 1.0 compatibility claim — future versions may rename, refactor, or absorb without notice. ANNEX splits into two sub-groups by role.
+The following finished modules remain public without entering the 1.0 stable
+root.  `DynamicTrace`/`FreshnessDynamicTrace` and `SafetyBridge` also have
+their own exact stable-family roots; their concrete wounds and witnesses stay
+public evidence.
 
-### Kernel-adjacent annex (17 modules)
-
-Extend the kernel surface along axes (recovery, cross-boundary composition, numerical/artifact-kind axes, scoped witness surfaces, dynamic traces, communicating processes) that the 1.0 surface explicitly does not promise. Per scope-fence points 2–5 above.
+### Kernel-adjacent public material
 
 | Module                       | Role                                                      |
 | ---------------------------- | --------------------------------------------------------- |
@@ -199,11 +239,15 @@ Extend the kernel surface along axes (recovery, cross-boundary composition, nume
 | `CrossBoundaryFailureMint`   | Cross-boundary failure-to-exposure mint specimen          |
 | `CrossBoundaryCascade`       | Cross-boundary cascade reachability specimen              |
 | `Composition` `[experimental]` | Diagnostic: process syntax alone does not make a calculus |
-| `LocalBoundary` `[experimental]` | Experimental aperture toward a propagation/composition kernel |
+| `LocalBoundary` `[skunkworks]` | Experimental aperture toward a propagation/composition kernel |
 
-### Consumer specimens (11 modules)
+### Public consumer specimens
 
-Exercise the public surface in concrete settings. The SafetyBridge / AuthorizedStep families instantiate the typed-verdict and execution kernels against safety-trajectory specimens; `ConsolidationDenial` and `RefusalPropagation` carry refusal-kernel specimens; `Examples` and `AttestationLedger` are illustrative. Cross-references scope-fence point 6.
+Exercise the public surface in concrete settings. The SafetyBridge /
+AuthorizedStep families instantiate the typed-verdict and execution kernels
+against safety-trajectory specimens; `ConsolidationDenial`, `Examples`, and
+`AttestationLedger` are illustrative. `RefusalPropagation` moved to
+skunkworks because its generic law is mixed with tool-named fixtures.
 
 | Module                       | Role                                                      |
 | ---------------------------- | --------------------------------------------------------- |
@@ -216,27 +260,46 @@ Exercise the public surface in concrete settings. The SafetyBridge / AuthorizedS
 | `SafetyTrajectory`           | Trajectory pair + forgetful map + no-lift theorem         |
 | `AttestationLedger`          | Tier-1 second concrete witness (Nat-textured, 2 actors)   |
 | `ConsolidationDenial`        | Fluency-vs-settlement gap refusal (between-interval)      |
-| `RefusalPropagation`         | Refusal-propagation specimen                              |
+| `RefusalPropagation` `[skunkworks]` | Mixed generic/tool-named refusal-propagation specimen |
 | `Examples`                   | Seven public-surface specimen consumers                   |
 
-### Fenced and candidate material — UNRATIFIED-CANDIDATE / SCRATCH
+### Skunkworks-bound Admissibility work
 
-Status declared per file via `Custody-Class:` markers; reasons typically captured in companion working notes in the papers repo. Most candidates are not imported by `LeanProofs.lean` and build only when invoked directly (`lake build LeanProofs.Admissibility.<name>`). Two reachability candidates are root-imported and `ConsequencePartition` is default-covered through `ViewSemantics`; all three contacts are regression coverage only, not public-surface promotion.
+All Admissibility incubations have moved to skunkworks. `Conductance`,
+`Mandamus`, `ParameterizedMerge`, and the P27 skeleton live under
+`formalization/Calculi/Scratch/`; `RefusalPropagation` has its sibling campaign
+there. `LocalBoundary` and `LocalBoundaryPressure` live in the explicit
+non-default `formalization/MathlibIncubation/` island. Their public originals
+are deleted.
 
-- **Root-imported candidates (2)** — `ReachabilityClosure`, `WitnessedReachability`; opened as the reachability/refusal consolidation slice.
-- **Remaining fenced candidates (23)** — named candidates pending theorem-shape, overlap, scope, or custody adjudication: `AmendmentFragment`, `BudgetMerge`, `CarryLaws`, `Conductance`, `ContractionHinge`, `Mandamus`, `MergeConflict`, `NoFreeLift`, `NoFreeStandingBridge`, `ParameterizedMerge`, `ProjectionLaundering`, `RetroactiveLegitimation`, `StaleEvidenceMerge`, plus the ten formalization-leading specimen laws of the 2026-07-09 pass: `RRPProfileSpecimen`, `StandingProfileSpecimen`, `WLPAppendAckSpecimen`, `BridgeCustomsSpecimen`, `ActorTraceSpecimen`, `LocalBoundaryPressure`, `ScopedCertification`, `SpendabilitySpecimen`, `CustodyFreshnessSpecimen`, `TemporalBasis`. All ten share the same fence: candidate formal laws written before their runtimes. Runtime citation/adoption may be required promotion evidence and identifies the intended contract; it does not prove conformance without an explicit mapping plus runtime evidence or a refinement proof.
-- **SCRATCH (2)** — fenced exploratory material: `BoundaryWitness` (expository schema, not kernel content), `GuardCollapse` (interferometer probe).
+`BoundaryWitness`, `GuardCollapse`, `CarryLaws`, and `NoFreeLift` were
+superseded and are deleted in the v13 working tree; Git/v12 preserves their
+history.
+
+The former candidate specimens not listed above have been adjudicated as
+terminal public evidence. Runtime citation/adoption identifies an intended
+contract; it still does not prove conformance without an explicit mapping plus
+runtime evidence or a refinement proof.
 
 ### Refusal kernel taxonomy
 
-The annex contains four refusal kernels — each proves a `surface ⇏ substance` non-implication — but with two distinct theorem shapes:
+The public evidence contains several refusal kernels, each proving a scoped
+`surface ⇏ substance` non-implication, with distinct theorem shapes:
 
 - **Existential-countermodel kernels** (3): `RecoveryMargin`, `ClosureEligibility`, `ConsolidationDenial`. Each exhibits one concrete state where the surface predicate holds and the substantive predicate fails. The theorem is `∃ s, Surface s ∧ ¬ Substance s`. One-shot refusal. Sufficient to break the inference *Surface ⇒ Substance*.
 - **Conditional-rule kernel** (1): `SurfaceAuthorization`. Universal over action kinds and surface statuses: if cause-specific action AND collapsed surface AND no breakers, then deny. The theorem quantifies over inputs and returns a verdict, with companion theorems filling out the verdict space. Not a one-shot countermodel; a parameterized refusal rule.
 
 Both shapes inhabit the same operator family (catalog at `~/git/papers/working/tooltheory/refusal-kernel-to-refusal-receipt-seam.md`). The shape difference matters for how the kernel composes (or refuses to compose) with future propagation-axis candidates — see Roadmap above.
 
-> **[taxonomy flag, 2026-06-26; shape verified 2026-06-26]** The newly-promoted `DeferredWitness` annex module is a refusal kernel, but **not** an existential-countermodel one (an earlier draft of this flag guessed that — it was shape-blind). Verified against its actual theorem forms: its load-bearing content is `LawfulCompletion` (a *universal conjunctive admissibility rule*, four clauses) plus an executable `firstViolation` classifier with a soundness biconditional (`firstViolation u = none ↔ LawfulCompletion u`) and a `statusOf` temporal lifecycle (`Admissible` gated to `completed`). The `pending_not_admissible` / `lapsed_not_admissible` lemmas are `decide`-trivial enum facts (the lapse floor), not `∃ s, Surface s ∧ ¬ Substance s` countermodels. So it is a **third shape** (lifecycle-classifier), distinct from both the existential-countermodel kernels (3) and the conditional-rule kernel (`SurfaceAuthorization`). The honest taxonomy is **five kernels, three shapes** — but the count above is left at "four / two shapes" pending operator sign-off, because folding a third bucket into the catalog is a ratification act, not a registry count. This is the only count in the file intentionally left stale.
+> **[taxonomy correction, verified 2026-06-26; recorded in current custody
+> 2026-07-16]** `DeferredWitness` is a refusal kernel, but **not** an
+> existential-countermodel one. Its load-bearing content is
+> `LawfulCompletion` (a universal conjunctive admissibility rule) plus an
+> executable `firstViolation` classifier with the soundness biconditional
+> `firstViolation u = none ↔ LawfulCompletion u` and a temporal lifecycle.
+> The honest catalog is **five kernels, three shapes**: three existential
+> countermodels, the conditional `SurfaceAuthorization` rule, and the
+> `DeferredWitness` lifecycle classifier.
 
 ## Modules
 
@@ -289,7 +352,7 @@ Companion working note (papers repo): `~/git/papers/working/primitives/witness-i
 
 The primitive supplies the missing rung in the admissibility apparatus's witness-validation vocabulary: NQ / Cadence / Continuity / Custody / Standing / Governor check construction discipline, freshness, authority — but did not previously have an explicit invariance-under-excluded-perturbation primitive. Now they do.
 
-### Sibling — `CorrectiveBoundary.lean` `[annex]` (added 2026-05-07)
+### Sibling — `CorrectiveBoundary.lean` `[public evidence]` (added 2026-05-07)
 
 **Boundary-result module.** Not part of the five-module kernel proper; constructs a parallel miniature kernel with concrete payload types (`PolicyStore := List Nat`, etc.) and parameterized store ops, and proves model-dependence of the recorded null `corrective_then_forward_is_not_monotone`.
 
@@ -304,7 +367,7 @@ The abstract `NondegenerateStoreSemantics` structure packages the three commitme
 
 The abstract kernel itself remains consistent with both the existential and its negation — that is the doctrinally-correct stance. The boundary module exhibits both possible answers without forcing the abstract kernel to commit. CLAIM-REGISTER #14 records the boundary result; A1 (the formerly-admitted sorry) is resolved.
 
-### Sibling — `FiatAdmissibility.lean` `[annex]` (added 2026-05-11)
+### Sibling — `FiatAdmissibility.lean` `[public evidence]` (added 2026-05-11)
 
 **Third admissibility axis: artifact-kind × use-kind.** Distinct from the authority-basis × state-mutation axis (`Authority` + `StateTransition`) and the witness × invariance axis (`WitnessInvariance`). Total `classify : ArtifactKind → UseKind → Classification`; every (kind, use) pair receives an explicit verdict (`allowed`, `requiresMediation`, `denied`, or `outOfScope`). The `outOfScope` verdict makes the kernel's silence audible — cases the kernel does not pretend to govern do not silently default. Closure property: no orphan corridors through which an artifact can claim a license it does not earn.
 
@@ -312,7 +375,7 @@ Keeper: *The admissibility kernel is itself admissible only under custody.*
 
 Governs the relation between artifact kinds (axiom, definition, theorem, heuristic, metaphor, prestige token, proxy metric) and use kinds (orient, suggest, citeOrient, citeSupport, derive, authorize, mutateState, measureMagnitude). State mutation is the domain of the sibling `StateTransition` kernel; `FiatAdmissibility` does not pretend to govern it. Composition lemmas with the other admissibility kernels are explicitly deferred.
 
-### Sibling — `NumericalAdmissibility.lean` `[annex]` (added 2026-05-12)
+### Sibling — `NumericalAdmissibility.lean` `[public evidence]` (added 2026-05-12)
 
 **Numerical-kind axis sibling to `FiatAdmissibility`.** Prevents one numerical kind from being treated as another: a score (constructed scalar with no native units) read as a quantity (measured magnitude); a rank (ordinal with no metric structure) read as value; a confidence (model's report about its own uncertainty) read as truth. Total `classify : NumericalKind → NumericalUse → Classification`; same closure-property shape as `FiatAdmissibility`.
 
@@ -328,7 +391,7 @@ Keeper: *A collapsed surface may authorize inquiry. It may not authorize attribu
 
 Governor-shaped form: *Cause-specific authority requires discriminating evidence.* Encodes the refusal gate (collapsed + cause-specific + no discriminator ⇒ deny). Does not encode the recovery machinery itself — `Breaker` is an abstract enum naming the three known recovery paths (preserved history, independent measurement, admissible perturbation); the predicates that constitute each kind remain unformalized here. Recovery doctrine lives in the sibling `PublicReceiptRefinement.lean`.
 
-### Sibling — `PublicReceiptRefinement.lean` `[annex]` (added 2026-05-12)
+### Sibling — `PublicReceiptRefinement.lean` `[public evidence]` (added 2026-05-12)
 
 **Recovery doctrine companion to `SurfaceAuthorization`.** Formalizes the simplest recovery channel: a public receipt refines an observation when it both excludes some cause the surface alone would admit *and* remains consistent with at least one surface-admitted cause.
 
@@ -336,7 +399,7 @@ Keeper: *Refinement narrows the admissible-cause set without collapsing it to em
 
 A receipt that excludes every cause is contradiction, not refinement. A receipt that excludes nothing is decoration, not refinement. Honest refinement lives between these two failure modes. Refinement does not, in general, identify a unique cause — narrowing is not identification. Abstract over receipt type and admittance predicate; concrete receipt schemas live in consuming systems (Governor's receipt schema, Paper 24's receipt-lineage discussion, NQ's witness intake). The other two recovery channels named in `SurfaceAuthorization`'s `Breaker` enum (independent measurement, admissible perturbation) remain abstract.
 
-### Sibling — `ClosureEligibility.lean` `[annex]` (added 2026-05-12)
+### Sibling — `ClosureEligibility.lean` `[public evidence]` (added 2026-05-12)
 
 **Refusal kernel for closure verdicts on shift-bounded operations.** Invariant proved: `closure ⇔ (survived ∧ resolved ∧ slack-available)`. Any deficit on any of the three dimensions forces handoff or incident.
 
@@ -344,7 +407,7 @@ Keeper: *Survival is a handoff condition, not a closure condition.*
 
 Sharper: *A survived shift with unresolved threat or depleted operator slack must emit handoff, not closure.* Same family resemblance as the admissibility-decay candidates: a visible outcome is being asked to license a substantive claim it does not, by itself, support. Sibling to `RecoveryMargin` (which governs within-interval visible-vs-capacity; this module governs end-of-interval survival-vs-closure). Sibling to `SurfaceAuthorization` (both encode refusal gates over claims given insufficient discriminating evidence). Nightshift-style operational doctrines are the obvious downstream consumer.
 
-### Sibling — `RecoveryMargin.lean` `[annex]` (added 2026-05-11)
+### Sibling — `RecoveryMargin.lean` `[public evidence]` (added 2026-05-11)
 
 **Refusal kernel for the gap between a visible liveness signal and underlying recovery capacity.** Proves `VisibleGreen` and `RecoveryMargin` are independent predicates — the visible surface cannot serve as a witness for capacity.
 
@@ -352,7 +415,7 @@ Keeper: *Visible green does not entail recovery margin.*
 
 In tightly-coupled, high-cost-of-deviation environments, a system can maintain visible status by sacrificing recovery capacity, and the dashboard cannot report the second condition. Discrete observation-equivalence specimen at the dashboard layer (see `LeanProofs/CollapsedSurface.lean` for the general cause-from-render kernel and Paper 25 for the matrix/dynamical version). NQ-style witness-standing findings are the obvious downstream consumer (where the dashboard is being asked to testify about operability, not just status).
 
-### Sibling — `ConsolidationDenial.lean` `[annex]` (added 2026-05-25)
+### Sibling — `ConsolidationDenial.lean` `[public evidence]` (added 2026-05-25)
 
 **Refusal kernel for the gap between interaction fluency and audited settlement.** Proves that `Fluent` does not witness `SettlementAdequate` — a system whose output reads coherent may have zero completed settlement passes and a non-empty unsettled buffer. One-way non-implication only; the opposite direction (settlement without fluency) is not claimed.
 
@@ -362,7 +425,7 @@ Sharper: *Decay can clear the buffer without settling the debt. A decay-governed
 
 The three-clock threat model (interaction λ_ext, settlement μ, decay δ) and the consolidation-interrupt controller (Schmitt-trigger safety invariant, four-stock dynamics B/K/X/R, mode-specific bounds) are *named* in the header as cybernetic provenance only; this module does not *model* them. Equations and a controller sketch live in the papers repo at `working/tooltheory/consolidation-denial.md` + `working/tooltheory/consolidation-denial-formal-sketch.md`. Nightshift, agent_gov, continuity, and NQ are the operational consumers.
 
-### Sibling — `DeferredWitness.lean` `[annex]` (promoted SCRATCH → ANNEX 2026-06-26)
+### Sibling — `DeferredWitness.lean` `[public evidence]` (historically SCRATCH → ANNEX 2026-06-26)
 
 **Refusal kernel for temporal backflow — the one lawful form of late-witness completion, and the laundering it is not.** Governs a claim asserted at t₁ and completed by evidence observed at t₂ > t₁ under a deferral grant. The discriminator lives entirely at assertion time: the grant must itself be witnessed *before* the claim relied on it (anti-necromancy), bound to the exact witnessed terms (no post-hoc widening), inside the window.
 
@@ -382,7 +445,7 @@ Canonical consumer: `~/git/standing` (workload-identity / grant authorization to
 
 Time is kept opaque (`axiom Time : Type` + four axiomatic operations: `le`, `add`, `sub`, `absSub`). Concretizing to `Nat`/`Int` would leak structural facts into theorems and break the abstraction over real consumer types (chrono's `DateTime<Utc>`). Composition with the other admissibility kernels is explicitly deferred — same defer-marker pattern as `FiatAdmissibility`. Not `Δt.lean`.
 
-### Sibling — `CrossBoundaryExposure.lean` `[annex]` (added 2026-05-21)
+### Sibling — `CrossBoundaryExposure.lean` `[public Mathlib evidence]` (added 2026-05-21)
 
 **Cross-boundary exposure mint specimen.** First brick in the cross-boundary artifact-specimen sub-family. Introduces a first-class `Exposure` artifact carrying `(origin, target, failure)` provenance and an operator-supplied `BoundaryPartition` (`Internal` / `External` Prop-valued predicates over abstract `Domain`). The only constructor that can add an exposure is `Step.expose`, and it requires `Boundary.authorized e.origin e.target = true`.
 
@@ -394,7 +457,7 @@ Theorem `no_external_exposure_without_authorized_edge` — under a boundary that
 
 Origin: outside-aperture audit (fresh-context model asked "is this a process calculus?") surfaced the candidate; inside-aperture kernel-overlap audit demoted/reparented the work from a proposed `Delta/` family into this `Admissibility/CrossBoundary*` sub-family. See `papers/working/cross-boundary-artifact-specimens.md` for the audit trail.
 
-### Sibling — `CrossBoundaryDegradation.lean` `[annex]` (added 2026-05-21)
+### Sibling — `CrossBoundaryDegradation.lean` `[public Mathlib evidence]` (added 2026-05-21)
 
 **Cross-boundary degradation-provenance specimen.** Second brick. Extends the exposure kernel with a `degrade` action carrying a `Cause`: either `direct` (external trigger, no exposure precondition) or `fromExposure e` (which requires `e ∈ c.exposures ∧ e.target = d` as constructor arguments). Direct degradation is licensed; *exposure-attributed* degradation cannot fabricate provenance.
 
@@ -404,7 +467,7 @@ Theorem `no_external_degradation_from_internal_exposure` — under a sealed boun
 
 `Grade` is kept abstract; the provenance theorem is independent of grade semantics, so `initGrade : Grade` is an explicit parameter rather than an `Inhabited` instance. Grade-side dynamics (recovery, hysteresis, capability) belong on the persistence side, not in the `CrossBoundary*` family.
 
-### Sibling — `CrossBoundaryFailureMint.lean` `[annex]` (added 2026-05-21)
+### Sibling — `CrossBoundaryFailureMint.lean` `[public Mathlib evidence]` (added 2026-05-21)
 
 **Cross-boundary failure-to-exposure mint specimen.** Third brick. Introduces `FailureEvent (domain, failure)` as a first-class recorded artifact and a two-rule step relation: `fail d f` records a failure event with no boundary precondition (failure is a local-domain event), and `exposeFromFailure e` mints an exposure requiring *both* (a) `⟨e.origin, e.failure⟩ ∈ c.failures` (a recorded precedent) *and* (b) `B.authorized e.origin e.target = true` (boundary authorization).
 
@@ -417,7 +480,7 @@ Two theorems:
 
 This is the rung that makes the English sentence presentable: *internal failure → recorded failure event → authorized exposure mint → (later) downstream consequence*. Each arrow is a constructor or theorem application; no prose glue.
 
-### Sibling — `CrossBoundaryCascade.lean` `[annex]` (added 2026-05-21)
+### Sibling — `CrossBoundaryCascade.lean` `[public Mathlib evidence]` (added 2026-05-21)
 
 **Cross-boundary cascade reachability specimen.** Fourth brick; the first *affirmative* theorem in the cross-boundary family. Introduces an abstract `AuthorizedPath (B : Boundary Domain) : Domain → Domain → Prop` inductive (two constructors: `edge` for single authorized hops, `cons` for chained ones) and a third step rule `Step.exposeFromExposure` that propagates an existing exposure to a fresh immediate-origin exposure across one authorized edge.
 
@@ -431,7 +494,7 @@ Composition with the rest: `step_to_exposure_reach` projects all three cascade a
 
 Scope fence: no scheduling, no fairness, no rates, no `TaxonomyGraph`, no process syntax. *Topology, not selection.* If a future slice adds `EnabledStep` / `SchedulerAllows` / `ScheduledReach`, it lives in a separate `CrossBoundaryScheduling.lean`.
 
-### Safety-bridge family — `AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger` `[annex]` (added 2026-05-27 / 2026-05-28)
+### Safety-bridge family — stable `SafetyBridge` + public evidence (added 2026-05-27 / 2026-05-28)
 
 **Frontier-1 safety axis: addresses the Frontier 1 wound (Admissibility ≠ Safety) from the closed 2026-05-10 AGI-requirements reverse-gap audit (`historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md`).** Eight modules organized as three bricks plus a second concrete witness. The receipt-side bricks (0–2) instantiate the abstract `SafetyBridge` over a Bool/poison receipt miniature; `AttestationLedger` is the second, textured (`Nat`-valued, ≥2 asymmetric actors) witness that the abstract layer is not receipt-specific. Companion documents in papers repo: `working/kernel-to-body-map.md`, `working/calculus-2-exit-criteria.md` (working note retains the historical "calculus" label), plus tier map and ρ-drop decision at `working/tooltheory/calculus-2-tier-map-2026-05-28.md` / `working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`.
 
@@ -499,26 +562,33 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## Build
 
-Thirty-eight of the 66 `LeanProofs/Admissibility/*.lean` files are wired into `LeanProofs.lean` root: 9 PUBLIC-SHIPPED (8 surface modules + the `AdmissibilityKernels` aggregator), 27 ANNEX (16 kernel-adjacent + 11 consumer specimens), and 2 root-imported UNRATIFIED-CANDIDATE modules (`ReachabilityClosure`, `WitnessedReachability`). Two additional ANNEX modules, `DynamicTrace` and `FreshnessDynamicTrace`, are covered by the default `AdmissibilityCustodyAnnex` target, and `ConsequencePartition` is covered through the default `ViewSemantics` target. The remaining 25 files (23 UNRATIFIED-CANDIDATE + 2 SCRATCH) are covered by neither the root nor any default target and build only when invoked directly. The root `LeanProofs` aggregate is now an explicit heavy build because it reaches Mathlib through paper specimens and the cross-boundary family. The default `lake build` covers the Mathlib-free custody target plus the other Mathlib-free release targets; `scripts/check-custody-classes.sh` validates custody markers, and `scripts/check-mathlib-free-targets.sh` validates the cheap import surface.
+The default build covers the Mathlib-free stable and public-evidence targets.
+`AdmissibilityKernels`, `DynamicTrace`, `SafetyBridge`, and `PathVerdict` are
+exact stable-family targets; `AdmissibilityEvidence` and
+`PathVerdictEvidence` keep finished specimens outside those roots.
+`AdmissibilityEvidenceMathlib` is the explicit heavy public-evidence island.
+The root `LeanProofs` aggregate remains an explicit contact build, not a
+promotion mechanism.
 
 Public-surface gate: `lake build LeanProofs.Admissibility.AdmissibilityKernels` builds the aggregator; `lake build LeanProofs.Admissibility.Examples` exercises the specimen consumers through the public API.
 
 No Lean proof holes as of 2026-05-28 in the wired stack. The word `sorry` does appear in docstring text within `Corrective.lean` and `CorrectiveBoundary.lean` as references to a resolved former-`sorry`; these are comments, not proof holes — a plain grep will find them.
 
-### Cascade repair note
+### Historical cascade repair note
 
-`CrossBoundaryCascade.lean` had a pre-existing parse error in its `Step.exposeFromExposure` constructor (multi-line `insert (...)` inside a structure update not parsing without parentheses). The fix was two characters; the file is now wired and covered by the explicit `AdmissibilityMathlibIslands` / `LeanProofs` heavy builds. This bug had been silent since 2026-05-21 because the module was unwired.
+`CrossBoundaryCascade.lean` had a pre-existing parse error in its
+`Step.exposeFromExposure` constructor. The two-character fix is now covered by
+`AdmissibilityEvidenceMathlib` and the explicit `LeanProofs` contact build.
 
-Representative narrow regression commands follow; the target-level gates above
-are the authoritative coverage checks. The 25 files covered by neither the root
-nor a default target (23 UNRATIFIED-CANDIDATE + 2 SCRATCH, enumerated in §Annex
-above) remain directly buildable.
+Representative narrow regression commands follow; target-level gates and the
+whole-tree custody registry are the authoritative coverage checks.
 
 ```bash
 # Target-level gates
-lake build AdmissibilityCustodyAnnex
+lake build AdmissibilityKernels AdmissibilityEvidence
+lake build DynamicTrace SafetyBridge PathVerdict PathVerdictEvidence
 bash scripts/check-mathlib-free-targets.sh
-lake build AdmissibilityMathlibIslands
+lake build AdmissibilityEvidenceMathlib
 lake build LeanProofs
 
 # Public 1.0 surface (aggregator + specimens)
@@ -535,7 +605,7 @@ lake build LeanProofs.Admissibility.Freshness
 lake build LeanProofs.Admissibility.SurfaceAuthorization
 lake build LeanProofs.Admissibility.WitnessInvariance
 
-# Annex — axis & refusal kernels
+# Public evidence — axis & refusal kernels
 lake build LeanProofs.Admissibility.CorrectiveBoundary
 lake build LeanProofs.Admissibility.FiatAdmissibility
 lake build LeanProofs.Admissibility.NumericalAdmissibility
@@ -548,13 +618,13 @@ lake build LeanProofs.Admissibility.PredicateWitnessSeparation
 lake build LeanProofs.Admissibility.AuthorityScope
 lake build LeanProofs.Admissibility.DynamicTrace
 
-# Annex — cross-boundary artifact specimens
+# Public Mathlib evidence — cross-boundary artifact specimens
 lake build LeanProofs.Admissibility.CrossBoundaryExposure
 lake build LeanProofs.Admissibility.CrossBoundaryDegradation
 lake build LeanProofs.Admissibility.CrossBoundaryFailureMint
 lake build LeanProofs.Admissibility.CrossBoundaryCascade
 
-# Annex — safety-bridge family (Frontier 1 / safety-axis candidate)
+# Safety-bridge stable core + public evidence
 lake build LeanProofs.Admissibility.AuthorizedNotSafe
 lake build LeanProofs.Admissibility.AuthorizedNotSafeWitness
 lake build LeanProofs.Admissibility.SafetyBridge
@@ -564,7 +634,6 @@ lake build LeanProofs.Admissibility.AuthorizedStepNotSafeWitness
 lake build LeanProofs.Admissibility.SafetyTrajectory
 lake build LeanProofs.Admissibility.AttestationLedger
 
-# Annex — experimental composition
+# Public diagnostic evidence
 lake build LeanProofs.Admissibility.Composition
-lake build LeanProofs.Admissibility.LocalBoundary
 ```

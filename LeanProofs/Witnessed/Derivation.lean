@@ -3,6 +3,7 @@
   calculus (ratified v1.3; now canonical as `LeanProofs.Witnessed.*`).
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
   This unchanged module is part of the v11 stable paid-recomposition import
   closure. Mathlib-free public surface. In the default build; isolate with
   `lake build Witnessed`. It imports only the Mathlib-free

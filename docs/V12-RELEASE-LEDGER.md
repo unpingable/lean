@@ -1,5 +1,10 @@
 # v12 Release Ledger — Judgment Orientation
 
+> **Historical record.** This is the frozen v12 release inventory. v13 later
+> reclassifies `Examples` as terminal public evidence rather than ANNEX; the
+> exact five-module stable root and all theorem claims remain unchanged. See
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Released: v12.0.0 — Judgment Orientation (2026-07-16).** This ledger records
 the frozen claim, public surface, custody classification, and verification
 receipt for the released tree.

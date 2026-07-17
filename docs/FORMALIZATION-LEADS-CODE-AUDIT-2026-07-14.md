@@ -1,7 +1,9 @@
 # Formalization Leads Code — Cross-Repository Verbiage Audit
 
 **Status:** completed for the writable Lean repository on 2026-07-14;
-follow-up inventoried for read-only sibling repositories.
+follow-up inventoried for sibling repositories. The v13 custody migration
+subsequently moved live incubation to skunkworks; that path correction does
+not change the governing rule below.
 
 ## Governing rule
 
@@ -28,9 +30,9 @@ The active contradictions were corrected in this repository:
 - `docs/NEXT-SURFACES.md`, the bounded-calculi roadmap, frontier register,
   release ledger, crosswalks, claim register, and semantic audit no longer use
   runtime arrival as formalization admission.
-- Candidate and Scratch headers now state that formalization does not wait on
-  runtimes, while retaining runtime correspondence evidence as a separate
-  promotion condition where the existing custody rule requires it.
+- Public evidence and skunkworks documentation state that formalization does
+  not wait on runtimes, while retaining runtime correspondence evidence as a
+  separate promotion/conformance consideration where relevant.
 - `Corrective`, `AxisSkew`, `SafetyBridge`, `LocalBoundary`,
   `SurfaceAuthorization`, and `PublicReceiptRefinement` now identify the real
   formal debts: nondegenerate semantics, explicit bridge assumptions,

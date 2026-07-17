@@ -2,6 +2,7 @@
   LeanProofs.Witnessed.ResourceSequent -- occurrence-sensitive WDC resources.
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
   This unchanged module is part of the v11 stable paid-recomposition import
   closure. Mathlib-free public surface. Its occurrence-sensitive resource
   sequent slice is the canonical Witnessed foundation used by that closure.
@@ -182,7 +183,7 @@ inductive Derives
     restore them only as a proof-carrying `ValidatedResourceCertificate` (a `Checks`
     proof rides along) or as executable data accepted by a Bool checker with a
     soundness/adequacy theorem. Until then the unchecked shape lives in
-    `LeanProofs/Scratch/UncheckedResourceCertificate.lean` only (scratch, not on the
+    skunkworks `Calculi/Scratch/UncheckedResourceCertificate.lean` only (incubation, not on the
     public surface). -/
 
 /-- Resource derivations never create residual formulas. -/

@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.Divergence — the divergence-ball coordinate (resource-sensitive).
 
-  Custody class: ABSTRACT COORDINATE (parametric headliners axiom-free).
-  A bare quasi-divergence `dist : Time → Time → Nat` with only the triangle law.
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Abstract stable coordinate with parametric, axiom-free headliners. A bare
+  quasi-divergence `dist : Time → Time → Nat` has only the triangle law.
   The transport here WIDENS the ball (`maxDiv → maxDiv + slack`); same-ball carry
   is impossible for a positive step — the witness ages. See `LeanProofs.Witnessed.CarryLaws` for
   the cost identity.

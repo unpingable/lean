@@ -2,7 +2,8 @@
   LeanProofs.ViewSemantics.CompositionCounterexample -- closed witnesses that
   weak and even fiberwise nondetermination need not survive view composition.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   These are candidate-library fixtures, not a general information-flow
   calculus.  The weak receipts are explicit corollaries of the stronger

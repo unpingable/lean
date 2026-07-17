@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Admissibility — Safety bridge (candidate, non-binding).
 

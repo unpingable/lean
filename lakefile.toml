@@ -1,10 +1,30 @@
 name = "lean_proofs"
-version = "12.0.0"
+version = "13.0.0"
 keywords = ["math"]
 # Default builds stay on Mathlib-free custody/release surfaces. The root
 # `LeanProofs` aggregate remains buildable explicitly; it intentionally imports
 # paper/specimen modules that can reach Mathlib.
-defaultTargets = ["AdmissibilityCustodyAnnex", "Witnessed", "BoundedCalculi", "CustodyIndexedSequents", "ProofTheory", "ViewSemantics", "ViewSemanticsApplications", "JudgmentOrientation", "JudgmentOrientationExamples"]
+defaultTargets = [
+  "AdmissibilityKernels",
+  "AdmissibilityEvidence",
+  "DynamicTrace",
+  "SafetyBridge",
+  "PathVerdict",
+  "PathVerdictEvidence",
+  "Witnessed",
+  "WitnessedEvidence",
+  "PaidRecompositionEvidence",
+  "BoundedCalculi",
+  "CustodyIndexed",
+  "CustodyIndexedEvidence",
+  "ProofTheory",
+  "ProofTheoryEvidence",
+  "ViewSemantics",
+  "ViewSemanticsEvidence",
+  "ReachableDrift",
+  "JudgmentOrientation",
+  "JudgmentOrientationEvidence",
+]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -19,15 +39,19 @@ rev = "6ef8cc2731780be866bf243afcb7732f4da5f406"  # pinned to lake-manifest.json
 
 [[lean_lib]]
 name = "LeanProofs"
+roots = ["LeanProofs"]
 
-# Mathlib-free admissibility custody coverage: public kernels plus the ANNEX
-# modules that do not cross into the Finset-backed cross-boundary/composition
-# island. This is the cheap target for custody ANNEX regression checks.
+# Exact compatibility-bearing Admissibility Kernels root.
 [[lean_lib]]
-name = "AdmissibilityCustodyAnnex"
+name = "AdmissibilityKernels"
+srcDir = "."
+roots = ["LeanProofs.Admissibility.AdmissibilityKernels"]
+
+# Mathlib-free terminal public evidence over the admissibility families.
+[[lean_lib]]
+name = "AdmissibilityEvidence"
 srcDir = "."
 roots = [
-  "LeanProofs.Admissibility.AdmissibilityKernels",
   "LeanProofs.Admissibility.CorrectiveBoundary",
   "LeanProofs.Admissibility.PublicReceiptRefinement",
   "LeanProofs.Admissibility.RecoveryMargin",
@@ -38,26 +62,40 @@ roots = [
   "LeanProofs.Admissibility.AxisSkew",
   "LeanProofs.Admissibility.PredicateWitnessSeparation",
   "LeanProofs.Admissibility.AuthorityScope",
-  "LeanProofs.Admissibility.DynamicTrace",
-  "LeanProofs.Admissibility.FreshnessDynamicTrace",
   "LeanProofs.Admissibility.AuthorizedNotSafe",
   "LeanProofs.Admissibility.AuthorizedNotSafeWitness",
-  "LeanProofs.Admissibility.SafetyBridge",
   "LeanProofs.Admissibility.SafetyBridgeWitness",
   "LeanProofs.Admissibility.AuthorizedStepNotSafe",
   "LeanProofs.Admissibility.AuthorizedStepNotSafeWitness",
   "LeanProofs.Admissibility.SafetyTrajectory",
   "LeanProofs.Admissibility.AttestationLedger",
   "LeanProofs.Admissibility.ConsolidationDenial",
-  "LeanProofs.Admissibility.RefusalPropagation",
   "LeanProofs.Admissibility.Examples",
+  "LeanProofs.Admissibility.ActorTraceSpecimen",
+  "LeanProofs.Admissibility.AmendmentFragment",
+  "LeanProofs.Admissibility.BridgeCustomsSpecimen",
+  "LeanProofs.Admissibility.BudgetMerge",
+  "LeanProofs.Admissibility.ConsequencePartition",
+  "LeanProofs.Admissibility.ContractionHinge",
+  "LeanProofs.Admissibility.CustodyFreshnessSpecimen",
+  "LeanProofs.Admissibility.MergeConflict",
+  "LeanProofs.Admissibility.NoFreeStandingBridge",
+  "LeanProofs.Admissibility.ProjectionLaundering",
+  "LeanProofs.Admissibility.RRPProfileSpecimen",
+  "LeanProofs.Admissibility.ReachabilityClosure",
+  "LeanProofs.Admissibility.RetroactiveLegitimation",
+  "LeanProofs.Admissibility.ScopedCertification",
+  "LeanProofs.Admissibility.SpendabilitySpecimen",
+  "LeanProofs.Admissibility.StaleEvidenceMerge",
+  "LeanProofs.Admissibility.StandingProfileSpecimen",
+  "LeanProofs.Admissibility.TemporalBasis",
+  "LeanProofs.Admissibility.WLPAppendAckSpecimen",
+  "LeanProofs.Admissibility.WitnessedReachability",
 ]
 
-# Explicit heavy admissibility island. These modules are still ANNEX, but they
-# depend on Mathlib through Finset-backed cross-boundary specimens and are not
-# part of the cheap custody target above.
+# Explicit heavy public-evidence island.
 [[lean_lib]]
-name = "AdmissibilityMathlibIslands"
+name = "AdmissibilityEvidenceMathlib"
 srcDir = "."
 roots = [
   "LeanProofs.Admissibility.CrossBoundaryExposure",
@@ -65,8 +103,30 @@ roots = [
   "LeanProofs.Admissibility.CrossBoundaryFailureMint",
   "LeanProofs.Admissibility.CrossBoundaryCascade",
   "LeanProofs.Admissibility.Composition",
-  "LeanProofs.Admissibility.LocalBoundary",
 ]
+
+[[lean_lib]]
+name = "DynamicTrace"
+srcDir = "."
+roots = [
+  "LeanProofs.Admissibility.DynamicTrace",
+  "LeanProofs.Admissibility.FreshnessDynamicTrace",
+]
+
+[[lean_lib]]
+name = "SafetyBridge"
+srcDir = "."
+roots = ["LeanProofs.Admissibility.SafetyBridge"]
+
+[[lean_lib]]
+name = "PathVerdict"
+srcDir = "."
+roots = ["LeanProofs.Admissibility.PathVerdict"]
+
+[[lean_lib]]
+name = "PathVerdictEvidence"
+srcDir = "."
+roots = ["LeanProofs.Admissibility.PathVerdict.Evidence"]
 
 # A1 (signed 2026-06-26): the Witnessed Derivation Calculus, ported from the
 # ratified experiment surface (experiments/no_free_lift_wiring, artifact 5eb5629).
@@ -78,38 +138,14 @@ roots = [
 name = "Witnessed"
 srcDir = "."
 roots = ["LeanProofs.Witnessed"]
-globs = [
-  "LeanProofs.Witnessed",
-  "LeanProofs.Witnessed.AbstractNormalization",
-  "LeanProofs.Witnessed.AuthorityModel",
-  "LeanProofs.Witnessed.AxisIndependence",
-  "LeanProofs.Witnessed.CarryLaws",
-  "LeanProofs.Witnessed.CommutesNecessity",
-  "LeanProofs.Witnessed.Coordinates",
-  "LeanProofs.Witnessed.Derivation",
-  "LeanProofs.Witnessed.Discipline",
-  "LeanProofs.Witnessed.Divergence",
-  "LeanProofs.Witnessed.Embedding",
-  "LeanProofs.Witnessed.Examples",
-  "LeanProofs.Witnessed.Formula",
-  "LeanProofs.Witnessed.Freshness",
-  "LeanProofs.Witnessed.Gentzen",
-  "LeanProofs.Witnessed.HeadOnlyGentzenCutFailure",
-  "LeanProofs.Witnessed.LaunderingCorpus",
-  "LeanProofs.Witnessed.NoFreeLift",
-  "LeanProofs.Witnessed.Normalization",
-  "LeanProofs.Witnessed.Obstruction",
-  "LeanProofs.Witnessed.ResourceChecker",
-  "LeanProofs.Witnessed.ResourceCheckerExec",
-  "LeanProofs.Witnessed.ResourceSequent",
-  "LeanProofs.Witnessed.Sequent",
-  "LeanProofs.Witnessed.PaidRecomposition",
-  "LeanProofs.Witnessed.PaidRecomposition.Payment",
-  "LeanProofs.Witnessed.PaidRecomposition.Catalog",
-]
 
-# V11 evidence custody. These focused roots remain explicitly buildable but are
-# neither default targets nor members of the stable `Witnessed` library graph.
+[[lean_lib]]
+name = "WitnessedEvidence"
+srcDir = "."
+roots = ["LeanProofs.Witnessed.Evidence"]
+
+# V11 terminal evidence. These focused roots are default-built for regression
+# coverage but remain outside the stable `Witnessed` library graph.
 [[lean_lib]]
 name = "PaidRecompositionEvidence"
 srcDir = "."
@@ -119,79 +155,46 @@ roots = [
   "LeanProofs.Witnessed.PaidRecomposition.Applications.FiniteSupportOneCrossing",
 ]
 
-# v3.0.0 (2026-07-01): the Bounded Lifecycle Calculi release surface. Its own
-# lean_lib + default target so `lake build` / CI covers the ANNEX family —
-# previously nothing globbed it (the LeanProofs lib owns only its root module,
-# which deliberately does not import BoundedCalculi), so the release surface
-# was invisible to the default build. Build coverage is NOT promotion: the
-# LeanProofs.lean import boundary is unchanged and the aggregate stays a
-# compile marker. Scratch/ remains uncovered by design (compile-is-contact,
-# checked per-file by the campaign loop, not by CI).
+# v3.0.0 (2026-07-01): the Bounded Lifecycle Calculi public-evidence family.
+# Its own default target keeps every finished calculus and support module under
+# regression coverage without making the family a stable compatibility root.
 [[lean_lib]]
 name = "BoundedCalculi"
 srcDir = "."
 roots = ["LeanProofs.BoundedCalculi"]
-globs = ["LeanProofs.BoundedCalculi", "LeanProofs.BoundedCalculi.+"]
 
-# v4.0.0 (2026-07-01): the Custody-Indexed Sequents campaign modules. Build
-# coverage for the v4 release object (the v3 lesson: a release headline must
-# not be CI-invisible). The files remain Custody-Class: SCRATCH -- build
-# coverage is NOT promotion; these are fenced sequent-discipline modules, not
-# promoted kernel authority, and LeanProofs.lean does not import them.
+# Corrected public stable root for the v4-v7 custody-indexed family.
 [[lean_lib]]
-name = "CustodyIndexedSequents"
+name = "CustodyIndexed"
 srcDir = "."
-roots = [
-  "LeanProofs.Scratch.BridgeSequent",
-  "LeanProofs.Scratch.ExecutionSequent",
-  "LeanProofs.Scratch.ExecutionObligationSequent",
-  "LeanProofs.Scratch.BridgeCompositionSequent",
-  "LeanProofs.Scratch.CustodyIndexedSequent",
-  "LeanProofs.Scratch.StructuralPolicySequent",
-  "LeanProofs.Scratch.EvidenceCalculusSequent",
-  # post-v4 cluster (F1-F3) + zoo (C1) -- same CI-coverage rule
-  "LeanProofs.Scratch.DeltaTSequent",
-  "LeanProofs.Scratch.FluencySequent",
-  "LeanProofs.Scratch.CaveatSequent",
-  "LeanProofs.Scratch.Zoo",
-  "LeanProofs.Scratch.DecidableScreens",
-  "LeanProofs.Scratch.DerivationData",
-  "LeanProofs.Scratch.StructuralNormalization",
-  "LeanProofs.Scratch.LinearNormalization",
-  "LeanProofs.Scratch.OccurrenceTrace",
-  # post-v5 C3 audit runs -- same CI-coverage rule
-  "LeanProofs.Scratch.OverlapAudits",
-  # v6 executable custody checking
-  "LeanProofs.Scratch.TracedCoherence",
-  "LeanProofs.Scratch.FiniteSupportChecker",
-  # v7 artifact authority profiles
-  "LeanProofs.Scratch.ArtifactProfiles",
-  "LeanProofs.Scratch.ProfileStages",
-  "LeanProofs.Scratch.JurisdictionScreen",
-  # post-v7: tier-1 extraction from private skunkworks
-  "LeanProofs.Scratch.PathVerdict.Core",
-  "LeanProofs.Scratch.PathVerdict.Edges",
-  "LeanProofs.Scratch.PathVerdict.StandardObstructions",
-  "LeanProofs.Scratch.PathVerdict.EvidencePromotionCoverage",
-]
+roots = ["LeanProofs.CustodyIndexed"]
 
-# 2026-07-06: the proof-theory island (sequent-calculus specimens). Its own
+[[lean_lib]]
+name = "CustodyIndexedEvidence"
+srcDir = "."
+roots = ["LeanProofs.CustodyIndexed.Evidence"]
+
+# 2026-07-06: the public proof-theory island (sequent-calculus specimens). Its own
 # lean_lib so the no-Mathlib property is build-graph ENFORCED, same rule as
 # Witnessed: `lake build ProofTheory` cannot reach Mathlib, and every
 # receipt's axiom footprint stays at core Lean (<= propext, Quot.sound) and
-# re-attestable in isolation. Custody-Class of the modules is
-# UNRATIFIED-CANDIDATE: specimen/library, NOT doctrine -- no governance
-# kernel imports these modules, and none may (the "admissibility" here is
+# re-attestable in isolation. It is stable as a specimen/library, NOT as
+# doctrine: no governance kernel imports these modules, and none may (the
+# "admissibility" here is
 # literal Gentzen admissibility, the referent the governance vocabulary
 # borrows from; rhyme acknowledged, composition refused).
 [[lean_lib]]
 name = "ProofTheory"
 srcDir = "."
 roots = ["LeanProofs.ProofTheory"]
-globs = ["LeanProofs.ProofTheory", "LeanProofs.ProofTheory.+"]
 
-# v10 ViewSemantics target. Default build coverage keeps the release surface in
-# contact with CI; it does not promote its UNRATIFIED-CANDIDATE custody class.
+[[lean_lib]]
+name = "ProofTheoryEvidence"
+srcDir = "."
+roots = ["LeanProofs.ProofTheory.Evidence"]
+
+# v10 stable ViewSemantics target. The exact root excludes terminal examples,
+# countermodels, and application evidence.
 [[lean_lib]]
 name = "ViewSemantics"
 srcDir = "."
@@ -202,24 +205,27 @@ roots = [
 # Explicit Mathlib-reaching adapter island for v10. P25's
 # matrix semantics stays out of the cheap/default `ViewSemantics` import graph.
 [[lean_lib]]
-name = "ViewSemanticsMathlibIslands"
+name = "ViewSemanticsEvidenceMathlib"
 srcDir = "."
 roots = [
-  "LeanProofs.ViewSemantics.P25Adapter",
+  "LeanProofs.ViewSemantics.EvidenceMathlib",
 ]
 
-# Separate non-XOR application/annex root.  The imported source specimen keeps
-# SCRATCH custody; explicit build ownership and reachability are not promotion.
+# Exact Mathlib-free terminal-evidence root.
 [[lean_lib]]
-name = "ViewSemanticsApplications"
+name = "ViewSemanticsEvidence"
 srcDir = "."
 roots = [
-  "LeanProofs.ViewSemantics.Applications",
-  "LeanProofs.Scratch.BindingSourceAblation",
+  "LeanProofs.ViewSemantics.Evidence",
 ]
+
+[[lean_lib]]
+name = "ReachableDrift"
+srcDir = "."
+roots = ["LeanProofs.ReachableDrift"]
 
 # Stable exact-origin judgment-orientation family. The root imports exactly
-# the five promoted theorem modules and excludes the examples annex.
+# the five promoted theorem modules and excludes terminal example evidence.
 [[lean_lib]]
 name = "JudgmentOrientation"
 srcDir = "."
@@ -228,6 +234,6 @@ roots = ["LeanProofs.JudgmentOrientation"]
 # Explicit examples/countermodels target. Default build coverage is not stable
 # import membership; `LeanProofs.JudgmentOrientation` does not import it.
 [[lean_lib]]
-name = "JudgmentOrientationExamples"
+name = "JudgmentOrientationEvidence"
 srcDir = "."
 roots = ["LeanProofs.JudgmentOrientation.Examples"]

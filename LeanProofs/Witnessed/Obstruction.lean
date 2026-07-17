@@ -2,7 +2,11 @@
   LeanProofs.Witnessed.Obstruction — obstruction-of-record + the retired `Discriminating`
   formulation.
 
-  Custody class: ANNEX (Mathlib-free; negative-result history). In the default build (target `Witnessed`).
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
+  Terminal public evidence preserving negative-result history outside the
+  exact stable root.
 
   The model-admission discipline (`Discipline.WitnessedDiscipline`) once had a single
   axis `Discriminating`. This file is the compiled record of WHY it was factored out:

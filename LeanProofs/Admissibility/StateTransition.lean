@@ -1,5 +1,6 @@
 /-
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Admissibility — State transition algebra (Layer 3a + 3b).
 

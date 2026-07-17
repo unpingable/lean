@@ -2,6 +2,7 @@
   LeanProofs.JudgmentOrientation -- stable exact-origin orientation family.
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Promoted from skunkworks commit
   4f8e07606eb14537e0a0876ee9082178754ae436.
@@ -28,9 +29,10 @@
     difference in an orientation-invariant observation across an attributed
     mixed trace localizes to a privileged step whose caller-supplied origin
     is contained in the effective support of the trace's privileged
-    provenance. The converse is false; the annex holds the no-op witness.
+    provenance. The converse is false; terminal example evidence holds the
+    no-op witness.
 
-  `LeanProofs.JudgmentOrientation.Examples` is an ANNEX and is deliberately
+  `LeanProofs.JudgmentOrientation.Examples` is PUBLIC-EVIDENCE and is deliberately
   excluded from this root. Streetlamp, four-relay, accumulator-repair, and
   payload-conflict fixtures therefore do not enter the stable dependency
   graph or define the general laws.

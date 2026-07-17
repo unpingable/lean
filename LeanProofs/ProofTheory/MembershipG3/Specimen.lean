@@ -5,7 +5,8 @@
   weakening, contraction, exchange, and cut -- are admissible, and none is
   primitive.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
   Promoted out of Scratch 2026-07-06 (operator-directed; stage plan: "wire
   as specimen/library, do not wire as doctrine/kernel/unifier"). Moved
   verbatim from LeanProofs/Scratch/SequentAdmissibility.lean -- the only

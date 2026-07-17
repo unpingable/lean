@@ -1,7 +1,8 @@
 /-
   LeanProofs.ProofTheory.MembershipG3.Audit -- the DMV counter.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
   #print axioms receipts for every load-bearing name in the MembershipG3
   development. This module exists so the audit is part of the BUILD: the
   axiom footprint prints on every `lake build ProofTheory`, and drift is

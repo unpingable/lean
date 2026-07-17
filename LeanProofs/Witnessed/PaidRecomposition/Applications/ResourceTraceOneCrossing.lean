@@ -2,7 +2,8 @@
   LeanProofs.Witnessed.PaidRecomposition.Applications.ResourceTraceOneCrossing
   -- public-only one-crossing evidence for occurrence-exact paid recomposition.
 
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   This Mathlib-free application instantiates the paid-recomposition core with
   the resident `ResourceCheckerExec.Trace` attempt type and the native

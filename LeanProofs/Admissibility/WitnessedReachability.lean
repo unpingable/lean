@@ -2,7 +2,8 @@
   LeanProofs.Admissibility.WitnessedReachability — adapters from the WDC paid-path spine
   into the generic reachability/refusal vocabulary.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Status: adapter slice. Root-imported for build coverage, but NOT a
   promoted AdmissibilityKernels surface and NOT a new WDC receipt. The point is to avoid a

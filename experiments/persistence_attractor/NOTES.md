@@ -1,12 +1,16 @@
-# Persistence Attractor Arc — roadmap (PLANNED / scratch-only)
+# Persistence Attractor Arc — historical roadmap / skunkworks campaign
 
-**Status:** planned. Captured during the WDC-2.0 / fence checkpoint; **implementation
-paused** until that checkpoint is reviewed/committed. Custody: separate from WDC 2.0 and
-from the TaxonomyGraph static closure partition. This is a *new surface*.
+**Status:** historical planning note. Captured during the WDC-2.0 / fence
+checkpoint. The former v12 source has moved to the sibling skunkworks as live
+incubation; it remains separate from WDC 2.0 and the TaxonomyGraph static
+closure partition. This is a possible new surface, not public evidence or a
+compatibility promise.
 
-Scratch packaging (low-risk, compiles): `LeanProofs/Scratch/PersistenceAttractor.lean`
-(unimported, no axiom/sorry/native_decide). Anything needing new design choices stays here
-as prose, not broken Lean.
+Historical v12 packaging: `LeanProofs/Scratch/PersistenceAttractor.lean`
+(unimported, no axiom/sorry/native_decide). The source remains recoverable from
+the v12 tag and Git history; current implementation work belongs in
+skunkworks. Anything needing new design choices stays there or here as prose,
+not as broken public Lean.
 
 ## Goal
 
@@ -39,19 +43,19 @@ This is **not** the old universal-sink slogan.
 
 ## Theorem package (status)
 
-1. `eventually_hysteretic_of_detached_commits` — **PACKAGED (scratch, compiles).**
+1. `eventually_hysteretic_of_detached_commits` — **PACKAGED (now skunkworks; compiled in the v12 source).**
    `detachedShort ∨ detachedWarn` + `burnRate > 0` ⇒ `∃ n, (run … replicate n .commit).state = .hysteretic`.
-2. `hysteretic_absorbing_trace` — **PACKAGED (scratch, compiles).** Once hysteretic, an
+2. `hysteretic_absorbing_trace` — **PACKAGED (now skunkworks; compiled in the v12 source).** Once hysteretic, an
    internal-only trace leaves the system UNCHANGED (`run … = sys`). The single-step
    `hysteretic_absorbing_internal` turned out to be a full equality (`step … = sys`), so the
    strong version lifted by list induction came for free — stronger than the planned
    state-level claim.
-3. `dynamic_dh_attractor_of_detached_commits` — **PACKAGED (scratch, compiles).** Combines
+3. `dynamic_dh_attractor_of_detached_commits` — **PACKAGED (now skunkworks; compiled in the v12 source).** Combines
    finite entry + internal absorption: `∃ n, entry-hysteretic ∧ ∀ internal suffix, stays hysteretic`.
 
 ## Handoff layer (the entire discipline)
 
-`HandoffToPersistence (d : Domain)` — **PACKAGED (scratch, compiles).** A `Domain` gets the
+`HandoffToPersistence (d : Domain)` — **PACKAGED (now skunkworks; compiled in the v12 source).** A `Domain` gets the
 dynamic Δh theorem ONLY through an explicit witness:
 
 ```
@@ -66,7 +70,7 @@ structure HandoffToPersistence (d : Domain) where
 bridge from the static graph to the dynamics, and it is one-directional: existence in the
 graph confers nothing; only a supplied handoff does.
 
-## Stronger version (NOT scratch — needs new design choices)
+## Stronger version (not yet packaged — needs new design choices)
 
 The grown-up theorem quantifies over an arbitrary operational trace with predicates:
 

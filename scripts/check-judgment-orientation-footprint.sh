@@ -14,8 +14,8 @@
 # constructive (no axioms).
 #
 # Exit codes:
-#   0 — stable family and examples annex build; all 13 receipts exact
-#   1 — `lake build JudgmentOrientation JudgmentOrientationExamples` failed
+#   0 — stable family and terminal examples evidence build; all 13 receipts exact
+#   1 — `lake build JudgmentOrientation JudgmentOrientationEvidence` failed
 #   2 — a receipt drifted (missing/renamed, new axiom, sorry, or wrong footprint)
 
 set -euo pipefail
@@ -46,10 +46,10 @@ declare -A EXPECT=(
   ["$P.Bridge.certification_change_has_supported_privileged_origin"]="$CLASSICAL_MAX"
 )
 
-# 1. The stable family and the examples annex must build. Both libs are
+# 1. The stable family and its terminal public evidence must build. Both libs are
 #    Mathlib-free by construction, so a green build also proves isolation held.
-if ! lake build JudgmentOrientation JudgmentOrientationExamples >/dev/null 2>&1; then
-  echo "FAIL: lake build JudgmentOrientation JudgmentOrientationExamples did not succeed" >&2
+if ! lake build JudgmentOrientation JudgmentOrientationEvidence >/dev/null 2>&1; then
+  echo "FAIL: lake build JudgmentOrientation JudgmentOrientationEvidence did not succeed" >&2
   exit 1
 fi
 

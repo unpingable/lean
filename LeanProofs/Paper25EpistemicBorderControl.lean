@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   Paper 25 — Epistemic Border Control as Proxy Regulation Under Partial
   Observability: algebraic shard.
 

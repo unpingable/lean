@@ -1,7 +1,8 @@
 /-
   LeanProofs.ViewSemantics.Audit -- kernel-footprint receipts for Gate A.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   This module keeps the load-bearing `#print axioms` evidence in the build
   surface.  The expected footprint is empty: Core is import-free and uses no

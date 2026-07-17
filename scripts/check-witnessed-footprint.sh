@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Gate 5 — re-attest the Witnessed Derivation Calculus axiom footprint in the
-# canonical build context. Fail-closed: every ratified receipt must report EXACTLY
+# Gate 5 — re-attest the Witnessed Derivation Calculus and its terminal evidence
+# in the canonical build context. Fail-closed: every receipt must report EXACTLY
 # its documented footprint (RATIFICATION-v1.3.md). This is what prevents future-you
 # from quietly turning the Mathlib-free witness library into Mathlib soup, or letting
 # a receipt grow a new axiom unnoticed. Exit code is the gate, never eyeballed.
@@ -11,8 +11,8 @@
 #   Obstruction, tightened_metatheory->discipline_metatheory)
 #
 # Exit codes:
-#   0 — Witnessed builds and all 10 receipts are within their attested footprint
-#   1 — `lake build Witnessed` failed
+#   0 — stable/evidence roots build and all 12 receipts are attested exactly
+#   1 — `lake build Witnessed WitnessedEvidence` failed
 #   2 — a receipt drifted (missing/renamed, new axiom, sorry, or wrong footprint)
 
 set -euo pipefail
@@ -25,7 +25,8 @@ NONE="does not depend on any axioms"
 PROPEXT="depends on axioms: [propext]"
 PROPEXT_QUOT="depends on axioms: [propext, Quot.sound]"
 
-# Ratified receipt -> expected footprint (EXACT).
+# Stable/evidence receipt -> expected footprint (EXACT). Obstruction is terminal
+# public evidence and is deliberately imported through Witnessed.Evidence below.
 declare -A EXPECT=(
   ["$P.Derivation.derivation_extends_along_paid_path"]="$NONE"
   ["$P.Discipline.cut_admissible_general"]="$NONE"
@@ -41,10 +42,10 @@ declare -A EXPECT=(
   ["$P.CommutesNecessity.commutes_is_necessary"]="$NONE"
 )
 
-# 1. The library must build. The separate `Witnessed` lean_lib is Mathlib-free by
+# 1. Both exact roots must build. Their separate lean_libs are Mathlib-free by
 #    construction, so a green build here also proves the isolation held.
-if ! lake build Witnessed >/dev/null 2>&1; then
-  echo "FAIL: lake build Witnessed did not succeed" >&2
+if ! lake build Witnessed WitnessedEvidence >/dev/null 2>&1; then
+  echo "FAIL: lake build Witnessed WitnessedEvidence did not succeed" >&2
   exit 1
 fi
 
@@ -53,6 +54,7 @@ TMP="$(mktemp "${TMPDIR:-/tmp}/witnessed-footprint-XXXXXX.lean")"
 trap 'rm -f "$TMP"' EXIT
 {
   echo "import LeanProofs.Witnessed"
+  echo "import LeanProofs.Witnessed.Evidence"
   for r in "${!EXPECT[@]}"; do echo "#print axioms $r"; done
 } > "$TMP"
 if ! OUT="$(lake env lean "$TMP" 2>&1)"; then
@@ -82,7 +84,7 @@ if [ "$fail" -ne 0 ]; then
   exit 2
 fi
 
-echo "OK: Witnessed builds Mathlib-free; ${#EXPECT[@]} ratified receipts within attested footprint"
+echo "OK: Witnessed stable/evidence roots build Mathlib-free; ${#EXPECT[@]} receipts within attested footprint"
 naf=0; pe=0; peq=0
 for r in "${!EXPECT[@]}"; do
   case "${EXPECT[$r]}" in

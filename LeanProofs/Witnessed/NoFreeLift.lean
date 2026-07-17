@@ -2,6 +2,7 @@
   LeanProofs.Witnessed.NoFreeLift — the customs-office spine.
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
   Role: schema foundation. This unchanged module is part of the v11 stable
   paid-recomposition import closure. Abstract over
   `Claim`/`Kernel`/`Bridge`/`Sem`; imports NO model code. Mirrors canonical

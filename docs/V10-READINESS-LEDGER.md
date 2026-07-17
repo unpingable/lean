@@ -1,5 +1,10 @@
 # v10 Readiness Ledger — View Semantics and Bounded Projection
 
+> **Historical record.** Candidate/Scratch labels and target names below
+> describe the v10 release review. v13 separates the unchanged ViewSemantics
+> stable root from public evidence and its explicit Mathlib evidence island.
+> See [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Status: GATE-COMPLETE / OPERATOR-ACCEPTED / LOCALLY TAGGED (2026-07-14).
 The annotated local tag `v10.0.0` exists and peels to commit `20b8da5`.  This
 local receipt does not by itself establish the status of a GitHub release,

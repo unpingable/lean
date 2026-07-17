@@ -3,7 +3,8 @@
   the bridge: multiset-faithful G3ip, and its derivability-equivalence with
   the membership-context specimen.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
   Same fence as Specimen.lean: specimen/library, not doctrine; no
   governance-kernel imports, none permitted. Mathlib-free (core List +
   core List.Perm only).

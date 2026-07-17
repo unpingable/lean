@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Minimal RRP profile-checker semantics (2026-07-09). Runtime correspondence target: the RRP
   admissibility-gate prototype (~/git/rrp — receipt-indexed gate, Python
@@ -23,12 +24,10 @@
   which is the coarser honest claim. This file does not prove anything about
   the Python/Rust checkers; it pins the semantics they are supposed to have.
 
-  Unwired: not imported by `LeanProofs.lean` or any default target. Build
-  directly: `lake build LeanProofs.Admissibility.RRPProfileSpecimen`.
-  Formalization does not wait on RRP. Under the current custody fence, ANNEX
-  promotion still requires RRP to identify the named theorems it adopts.
-  Citation identifies the intended contract; conformance still requires an
-  explicit mapping plus runtime evidence or a refinement proof.
+  Custody: terminal public evidence, regression-built by
+  `lake build AdmissibilityEvidence`. Publication does not claim RRP adoption;
+  conformance still requires an explicit mapping plus runtime evidence or a
+  refinement proof.
 -/
 
 /-!

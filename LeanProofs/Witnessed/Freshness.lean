@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.Freshness — the assembled freshness kernel (double-entry transport).
 
-  Custody class: MODELED KERNEL. Both conjuncts of freshness carried by one
-  judgment, one transport rule with two independent receipts, over one signature.
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Stable modeled kernel: both conjuncts of freshness are carried by one
+  judgment and one transport rule with two independent receipts, over one signature.
   WIRED: the window receipt is discharged by `LeanProofs.Witnessed.Coordinates`
   (transitivity), the divergence receipt by `LeanProofs.Witnessed.Divergence` (triangle+budget).
 

@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   BoundedCalculi.TemporalCustody -- execution-time gates for witnessed
   temporal use. Citation-time validity, artifact freshness, epoch liveness,

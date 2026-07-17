@@ -1,5 +1,10 @@
 # Post-v4 campaign map — captured 2026-07-01
 
+> **Historical campaign map.** Its Scratch paths and future tense describe the
+> pre-v5 tree. v4-v7 have shipped and their unchanged public substrate now
+> lives under `LeanProofs/CustodyIndexed/`; see
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Status: CANDIDATE plan, documentation only.** Ratified ordering (operator,
 via ChatGPT relay + Fable direction survey). Nothing here is a release claim.
 The rule in force: **v4 is tagged clean; everything below is post-v4.**

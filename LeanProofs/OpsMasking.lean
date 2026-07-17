@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   Operational masking — projection clause (Case (i)).
 
   From "Ops Is Control with a Non-Self-Identical Controller" (papers

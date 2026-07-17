@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   BoundedCalculi.SurfaceProjection -- projected surfaces authorize only the
   uses whose demanded atoms are retained or explicitly converted.

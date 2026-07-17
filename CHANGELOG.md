@@ -6,6 +6,43 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## Unreleased — v13 custody migration (in progress)
+
+No new mathematical campaign. This working-tree migration corrects module
+paths, terminal roles, exact roots/targets, and whole-tree enforcement after a
+271-file audit showed that ANNEX, Scratch, and candidate labels no longer
+described the repository honestly.
+
+- Rehome the unchanged v4-v7 public substrate under
+  `LeanProofs.CustodyIndexed` and PathVerdict under
+  `LeanProofs.Admissibility.PathVerdict`.
+- Distinguish exact-root stable API from terminal public evidence; public
+  evidence is finished and citable without becoming a compatibility promise.
+- Remove superseded fossils, including the duplicate Admissibility
+  `CarryLaws`/`NoFreeLift` modules, the empty `LeanProofs/Basic.lean` scaffold,
+  and the standalone `taxonomy-lean-sketch.lean` probe. Retire the duplicate
+  `experiments/no_free_lift_wiring` Lean source while preserving all exact
+  v12/Git provenance.
+- Transfer all **53 of 53** live incubations to the sibling skunkworks. Its
+  26-check migration audit passes, including all four returns in the explicit
+  Mathlib incubation lane; the public originals are deleted.
+- Replace the partial custody checker with fail-closed whole-tree registries
+  and exact stable/evidence closure checks. It passes the actual tree exactly:
+  179 public files (82 stable, 96 evidence, one aggregate), ten stable roots,
+  and 98 ownership relations. The strengthened target gate passes across two
+  Lake projects with 23 public targets, 23 exact local closures, 19
+  Mathlib-free current-tree targets, 463 local ownerships, one pinned-external
+  target, and one locked boundary; the downstream fixture's 19-job bare build
+  passes. The final public and sibling suites pass, including a clean 149-job
+  sibling build, all four Mathlib incubations, and the sibling's 29-check CI.
+  The exact deletion audit accounts for 38 public rehomes, 53 skunkworks
+  transfers, 23 archived experiment sources, 20 fossils, and four separately
+  recorded deletions, with zero unaccounted files. Operator review remains the
+  release completion condition.
+
+No v13 tag, GitHub release, Zenodo deposit, DOI mint, or release-metadata edit
+is asserted. Current ledger: [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
+
 ## 12.0.0 — Judgment Orientation (2026-07-16)
 
 *Raw custody is a sequence; effective exact-origin contribution is its

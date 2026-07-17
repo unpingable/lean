@@ -1,5 +1,10 @@
 # v3 Release Ledger — Bounded Lifecycle Calculi
 
+> **Historical record.** Custody labels and paths below describe the v3 tree.
+> The post-v12 v13 migration later classified this finished family under
+> public stable/evidence roles without changing its mathematics. See
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Release: v3.0.0 — Bounded Lifecycle Calculi** (*A Lean proof release for
 custody-aware authority semantics*). Umbrella: Custody-Aware Authority
 Semantics. Next campaign: Custody-Indexed Sequents (v3.x).

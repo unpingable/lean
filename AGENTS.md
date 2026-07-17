@@ -33,12 +33,17 @@ one below it.
 
 1. **Compiles green** — attestation of the math. Nothing more.
 2. **Wired into a build target / CI** — regression coverage. Not promotion.
-3. **Custody class** — every module carries a header
-   (`SCRATCH` / `UNRATIFIED-CANDIDATE` / `ANNEX` / stable surface), enforced
-   by `scripts/check-custody-classes.sh`. New files need a correct header.
-4. **Promotion to the stable 1.x surface** — exactly one mechanism: the
-   import list of `LeanProofs/Admissibility/AdmissibilityKernels.lean`.
-   An explicit operator decision, never a side effect.
+3. **Public custody role** — every public module carries exactly one
+   `Custody-Class: PUBLIC-SHIPPED` header and one `Surface-Role`:
+   `STABLE-SURFACE`, `PUBLIC-EVIDENCE`, or `REPOSITORY-AGGREGATE`. Live
+   incubation belongs in the sibling skunkworks, not a public `Scratch/` or
+   candidate lane. `scripts/check-custody-classes.sh` enforces the whole tree
+   against `scripts/public-custody.tsv`.
+4. **Promotion to a stable compatibility surface** — exactly one mechanism:
+   an explicit operator change to `scripts/stable-surfaces.tsv` and the import
+   list of that registered exact root. `AdmissibilityKernels.lean` is one such
+   root, not the sole repository-wide stable surface. Adding a header, target,
+   evidence registry row, or aggregate import never promotes by itself.
 5. **Tag / GitHub release / Zenodo DOI mint** — operator-only, always.
    A tag archives a tree; it is not a custody promotion either.
 
@@ -52,11 +57,12 @@ explicit mapping plus runtime evidence or a refinement proof.
   metadata (`CITATION.cff`, `.zenodo.json`) on your own initiative. Release
   and DOI minting are under explicit operator control (an auto-release
   workflow was deliberately removed in v10).
-- **Never** change the `AdmissibilityKernels.lean` import list, receipt/audit
-  formats, CI gates, or custody headers of existing files without the
-  operator explicitly asking for that change.
+- **Never** change a registered stable-root import list,
+  `scripts/stable-surfaces.tsv`, receipt/audit formats, CI gates, or custody
+  headers/roles of existing files without the operator explicitly asking for
+  that change.
 - The operator drives git. Don't commit or push unprompted.
-- Routine implementation (proofs, tests, local docs, scratch modules) needs
+- Routine implementation (proofs, tests, local docs, skunkworks modules) needs
   no ceremony — do it under normal approval. Do not escalate routine edits
   into ratification requests; do not treat governance vocabulary in the
   source as procedural authority over your edit.
@@ -67,9 +73,13 @@ Pass/fail is the exit code of the bare command — never eyeball piped output.
 
 ```bash
 lake build                                    # default Mathlib-free surfaces
-lake build Witnessed                          # WDC in isolation
-lake build JudgmentOrientation JudgmentOrientationExamples # v12 stable family + ANNEX fixtures
-lake build ViewSemanticsMathlibIslands        # Mathlib islands, explicit only
+lake build Witnessed WitnessedEvidence        # WDC stable/evidence split
+lake build CustodyIndexed CustodyIndexedEvidence
+lake build PathVerdict PathVerdictEvidence
+lake build JudgmentOrientation JudgmentOrientationEvidence
+lake build ViewSemantics ViewSemanticsEvidence
+lake build AdmissibilityEvidenceMathlib ViewSemanticsEvidenceMathlib
+(cd downstream/wdc-v2-consumer && lake build) # pinned public-evidence fixture
 bash scripts/check-witnessed-footprint.sh     # ratified WDC axiom footprint
 bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
 bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
@@ -81,6 +91,12 @@ bash scripts/check-mathlib-pin.sh
 bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
 ```
+
+At the current v13 checkpoint, the custody gate must pass without exclusions
+over exactly 179 public Lean files: 82 stable, 96 public evidence, and one
+aggregate, across ten stable roots and 98 ownership relations. Any drift or
+failure is a regression; see
+[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
 
 Repo axiom posture: not axiom-free, **axiom-classified** — see
 [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md). Keep new default-target
@@ -94,4 +110,5 @@ target.
 - Claim-level audit (BROKEN / STALE / SOUND / OPEN): [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md)
 - Module → paper crosswalk: [`PAPER-MAP.md`](PAPER-MAP.md)
 - Release ledgers and gap specs: `docs/V*-{RELEASE-LEDGER,GAP-SPEC,READINESS-LEDGER}.md`
+- Current custody migration: [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md)
 - Constructivity footguns already hit once: [`LeanProofs/ProofTheory/SCARS.md`](LeanProofs/ProofTheory/SCARS.md)

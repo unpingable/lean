@@ -2,11 +2,11 @@
 # Post-v11 gate for the corrected stable PaidRecomposition import closure.
 #
 # This gate fails closed over custody, the stable import boundary, the frozen
-# public API names, exact theorem axiom footprints, and the Mathlib/SCRATCH-free
+# public API names, exact theorem axiom footprints, and the Mathlib/legacy-Scratch-free
 # import closure. The unchanged checker/WDC foundation is public shipped
 # substrate because the stable Payment surface already imports it. Applications
-# and countermodels remain registered ANNEX evidence outside the stable root and
-# `Witnessed` build target.
+# and countermodels are terminal public evidence outside the stable root and
+# `Witnessed` build target, with their own default-built regression target.
 #
 # Exit codes:
 #   0 — all source, graph, build, API, and footprint checks pass
@@ -51,9 +51,22 @@ declare -A EXPECTED_CUSTODY=(
   ["$SEQUENT_FILE"]="PUBLIC-SHIPPED"
   ["$DERIVATION_FILE"]="PUBLIC-SHIPPED"
   ["$NO_FREE_LIFT_FILE"]="PUBLIC-SHIPPED"
-  ["$PUBLIC_APP_FILE"]="ANNEX"
-  ["$COUNTERMODEL_FILE"]="ANNEX"
-  ["$FINITE_SUPPORT_FILE"]="ANNEX"
+  ["$PUBLIC_APP_FILE"]="PUBLIC-SHIPPED"
+  ["$COUNTERMODEL_FILE"]="PUBLIC-SHIPPED"
+  ["$FINITE_SUPPORT_FILE"]="PUBLIC-SHIPPED"
+)
+declare -A EXPECTED_ROLE=(
+  ["$ROOT_FILE"]="STABLE-SURFACE"
+  ["$PAYMENT_FILE"]="STABLE-SURFACE"
+  ["$CATALOG_FILE"]="STABLE-SURFACE"
+  ["$RESOURCE_CHECKER_FILE"]="STABLE-SURFACE"
+  ["$RESOURCE_SEQUENT_FILE"]="STABLE-SURFACE"
+  ["$SEQUENT_FILE"]="STABLE-SURFACE"
+  ["$DERIVATION_FILE"]="STABLE-SURFACE"
+  ["$NO_FREE_LIFT_FILE"]="STABLE-SURFACE"
+  ["$PUBLIC_APP_FILE"]="PUBLIC-EVIDENCE"
+  ["$COUNTERMODEL_FILE"]="PUBLIC-EVIDENCE"
+  ["$FINITE_SUPPORT_FILE"]="PUBLIC-EVIDENCE"
 )
 ALL_FILES=(
   "$ROOT_FILE"
@@ -69,7 +82,7 @@ ALL_FILES=(
   "$FINITE_SUPPORT_FILE"
 )
 
-# Exact source custody, including fenced evidence.
+# Exact source custody and stable/evidence roles.
 for file in "${ALL_FILES[@]}"; do
   if [ ! -f "$file" ]; then
     echo "FAIL: missing registered PaidRecomposition source: $file" >&2
@@ -84,10 +97,19 @@ for file in "${ALL_FILES[@]}"; do
     echo "      Custody-Class: ${EXPECTED_CUSTODY[$file]}" >&2
     exit 1
   fi
+  total_role_count="$(sed -n '1,40p' "$file" |
+    grep -cE '^[[:space:]]*Surface-Role:[[:space:]]*' || true)"
+  role_count="$(sed -n '1,40p' "$file" |
+    grep -cE "^[[:space:]]*Surface-Role:[[:space:]]*${EXPECTED_ROLE[$file]}[[:space:]]*$" || true)"
+  if [ "$total_role_count" -ne 1 ] || [ "$role_count" -ne 1 ]; then
+    echo "FAIL: $file must carry exactly one header marker:" >&2
+    echo "      Surface-Role: ${EXPECTED_ROLE[$file]}" >&2
+    exit 1
+  fi
 done
 
 # Parse every module token on an import command and ignore the trailing line
-# comment. This parser is shared by the exact graph and direct-SCRATCH checks so
+# comment. This parser is shared by the exact graph and legacy-Scratch checks so
 # a second module on the same import line cannot evade either boundary.
 direct_imports() {
   awk '
@@ -111,28 +133,18 @@ SCRATCH_FREE_FILES=(
   "$NO_FREE_LIFT_FILE"
   "$PUBLIC_APP_FILE"
   "$COUNTERMODEL_FILE"
+  "$FINITE_SUPPORT_FILE"
 )
 for file in "${SCRATCH_FREE_FILES[@]}"; do
   mapfile -t forbidden_direct < <(
     direct_imports "$file" | grep -E '^(LeanProofs\.Scratch|Mathlib)' || true
   )
   if [ "${#forbidden_direct[@]}" -ne 0 ]; then
-    echo "FAIL: $file has a forbidden direct SCRATCH/Mathlib import" >&2
+    echo "FAIL: $file has a forbidden direct legacy-Scratch/Mathlib import" >&2
     printf '  %s\n' "${forbidden_direct[@]}" >&2
     exit 1
   fi
 done
-
-mapfile -t finite_support_scratch_imports < <(
-  direct_imports "$FINITE_SUPPORT_FILE" | grep -E '^LeanProofs\.Scratch' || true
-)
-if [ "${#finite_support_scratch_imports[@]}" -ne 1 ] ||
-   [ "${finite_support_scratch_imports[0]:-}" != "LeanProofs.Scratch.FiniteSupportChecker" ]; then
-  echo "FAIL: finite-support ANNEX direct SCRATCH import set must be exactly:" >&2
-  echo "      LeanProofs.Scratch.FiniteSupportChecker" >&2
-  printf '  actual: %s\n' "${finite_support_scratch_imports[*]:-<none>}" >&2
-  exit 1
-fi
 
 # Freeze the exact direct-import graph of all eight stable closure modules.
 declare -A EXPECTED_STABLE_IMPORTS=(
@@ -160,9 +172,9 @@ if [ "$(grep -cE '^[[:space:]]*import[[:space:]]+LeanProofs\.Witnessed\.PaidReco
   exit 2
 fi
 
-# The Witnessed library must use exact module ownership, not a recursive glob
-# that silently compiles evidence. Evidence names belong only to their separate,
-# non-default PaidRecompositionEvidence library.
+# The Witnessed library must own exactly its aggregate root, not a recursive
+# glob that silently compiles evidence. Transitive stable ownership is checked
+# by the import-graph walk below.
 witnessed_block="$(awk '
   /^\[\[lean_lib\]\]$/ {
     if (capture) exit
@@ -176,25 +188,16 @@ if [ -z "$witnessed_block" ]; then
   echo "FAIL: missing Witnessed lean_lib configuration" >&2
   exit 2
 fi
-if grep -Eq 'Witnessed\.\+|Applications|Countermodels|FiniteSupportOneCrossing' <<<"$witnessed_block"; then
+if grep -Eq '^globs[[:space:]]*=|Witnessed\.\+|Applications|Countermodels|FiniteSupportOneCrossing' <<<"$witnessed_block"; then
   echo "FAIL: Witnessed build ownership reaches recursive/evidence modules" >&2
   echo "$witnessed_block" >&2
   exit 2
 fi
-for module in \
-  "$ROOT_MODULE" \
-  "$PAYMENT_MODULE" \
-  "$CATALOG_MODULE" \
-  "$RESOURCE_CHECKER_MODULE" \
-  "$RESOURCE_SEQUENT_MODULE" \
-  "$SEQUENT_MODULE" \
-  "$DERIVATION_MODULE" \
-  "$NO_FREE_LIFT_MODULE"; do
-  if ! grep -Fq "\"$module\"" <<<"$witnessed_block"; then
-    echo "FAIL: Witnessed build ownership omits stable module $module" >&2
-    exit 2
-  fi
-done
+if ! grep -Fxq 'roots = ["LeanProofs.Witnessed"]' <<<"$witnessed_block"; then
+  echo "FAIL: Witnessed target must own exactly the LeanProofs.Witnessed aggregate root" >&2
+  echo "$witnessed_block" >&2
+  exit 2
+fi
 
 evidence_block="$(awk '
   /^\[\[lean_lib\]\]$/ {
@@ -220,8 +223,8 @@ default_targets="$(awk '
   capture { print }
   capture && /\]/ { exit }
 ' lakefile.toml)"
-if grep -Fq 'PaidRecompositionEvidence' <<<"$default_targets"; then
-  echo "FAIL: PaidRecompositionEvidence must remain outside defaultTargets" >&2
+if ! grep -Fq 'PaidRecompositionEvidence' <<<"$default_targets"; then
+  echo "FAIL: terminal PaidRecomposition evidence must remain in defaultTargets" >&2
   exit 2
 fi
 
@@ -237,7 +240,7 @@ if [ -n "$hole_hits" ]; then
 fi
 
 # Walk the local stable-root import closure. Missing LeanProofs sources fail
-# closed. Mathlib, SCRATCH, and evidence custody are forbidden transitively.
+# closed. Mathlib, legacy Scratch, and evidence custody are forbidden transitively.
 module_path() { echo "${1//./\/}.lean"; }
 
 declare -A seen=()
@@ -282,7 +285,7 @@ if [ "${#missing_sources[@]}" -gt 0 ] ||
   echo "FAIL: stable PaidRecomposition import isolation drifted" >&2
   printf '  missing:  %s\n' "${missing_sources[@]:-}" >&2
   printf '  Mathlib:  %s\n' "${mathlib_offenders[@]:-}" >&2
-  printf '  SCRATCH:  %s\n' "${scratch_offenders[@]:-}" >&2
+  printf '  legacy Scratch: %s\n' "${scratch_offenders[@]:-}" >&2
   printf '  evidence: %s\n' "${evidence_offenders[@]:-}" >&2
   exit 2
 fi
@@ -318,7 +321,7 @@ fi
 if [ "$closure_fail" -ne 0 ]; then exit 2; fi
 
 if ! lake build Witnessed "$ROOT_MODULE" PaidRecompositionEvidence >/dev/null 2>&1; then
-  echo "FAIL: stable Witnessed/PaidRecomposition or fenced evidence build did not succeed" >&2
+  echo "FAIL: stable Witnessed/PaidRecomposition or terminal evidence build did not succeed" >&2
   exit 3
 fi
 
@@ -528,4 +531,4 @@ done
 
 if [ "$fail" -ne 0 ]; then exit 5; fi
 
-echo "PASS — PaidRecomposition stable surface: exact 8 PUBLIC/3 ANNEX custody, exact isolated Mathlib/SCRATCH-free closure (${#seen[@]} modules), fenced evidence target green/non-default, ${#API[@]} frozen public names plus 2 scoped notations, and ${#RECEIPTS[@]} exact classified theorem footprints (promoted foundation: ${#PROMOTED_NONE_RECEIPTS[@]} axiom-free/${#PROMOTED_PROPEXT_RECEIPTS[@]} propext)"
+echo "PASS — PaidRecomposition stable surface: 8 stable/3 public-evidence roles, exact isolated Mathlib/legacy-Scratch-free closure (${#seen[@]} modules), evidence target green/default-built, ${#API[@]} frozen public names plus 2 scoped notations, and ${#RECEIPTS[@]} exact classified theorem footprints (promoted foundation: ${#PROMOTED_NONE_RECEIPTS[@]} axiom-free/${#PROMOTED_PROPEXT_RECEIPTS[@]} propext)"

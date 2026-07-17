@@ -3,6 +3,7 @@
   adequacy.
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   This module is the Mathlib-free stable catalog core for occurrence-exact
   paid recomposition.  Catalog custody is exact-attempt membership: a catalog plan is

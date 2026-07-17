@@ -2,6 +2,7 @@
   LeanProofs.Witnessed.ResourceChecker -- position-pinned resource validation.
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
   This unchanged module is part of the v11 stable paid-recomposition import
   closure. Mathlib-free public surface. This is the public checker relation for
   `ResourceSequent`: consumption is pinned by an index through `removeAt`, and

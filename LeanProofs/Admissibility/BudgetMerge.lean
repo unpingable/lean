@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Admissibility — Axis 2, Slice 0: shared-budget merge.
 
@@ -35,9 +36,8 @@
   allocation context could anticipate it; branch-local bridges
   cannot.
 
-  Scratch annex per the `working/tooltheory/` queue convention. Not on
-  the public 1.0 surface. Not root-wired into `LeanProofs.lean`.
-  Build with: `lake build LeanProofs.Admissibility.BudgetMerge`.
+  Terminal public evidence outside the exact 1.0 compatibility surface;
+  regression-built through `lake build AdmissibilityEvidence`.
 -/
 
 import LeanProofs.Admissibility.SafetyBridge

@@ -1,15 +1,14 @@
 # Watchlist zoo — cage template (F5)
 
-**Status: CANDIDATE schema, documentation only.** The cage design for
-mechanizing the laundering-move watchlist: each attack becomes a fenced
-FORBIDDEN Lean specimen plus the screen/wall that catches it. Fable designed
-the schema (this file); populating cages is codex work (C1 in
-`docs/POST-V4-CAMPAIGN.md`). The pattern is already proven twice:
-`stampSystem` (EvidenceCalculusSequent) and `fluentSystem` (FluencySequent).
+**Status: historical design template; instantiated public regression
+substrate.** The populated zoo now lives at
+`LeanProofs/CustodyIndexed/Zoo.lean`. Each attack is a clearly forbidden
+specimen paired with the screen/wall that catches it. The cage is evidence
+about a refusal mechanism, never a pattern to instantiate operationally.
 
 ## The cage schema
 
-Every zoo entry is a section in a SCRATCH file with exactly these parts:
+Every zoo entry has exactly these parts:
 
 1. **FORBIDDEN specimen** — a small `System` (and/or evidence-calculus step)
    that INSTALLS the attack, fenced with the standard header language:
@@ -37,10 +36,10 @@ Every zoo entry is a section in a SCRATCH file with exactly these parts:
 | caveat cleanse | burden dropped in transit | inexpressibility (DONE as theorem: `caveat_dropping_is_inexpressible`; resident-cited in the Zoo registry) |
 | summary-as-authority | log/render/summary treated as authorization | DONE: Zoo C1 discipline-unsatisfiability cage (`summaryAuthSystem`) |
 | projection-as-mint | surface authorization treated as boundary mint | resident-cited: `BridgeCompositionSequent.first_bridge_alone_does_not_compose` |
-| checkpoint-as-discharge | compaction closes unknown commits | DONE 2026-07-02: Zoo skeleton replay (`DischargeCage`) + ANNEX wall cited |
-| observation-as-safety | checkpoint closes a safety question by summarizing it | DONE 2026-07-02: Zoo skeleton replay (`ObservationCage`) + ANNEX wall cited |
-| ticket-spent-as-success | consumption read as execution | DONE 2026-07-02: Zoo skeleton replay (`TicketCage`) + ANNEX wall cited |
-| commit-attempted-as-executed | attempt read as outcome | DONE 2026-07-02: Zoo skeleton replay (`AttemptCage`) + ANNEX wall cited |
+| checkpoint-as-discharge | compaction closes unknown commits | DONE 2026-07-02: Zoo skeleton replay (`DischargeCage`) + public Bounded wall cited |
+| observation-as-safety | checkpoint closes a safety question by summarizing it | DONE 2026-07-02: Zoo skeleton replay (`ObservationCage`) + public Bounded wall cited |
+| ticket-spent-as-success | consumption read as execution | DONE 2026-07-02: Zoo skeleton replay (`TicketCage`) + public Bounded wall cited |
+| commit-attempted-as-executed | attempt read as outcome | DONE 2026-07-02: Zoo skeleton replay (`AttemptCage`) + public Bounded wall cited |
 | caveat-blind gate | demand ignores burdens entirely | DONE 2026-07-02: `CaveatBlindFree`/`BurdenRespecting` screen + `blindSystem` specimen, resident in CaveatSequent; the attack satisfies the v4 discipline (`blind_discipline`) — screen was necessary, not a replay |
 
 ## Rules for the keeper
@@ -48,8 +47,8 @@ Every zoo entry is a section in a SCRATCH file with exactly these parts:
 - One cage per attack; cages do not import each other's specimens.
 - Every cage cites its doctrine provenance (watchlist entry / memory note).
 - A cage without a catch theorem is not a cage; it is an escaped animal.
-- Zoo files are SCRATCH forever — cages are regression mass, never release
-  surface headline.
+- Zoo cages are public regression mass in the corrected CustodyIndexed
+  closure, never release-surface headlines or operational examples.
 - When a NEW laundering move is proposed anywhere in the constellation, the
   first question is whether an existing cage already catches it (the
   kernel-overlap audit, C3); only then does it get a new cage.

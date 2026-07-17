@@ -1,18 +1,20 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   BoundedCalculi.BootKernel -- boot stages and baseline settlement (genesis
   calculus, roadmap S7). Release-surface bounded lifecycle calculus (v3.0.0 -
   Bounded Lifecycle Calculi).
 
   RELEASE-SURFACE, NOT AUTHORITY:
-    * NOT imported by promoted kernels (`LeanProofs.lean` untouched).
+    * public terminal evidence, outside every exact stable root;
     * NOT a unified admissibility calculus; no master `Admissible` judgment.
     * NOT runtime authority; boot here is a stage discipline, not a bootloader.
-    * NOT sequent composition (custody-indexed sequents are v3.x scratch).
+    * NOT sequent composition (custody-indexed sequents are a separate stable family).
     * The aggregate import (`BoundedCalculi.lean`) proves checkability /
       coexistence only.
-  Promoted Scratch -> ANNEX by operator decision 2026-07-01 (v3 release fork).
+  Historical custody: promoted Scratch -> ANNEX by operator decision
+  2026-07-01; v13 recognizes the released artifact as public evidence.
   Audit trail: docs/CHANGELOG-scratch-campaign.md + .governor/loop.json.
 
   GOBLIN WARD (read this before reading `capabilities_accumulate`): boot

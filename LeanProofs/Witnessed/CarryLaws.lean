@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.CarryLaws — abstract bridge-cost coordinate laws.
 
-  Custody class: ABSTRACT COORDINATE. Schema-level, axiom-free, no model.
-  Mirrors canonical `Admissibility/CarryLaws.lean`.
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Abstract stable coordinate: schema-level, axiom-free, and model-independent.
+  It is the canonical surviving CarryLaws module.
 
   Two facts, each an identity-grade necessity (no goblin room):
     * carry-the-lower-bound  ≡  transitivity of `before`

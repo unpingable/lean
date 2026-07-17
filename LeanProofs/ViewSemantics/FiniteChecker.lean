@@ -1,7 +1,8 @@
 /-
   LeanProofs.ViewSemantics.FiniteChecker
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Gate C's finite, proof-carrying checker for the two independent axes of
   bounded projection.  The checker uses complete lists rather than Mathlib's

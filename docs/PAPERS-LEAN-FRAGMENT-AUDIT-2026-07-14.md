@@ -1,5 +1,12 @@
 # Papers Lean fragment audit — 2026-07-14
 
+> **Historical audit.** The `Scratch/`, candidate, and ANNEX paths below name
+> the v12-era destinations inspected on 2026-07-14. The v13 custody migration
+> preserves the findings but moves live incubation to the sibling skunkworks,
+> reclassifies finished public material, and deletes superseded source. See
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md) for current custody and
+> paths.
+
 ## Decision rule
 
 The formalization leads later code work. A forcing case or downstream consumer

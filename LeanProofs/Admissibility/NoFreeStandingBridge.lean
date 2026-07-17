@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Admissibility — NoFreeStandingBridge (standing-bridge price theorem).
 

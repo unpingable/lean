@@ -3,12 +3,13 @@
     --  refuse to count, not to remember
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Promoted from skunkworks commit 4f8e07606eb14537e0a0876ee9082178754ae436.
   This stable module is a bounded exact-origin accumulator. It does not
   testify about any deployed model, relay, confidence score, ledger, or runtime.
 
-  The optional examples annex exhibits a concrete
+  The optional example evidence exhibits a concrete
   one-bit repair: repeated DNS suspicion saturates at one unit of heat.
   That specimen is idempotent but intentionally not origin-aware — two
   distinct origins would also collapse. This file extracts the stronger
@@ -44,7 +45,7 @@
     dependence need another object; they are not smuggled into `Origin` here.
   * Deduplicating heat does not prove that two occurrences with one origin
     carry identical orientation content. `OriginFaithful` names that
-    additional binding law, and the examples annex shows the accumulator does
+    additional binding law, and the example evidence shows the accumulator does
     not provide it for free.
   * `Carries` proves that orientation content remains available in raw
     custody. It does not prove that a receiver notices, adopts, or acts on

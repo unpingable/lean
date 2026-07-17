@@ -1,11 +1,12 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Promoted from `LeanProofs/Scratch/PredicateWitnessSeparation.lean` (2026-06-27):
-  compiled, sorry-free, wired into `LeanProofs.lean` for build coverage. Signatures
-  are NOT part of the 1.0 compatibility claim — annex semantics (may rename,
-  refactor, or absorb without notice). Provenance: scratch reconnaissance graduated
-  to annex so a downstream tool that *indexes* status-bearing objects (the projection
+  compiled, sorry-free, and public terminal evidence. Signatures are not part of
+  the exact 1.0 compatibility claim. Provenance: scratch reconnaissance first
+  graduated to the former annex and is now classified honestly as public evidence
+  so a downstream tool that *indexes* status-bearing objects (the projection
   it sees, never the witness it drops) can cite the separation wall as warrant under
   the pinning discipline, rather than steer implementation from a fenced module.
 
@@ -18,11 +19,11 @@
     These are the wall: "findability is not legitimacy" / "no authority from predicate
     satisfaction alone." That, and only that, is citable as warrant from this file.
 
-    NOT PROMOTED — the introduction rules for a predicate-witness:
+    NOT PROVIDED — the introduction rules for a predicate-witness:
       What may *construct* a PredicateWitness (declared predicate, scope of use,
       custodian, admissibility criteria, freshness/revocation, non-lift) is PROSE DEBT,
       owned by the doctrine home below. This file does NOT supply it. To make that
-      structurally impossible to launder, the witness payload here is OPAQUE: the scratch
+      structurally impossible to launder, the witness payload here is OPAQUE: the historical scratch
       draft carried suggestive fields (author/scope/admissibilityBasis) that read like
       introduction rules; they are stripped. The separation proofs never used them — the
       result depends only on the witness being a droppable `Option` payload, not on its

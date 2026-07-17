@@ -1,0 +1,15 @@
+# stable-surfaces.tsv — explicit compatibility-bearing public roots.
+# columns: surface<TAB>lake-target<TAB>root-module<TAB>import-policy
+# A surface may have more than one root. Every transitive repo import from these
+# roots must be classified STABLE-SURFACE in public-custody.tsv. The checker
+# also requires every STABLE-SURFACE row to be owned by at least one root here.
+admissibility-kernels	AdmissibilityKernels	LeanProofs.Admissibility.AdmissibilityKernels	mathlib-free
+custody-indexed	CustodyIndexed	LeanProofs.CustodyIndexed	mathlib-free
+dynamic-trace	DynamicTrace	LeanProofs.Admissibility.DynamicTrace	mathlib-free
+dynamic-trace	DynamicTrace	LeanProofs.Admissibility.FreshnessDynamicTrace	mathlib-free
+judgment-orientation	JudgmentOrientation	LeanProofs.JudgmentOrientation	mathlib-free
+path-verdict	PathVerdict	LeanProofs.Admissibility.PathVerdict	mathlib-free
+proof-theory	ProofTheory	LeanProofs.ProofTheory	mathlib-free
+safety-bridge	SafetyBridge	LeanProofs.Admissibility.SafetyBridge	mathlib-free
+view-semantics	ViewSemantics	LeanProofs.ViewSemantics	mathlib-free
+witnessed	Witnessed	LeanProofs.Witnessed	mathlib-free

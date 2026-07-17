@@ -1,5 +1,12 @@
 # Frontier Register — Witnessed Derivation Calculus (Post-2.0)
 
+> **v13 custody correction:** theorem/frontier status is unchanged. Finished
+> Witnessed material is divided between exact stable roots and public evidence;
+> live scaffolding named below moves to skunkworks. The v4-v7 checker substrate,
+> including `FiniteSupportChecker`, now lives under
+> `LeanProofs.CustodyIndexed`. See
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Status: POST-2.0 REGISTER.** Direction #1 (admitting-class normalization) has shipped in
 `v2.0.0` (peeled tag target `b4bd02b`, 2026-06-29):
 `AbstractNormalization.normal_form_iff_of_commutes` is model-independent and axiom-free;
@@ -110,8 +117,12 @@ open because it is **hard**, not because it is speculative.
    certificates only as (a) a proof-carrying `ValidatedResourceCertificate` bundling
    a `Checks` proof, or (b) executable certificate data accepted by a `Bool` checker
    with its own soundness/adequacy theorem. Until then the unchecked shape stays in
-   `LeanProofs/Scratch/UncheckedResourceCertificate.lean` only — keeping "certificate
-   exists + `Checks` valid ⇒ certificate is witnessed" off the public surface.
+   the sibling skunkworks at
+   `~/git/skunkworks/formalization/Calculi/Scratch/UncheckedResourceCertificate.lean`
+   (the v12 source path was
+   `LeanProofs/Scratch/UncheckedResourceCertificate.lean`) — keeping
+   "certificate exists + `Checks` valid ⇒ certificate is witnessed" off the
+   public surface.
 
 4. **Reachability / witnessed refusal (initial consolidation slice LANDED).** The
    `composition_classification` gate remains RETIRED (naive exclusivity failed;
@@ -132,8 +143,9 @@ open because it is **hard**, not because it is speculative.
    (carries enough to remediate or escalate). *Propagation:* generalize
    `refusal_composes_two_hop` to n-hop and characterize boundaries that **break**
    propagation (a refusal that won't compose across a boundary is a laundering seam —
-   the negative result is the stronger one). Scaffolding already exists in `Scratch`
-   (`ConsumerRelative*` / `MultiConsumerAdoption` / `QuorumCustody` / `ShardedCustody`).
+   the negative result is the stronger one). Live scaffolding is in skunkworks
+   (`MultiConsumerAdoption` / `QuorumCustody` / `ShardedCustody`); the older
+   `ConsumerRelative*` fossils remain available in v12/Git history.
    *Refusal-legibility was not required for 1.4.0, 2.0.0, or v11; it remains a post-release frontier.*
 
 ## v11 promotion boundary — Occurrence-Exact Paid Recomposition
@@ -170,9 +182,9 @@ preserving the exact expected map, occurrence-indexed payment, and residue.
 Public `Countermodels.EndpointCompleteness` is the premise-ablation witness:
 authorized and forged attempts share endpoints but differ in exact identity,
 dependent positive content, and expected payment, so endpoint coverage cannot
-globalize paid refusal. `Applications.FiniteSupportOneCrossing` is annex
-evidence because its finite-support checker dependency is explicitly SCRATCH;
-it supplies native positive and negative forcing cases plus accepted-path
+globalize paid refusal. `Applications.FiniteSupportOneCrossing` is public
+evidence over `LeanProofs.CustodyIndexed.FiniteSupportChecker`; it supplies
+native positive and negative forcing cases plus accepted-path
 obligation-residue preservation. The fixed three-cycle enumeration was
 intentionally not promoted because it adds no independent evidence.
 

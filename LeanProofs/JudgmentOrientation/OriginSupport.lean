@@ -3,6 +3,7 @@
     --  the semilattice projection of custody history
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Promoted from skunkworks commit 4f8e07606eb14537e0a0876ee9082178754ae436.
   This module extracts the algebra implicit in
@@ -32,7 +33,7 @@
     `OriginFaithful` remains the separate witness needed before one immutable
     origin can denote one stable orientation payload. Individually faithful
     histories still need `CompatibleTraceBoundary` before payload merge; the
-    examples annex exhibits the resulting conflict boundary.
+    example evidence exhibits the resulting conflict boundary.
   * `heat` is support cardinality. It is invariant under the quotient but is
     not a homomorphism into ordinary Nat addition when supports overlap.
   * No ledger admission, certification, probe authority, action authority,

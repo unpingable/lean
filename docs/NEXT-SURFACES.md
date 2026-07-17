@@ -1,5 +1,14 @@
 # Next Surfaces — name-early register (post-v7)
 
+> **v13 note:** this is a historical/advisory idea register, not the current
+> release queue. v8-v12 have since shipped, and the v13 work is a custody-only
+> migration with no new mathematical campaign. New live incubation belongs in
+> skunkworks; current custody and paths are recorded in
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
+Related open design note (not a promoted surface):
+[`ADJUDICATION-PROVENANCE-DESIGN-NOTE.md`](ADJUDICATION-PROVENANCE-DESIGN-NOTE.md).
+
 **Status: CANDIDATE REGISTER, NON-BINDING.** Filed 2026-07-02 (operator +
 ChatGPT noodling, Fable-audited against the resident corpus). A register
 entry is a handle for review, not authorization to promote or release. **No version
@@ -14,7 +23,7 @@ bridge* and becomes *a set/registry/graph of profiles and receipts whose
 combined coverage may launder authority*.
 
 This register controls promoted/versioned surfaces, not permission to do
-Scratch or candidate theorem work. Formalization may begin from a coherent
+skunkworks theorem work. Formalization may begin from a coherent
 proposition, countermodel, or abstraction boundary and may lead the code.
 Runtime adoption may supply promotion/correspondence evidence, but does not by
 itself prove conformance and is never formalization admission.

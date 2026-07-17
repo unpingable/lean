@@ -1,10 +1,11 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Promoted from `LeanProofs/Scratch/AuthorityScope.lean` (2026-06-27): compiled,
-  sorry-free, axiom-free, wired into `LeanProofs.lean` for build coverage. Signatures
-  are NOT part of the 1.0 compatibility claim — annex semantics (may rename, refactor,
-  or absorb without notice). Provenance: scratch specimen graduated to annex so the
+  sorry-free, axiom-free, and public terminal evidence. Signatures are not part of
+  the exact 1.0 compatibility claim. Provenance: scratch specimen first graduated
+  to the former annex and is now classified honestly as public evidence so the
   scoped conversion receipt is citable as warrant where *standing* (a Boolean held at a
   decision instant) is converted into *authorized use* — anticipated at the point a
   standing layer and an indexer/Spine intersect, where the temptation is to read a bare
@@ -42,7 +43,7 @@
 
   Corpus placement: a sharp specimen of `SurfaceAuthorization` (authorizing *through* a
   surface ≠ the surface being a universal authority) crossed with the no-universal-key /
-  no-laundering family. Sibling faces in annex: `Admissibility.DeferredWitness` (temporal
+  no-laundering family. Sibling public-evidence faces: `Admissibility.DeferredWitness` (temporal
   — signed ≠ witnessed) and `Admissibility.PredicateWitnessSeparation` (projection —
   findability ≠ legitimacy). This is the *scope/conversion-receipt* face: a paid crossing
   authorizes exactly what it names. They do not subsume each other.

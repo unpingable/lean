@@ -1,5 +1,6 @@
 /-
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Admissibility — Execution bridge (Layer 4).
 

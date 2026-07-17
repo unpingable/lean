@@ -1,12 +1,13 @@
 /-
   LeanProofs.Witnessed.PaidRecomposition.Applications.FiniteSupportOneCrossing
-  -- explicit-SCRATCH annex evidence for occurrence-exact paid recomposition.
+  -- terminal checker-integration evidence for occurrence-exact paid recomposition.
 
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  Application custody.  This module intentionally imports the SCRATCH
-  `FiniteSupportChecker`; it is annex evidence for paid recomposition,
-  not part of its stable core.  The source and resource sides retain the exact
+  Application custody. This module intentionally imports the stable
+  `FiniteSupportChecker`; the integration itself is terminal public evidence,
+  not part of PaidRecomposition's stable core. The source and resource sides retain the exact
   equations returned by the resident checkers.  The payment side uses the
   public occurrence-indexed `PaymentTrace` directly over the resident
   `ResourceFormula` context; no parallel token encoding is introduced.
@@ -17,19 +18,19 @@
   preservation is stated.
 -/
 
-import LeanProofs.Scratch.FiniteSupportChecker
+import LeanProofs.CustodyIndexed.FiniteSupportChecker
 import LeanProofs.Witnessed.LaunderingCorpus
 import LeanProofs.Witnessed.PaidRecomposition.Payment
 import LeanProofs.BoundedCalculi.ObligationResidue
 
 namespace LeanProofs.Witnessed.PaidRecomposition.Applications.FiniteSupportOneCrossing
 
-open LeanProofs.Scratch.StructuralPolicySequent (PJ dupSystem linear)
-open LeanProofs.Scratch.StructuralNormalization (Core)
-open LeanProofs.Scratch.DerivationData (Deriv)
-open LeanProofs.Scratch.LinearNormalization (LinResult emptyCalc dupTree dupTree₂)
-open LeanProofs.Scratch.TracedCoherence (tagged)
-open LeanProofs.Scratch.FiniteSupportChecker
+open LeanProofs.CustodyIndexed.StructuralPolicySequent (PJ dupSystem linear)
+open LeanProofs.CustodyIndexed.StructuralNormalization (Core)
+open LeanProofs.CustodyIndexed.DerivationData (Deriv)
+open LeanProofs.CustodyIndexed.LinearNormalization (LinResult emptyCalc dupTree dupTree₂)
+open LeanProofs.CustodyIndexed.TracedCoherence (tagged)
+open LeanProofs.CustodyIndexed.FiniteSupportChecker
 open LeanProofs.BoundedCalculi.MeasureAccounting (wsum)
 open LeanProofs.BoundedCalculi.ObligationResidue (obligation_residue_persists)
 open LeanProofs.Witnessed.ResourceSequent
@@ -279,7 +280,7 @@ theorem payment_length_conservation :
 
 /-! ## Integrated one-crossing evidence -/
 
-/-- The annex integration uses the two unchanged resident checker equations
+/-- The terminal-evidence integration uses the two unchanged resident checker equations
     and the generic payment witness.  Its resource residue is computed by the
     resident trace, and the outstanding obligation survives by proof rather
     than by a stored application field. -/

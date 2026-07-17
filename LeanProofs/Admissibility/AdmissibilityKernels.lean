@@ -1,5 +1,6 @@
 /-
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Admissibility Kernels — public surface aggregator.
 
@@ -16,9 +17,9 @@
   proof-theoretic admissibility logic, not a unified maximal calculus.
   The scope fence below names the full list of non-claims.
 
-  Importing this module brings the 1.0 surface into scope; the broader
-  stack contains annex modules and consumer specimens that are
-  intentionally excluded from the 1.0 promise.
+  Importing this module brings the exact 1.0 surface into scope. The broader
+  repository also publishes terminal evidence and consumer specimens whose
+  names are intentionally excluded from the 1.0 compatibility promise.
 
   (Historical note: this aggregator was previously named `CalculusOne`.
   The rename is doctrine, not refactor: "calculus" overclaimed the
@@ -38,23 +39,23 @@
   ## Scope fence — what 1.0 does NOT claim
 
   1. 1.0 does not prove a general theory of institutions.
-  2. 1.0 does not claim recovery doctrine. Recovery sits in the annex
-     via `PublicReceiptRefinement` and `RecoveryMargin`.
+  2. 1.0 does not claim recovery doctrine. Recovery is separate public
+     evidence via `PublicReceiptRefinement` and `RecoveryMargin`.
   3. 1.0 does not claim cross-boundary process composition. The
-     `CrossBoundary*` family is annex.
+     `CrossBoundary*` family is separate public evidence.
   4. 1.0 does not claim numerical-kind or artifact-kind axes.
-     `NumericalAdmissibility`, `FiatAdmissibility`, `AxisSkew` are annex.
+     `NumericalAdmissibility`, `FiatAdmissibility`, and `AxisSkew` are
+     separate public evidence.
   5. 1.0 does not claim a calculus of communicating processes.
-     `Composition` and `LocalBoundary` are experimental.
+     `Composition` is public evidence; `LocalBoundary` remains external
+     incubation.
   6. 1.0 does not claim formal verification of any real-world institution,
      system, or paper. Consumer modules (`Paper24SharedVision`,
      `Paper25EpistemicBorderControl`, `TaxonomyGraph`, `BranchSelector`,
-     `OpsMasking`, `RepairOperator`, `CollapsedSurface`, `Basic`,
-     `PersistenceModel`, the P27 skeleton at `LeanProofs/Admissibility.lean`)
-     are specimens, not contents. Consumer specimens internal to
-     `LeanProofs/Admissibility/` are enumerated in the Annex (consumer
-     specimens) subsection below; they exercise the public surface in
-     concrete settings without becoming part of it.
+     `OpsMasking`, `RepairOperator`, `CollapsedSurface`, and
+     `PersistenceModel`) are specimens, not contents. Public consumer
+     specimens exercise the exact surface in concrete settings without
+     becoming part of it; unfinished consumers live outside this repository.
   7. 1.0 does not claim a unified maximal calculus that closes the
      kernels into one composing object. The kernels are deliberately
      small and separately defended; their refusal to collapse is a
@@ -73,46 +74,46 @@
   | SurfaceAuthorization| Collapsed-surface refusal; cause-specific gate    |
   | WitnessInvariance   | Evidence-stability discipline under perturbation  |
 
-  ## Annex (ANNEX custody class — compiled support, not public surface)
+  ## Terminal public evidence (published support, not stable 1.0 surface)
 
-  The ANNEX custody class covers compiled supporting material intentionally
-  included in the admissibility corpus, scope-declared and regression-covered,
-  but not promoted as public kernel authority. ANNEX modules are imported by
-  `LeanProofs.lean` for build coverage; their signatures are not part of the
-  1.0 compatibility claim.
+  `PUBLIC-EVIDENCE` covers completed supporting material intentionally
+  published in the admissibility corpus and regression-covered, but not added
+  to this exact compatibility root. These modules are public and citable;
+  their signatures are not compatibility-bearing merely because they are
+  evidence.
 
-  ANNEX splits into two sub-groups by role.
+  The legacy 1.0-adjacent evidence splits into two sub-groups by role.
 
-  ### Kernel-adjacent annex (13 modules)
+  ### Kernel-adjacent evidence (12 modules)
 
   CorrectiveBoundary, PublicReceiptRefinement, RecoveryMargin,
   ClosureEligibility, FiatAdmissibility, NumericalAdmissibility, AxisSkew,
   CrossBoundaryExposure, CrossBoundaryDegradation, CrossBoundaryFailureMint,
-  CrossBoundaryCascade, LocalBoundary, Composition.
+  CrossBoundaryCascade, Composition.
 
   These extend the kernel surface along axes (recovery, cross-boundary
   composition, numerical/artifact kinds, communicating processes) that the
   1.0 surface explicitly does not promise. Per scope-fence points 2–5 above.
 
-  ### Consumer specimens (11 modules)
+  ### Consumer specimens (10 modules)
 
   AttestationLedger, AuthorizedNotSafe, AuthorizedNotSafeWitness,
   AuthorizedStepNotSafe, AuthorizedStepNotSafeWitness, SafetyBridge,
   SafetyBridgeWitness, SafetyTrajectory, ConsolidationDenial,
-  RefusalPropagation, Examples.
+  Examples.
 
   These exercise the kernel surface in concrete settings — the SafetyBridge
   / AuthorizedStep families instantiate the typed-verdict and execution
-  kernels against safety-trajectory specimens; ConsolidationDenial and
-  RefusalPropagation carry refusal-kernel specimens; Examples and
-  AttestationLedger are illustrative. Cross-references scope-fence point 6.
+  kernels against safety-trajectory specimens; ConsolidationDenial carries a
+  refusal-kernel specimen; Examples and AttestationLedger are illustrative.
+  Cross-references scope-fence point 6.
 
-  ### Common ANNEX guarantees and non-guarantees
+  ### Common public-evidence guarantees and non-guarantees
 
-  All ANNEX modules are available, green, and sorry-free — but their
-  signatures are not part of the 1.0 compatibility claim. Future versions
-  may rename them, refactor their APIs, or absorb them into the public
-  surface without prior notice.
+  All public-evidence modules are available, green, and sorry-free, but their
+  signatures are not part of the 1.0 compatibility claim. A later release may
+  reclassify selected definitions into an exact stable root; publication by
+  itself makes no such promise.
 
   ## Load-bearing public API (names only)
 
@@ -181,12 +182,12 @@
     Admissibility.WitnessInvariance.encapsulated_implies_not_moves
 
   Removing any of these names without a major-version bump breaks the
-  1.0 compatibility claim. Annex names carry no such commitment.
+  1.0 compatibility claim. Public-evidence names carry no such commitment.
 
   Custody:
     Public 1.0 surface aggregator; canonical via commit hash + lake build
     proof gate + the scope-fence and load-bearing-API enumerations above.
-    Changes to the public surface, annex enumeration, scope-fence, or
+    Changes to the public surface, evidence classification, scope-fence, or
     load-bearing API list require explicit ratification.
 -/
 

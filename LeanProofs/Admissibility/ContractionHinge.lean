@@ -1,10 +1,11 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  Admissibility — Contraction Hinge (scratch annex, specimen).
+  Admissibility — Contraction Hinge (terminal public specimen).
 
-  Status: scratch annex, 2026-06-02. Not imported by `LeanProofs.lean`.
-  Not part of any 1.0 surface. No README / PAPER-MAP promotion.
+  Opened as scratch on 2026-06-02; adjudicated in v13 as terminal public
+  evidence outside the exact 1.0 compatibility surface.
   Re-aligned 2026-06-02 to the design-frozen Slice 0 charter
   (historical name: "Calculus Charter — Slice 0: The Contraction
   Hinge"). Content unchanged from the prior pass; presentation

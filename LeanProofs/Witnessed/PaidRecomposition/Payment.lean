@@ -3,6 +3,7 @@
   payments.
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   This module is the Mathlib-free stable payment core for occurrence-exact
   paid recomposition.  A successful step carries the exact `ResourceChecker.removeAt`

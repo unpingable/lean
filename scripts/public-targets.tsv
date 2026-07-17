@@ -1,0 +1,30 @@
+# public-targets.tsv — exact registry of every public Lake library in every
+# repository-owned Lake project.
+# columns: project<TAB>target<TAB>target-role<TAB>import-policy<TAB>build-policy
+# `.` names the root project. `pinned-external` means that local source custody
+# is checked here while its external import closure is attested by exact Git
+# requirements plus the committed Lake manifest, not mistaken for current-tree
+# or Mathlib-free closure.
+.	AdmissibilityEvidence	public-evidence	mathlib-free	default
+.	AdmissibilityEvidenceMathlib	public-evidence	mathlib-island	explicit
+.	AdmissibilityKernels	stable-surface	mathlib-free	default
+.	BoundedCalculi	public-evidence	mathlib-free	default
+.	CustodyIndexed	stable-surface	mathlib-free	default
+.	CustodyIndexedEvidence	public-evidence	mathlib-free	default
+.	DynamicTrace	stable-surface	mathlib-free	default
+.	JudgmentOrientation	stable-surface	mathlib-free	default
+.	JudgmentOrientationEvidence	public-evidence	mathlib-free	default
+.	LeanProofs	repository-aggregate	mathlib-reaching	explicit
+.	PaidRecompositionEvidence	public-evidence	mathlib-free	default
+.	PathVerdict	stable-surface	mathlib-free	default
+.	PathVerdictEvidence	public-evidence	mathlib-free	default
+.	ProofTheory	stable-surface	mathlib-free	default
+.	ProofTheoryEvidence	public-evidence	mathlib-free	default
+.	ReachableDrift	public-evidence	mathlib-free	default
+.	SafetyBridge	stable-surface	mathlib-free	default
+.	ViewSemantics	stable-surface	mathlib-free	default
+.	ViewSemanticsEvidence	public-evidence	mathlib-free	default
+.	ViewSemanticsEvidenceMathlib	public-evidence	mathlib-island	explicit
+.	Witnessed	stable-surface	mathlib-free	default
+.	WitnessedEvidence	public-evidence	mathlib-free	default
+downstream/wdc-v2-consumer	DownstreamWdcV2	public-evidence	pinned-external	default

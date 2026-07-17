@@ -3,6 +3,7 @@
     -- every protected endpoint difference names a privileged change step
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Promoted from skunkworks commit 4f8e07606eb14537e0a0876ee9082178754ae436.
   This stable module localizes protected endpoint differences to privileged
@@ -18,7 +19,7 @@
     exhibited repair edited the trace rather than the consumer.
 
   This file discharges the general attribution half. The optional `Examples`
-  annex retains the accumulator-repair witness without making that fixture a
+  example evidence retains the accumulator-repair witness without making that fixture a
   dependency of the theorem surface.
 
   ATTRIBUTION. A mixed trace interleaves orientation steps with opaque
@@ -35,7 +36,7 @@
   change point. Whether the privileged step was JUSTIFIED is outside this
   calculus — the theorem only guarantees the change has an address.
 
-  ACCUMULATOR REPAIR (ANNEX). `deduplicatedTrace` in the examples satisfies the
+  ACCUMULATOR REPAIR (PUBLIC EVIDENCE). `deduplicatedTrace` in the examples satisfies the
   origin bound by deleting three relays from history. A consumer cannot
   prevent re-delivery; it can only refuse to count it. The repair specimen
   is an idempotent suspicion accumulator: on the FULL four-relay trace it
@@ -50,7 +51,7 @@
     step is admissible, witnessed, or approved.
   * The localization case split on an undecidable Prop is classical.
     Footprint includes `Classical.choice` for the attribution family.
-  * The annex's idempotence specimen is not origin-awareness. The sibling `Provenance` and
+  * The evidence specimen's idempotence is not origin-awareness. The sibling `Provenance` and
     `OriginSupport` modules supply exact-origin accounting. The accumulator
     specimen shows only that the declared one-origin bound is satisfiable
     without falsifying the delivery history.

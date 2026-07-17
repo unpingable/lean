@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Temporal basis specimen (2026-07-09). Time assurance for the NQ seam,
   formalization leading implementation: this is NQ-T4 of the temporal-basis
@@ -36,8 +37,8 @@
   producer clock (`CustodyFreshnessSpecimen` — that file owns the chain;
   this one owns the packet/witness/contract layer); single-receipt
   metric-time staleness (`Freshness` [1.0]); late-witness completion
-  licenses (`DeferredWitness`, ANNEX); silence-shape inequations
-  (`ProjectionLaundering`, candidate). NQ's five-state `basis_state`
+  licenses (`DeferredWitness`, public evidence); silence-shape inequations
+  (`ProjectionLaundering`, public evidence). NQ's five-state `basis_state`
   lifecycle is NQ's own cut and is deliberately NOT mirrored — this file's
   three-state source lifecycle (live/retired/invalidated) is the minimal
   slice the theorems need, not a wire enum.
@@ -48,12 +49,10 @@
   receipts), schedulability/WCET (admissibility governs reliance on timing
   testimony, never proves the scheduler), NQ's detector/runtime behavior.
 
-  Unwired: not imported by `LeanProofs.lean` or any default target. Build
-  directly: `lake build LeanProofs.Admissibility.TemporalBasis`.
-  Formalization does not wait on NQ implementation. Under the current custody
-  fence, ANNEX promotion still requires NQ to identify the named theorems it
-  adopts under its pinning discipline. Citation names the intended contract;
-  conformance still requires a mapping plus runtime evidence or refinement.
+  Custody: terminal public evidence, regression-built by
+  `lake build AdmissibilityEvidence`. Publication does not claim NQ adoption;
+  conformance still requires an explicit mapping plus runtime evidence or a
+  refinement proof.
 -/
 
 /-!

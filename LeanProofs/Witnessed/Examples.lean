@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   LeanProofs.Witnessed.Examples — gate-4 consumer specimen.
 
   Purpose: prove the Witnessed Derivation Calculus is usable from OUTSIDE the ported

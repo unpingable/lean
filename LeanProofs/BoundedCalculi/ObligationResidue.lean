@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   BoundedCalculi.ObligationResidue -- an obligation-facing wrapper over
   `LeanProofs.Witnessed.ResourceSequent`.

@@ -1,7 +1,8 @@
 /-
   The proof-theory island -- public aggregator.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
   Sequent-calculus specimens, Mathlib-free by build-graph enforcement (see
   lakefile.toml, lean_lib ProofTheory). Promoted out of Scratch 2026-07-06
   under the rule: WIRE AS SPECIMEN/LIBRARY, NOT AS DOCTRINE/KERNEL/UNIFIER.
@@ -22,11 +23,9 @@
     the size-nonincreasing inversion package, ADMISSIBLE CONTRACTION, the
     derivability equivalence with the Specimen, and cut/weakening/identity
     for textbook G3ip as transport corollaries.
-  - Audit: #print axioms receipts for every load-bearing name; grep-target
-    for scripts and CI. Verdict currency: grep + lake build + #print
-    axioms, never narrative.
+  The separate `LeanProofs.ProofTheory.Evidence` root owns the executable
+  axiom-print audit receipts.
 -/
 
 import LeanProofs.ProofTheory.MembershipG3.Specimen
 import LeanProofs.ProofTheory.MembershipG3.TextbookG3ip
-import LeanProofs.ProofTheory.MembershipG3.Audit

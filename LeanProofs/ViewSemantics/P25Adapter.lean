@@ -2,7 +2,8 @@
   LeanProofs.ViewSemantics.P25Adapter -- Mathlib-reaching compatibility
   bridge for Paper 25's finite-horizon observation semantics.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   This adapter makes the reuse boundary explicit without changing the P25
   module or importing its Mathlib dependency into the small ViewSemantics

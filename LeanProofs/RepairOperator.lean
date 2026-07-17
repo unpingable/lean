@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   Sovereign Repair Operator — hostile kernel check.
 
   Formalizes the structural core of the self-similar repair operator

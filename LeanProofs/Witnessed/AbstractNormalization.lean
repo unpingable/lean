@@ -4,7 +4,9 @@
   factorization holds for ANY two-family paid-bridge system satisfying a local commutation
   law, not just the freshness model `(Nat, <, b−a)`.
 
-  Custody class: PROMOTED WDC 2.0 receipt. Imports only the spine (`NoFreeLift`, for
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Stable WDC 2.0 receipt. Imports only the spine (`NoFreeLift`, for
   `PaidFrom`). Imported by the Witnessed aggregator and footprint-attested
   (`scripts/check-witnessed-footprint.sh`). The shipped
   `Normalization.bridge_path_normal_form` is the freshness INSTANCE of

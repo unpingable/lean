@@ -22,10 +22,10 @@ jobs:
       # paper/specimen modules or the Finset-backed cross-boundary island.
       # "CI green" must mean "release claim green" — build both explicitly.
       - name: Full aggregate + Mathlib islands
-        run: lake build LeanProofs AdmissibilityMathlibIslands
-      # Candidate v10 campaign. Explicit contact is not release or promotion.
-      - name: View Semantics candidate
-        run: lake build ViewSemantics ViewSemanticsApplications ViewSemanticsMathlibIslands
+        run: lake build LeanProofs AdmissibilityEvidenceMathlib ViewSemanticsEvidenceMathlib
+      # v10 stable surface plus terminal public evidence and explicit island.
+      - name: View Semantics public surfaces
+        run: lake build ViewSemantics ViewSemanticsEvidence ViewSemanticsEvidenceMathlib
       - name: View Semantics footprint gate
         run: bash scripts/check-viewsemantics-footprint.sh
       # Gate 5: re-attest the Witnessed Derivation Calculus axiom footprint in the
@@ -35,19 +35,25 @@ jobs:
       - name: Witnessed footprint gate
         run: bash scripts/check-witnessed-footprint.sh
       # v11: occurrence-exact paid recomposition. Re-attest exact custody,
-      # stable-root isolation, fenced evidence, frozen API names, and footprints.
+      # stable-root isolation, terminal evidence, frozen API names, and footprints.
       - name: Paid recomposition footprint gate
         run: bash scripts/check-paid-recomposition-footprint.sh
       # Judgment orientation (v12 stable-surface regression gate): re-attest
-      # the five-module family's axiom footprint and receipt names; annex builds
-      # but stays outside the stable root (import custody is enforced by the
+      # the five-module family's axiom footprint and receipt names; public evidence
+      # builds but stays outside the stable root (import custody is enforced by the
       # custody registry script below).
       - name: Judgment orientation footprint gate
         run: bash scripts/check-judgment-orientation-footprint.sh
+      # Terminal public-evidence fixture: a separate Lake project whose
+      # committed manifest resolves the released v2.0.0 Git dependency to an
+      # exact commit. A bare build is the downstream compatibility receipt.
+      - name: Pinned WDC v2 downstream consumer
+        working-directory: downstream/wdc-v2-consumer
+        run: lake build
       # Repo audit gates (cheap, grep/toml-based; no Lean invocation):
       # axiom classification, native_decide policy, custody-class registry,
       # Mathlib pin agreement, and the Mathlib-free import closure of the
-      # cheap custody target.
+      # whole public tree and every declared Mathlib-free target.
       - name: Audit scripts
         run: |
           bash scripts/audit-axioms.sh

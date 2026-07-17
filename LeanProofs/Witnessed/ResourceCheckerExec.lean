@@ -1,7 +1,9 @@
 /-
   LeanProofs.Witnessed.ResourceCheckerExec -- executable resource checker (Slice A).
 
-  Custody class: ANNEX (Mathlib-free public surface). Turns the Prop-level
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Stable Mathlib-free surface turning the Prop-level
   `ResourceChecker.Checks` relation into a runnable, Bool-computing TRACE VALIDATOR,
   and proves that existence of an accepting trace is equivalent to `Checks` (hence
   `Derives`) — NOT that the checker decides a supplied judgment. It validates a
@@ -25,9 +27,10 @@
   On the trace vs. the deleted certificate. `Trace` / `BaseStep` / `BridgeStep` ARE a
   witness/certificate syntax — but an *untrusted input* one: the gate re-checks every
   step and RECOMPUTES the residual via `removeAt`, so the trace carries no stated
-  output, no residue claim, and no authority. That is the opposite of the removed
-  ANNEX `ResourceCertificate`, which presented a stated `output`/residue AS if
-  witnessed. Input-witness the gate refutes-or-accepts, not output-receipt it trusts.
+  output, no residue claim, and no authority. That is the opposite of the
+  retired unchecked `ResourceCertificate` specimen, which presented a stated
+  `output`/residue as if witnessed. Input-witness the gate refutes-or-accepts,
+  not output-receipt it trusts.
 
   Scope. Floor and bridge are supplied as Bool deciders `kb` / `bb`. Soundness holds
   for any `B` with `bb ⊆ B` (`checkTrace_sound`); the iff is stated against the Prop

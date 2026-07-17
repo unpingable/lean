@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.LaunderingCorpus -- adversarial witnesses (Slice C).
 
-  Custody class: ANNEX (Mathlib-free public surface). A corpus of NAMED laundering
-  specimens for the resource gate: each is a concrete malformed (or legitimate)
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+  Terminal public evidence: a corpus of named laundering specimens for the
+  resource gate. Each is a concrete malformed (or legitimate)
   witness with a verdict name, exercised through the executable checker
   (`ResourceCheckerExec.checkTrace`) or the resource metatheory.
 

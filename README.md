@@ -9,6 +9,49 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
+## Working tree: v13 custody migration (not released)
+
+v12 is the current release.  The post-release working tree is performing a
+custody-only v13 migration: no new mathematical campaign, but a real module-
+path and enforcement boundary.  It replaces the old ANNEX/Scratch/candidate
+sedimentary layers with three explicit dispositions:
+
+- **stable API** — compatibility-bearing modules in a registered exact root
+  closure;
+- **public evidence** — finished, citable examples, countermodels, specimens,
+  and audit fossils outside stable roots; and
+- **skunkworks incubation** — live work whose names, assumptions, or hostile
+  corpus may still change.
+
+Public evidence is a terminal state, not unfinished API.  The v4-v7
+checker/sequent substrate is being recognized under
+`LeanProofs.CustodyIndexed`, and PathVerdict under
+`LeanProofs.Admissibility.PathVerdict`; both were already authoritative inputs
+to later work despite their old `Scratch/` paths.  The full 271-file audit,
+completed 53-file skunkworks transfer, deletion decisions, fail-closed gate,
+and pending release checks are recorded in
+[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
+
+No v13 tag, release, DOI mint, or release-metadata update has occurred.  The
+versioned sections below retain archive-time custody wording where it explains
+what those releases actually contained; current paths and roles are governed
+by the v13 ledger.
+
+Current verification checkpoint: all 53 incubations have canonical sibling
+homes and pass its 26-check migration audit. The public tree now contains
+exactly 179 Lean modules — 82 stable, 96 public evidence, and one aggregate —
+and the whole-tree custody gate passes across ten stable roots and 98
+root-ownership relations. The strengthened target gate passes across two
+repo-owned Lake projects: 23 public targets, 23 exact local closures, 19
+Mathlib-free current-tree targets, 463 local target/module ownerships, one
+pinned-external target, and one locked external boundary. The downstream
+fixture's 19-job bare build passes. The final post-transfer public suite, clean
+149-job sibling build, four-module Mathlib incubation island, and 29-check
+sibling CI all pass. The v12-to-v13 integrity audit accounts for every source
+deletion and confirms 171 retained/rehomed modules token-equivalent to v12
+plus eight import-only roots. Operator review remains before any release
+action.
+
 ## Current release: 12.0.0 — Judgment Orientation
 
 **Released 2026-07-16.**
@@ -34,14 +77,14 @@ admissibility, witnessing, and authority. Its exact five-module root proves:
   support of the trace's privileged provenance. Attribution is structural — a
   privileged step enters an attributed trace only together with its
   `Occurrence` — and the converse is false, with the no-op witness proved in
-  the annex.
+  public evidence.
 
 The stable root excludes `LeanProofs.JudgmentOrientation.Examples`, which keeps
 the Streetlamp, source-blind laundering, four-relay, accumulator-repair, and
-payload-conflict fixtures as ANNEX evidence rather than dependencies of the
+payload-conflict fixtures as public evidence rather than dependencies of the
 general laws. Import with `import LeanProofs.JudgmentOrientation`; build the
 stable surface with `lake build JudgmentOrientation` and the fixtures with
-`lake build JudgmentOrientationExamples`.
+`lake build JudgmentOrientationEvidence`.
 
 `EffectiveSupport` has a private representation; consumers receive its
 algebraic operations and laws rather than a frozen quotient carrier. The family
@@ -85,10 +128,11 @@ Three claim scopes remain distinct:
 2. no accepted paid plan in one named catalog;
 3. global nonexistence only under exact attempt-level catalog completeness.
 
-Evidence remains source-visible ANNEX and is excluded from the stable root:
+Evidence remains source-visible public evidence and is excluded from the
+stable root:
 
-- `Applications/ResourceTraceOneCrossing.lean` is the Mathlib-free,
-  non-SCRATCH corpus application. It preserves the resident
+- `Applications/ResourceTraceOneCrossing.lean` is the Mathlib-free corpus
+  application. It preserves the resident
   `ResourceCheckerExec.Trace Nat` attempt and native positive checker equation,
   expected-payment map, occurrence-indexed payment, and computed residue
   end-to-end.
@@ -97,8 +141,9 @@ Evidence remains source-visible ANNEX and is excluded from the stable root:
   exact identity, dependent receipt content, and expected payment; a
   forged-only endpoint-complete catalog cannot globalize refusal and is not
   exact-complete.
-- `Applications/FiniteSupportOneCrossing.lean` is annex evidence with an
-  explicit SCRATCH `FiniteSupportChecker` dependency. It retains resident
+- `Applications/FiniteSupportOneCrossing.lean` is public evidence over the
+  corrected public `LeanProofs.CustodyIndexed.FiniteSupportChecker`
+  foundation. It retains resident
   positive and negative checker results, positional provenance, the native
   excess/offender interpretation, exact payment residue, and accepted-path
   obligation residue.
@@ -578,7 +623,15 @@ The **Witnessed Derivation Calculus** surface (the Mathlib-free
 
 The name is deliberately narrow. This is **not** a process calculus, a maximal admissibility logic, or a unification of every kernel in the repository. The calculus governs witnessed derivation across typed bridges; the formula/Gentzen/resource additions are the positive presentation and canonical-residue slices only, not implication, full linear logic, or model-to-world transfer. `WitnessedDiscipline` is a model filter beside it, not part of normalization, and the 2.0 normalization result is an admitting-class theorem, not universal normalization.
 
-The ratified calculus lives in the canonical surface as `LeanProofs.Witnessed.*` — a separate **Mathlib-free** library (`import LeanProofs.Witnessed`), with its axiom footprint regression-gated by `scripts/check-witnessed-footprint.sh`. Its ratified source is preserved under `experiments/no_free_lift_wiring/`. The public surface remains **additive/non-breaking** relative to 1.x; 2.0.0 is the structural WDC milestone, not an API churn release. The historical promotion gate is recorded in [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md); the post-v2 frontier is tracked in [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
+The ratified calculus lives in the canonical surface as
+`LeanProofs.Witnessed.*` — a separate **Mathlib-free** library (`import
+LeanProofs.Witnessed`), with its axiom footprint regression-gated by
+`scripts/check-witnessed-footprint.sh`. Its former standalone source is
+preserved by the v12 tag and Git history; the ratification/migration prose
+remains under `experiments/no_free_lift_wiring/`. The historical promotion gate
+is recorded in [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md);
+the post-v2 frontier is tracked in
+[`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
 - **Exact ratified claims and theorem receipts:** [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md)
 - **Migration and divergence constraints:** [`MIGRATION-NOTES.md`](experiments/no_free_lift_wiring/MIGRATION-NOTES.md)
@@ -586,18 +639,23 @@ The ratified calculus lives in the canonical surface as `LeanProofs.Witnessed.*`
 - **Downstream v2 consumer receipt:** [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/)
 - **Release:** `v2.0.0` (supersedes [`v1.4.0`](https://github.com/unpingable/lean/releases/tag/v1.4.0))
 
-## Stable public surface: Admissibility Kernels
+## Stable public surfaces
 
 The stable public surface remains a collection of small admissibility kernels, each isolating a particular refusal boundary: stale authority, invalid standing upgrades, unauthorized transition, collapsed public surfaces, unwitnessed movement, and related category errors.
 
 > Local kernels decide admissibility. Witnessed movement between contexts requires an explicit bridge.
 
-The repository therefore contains two related but distinct layers:
+Two central authority layers remain related but distinct:
 
 1. **Admissibility Kernels** — small local refusal kernels (the stable 1.x public surface).
 2. **Witnessed Derivation Calculus** — the ratified calculus for witnessed movement and composition across typed bridges, a canonical **Mathlib-free** surface (`LeanProofs.Witnessed.*`) shipped in 1.4.0 and structurally strengthened in 2.0.0.
 
 Neither is a universal model of institutions, software systems, or agency.
+They are not the repository's only compatibility roots: CustodyIndexed,
+ProofTheory, ViewSemantics, DynamicTrace, SafetyBridge, PathVerdict, and
+JudgmentOrientation have their own exact roots. The machine source of truth is
+[`scripts/stable-surfaces.tsv`](scripts/stable-surfaces.tsv); no aggregate or
+directory silently promotes a module.
 
 ## Start here
 
@@ -627,6 +685,14 @@ The point is not to prove an entire software system correct. It is to make inval
 - **Cross-boundary artifact specimens** — exposure, degradation, failure minting, cascade.
 - **Safety-bridge family** *(Frontier 1)* — proves that authorization does not entail defended-value preservation; a separate bridge predicate is required. Ratifies the standalone safety axis, not any unified-calculus rename.
 - **Witnessed Derivation Calculus** *(ratified; canonical `LeanProofs.Witnessed.*` since 1.4.0, structurally strengthened in 2.0.0, Mathlib-free)* — witnessed movement and composition across typed bridges, now with the additive positive-formula and canonical resource/residue slices. See the release section above.
+- **Custody-Indexed family** *(v4-v7 corrected stable substrate,
+  Mathlib-free)* — paid bridge sequents, custody-preserving normalization,
+  finite checking, and artifact/jurisdiction profiles under
+  `LeanProofs.CustodyIndexed`; attack and release fixtures have a separate
+  evidence root.
+- **PathVerdict** — stable obstruction-log core and edges under
+  `LeanProofs.Admissibility.PathVerdict`, with standard obstructions and
+  promotion coverage in a separate evidence root.
 - **Occurrence-Exact Paid Recomposition** *(v11 stable Witnessed family,
   Mathlib-free)* — proof-relevant ordered payments with exact computed residue
   and exact-attempt catalog adequacy. Applications and the endpoint
@@ -634,7 +700,7 @@ The point is not to prove an entire software system correct. It is to make inval
 - **Judgment Orientation** *(v12 stable sibling family, Mathlib-free)* —
   protected-state confinement, privileged change-point attribution, exact-
   origin provenance, finite-support algebra, and their one-way bridge. Fixtures
-  remain in a separately imported ANNEX.
+  remain in separately imported public evidence.
 
 For the full module-by-module reference, see [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
@@ -652,13 +718,32 @@ Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight stabl
 
 ## Repository custody and compatibility
 
-Annex modules (recovery doctrine, cross-boundary specimens, numerical/artifact-kind axes, experimental composition, reachability/refusal adapters, safety-bridge family) and root-level consumer specimens (Paper 24/25, NQ-shaped modules) build green but are not part of the stable compatibility claim. Many `LeanProofs/Admissibility/` modules are wired into `LeanProofs.lean` for regression coverage; fenced UNRATIFIED-CANDIDATE / SCRATCH material may still build only when invoked directly. Wiring is build-coverage, not public-surface promotion — promotion lives in the `AdmissibilityKernels.lean` aggregator's import list. The separate Witnessed stable surface is controlled by `LeanProofs/Witnessed.lean`; its paid-recomposition root imports only `Payment` and `Catalog`, and its exact eight-module stable closure is `PUBLIC-SHIPPED`, while the three `Applications/*` / `Countermodels/*` evidence modules remain ANNEX outside that root. The Judgment Orientation surface is controlled by its exact five-import root; `Examples` remains ANNEX. Per-file custody status is regression-checked via `scripts/check-custody-classes.sh`; per-module roles are tracked in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) and [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
+Every public Lean source carries `Custody-Class: PUBLIC-SHIPPED` plus one
+machine-readable `Surface-Role`: `STABLE-SURFACE`, `PUBLIC-EVIDENCE`, or (for
+the root contact build) `REPOSITORY-AGGREGATE`.  Stable promotion is controlled
+by the exact registered root for each theorem family, not by directory,
+default-target membership, or the `LeanProofs.lean` aggregate.  Public evidence
+is source-visible and citable but cannot enter a stable transitive closure.
+Live incubation belongs in the sibling skunkworks and may not be imported by a
+public module.
+
+The whole-tree custody gate, exact surface registries, family-specific
+footprint gates, and Mathlib-isolation checks are independent receipts.  This
+corrects the pre-v13 partial checker, which covered only a subset of the tree.
+See [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md) for the
+current migration state and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
+what each gate establishes.
 
 ### `experiments/` — tracked wiring witnesses (non-canonical)
 
 The `experiments/` tree holds reproducible integration artifacts that are **not imported by the canonical proof surface** — each is its own Lake project with its own toolchain pin. A successful build under `experiments/` attests that the wiring checks; it does **not** promote any result into the relied-upon theorem surface (build-exit-0 is attestation of the math, never admission of a world claim). See [`experiments/README.md`](experiments/README.md) for the per-project custody contract (`EXPERIMENTAL-WIRING`).
 
-Currently: `no_free_lift_wiring/` — the customs-office spine plus modeled freshness/authority embeddings. It hosts the **ratified source** of the Witnessed Derivation Calculus (`Successor/` + the `Wired` spine) — now promoted into the canonical surface as `LeanProofs.Witnessed.*` (this tree remains the provenance record, still not imported by the canonical surface) — and the **findings record for the retired composition-classification gate** ([`COMPOSITION-CLASSIFICATION-TARGET.md`](experiments/no_free_lift_wiring/COMPOSITION-CLASSIFICATION-TARGET.md) — the proposed exhaustive classifier was investigated and retired as the wrong target, not unproved). The public-surface promotion was governed by [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md): public promotion, migration map, stable namespace, and a non-experimental compiled consumer — not new theorems. That promotion shipped in 1.4.0; the 2.0.0 release is the later structural normalization + audit-fence milestone.
+The former `no_free_lift_wiring/` Lake project has been retired from live
+source during the v13 cleanup because its promoted successor is
+`LeanProofs.Witnessed.*`.  Its ratification, migration, and audit prose remains
+in `experiments/no_free_lift_wiring/` as a historical record; the exact retired
+source remains recoverable from the v12 tag and Git history.  The prose archive
+is not a build target or a second canonical implementation.
 
 ## What this is not
 
@@ -695,7 +780,13 @@ That is the point. Lean is used here as a pressure chamber for theory: it helps 
 
 **`LeanProofs/RepairOperator.lean`** — Sovereign repair operator. No paper anchor; formalizes the working note `working/sovereign-repair-operator.md`.
 
-**`LeanProofs/Admissibility.lean`** — P27 obligation skeleton (namespace `P27`). Sorry-free as of 2026-05-01 (three real proofs against the local `admissible` definition; two `True`-placeholder discharges with deferred-real-statement docstrings pending substrate-accusation / causal-binding predicates). Intentionally **not** wired into `LeanProofs.lean` root. Sibling but independent from the `Admissibility/*` kernel modules; the P27 skeleton is post-transition obligation accounting, the kernel is pre-action authorization.
+**P27 obligation skeleton** — formerly `LeanProofs/Admissibility.lean`, now
+skunkworks `formalization/Calculi/Scratch/P27ObligationSkeleton.lean`
+(namespace `P27`). It is sorry-free (three real proofs against the local
+`admissible` definition) but retains two `True`-placeholder discharges pending
+substantive substrate-accusation / causal-binding predicates. It is not public
+evidence or a stable import. The skeleton is post-transition obligation
+accounting; the Admissibility kernels govern pre-action authorization.
 
 ### First documented BROKEN claim
 
@@ -708,10 +799,15 @@ The audit's first recorded finding, kept here as the chronological anchor for th
 Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 
 ```bash
-lake build                  # Mathlib-free custody/release surfaces incl. ViewSemantics candidate/application targets
-lake build Witnessed        # the Witnessed Derivation Calculus in isolation (Mathlib-free)
-lake build PaidRecompositionEvidence # v11 evidence only; excluded from stable Witnessed
-lake build JudgmentOrientation JudgmentOrientationExamples # v12 stable family + ANNEX fixtures
+lake build                  # default Mathlib-free stable and evidence targets
+lake build Witnessed WitnessedEvidence
+lake build CustodyIndexed CustodyIndexedEvidence
+lake build PathVerdict PathVerdictEvidence
+lake build PaidRecompositionEvidence
+lake build JudgmentOrientation JudgmentOrientationEvidence
+lake build ViewSemantics ViewSemanticsEvidence
+lake build AdmissibilityEvidenceMathlib ViewSemanticsEvidenceMathlib
+(cd downstream/wdc-v2-consumer && lake build) # pinned public-evidence fixture
 bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
 bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
 bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
@@ -722,19 +818,18 @@ bash scripts/audit-native-decide.sh         # native_decide confined to finite-w
 bash scripts/check-mathlib-pin.sh           # lakefile mathlib rev == manifest SHA (no silent drift)
 ```
 
-The ViewSemantics campaign remains `UNRATIFIED-CANDIDATE`: the v10 release
-archives the tree, and neither the tag/DOI nor default build coverage is a
-custody promotion. Its P25 adapter remains outside the default cheap graph and
-builds explicitly with `lake build ViewSemanticsMathlibIslands`.
+The ViewSemantics stable root and evidence roots are now explicitly separated.
+Its P25 adapter remains outside the default cheap graph and builds explicitly
+with `lake build ViewSemanticsEvidenceMathlib`.
 
 **Custody posture: the repository is not axiom-free; it is *axiom-classified*. WDC promoted
 receipts remain footprint-attested.** See [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
 what each gate checks and the four axiom classes (signature / interface-law / specimen /
 forbidden — the last held at zero).
 
-The ratified source of the calculus also builds standalone under
-`experiments/no_free_lift_wiring/` (its own Lake project / toolchain pin) — that tree
-is the provenance record, not the canonical import path.
+The former standalone wiring source is preserved by the v12 tag and Git
+history; the remaining `experiments/no_free_lift_wiring/` prose is an audit
+archive, not a buildable canonical path.
 
 ## Cross-references
 
@@ -745,6 +840,7 @@ is the provenance record, not the canonical import path.
 - [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) — claim-level audit with specific prose-location status (BROKEN / STALE / SOUND / OPEN)
 - [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) — Witnessed frontier and the v11 paid-recomposition claim/evidence boundary
 - [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md) — v12 Judgment Orientation claim, custody inventory, and verification receipt
+- [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md) — in-progress post-v12 custody/path correction; not a release record
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
 - [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
 - [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
@@ -757,6 +853,11 @@ is the provenance record, not the canonical import path.
 exact five-module stable sibling surface. Its frozen inventory and final gate
 receipts are recorded in
 [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md).
+
+**v13 migration in progress:** current working-tree paths and custody roles are
+being corrected under
+[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).  No v13 release
+or DOI action is asserted.
 
 **`v11.0.0` is locally tagged:** Occurrence-Exact Paid Recomposition is in the
 stable Witnessed import surface. The local annotated tag does not establish

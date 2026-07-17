@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.HeadOnlyGentzenCutFailure -- archived obstruction.
 
-  Custody class: ANNEX (Mathlib-free public surface). A PRESERVED RECORD, not a
-  live claim about the current calculus.
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+  Terminal public evidence: a preserved historical record, not a live claim
+  about the current calculus.
 
   This file hosts a self-contained copy of the OLD head-only Gentzen presentation
   (`HeadOnlySeq` / `HeadOnlyDeriv`, left rules fire only on the context HEAD) purely

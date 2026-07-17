@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   CollapsedSurface — Discrete-finite form of observation-equivalence.
 
   Companion to LeanProofs/Paper25EpistemicBorderControl.lean (matrix /

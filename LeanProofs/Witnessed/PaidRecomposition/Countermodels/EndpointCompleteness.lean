@@ -2,7 +2,8 @@
   LeanProofs.Witnessed.PaidRecomposition.Countermodels.EndpointCompleteness --
   endpoint coverage is too weak for exact paid catalog adequacy.
 
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   This Mathlib-free countermodel separates two attempts with identical
   endpoints but different custody and expected-payment content.  A catalog

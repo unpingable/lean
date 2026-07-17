@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   WLP append-acknowledgement specimen (2026-07-09). The write-log/publication
   seam: a transport-layer acknowledgement (append ack) and a publication
@@ -22,12 +23,10 @@
   NOT modeled, on purpose: TCP, a ledger implementation, storage protocols,
   remote gate semantics, retries, ordering. The evidence items are symbolic.
 
-  Unwired: not imported by `LeanProofs.lean` or any default target. Build
-  directly: `lake build LeanProofs.Admissibility.WLPAppendAckSpecimen`.
-  Formalization does not wait on runtime adoption. Under the current custody
-  fence, ANNEX promotion still requires a runtime artifact to identify the
-  named theorems it adopts. Citation names the intended contract; conformance
-  still requires a mapping plus runtime evidence or a refinement proof.
+  Custody: terminal public evidence, regression-built by
+  `lake build AdmissibilityEvidence`. Publication does not claim runtime
+  adoption; conformance still requires a mapping plus runtime evidence or a
+  refinement proof.
 -/
 
 /-!

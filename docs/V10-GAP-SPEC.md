@@ -1,5 +1,9 @@
 # v10 Gap Spec — View Semantics and Bounded Projection
 
+> **Historical specification.** Candidate/Scratch custody below describes the
+> v10 campaign. Current stable/evidence paths follow
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Status: CAMPAIGN CLOSED / LOCALLY TAGGED (2026-07-14).** This document
 authorized a campaign, not a version, tag, GitHub release, or DOI. The earlier untracked
 `V10-RELEASE-LEDGER.md` draft has been retired; its relevant green build and

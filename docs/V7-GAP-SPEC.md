@@ -1,5 +1,9 @@
 # v7 Gap Spec — Artifact Authority Profiles
 
+> **Historical specification.** Its Scratch paths describe the v7 campaign.
+> The unchanged released family now lives under `LeanProofs/CustodyIndexed/`;
+> see [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Status: RATIFIED (operator, 2026-07-02),** with the §9 wording amendment
 (failure-class grounds, not prior-art grounds) from the ChatGPT co-review.
 Local v7 work authorized; slices admitted per §10 first. Drafted 2026-07-02

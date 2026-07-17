@@ -1,5 +1,6 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   BoundedCalculi.BoundaryArtifact -- minimal boundary-artifact mint rules.
 
@@ -9,14 +10,14 @@
   Important custody warning: this module uses local shape-compatible stand-ins
   for exposure, boundary, and partition records. It does not testify about the
   existing `Admissibility.CrossBoundaryExposure` module until a separate
-  adapter theorem is added in an environment where that Mathlib-backed annex is
-  available.
+  adapter theorem is added in an environment where that Mathlib-backed public
+  evidence is available.
 -/
 
 
 namespace LeanProofs.BoundedCalculi.BoundaryArtifact
 
-/-- Shape-compatible local boundary exposure record. The existing annex module
+/-- Shape-compatible local boundary exposure record. The existing public-evidence module
     has the same fields but also imports Mathlib-backed reachability support,
     which this bounded slice does not need. -/
 structure Exposure (Domain Failure : Type) where
@@ -188,4 +189,3 @@ theorem surrogate_local_minting_coexists_with_sealed_external_boundary
       sealed_internal_external_artifact_unconstructible P B hNoExport hForbidden⟩
 
 end LeanProofs.BoundedCalculi.BoundaryArtifact
-

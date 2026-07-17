@@ -4,7 +4,7 @@ Witness layer for the Lean corpus.
 
 **Phase 1.5 (this version):** hard witnesses + working-tree scope
 demotion. No semantic claim map, no doctrine mapping, no promotion
-readiness, no public/scratch classification. The tool testifies to
+readiness, no stable/evidence/skunkworks classification. The tool testifies to
 facts it can actually witness; everything else is `gap_blocks` or
 `out_of_scope_demotes`.
 
@@ -124,11 +124,12 @@ non-discharge of SHA-bound claims.
 
 Resolve a module name (dot-separated) to its source path. Returns
 `witnessed` paths if the file exists, or `gap_blocks` if not. Does
-NOT classify the module as scratch/public/promoted — that is
-explicitly Phase 2 work and requires an assertion registry.
+NOT classify the module as stable API, public evidence, or skunkworks
+incubation — that requires separate registry integration not implemented by
+`leanctx`.
 
 ```bash
-$ leanctx module LeanProofs.Scratch.BridgeInterfaces
+$ leanctx module LeanProofs.CustodyIndexed.FiniteSupportChecker
 ```
 
 ### `leanctx decl <DeclName> [--scope=tracked|worktree]`
@@ -139,8 +140,8 @@ closed list: `theorem def lemma abbrev inductive structure class
 instance axiom example opaque`.
 
 ```bash
-$ leanctx decl EvidenceInput                       # tracked (default)
-$ leanctx decl ClaimKindBridge.decide
+$ leanctx decl PaidGlobalPlan                      # tracked (default)
+$ leanctx decl exact_catalog_adequate
 $ leanctx decl MyJustCreatedDef --scope=worktree   # include untracked
 ```
 
@@ -167,7 +168,7 @@ command, exit status, repo SHA, dirty flag, lake version, output
 digests, and a tail of stdout/stderr.
 
 ```bash
-$ leanctx build LeanProofs.Scratch.ProvenanceProfiles > my-receipt.json
+$ leanctx build LeanProofs.CustodyIndexed.FiniteSupportChecker > my-receipt.json
 ```
 
 The receipt is witnessed at the recorded SHA. To check whether it
@@ -207,7 +208,7 @@ proceed."
 - No promotion readiness check.
 - No "this theorem formalizes X" claims.
 - No governor over arbitrary English.
-- No public/scratch/promoted classification. (Phase 2 may add an
+- No stable/evidence/skunkworks classification. (A later phase may add an
   assertion registry; even then the classification will be emitted
   as `asserted`, never `witnessed`.)
 - No claim-kind discharge over a closed claim language. (Phase 3.)
@@ -224,9 +225,9 @@ something it cannot witness.
 ```bash
 cd ~/git/lean
 python3 tools/leanctx/leanctx.py head
-python3 tools/leanctx/leanctx.py module LeanProofs.Scratch.BridgeInterfaces
-python3 tools/leanctx/leanctx.py decl EvidenceInput
-python3 tools/leanctx/leanctx.py grep "separation invariant"
-python3 tools/leanctx/leanctx.py build LeanProofs.Scratch.ProvenanceProfiles > /tmp/r.json
+python3 tools/leanctx/leanctx.py module LeanProofs.CustodyIndexed.FiniteSupportChecker
+python3 tools/leanctx/leanctx.py decl PaidGlobalPlan
+python3 tools/leanctx/leanctx.py grep "change_localizes_to_privileged"
+python3 tools/leanctx/leanctx.py build LeanProofs.CustodyIndexed.FiniteSupportChecker > /tmp/r.json
 python3 tools/leanctx/leanctx.py receipt-valid /tmp/r.json
 ```

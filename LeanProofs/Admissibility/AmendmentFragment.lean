@@ -1,9 +1,11 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  Admissibility — Amendment fragment (specimen, scratch annex).
+  Admissibility — Amendment fragment (terminal public specimen).
 
-  Status: scratch annex, 2026-06-02. Closeout 2026-06-02: this file
+  Opened as scratch on 2026-06-02 and adjudicated as terminal public evidence
+  in v13. Closeout 2026-06-02: this file
   was drafted under a "maximal calculus kernel specimen" framing.
   An outside-aperture audit (codex, unled — see
   `papers/working/maximal-calculus-codex-review-log.md` §"Phase D.4")
@@ -75,9 +77,8 @@
 
     Court first, map later. No process-calculus namespace. No
     symmetric calculus-wide families. If the specimen does not
-    stay small, the specimen is wrong. Scratch annex, intentionally
-    not imported by `LeanProofs.lean`; not part of any 1.0 surface;
-    no entry in `AdmissibilityKernels.lean`.
+    stay small, the specimen is wrong. It remains outside the exact 1.0
+    compatibility root and has no entry in `AdmissibilityKernels.lean`.
 
   Cross-references.
 

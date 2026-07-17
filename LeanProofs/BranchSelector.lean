@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   Branch-selector model for the reachesGAH class.
 
   The static graph shows branching precursors (Δn, Δo, Δb, Δp, Δr)

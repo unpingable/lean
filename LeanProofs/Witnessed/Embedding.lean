@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.Embedding — THE WIRE. Authority ⊕ Freshness embedded into the spine.
 
-  Custody class: MODELED EMBEDDING. This is the ONLY new trust wiring introduces:
-  a concrete `Claim := AuthClaim ⊕ FreshClaim` over `(Nat, <, b - a)`, with
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Stable modeled embedding. This is the only new trust wiring introduces: a
+  concrete `Claim := AuthClaim ⊕ FreshClaim` over `(Nat, <, b - a)`, with
   `Kernel`/`Bridge`/`Sem` instances. Everything here is downstream of the schema
   modules; nothing here flows back up into them.
 

@@ -1,5 +1,6 @@
 /-
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Admissibility — Witness invariance failure (boundary primitive).
 

@@ -1,16 +1,18 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   Admissibility.FreshnessDynamicTrace -- freshness-gated dynamic traces.
 
-  This module connects the ANNEX dynamic trace wrapper to the public
+  This module connects the stable dynamic trace wrapper to the public
   metric-time freshness kernel. A dynamic step still carries the same
   underlying `DynamicStep`; the additional obligation is that the observation
   used at the current discharge time is fresh.
 
-  ANNEX, NOT PUBLIC SURFACE:
-    * not imported by `AdmissibilityKernels.lean`;
-    * not part of the 1.0 compatibility claim;
+  STABLE SIBLING SURFACE:
+    * deliberately not imported by the exact `AdmissibilityKernels.lean`
+      compatibility root;
+    * public through the exact `DynamicTrace` target;
     * not an actor-indexed trace calculus;
     * not NQ-specific code. The method tag is an abstract consumer-supplied
       type parameter.

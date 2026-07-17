@@ -2,7 +2,8 @@
   LeanProofs.ViewSemantics.DynamicTraceAdapter -- observation views over
   already-authorized v9 dynamic traces.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   This Gate C adapter deliberately keeps two inputs separate:
 
@@ -17,7 +18,8 @@
   state visibility does not authorize a blocked hop.
 
   This is an adapter over authorized evidence, not process semantics, a
-  scheduler, a source of transition authority, or a promotion of the v9 ANNEX.
+  scheduler, a source of transition authority, or a claim that the separate
+  v9 public-evidence family belongs to this exact stable root.
 -/
 
 import LeanProofs.ViewSemantics.Core

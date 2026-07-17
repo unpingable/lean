@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   Δc → Δh under persistence: transition system and invariants.
 
   A minimal state machine modeling how consequence detachment

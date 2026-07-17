@@ -1,18 +1,19 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   BoundedCalculi.MeasureAccounting -- generic measure accounting over
   `Witnessed.ResourceSequent`'s occurrence-linear `Split`/`Consumes`.
 
-  Release-surface support module. NOT imported by promoted kernels. NOT a
+  Stable support module in the custody-indexed import closure. NOT a
   calculus: it defines no judgment and carries no authority -- it is the pure
   conservation engine (measure sums over linear contexts, split additivity,
-  singleton-consumption inversions) shared by `CheckpointSettlement` (ANNEX)
-  and the scratch sequent ladder.
+  singleton-consumption inversions) shared by public-evidence
+  `CheckpointSettlement` and the stable custody-indexed sequent ladder.
 
-  Extracted 2026-07-01 from `Scratch/ExecutionSequent.lean` at the v3 promotion
-  fork, so that release-surface modules never import scratch (import direction:
-  ANNEX -> Witnessed; Scratch -> ANNEX).
+  Extracted 2026-07-01 from the historical Scratch `ExecutionSequent` at the
+  v3 promotion fork. v13 records the resulting dependency chain as stable
+  substrate.
 -/
 
 import LeanProofs.Witnessed.ResourceSequent

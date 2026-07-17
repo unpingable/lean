@@ -16,6 +16,17 @@ counting replay as corroboration.
 
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
 
+## v13 custody note (migration in progress)
+
+v13 adds no theorem claim. It corrects where already-finished work lives and
+what compatibility it promises. Stable APIs are exact-root closures; finished
+examples/countermodels are terminal public evidence; live incubation moves to
+skunkworks. The v4-v7 material described below now lives under
+`LeanProofs/CustodyIndexed/`, and PathVerdict under
+`LeanProofs/Admissibility/PathVerdict/`. Historical release ledgers retain the
+old paths and labels. See
+[`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
+
 ---
 
 ## v12 sibling family: Judgment Orientation
@@ -41,17 +52,17 @@ boundary are recorded in
 - `OriginSupport` exposes an abstract finite-support carrier with bottom, join,
   membership, inclusion, partial-order and least-upper-bound laws. Sequence
   append maps to join, and streaming and batch accounting agree. The
-  payload-conflict annex separately proves that support alone cannot recover
+  payload-conflict public evidence separately proves that support alone cannot recover
   erased payload.
 - `Bridge` composes the two halves one way: an endpoint-visible difference in
   an orientation-invariant observation across an attributed mixed trace
   localizes to a privileged step whose caller-supplied origin is contained in
   the effective support of the trace's privileged provenance. The privileged
   constructor carries its occurrence, so attribution cannot be retrofitted by
-  a convenient function or hypothesis; the annex proves the converse false
+  a convenient function or hypothesis; public evidence proves the converse false
   with a no-op witness.
 
-The optional `Examples` annex supplies Streetlamp, source-blind laundering,
+The optional `Examples` public-evidence module supplies Streetlamp, source-blind laundering,
 four-relay, accumulator-repair, payload-conflict, and bridge witnesses. The
 stable five theorem modules do not depend on those fixtures.
 
@@ -181,7 +192,13 @@ The admissibility kernel modules described below form a named public surface: **
 
 Seven specimen consumers in `LeanProofs/Admissibility/Examples.lean` demonstrate the public API (valid advisory result, valid authorized mutation, stale evidence refusal, self-cert denial, conflicting precedence denial, receipt-without-authority non-upgrade, open finding accounted).
 
-What 1.0 deliberately does **not** claim: a general theory of institutions; recovery doctrine; cross-boundary process composition; numerical-kind or artifact-kind axes; a calculus of communicating processes; formal verification of any real-world institution or paper. Annex modules (`CorrectiveBoundary`, `PublicReceiptRefinement`, `RecoveryMargin`, `ClosureEligibility`, `FiatAdmissibility`, `NumericalAdmissibility`, `AxisSkew`, `CrossBoundary*`, `Composition`, `LocalBoundary`) build green but are not part of the 1.0 compatibility claim. Root-level paper-specific modules (Paper 24, Paper 25, NQ-shaped consumers, etc.) are specimens, not contents.
+What 1.0 deliberately does **not** claim: a general theory of institutions;
+recovery doctrine; cross-boundary process composition; numerical-kind or
+artifact-kind axes; a calculus of communicating processes; formal verification
+of any real-world institution or paper. Related finished modules are public
+evidence outside the 1.0 closure; `LocalBoundary` remains incubation in
+skunkworks. Root-level paper-specific modules are specimens, not
+contents.
 
 `StepAllowed` (the mutation-side authorization primitive) does not carry a preservation obligation for externally-defined defended values. The wound and its positive bridge are formalized in the **safety-bridge family** described in the next section; the kernel-1.0 surface itself remains silent on safety preservation, as intended.
 
@@ -189,11 +206,12 @@ Slogan:
 
 > Admissibility Kernels 1.0 models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
 
-Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
+Full surface composition, scope fence, and custody roles:
+[`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md).
 
 ---
 
-## Artifact Authority Profiles (v7, `LeanProofs/Scratch/`, fenced)
+## Artifact Authority Profiles (v7, `LeanProofs/CustodyIndexed/`)
 
 ### What v7 proves
 
@@ -239,7 +257,7 @@ Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibi
 - Screening, not enforcement: frames are local declarations; frame quality
   is the instantiator's burden.
 
-## Finite Custody Checking (v6, `LeanProofs/Scratch/`, fenced)
+## Finite Custody Checking (v6, `LeanProofs/CustodyIndexed/`)
 
 ### What v6 proves
 
@@ -284,7 +302,7 @@ Full surface composition, scope-fence, and annex listing: [`LeanProofs/Admissibi
 - Offender identity between the traversal checker and the counts-only
   decider is not claimed (each is separately proved an excess witness).
 
-## Custody-Preserving Normalization (v5, `LeanProofs/Scratch/`, fenced)
+## Custody-Preserving Normalization (v5, `LeanProofs/CustodyIndexed/`)
 
 > Normalization cannot forge payment.
 
@@ -325,14 +343,14 @@ custody-preserving normalization removes only policy-licensed detours and
   are named follow-up.
 - **No runtime enforcement;** no traced-twin coherence theorem
   (`linearizeT` ↔ `linearize`, v6 lane); no executable finite-support
-  checker (v6 lane). The modules are fenced scratch, not promoted kernel
-  authority.
+  checker (v6 lane). The modules are now the corrected public substrate; exact
+  stable/evidence roles are registered separately.
 
 Per-theorem receipts: [`docs/V5-RELEASE-LEDGER.md`](docs/V5-RELEASE-LEDGER.md).
 
 ---
 
-## Custody-Indexed Sequents (v4, `LeanProofs/Scratch/`, fenced)
+## Custody-Indexed Sequents (v4, `LeanProofs/CustodyIndexed/`)
 
 > No custody chain, no derivation.
 
@@ -340,8 +358,8 @@ Per-theorem receipts: [`docs/V5-RELEASE-LEDGER.md`](docs/V5-RELEASE-LEDGER.md).
 
 v4 proves that the bounded lifecycle calculi can be **crossed** — composed
 across judgment regimes — without silently erasing custody. The object is a
-parameterized indexed-sequent skeleton (fenced SCRATCH, CI-covered as the
-`CustodyIndexedSequents` build target):
+parameterized indexed-sequent skeleton (now the exact `CustodyIndexed` stable
+target):
 
 - a generic `System` of indexed judgments and bridge-cut rules, with ONE
   discipline condition (*no rule concludes an evidence judgment*) from which
@@ -413,9 +431,8 @@ footprints (all ≤ `[propext, Quot.sound]`, many zero-axiom):
   unification by design. The aggregate import proves checkability/coexistence
   only — not coherence, not composition.
 - **No free composition.** Cross-calculus movement requires explicit bridge
-  evidence; bridge composition is not transitive by default. The bridge and
-  sequent work under `LeanProofs/Scratch/` is fenced v3.x evidence,
-  named-not-claimed.
+  evidence; bridge composition is not transitive by default. The released
+  bridge/sequent substrate now lives under `LeanProofs/CustodyIndexed/`.
 - **No runtime enforcement.** Bridge Foundry, compiled authority runtime,
   actuator gates, and operational receipt handling are implementation lanes,
   not v3 proof claims. Execution Custody is a stage-separation calculus
@@ -537,8 +554,9 @@ the catalog conversions and reconstructs the resident derivation.
 `Countermodels.EndpointCompleteness` gives authorized and forged attempts the
 same endpoints but different exact identities, dependent positive content,
 and expected payments, proving endpoint completeness insufficient. The
-SCRATCH-dependent `Applications.FiniteSupportOneCrossing` is annex evidence:
-it retains native positive and negative finite-support checker results,
+public-evidence `Applications.FiniteSupportOneCrossing` imports the corrected
+public `LeanProofs.CustodyIndexed.FiniteSupportChecker` foundation and retains
+native positive and negative finite-support checker results,
 positional provenance, exact payment residue, native offender/excess meaning,
 and accepted-path obligation residue. The fixed three-cycle fixture was
 intentionally not promoted because it contributes no independent evidence.
@@ -599,7 +617,11 @@ Governor (`agent_gov`) operationally implements this kernel's pattern. The Lean 
 
 ## Infrastructure: Safety bridge (Frontier 1)
 
-Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28), addressing the Frontier 1 wound ("Admissibility ≠ Safety") from the closed 2026-05-10 AGI-requirements reverse-gap audit (`historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md`). ANNEX-classified (consumer specimens sub-group) — wired into `LeanProofs.lean` for build coverage, but their signatures are not part of the Admissibility Kernels 1.0 compatibility claim.
+Eight modules in `LeanProofs/Admissibility/` (added 2026-05-27 / 2026-05-28),
+addressing the Frontier 1 wound ("Admissibility ≠ Safety") from the closed
+2026-05-10 reverse-gap audit. `SafetyBridge` is the exact stable core; the
+wounds, concrete witnesses, and trajectory/application modules are public
+evidence. None enters the Admissibility Kernels 1.0 closure.
 
 - **`AuthorizedNotSafe.lean`** / **`AuthorizedNotSafeWitness.lean`** — Brick 0. The wound at the `StepAllowed` layer (mutation standing): an authorized step strictly decreases an externally-defined defended value. The first module exhibits it axiomatically over the abstract kernel surface; the second discharges the consistency caveat via a parallel concrete miniature (evidence store as `List Receipt`).
 - **`SafetyBridge.lean`** — Abstract primitive. `SafetyEnv (σ α ρ : Type)` with actor-inert `bridge : σ → α → Prop` and a `preserves` proof obligation. `SafeStep` bundles authorization + bridge witness; `bridge_implies_safe` projects through `preserves` without consuming `Allowed`. Actor-inertness is a base design decision for the safety axis (actor-relative evidence stays in `Allowed`; safety preservation is over the transition effect); the actor-sensitive refinement `ActorSensitiveBridgeEnv` is named-but-not-implemented.
@@ -626,7 +648,10 @@ Frontier 1 of the 2026-05-10 AGI-requirements reverse-gap audit (`historical/aud
 
 ## Infrastructure: Cross-Boundary Artifact Specimens
 
-Four modules in `LeanProofs/Admissibility/` (added 2026-05-21; wired into `LeanProofs.lean` as ANNEX kernel-adjacent extensions since 1.0.1 / 2026-05-24), applying the admissibility kernel's forbidden-artifact-unconstructible discipline to a new artifact family: boundary-crossing exposures.
+Four public Mathlib-evidence modules in `LeanProofs/Admissibility/` (added
+2026-05-21), applying the admissibility kernel's
+forbidden-artifact-unconstructible discipline to a new artifact family:
+boundary-crossing exposures. They remain outside the 1.0 stable closure.
 
 - **`CrossBoundaryExposure.lean`** — first-class `Exposure (origin, target, failure)` artifact; the only mint constructor (`Step.expose`) requires `Boundary.authorized e.origin e.target = true`. Operator-supplied `BoundaryPartition` carries Prop-valued `Internal` / `External` predicates over abstract `Domain`. Theorem `no_external_exposure_without_authorized_edge`: under a sealed boundary, no reachable configuration contains an Internal-origin External-target exposure.
 - **`CrossBoundaryDegradation.lean`** — extends with `degrade` action carrying `Cause.direct | Cause.fromExposure e`. The `fromExposure` constructor requires `e ∈ c.exposures ∧ e.target = d`. Theorem `no_external_degradation_from_internal_exposure`: exposure-attributed external degradation cannot cite an Internal-origin exposure under a sealed boundary. Direct degradation (Cause.direct) is licensed and not the concern of this slice.
@@ -662,7 +687,13 @@ The brick's own theorem then falls out as a corollary. Any new step constructor 
 
 ### Why it's here
 
-Outside-aperture category audit ("is this a process calculus?") surfaced the candidate; inside-aperture kernel-overlap audit found the forbidden-artifact-unconstructible *pattern* was already instantiated three ways (`StateTransition` trapdoor, `Execution.AuthorizedStep`, `TaxonomyGraph` forward-closed lanes) but the cross-boundary *artifacts* were missing. The trio fills the missing artifact-family slot without minting a new proof pattern. ANNEX-classified (kernel-adjacent sub-group) status reflects that institutional promotion to the 1.0 surface has not been earned yet — the bricks build green and are regression-covered, but their signatures remain outside the 1.0 compatibility claim pending an explicit custody/release decision. No downstream consumer is required for the formal work.
+Outside-aperture category audit ("is this a process calculus?") surfaced the
+candidate; inside-aperture overlap review found the
+forbidden-artifact-unconstructible pattern already instantiated three ways but
+the cross-boundary artifacts missing. The family fills that slot without
+minting a new proof pattern. Its terminal public-evidence role records that the
+proofs are finished and citable while their signatures remain outside the 1.0
+compatibility claim. No downstream consumer is required for the formal work.
 
 See `papers/working/cross-boundary-artifact-specimens.md` for the full audit trail.
 

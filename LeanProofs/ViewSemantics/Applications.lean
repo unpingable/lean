@@ -1,12 +1,12 @@
 /-
-  LeanProofs.ViewSemantics.Applications -- application/annex candidate root.
+  LeanProofs.ViewSemantics.Applications -- terminal application-evidence root.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  This root makes the required non-XOR application reachable without changing
-  the SCRATCH custody of its imported source specimen.  It is intentionally
-  separate from `LeanProofs.ViewSemantics`: build reachability is not public
-  promotion, and the release operator decides whether to integrate this root.
+  This root makes the required non-XOR applications reachable as terminal
+  public evidence. It stays separate from `LeanProofs.ViewSemantics`, whose
+  exact stable dependency graph contains only the general laws.
 -/
 
 import LeanProofs.ViewSemantics.Applications.BindingSourceAblation

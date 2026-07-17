@@ -1,5 +1,10 @@
 # v8 Release Ledger — Sequent Admissibility Island
 
+> **Historical record.** The candidate label below describes the v8 release
+> tree. v13 records the unchanged ProofTheory theorem root as stable and its
+> axiom-print audit as public evidence. See
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Release: v8.0.0 — Sequent Admissibility Island** (*A Mathlib-free
 proof-theory specimen/library release*). Umbrella: proof-theoretic referent
 for the admissibility vocabulary. Prior release: v7.0.0 — Artifact Authority

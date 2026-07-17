@@ -2,8 +2,10 @@
   LeanProofs.Witnessed.Discipline — the model-admission discipline for the witnessed-derivation
   calculus (ratified v1.3; now canonical as `LeanProofs.Witnessed.*`).
 
-  Custody class: ANNEX (Mathlib-free public surface). In the default build; isolate with
-  `lake build Witnessed`. It imports only the Mathlib-free spine.
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Mathlib-free stable surface, isolated by `lake build Witnessed`. It imports
+  only the Mathlib-free spine.
 
   DOCTRINE (load-bearing, do not let the two layers re-collapse):
 

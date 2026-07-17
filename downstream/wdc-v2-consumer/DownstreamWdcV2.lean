@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   External downstream receipt for LeanProofs v2.0.0.
 
   This file intentionally imports only the public `LeanProofs.Witnessed` aggregator from

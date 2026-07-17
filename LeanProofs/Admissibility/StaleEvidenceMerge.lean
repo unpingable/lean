@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Admissibility — Axis 2, Slice 1: stale-evidence merge.
 
@@ -62,9 +63,8 @@
   deferred (see notes) because constructing it honestly requires the bridge
   to be doing guard work the concrete witness does not exercise.
 
-  Scratch annex per the `working/tooltheory/` queue convention. Not on the
-  public 1.0 surface. Not root-wired into `LeanProofs.lean`.
-  Build with: `lake build LeanProofs.Admissibility.StaleEvidenceMerge`.
+  Terminal public evidence outside the exact 1.0 compatibility surface;
+  regression-built through `lake build AdmissibilityEvidence`.
 -/
 
 import LeanProofs.Admissibility.SafetyBridge

@@ -6,23 +6,26 @@ during the codex L2 pass (2026-07-01). The forward plan and as-built status
 ledger live in `docs/ROADMAP-bounded-calculi.md` (§11); this file archives the
 detailed mapping table that drove the freshness-only adapter decision.
 
-All modules referenced are `Custody-Class: SCRATCH` or ANNEX, un-wired, and
-non-authority-bearing. This document changes no promoted kernel or import
-boundary.
+> **v13 path correction:** the real adapter now lives at
+> `LeanProofs/CustodyIndexed/TemporalSurfaceAdapter.lean`, and the Bounded
+> Calculi modules are public shipped. The self-contained
+> `TemporalToSurfaceBridge.lean` surrogate was superseded and deleted; its
+> exact source remains in v12/Git history. This document intentionally retains
+> the 2026-07-01 comparison as a historical design record.
 
 ## Temporal To Surface Vocabulary Alignment
 
 Files read for this alignment:
 
-- `LeanProofs/Scratch/TemporalToSurfaceBridge.lean`
+- historical v12 `LeanProofs/Scratch/TemporalToSurfaceBridge.lean`
 - `LeanProofs/BoundedCalculi/TemporalCustody.lean`
 - `LeanProofs/BoundedCalculi/SurfaceProjection.lean`
 
 Adapter file:
 
-- `LeanProofs/Scratch/TemporalSurfaceAdapter.lean`
+- `LeanProofs/CustodyIndexed/TemporalSurfaceAdapter.lean`
 
-### Scratch Vocabulary
+### Historical surrogate vocabulary
 
 The scratch bridge uses:
 
@@ -97,7 +100,7 @@ Log/projection non-collapse theorem shapes:
 
 ### Mapping Table
 
-| Scratch term | Real Temporal term | Real Surface term | Status |
+| Surrogate term | Real Temporal term | Real Surface term | Status |
 |---|---|---|---|
 | `TemporalAtom.freshAtUse` | `FreshAtUse a` | `Atom.freshness` for `Use.projectedUse` | exact match via scratch adapter |
 | `TemporalAtom.liveEpoch` | `LiveEpoch env a` | no current atom | deliberately unmapped by adapter |
@@ -117,7 +120,7 @@ Log/projection non-collapse theorem shapes:
 
 ## Adapter Definitions
 
-`LeanProofs/Scratch/TemporalSurfaceAdapter.lean` defines the explicit adapter surface:
+`LeanProofs/CustodyIndexed/TemporalSurfaceAdapter.lean` defines the explicit adapter surface:
 
 - `TemporalGate`
 - `TemporalGate.Holds`
@@ -152,7 +155,7 @@ The real-shape bridge pressure is:
 ## Alignment Conclusion
 
 Green, scoped: a real-shape wiring probe is plausible with the small scratch adapter in
-`LeanProofs/Scratch/TemporalSurfaceAdapter.lean`.
+`LeanProofs/CustodyIndexed/TemporalSurfaceAdapter.lean`.
 
 The plausible core is:
 
@@ -160,7 +163,9 @@ The plausible core is:
 - Real `SurfaceProjection.ProjectionAuthorized surface projection use` already requires every demanded atom to be supplied by retention or explicit conversion.
 - The dropped-retention wall has a real Surface theorem shape in `demanded_atom_without_retention_or_conversion_blocks_authorization`.
 
-The remaining boundary is vocabulary shape, not proof strength. Scratch temporal atoms are one local enum used for both temporal establishment and surface demand/retention. Real modules split those roles:
+The remaining boundary is vocabulary shape, not proof strength. The historical
+surrogate atoms used one local enum for both temporal establishment and surface
+demand/retention. Real modules split those roles:
 
 - Temporal gates are predicates over `Env` and `Action`.
 - Surface demanded/retained atoms are members of `SurfaceProjection.Atom`.

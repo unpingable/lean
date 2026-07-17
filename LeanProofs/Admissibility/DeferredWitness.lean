@@ -1,10 +1,11 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Promoted from `LeanProofs/Scratch/DeferredWitness.lean` (2026-06-26): compiled,
-  sorry-free, wired into `LeanProofs.lean` for build coverage. Signatures are NOT
-  part of the 1.0 compatibility claim — annex semantics (may rename, refactor, or
-  absorb without notice). Provenance: scratch reconnaissance graduated to annex so
+  sorry-free, and public terminal evidence. Signatures are not part of the exact
+  1.0 compatibility claim. Provenance: scratch reconnaissance first graduated to
+  the former annex and is now classified honestly as public evidence so
   downstream operational work (NQ's EVIDENCE_RETIREMENT basis-stale slice) can cite
   it as evidence under the pinning discipline, rather than steer implementation
   from a fenced module. A refusal kernel for temporal backflow: it pins the one

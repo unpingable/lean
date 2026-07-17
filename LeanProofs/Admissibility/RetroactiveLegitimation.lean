@@ -1,10 +1,11 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  Admissibility — Retroactive Legitimation (scratch annex, specimen).
+  Admissibility — Retroactive Legitimation (terminal public specimen).
 
-  Status: scratch annex, 2026-06-02. Not imported by `LeanProofs.lean`.
-  Not part of any 1.0 surface. No README / PAPER-MAP promotion.
+  Opened as scratch on 2026-06-02; adjudicated in v13 as terminal public
+  evidence outside the exact 1.0 compatibility surface.
 
   Slice 1 of the substructural-sequent program (axis 3 of the
   historical maximal-calculus axis map — the unified calculus is the
@@ -39,7 +40,7 @@
     - List-backed state. No function-valued state, no `Multiset`,
       no `Finset`, no deduplication that would smuggle exchange or
       contraction (irrelevant to this slice but listed for
-      consistency with sibling annexes).
+      consistency with sibling evidence).
     - No founding-event handling. No protocol / wait. No value
       mutation. No cut. No sequents.
     - No `sorry`, no `admit`, no `True`-shaped placeholders.

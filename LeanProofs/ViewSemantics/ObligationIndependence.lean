@@ -2,7 +2,8 @@
   LeanProofs.ViewSemantics.ObligationIndependence -- generic separation of an
   existing bridge receipt from the view context in which it is consumed.
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   This small module does not recreate or claim to settle any particular atom
   lattice.  It gives the architectural split used by the resident-ontology

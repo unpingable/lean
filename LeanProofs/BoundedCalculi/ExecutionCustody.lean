@@ -1,18 +1,21 @@
 /-
-  Custody-Class: ANNEX
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
 
   BoundedCalculi.ExecutionCustody -- execution-stage separation calculus.
   Release-surface bounded lifecycle calculus (v3.0.0 - Bounded Lifecycle
   Calculi). Self-contained and Mathlib-free.
 
   RELEASE-SURFACE, NOT AUTHORITY:
-    * NOT imported by promoted kernels (`LeanProofs.lean` untouched).
+    * stable substrate through the exact custody-indexed closure, without
+      entering the AdmissibilityKernels root;
     * NOT a unified admissibility calculus; no master `Admissible` judgment.
     * NOT runtime authority and NOT an actuator implementation.
-    * NOT sequent composition (custody-indexed sequents are v3.x scratch).
+    * NOT sequent composition (custody-indexed sequents are a separate stable family).
     * The aggregate import (`BoundedCalculi.lean`) proves checkability /
       coexistence only.
-  Promoted Scratch -> ANNEX by operator decision 2026-07-01 (v3 release fork).
+  Historical custody: promoted Scratch -> ANNEX by operator decision
+  2026-07-01; v13 recognizes its role in the stable custody-indexed closure.
   Audit trail: docs/CHANGELOG-scratch-campaign.md + .governor/loop.json.
 
   This is a STAGE-SEPARATION calculus: it proves the stages of execution do not
@@ -21,7 +24,7 @@
   Documented local-model limits: the actuator boundary is abstracted
   (`commitSent` and `outcome` are independent asserted fields, not a causal
   transition); the ticket flip is single-stage (trajectory-level linearity is
-  proved in the v3.x sequent lane, `Scratch/ExecutionSequent.lean`).
+  proved in `CustodyIndexed/ExecutionSequent.lean`).
 
   Execution custody separates:
     MayAttempt, MayCommit, CommitAttempted, DidExecute, DidNotExecute,

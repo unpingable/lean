@@ -7,6 +7,12 @@
 > `DeferredWitness.lean` on 2026-07-09. Custody and public promotion remain
 > separate operator decisions.
 
+> **v13 custody update:** ANNEX/Scratch/candidate paths and recommendations in
+> this report are historical. Finished work is now stable API or public
+> evidence; live incubation is in skunkworks; superseded fossils remain in
+> v12/Git history. Current state:
+> [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md).
+
 This is a semantic wiring audit, not an inventory audit. It asks what already
 exists in the repo that should be connected, factored, generalized, exercised,
 or made legible as a dependency, without promoting scratch into doctrine.

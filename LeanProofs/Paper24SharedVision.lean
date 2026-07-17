@@ -1,4 +1,7 @@
 /-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
   Paper 24 — Shared Vision as Coordinating Prior: algebraic shard.
 
   Reference: papers/preprint/24-shared-vision-coordinating-prior/

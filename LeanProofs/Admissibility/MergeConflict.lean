@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Admissibility — Axis 2, Slice 2: conflict merge (reconciliation-
   policy failure / degenerate corner).
@@ -40,9 +41,8 @@
   Under this bridge Axis 1's `MaximalBridge` holds — honest about the
   corner. (Slice 1 is the first specimen to use a non-maximal bridge.)
 
-  Scratch annex per the `working/tooltheory/` queue convention. Not on
-  the public 1.0 surface. Not root-wired into `LeanProofs.lean`.
-  Build with: `lake build LeanProofs.Admissibility.MergeConflict`.
+  Terminal public evidence outside the exact 1.0 compatibility surface;
+  regression-built through `lake build AdmissibilityEvidence`.
 -/
 
 import LeanProofs.Admissibility.SafetyBridge

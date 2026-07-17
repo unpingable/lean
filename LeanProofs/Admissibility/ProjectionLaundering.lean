@@ -1,10 +1,10 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
-  Admissibility — ProjectionLaundering (scratch annex).
+  Admissibility — ProjectionLaundering (terminal public evidence).
 
-  Status: scratch / annex / candidate. Not in LeanProofs.lean.
-  Not promoted to public surface. Build-test for whether the
+  Adjudicated in v13 as public evidence outside the exact stable surface. The
   paired negative+positive theorem structure has independent
   shape distinct from the existing CBA-vocabulary / FiatAdmissibility
   routing / WitnessInvariance / SurfaceAuthorization family.
@@ -54,8 +54,8 @@
     - No multi-stage pipeline calculus
       (composition with UC is prose, not theorem here).
     - No substrate-specific compression families.
-    - Not imported into `LeanProofs.lean`; build only via
-      `lake build LeanProofs.Admissibility.ProjectionLaundering`.
+    - Regression-built through `lake build AdmissibilityEvidence`; publication
+      does not make it a member of the exact stable kernel root.
 
   Custody:
     Canonical anchoring of `Admissibility.ProjectionLaundering`.

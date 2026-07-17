@@ -2,6 +2,7 @@
   LeanProofs.Witnessed.Sequent -- contexted sequent presentation of WDC.
 
   Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
   This unchanged module is part of the v11 stable paid-recomposition import
   closure. Mathlib-free. This is a conservative layer over the Witnessed
   Derivation Calculus: it adds explicit finite contexts while reusing the

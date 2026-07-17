@@ -1,5 +1,10 @@
 # v9 Release Ledger — Dynamic Traces and Profile Semantics
 
+> **Historical record.** ANNEX/candidate/Scratch labels and target names below
+> describe the v9 tree. v13 assigns current stable, public-evidence, and
+> skunkworks roles without changing v9 theorem bodies. See
+> [`V13-MIGRATION-LEDGER.md`](V13-MIGRATION-LEDGER.md).
+
 **Release: v9.0.0 — Dynamic Traces and Profile Semantics** (*dynamic
 execution over static witnesses, and checker-facing profile semantics*).
 Prior release: v8.0.0 — Sequent Admissibility Island.

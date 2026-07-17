@@ -1,7 +1,8 @@
 /-
   LeanProofs.ViewSemantics.Examples
 
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   The complete 2 × 2 sufficiency/disclosure matrix.  The world has a task
   discriminator and an unrelated protected payload.  The disclosure budget

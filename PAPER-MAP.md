@@ -10,6 +10,11 @@ Companion documents:
 
 This file exists so that a reader in the Lean repo can go the other direction: pick a module, find the paper(s) it cashes out into, and judge whether the mapping is clean enough to cite.
 
+**v13 custody note:** v13 changes paths and terminal roles, not paper cashouts
+or theorem claims. Stable roots, public evidence, and skunkworks dispositions
+follow [`docs/V13-MIGRATION-LEDGER.md`](docs/V13-MIGRATION-LEDGER.md). Dated
+changelog entries below preserve archive-time ANNEX/Scratch labels.
+
 ## Stable identifiers
 
 - `P{N}` — preprint number (e.g., `P18`)
@@ -137,7 +142,14 @@ Five core modules forming a Governor-neutral authority kernel, plus two boundary
 
 **No paper cashout.** This is infrastructure substrate for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout. Concrete `claimForStep` resolvers and `AuthorityClaim` schema commitments belong in Governor's instantiation, not in the kernel. Documented here to keep the mapping complete.
 
-Sibling to `LeanProofs/Admissibility.lean` (P27 obligation skeleton, namespace `P27`). Sorry-free as of 2026-05-07; three real proofs + two `True`-placeholder discharges pending sibling vocabulary; intentionally unwired (sorry-elimination does not imply wiring). The P27 skeleton and the Authority kernel are independent and address different layers (post-transition obligation accounting vs pre-action authorization). See `LeanProofs/Admissibility/README.md` for the six-module breakdown.
+The P27 obligation skeleton (namespace `P27`) moved from the v12 public-tree
+path `LeanProofs/Admissibility.lean` to skunkworks
+`formalization/Calculi/Scratch/P27ObligationSkeleton.lean`. It is sorry-free,
+with three real proofs and two `True`-placeholder discharges pending substantive
+vocabulary; it is neither public evidence nor a stable import. The P27
+skeleton and the Authority kernel remain independent and address different
+layers (post-transition obligation accounting versus pre-action
+authorization).
 
 ## `LeanProofs/Admissibility/` safety-bridge family (Frontier 1 — standalone preprint anchor)
 
@@ -190,7 +202,7 @@ The claim has three deliberately separate scopes:
 
 **Evidence custody:**
 
-- `Applications/ResourceTraceOneCrossing.lean` is public, non-SCRATCH corpus
+- `Applications/ResourceTraceOneCrossing.lean` is public corpus
   evidence outside the stable import graph. It carries the resident
   `ResourceCheckerExec.Trace Nat` attempt and its native positive checker
   equation end-to-end, reconstructs the resident derivation, and preserves the
@@ -201,8 +213,9 @@ The claim has three deliberately separate scopes:
   same endpoints but different exact identities, dependent native receipts,
   and expected payments; a forged-only endpoint-complete catalog therefore
   cannot globalize refusal and is not exact-complete.
-- `Applications/FiniteSupportOneCrossing.lean` is annex evidence with an
-  explicit `LeanProofs.Scratch.FiniteSupportChecker` dependency. It preserves
+- `Applications/FiniteSupportOneCrossing.lean` is public evidence over the
+  corrected public `LeanProofs.CustodyIndexed.FiniteSupportChecker`
+  foundation. It preserves
   the native acceptance and refusal equations, positional provenance, native
   excess/offender interpretation, exact payment residue, and accepted-path
   obligation residue. It is not part of the stable root.
@@ -237,8 +250,8 @@ origin support, and composes the halves one way: `Bridge` shows an
 endpoint-visible orientation-invariant difference across an attributed mixed
 trace names a privileged step whose caller-supplied origin lies in the
 effective support of the trace's privileged provenance (converse refuted in
-the annex). The optional
-`Examples.lean` ANNEX retains the Streetlamp, source-blind laundering,
+public evidence). The optional
+`Examples.lean` public evidence retains the Streetlamp, source-blind laundering,
 accumulator-repair, four-relay, payload-conflict, and bridge witnesses without
 placing fixtures in the stable dependency graph.
 
@@ -273,3 +286,9 @@ own interpretation boundary.
 - **2026-05-29** — Added safety-bridge family section (paper anchor: planned formal-methods preprint "An Admissibility Calculus: Authorization, Safety Bridges, and Value Decay"; secondary anchor: paper 28). Previously the safety-bridge work had no paper anchor; the spine-page decision at `~/git/papers/working/admissibility-suite-spine-2026-05-28.md` resolved the topology fork (Fork B — preprint as sibling outside Δt numbering; paper 28 as interpretation paper that cites it). Eight modules covered (brick 0 + bricks 1a/1b + brick 2 + tier-1 ledger): `AuthorizedNotSafe(Witness)`, `SafetyBridge(Witness)`, `AuthorizedStepNotSafe(Witness)`, `SafetyTrajectory`, `AttestationLedger`. Status: formalized YES; preprint scaffold pending. Earned preprint status via one irreducible theorem family (trajectory triple + no-lift) replicated across two distinct witnesses (receipt-poison miniature + attestation-ledger).
 - **2026-07-15** — Added the v11 Occurrence-Exact Paid Recomposition stable theorem family and its evidence-custody map. The stable root contains only `Payment` and `Catalog`; the public corpus application and endpoint countermodel remain evidence outside that graph; the finite-support integration remains SCRATCH-dependent annex evidence; the three-cycle fixture was intentionally omitted.
 - **2026-07-16** — Released v12 Judgment Orientation. The first four stable Mathlib-free modules came from skunkworks commit `4f8e076`; the fifth, `Bridge`, was authored in promotion review. The exact five-module root, abstract `EffectiveSupport`, separately imported examples ANNEX, and fail-closed 13-receipt footprint gate define the release boundary. No paper cashout or runtime-conformance claim assigned.
+- **2026-07-16 (post-release v13 correction, in progress)** — No paper mapping
+  or mathematical claim changed. The 271-file custody audit rehomes the v4-v7
+  substrate under `LeanProofs.CustodyIndexed`, PathVerdict under
+  `LeanProofs.Admissibility.PathVerdict`, and finished fixtures as terminal
+  public evidence; live incubation moves to skunkworks. See the v13 migration
+  ledger for pending transfer/gate status. No tag or DOI action is asserted.

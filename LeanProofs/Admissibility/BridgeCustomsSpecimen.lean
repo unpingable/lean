@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Bridge customs specimen (2026-07-09). Exactly one pairwise crossing: a
   SOURCE domain's gate decision arrives at a TARGET domain as foreign
@@ -21,12 +22,10 @@
   No bridge registry, no universal bridge oracle, no transitive crossing,
   no PKI, no transport. A second domain pair pays for its own crossing.
 
-  Unwired: not imported by `LeanProofs.lean` or any default target. Build
-  directly: `lake build LeanProofs.Admissibility.BridgeCustomsSpecimen`.
-  Formalization does not wait on runtime adoption. Under the current custody
-  fence, ANNEX promotion still requires a runtime artifact to identify the
-  named theorems it adopts. Citation names the intended contract; conformance
-  still requires a mapping plus runtime evidence or a refinement proof.
+  Custody: terminal public evidence, regression-built by
+  `lake build AdmissibilityEvidence`. Publication does not claim runtime
+  adoption; conformance still requires a mapping plus runtime evidence or a
+  refinement proof.
 -/
 
 /-!

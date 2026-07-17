@@ -6,8 +6,10 @@
   `AbstractNormalization.normal_form_iff_of_commutes` — the commutation law, not the freshness
   arithmetic, is what earns it.
 
-  Custody class: ANNEX (Mathlib-free public surface). In the default build; isolate with
-  `lake build Witnessed`. It imports only the Mathlib-free spine. No new axiom, no new
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Mathlib-free stable surface, isolated by `lake build Witnessed`. It imports
+  only the Mathlib-free spine. No new axiom, no new
   constructor on the judgment, no assumption that already contains the normal form.
 
   The hinge is the commutation law `weaken ; carry ⟹ carry ; weaken`

@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Actor-indexed trace specimen (2026-07-09). The anti-laundering law for
   execution traces used as standing evidence:
@@ -8,12 +9,12 @@
     unless the profile carries an EXPLICIT transfer rule for (A, B) —
     and a truncated trace establishes nothing for anyone.
 
-  Semantic neighbor: `Admissibility.DynamicTrace` (ANNEX) already builds
+  Semantic neighbor: stable sibling `Admissibility.DynamicTrace` already builds
   actor-indexed traces over the static execution bridge, with
   `traceHopsByActor_actor` attributing each hop to its actor. This specimen
   pins the CONSUMPTION side — what a trace may be spent on as standing
   evidence at a profile gate — without importing the execution machinery.
-  If the two are later connected, that bridge theorem is its own promotion
+  If the two are later connected, that bridge theorem is its own stable-surface
   decision, not a free identification.
 
   Formalization leads implementation: these are the laws an actor-indexed
@@ -23,12 +24,10 @@
   NOT modeled, on purpose: OpenTelemetry, span semantics, clocks/ordering,
   causality, sampling, transport. A hop is symbolic: an actor did a step.
 
-  Unwired: not imported by `LeanProofs.lean` or any default target. Build
-  directly: `lake build LeanProofs.Admissibility.ActorTraceSpecimen`.
-  Formalization does not wait on runtime adoption. Under the current custody
-  fence, ANNEX promotion still requires a runtime artifact to identify the
-  named theorems it adopts. Citation names the intended contract; conformance
-  still requires a mapping plus runtime evidence or a refinement proof.
+  Custody: terminal public evidence, regression-built by
+  `lake build AdmissibilityEvidence`. Publication does not claim runtime
+  adoption; conformance still requires a mapping plus runtime evidence or a
+  refinement proof.
 -/
 
 /-!

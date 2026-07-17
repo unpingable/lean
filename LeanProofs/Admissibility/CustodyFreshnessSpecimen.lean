@@ -1,5 +1,6 @@
 /-
-  Custody-Class: UNRATIFIED-CANDIDATE
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
 
   Custody-freshness specimen (2026-07-09). The NQ/Nightshift seam's named
   gap, closed as an anti-free-conversion law:
@@ -28,8 +29,8 @@
   temptation has a name and a countermodel.
 
   Sibling seams cited, not re-proved: single-custody staleness is
-  `Freshness` [1.0] / `DeferredWitness` (ANNEX); the two-clock
-  observation-vs-discharge gap is `FreshnessDynamicTrace` (ANNEX); custody
+  `Freshness` [1.0] / `DeferredWitness` (public evidence); the two-clock
+  observation-vs-discharge gap is `FreshnessDynamicTrace` (stable sibling); custody
   crossing importing testimony-under-cap (not basis) is
   `BridgeCustomsSpecimen`. This file owns exactly the chain-shaped law:
   no sequence of custody hops, however recent, refreshes anything.
@@ -38,12 +39,10 @@
   `Option` producer clock), NQ's basis_state lifecycle (deliberately a
   different cut per NQ's own roadmap), generation counters, transport.
 
-  Unwired: not imported by `LeanProofs.lean` or any default target. Build
-  directly: `lake build LeanProofs.Admissibility.CustodyFreshnessSpecimen`.
-  Formalization does not wait on runtime adoption. Under the current custody
-  fence, ANNEX promotion still requires a runtime artifact to identify the
-  named theorems it adopts. Citation names the intended contract; conformance
-  still requires a mapping plus runtime evidence or a refinement proof.
+  Custody: terminal public evidence, regression-built by
+  `lake build AdmissibilityEvidence`. Publication does not claim runtime
+  adoption; conformance still requires a mapping plus runtime evidence or a
+  refinement proof.
 -/
 
 /-!

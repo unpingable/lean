@@ -1,8 +1,10 @@
 /-
   LeanProofs.Witnessed.Formula -- positive formula sequents for WDC.
 
-  Custody class: ANNEX (Mathlib-free public surface). This is an additive
-  formula layer over the Witnessed Derivation Calculus: atoms are WDC claims,
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: STABLE-SURFACE
+  Stable Mathlib-free additive formula layer over the Witnessed Derivation
+  Calculus: atoms are WDC claims,
   while top/conjunction/disjunction are purely structural formula constructors.
 
   Scope. This is the positive fragment only. It supplies:
