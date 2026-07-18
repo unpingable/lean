@@ -3,7 +3,9 @@
   Surface-Role: STABLE-SURFACE
 
   Exact public Calculus root: the governed-family signature (rung 2 of the
-  Admissibility Calculus promotion campaign, admitted 2026-07-17).
+  Admissibility Calculus promotion campaign, admitted 2026-07-17) and its
+  first two instances — static Weathering and the two-claim
+  BoundedPaidReachability (rung 3, admitted 2026-07-17).
 
   `Admissibility.Calculus` is the stable namespace for the unified object
   being constructed by the promotion campaign.  Its presence does not
@@ -12,3 +14,5 @@
 -/
 
 import LeanProofs.Admissibility.Calculus.Core
+import LeanProofs.Admissibility.Calculus.Instances.Weathering
+import LeanProofs.Admissibility.Calculus.Instances.BoundedPaidReachability

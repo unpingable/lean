@@ -22,8 +22,8 @@ candidate packets).
 | Rung | Content | Status |
 |------|---------|--------|
 | 1 | `Domains`/`Located` as shared public substrate in the `path-verdict` root | **ADMITTED 2026-07-17** (commit `538cf0b2ff2b`) |
-| 2 | `GovernedFamily` signature and generic laws | **ADMITTED 2026-07-17** (this ledger, below) |
-| 3 | Weathering and DPCR instances | pending |
+| 2 | `GovernedFamily` signature and generic laws | **ADMITTED 2026-07-17** (commit `8b93d459…`) |
+| 3 | Weathering and BoundedPaidReachability instances | **ADMITTED 2026-07-17** (this ledger, below) |
 | 4 | Exact refusal-packet spine (`SpineEncoding`/`LosslessEncoding`) | pending |
 | 5 | Indexed comparison ledger | pending |
 | 6 | Global crossing and executable checker | pending |
@@ -164,6 +164,85 @@ generic obligation lifecycle, arbitrary-family decision engine, unbounded
 reachability result, or runtime correspondence, and admits no later rung.
 `Authority` intentionally forgets witness multiplicity.
 
+## Rung 3 — Weathering and BoundedPaidReachability (admitted 2026-07-17)
+
+**Source:** private skunkworks one-owner seams created by the mandated
+pre-transfer sanitation (move, not copy), per the rung-3 candidate packet
+(`ADMISSIBILITY_CALCULUS_RUNG3_WEATHERING_BOUNDED_PAID_REACHABILITY_CANDIDATE_2026-07-17.md`)
+against exact baseline `8b93d459683602dfb497686283f082eaa53b9f36`:
+
+1. mechanical rename `paidReachability` → `boundedPaidReachability` across
+   every private consumer (zero stale references remain);
+2. import-free `Calculi/EvidenceWeathering/Core.lean` now solely owns
+   `Weather`, `canTestify`, `Disposition`, `Admissible`, and the six
+   selected native receipts; the legacy parent retains `Weather.renew` and
+   `renewed_may_rely` only;
+3. import-free `Calculi/Scratch/LawfulPaidReachability/Native.lean` now
+   solely owns `Run`, staged `Provenance`/`Resource`/`Warrant`/`State`/
+   `Action`/`Step`, and `occurrence_provenance` (with a private membership
+   helper); the residual Core retains counting, append/split,
+   inversion/frame laws, and the `[propext, Quot.sound]`-bearing
+   `no_admission_beyond_standing`;
+4. the bounded fixtures and `LawfulFrom` moved from hostile custody into
+   `ReachabilityInstance`, reversing the import chain — the hostile
+   modules (`RetroCausalWarrant`, `EndpointCleanHistory`) now consume the
+   adapter, and the promotion audit imports `EndpointCleanHistory`
+   explicitly;
+5. the full private tree rebuilt green (211 jobs) and unique ownership of
+   every moved declaration was verified by search.
+
+**Review and ratification:** hostile public-side review 2026-07-17
+verified all 16 advertised receipts at their exact footprints, the
+30-control audit (16 axiom-free + 14 `[propext]`), and the scope facts in
+source (two-branch `decide`, admission-only canonical witness,
+`claimed.paid = []`, empty obligations). The operator ratified all eight
+pins: scope/name (`BoundedPaidReachability`/`boundedPaidReachability`),
+admission/custody/obligation honesty, the hand-written two-case checker,
+the four-file split, the native-API canonical-ownership freeze of `Run`/
+`Provenance`/`Resource`/`Warrant`/`State`/`Action`/`Step`, the 16-receipt
+freeze at 10 axiom-free + 6 `[propext]`, move-not-copy custody, and the
+`187/90/96/1/11/106` accounting with no new root or target. One
+documentation requirement was added at ratification: the public Weathering
+adapter states explicitly that its `PLift (Admissible …)` witness is
+subsingleton because this native judgment carries no receipt data.
+
+**Public diff (this bundle):**
+
+1. four stable sources under `LeanProofs/Admissibility/Calculus/Instances/`
+   (two import-free Native modules, two governed-family adapters), each
+   **normalized-source-equal** to its one-owner private seam — proven by a
+   comment-stripped diff modulo only the declared import/namespace
+   substitutions;
+2. the existing Calculus aggregate imports the two instance leaves;
+3. four `STABLE-SURFACE admissibility-calculus` custody rows;
+4. the fail-closed Calculus footprint gate extended 6 → 22 exact receipts
+   (existing CI wiring unchanged);
+5. receipts: `CLAIM-REGISTER.md` entry #21, `AGENTS.md` counts, this
+   ledger. No new Lake library, target, default target, owner key, or
+   exact root.
+
+**Frozen axiom footprint (rung-3 receipts):** 16 — 10 axiom-free, 6
+exactly `[propext]`. No `Quot.sound`, no `Classical.choice`, no `sorryAx`,
+Mathlib-free. The rung must not be summarized as axiom-free.
+
+**Custody accounting after rung 3:** 187 public Lean sources — 90
+STABLE-SURFACE, 96 PUBLIC-EVIDENCE, 1 REPOSITORY-AGGREGATE, across eleven
+stable roots and 106 ownership relations (post-rung-2: 183/86/96/1, 102).
+
+**Evidence custody (deliberately NOT transferred):**
+`Rung3InstancePromotionAudit.lean` (30 controls), `RetroCausalWarrant`,
+`EndpointCleanHistory`, the saturation engine and its examples, the
+remaining lawful-paid-reachability campaign modules, `Weather.renew` and
+renewal-history material, and the UC worksheets remain in skunkworks
+custody. No private evidence module is a transitive import of the stable
+root.
+
+**Nonclaims:** rung 3 proves no general paid-reachability decidability, no
+saturation or synthesized barrier, no claim domain beyond the two
+fixtures, no successful payment or non-vacuous custody, no obligation
+lifecycle, no Weathering truth/renewal semantics, no spine adapter
+(rung 4), no BreakGlass claim, and no runtime correspondence.
+
 ## Verification receipt (rung-1 admission tree)
 
 All by bare exit code, 2026-07-17:
@@ -190,5 +269,26 @@ All by bare exit code, 2026-07-17:
 - `bash scripts/check-calculus-footprint.sh` — pass (6/6 exact)
 - `bash scripts/check-custody-classes.sh` — pass (183/86/96/1, 11 roots,
   102 ownerships)
+- every other family build, footprint gate, audit script, and the pinned
+  downstream consumer per `AGENTS.md` — pass (22/22 green)
+
+Rung 2's public commit: `8b93d459683602dfb497686283f082eaa53b9f36`
+("Admit Admissibility Calculus rung 2").
+
+## Verification receipt (rung-3 admission tree)
+
+All by bare exit code, 2026-07-17:
+
+- private pre-transfer sanitation: full skunkworks tree rebuild — pass
+  (211 jobs); unique one-owner check for every moved declaration — pass
+- normalized-source-equality proof for all four transfers
+  (comment-stripped diff modulo declared substitutions) — EQUAL 4/4
+- `lake build AdmissibilityCalculus` — pass, all receipts re-attested on
+  arrival at exactly 10 axiom-free + 6 `[propext]`
+- `bash scripts/check-calculus-footprint.sh` — pass (22/22 exact)
+- `bash scripts/check-custody-classes.sh` — pass (187/90/96/1, 11 roots,
+  106 ownerships)
+- stale-name sweep (overbroad `PaidReachability`, saturation glosses,
+  custody/obligation overclaims) — clean
 - every other family build, footprint gate, audit script, and the pinned
   downstream consumer per `AGENTS.md` — pass (22/22 green)
