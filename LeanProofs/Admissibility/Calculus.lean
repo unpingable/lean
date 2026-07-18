@@ -5,9 +5,11 @@
   Exact public Calculus root: the governed-family signature (rung 2 of the
   Admissibility Calculus promotion campaign, admitted 2026-07-17), its
   first two instances — static Weathering and the two-claim
-  BoundedPaidReachability (rung 3, admitted 2026-07-17) — and the exact
+  BoundedPaidReachability (rung 3, admitted 2026-07-17) — the exact
   refusal-packet spine with both instance adapters (rung 4, admitted
-  2026-07-18).
+  2026-07-18), and the indexed comparison framework (rung 5, admitted
+  2026-07-18; the concrete seven-entry ledger remains receipt-bound
+  research-tree evidence).
 
   `Admissibility.Calculus` is the stable namespace for the unified object
   being constructed by the promotion campaign.  Its presence does not
@@ -20,3 +22,4 @@ import LeanProofs.Admissibility.Calculus.Instances.Weathering
 import LeanProofs.Admissibility.Calculus.Instances.BoundedPaidReachability
 import LeanProofs.Admissibility.Calculus.Instances.Weathering.Spine
 import LeanProofs.Admissibility.Calculus.Instances.BoundedPaidReachability.Spine
+import LeanProofs.Admissibility.Calculus.Comparison

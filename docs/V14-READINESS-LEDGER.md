@@ -24,8 +24,8 @@ candidate packets).
 | 1 | `Domains`/`Located` as shared public substrate in the `path-verdict` root | **ADMITTED 2026-07-17** (commit `538cf0b2ff2b`) |
 | 2 | `GovernedFamily` signature and generic laws | **ADMITTED 2026-07-17** (commit `8b93d459…`) |
 | 3 | Weathering and BoundedPaidReachability instances | **ADMITTED 2026-07-17** (commit `f0f31310…`) |
-| 4 | Exact refusal-packet spine (`SpineEncoding`/`LosslessEncoding`) | **ADMITTED 2026-07-18** (this ledger, below) |
-| 5 | Indexed comparison ledger | pending |
+| 4 | Exact refusal-packet spine (`SpineEncoding`/`LosslessEncoding`) | **ADMITTED 2026-07-18** (commit `6c026d12…` + comment fix `9f24240d…`) |
+| 5 | Indexed comparison framework (concrete ledger stays evidence) | **ADMITTED 2026-07-18** (this ledger, below) |
 | 6 | Global crossing and executable checker | pending |
 | 7 | Origin/history-bound BreakGlass instance (terminal forcing instance) | pending |
 
@@ -331,6 +331,101 @@ exact encodability, no witness identity from `clean`, no authentication
 by decodability, no cross-family comparison/composition/checking
 (rungs 5–6), no BreakGlass claim (rung 7), no runtime serialization or
 conformance, and no v14 declaration or capital-C completion.
+
+## Rung 5 — the indexed comparison framework (admitted 2026-07-18)
+
+**Source:** private skunkworks
+`Calculi/Scratch/CrossCalculus/Comparison/Core.lean`, the zero-import
+generic core of the revised rung-5 construction
+(`ADMISSIBILITY_CALCULUS_RUNG5_INDEXED_COMPARISON_REVISED_CANDIDATE_2026-07-18.md`),
+built to the ratified scope
+(`ADMISSIBILITY_CALCULUS_RUNG5_SCOPE_RATIFICATION_2026-07-18.md`, with
+enumeration addendum and the entries-not-modules correction) against
+public baseline `9f24240d…` and private native baseline `b7782e10…`.
+
+**Review and ratification:** the first rung-5 candidate honestly stopped
+at REVISE on four hostile-audit blockers (no proof-carrying index, A1/A2
+map mismatch, overstated capability claims, private-vocabulary
+pre-promotion). The revised construction discharged all four
+structurally: dependent `ComparisonLaw` selection makes a kind label
+unstorable without its law; `DirectionalWithLossReceipt` binds
+preservation and the collapsed pair to the same stored map;
+`CapabilityDisposition` makes support-without-receipt generically
+impossible; `JudgmentView`/`NativeSourceShape` cannot fabricate native
+decision triples. Three independent hostile reviewers plus the
+public-side review returned ADMIT FOR EXTRACTION PREPARATION; the
+operator then ratified the extraction selections: **promote
+`Comparison/Core.lean` only; promote no native seam; keep the concrete
+ledger and adapters as receipt-bound evidence custody.**
+
+**Admission fence (binding wording):** the public calculus now contains
+the closed indexed comparison framework under which the seven ratified
+native-source entries were constructed and hostile-reviewed. The
+concrete instantiated ledger and its native adapters remain evidence
+custody, bound by the rung-5 transfer receipt and executable pin gates.
+It is NOT claimed that the complete seven-entry ledger is part of the
+public calculus.
+
+**Public diff (this bundle):**
+
+1. `LeanProofs/Admissibility/Calculus/Comparison.lean` — the
+   constitutional vocabulary (closed seven-constructor `EntryIndex`,
+   four dependent receipt forms, one-projection-per-entry with same-map
+   receipts, receipt-bearing capabilities, typed native-source gaps,
+   mandatory nonempty nonclaims, total ledgers) and 17 generic
+   receipts — **normalized-source-equal** to its private source;
+2. the existing Calculus aggregate imports it;
+3. one `STABLE-SURFACE admissibility-calculus` custody row;
+4. the fail-closed Calculus footprint gate extended 45 → 62 exact
+   receipts;
+5. receipts: `CLAIM-REGISTER.md` entry #23, `AGENTS.md` counts, this
+   ledger. No new root, target, or top-level import; no native seam
+   promoted.
+
+**Frozen axiom footprint (rung-5 receipts):** 17 — all axiom-free. Zero
+imports, Mathlib-free.
+
+**Private realization binding (what the public code deliberately does
+not carry):** the concrete construction comprises eight implementation
+modules (60 receipts: 36 axiom-free, 15 `[propext]`, 9
+`[propext, Quot.sound]` — the `Quot.sound` receipts confined to
+evidence-side leaves), the fresh 16-control hostile audit (3/6/7), 14
+definition-bound entry-exhaustive source pins gated by
+`scripts/check-rung5-source-pins.sh`, the import-free OperatorQuorum
+seam gated by `scripts/check-rung5-quorum-seam.sh`, and all seven
+`EntryIndex` assignments. Exact private blob pins are recorded in the
+skunkworks rung-5 transfer receipt after the private reconciliation
+commit; the public core does not float free of its proved inhabitant.
+
+**Custody accounting after rung 5:** 192 public Lean sources — 95
+STABLE-SURFACE, 96 PUBLIC-EVIDENCE, 1 REPOSITORY-AGGREGATE, across
+eleven stable roots and 112 ownership relations (post-rung-4:
+191/94/96/1, 111).
+
+**Nonclaims:** the public promotion does not expose or prove the
+concrete seven-entry ledger; no universal standing/authority/custody
+carrier; no cross-family coercion; no crossing law (rung 6); no legacy
+or origin-bound BreakGlass comparison (rung 7); no capital-C
+completion. A future concrete public claim requires a new reviewed
+selection packet.
+
+## Verification receipt (rung-5 admission tree)
+
+All by bare exit code, 2026-07-18:
+
+- private construction: full skunkworks tree build — pass (226 jobs);
+  `check-rung5-source-pins.sh` — 14/14 exact, definition-bound,
+  entry-exhaustive; `check-rung5-quorum-seam.sh` — exact import-free
+  prefix; canonical audit — 52/52
+- receipt accounting independently reproduced: 60 implementation
+  receipts at 36/15/9; 16 audit receipts at 3/6/7 (wrap-normalized
+  count); no `sorryAx` or `Classical.choice`
+- normalized-source-equality proof for the single transfer — EQUAL
+- `bash scripts/check-calculus-footprint.sh` — pass (62/62 exact; the
+  17 rung-5 receipts all axiom-free)
+- `bash scripts/check-custody-classes.sh` — pass (192/95/96/1, 11
+  roots, 112 ownerships)
+- full remaining battery per `AGENTS.md` — pass
 
 ## Verification receipt (rung-1 admission tree)
 

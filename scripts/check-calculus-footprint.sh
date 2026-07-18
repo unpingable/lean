@@ -9,16 +9,18 @@
 # Source of truth for the expected footprints: the rung-2/3/4 candidate
 # packets and hostile reviews (skunkworks
 # ADMISSIBILITY_CALCULUS_RUNG{2,3,4}_*_CANDIDATE_2026-07-17.md), recorded
-# in CLAIM-REGISTER.md entries #20/#21/#22 and the `#print axioms`
-# receipts in the modules themselves. The frozen surface is 45 receipts:
+# in CLAIM-REGISTER.md entries #20/#21/#22/#23 and the `#print axioms`
+# receipts in the modules themselves. The frozen surface is 62 receipts:
 # six rung-2 core receipts (all axiom-free), sixteen rung-3 instance
-# receipts (ten axiom-free, six exactly `[propext]`), and twenty-three
-# rung-4 spine receipts (eighteen axiom-free, five exactly `[propext]`).
+# receipts (ten axiom-free, six exactly `[propext]`), twenty-three rung-4
+# spine receipts (eighteen axiom-free, five exactly `[propext]`), and
+# seventeen rung-5 comparison-framework receipts (all axiom-free; the
+# concrete seven-entry ledger stays research-tree evidence).
 # `no_claim_erasing_check_is_faithful`, `boundedPaidReachability`, and the
 # seven rung-4 pre-freeze renames are the operator-ratified names.
 #
 # Exit codes:
-#   0 — stable root builds; all 45 receipts exact
+#   0 — stable root builds; all 62 receipts exact
 #   1 — `lake build AdmissibilityCalculus` failed
 #   2 — a receipt drifted (missing/renamed, new axiom, sorry, or wrong footprint)
 
@@ -29,6 +31,7 @@ cd "$REPO_ROOT"
 
 P="Admissibility.Calculus.GovernedFamily"
 C="Admissibility.Calculus"
+M="Admissibility.Calculus.Comparison"
 W="Admissibility.Calculus.Instances.Weathering"
 B="Admissibility.Calculus.Instances.BoundedPaidReachability"
 NONE="does not depend on any axioms"
@@ -89,6 +92,24 @@ declare -A EXPECT=(
   ["$B.bounded_paid_decide_from_bare_returns_exact_barrier"]="$PROPEXT"
   ["$B.bounded_paid_bare_refusal_round_trip"]="$PROPEXT"
   ["$B.bounded_paid_no_barrier_for_funded"]="$NONE"
+  # rung 5 — indexed comparison framework, 17, all axiom-free
+  ["$M.mem_allEntries"]="$NONE"
+  ["$M.allEntries_nodup"]="$NONE"
+  ["$M.allEntries_length"]="$NONE"
+  ["$M.ExactJudgmentReceipt.preserves"]="$NONE"
+  ["$M.ExactJudgmentReceipt.reflects"]="$NONE"
+  ["$M.ExactRepresentationReceipt.map_injective"]="$NONE"
+  ["$M.ExactRepresentationReceipt.decode_some_iff"]="$NONE"
+  ["$M.DirectionalWithLossReceipt.no_left_inverse"]="$NONE"
+  ["$M.SeparationReceipt.not_universal_preservation"]="$NONE"
+  ["$M.CapabilityDisposition.receipt_of_supported"]="$NONE"
+  ["$M.CapabilityDisposition.unsupported_not_supported"]="$NONE"
+  ["$M.CapabilityDisposition.no_support_without_receipt"]="$NONE"
+  ["$M.CapabilityBook.receipt"]="$NONE"
+  ["$M.Ledger.covers"]="$NONE"
+  ["$M.collapsed_map_rejects_exact_representation"]="$NONE"
+  ["$M.constant_map_rejects_exact_representation"]="$NONE"
+  ["$M.impossible_capability_has_no_supported_disposition"]="$NONE"
 )
 
 # 1. The stable root must build. The lib is import-free below Lean core and
