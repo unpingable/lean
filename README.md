@@ -4,6 +4,12 @@
 
 Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
 
+New here? The
+[plain language summary](docs/PLAIN-LANGUAGE-SUMMARY.md) explains the
+research problem this project investigates — governing change under
+bounded knowledge — before the mathematics. The Lean is the medium, not
+the subject.
+
 Development-order and custody discipline for contributors and coding agents
 lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
