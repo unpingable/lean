@@ -351,8 +351,11 @@ structurally: dependent `ComparisonLaw` selection makes a kind label
 unstorable without its law; `DirectionalWithLossReceipt` binds
 preservation and the collapsed pair to the same stored map;
 `CapabilityDisposition` makes support-without-receipt generically
-impossible; `JudgmentView`/`NativeSourceShape` cannot fabricate native
-decision triples. Three independent hostile reviewers plus the
+impossible; `JudgmentView` contains only a carrier and predicate, and
+`NativeSourceShape` requires an explicit indexed triple or typed gap
+(without itself authenticating that a declared triple is genuinely
+native — that comes from the concrete ledger, executable pins, and
+review). Three independent hostile reviewers plus the
 public-side review returned ADMIT FOR EXTRACTION PREPARATION; the
 operator then ratified the extraction selections: **promote
 `Comparison/Core.lean` only; promote no native seam; keep the concrete
@@ -386,11 +389,14 @@ public calculus.
 imports, Mathlib-free.
 
 **Private realization binding (what the public code deliberately does
-not carry):** the concrete construction comprises eight implementation
-modules (60 receipts: 36 axiom-free, 15 `[propext]`, 9
-`[propext, Quot.sound]` — the `Quot.sound` receipts confined to
-evidence-side leaves), the fresh 16-control hostile audit (3/6/7), 14
-definition-bound entry-exhaustive source pins gated by
+not carry):** the full reviewed construction is 8 modules / 60 receipts
+(36 axiom-free, 15 `[propext]`, 9 `[propext, Quot.sound]`); the
+public-owned Core is 1 module / 17 axiom-free receipts; the private
+evidence-only remainder is 7 modules / 43 receipts — 19 axiom-free, 15
+`[propext]`, 9 `[propext, Quot.sound]` — plus the fresh 16-control
+hostile audit (3/6/7). `Quot.sound` is confined to that private
+concrete realization. The remainder is bound by 14 definition-bound
+entry-exhaustive source pins gated by
 `scripts/check-rung5-source-pins.sh`, the import-free OperatorQuorum
 seam gated by `scripts/check-rung5-quorum-seam.sh`, and all seven
 `EntryIndex` assignments. Exact private blob pins are recorded in the

@@ -122,7 +122,8 @@ roots = ["LeanProofs.Admissibility.SafetyBridge"]
 [[lean_lib]]
 name = "AdmissibilityCalculus"
 # Calculus stable surface: the governed-family signature, its instances,
-# and the exact refusal-packet spine (rungs 2-4, Mathlib-free).
+# the exact refusal-packet spine, and the indexed comparison framework
+# (rungs 2-5, Mathlib-free).
 roots = ["LeanProofs.Admissibility.Calculus"]
 
 [[lean_lib]]

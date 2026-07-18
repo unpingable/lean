@@ -16,14 +16,17 @@
   ADMISSION FENCE (binding on any public claim): the public calculus now
   contains the closed indexed comparison FRAMEWORK under which the seven
   ratified native-source entries were constructed and hostile-reviewed.
-  The concrete instantiated ledger, its eight implementation modules, its
-  native adapters and observation seams, its 60 implementation receipts,
-  and its 16 hostile-audit receipts remain research-tree evidence
-  custody, bound by the rung-5 transfer receipt and executable
-  fail-closed source-pin gates. This module does NOT itself expose or
-  prove that concrete ledger; a future concrete public claim earns its
-  adapter, theorem selection, and axiom footprint through a separately
-  reviewed packet.
+  The full reviewed construction is 8 modules / 60 receipts; this module
+  is the public-owned Core — 1 module / 17 axiom-free receipts. The
+  private evidence-only remainder — 7 modules / 43 receipts (19
+  axiom-free, 15 `[propext]`, 9 `[propext, Quot.sound]`), plus the
+  16-receipt hostile audit — remains research-tree evidence custody with
+  its native adapters and observation seams, bound by the rung-5 transfer
+  receipt and executable fail-closed source-pin gates. `Quot.sound` is
+  confined to that private concrete realization. This module does NOT
+  itself expose or prove the concrete ledger; a future concrete public
+  claim earns its adapter, theorem selection, and axiom footprint through
+  a separately reviewed packet.
 
   The framework is the law the seven families collectively forced:
 
@@ -39,9 +42,11 @@
   * optional capabilities are receipt-bearing or explicitly obstructed —
     never Boolean flags, never silently supplied defaults, and support
     without a receipt is generically impossible;
-  * `JudgmentView` is comparison-owned vocabulary naming a carrier and a
-    predicate; it does not fabricate native decision triples, and
-    `NativeSourceShape` forces either the genuine triple or a typed gap.
+  * `JudgmentView` contains only a carrier and a predicate;
+    `NativeSourceShape` requires an explicit indexed triple or a typed
+    gap, but does not itself authenticate that a declared triple is
+    genuinely native — that authentication comes from the concrete
+    ledger, its executable source pins, and review.
 
   Frozen surface: 17 exported theorems, all axiom-free.
 
