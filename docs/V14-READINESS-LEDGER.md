@@ -545,10 +545,10 @@ public substrate, named per-theorem in the research-tree manifest.
 6. receipts: `CLAIM-REGISTER.md` entry #25, `AGENTS.md` counts, this
    ledger.
 
-**Frozen axiom footprint (rung-7 stable receipts):** 101 — 3 axiom-free,
-19 opaque-substrate-only, 4 `+propext` without `Quot.sound`, 67
-`+Quot.sound` without `Classical.choice`, and 8 `+Classical.choice` —
-75 `Quot.sound`-bearing overall. (The full private construction's
+**Frozen axiom footprint (rung-7 stable receipts):** 101 —
+3 axiom-free, 19 opaque-substrate-only, 4 `+propext` without
+`Quot.sound`, 67 `+Quot.sound` without `Classical.choice`, and 8
+`+Classical.choice` (75 `Quot.sound`-bearing overall). (The full private construction's
 150-receipt split, including the 49 evidence receipts, is 3/26/13/97/11
 and remains a research-tree accounting.) No `sorryAx`, no project axiom,
 Mathlib-free. **This rung must never be summarized as axiom-free**; the
