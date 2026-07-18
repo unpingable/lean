@@ -49,10 +49,10 @@ jobs:
       # footprint of the extended path-verdict stable root.
       - name: PathVerdict footprint gate
         run: bash scripts/check-pathverdict-footprint.sh
-      # Admissibility Calculus stable root (rungs 2-6 of the promotion
-      # campaign): re-attest the frozen 90-receipt axiom footprint —
-      # signature core, both instances, exact spine, comparison framework,
-      # and stored-decision crossing.
+      # Admissibility Calculus stable root (rungs 2-7 of the promotion
+      # campaign): re-attest the frozen 191-receipt axiom footprint —
+      # signature core, the instances, exact spine, comparison framework,
+      # stored-decision crossing, and the BreakGlass terminal instance.
       - name: Calculus footprint gate
         run: bash scripts/check-calculus-footprint.sh
       # Terminal public-evidence fixture: a separate Lake project whose

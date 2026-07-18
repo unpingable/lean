@@ -26,8 +26,13 @@ candidate packets).
 | 3 | Weathering and BoundedPaidReachability instances | **ADMITTED 2026-07-17** (commit `f0f31310…`) |
 | 4 | Exact refusal-packet spine (`SpineEncoding`/`LosslessEncoding`) | **ADMITTED 2026-07-18** (commit `6c026d12…` + comment fix `9f24240d…`) |
 | 5 | Indexed comparison framework (concrete ledger stays evidence) | **ADMITTED 2026-07-18** (commit `dc9c8df5…` + docs fix `ba7590af…`) |
-| 6 | Stored-decision crossing and witnessed inhabitant | **ADMITTED 2026-07-18** (this ledger, below) |
-| 7 | Origin/history-bound BreakGlass instance (terminal forcing instance) | pending |
+| 6 | Stored-decision crossing and witnessed inhabitant | **ADMITTED 2026-07-18** (commit `41510aa9…` + comment fix `721c2c8c…`) |
+| 7 | Origin/history-bound BreakGlass instance (terminal forcing instance) | **ADMITTED 2026-07-18** (this ledger, below) |
+
+**All seven rungs are admitted.** The terminal campaign naming claim —
+whether the assembled public object is declared the capital-C Calculus —
+is a separate operator ratification, deliberately NOT decided by rung-7
+admission.
 
 All seven rungs belong to one v14 semantic release unless rungs 4–6 expose a
 semantic redesign large enough that the public surface cannot honestly
@@ -491,6 +496,97 @@ transition, no non-vacuous bounded-paid custody, no N-ary crossing, no
 saturation-engine crossing, no witness-identity serialization, no
 authenticated segment labels, no BreakGlass crossing (rung 7), no
 capital-C completion.
+
+## Rung 7 — the origin/history-bound BreakGlass terminal instance (admitted 2026-07-18)
+
+**Source:** seven private modules at reconciliation commit
+`85edee78d686e92cbf3dffb6ee3550922913c363` (candidate packet SHA-256
+`e4bc2e46…`, Git blob `c5f9cdb6…`, digest-verified), built against
+public baseline `721c2c8c…` (tree `935880e8…`). The packet's 27
+working-byte coordinates were converted to Git pins by the
+reconciliation commit before extraction.
+
+**Review and ratification:** the internal preflight caught and repaired
+a glossary overclaim (`Atoms` contains exactly origin, state, actor,
+step). The public-side hostile review verified the packet digest,
+reproduced the 150-receipt accounting per-module (101 stable + 49
+evidence, zero `sorryAx`), independently confirmed the single stored
+`evaluate` boundary and the untouched seven-entry `EntryIndex`, read the
+C1 comparison in full (verdict-level, no `AuthorizedStep` fabrication,
+origin-retaining audit view), and ran all three rung-7 gates plus the
+233-job tree and 58-check canonical CI. The operator ratified extraction
+with **explicit acceptance of the axiom footprint**: the stable surface
+carries `Quot.sound` and `Classical.choice` over the declared opaque
+public substrate, named per-theorem in the research-tree manifest.
+
+**Public diff (this bundle):**
+
+1. seven stable sources under
+   `LeanProofs/Admissibility/Calculus/Instances/BreakGlass/` (lifecycle
+   origin 3, native 28, lifecycle 23, governed family 19, spine 9,
+   comparison 4, crossing 15 — 101 receipts), each
+   **normalized-source-equal** to its pinned private source under the
+   declared substitutions (including the sibling-qualifier map
+   `OriginBoundBreakGlass.` → `BreakGlass.` in the crossing);
+2. the Calculus aggregate imports the four leaf roots (12 imports
+   total);
+3. seven `STABLE-SURFACE admissibility-calculus` custody rows, plus
+   seven closure-forced multi-root additions (`Authority`,
+   `StateTransition`, `MeasureAccounting`, and four `Witnessed`
+   sources gain `admissibility-calculus` ownership);
+4. the fail-closed Calculus footprint gate extended 90 → 191 exact
+   receipts, with the rung-7 expectations generated from the gate's own
+   probe context;
+5. the description-coherence gate obligation discharged: all four public
+   description sites (aggregate header, lakefile, CI step, gate header)
+   and the gate constants updated atomically to rung 7 / 191;
+6. receipts: `CLAIM-REGISTER.md` entry #25, `AGENTS.md` counts, this
+   ledger.
+
+**Frozen axiom footprint (rung-7 stable receipts):** 101 — 3 axiom-free,
+26 opaque-substrate-only, 13 `+propext`, and the remainder adding
+`Quot.sound` (97 overall) and `Classical.choice` (11). No `sorryAx`, no
+project axiom, Mathlib-free. **This rung must never be summarized as
+axiom-free**; the footprint was accepted knowingly.
+
+**Custody accounting after rung 7:** 201 public Lean sources — 104
+STABLE-SURFACE, 96 PUBLIC-EVIDENCE, 1 REPOSITORY-AGGREGATE, across
+eleven stable roots and 131 ownership relations (post-rung-6:
+194/97/96/1, 117).
+
+**Evidence custody (deliberately NOT transferred):** the 39-receipt
+hostile-case matrix, the 6-receipt legacy-exploit repair audit, the
+3-receipt spine audit, the grouped terminal audit, the legacy
+fixed-`Atoms` exploit modules (byte-pinned adverse custody), and the
+blocked predecessor packet all remain in skunkworks custody.
+
+**Nonclaims:** per claim #25 — no origin-allocator uniqueness, attestor
+honesty, runtime conformance, unconditional state change, multi-entry
+reordering, discharge/payment lifecycle, general transition universe, or
+cryptographic claims; and rung-7 admission does not decide the terminal
+campaign naming claim.
+
+## Verification receipt (rung-7 admission tree)
+
+All by bare exit code, 2026-07-18:
+
+- packet digest and blob verified; 6 of 27 working-byte pins
+  sample-verified; private tree — pass (233 jobs); canonical CI — 58/58;
+  source pins — 19/19 (12 parity + 7 direct); decision flow — one stored
+  evaluate boundary; description gate — coherent
+- 150-receipt accounting independently reproduced per-module (101 + 49,
+  all eleven modules exact; 3 axiom-free, 108 `Quot.sound`-bearing
+  decomposing as 97 + 11 `Classical.choice`, zero `sorryAx`)
+- independent greps: zero `.decide`/`.funnel`/operational
+  `Rung6Crossing.check (` in the specialized modules; exactly one
+  `Rung6Crossing.evaluate (`; zero `EntryIndex` references in any
+  BreakGlass module
+- normalized-source-equality proof for all seven transfers — EQUAL 7/7
+- `bash scripts/check-calculus-footprint.sh` — pass (191/191 exact)
+- `bash scripts/check-custody-classes.sh` — pass (201/104/96/1, 11
+  roots, 131 ownerships)
+- description-coherence gate — four sites coherent at rung 7 / 191
+- full remaining battery per `AGENTS.md` — pass
 
 ## Verification receipt (rung-6 admission tree)
 

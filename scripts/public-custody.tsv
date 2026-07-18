@@ -8,7 +8,7 @@ LeanProofs/Admissibility/ActorTraceSpecimen.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/AdmissibilityKernels.lean	STABLE-SURFACE	admissibility-kernels
 LeanProofs/Admissibility/AmendmentFragment.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/AttestationLedger.lean	PUBLIC-EVIDENCE	-
-LeanProofs/Admissibility/Authority.lean	STABLE-SURFACE	admissibility-kernels,dynamic-trace,view-semantics
+LeanProofs/Admissibility/Authority.lean	STABLE-SURFACE	admissibility-calculus,admissibility-kernels,dynamic-trace,view-semantics
 LeanProofs/Admissibility/AuthorityScope.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/AuthorizedNotSafe.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/AuthorizedNotSafeWitness.lean	PUBLIC-EVIDENCE	-
@@ -25,6 +25,13 @@ LeanProofs/Admissibility/Calculus/Spine.lean	STABLE-SURFACE	admissibility-calcul
 LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability/Native.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability/Spine.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/BreakGlass.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/BreakGlass/Comparison.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/BreakGlass/Crossing.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/BreakGlass/Lifecycle.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/BreakGlass/LifecycleOrigin.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/BreakGlass/Native.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/BreakGlass/Spine.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/Weathering.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/Weathering/Native.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/Weathering/Obstructions.lean	STABLE-SURFACE	admissibility-calculus
@@ -75,7 +82,7 @@ LeanProofs/Admissibility/ScopedCertification.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/SpendabilitySpecimen.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/StaleEvidenceMerge.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/StandingProfileSpecimen.lean	PUBLIC-EVIDENCE	-
-LeanProofs/Admissibility/StateTransition.lean	STABLE-SURFACE	admissibility-kernels,dynamic-trace,view-semantics
+LeanProofs/Admissibility/StateTransition.lean	STABLE-SURFACE	admissibility-calculus,admissibility-kernels,dynamic-trace,view-semantics
 LeanProofs/Admissibility/SurfaceAuthorization.lean	STABLE-SURFACE	admissibility-kernels
 LeanProofs/Admissibility/TemporalBasis.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/WLPAppendAckSpecimen.lean	PUBLIC-EVIDENCE	-
@@ -86,7 +93,7 @@ LeanProofs/BoundedCalculi/BootKernel.lean	PUBLIC-EVIDENCE	-
 LeanProofs/BoundedCalculi/BoundaryArtifact.lean	STABLE-SURFACE	custody-indexed
 LeanProofs/BoundedCalculi/CheckpointSettlement.lean	PUBLIC-EVIDENCE	-
 LeanProofs/BoundedCalculi/ExecutionCustody.lean	STABLE-SURFACE	custody-indexed
-LeanProofs/BoundedCalculi/MeasureAccounting.lean	STABLE-SURFACE	custody-indexed
+LeanProofs/BoundedCalculi/MeasureAccounting.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed
 LeanProofs/BoundedCalculi/ObligationResidue.lean	STABLE-SURFACE	custody-indexed
 LeanProofs/BoundedCalculi/RefusalDenial.lean	PUBLIC-EVIDENCE	-
 LeanProofs/BoundedCalculi/SafetyPreservation.lean	STABLE-SURFACE	custody-indexed
@@ -172,7 +179,7 @@ LeanProofs/Witnessed/AxisIndependence.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/CarryLaws.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/CommutesNecessity.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/Coordinates.lean	STABLE-SURFACE	witnessed
-LeanProofs/Witnessed/Derivation.lean	STABLE-SURFACE	custody-indexed,witnessed
+LeanProofs/Witnessed/Derivation.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed,witnessed
 LeanProofs/Witnessed/Discipline.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/Divergence.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/Embedding.lean	STABLE-SURFACE	witnessed
@@ -183,7 +190,7 @@ LeanProofs/Witnessed/Freshness.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/Gentzen.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/HeadOnlyGentzenCutFailure.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Witnessed/LaunderingCorpus.lean	PUBLIC-EVIDENCE	-
-LeanProofs/Witnessed/NoFreeLift.lean	STABLE-SURFACE	custody-indexed,witnessed
+LeanProofs/Witnessed/NoFreeLift.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed,witnessed
 LeanProofs/Witnessed/Normalization.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/Obstruction.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Witnessed/PaidRecomposition.lean	STABLE-SURFACE	witnessed
@@ -194,6 +201,6 @@ LeanProofs/Witnessed/PaidRecomposition/Countermodels/EndpointCompleteness.lean	P
 LeanProofs/Witnessed/PaidRecomposition/Payment.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/ResourceChecker.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/ResourceCheckerExec.lean	STABLE-SURFACE	witnessed
-LeanProofs/Witnessed/ResourceSequent.lean	STABLE-SURFACE	custody-indexed,witnessed
-LeanProofs/Witnessed/Sequent.lean	STABLE-SURFACE	custody-indexed,witnessed
+LeanProofs/Witnessed/ResourceSequent.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed,witnessed
+LeanProofs/Witnessed/Sequent.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed,witnessed
 downstream/wdc-v2-consumer/DownstreamWdcV2.lean	PUBLIC-EVIDENCE	-

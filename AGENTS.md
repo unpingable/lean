@@ -84,7 +84,7 @@ bash scripts/check-witnessed-footprint.sh     # ratified WDC axiom footprint
 bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
 bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
 bash scripts/check-pathverdict-footprint.sh   # rung-1 Domains/Located exact 36-receipt footprint
-bash scripts/check-calculus-footprint.sh      # Calculus exact 90-receipt footprint (rungs 2–6)
+bash scripts/check-calculus-footprint.sh      # Calculus exact 191-receipt footprint (rungs 2–7)
 bash scripts/check-viewsemantics-footprint.sh
 bash scripts/check-viewsemantics-isolation.sh
 bash scripts/audit-axioms.sh                  # axiom classifier; 0 forbidden
@@ -94,16 +94,17 @@ bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
 ```
 
-Since the v14 rung-6 admission (2026-07-18, the stored-decision crossing
-and its Weathering/bounded-paid inhabitant into the Calculus root, after
-rungs 1–5), the custody gate must pass without exclusions over exactly
-194 public Lean files: 97 stable, 96 public evidence, and one aggregate,
-across eleven stable roots and 117 ownership relations (the PathVerdict
-`Core`, `Edges`, `Domains`, and `Located` sources are intentionally
-dual-rooted under `path-verdict` and `admissibility-calculus` — the
-crossing consumes the rung-1 substrate). Any drift or failure
-is a regression. The separate target gate must also report role-compatible
-registered target ownership for all 194/194 public sources. The v13
+Since the v14 rung-7 admission (2026-07-18, the origin/history-bound
+BreakGlass terminal instance into the Calculus root, completing the
+seven-rung campaign), the custody gate must pass without exclusions over
+exactly 201 public Lean files: 104 stable, 96 public evidence, and one
+aggregate, across eleven stable roots and 131 ownership relations. The
+PathVerdict substrate and the seven direct BreakGlass substrate inputs
+(`Authority`, `StateTransition`, `MeasureAccounting`, and four
+`Witnessed` sources) are intentionally multi-rooted with
+`admissibility-calculus` among their owners. Any drift or failure is a
+regression. The separate target gate must also report role-compatible
+registered target ownership for all 201/201 public sources. The v13
 baseline (179/82/96/1, 98 ownerships) stays frozen in
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md); the in-flight
 campaign ledger is
