@@ -21,8 +21,8 @@ candidate packets).
 
 | Rung | Content | Status |
 |------|---------|--------|
-| 1 | `Domains`/`Located` as shared public substrate in the `path-verdict` root | **ADMITTED 2026-07-17** (this ledger, below) |
-| 2 | `GovernedFamily` signature and generic laws | pending |
+| 1 | `Domains`/`Located` as shared public substrate in the `path-verdict` root | **ADMITTED 2026-07-17** (commit `538cf0b2ff2b`) |
+| 2 | `GovernedFamily` signature and generic laws | **ADMITTED 2026-07-17** (this ledger, below) |
 | 3 | Weathering and DPCR instances | pending |
 | 4 | Exact refusal-packet spine (`SpineEncoding`/`LosslessEncoding`) | pending |
 | 5 | Indexed comparison ledger | pending |
@@ -86,6 +86,84 @@ under arbitrary composition, reflects no domain values through noninjective
 maps, exposes no positional indexing, promotes no crossing checker, and
 admits no later rung.
 
+## Rung 2 — the governed-family signature (admitted 2026-07-17)
+
+**Source:** private skunkworks
+`Calculi/Scratch/CrossCalculus/Signature.lean`, sanitized per the rung-2
+candidate packet
+(`ADMISSIBILITY_CALCULUS_RUNG2_GOVERNED_FAMILY_CANDIDATE_2026-07-17.md`):
+documentation/namespace sanitation only, no semantic change. The rung-1
+public commit `538cf0b2ff2b88087fb6372ec45a6ba611a81db0` is the immutable
+campaign baseline this rung builds on.
+
+**Review and ratification:** hostile public-side review 2026-07-17 verified
+the zero-import dependency cone, the frozen inventory (one structure of 10
+fields, one derived definition, six theorems), all-axiom-free receipts, an
+independently re-run `Admissibility.Calculus` dry compile in the public
+environment, and an independently re-run Prop-squashing rejection probe
+(`Witness := fun _ => True` / `Refusal := fun _ => False` both rejected by
+the sort checker). The operator ratified with three pins:
+
+1. **Namespace accepted with doctrine reconciliation.**
+   `Admissibility.Calculus` is the stable namespace for the unified object
+   being constructed; its presence does not declare the calculus completed
+   or earned — that claim is gated on rung-7 ratification. The v10
+   reservation note in `LeanProofs/Admissibility/README.md` is revised (not
+   repealed): the earlier artifact did not earn the name; the term remains
+   reserved for the object now under construction at this address.
+   Establishing the namespace now avoids a gratuitous migration after later
+   rungs depend on the shared signature.
+2. **Theorem renamed before the freeze:** `no_erasing_check_is_faithful` →
+   `no_claim_erasing_check_is_faithful`, in both the canonical skunkworks
+   source and the public copy. The name now identifies the exact
+   obstruction (claim-collapsing projections) rather than inviting a
+   stronger folklore reading; the research tree keeps
+   `full_claim_check_is_faithful` as the control that checking itself
+   remains possible.
+3. **Universe-0 fence accepted as written:** witness/refusal data live in
+   `Type`, not `Prop`; the promoted signature is universe 0; universe
+   polymorphism is a separately reviewed redesign; no transport claim to
+   arbitrary universes. The fence is recorded in the module header, not
+   encoded into names.
+
+**Public diff (this bundle):**
+
+1. `LeanProofs/Admissibility/Calculus/Core.lean` — the `GovernedFamily`
+   structure (10 fields), derived `Authority`, six generic laws; zero
+   imports.
+2. `LeanProofs/Admissibility/Calculus.lean` — exact stable aggregate.
+3. New Lake target `AdmissibilityCalculus`, Mathlib-free, default-built;
+   registered in `scripts/public-targets.tsv`.
+4. New exact root registered in `scripts/stable-surfaces.tsv`
+   (owner key `admissibility-calculus`); both files registered
+   `STABLE-SURFACE` under it in `scripts/public-custody.tsv`.
+5. Aggregate imported from `LeanProofs.lean`.
+6. New fail-closed footprint gate `scripts/check-calculus-footprint.sh`
+   (6 exact receipts), wired into CI.
+7. Receipts: `CLAIM-REGISTER.md` entry #20, `AGENTS.md` verification
+   counts, the README doctrine revision, this ledger.
+
+**Frozen axiom footprint:** 6 receipts, all axiom-free. No `propext`, no
+`Classical.choice`, no `Quot.sound`, no `sorryAx`, no imports, Mathlib-free.
+
+**Custody accounting after rung 2:** 183 public Lean sources — 86
+STABLE-SURFACE, 96 PUBLIC-EVIDENCE, 1 REPOSITORY-AGGREGATE, across eleven
+stable roots and 102 ownership relations (post-rung-1: 181/84/96/1, ten
+roots, 100).
+
+**Evidence custody (deliberately NOT transferred):**
+`SignaturePromotionAudit.lean` (twelve axiom-free hostile receipts and the
+faithful full-claim control), the Prop-squashing probe, the UC-1 hostile
+corpus, instance fixtures, and campaign worksheets remain in skunkworks
+Scratch custody. The Weathering, paid-reachability, and BreakGlass
+instances are later-rung no-distortion evidence, not rung-2 imports.
+
+**Nonclaims:** rung 2 proves no funnel, lossless encoding, composition
+operator, comparison law, crossing, generic origin/history authentication,
+generic obligation lifecycle, arbitrary-family decision engine, unbounded
+reachability result, or runtime correspondence, and admits no later rung.
+`Authority` intentionally forgets witness multiplicity.
+
 ## Verification receipt (rung-1 admission tree)
 
 All by bare exit code, 2026-07-17:
@@ -97,3 +175,20 @@ All by bare exit code, 2026-07-17:
 - `bash scripts/check-custody-classes.sh` — pass (181/84/96/1, 10 roots,
   100 ownerships)
 - full remaining battery per `AGENTS.md` — pass
+
+Rung 1's public commit: `538cf0b2ff2b88087fb6372ec45a6ba611a81db0`
+("Admit Admissibility Calculus rung 1").
+
+## Verification receipt (rung-2 admission tree)
+
+All by bare exit code, 2026-07-17:
+
+- `lake build` (default surfaces, now including `AdmissibilityCalculus`) —
+  pass
+- `lake build AdmissibilityCalculus` — pass, all six receipts axiom-free
+  on arrival
+- `bash scripts/check-calculus-footprint.sh` — pass (6/6 exact)
+- `bash scripts/check-custody-classes.sh` — pass (183/86/96/1, 11 roots,
+  102 ownerships)
+- every other family build, footprint gate, audit script, and the pinned
+  downstream consumer per `AGENTS.md` — pass (22/22 green)

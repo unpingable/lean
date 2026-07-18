@@ -84,6 +84,7 @@ bash scripts/check-witnessed-footprint.sh     # ratified WDC axiom footprint
 bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
 bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
 bash scripts/check-pathverdict-footprint.sh   # rung-1 Domains/Located exact 36-receipt footprint
+bash scripts/check-calculus-footprint.sh      # rung-2 governed-family exact 6-receipt footprint
 bash scripts/check-viewsemantics-footprint.sh
 bash scripts/check-viewsemantics-isolation.sh
 bash scripts/audit-axioms.sh                  # axiom classifier; 0 forbidden
@@ -93,13 +94,14 @@ bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
 ```
 
-Since the v14 rung-1 admission (2026-07-17, Domains/Located into the
-path-verdict root), the custody gate must pass without exclusions over
-exactly 181 public Lean files: 84 stable, 96 public evidence, and one
-aggregate, across ten stable roots and 100 ownership relations. Any drift or
-failure is a regression. The separate target gate must also report
-role-compatible registered target ownership for all 181/181 public sources.
-The v13 baseline (179/82/96/1, 98 ownerships) stays frozen in
+Since the v14 rung-2 admission (2026-07-17, the `Admissibility.Calculus`
+governed-family root, after rung 1's Domains/Located), the custody gate must
+pass without exclusions over exactly 183 public Lean files: 86 stable, 96
+public evidence, and one aggregate, across eleven stable roots and 102
+ownership relations. Any drift or failure is a regression. The separate
+target gate must also report role-compatible registered target ownership for
+all 183/183 public sources. The v13 baseline (179/82/96/1, 98 ownerships)
+stays frozen in
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md); the in-flight
 campaign ledger is
 [`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md).

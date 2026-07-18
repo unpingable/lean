@@ -11,6 +11,7 @@ import LeanProofs.OpsMasking
 import LeanProofs.Paper24SharedVision
 import LeanProofs.Paper25EpistemicBorderControl
 import LeanProofs.Admissibility.Authority
+import LeanProofs.Admissibility.Calculus
 import LeanProofs.Admissibility.StateTransition
 import LeanProofs.Admissibility.Derivation
 import LeanProofs.Admissibility.Execution

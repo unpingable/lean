@@ -49,6 +49,10 @@ jobs:
       # footprint of the extended path-verdict stable root.
       - name: PathVerdict footprint gate
         run: bash scripts/check-pathverdict-footprint.sh
+      # Governed-family signature rung 2 (same campaign): re-attest the
+      # import-free Admissibility.Calculus core's frozen 6-receipt footprint.
+      - name: Calculus footprint gate
+        run: bash scripts/check-calculus-footprint.sh
       # Terminal public-evidence fixture: a separate Lake project whose
       # committed manifest resolves the released v2.0.0 Git dependency to an
       # exact commit. A bare build is the downstream compatibility receipt.

@@ -3,6 +3,7 @@
 # A surface may have more than one root. Every transitive repo import from these
 # roots must be classified STABLE-SURFACE in public-custody.tsv. The checker
 # also requires every STABLE-SURFACE row to be owned by at least one root here.
+admissibility-calculus	AdmissibilityCalculus	LeanProofs.Admissibility.Calculus	mathlib-free
 admissibility-kernels	AdmissibilityKernels	LeanProofs.Admissibility.AdmissibilityKernels	mathlib-free
 custody-indexed	CustodyIndexed	LeanProofs.CustodyIndexed	mathlib-free
 dynamic-trace	DynamicTrace	LeanProofs.Admissibility.DynamicTrace	mathlib-free

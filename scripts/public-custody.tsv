@@ -17,6 +17,8 @@ LeanProofs/Admissibility/AuthorizedStepNotSafeWitness.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/AxisSkew.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/BridgeCustomsSpecimen.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/BudgetMerge.lean	PUBLIC-EVIDENCE	-
+LeanProofs/Admissibility/Calculus.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Core.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/ClosureEligibility.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/Composition.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/ConsequencePartition.lean	PUBLIC-EVIDENCE	-

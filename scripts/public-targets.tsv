@@ -5,6 +5,7 @@
 # is checked here while its external import closure is attested by exact Git
 # requirements plus the committed Lake manifest, not mistaken for current-tree
 # or Mathlib-free closure.
+.	AdmissibilityCalculus	stable-surface	mathlib-free	default
 .	AdmissibilityEvidence	public-evidence	mathlib-free	default
 .	AdmissibilityEvidenceMathlib	public-evidence	mathlib-island	explicit
 .	AdmissibilityKernels	stable-surface	mathlib-free	default
