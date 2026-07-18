@@ -104,7 +104,7 @@ release archives this tree and drives its Zenodo version deposit beneath the
 concept DOI shown above. Source provenance for the first four modules:
 skunkworks commit `4f8e076`; `Bridge` was authored during promotion review.
 
-## v11 — Occurrence-Exact Paid Recomposition
+## 11.0.0 — Occurrence-Exact Paid Recomposition
 
 **Release status: locally tagged; external GitHub and Zenodo state is not
 asserted here.**

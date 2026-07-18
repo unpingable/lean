@@ -42,9 +42,11 @@ LeanProofs/Admissibility/NoFreeStandingBridge.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/NumericalAdmissibility.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/PathVerdict.lean	STABLE-SURFACE	path-verdict
 LeanProofs/Admissibility/PathVerdict/Core.lean	STABLE-SURFACE	path-verdict
+LeanProofs/Admissibility/PathVerdict/Domains.lean	STABLE-SURFACE	path-verdict
 LeanProofs/Admissibility/PathVerdict/Edges.lean	STABLE-SURFACE	path-verdict
 LeanProofs/Admissibility/PathVerdict/Evidence.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/PathVerdict/EvidencePromotionCoverage.lean	PUBLIC-EVIDENCE	-
+LeanProofs/Admissibility/PathVerdict/Located.lean	STABLE-SURFACE	path-verdict
 LeanProofs/Admissibility/PathVerdict/StandardObstructions.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/PredicateWitnessSeparation.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/ProjectionLaundering.lean	PUBLIC-EVIDENCE	-

@@ -44,6 +44,11 @@ jobs:
       # custody registry script below).
       - name: Judgment orientation footprint gate
         run: bash scripts/check-judgment-orientation-footprint.sh
+      # PathVerdict rung 1 (Admissibility Calculus promotion campaign,
+      # 2026-07-17): re-attest the frozen Domains/Located 36-receipt axiom
+      # footprint of the extended path-verdict stable root.
+      - name: PathVerdict footprint gate
+        run: bash scripts/check-pathverdict-footprint.sh
       # Terminal public-evidence fixture: a separate Lake project whose
       # committed manifest resolves the released v2.0.0 Git dependency to an
       # exact commit. A bare build is the downstream compatibility receipt.
