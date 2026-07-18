@@ -1,26 +1,24 @@
 #!/usr/bin/env bash
-# Re-attest the Admissibility.Calculus rung-2 axiom footprint in the
-# canonical build context. Fail-closed: every frozen receipt must report
-# EXACTLY its documented footprint. This is what prevents the import-free
-# governed-family signature (Admissibility Calculus promotion rung 2) from
-# quietly growing an axiom, a sorry, an import, or a renamed receipt. Exit
-# code is the gate, never eyeballed.
+# Re-attest the Admissibility.Calculus axiom footprint in the canonical
+# build context. Fail-closed: every frozen receipt must report EXACTLY its
+# documented footprint. This is what prevents the Calculus stable root
+# (rungs 2-4 of the promotion campaign) from quietly growing an axiom, a
+# sorry, an import, or a renamed receipt. Exit code is the gate, never
+# eyeballed.
 #
-# Source of truth for the expected footprints: the rung-2 and rung-3
-# candidate packets and hostile reviews of 2026-07-17 (skunkworks
-# ADMISSIBILITY_CALCULUS_RUNG2_GOVERNED_FAMILY_CANDIDATE_2026-07-17.md and
-# ADMISSIBILITY_CALCULUS_RUNG3_WEATHERING_BOUNDED_PAID_REACHABILITY_
-# CANDIDATE_2026-07-17.md), recorded in CLAIM-REGISTER.md entries #20/#21
-# and the `#print axioms` receipts in the modules themselves. The frozen
-# surface is 22 receipts: the six rung-2 core receipts (all axiom-free)
-# plus the sixteen rung-3 instance receipts (ten axiom-free, six exactly
-# `[propext]`). `no_claim_erasing_check_is_faithful` is the
-# operator-ratified name (renamed from `no_erasing_check_is_faithful`
-# before the freeze); `boundedPaidReachability` is the operator-ratified
-# bounded family name.
+# Source of truth for the expected footprints: the rung-2/3/4 candidate
+# packets and hostile reviews (skunkworks
+# ADMISSIBILITY_CALCULUS_RUNG{2,3,4}_*_CANDIDATE_2026-07-17.md), recorded
+# in CLAIM-REGISTER.md entries #20/#21/#22 and the `#print axioms`
+# receipts in the modules themselves. The frozen surface is 45 receipts:
+# six rung-2 core receipts (all axiom-free), sixteen rung-3 instance
+# receipts (ten axiom-free, six exactly `[propext]`), and twenty-three
+# rung-4 spine receipts (eighteen axiom-free, five exactly `[propext]`).
+# `no_claim_erasing_check_is_faithful`, `boundedPaidReachability`, and the
+# seven rung-4 pre-freeze renames are the operator-ratified names.
 #
 # Exit codes:
-#   0 — stable root builds; all 22 receipts exact
+#   0 — stable root builds; all 45 receipts exact
 #   1 — `lake build AdmissibilityCalculus` failed
 #   2 — a receipt drifted (missing/renamed, new axiom, sorry, or wrong footprint)
 
@@ -30,6 +28,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
 P="Admissibility.Calculus.GovernedFamily"
+C="Admissibility.Calculus"
 W="Admissibility.Calculus.Instances.Weathering"
 B="Admissibility.Calculus.Instances.BoundedPaidReachability"
 NONE="does not depend on any axioms"
@@ -64,6 +63,32 @@ declare -A EXPECT=(
   ["$B.retro_claim_refused_for_want_of_standing"]="$PROPEXT"
   ["$B.custody_does_not_grant_dynamic_authority"]="$PROPEXT"
   ["$B.signature_refuses_endpoint_only_checks"]="$PROPEXT"
+  # rung 4 — generic spine, 15 (13 axiom-free + 2 propext)
+  ["$C.SpineEncoding.funnel_of_decide_inl"]="$NONE"
+  ["$C.SpineEncoding.funnel_of_decide_inr"]="$NONE"
+  ["$C.SpineEncoding.refusal_singleton_ne_clean"]="$NONE"
+  ["$C.SpineEncoding.funnel_decision_branches_ne"]="$NONE"
+  ["$C.SpineEncoding.funnel_authority_iff"]="$NONE"
+  ["$C.SpineEncoding.funnel_refusing_emits_domain_obstruction"]="$NONE"
+  ["$C.SpineEncoding.funnel_never_opaque"]="$NONE"
+  ["$C.SpineEncoding.funnel_emits_no_core_obstruction"]="$PROPEXT"
+  ["$C.LosslessEncoding.decode_encodePacket"]="$NONE"
+  ["$C.LosslessEncoding.decode_some_iff"]="$NONE"
+  ["$C.LosslessEncoding.decode_none_iff_not_encoded"]="$NONE"
+  ["$C.LosslessEncoding.encodePacket_injective"]="$NONE"
+  ["$C.LosslessEncoding.distinct_refusals_encode_distinct"]="$NONE"
+  ["$C.LosslessEncoding.no_subsingleton_domain_of_distinct_refusals"]="$NONE"
+  ["$C.LosslessEncoding.refusal_recoverable"]="$PROPEXT"
+  # rung 4 — Weathering exact spine, 4, all axiom-free
+  ["$W.weather_decode_encode"]="$NONE"
+  ["$W.weather_encode_decode"]="$NONE"
+  ["$W.weather_funnel_sound_natively"]="$NONE"
+  ["$W.weather_funnel_distinguishes_stale_and_retired"]="$NONE"
+  # rung 4 — BoundedPaidReachability exact spine, 4 (1 axiom-free + 3 propext)
+  ["$B.bounded_paid_funnel_sound_natively"]="$PROPEXT"
+  ["$B.bounded_paid_decide_from_bare_returns_exact_barrier"]="$PROPEXT"
+  ["$B.bounded_paid_bare_refusal_round_trip"]="$PROPEXT"
+  ["$B.bounded_paid_no_barrier_for_funded"]="$NONE"
 )
 
 # 1. The stable root must build. The lib is import-free below Lean core and

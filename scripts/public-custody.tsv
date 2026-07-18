@@ -19,10 +19,14 @@ LeanProofs/Admissibility/BridgeCustomsSpecimen.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/BudgetMerge.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/Calculus.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Core.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Spine.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability/Native.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability/Spine.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/Weathering.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/Calculus/Instances/Weathering/Native.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/Weathering/Obstructions.lean	STABLE-SURFACE	admissibility-calculus
+LeanProofs/Admissibility/Calculus/Instances/Weathering/Spine.lean	STABLE-SURFACE	admissibility-calculus
 LeanProofs/Admissibility/ClosureEligibility.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/Composition.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/ConsequencePartition.lean	PUBLIC-EVIDENCE	-
@@ -47,7 +51,7 @@ LeanProofs/Admissibility/MergeConflict.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/NoFreeStandingBridge.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/NumericalAdmissibility.lean	PUBLIC-EVIDENCE	-
 LeanProofs/Admissibility/PathVerdict.lean	STABLE-SURFACE	path-verdict
-LeanProofs/Admissibility/PathVerdict/Core.lean	STABLE-SURFACE	path-verdict
+LeanProofs/Admissibility/PathVerdict/Core.lean	STABLE-SURFACE	admissibility-calculus,path-verdict
 LeanProofs/Admissibility/PathVerdict/Domains.lean	STABLE-SURFACE	path-verdict
 LeanProofs/Admissibility/PathVerdict/Edges.lean	STABLE-SURFACE	path-verdict
 LeanProofs/Admissibility/PathVerdict/Evidence.lean	PUBLIC-EVIDENCE	-
