@@ -2,17 +2,19 @@
 # Re-attest the Admissibility.Calculus axiom footprint in the canonical
 # build context. Fail-closed: every frozen receipt must report EXACTLY its
 # documented footprint. This is what prevents the Calculus stable root
-# (rungs 2-5 of the promotion campaign) from quietly growing an axiom, a
+# (rungs 2-6 of the promotion campaign) from quietly growing an axiom, a
 # sorry, an import, or a renamed receipt. Exit code is the gate, never
 # eyeballed.
 #
-# Source of truth for the expected footprints: the rung-2/3/4/5 candidate
+# Source of truth for the expected footprints: the rung-2/3/4/5/6 candidate
 # packets and hostile reviews (skunkworks
-# ADMISSIBILITY_CALCULUS_RUNG{2,3,4}_*_CANDIDATE_2026-07-17.md and
+# ADMISSIBILITY_CALCULUS_RUNG{2,3,4}_*_CANDIDATE_2026-07-17.md,
 # ADMISSIBILITY_CALCULUS_RUNG5_INDEXED_COMPARISON_REVISED_CANDIDATE_
+# 2026-07-18.md, and
+# ADMISSIBILITY_CALCULUS_RUNG6_STORED_DECISION_CROSSING_CANDIDATE_
 # 2026-07-18.md), recorded
-# in CLAIM-REGISTER.md entries #20/#21/#22/#23 and the `#print axioms`
-# receipts in the modules themselves. The frozen surface is 62 receipts:
+# in CLAIM-REGISTER.md entries #20/#21/#22/#23/#24 and the `#print axioms`
+# receipts in the modules themselves. The frozen surface is 90 receipts:
 # six rung-2 core receipts (all axiom-free), sixteen rung-3 instance
 # receipts (ten axiom-free, six exactly `[propext]`), twenty-three rung-4
 # spine receipts (eighteen axiom-free, five exactly `[propext]`), and
