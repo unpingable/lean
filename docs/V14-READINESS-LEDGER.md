@@ -537,17 +537,22 @@ public substrate, named per-theorem in the research-tree manifest.
 4. the fail-closed Calculus footprint gate extended 90 → 191 exact
    receipts, with the rung-7 expectations generated from the gate's own
    probe context;
-5. the description-coherence gate obligation discharged: all four public
+5. the description-coherence obligation discharged: all four public
    description sites (aggregate header, lakefile, CI step, gate header)
-   and the gate constants updated atomically to rung 7 / 191;
+   updated atomically to rung 7 / 191, verified by the private
+   cross-repository description-coherence gate (the check lives in the
+   research tree and audits the public checkout);
 6. receipts: `CLAIM-REGISTER.md` entry #25, `AGENTS.md` counts, this
    ledger.
 
 **Frozen axiom footprint (rung-7 stable receipts):** 101 — 3 axiom-free,
-26 opaque-substrate-only, 13 `+propext`, and the remainder adding
-`Quot.sound` (97 overall) and `Classical.choice` (11). No `sorryAx`, no
-project axiom, Mathlib-free. **This rung must never be summarized as
-axiom-free**; the footprint was accepted knowingly.
+19 opaque-substrate-only, 4 `+propext` without `Quot.sound`, 67
+`+Quot.sound` without `Classical.choice`, and 8 `+Classical.choice` —
+75 `Quot.sound`-bearing overall. (The full private construction's
+150-receipt split, including the 49 evidence receipts, is 3/26/13/97/11
+and remains a research-tree accounting.) No `sorryAx`, no project axiom,
+Mathlib-free. **This rung must never be summarized as axiom-free**; the
+footprint was accepted knowingly.
 
 **Custody accounting after rung 7:** 201 public Lean sources — 104
 STABLE-SURFACE, 96 PUBLIC-EVIDENCE, 1 REPOSITORY-AGGREGATE, across
