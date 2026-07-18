@@ -16,10 +16,14 @@
   explicit Quot.sound/Classical.choice-over-opaque-substrate footprint
   accepted at ratification).
 
-  `Admissibility.Calculus` is the stable namespace for the unified object
-  being constructed by the promotion campaign.  Its presence does not
-  itself declare that the calculus has been completed or earned; that
-  claim remains gated on the separately reviewed rung-7 ratification.
+  `Admissibility.Calculus` is the ratified namespace of the
+  **Admissibility Calculus**.  All seven campaign rungs are admitted, and
+  the capital-C naming claim was separately ratified on 2026-07-18 as its
+  own reviewed act (research-tree record
+  ADMISSIBILITY_CALCULUS_CAPITAL_C_RATIFICATION_2026-07-18.md, pinned to
+  custody base 62ac346b1fdc).  The name attaches to the exact
+  custody-closed object; it is not a runtime-conformance, completeness,
+  or release claim.
 -/
 
 import LeanProofs.Admissibility.Calculus.Core

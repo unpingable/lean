@@ -6,6 +6,60 @@ to Zenodo deposits under the concept DOI
 **release creation** (not the tag alone) mints the version DOI and drives the
 deposit. Versions prior to 1.2.0 are recorded on Zenodo.
 
+## 14.0.0 — Governed Admissibility Calculus (2026-07-18)
+
+The seven-rung promotion campaign that assembled — and then, as its own
+reviewed terminal act, earned the right to name — the capital-C
+**Admissibility Calculus**. Each rung was separately hostile-reviewed,
+operator-ratified, extracted with proven normalized-source equality from
+the sibling research tree, and custody-closed with receipt-bound
+extraction records.
+
+- Rung 1: PathVerdict functorial domain transport (`Domains`) and
+  carried-id located diagnostics (`Located`) join the `path-verdict`
+  root; exact 36-receipt footprint gate.
+- Rung 2: the import-free `GovernedFamily` signature under the new
+  `Admissibility.Calculus` construction namespace — claim-indexed
+  witness/refusal DATA, separate standing/custody/obligation books,
+  derived authority, a total evidence-returning checker, and the
+  claim-erasure impossibility theorem.
+- Rung 3: the Weathering and BoundedPaidReachability instances with
+  their one-owner native seams; the paid native API
+  (`Run`/`Provenance`/`Resource`/`Warrant`/`State`/`Action`/`Step`)
+  frozen by explicit ratification.
+- Rung 4: the exact dependent refusal-packet spine — bare `SpineEncoding`
+  versus `LosslessEncoding` with both inverse laws; the superseded
+  reason-only contract survives as a compiled collapse counterexample in
+  research custody.
+- Rung 5: the closed seven-entry indexed comparison framework (dependent
+  law selection, same-map preservation/loss receipts, receipt-bearing
+  capabilities, typed native-source gaps); the concrete proof-carrying
+  ledger over pinned native sources remains receipt-bound research
+  evidence.
+- Rung 6: the stored-decision crossing — decide once, preserve both
+  native outcomes, derive verdicts, located obstructions, and comparison
+  receipts solely from the stored pair — with its witnessed
+  Weathering/bounded-paid inhabitant and its vacuity/empty-obligation
+  fences shipped in the same surface.
+- Rung 7: the origin/history-bound BreakGlass terminal instance —
+  lifecycle-origin namespacing, kind-indexed references,
+  receipt-committed book-attested audit history, verdict-level
+  exceptional/ordinary and settlement/audit separations, and a stored
+  crossing. Public footprint accepted explicitly: 101 receipts =
+  3 axiom-free + 19 opaque-substrate-only + 4 `+propext` + 67
+  `+Quot.sound` + 8 `+Classical.choice`.
+- The public Calculus root freezes 191 exact receipts (rungs 2–7);
+  custody closes at 201 sources / 104 stable / 96 evidence / 1 aggregate
+  across eleven roots and 131 ownerships; a cross-repository six-site
+  description-coherence gate guards the prose against the code.
+- The capital-C name was ratified as a separate reviewed act after
+  rung-7 custody closed, discharging the v10 reservation. A plain
+  language summary of the research program is added at
+  `docs/PLAIN-LANGUAGE-SUMMARY.md`.
+
+Frozen inventory: `docs/V14-RELEASE-LEDGER.md`; per-rung receipts:
+`docs/V14-READINESS-LEDGER.md`; claims: `CLAIM-REGISTER.md` #19–#25.
+
 ## 13.0.0 — Repository Custody Migration (2026-07-17)
 
 No new mathematical campaign. This custody-only compatibility release corrects

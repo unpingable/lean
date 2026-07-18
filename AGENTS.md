@@ -122,5 +122,5 @@ target.
 - Claim-level audit (BROKEN / STALE / SOUND / OPEN): [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md)
 - Module → paper crosswalk: [`PAPER-MAP.md`](PAPER-MAP.md)
 - Release ledgers and gap specs: `docs/V*-{RELEASE-LEDGER,GAP-SPEC,READINESS-LEDGER}.md`
-- Current release ledger: [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md)
+- Current release ledger: [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md)
 - Constructivity footguns already hit once: [`LeanProofs/ProofTheory/SCARS.md`](LeanProofs/ProofTheory/SCARS.md)

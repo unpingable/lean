@@ -15,7 +15,35 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
-## Current release: 13.0.0 — Repository Custody Migration
+## Current release: 14.0.0 — Governed Admissibility Calculus
+
+**Prepared 2026-07-18; the annotated tag, GitHub release, and Zenodo
+version deposit are separate operator acts and are not asserted here.**
+
+v14 is the seven-rung promotion campaign that assembled, and then — as
+its own reviewed terminal act — earned the right to name, the capital-C
+**Admissibility Calculus**: the governed-family signature
+(`Admissibility.Calculus`), its Weathering and BoundedPaidReachability
+instances, the exact dependent refusal-packet spine, the closed
+seven-entry indexed comparison framework, the stored-decision crossing
+(decide once; preserve both native outcomes; derive everything
+downstream from the stored pair) with its witnessed inhabitant, and the
+origin/history-bound BreakGlass terminal instance. Every rung was
+separately hostile-reviewed, operator-ratified, extracted with proven
+normalized-source equality, and custody-closed; the public Calculus root
+freezes 191 exact receipts over the separately gated rung-1 PathVerdict
+substrate, with every axiom named (the rung-7 instance's
+`Quot.sound`/`Classical.choice`-over-declared-substrate footprint was
+accepted explicitly, not summarized away).
+
+The frozen inventory and admission history are in
+[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md); per-rung
+packets and receipts in
+[`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md); the
+research program in ordinary language in
+[`docs/PLAIN-LANGUAGE-SUMMARY.md`](docs/PLAIN-LANGUAGE-SUMMARY.md).
+
+## 13.0.0 — Repository Custody Migration
 
 **Released 2026-07-17.**
 

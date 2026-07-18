@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Repository Custody Migration"
-version: "13.0.0"
-date-released: "2026-07-17"
+title: "Governed Admissibility Calculus"
+version: "14.0.0"
+date-released: "2026-07-18"
 type: software
 authors:
   - family-names: Beck
@@ -18,6 +18,13 @@ identifiers:
 license: Apache-2.0
 keywords:
   - admissibility
+  - admissibility-calculus
+  - governed-family
+  - refusal-packet
+  - indexed-comparison
+  - stored-decision
+  - break-glass
+  - origin-binding
   - authority
   - bounded-projection
   - disclosure-bounds
@@ -46,31 +53,47 @@ keywords:
   - refusal-gate
   - witness-invariance
 abstract: >-
-  v13.0.0 — Repository Custody Migration — is a custody-only compatibility
-  release with no new mathematical campaign and no theorem-body changes. It
-  rehomes the unchanged v4-v7 checker/sequent substrate under
-  LeanProofs.CustodyIndexed and PathVerdict under
-  LeanProofs.Admissibility.PathVerdict; distinguishes compatibility-bearing
-  stable API from terminal public evidence; removes redundant and historical
-  source; and transfers all 53 live incubations to the sibling skunkworks.
-  Fail-closed custody enforcement classifies the full public tree of 179 Lean
-  modules as 82 stable, 96 public evidence, and one repository aggregate,
-  across ten exact stable roots and 98 stable ownership relations. The
-  registered-target gate gives all 179 sources role-compatible ownership
-  across two Lake projects and 23 exact targets, with explicit Mathlib
-  boundaries and a pinned downstream fixture. The v12-to-v13 integrity audit
-  accounts for all 138 removed paths: 38 public rehomes, 53 skunkworks
-  transfers, 23 retired experiment sources, 20 fossils, and four separately
-  recorded deletions. All 171 retained or rehomed theorem sources are
-  token-equivalent to v12 after normalizing comments, imports, and declared
-  namespace moves; eight new roots are import-only. The release changes paths,
-  namespaces, custody roles, roots, targets, and enforcement contracts; it
-  adds no mathematical capability and claims no runtime conformance. Full
-  release history is in CHANGELOG.md; the v13 inventory and gates are in
-  docs/V13-RELEASE-LEDGER.md.
-  The stable frame: the Lean work did not produce a unified calculus.
-  It produced a set of small admissibility kernels, each isolating a
-  different refusal boundary. The stack exposes a typed-verdict algebra (basis ×
+  v14.0.0 — Governed Admissibility Calculus — promotes, in seven
+  operator-ratified rungs, the unified object the repository had been
+  refusing to name since v10: the capital-C Admissibility Calculus. The
+  seven rungs, each separately hostile-reviewed, extracted with proven
+  normalized-source equality, footprint-declared, and custody-closed, are:
+  (1) PathVerdict domain transport and carried-id located diagnostics;
+  (2) the import-free governed-family signature (claim-indexed witness and
+  refusal DATA, separate standing/custody/obligation books, derived
+  authority, a total evidence-returning checker); (3) the Weathering and
+  BoundedPaidReachability instances with their native seams; (4) the exact
+  dependent refusal-packet spine (bare funnel vs lossless encoding, with a
+  compiled collapse counterexample retained as adverse evidence); (5) the
+  closed seven-entry indexed comparison framework (the concrete
+  proof-carrying ledger over pinned native sources remains receipt-bound
+  research-tree evidence); (6) the stored-decision crossing — decide once,
+  preserve both native outcomes, derive verdicts, located obstructions,
+  and comparison receipts solely from the stored pair — with its witnessed
+  Weathering/bounded-paid inhabitant; and (7) the origin/history-bound
+  BreakGlass terminal instance (lifecycle-origin namespacing, kind-indexed
+  references, receipt-committed book-attested audit history, verdict-level
+  exceptional/ordinary and settlement/audit separations, and a stored
+  crossing), whose 101 public receipts carry an explicitly accepted
+  footprint of 3 axiom-free, 19 opaque-substrate-only, 4 propext-only, 67
+  adding Quot.sound, and 8 adding Classical.choice. The public Calculus
+  root freezes 191 exact receipts (rungs 2-7) plus the separately gated
+  36-receipt rung-1 substrate; fail-closed custody classifies 201 public
+  Lean modules as 104 stable, 96 public evidence, and one aggregate across
+  eleven exact roots and 131 ownership relations, with a cross-repository
+  description-coherence gate guarding the prose against the code. The
+  capital-C name was ratified as its own reviewed act after rung-7 custody
+  closed, not inferred from admission. The family is closed relative to
+  consumer-supplied atoms; no runtime conformance, attestor honesty,
+  origin-allocation uniqueness, or cryptographic claim is made. Full
+  release history is in CHANGELOG.md; the campaign inventory and per-rung
+  receipts are in docs/V14-READINESS-LEDGER.md and
+  docs/V14-RELEASE-LEDGER.md.
+  The historical frame, preserved: through v13 the Lean work deliberately
+  did not claim a unified calculus. It produced a set of small
+  admissibility kernels, each isolating a different refusal boundary
+  — and v14's Calculus is built from, and does not replace, those
+  kernels. The stack exposes a typed-verdict algebra (basis ×
   precedence × standing) over partitioned governance state, with a
   typed pipeline from claim derivation through authorized execution,
   plus refusal-gate kernels for metric-time freshness, collapsed-surface

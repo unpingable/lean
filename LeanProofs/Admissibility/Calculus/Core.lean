@@ -15,12 +15,15 @@
   This module is part of the exact `LeanProofs.Admissibility.Calculus`
   stable root.
 
-  NAMESPACE DOCTRINE: `Admissibility.Calculus` is the stable namespace for
-  the unified object being constructed by the promotion campaign. Its
-  presence does not itself declare that the calculus has been completed or
-  earned; that claim remains gated on the separately reviewed rung-7
-  ratification. The earlier v10 reservation of the word "calculus" is
-  revised, not repealed — see LeanProofs/Admissibility/README.md.
+  NAMESPACE DOCTRINE: `Admissibility.Calculus` is the ratified namespace
+  of the Admissibility Calculus. The construction-era gate on the name
+  was discharged 2026-07-18: all seven campaign rungs were admitted and
+  the capital-C claim was then separately ratified as its own reviewed
+  act (research-tree record
+  ADMISSIBILITY_CALCULUS_CAPITAL_C_RATIFICATION_2026-07-18.md, custody
+  base 62ac346b1fdc). The earlier v10 reservation of the word "calculus"
+  is thereby discharged, not repealed — the historical correction stands;
+  see LeanProofs/Admissibility/README.md.
 
   UNIVERSE FENCE (a scope boundary, not the object's identity): witness and
   refusal data live in `Type`, not `Prop`; the promoted signature is

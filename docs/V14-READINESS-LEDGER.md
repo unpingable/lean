@@ -29,10 +29,17 @@ candidate packets).
 | 6 | Stored-decision crossing and witnessed inhabitant | **ADMITTED 2026-07-18** (commit `41510aa9…` + comment fix `721c2c8c…`) |
 | 7 | Origin/history-bound BreakGlass instance (terminal forcing instance) | **ADMITTED 2026-07-18** (this ledger, below) |
 
-**All seven rungs are admitted.** The terminal campaign naming claim —
-whether the assembled public object is declared the capital-C Calculus —
-is a separate operator ratification, deliberately NOT decided by rung-7
-admission.
+**All seven rungs are admitted, and the terminal naming claim is
+ratified.** The capital-C decision was deliberately NOT decided by
+rung-7 admission; it was taken as its own reviewed act on 2026-07-18,
+after custody closed — research-tree records
+`ADMISSIBILITY_CALCULUS_RUNG7_TRANSFER_RECEIPT_2026-07-18.md` (custody
+closure `62ac346b…`) and
+`ADMISSIBILITY_CALCULUS_CAPITAL_C_RATIFICATION_2026-07-18.md` (the
+naming act, `d5d5f2a9…`). The assembled public object is the
+**Admissibility Calculus**. This is a naming ratification, not a
+release: the v14 tag, GitHub release, and Zenodo deposit remain
+separate operator acts.
 
 All seven rungs belong to one v14 semantic release unless rungs 4–6 expose a
 semantic redesign large enough that the public surface cannot honestly
