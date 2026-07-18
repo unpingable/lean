@@ -17,12 +17,15 @@
 # receipts (ten axiom-free, six exactly `[propext]`), twenty-three rung-4
 # spine receipts (eighteen axiom-free, five exactly `[propext]`), and
 # seventeen rung-5 comparison-framework receipts (all axiom-free; the
-# concrete seven-entry ledger stays research-tree evidence).
+# concrete seven-entry ledger stays research-tree evidence), and
+# twenty-eight rung-6 stored-decision crossing receipts (fourteen generic
+# axiom-free, fourteen concrete exactly `[propext]`; decide once, derive
+# everything from the stored pair).
 # `no_claim_erasing_check_is_faithful`, `boundedPaidReachability`, and the
 # seven rung-4 pre-freeze renames are the operator-ratified names.
 #
 # Exit codes:
-#   0 — stable root builds; all 62 receipts exact
+#   0 — stable root builds; all 90 receipts exact
 #   1 — `lake build AdmissibilityCalculus` failed
 #   2 — a receipt drifted (missing/renamed, new axiom, sorry, or wrong footprint)
 
@@ -34,6 +37,7 @@ cd "$REPO_ROOT"
 P="Admissibility.Calculus.GovernedFamily"
 C="Admissibility.Calculus"
 M="Admissibility.Calculus.Comparison"
+X="Admissibility.Calculus.Crossing"
 W="Admissibility.Calculus.Instances.Weathering"
 B="Admissibility.Calculus.Instances.BoundedPaidReachability"
 NONE="does not depend on any axioms"
@@ -112,6 +116,36 @@ declare -A EXPECT=(
   ["$M.collapsed_map_rejects_exact_representation"]="$NONE"
   ["$M.constant_map_rejects_exact_representation"]="$NONE"
   ["$M.impossible_capability_has_no_supported_disposition"]="$NONE"
+  # rung 6 — stored-decision crossing core, 14, all axiom-free
+  ["$X.CheckedCrossing.result_isLeft_iff_authority"]="$NONE"
+  ["$X.authority_iff_components"]="$NONE"
+  ["$X.refusal_refutes_authority"]="$NONE"
+  ["$X.authority_requires_both_standings"]="$NONE"
+  ["$X.authority_preserves_both_custodies"]="$NONE"
+  ["$X.CheckedCrossing.verdict_authority_iff_result"]="$NONE"
+  ["$X.CheckedCrossing.verdict_authority_iff"]="$NONE"
+  ["$X.CheckedCrossing.located_forget"]="$NONE"
+  ["$X.CheckedCrossing.located_authority_iff"]="$NONE"
+  ["$X.left_refusal_encoding_decodes"]="$NONE"
+  ["$X.right_refusal_encoding_decodes"]="$NONE"
+  ["$X.CheckedCrossing.left_refusal_located_and_decode"]="$NONE"
+  ["$X.CheckedCrossing.right_refusal_located_and_decode"]="$NONE"
+  ["$X.CheckedCrossing.both_refusals_located_and_decode"]="$NONE"
+  # rung 6 — Weathering/bounded-paid crossing leaf, 14, exactly [propext]
+  ["$X.check_fresh_funded_exact"]="$PROPEXT"
+  ["$X.check_stale_funded_exact"]="$PROPEXT"
+  ["$X.check_fresh_bare_exact"]="$PROPEXT"
+  ["$X.check_stale_bare_exact"]="$PROPEXT"
+  ["$X.weathering_paid_authority_iff_components"]="$PROPEXT"
+  ["$X.green_gate_cannot_cure_unfunded_passage"]="$PROPEXT"
+  ["$X.funded_passage_cannot_cure_stale_gate"]="$PROPEXT"
+  ["$X.weathering_paid_requires_both_standings"]="$PROPEXT"
+  ["$X.weathering_paid_preserves_both_custodies"]="$PROPEXT"
+  ["$X.bounded_paid_component_custody_is_vacuous"]="$PROPEXT"
+  ["$X.weathering_paid_component_obligation_books_are_empty"]="$PROPEXT"
+  ["$X.stale_funded_location_exact"]="$PROPEXT"
+  ["$X.fresh_bare_location_exact"]="$PROPEXT"
+  ["$X.stale_bare_double_fault_nonshadowing"]="$PROPEXT"
 )
 
 # 1. The stable root must build. The lib is import-free below Lean core and

@@ -84,7 +84,7 @@ bash scripts/check-witnessed-footprint.sh     # ratified WDC axiom footprint
 bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
 bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
 bash scripts/check-pathverdict-footprint.sh   # rung-1 Domains/Located exact 36-receipt footprint
-bash scripts/check-calculus-footprint.sh      # Calculus exact 62-receipt footprint (rungs 2–5)
+bash scripts/check-calculus-footprint.sh      # Calculus exact 90-receipt footprint (rungs 2–6)
 bash scripts/check-viewsemantics-footprint.sh
 bash scripts/check-viewsemantics-isolation.sh
 bash scripts/audit-axioms.sh                  # axiom classifier; 0 forbidden
@@ -94,14 +94,16 @@ bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
 ```
 
-Since the v14 rung-5 admission (2026-07-18, the indexed comparison
-framework into the Calculus root, after rungs 1–4), the custody gate must
-pass without exclusions over exactly 192 public Lean files: 95 stable, 96
-public evidence, and one aggregate, across eleven stable roots and 112
-ownership relations (`PathVerdict/Core.lean` is intentionally dual-rooted
-under `path-verdict` and `admissibility-calculus`). Any drift or failure
+Since the v14 rung-6 admission (2026-07-18, the stored-decision crossing
+and its Weathering/bounded-paid inhabitant into the Calculus root, after
+rungs 1–5), the custody gate must pass without exclusions over exactly
+194 public Lean files: 97 stable, 96 public evidence, and one aggregate,
+across eleven stable roots and 117 ownership relations (the PathVerdict
+`Core`, `Edges`, `Domains`, and `Located` sources are intentionally
+dual-rooted under `path-verdict` and `admissibility-calculus` — the
+crossing consumes the rung-1 substrate). Any drift or failure
 is a regression. The separate target gate must also report role-compatible
-registered target ownership for all 192/192 public sources. The v13
+registered target ownership for all 194/194 public sources. The v13
 baseline (179/82/96/1, 98 ownerships) stays frozen in
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md); the in-flight
 campaign ledger is

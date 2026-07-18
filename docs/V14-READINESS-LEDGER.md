@@ -25,8 +25,8 @@ candidate packets).
 | 2 | `GovernedFamily` signature and generic laws | **ADMITTED 2026-07-17** (commit `8b93d459…`) |
 | 3 | Weathering and BoundedPaidReachability instances | **ADMITTED 2026-07-17** (commit `f0f31310…`) |
 | 4 | Exact refusal-packet spine (`SpineEncoding`/`LosslessEncoding`) | **ADMITTED 2026-07-18** (commit `6c026d12…` + comment fix `9f24240d…`) |
-| 5 | Indexed comparison framework (concrete ledger stays evidence) | **ADMITTED 2026-07-18** (this ledger, below) |
-| 6 | Global crossing and executable checker | pending |
+| 5 | Indexed comparison framework (concrete ledger stays evidence) | **ADMITTED 2026-07-18** (commit `dc9c8df5…` + docs fix `ba7590af…`) |
+| 6 | Stored-decision crossing and witnessed inhabitant | **ADMITTED 2026-07-18** (this ledger, below) |
 | 7 | Origin/history-bound BreakGlass instance (terminal forcing instance) | pending |
 
 All seven rungs belong to one v14 semantic release unless rungs 4–6 expose a
@@ -414,6 +414,105 @@ carrier; no cross-family coercion; no crossing law (rung 6); no legacy
 or origin-bound BreakGlass comparison (rung 7); no capital-C
 completion. A future concrete public claim requires a new reviewed
 selection packet.
+
+## Rung 6 — the stored-decision crossing (admitted 2026-07-18)
+
+**Source:** private skunkworks `Rung6Crossing/Core.lean` (blob
+`31a8ccc066ea`) and `Rung6Crossing/WeatheringBoundedPaid.lean` (blob
+`9ac4cddefc20`) at reconciliation commit
+`e03c1b7abcea6a58c9c806f8c976dbdefab2d4a6`, built against public
+baseline `ba7590af…` (candidate packet SHA-256 `04154879b2dc…`,
+digest-verified). The packet's working-byte coordinates were converted
+to Git pins by the reconciliation commit before extraction, per the
+ratified transfer requirements.
+
+**Review and ratification:** the preflight cycle returned REVISE on
+three receipt-honesty findings (authority wording, line-vs-occurrence
+counting, unfrozen pin coordinates, quoted-identifier bypasses), all
+repaired in the reviewed bytes with a lexer-based decision-flow gate.
+Three independent hostile reviews plus the public-side review returned
+ADMIT FOR EXTRACTION PREPARATION; the public-side review independently
+verified the two-`.decide` property, all four module footprints, both
+gates, and the 14 public-input blobs. The operator ratified both
+extraction paths and the full 28-receipt surface, including all four
+fixtures and both fences — the positive result does not travel without
+the vacuous-custody disclosure, the empty-obligation disclosure, the
+mixed-branch/double-fault cases, and the stored-artifact controls.
+
+**Claim fence (binding wording):** the crossing evaluates each native
+family exactly once, stores the resulting judgments, and derives
+verdicts, located obstructions, and exact comparison receipts solely
+from that stored pair. The concrete instance establishes crossing
+behavior for the declared Weathering and bounded-paid judgment shapes.
+It does not establish payment, settlement, obligation transition, or
+non-vacuous custody. `ExactJudgmentReceipt` observes the stored
+`CheckedPacket`; it does not authorize re-evaluation of either native
+family.
+
+**Public diff (this bundle):**
+
+1. `LeanProofs/Admissibility/Calculus/Crossing.lean` — generic core, 14
+   axiom-free receipts; and
+   `LeanProofs/Admissibility/Calculus/Instances/WeatheringBoundedPaidCrossing.lean`
+   — concrete leaf, 14 exactly-`[propext]` receipts; both
+   **normalized-source-equal** to their pinned private sources;
+2. the existing Calculus aggregate imports both;
+3. two `STABLE-SURFACE admissibility-calculus` custody rows, plus three
+   closure-forced dual-root additions: the crossing consumes the rung-1
+   substrate, so PathVerdict `Edges`, `Domains`, and `Located` join
+   `Core` as intentionally dual-rooted under `path-verdict` and
+   `admissibility-calculus`;
+4. the fail-closed Calculus footprint gate extended 62 → 90 exact
+   receipts;
+5. receipts: `CLAIM-REGISTER.md` entry #24, `AGENTS.md` counts, this
+   ledger. No new root, target, or top-level import.
+
+**Frozen axiom footprint (rung-6 receipts):** 28 — 14 axiom-free
+(generic), 14 exactly `[propext]` (concrete). No `Quot.sound`,
+Mathlib-free. The non-overlapping accounting: the private
+implementation remainder is the 3-receipt `[propext, Quot.sound]`
+`LedgerEvidence.lean` tether (keeping `paidDischarge` separately
+inhabited), and the 13-receipt hostile audit is counted separately.
+
+**Custody accounting after rung 6:** 194 public Lean sources — 97
+STABLE-SURFACE, 96 PUBLIC-EVIDENCE, 1 REPOSITORY-AGGREGATE, across
+eleven stable roots and 117 ownership relations (post-rung-5:
+192/95/96/1, 112).
+
+**Evidence custody (deliberately NOT transferred):**
+`LedgerEvidence.lean`, `Rung6CrossingAudit.lean` (13 controls incl.
+arbitrary-stored-pair coherence and the retained-witness theorems), and
+both legacy crossing modules (`Crossing.lean`,
+`LocatedCrossingAdapter.lean`) preserved byte-for-byte as adverse
+custody for the seven documented legacy defects.
+
+**Nonclaims:** no payment/settlement/discharge law, no obligation
+transition, no non-vacuous bounded-paid custody, no N-ary crossing, no
+saturation-engine crossing, no witness-identity serialization, no
+authenticated segment labels, no BreakGlass crossing (rung 7), no
+capital-C completion.
+
+## Verification receipt (rung-6 admission tree)
+
+All by bare exit code, 2026-07-18:
+
+- packet digest verified; private construction: full tree — pass (230
+  jobs); `check-rung6-source-pins.sh` — 14/14 exact at `ba7590af…`;
+  `check-rung6-decision-flow.sh` — 2/2 native decisions stored once;
+  canonical audit — 54/54
+- independent spot-check: exactly two `.decide` occurrences in the
+  generic core, both inside `def check`; zero in the leaf; zero
+  `funnel` in either proposed module
+- receipt accounting independently reproduced (wrap-normalized): core
+  14/14 axiom-free; leaf 14/14 `[propext]`; tether 3/3
+  `[propext, Quot.sound]`; audit 12 + 1
+- normalized-source-equality proof for both transfers — EQUAL 2/2
+- public import-cone check — no reachable `LedgerEvidence`, audit, or
+  legacy crossing module
+- `bash scripts/check-calculus-footprint.sh` — pass (90/90 exact)
+- `bash scripts/check-custody-classes.sh` — pass (194/97/96/1, 11
+  roots, 117 ownerships)
+- full remaining battery per `AGENTS.md` — pass
 
 ## Verification receipt (rung-5 admission tree)
 
