@@ -2,8 +2,12 @@
   Custody-Class: PUBLIC-SHIPPED
   Surface-Role: STABLE-SURFACE
 
-  Exact public Calculus root: the governed-family signature (rung 2 of the
-  Admissibility Calculus promotion campaign, admitted 2026-07-17), its
+  Exact public Calculus root. Its transitive closure intentionally owns all
+  four PathVerdict sources (`Core`, `Edges`, `Domains`, `Located`). Rung 1
+  added `Domains` and `Located`; their 36 receipts remain separately gated.
+  The Calculus-native 191-receipt inventory begins with the governed-family
+  signature (rung 2 of
+  the Admissibility Calculus promotion campaign, admitted 2026-07-17), its
   first two instances — static Weathering and the two-claim
   BoundedPaidReachability (rung 3, admitted 2026-07-17) — the exact
   refusal-packet spine with both instance adapters (rung 4, admitted
@@ -22,8 +26,12 @@
   own reviewed act (research-tree record
   ADMISSIBILITY_CALCULUS_CAPITAL_C_RATIFICATION_2026-07-18.md, pinned to
   custody base 62ac346b1fdc).  The name attaches to the exact
-  custody-closed object; it is not a runtime-conformance, completeness,
-  or release claim.
+  custody-closed object; it is not by itself a runtime-conformance or
+  completeness claim. A runtime claiming correspondence must declare its
+  exact scope, map every governed type/book/decision and transport boundary in
+  that scope, and provide executable preservation and transport evidence with
+  revision-bound qualification receipts. A formal refinement proof may
+  strengthen covered obligations but does not waive those artifacts.
 -/
 
 import LeanProofs.Admissibility.Calculus.Core

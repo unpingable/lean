@@ -7,6 +7,11 @@
 > `LeanProofs.CustodyIndexed`. See
 > [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
+> **v14 ownership note:** four Witnessed substrate modules are intentionally
+> multi-rooted into the Admissibility Calculus for the BreakGlass instance.
+> WDC remains an independently scoped exact root; multi-root ownership does not
+> turn the Witnessed family by itself into the full v14 Calculus.
+
 **Status: POST-2.0 REGISTER.** Direction #1 (admitting-class normalization) has shipped in
 `v2.0.0` (peeled tag target `b4bd02b`, 2026-06-29):
 `AbstractNormalization.normal_form_iff_of_commutes` is model-independent and axiom-free;

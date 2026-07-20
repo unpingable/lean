@@ -25,12 +25,26 @@ Most modules follow the same pattern:
 4. prove that the unsupported move cannot cross the boundary.
 
 Some modules audit claims from the Δt research series. Others form the
-admissibility kernels themselves: authority, standing, freshness, surface
-authorization, witness invariance, state transition, execution, and corrective
-layers — a set of small kernels, not a unified calculus.
+original Admissibility Kernels 1.0 surface: authority, standing, freshness,
+surface authorization, witness invariance, state transition, execution, and
+corrective layers. That earlier surface is a set of small kernels, not by
+itself the v14 calculus.
+
+v14 separately assembles the capital-C **Admissibility Calculus**: an indexed
+governed-family contract with native witnesses and refusals, separate
+standing/custody/obligation books, exact refusal-packet encodings, comparison
+receipts, stored-decision crossings, and an origin/history-bound BreakGlass
+instance. It remains bounded and explicit rather than a universal theory of
+institutions.
 
 The point is not to prove an entire institution, platform, incident, or
 distributed system correct. The point is smaller and more useful: make category
 errors mechanically visible before they become architecture.
+
+Lean alone does not prove that a runtime implements any of this. A runtime
+claiming correspondence must name its exact scope, supply an exact map,
+executable preservation and transport evidence, and revision-bound
+qualification receipts showing that every required distinction survives. A
+formal refinement proof does not waive those artifacts.
 
 This is a proof workbench, not an oracle.

@@ -48,8 +48,12 @@ one below it.
    A tag archives a tree; it is not a custody promotion either.
 
 A theorem also never proves that a runtime conforms to it. Citation or
-adoption identifies the intended contract; a conformance claim requires an
-explicit mapping plus runtime evidence or a refinement proof.
+adoption identifies the intended contract. A conformance claim always requires
+an explicit scope and an exact correspondence map covering every governed
+distinction in that scope, plus executable preservation and transport evidence
+and revision-bound qualification receipts. A formal refinement proof may
+discharge covered obligations more strongly, but does not waive those
+artifacts.
 
 ## Hard limits
 
@@ -106,8 +110,8 @@ PathVerdict substrate and the seven direct BreakGlass substrate inputs
 regression. The separate target gate must also report role-compatible
 registered target ownership for all 201/201 public sources. The v13
 baseline (179/82/96/1, 98 ownerships) stays frozen in
-[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md); the in-flight
-campaign ledger is
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md); the frozen
+per-rung campaign ledger is
 [`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md).
 
 Repo axiom posture: not axiom-free, **axiom-classified** — see

@@ -717,9 +717,9 @@ theorem nodup_perm_of_mem_iff
   simp only [sameMembers value]
 
 /-- Equality of the effective projection only. Raw histories may differ.
-    `heat` is explicit as a runtime conformance receipt, although for
+    `heat` is explicit as a formal projection receipt, although for
     proof-carrying `State` values it follows from `seen` membership and
-    duplicate-freedom. -/
+    duplicate-freedom. This structure supplies no external runtime evidence. -/
 structure AccountingEq
     {Origin : Type uOrigin}
     {Context : Type uContext}

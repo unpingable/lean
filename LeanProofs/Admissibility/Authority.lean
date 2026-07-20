@@ -4,10 +4,10 @@
 
   Admissibility — Authority verdict kernel (Layer 0).
 
-  Reference: governor doctrine; sibling to LeanProofs/Admissibility.lean
-  (P27 obligation-unsound reconciliation skeleton) and
+  Reference: governor doctrine; sibling to
   LeanProofs/Admissibility/StateTransition.lean (mutation algebra +
-  authorized-execution wrapper).
+  authorized-execution wrapper). The former public P27 obligation skeleton
+  now lives in skunkworks and is not part of this root.
 
   Pure algebra. No stores, no receipts, no actors-as-objects, no
   mutation. Only the question:
@@ -32,6 +32,10 @@
     rule on changes to the load-bearing names enumerated in the aggregator
     docstring. A definition matching this signature elsewhere does not
     inherit this anchoring.
+
+  v14 closeout: this source is intentionally multi-rooted by
+  `admissibility-calculus`, `admissibility-kernels`, `dynamic-trace`, and
+  `view-semantics`; the registry, not this directory, is authoritative.
 -/
 
 namespace Admissibility.Authority

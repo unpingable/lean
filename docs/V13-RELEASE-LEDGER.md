@@ -9,8 +9,9 @@ Repository version metadata is `13.0.0` in `lakefile.toml`; `CITATION.cff`
 carries the title `Repository Custody Migration`, version `13.0.0`, release
 date `2026-07-17`, and concept DOI `10.5281/zenodo.20369489`. The repository
 has no `.zenodo.json`; no substitute file is created. Zenodo assigns the
-version-specific DOI externally when the GitHub release drives the deposit,
-so that DOI is intentionally not guessed or hard-coded here.
+version-specific DOI through a separate external deposit receipt; the GitHub
+release does not establish that receipt, so no version DOI is inferred or
+hard-coded here.
 
 ## Scope
 
@@ -258,10 +259,9 @@ accepted this exact boundary for release.
 ## Release record
 
 The `v13.0.0` tag and associated GitHub release archive this exact verified
-tree. GitHub release creation drives the corresponding Zenodo version deposit
-and version DOI beneath concept DOI `10.5281/zenodo.20369489`; the
-version-specific DOI is assigned externally and is therefore not hard-coded
-in this source tree.
+tree. The corresponding Zenodo version deposit is a separate external receipt
+beneath concept DOI `10.5281/zenodo.20369489`; it is not inferred from GitHub,
+and its version-specific DOI is therefore not hard-coded in this source tree.
 
 Publication changes no custody class, import boundary, API, theorem, or proof
 footprint, and it proves no runtime conformance.

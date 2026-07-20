@@ -44,25 +44,29 @@
     conclusion outside. So the would-be screen is an index-typed
     evidence-jurisdiction condition ("relation-indexed judgments conclude
     only from relation-indexed evidence") -- an instance of the closure
-    GENUS whose screen predicate is NOT minted here: its exact statement and
-    overlap boundary remain open. The remaining un-owned delta
+    GENUS whose screen predicate was NOT minted in this audit. Subsequent
+    closeout: `JurisdictionScreen` supplies the reviewed generic screen and
+    cages. The remaining un-owned delta
     (`cannot_testify` as an output VERDICT type, distinct from mere
-    underivability) is outside the derivability vocabulary entirely. No
-    consumer is required to formalize either result once its shape is fixed.
+    underivability) is outside the derivability vocabulary entirely.
+    Formalizing that distinct verdict remains governed by precise scope,
+    non-vacuity, and overlap review — never by waiting for a consumer.
 
   ## Run 2 — silence-as-denial (signal-authority)
 
   Candidate: the signal-authority primitive (missing ACK ≠ NACK; Lean
-  deferred). Protocol face already resident as a Boolean specimen
-  (`AuthenticatedDenial.lean`: silence ↛ denial, signed denial = paid path).
+  deferred). The protocol face was then resident as the Boolean specimen
+  `AuthenticatedDenial.lean` (silence ↛ denial, signed denial = paid path);
+  that source now lives in skunkworks and is cited here historically.
 
   VERDICT: CAUGHT BY RESIDENT MECHANISM. In sequent form the timeout record
   is CONCLUDED (by the probe) and the attack cites it as EVIDENCE of denial
   -- discipline unsatisfiability, the summary-as-authority mechanism
   (Zoo mechanism 3), two lines (`silence_as_denial_violates_discipline`).
   The wall face is the same receipt-rooted instance as Run 1. No new cage
-  family needed; `AuthenticatedDenial` remains the protocol-face home; this
-  section is the sequent-face audit record.
+  family needed; `AuthenticatedDenial` was the historical protocol-face
+  specimen and is now skunkworks-bound; this section is the public
+  sequent-face audit record.
 
   Mathlib-free.
 -/
@@ -228,10 +232,10 @@ theorem relation_wall_is_closure_instance :
     exact hC.1 rfl
 
 /-- **Promotion is a closure violation**: the promote rule's premises are
-    relation-free, its conclusion is not -- the exact shape the would-be
-    screen (an evidence-jurisdiction condition of the closure genus) would
-    inspect for. Not minted as a screen; recorded as the audit's
-    where-it-would-live witness. -/
+    relation-free, its conclusion is not -- the exact shape identified here
+    before the generic screen was minted. `JurisdictionScreen` subsequently
+    supplied that reviewed screen and cages this original attack; this theorem
+    remains the audit's where-it-would-live witness. -/
 theorem promote_breaks_closure :
     ∃ (src evid tgt : RJ), promoteSystem.Rule src evid tgt ∧
       RelFree (promoteSystem.ix src) ∧ RelFree (promoteSystem.ix evid) ∧

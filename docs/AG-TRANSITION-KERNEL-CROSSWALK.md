@@ -13,6 +13,14 @@ evidence, or skunkworks-bound/historical. Theorems did not acquire runtime
 correspondence through reclassification. See
 [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
+**v14 scope fence:** these rows predate the Admissibility Calculus and do not
+constitute a map of its exact surface. Full-v14 conformance remains unclaimed
+unless the runtime ledger declares a scope, maps every governed distinction in
+that scope, and supplies executable preservation and transport evidence with
+revision-bound qualification receipts. A formal refinement proof may
+strengthen covered obligations but does not waive those artifacts. Missing
+correspondence blocks the claim; a flattened required distinction is a defect.
+
 **This crosswalk is the INVERSE view of an existing runtime ledger.** The
 transition-kernel already maintains the authoritative Rust→Lean obligation
 ledger at `~/git/transition-kernel/docs/LEAN_OBLIGATIONS.md` (with

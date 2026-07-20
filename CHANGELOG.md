@@ -1,10 +1,13 @@
 # Changelog
 
-Release history for **Admissibility Kernels** (Lean stack). Versions correspond
-to Zenodo deposits under the concept DOI
-[10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489); the GitHub
-**release creation** (not the tag alone) mints the version DOI and drives the
-deposit. Versions prior to 1.2.0 are recorded on Zenodo.
+Release history for the **Lean Proofs** stack. Zenodo versions, where present,
+live under concept DOI
+[10.5281/zenodo.20369489](https://doi.org/10.5281/zenodo.20369489). Git tags,
+GitHub releases, and Zenodo deposits are separate operator-controlled receipts
+and must be verified independently; a GitHub release does not by itself prove
+that the corresponding Zenodo version exists. As checked 2026-07-20, the
+v11–v14 portion of the public series contains v11, v13, and v14 but no v12
+version record.
 
 ## 14.0.0 — Governed Admissibility Calculus (2026-07-18)
 
@@ -399,9 +402,12 @@ candidates (RRP profile, Standing, WLP, bridge, actor trace, boundary
 pressure, scoped certification, spendability, custody freshness, temporal
 basis) are candidate formal laws for their runtime seams — **they do not
 testify for RRP or any runtime's compliance by themselves**. Citation/adoption
-identifies the intended contract; conformance requires an explicit mapping plus
-runtime evidence or a refinement proof. Lean custody is independently reviewed;
-none of these reviews is permission to begin formalization.
+identifies the intended contract. A conformance claim requires an explicit
+scope and exact correspondence map, executable preservation and transport
+evidence, and revision-bound qualification receipts. A formal refinement proof
+may strengthen covered obligations but does not waive those artifacts. Lean
+custody is independently reviewed; none of these reviews is permission to
+begin formalization.
 No JSON/digest/transport/PKI is modeled anywhere in them.
 Inventory: `docs/V9-RELEASE-LEDGER.md`.
 

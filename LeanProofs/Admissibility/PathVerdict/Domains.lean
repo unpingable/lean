@@ -12,7 +12,8 @@
   Custody-Class: PUBLIC-SHIPPED
   Surface-Role: STABLE-SURFACE
   This module is part of the exact `LeanProofs.Admissibility.PathVerdict`
-  stable root.
+  stable root and is intentionally multi-rooted into
+  `admissibility-calculus` at v14.
 
   TIER-1 SCOPE (brutal, binding on any public claim): this proves that
   verdicts transport between domain vocabularies functorially, that no
@@ -21,6 +22,9 @@
   that any real system chose a faithful domain map; that domain values
   reflect through noninjective maps (that direction carries an explicit
   injectivity hypothesis); or that any runtime conforms to this contract.
+  A runtime claiming correspondence must supply its exact scope/map,
+  executable preservation/transport evidence, and revision-bound
+  qualification receipts; this nonclaim is not a waiver.
 
   Core split the obstruction vocabulary into a shared kernel and a domain
   parameter δ, and every consuming stratum instantiates its own — the

@@ -27,8 +27,12 @@ modules may pin testimony shape; `[annex]` modules may be cited as evidence but
 never pin a wire field; Scratch may not steer production. Under v13, exact
 stable surfaces map to the pinning tier, public evidence maps to the citable
 non-pinning tier, and skunkworks remains non-testifying. Formal contracts may
-lead code, but no tier proves runtime conformance without a mapping plus
-runtime evidence or refinement.
+lead code. A conformance claim always requires an explicit scope, an exact map
+of every governed distinction in that scope, executable preservation and
+transport evidence, and revision-bound qualification receipts. A formal
+refinement proof may strengthen covered obligations but does not waive those
+artifacts. This pre-v14 crosswalk does not claim full Admissibility Calculus
+correspondence.
 
 ## Doctrine rows
 
@@ -79,8 +83,10 @@ runtime evidence or refinement.
   nothing here extends it.
 - Public-evidence status for `ProjectionLaundering`, `DeferredWitness`, or a
   specimen law does not make it stable API and does not testify for runtime
-  compliance. A runtime claim still needs an explicit correspondence map and
-  evidence/refinement.
+  compliance. A runtime claim still needs an exact in-scope correspondence
+  map, executable preservation and transport evidence, and revision-bound
+  qualification receipts. A formal refinement proof does not waive those
+  artifacts.
 - It does not unify the refusal taxonomies (NQ's 8 verdicts, Nightshift's
   error enum, the Lean classifiers) — all sides keep per-seam vocabularies
   on purpose.

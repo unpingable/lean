@@ -10,10 +10,12 @@ Companion documents:
 
 This file exists so that a reader in the Lean repo can go the other direction: pick a module, find the paper(s) it cashes out into, and judge whether the mapping is clean enough to cite.
 
-**v13 custody note:** v13 changes paths and terminal roles, not paper cashouts
-or theorem claims. Stable roots, public evidence, and skunkworks dispositions
-follow [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md). Dated
-changelog entries below preserve archive-time ANNEX/Scratch labels.
+**Current custody note:** v13 changed paths and terminal roles without changing
+paper cashouts; v14 added the Admissibility Calculus theorem family. See
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration and
+[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for current
+accounting. Dated changelog entries below preserve archive-time ANNEX/Scratch
+labels.
 
 ## Stable identifiers
 
@@ -68,7 +70,11 @@ Five-state Δc→Δh dynamics. Cumulative rollback depletion under detached comm
 
 **Secondary cashouts:**
 
-- **P22** (*No Universal Plant Clock*) — certify + bridge. The `persistence_normalizes` axiom explicitly marks the static/temporal boundary, aligning with Paper 22's scope-fence discipline. Acknowledged in P22 §6.4 as of pre-v1.0 incorporation (2026-04-20).
+- **P22** (*No Universal Plant Clock*) — scope-fence bridge, not certification
+  of a temporal attractor. The former `persistence_normalizes` placeholder was
+  removed on 2026-06-29; `TemporalAttractorSubstrate` is now a
+  non-asserting documentary socket. Universal temporal-attractor behavior
+  remains OPEN and requires an explicit dynamics substrate.
 - **P8** (*Detecting Temporal Debt*) — sharpen, narrow. What "temporal debt" accumulates to: commitment, not elapsed time.
 - **P19** (*Shadow Governance*) — certify (inherited from P18). No independent mapping; follows P18 revisions.
 - **P6** (*Temporal Closure Requirements*) — expose looseness. SI-C "long enough" framing marked STALE in `CLAIM-REGISTER.md` #4.
@@ -140,7 +146,11 @@ Five core modules forming a Governor-neutral authority kernel, plus two boundary
 - `CorrectiveBoundary.lean` (added 2026-05-07) — model-dependence boundary result. Builds a parallel miniature kernel with concrete payload types (`PolicyStore := List Nat`, etc.) and parameterized `StoreOps`, and proves the abstract kernel's recorded-null question is genuinely model-dependent: identity-store models make the corrective+forward existential FALSE; nondegenerate models make it TRUE. Abstract `NondegenerateStoreSemantics` structure packages the three commitments from `~/git/papers/working/nondegenerate-store-semantics.md`; `corrective_then_forward_is_not_monotone_of_nondegenerate` is the parametric theorem; `witness_satisfies_nondegenerate` certifies the witness model. The abstract kernel's existential remains formally undecidable in current vocabulary — that is the doctrinally-correct stance, and this module exhibits both possible answers without committing the abstract kernel to either.
 - `WitnessInvariance.lean` (added 2026-05-08) — boundary primitive for witness-invariance failure. Formalizes the four-tier ladder (selectivity / specialization / encapsulation / modularity) from the multi-model 2026-05-08 distillation of McGee/Zhang/Blank 2026 (*Cognitive Science* 50(3)). Two namespaces: abstract `Encapsulated` / `MovesUnderExcludedPerturbation` definitions + boundary theorem `moves_implies_not_encapsulated`; toy counterexample (`ToyState` with `synBit`/`semBit` — `syntax` is reserved in Lean 4) proving `selectivity_does_not_imply_encapsulation`. Doctrine: prove the boundary claim, not the Wiley paper. Companion working note (papers repo): `~/git/papers/working/primitives/witness-invariance-failure.md`. Supplies missing invariance-discipline rung in the admissibility apparatus's witness-validation vocabulary; structurally adjacent to (but not directly equivalent to) P25 Theorem 1's projection-invariance shape.
 
-**No paper cashout.** This is infrastructure substrate for a future Governor (`agent_gov`) implementation citation, not a paper-claim cashout. Concrete `claimForStep` resolvers and `AuthorityClaim` schema commitments belong in Governor's instantiation, not in the kernel. Documented here to keep the mapping complete.
+**No paper cashout.** This is infrastructure substrate and a correspondence
+target for Governor (`agent_gov`), not a paper-claim cashout or evidence that
+Governor conforms. Concrete `claimForStep` resolvers and `AuthorityClaim`
+schema commitments belong in the runtime mapping, not in the kernel.
+Documented here to keep the mapping complete.
 
 The P27 obligation skeleton (namespace `P27`) moved from the v12 public-tree
 path `LeanProofs/Admissibility.lean` to skunkworks
@@ -171,7 +181,7 @@ Eight modules forming the safety-axis brick set, addressing the Frontier 1 wound
 
 **Scope discipline.** The preprint inherits the kernel's institutional fence — *"kernel-legible all-green verdict, NOT substantively-grounded legitimacy."* Paper 28 is the home for the substantive-grounding argument. Separating these is what makes both papers honest. The punchy slug deliberately lives on paper 28 (where rhetoric is contribution); the preprint's sober title is genre-appropriate for cs.LO.
 
-**Related records:** spine page (above); tier map `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md`; ρ-drop decision `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`; Calculus 2.0 exit criteria reconciliation `~/git/papers/working/calculus-2-exit-criteria.md` (status update 2026-05-29); kernel-overlap audit `~/git/papers/working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md` (closes the second safety-axis minting gate). The "Calculus 2.0" label as a unifying-promotion target is moot post-2026-06-03 synthesis closure (see `~/git/papers/working/source-basis-discipline-synthesis.md`); the composition and self-amendment axes are now species under the "disciplined premise production" umbrella, not pending unification gates.
+**Related records:** spine page (above); tier map `~/git/papers/working/tooltheory/calculus-2-tier-map-2026-05-28.md`; ρ-drop decision `~/git/papers/working/tooltheory/safety-bridge-rho-drop-decision-2026-05-28.md`; Calculus 2.0 exit criteria reconciliation `~/git/papers/working/calculus-2-exit-criteria.md` (status update 2026-05-29); kernel-overlap audit `~/git/papers/working/tooltheory/safety-bridge-kernel-overlap-audit-2026-05-29.md` (closes the second safety-axis minting gate). The "Calculus 2.0" label as a unifying **paper/promotion plan** was retired by the 2026-06-03 synthesis; that historical paper-topology decision is distinct from the separately reviewed v14 formal object now named the Admissibility Calculus.
 
 ## `LeanProofs/Witnessed/PaidRecomposition/` (v11 repository-integration family)
 
@@ -263,9 +273,33 @@ independence, justify attributed privileged steps, or authorize ledger
 promotion. A future paper mapping must name the exact theorem and supply its
 own interpretation boundary.
 
+## `LeanProofs/Admissibility/Calculus/` (v14 governed family)
+
+**Release title:** *v14 — Governed Admissibility Calculus*. Exact inventory and
+gates: [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md).
+
+The v14 root assembles the governed-family signature, Weathering and bounded
+paid reachability instances, exact dependent refusal-packet spines, the closed
+indexed comparison framework, stored-decision crossings, and the
+origin/history-bound BreakGlass terminal instance. The public Calculus root
+freezes 191 receipts; its PathVerdict rung-1 substrate is separately gated at
+36 receipts.
+
+**No current paper cashout.** This is a formal contract and possible runtime
+correspondence target, not evidence that any paper or runtime instantiates it.
+A later paper mapping must name exact receipts and supply its interpretation
+boundary. A runtime claim additionally requires an explicit scope, an exact
+correspondence map, executable preservation and transport evidence, and
+revision-bound qualification receipts; citation alone is not conformance. A
+formal refinement proof does not waive those artifacts.
+
 ## Open / axiomatic boundaries
 
-- **`persistence_normalizes` axiom** in `PersistenceModel.lean` — intentionally weak, marks where static formalization ends. Relevant to the dynamic-claims roadmap (three-bucket split: explicit specifications / transition-system or temporal model / simulation). See memory `project-lean-dynamic-roadmap.md` in the papers project memory.
+- **Universal temporal-attractor behavior remains OPEN.** The former
+  `persistence_normalizes` placeholder was removed from `TaxonomyGraph.lean`
+  on 2026-06-29. `TemporalAttractorSubstrate` preserves the question without
+  asserting an answer; any result needs an explicit transition-system or
+  temporal substrate.
 
 ## Change log
 
@@ -293,3 +327,6 @@ own interpretation boundary.
   public evidence; live incubation moves to skunkworks. See the v13 release
   ledger for exact source accounting, compatibility decisions, and
   verification receipts.
+- **2026-07-18 — Released v14 Governed Admissibility Calculus.** Added the
+  seven-rung formal family above. No paper cashout or runtime-conformance claim
+  is assigned by release alone.

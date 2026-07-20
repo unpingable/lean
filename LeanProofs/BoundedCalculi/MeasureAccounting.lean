@@ -13,7 +13,8 @@
 
   Extracted 2026-07-01 from the historical Scratch `ExecutionSequent` at the
   v3 promotion fork. v13 records the resulting dependency chain as stable
-  substrate.
+  substrate. v14 intentionally multi-roots this source into both
+  `custody-indexed` and `admissibility-calculus` for the BreakGlass instance.
 -/
 
 import LeanProofs.Witnessed.ResourceSequent

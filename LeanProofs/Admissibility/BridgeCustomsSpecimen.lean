@@ -24,8 +24,10 @@
 
   Custody: terminal public evidence, regression-built by
   `lake build AdmissibilityEvidence`. Publication does not claim runtime
-  adoption; conformance still requires a mapping plus runtime evidence or a
-  refinement proof.
+  adoption; conformance still requires an explicit scope and exact
+  correspondence map, executable preservation and transport evidence, and
+  revision-bound qualification receipts. A formal refinement proof may
+  strengthen covered obligations but does not waive those artifacts.
 -/
 
 /-!

@@ -5,8 +5,8 @@
   Admissibility — State transition algebra (Layer 3a + 3b).
 
   Reference: governor doctrine; sibling to
-  LeanProofs/Admissibility/Authority.lean (verdict algebra) and
-  LeanProofs/Admissibility.lean (P27 obligation skeleton).
+  LeanProofs/Admissibility/Authority.lean (verdict algebra). The former public
+  P27 obligation skeleton now lives in skunkworks and is not part of this root.
 
   Two layers in this file:
 
@@ -27,9 +27,9 @@
 
   Stops fake law. (Authority.lean stops fake permission.)
 
-  Deferred: derivation that reads GovState into component verdicts —
-  belongs in a future `Admissibility/Derivation.lean`. Per
-  ChatGPT/DeepSeek 2026-04-30: write-side fenced first, then read-side.
+  Historical development order: derivation that reads GovState into component
+  verdicts was deferred until the write side was fenced. It subsequently
+  landed in `Admissibility/Derivation.lean`.
 
   Governor-neutral. Does not import Governor or P27 concepts.
 
@@ -39,6 +39,10 @@
     rule on changes to the load-bearing names enumerated in the aggregator
     docstring. A definition matching this signature elsewhere does not
     inherit this anchoring.
+
+  v14 closeout: this source is intentionally multi-rooted by
+  `admissibility-calculus`, `admissibility-kernels`, `dynamic-trace`, and
+  `view-semantics`; the registry, not this directory, is authoritative.
 -/
 
 namespace Admissibility.StateTransition
@@ -249,21 +253,19 @@ theorem execute_amend_policy_targets_policy_store
   rfl
 
 /-
-  TODO (deferred — `Admissibility/Derivation.lean`):
+  Historical derivation closeout:
+    `Admissibility/Derivation.lean` now bundles `deriveBasis`,
+    `derivePrecedence`, and `deriveStanding` in proof-carrying strategy
+    structures, defines `decideAuthority`, and proves
+    `revoked_basis_never_authorized`. It deliberately does not pretend those
+    abstract strategies read these opaque stores.
 
-    deriveBasisVerdict      : GovState → AuthorityClaim → BasisVerdict
-    derivePrecedenceVerdict : GovState → AuthorityClaim → PrecedenceVerdict
-    deriveStandingVerdict   : GovState → Actor → AuthorityClaim → StandingVerdict
-    decideAuthority         : GovState → Actor → AuthorityClaim → AuthorityVerdict
-
-    First derivation theorem (revocation-shaped):
-      revoked_basis_never_authorized — if basis evidence is revoked
-      in RevocationStore, deriveBasisVerdict cannot return admissibleBasis.
-
-  TODO (StepAllowed → standing):
-    The `*Standing` predicates are currently abstract. Concrete
-    standing relations (e.g. via a standing registry component of
-    GovState) come with the Derivation module.
+  TODO (store-backed derivation and StepAllowed bridge):
+    Concrete strategy values backed by actual store reads still require
+    behavioral laws for the abstract store API. The mutation-side `*Standing`
+    predicates here also remain abstract and distinct from invocation standing
+    in `Derivation.lean`; any bridge between them needs its own precise
+    statement and proof.
 
   TODO (operatorOverride):
     Open question — additional StepAllowed constructor with elevated

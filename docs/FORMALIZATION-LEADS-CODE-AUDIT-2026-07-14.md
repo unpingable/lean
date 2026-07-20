@@ -18,8 +18,10 @@ non-tautological statement, honest hypotheses, overlap review, and bounded
 scope. Completed proofs and disclosed axioms govern discharge and promotion.
 Public custody, compatibility promises, tags, and releases require their own
 explicit decisions and may consider runtime evidence. Citation/adoption names
-the intended contract; a runtime-conformance claim requires an explicit mapping
-plus runtime evidence or a refinement proof.
+the intended contract. A runtime-conformance claim always requires an explicit
+scope and exact correspondence map, executable preservation and transport
+evidence, and revision-bound qualification receipts. A formal refinement proof
+may strengthen covered obligations but does not waive those artifacts.
 
 ## Lean repository corrections
 
@@ -84,8 +86,10 @@ Current contradictions:
 These say a deployed operational gate must precede or justify a Lean theorem.
 Keep the valid proof-to-world fence—a green Lean build does not prove Rust
 conformance—but reverse the development order: Lean may state the abstract
-invariant first; an explicit mapping plus deployment evidence or a refinement
-proof may later discharge correspondence.
+invariant first. A later runtime claim requires an exact in-scope map,
+executable preservation and transport evidence, and revision-bound
+qualification receipts. A formal refinement proof may strengthen covered
+obligations but does not waive those artifacts.
 
 ### `~/git/research`
 

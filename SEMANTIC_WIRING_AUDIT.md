@@ -5,13 +5,16 @@
 > may lead adoption; consumers are correspondence targets, not permission to
 > build. In particular, `firstViolation_none_iff_lawful` landed in
 > `DeferredWitness.lean` on 2026-07-09. Custody and public promotion remain
-> separate operator decisions.
+> separate operator decisions. The audit also predates WDC 2.0's
+> model-independent admitting-class normalization and the v14 Admissibility
+> Calculus; statements below that describe those as future or model-scoped are
+> historical.
 
 > **v13 custody update:** ANNEX/Scratch/candidate paths and recommendations in
 > this report are historical. Finished work is now stable API or public
 > evidence; live incubation is in skunkworks; superseded fossils remain in
-> v12/Git history. Current state:
-> [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md).
+> v12/Git history. v13 records the migration; current additions and accounting
+> are in [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md).
 
 This is a semantic wiring audit, not an inventory audit. It asks what already
 exists in the repo that should be connected, factored, generalized, exercised,

@@ -1,6 +1,8 @@
-# Admissibility Kernels — Authority kernel and siblings
+# Admissibility — Kernels, siblings, and the v14 Calculus
 
-> **The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.**
+> **The original Admissibility Kernels 1.0 root did not earn the name
+> "calculus"; it remains eight small refusal kernels. v14 separately earned
+> the capital-C name for the exact object under `Admissibility.Calculus`.**
 
 > **Development order:** formalization leads code. A consumer or runtime
 > specimen is not permission to begin a theorem and is never a prerequisite
@@ -8,17 +10,22 @@
 > non-vacuity, overlap, and scope govern opening the formal work; proof and
 > axiom checks govern its discharge. Custody promotion is a separate
 > operator/release decision and may consider runtime evidence. Citation names
-> an intended contract; conformance still needs a mapping plus runtime evidence
-> or a refinement proof.
+> an intended contract. Conformance always requires an explicit scope, an
+> exact map of every governed distinction in that scope, executable
+> preservation and transport evidence, and revision-bound qualification
+> receipts. A formal refinement proof may strengthen covered obligations but
+> does not waive those artifacts.
 
 **Stable Admissibility surfaces.** The original eight-module 1.0 compatibility
 claim remains aggregated by `AdmissibilityKernels.lean`: `Authority`,
 `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`,
-`SurfaceAuthorization`, and `WitnessInvariance`.  v13 also records the
+`SurfaceAuthorization`, and `WitnessInvariance`. v13 also records the
 already-coherent DynamicTrace pair, `SafetyBridge`, and PathVerdict as separate
-exact stable families; none widens the eight-module 1.0 root.
+exact stable families; none widens the eight-module 1.0 root. v14 adds the
+separate exact `AdmissibilityCalculus` root and extends PathVerdict with the
+rung-1 substrate.
 
-**Current custody contract (v13 release).** Public source uses
+**Current custody contract (v14 release).** Public source uses
 `Custody-Class: PUBLIC-SHIPPED` plus `Surface-Role: STABLE-SURFACE` or
 `PUBLIC-EVIDENCE`.  Stable status is the transitive closure of a registered
 exact family root.  Finished examples, countermodels, applications, and audit
@@ -28,10 +35,15 @@ incubation moves to the sibling skunkworks; `ANNEX`, `Scratch/`, and
 
 Adding a public header or a build target does not promote a module.  Promotion
 is an explicit operator decision recorded by the applicable exact root and
-registry. The completed release receipt is in
-[`../../docs/V13-RELEASE-LEDGER.md`](../../docs/V13-RELEASE-LEDGER.md).
+registry. The current tree closes at 201 public Lean sources — 104 stable, 96
+evidence, one aggregate — across eleven roots and 131 ownership relations.
+The completed release receipt is in
+[`../../docs/V14-RELEASE-LEDGER.md`](../../docs/V14-RELEASE-LEDGER.md).
 
-**What this is for.** Infrastructure substrate, not a paper. No paper anchor; the kernel modules are intended to be cited by downstream operational work (a future Governor / `agent_gov` implementation, and the consumer tools listed below).
+**What this is for.** Infrastructure substrate and formal contract, not by
+itself a paper or runtime proof. Governor (`agent_gov`) and the consumer tools
+listed below are correspondence targets; each runtime owns its exact map and
+evidence.
 
 (Migration note: the aggregator was previously `CalculusOne.lean` under an "Admissibility Calculus 1.0" framing. The rename is doctrine — the earlier artifact did not earn the name "Admissibility Calculus," and "calculus" overclaimed the shape of what it was. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`. The deprecated import shim shipped through v9 and was removed in v10.0.0; the eight-module kernel surface itself is unchanged. Revision at v14 rung 2, 2026-07-17: the term remains reserved for the unified object now being constructed under `Admissibility.Calculus` — that namespace is the construction's stable address, and its presence does not claim completion; the capital-C claim stays gated on the campaign's separately reviewed final ratification. Discharge at v14 rung 7, 2026-07-18: all seven rungs were admitted, custody closed, and the capital-C claim was then ratified as its own reviewed act — the object under `Admissibility.Calculus` is the **Admissibility Calculus**. The v10 correction stands as history: the name was withheld until earned, and the reservation is now discharged, not repealed.)
 
@@ -49,13 +61,42 @@ original is deleted; green elaboration did not make it public evidence.
 > `ConsolidationDenial` blocks *fluency → settlement*) without turning every
 > specimen signature into stable API.
 
-> **Composition discipline:** The modules form a typed federation of kernels, not a unified calculus. Cross-kernel implications require an explicit bridge theorem stating which kernel-owned refusal condition is being preserved and how. The companion working note `no-unifier-without-laundering.md` (in the papers repo) records the discipline in full.
+> **Legacy-kernel composition discipline:** the 1.0 kernels and their sibling
+> families remain a typed federation; no implication between them is free.
+> v14 relates only its named families through explicit governed instances,
+> spines, comparison receipts, and stored-decision crossings. It does not erase
+> the local bridge obligations of every other module.
+
+## v14 current surface — Governed Admissibility Calculus
+
+`LeanProofs.Admissibility.Calculus` is the exact public root of the ratified
+capital-C **Admissibility Calculus**. The PathVerdict additions from rung 1 are
+separately gated at 36 receipts; rungs 2–7 contribute 191 exact receipts to the
+Calculus root.
+
+| Campaign layer | Public modules / role |
+| --- | --- |
+| Rung 1 | `PathVerdict.Domains` and `PathVerdict.Located`: domain transport and carried-id diagnostics |
+| Rung 2 | `Calculus.Core`: `GovernedFamily`, native evidence-returning `decide`, separate standing/custody/obligation books |
+| Rung 3 | `Calculus.Instances.Weathering*` and `BoundedPaidReachability*`: two native no-distortion instances |
+| Rung 4 | `Calculus.Spine` plus instance spines: exact dependent refusal-packet preservation |
+| Rung 5 | `Calculus.Comparison`: closed indexed comparison laws and dependent receipts |
+| Rung 6 | `Calculus.Crossing` plus Weathering/bounded-paid inhabitant: decide once, store both native outcomes, project downstream |
+| Rung 7 | `Calculus.Instances.BreakGlass*`: origin/history-bound lifecycle, audit, spine, comparison, and stored crossing |
+
+The root proves none of its own runtime adoption. A runtime claiming this
+surface must map every in-scope governed distinction and show that each
+survives implementation and transport; the full obligation is in
+[`../../WHAT-THIS-PROVES.md`](../../WHAT-THIS-PROVES.md#formal-contract-and-runtime-conformance).
+Inventory and per-rung fences:
+[`../../docs/V14-RELEASE-LEDGER.md`](../../docs/V14-RELEASE-LEDGER.md) and
+[`../../docs/V14-READINESS-LEDGER.md`](../../docs/V14-READINESS-LEDGER.md).
 
 ## Historical changelog through v12
 
 Custody labels and target names in this dated changelog describe the trees in
-which those entries landed.  They are not current v13 classifications.  See
-the migration ledger above for present paths and roles.
+which those entries landed. They are not current classifications; see the v14
+section and release ledger above for present paths and roles.
 
 ### 10.0.0 — deprecated compatibility shim retired (2026-07-14)
 
@@ -147,9 +188,14 @@ No public surface change. No slogan change. The 1.0 aggregator (then named `Calc
 
 Initial named public surface. Eight modules in the 1.0 aggregator (originally named `CalculusOne.lean`; renamed 2026-06-03 to `AdmissibilityKernels.lean`): `Authority`, `StateTransition`, `Derivation`, `Execution`, `Corrective`, `Freshness`, `SurfaceAuthorization`, `WitnessInvariance`. Seven specimen consumers in `Examples.lean`. Slogan, scope-fence, and annex documented in this README.
 
-## Roadmap
+## Historical roadmap through v13, with v14 closeout
 
-Forward-looking version discipline (not a release plan, a promotion gate):
+This pre-v14 roadmap is retained as decision history, not the current release
+queue. Its recorded split between local kernel families remains useful, while
+the later v14 campaign earned a different bounded compositional object.
+
+- **v14** — all seven rungs admitted; the separate capital-C naming act was
+  ratified and `v14.0.0` released. See the current-surface section above.
 
 - **v13** — released custody/path correction only. The skunkworks transfer,
   fail-closed registries, and integrated verification are complete; no new
@@ -174,7 +220,12 @@ Forward-looking version discipline (not a release plan, a promotion gate):
 
 ## Admissibility Kernels 1.0 — public surface
 
-A Lean authority kernel with typed verdicts and object-level refusal theorems for admissible transition. General composition rules and meta-theorems are out of scope for 1.0 and remain separate kernel families (pipeline composition between kernels is wired but is not the same thing as a composition theorem — see the distinction at L82-83 above). Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence below for the full list of non-claims.
+A Lean authority kernel with typed verdicts and object-level refusal theorems
+for admissible transition. General composition rules and meta-theorems are out
+of scope for 1.0 and remain separate kernel families; pipeline wiring is not a
+free composition theorem. Not a sequent calculus, process calculus,
+proof-theoretic admissibility logic, or unified maximal calculus — see the
+scope fence below.
 
 `AdmissibilityKernels.lean` is the named public aggregator. Importing it brings the 1.0 surface into scope. Eight modules are tagged `[1.0]` and form the compatibility claim:
 
@@ -215,9 +266,9 @@ Seven specimen consumers live in `Examples.lean` (imports `AdmissibilityKernels`
 ## Public evidence and separate stable siblings
 
 The following finished modules remain public without entering the 1.0 stable
-root.  `DynamicTrace`/`FreshnessDynamicTrace` and `SafetyBridge` also have
-their own exact stable-family roots; their concrete wounds and witnesses stay
-public evidence.
+root. `DynamicTrace`/`FreshnessDynamicTrace`, `SafetyBridge`, PathVerdict, and
+the v14 Admissibility Calculus have their own exact roots; concrete wounds and
+witnesses remain public evidence where the registered closures exclude them.
 
 ### Kernel-adjacent public material
 
@@ -278,8 +329,10 @@ history.
 
 The former candidate specimens not listed above have been adjudicated as
 terminal public evidence. Runtime citation/adoption identifies an intended
-contract; it still does not prove conformance without an explicit mapping plus
-runtime evidence or a refinement proof.
+contract. A conformance claim still requires an explicit scope and
+exact correspondence map, executable preservation and transport evidence, and
+revision-bound qualification receipts. A formal refinement proof may
+strengthen covered obligations but does not waive those artifacts.
 
 ### Refusal kernel taxonomy
 
@@ -441,7 +494,12 @@ Keeper: *Expired evidence cannot prove current standing. Future-issued evidence 
 
 Three positive predicates compose into `Fresh`: `TemporallyCoherent` (issued precedes expires), `DivergenceAcceptable` (verifier-issuer clock divergence within bound), `WithinValidity` (now falls inside skewed validity window). Five negative theorems mirror four of Standing's nine `AssessmentResult` verdict kinds: `expired_not_fresh` / `not_yet_valid_not_fresh` mirror `Expired` / `NotYetValid`; `incoherent_not_fresh` and `not_precedes_not_fresh` cover the two structurally-distinct failure modes of `TemporallyCoherent` under opaque `Time.le` (both map to `AssessmentCompromised`); `divergence_excessive_not_fresh` mirrors the other `AssessmentCompromised` branch. The fifth temporal verdict (`ReplayDetected`) stays in the kernel's ordinal apparatus.
 
-Canonical consumer: `~/git/standing` (workload-identity / grant authorization tool, production-quality Rust). Runtime correspondence receipt (historically the promotion context): Standing's `AssessmentResult::AssessmentCompromised` is exactly the kernel's "gap" verdict applied to metric-time admissibility — and the Lean kernel previously could not express that the gap was *temporal* rather than basis-, precedence-, or standing-shaped. This module closes that asymmetry.
+Canonical correspondence target: `~/git/standing` (workload-identity / grant
+authorization tool, production-quality Rust). The historical promotion review
+identified `AssessmentResult::AssessmentCompromised` with this metric-time
+"gap" seam. That is one scoped mapping observation, not a full runtime
+conformance receipt; the runtime still owes an exact scope/map and
+preservation/transport evidence.
 
 Time is kept opaque (`axiom Time : Type` + four axiomatic operations: `le`, `add`, `sub`, `absSub`). Concretizing to `Nat`/`Int` would leak structural facts into theorems and break the abstraction over real consumer types (chrono's `DateTime<Utc>`). Composition with the other admissibility kernels is explicitly deferred — same defer-marker pattern as `FiatAdmissibility`. Not `Δt.lean`.
 
@@ -555,16 +613,23 @@ Audit provenance and a detailed walk-through live in `papers/working/cross-bound
 
 ## What it does NOT warrant
 
-- Concrete `claimForStep` resolution (deferred to Governor instantiation; ontology bait if pre-committed).
-- Concrete `AuthorityClaim` schema (kept abstract).
-- Behavioral laws on the abstract store API (`appendEvidence`, `applyUpdate`, etc.) — they're `axiom`s with no behavioral constraints. The structural partition invariant survives, but no concrete claim about *what* a receipt records.
-- Bridge between `Derivation.deriveStanding` (standing to *invoke* a claim) and `StateTransition.*Standing` predicates (standing to *mutate* governance state). Distinct standing concepts; not bridged yet.
+- Concrete `claimForStep` resolution. A runtime claiming this seam must map its
+  resolver and discharge the abstract hypotheses.
+- A concrete `AuthorityClaim` schema. Runtime representation belongs in the
+  correspondence map.
+- Behavioral laws on the abstract store API (`appendEvidence`, `applyUpdate`,
+  etc.) — they are abstract symbols with no behavioral constraints. The
+  structural partition invariant survives, but no concrete claim about what a
+  receipt records follows without a runtime refinement.
+- A bridge between `Derivation.deriveStanding` (standing to *invoke* a claim)
+  and `StateTransition.*Standing` predicates (standing to *mutate* governance
+  state). An end-to-end claim must supply or exclude that bridge explicitly.
 
 ## Build
 
 The default build covers the Mathlib-free stable and public-evidence targets.
-`AdmissibilityKernels`, `DynamicTrace`, `SafetyBridge`, and `PathVerdict` are
-exact stable-family targets; `AdmissibilityEvidence` and
+`AdmissibilityKernels`, `DynamicTrace`, `SafetyBridge`, `PathVerdict`, and
+`AdmissibilityCalculus` are exact stable-family targets; `AdmissibilityEvidence` and
 `PathVerdictEvidence` keep finished specimens outside those roots.
 `AdmissibilityEvidenceMathlib` is the explicit heavy public-evidence island.
 The root `LeanProofs` aggregate remains an explicit contact build, not a
@@ -587,6 +652,9 @@ whole-tree custody registry are the authoritative coverage checks.
 # Target-level gates
 lake build AdmissibilityKernels AdmissibilityEvidence
 lake build DynamicTrace SafetyBridge PathVerdict PathVerdictEvidence
+bash scripts/check-pathverdict-footprint.sh
+lake build AdmissibilityCalculus
+bash scripts/check-calculus-footprint.sh
 bash scripts/check-mathlib-free-targets.sh
 lake build AdmissibilityEvidenceMathlib
 lake build LeanProofs

@@ -12,7 +12,9 @@
   Surface-Role: STABLE-SURFACE
   This module is part of the exact `LeanProofs.Admissibility.PathVerdict`
   stable root. v13 completes the earlier skunkworks extraction by correcting
-  its public path and custody record without changing theorem bodies.
+  its public path and custody record without changing theorem bodies. v14
+  intentionally multi-roots it into `path-verdict` and
+  `admissibility-calculus`.
 
   TIER-1 SCOPE (brutal, binding on any public claim): this proves that
   obstruction is preserved across composition, that authority requires a

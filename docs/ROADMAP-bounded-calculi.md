@@ -6,7 +6,8 @@
 > shipped material with exact stable/evidence ownership; the released v4-v7
 > checker/sequent substrate is rehomed under `LeanProofs/CustodyIndexed/`.
 > Superseded fossils were removed and live incubation moves to skunkworks.
-> Current custody record: [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
+> v13 records that migration; current repository accounting is in
+> [`V14-RELEASE-LEDGER.md`](V14-RELEASE-LEDGER.md).
 
 ## 1. Status / custody
 
@@ -197,8 +198,9 @@ explicit operator decision.
 ## 11. Historical status ledger (as-built, 2026-07-01)
 
 Snapshot of what existed on 2026-07-01, distinct from both the plan above and
-the current v13 tree. The old labels and paths are deliberately preserved here
-as release provenance; consult the correction banner for current ownership.
+the post-v13 migration tree. The old labels and paths are deliberately
+preserved here as release provenance; consult the correction banner for
+current ownership.
 
 **L2 — `Temporal → Surface` bridge (landed).**
 `LeanProofs/Scratch/TemporalToSurfaceBridge.lean`, self-contained surrogate. Key

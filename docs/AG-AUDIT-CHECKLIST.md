@@ -7,6 +7,11 @@ formats. **No runtime claims**: these are questions the theorems make precise,
 not code. A "yes" answer is a smell with a named theorem behind it, not a
 conviction — each screen's false-positive/negative caveats are cited.
 
+This is a v4/post-v4 schema-smell checklist, not a v14 conformance checklist.
+A full-calculus claim must instead satisfy the exact scope, correspondence-map,
+preservation, and transport obligations in
+[`../WHAT-THIS-PROVES.md`](../WHAT-THIS-PROVES.md#formal-contract-and-runtime-conformance).
+
 Audience note: written for the agent_gov session (the constellation weaver).
 Each item names the Lean object that makes the question precise, so findings
 can be traced back to the formal shape.

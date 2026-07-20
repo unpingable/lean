@@ -2,6 +2,12 @@
 
 **Last updated:** 2026-04-04
 
+> **Historical scope note.** This file describes the original three-module Δt
+> audit stack as it stood on that date; it is not the current architecture of
+> the whole repository. For the v14 surface and current claims, see
+> [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md) and
+> [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md).
+
 ## Architecture
 
 Three Lean modules forming a layered stack. Each layer feeds the next.

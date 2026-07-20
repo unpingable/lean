@@ -1,16 +1,28 @@
 # Claim Register — Post-Formalization Audit
 
-Scoped to claims touching: Δh, Δc, detachment, rollback, closure,
-sink/attractor language, terminal families, and "long enough."
+The original register was scoped to claims touching Δh, Δc, detachment,
+rollback, closure, sink/attractor language, terminal families, and "long
+enough." Later entries extend the same SOUND / BROKEN / STALE / OPEN discipline
+through the v14 Admissibility Calculus campaign.
 
 Generated 2026-04-03 after static topology and persistence model results.
 
-**v13 custody correction:** claim status is unchanged. Current source paths
-and stable/evidence roles follow
-[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md); dated release
-records retain their archive-time labels. In particular, the v4-v7 substrate
-now lives under `LeanProofs/CustodyIndexed/`, and finished fixtures are
-`PUBLIC-EVIDENCE` rather than ANNEX/Scratch.
+**Current custody and v14 status:** v13 established the stable/evidence
+classification and rehomed the v4-v7 substrate under
+`LeanProofs/CustodyIndexed/`; v14 adds the exact `Admissibility.Calculus` root
+and its intentional multi-root ownerships. See
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration and
+[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for current
+accounting. Dated rung-local nonclaims below remain admission-time fences; all
+seven rungs were later assembled and the capital-C name separately ratified.
+
+"No runtime conformance" in an entry means Lean alone does not discharge the
+runtime claim. A runtime claiming correspondence always owes an explicit scope,
+an exact map of every governed distinction in that scope, executable
+preservation and transport evidence, and revision-bound qualification
+receipts. A formal refinement proof may strengthen covered obligations but
+does not waive those artifacts. Missing correspondence blocks the claim; a
+flattened required distinction is a defect.
 
 ## Status key
 

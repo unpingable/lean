@@ -1,11 +1,15 @@
 # v14 Readiness Ledger — Governed Admissibility Calculus
 
-**Status: in-flight campaign ledger. Nothing here is released, tagged, or
-minted.** Baseline: `v13.0.0`
+**Status: frozen campaign ledger.** This records the seven-rung admission
+sequence from the `v13.0.0` baseline. All seven rungs were admitted, the
+capital-C name was separately ratified, and the operator subsequently released
+`v14.0.0`; see [`V14-RELEASE-LEDGER.md`](V14-RELEASE-LEDGER.md). Per-rung
+nonclaims below remain preserved as admission-time fences. Baseline:
+`v13.0.0`
 (`54ffd53fa61d179b8b15f9195e877e1fefcfbd27`, 2026-07-17), the
 custody-reconciliation release that made the repository capable of receiving
-this campaign. The v13 tag is an immutable external baseline; this campaign
-performs no tag action.
+this campaign. The v13 tag remains the immutable campaign baseline; the
+admission sequence itself performed no tag action.
 
 ## Release shape
 
@@ -27,7 +31,7 @@ candidate packets).
 | 4 | Exact refusal-packet spine (`SpineEncoding`/`LosslessEncoding`) | **ADMITTED 2026-07-18** (commit `6c026d12…` + comment fix `9f24240d…`) |
 | 5 | Indexed comparison framework (concrete ledger stays evidence) | **ADMITTED 2026-07-18** (commit `dc9c8df5…` + docs fix `ba7590af…`) |
 | 6 | Stored-decision crossing and witnessed inhabitant | **ADMITTED 2026-07-18** (commit `41510aa9…` + comment fix `721c2c8c…`) |
-| 7 | Origin/history-bound BreakGlass instance (terminal forcing instance) | **ADMITTED 2026-07-18** (this ledger, below) |
+| 7 | Origin/history-bound BreakGlass instance (terminal forcing instance) | **ADMITTED 2026-07-18** (commit `5a92e17a…`) |
 
 **All seven rungs are admitted, and the terminal naming claim is
 ratified.** The capital-C decision was deliberately NOT decided by
@@ -37,13 +41,12 @@ after custody closed — research-tree records
 closure `62ac346b…`) and
 `ADMISSIBILITY_CALCULUS_CAPITAL_C_RATIFICATION_2026-07-18.md` (the
 naming act, `d5d5f2a9…`). The assembled public object is the
-**Admissibility Calculus**. This is a naming ratification, not a
-release: the v14 tag, GitHub release, and Zenodo deposit remain
-separate operator acts.
+**Admissibility Calculus**. The naming ratification was not itself a release;
+the operator later completed the separate release acts recorded in the v14
+release ledger.
 
-All seven rungs belong to one v14 semantic release unless rungs 4–6 expose a
-semantic redesign large enough that the public surface cannot honestly
-stabilize in this cycle (the recorded split rule).
+The recorded split rule did not fire: all seven rungs belong to the released
+v14 semantic surface.
 
 ## Rung 1 — Domains/Located (admitted 2026-07-17)
 

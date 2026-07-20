@@ -1,14 +1,15 @@
 # v14 Release Ledger — Governed Admissibility Calculus
 
-**Release status: prepared locally; the annotated tag, GitHub release, and
-Zenodo version deposit are pending operator action and are not asserted
-here.** Baseline: `v13.0.0`
+**Released: v14.0.0 — Governed Admissibility Calculus (2026-07-18).** The
+annotated tag archives commit `ff491b808ebeab2a132d9ade46d234cf85dcfbe9`;
+the [GitHub release](https://github.com/unpingable/lean/releases/tag/v14.0.0)
+was published 2026-07-18, and the
+[Zenodo version record](https://zenodo.org/records/21435270) was published
+2026-07-19 with DOI `10.5281/zenodo.21435270`. Baseline: `v13.0.0`
 (`54ffd53fa61d179b8b15f9195e877e1fefcfbd27`, 2026-07-17). Repository
 version metadata is `14.0.0` in `lakefile.toml`; `CITATION.cff` carries the
 title `Governed Admissibility Calculus`, version `14.0.0`, release date
-`2026-07-18`, and concept DOI `10.5281/zenodo.20369489`. The
-version-specific DOI is assigned externally when the GitHub release drives
-the deposit and is intentionally not guessed here.
+`2026-07-18`, and concept DOI `10.5281/zenodo.20369489`.
 
 ## Scope
 
@@ -74,15 +75,23 @@ The v10 reservation of the word "calculus" is discharged, not repealed.
 
 ## What v14 does not claim
 
-No runtime conformance, attestor honesty, origin-allocation uniqueness,
-clock honesty, or cryptographic property; no closed inhabitant of the
-abstract substrate; no discharge/payment lifecycle; no universal
-completeness. The per-rung nonclaim fences in the readiness ledger and
-claim register are part of the released surface. The plain-language
-statement of the research program is
+Lean alone establishes no runtime conformance, attestor honesty,
+origin-allocation uniqueness, clock honesty, or cryptographic property; no
+closed inhabitant of the abstract substrate; no discharge/payment lifecycle;
+no universal completeness. A runtime claiming correspondence to v14 must
+declare its exact scope, supply an explicit map for every governed distinction
+in that scope, and provide executable preservation and transport evidence with
+revision-bound qualification receipts. A formal refinement proof may discharge
+covered obligations more strongly but does not waive those artifacts. A
+missing map blocks the claim; flattening a required distinction is a
+conformance defect. The full evidence contract is in
+[`../WHAT-THIS-PROVES.md`](../WHAT-THIS-PROVES.md#formal-contract-and-runtime-conformance).
+The per-rung nonclaim fences in the readiness ledger and claim register are
+part of the released surface. The plain-language statement of the research
+program is
 [`PLAIN-LANGUAGE-SUMMARY.md`](PLAIN-LANGUAGE-SUMMARY.md).
 
-## Verification receipt (release preparation tree)
+## Verification receipt (frozen release-preparation tree)
 
 All by bare exit code, 2026-07-18, after the ratified-name doc sync and
 version metadata flip:
@@ -94,5 +103,6 @@ version metadata flip:
   pass
 - cross-repository description-coherence gate — six sites coherent at
   rung 7 / 191 with the ratified-name language
-- the operator performs the tag, GitHub release, and Zenodo deposit as
-  separate acts; nothing in this ledger asserts them
+- the operator subsequently completed the separate tag, GitHub-release, and
+  Zenodo-deposit acts recorded in the release banner; those publication acts
+  changed no theorem, custody class, import boundary, or footprint

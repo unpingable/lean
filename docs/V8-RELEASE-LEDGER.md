@@ -11,9 +11,9 @@ for the admissibility vocabulary. Prior release: v7.0.0 — Artifact Authority
 Profiles.
 
 **Status: PREPPED, awaits operator mint.** All version strings bumped, docs
-written, gates re-run green (2026-07-06). The mint chain — git tag +
-GitHub release (which drives the Zenodo version DOI, per CHANGELOG) — is the
-operator's step and has NOT been performed by tooling.
+written, gates re-run green (2026-07-06). At this receipt point, the separate
+tag, GitHub-release, and Zenodo-deposit acts remained operator steps and had
+not been performed by tooling.
 
 **Why a new major, not folded into v7:** v7 is semantically occupied by
 Artifact Authority Profiles (README + `docs/V7-RELEASE-LEDGER.md`, tagged

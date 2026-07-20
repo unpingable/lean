@@ -32,12 +32,14 @@
   keyed rather than metric-keyed; it stays in the kernel's ordinal
   apparatus and is not formalized here.
 
-  Runtime correspondence receipt (historically the promotion context):
-    Standing's `AssessmentResult::AssessmentCompromised` is exactly the
-    kernel's "gap" verdict applied to metric-time admissibility — and
-    the Lean kernel previously could not express that the gap was
-    *temporal* rather than basis-, precedence-, or standing-shaped.
-    This module closes that asymmetry.
+  Scoped runtime-mapping observation (historically the promotion context):
+    Standing's `AssessmentResult::AssessmentCompromised` was identified with
+    the kernel's "gap" verdict at the metric-time seam — and the Lean kernel
+    previously could not express that the gap was temporal rather than basis-,
+    precedence-, or standing-shaped. This closes the formal vocabulary
+    asymmetry; it is not a full runtime-conformance receipt. Any conformance
+    claim still needs an exact scope/map, executable preservation/transport
+    evidence, and revision-bound qualification receipts.
 
   Scope fences:
     - This module formalizes *metric-time freshness for standing

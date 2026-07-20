@@ -18,9 +18,9 @@ external GitHub-release or Zenodo-deposit state.
 Repository version metadata is `12.0.0` in `lakefile.toml`; `CITATION.cff`
 carries the title `Judgment Orientation`, version `12.0.0`, release date
 `2026-07-16`, and concept DOI `10.5281/zenodo.20369489`. The repository has no
-`.zenodo.json`; no substitute file is created. Zenodo assigns the
-version-specific DOI externally when the GitHub release drives the deposit, so
-that DOI is intentionally not guessed or hard-coded here.
+`.zenodo.json`; no substitute file is created. A version-specific DOI exists
+only if the separate Zenodo deposit completes, so it is not inferred from the
+tag or GitHub release.
 
 ## Frozen release claim
 
@@ -186,11 +186,12 @@ piped or visually inferred statuses:
 
 ## Release record
 
-The `v12.0.0` tag and associated GitHub release archive this exact verified
-tree. GitHub release creation drives the corresponding Zenodo version deposit
-and version DOI beneath concept DOI `10.5281/zenodo.20369489`; the
-version-specific DOI is assigned externally and is therefore not hard-coded
-in this source tree.
+The `v12.0.0` tag and associated
+[GitHub release](https://github.com/unpingable/lean/releases/tag/v12.0.0)
+archive this exact verified tree. As checked 2026-07-20, the Zenodo concept's
+public version history contains no v12 record. No v12 version DOI is therefore
+claimed here; repairing or minting that external record remains an operator
+action.
 
 Publication changes no custody class, import boundary, API, theorem, or proof
 footprint, and it proves no runtime conformance.

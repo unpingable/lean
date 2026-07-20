@@ -12,6 +12,12 @@ Historical paths below are identified explicitly; current public foundations
 use their stable/evidence homes, while unfinished applications belong in
 skunkworks. See [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
 
+**Post-v14 overlap warning:** this note predates the public indexed comparison
+framework, stored-decision crossings, and BreakGlass audit-history instance.
+Those additions supply real neighboring structure. Until a new overlap review
+names exactly what they do and do not discharge, this note may propose a seam
+but may not claim that the current corpus lacks it.
+
 ## 1. Keeper and exact scope
 
 The motivating slogan is:
@@ -135,8 +141,10 @@ restoration of deleted source.
 
 ## 4. The genuinely open seam
 
-The corpus does not currently carry one coherent data-level adjudication
-receipt tying together the proposed coordinates:
+At filing time the corpus did not carry one coherent data-level adjudication
+receipt tying together the proposed coordinates. v14 has since added adjacent
+comparison, crossing, and audit-history machinery, so the residual gap now
+requires a fresh theorem-by-theorem overlap review before it can be asserted:
 
 ```text
 AdjudicationReceipt {
@@ -203,8 +211,11 @@ An actual boundary consumes the coherent receipt when making or comparing a
 consequential decision. A dashboard that merely displays the fields is not a
 consumer. A formal application may proceed once the semantics and anti-vacuity
 requirements below are fixed. Runtime implementation may follow that contract;
-a runtime-conformance claim requires correspondence evidence, while promotion
-requires a separate operator decision.
+a runtime-conformance claim requires an explicit scope, an exact map of every
+governed distinction in that scope, executable preservation and transport
+evidence, and revision-bound qualification receipts. A formal refinement proof
+does not waive those artifacts; promotion requires a separate operator
+decision.
 
 ## 6. Anti-vacuity requirements
 

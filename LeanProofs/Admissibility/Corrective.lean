@@ -168,9 +168,12 @@ theorem weakly_less_permissive_trans
 
   Per kernel house style (cf. `BasisDerivation.revoked_never_admissible`),
   carry the load-bearing law as a proof obligation in a structure that
-  concrete derivation environments must discharge at construction
-  time. The structure does not assert the law unconditionally; it
-  declares the shape any compliant implementation must prove.
+  a concrete corrective instance discharges by constructing
+  `CorrectiveMonotone env` (and, for recovery APIs, `RecoveryEnv`). A bare
+  `DerivationEnv` carries no such field. The structure does not assert the law
+  unconditionally; it
+  declares the shape any compliant formal instance must prove. A runtime
+  claiming the same law owes its own mapping and preservation evidence.
 
   An `env` only earns the corrective-monotonicity guarantee by
   supplying a `CorrectiveMonotone env` value.
@@ -180,10 +183,10 @@ theorem weakly_less_permissive_trans
   Spec obligation: for any corrective Step `s` and any state `Γ`,
   applying `s` cannot enlarge the set of authorized claims at `Γ`.
 
-  Stated relative to a fixed `env`. Concrete `DerivationEnv`
-  implementations discharge this by case-analysis over the corrective
-  arms of `classify` plus behavioral laws on the abstract store ops
-  (deferred to the Derivation module's TODO list).
+  Stated relative to a fixed `env`. Concrete Lean corrective instances
+  discharge this when constructing `CorrectiveMonotone env`, by case-analysis
+  over the corrective arms of `classify` plus behavioral laws on the abstract
+  store ops (deferred to the Derivation module's TODO list).
 -/
 structure CorrectiveMonotone (env : DerivationEnv) where
   monotone :
@@ -331,8 +334,11 @@ theorem corrective_sequence_monotone
   forward-authorization paths still take raw `DerivationEnv`. The
   obligation becomes load-bearing only at the recovery boundary. The
   `RecoveryEnv` makes the obligation non-optional at the formal recovery
-  boundary. Runtime code may claim conformance only by implementing or
-  citing that contract.
+  boundary. Citation identifies this intended contract but cannot establish
+  implementation fidelity. Runtime conformance requires an explicit scope,
+  an exact correspondence/refinement map, executable preservation and
+  transport evidence, and revision-bound qualification receipts. A formal
+  refinement proof does not waive those artifacts.
 -/
 
 /--

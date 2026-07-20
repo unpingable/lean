@@ -8,6 +8,8 @@
   closure. Mathlib-free public surface. In the default build; isolate with
   `lake build Witnessed`. It imports only the Mathlib-free
   `LeanProofs.Witnessed.*` spine.
+  v14 intentionally records this source under the `witnessed`,
+  `custody-indexed`, and `admissibility-calculus` exact roots.
 
   The calculus is the inductive judgment `Lift K B c` ("claim `c` is derivable from
   admitted floor `K` through the witnessed-bridge relation `B`"), with two rules:

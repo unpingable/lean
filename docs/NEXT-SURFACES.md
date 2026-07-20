@@ -1,10 +1,10 @@
 # Next Surfaces — name-early register (post-v7)
 
-> **v13 note:** this is a historical/advisory idea register, not the current
-> release queue. v8-v13 have since shipped; v13 was a custody-only migration
-> with no new mathematical campaign. New live incubation belongs in
-> skunkworks; current custody and paths are recorded in
-> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
+> **Current note:** this is a historical/advisory idea register, not the
+> current release queue. v8-v14 have since shipped; v13 was the custody
+> migration and v14 the Governed Admissibility Calculus campaign. New live
+> incubation belongs in skunkworks; current accounting is recorded in
+> [`V14-RELEASE-LEDGER.md`](V14-RELEASE-LEDGER.md).
 
 Related open design note (not a promoted surface):
 [`ADJUDICATION-PROVENANCE-DESIGN-NOTE.md`](ADJUDICATION-PROVENANCE-DESIGN-NOTE.md).

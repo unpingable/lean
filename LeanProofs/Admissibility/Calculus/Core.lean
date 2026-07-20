@@ -41,6 +41,12 @@
   any funnel, lossless encoding, composition operator, comparison law,
   crossing, generic origin/history authentication, generic obligation
   lifecycle, arbitrary-family decision engine, or runtime correspondence.
+  That last nonclaim means Lean alone does not establish implementation
+  fidelity: a runtime claiming this signature must declare its exact scope,
+  map every in-scope type, book, decision, and transport boundary, and provide
+  executable preservation and transport evidence with revision-bound
+  qualification receipts. A formal refinement proof may strengthen covered
+  obligations but does not waive those artifacts.
   `Authority` deliberately erases witness multiplicity; consumers that
   count must count native witness data.
 

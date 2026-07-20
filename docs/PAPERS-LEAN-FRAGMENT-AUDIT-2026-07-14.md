@@ -4,8 +4,8 @@
 > the v12-era destinations inspected on 2026-07-14. The v13 custody migration
 > preserves the findings but moves live incubation to the sibling skunkworks,
 > reclassifies finished public material, and deletes superseded source. See
-> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md) for current custody and
-> paths.
+> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md) for that migration and
+> [`V14-RELEASE-LEDGER.md`](V14-RELEASE-LEDGER.md) for current accounting.
 
 ## Decision rule
 

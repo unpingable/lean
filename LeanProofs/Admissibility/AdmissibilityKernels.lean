@@ -4,18 +4,19 @@
 
   Admissibility Kernels — public surface aggregator.
 
-  > The Lean work did not produce a unified calculus. It produced a
-  > set of small admissibility kernels, each isolating a different
-  > refusal boundary.
+  > This exact 1.0 root did not earn the name "Admissibility Calculus."
+  > It remains eight small kernels, each isolating a refusal boundary.
+  > The separate v14 object lives at `Admissibility.Calculus`.
 
   This module bundles the kernels that have earned the 1.0 stability
   promise: typed verdicts and object-level refusal theorems for
   admissible transition. General composition rules and meta-theorems
-  are out of scope for 1.0 and remain separate kernel families. The
-  word "calculus" is reserved here for the thing this stack refuses
-  to be: not a sequent calculus, not a process calculus, not a
-  proof-theoretic admissibility logic, not a unified maximal calculus.
-  The scope fence below names the full list of non-claims.
+  are out of scope for 1.0 and remain separate kernel families. This root is
+  not a sequent calculus, process calculus, proof-theoretic admissibility
+  logic, or unified maximal calculus. The scope fence below names the full
+  list of non-claims. v14 later earned the capital-C name for a different,
+  separately reviewed governed-family object; that does not retroactively
+  widen this compatibility root.
 
   Importing this module brings the exact 1.0 surface into scope. The broader
   repository also publishes terminal evidence and consumer specimens whose
@@ -27,7 +28,8 @@
   `Admissibility.CalculusOne` is now `Admissibility.Kernels`, and the
   marker theorem `calculus_one_compiles` is now `kernels_compile`. The
   deprecated compatibility shim shipped through v9 and was removed in
-  v10.0.0.)
+  v10.0.0. The v14 ratification discharged the reservation for the separate
+  `Admissibility.Calculus` root, not for this 1.0 aggregator.)
 
   ## Slogan
 
@@ -82,7 +84,11 @@
   their signatures are not compatibility-bearing merely because they are
   evidence.
 
-  The legacy 1.0-adjacent evidence splits into two sub-groups by role.
+  The following is the dated legacy 1.0-adjacent inventory, not the current
+  repository census. Current ownership is machine-governed by
+  `scripts/public-custody.tsv` and the v14 release ledger.
+
+  The legacy evidence splits into two sub-groups by role.
 
   ### Kernel-adjacent evidence (12 modules)
 

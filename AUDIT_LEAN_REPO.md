@@ -3,7 +3,9 @@
 > **Historical audit, superseded for current custody.** Counts, paths, and
 > ANNEX/Scratch recommendations below describe the 2026-06-29 tree. The v13
 > full-tree audit and migration replace that custody model; see
-> [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md). The original
+> [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md). Current v14
+> additions and accounting are in
+> [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md). The original
 > findings remain here as dated provenance.
 
 ## Executive summary

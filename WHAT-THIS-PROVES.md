@@ -2,19 +2,188 @@
 
 ## The short version
 
-The Lean stack proves three kinds of things.
+Four headline results organize the current Lean stack.
 
 First, it audits selected claims from the Δt framework. That work found three places where the prose was collapsing distinct claim types into single sentences. Machine-checked formalization forced each claim to declare its type, then proved or falsified it on those terms.
 
 Second, it defines a set of small admissibility kernels: authority, standing, freshness, surface authorization, witness invariance, state transition, execution, and corrective layers. Those kernels do not prove whole systems correct. They prove that specific boundary-crossing upgrades are impossible by construction.
 
-Third, it now has a sibling judgment-orientation family. That family separates
-inquiry posture from protected judgment state, localizes protected endpoint
-differences to privileged transitions, and projects ordered occurrence custody into an
-abstract finite-support join-semilattice that counts exact origins without
-counting replay as corroboration.
+Third, it has separately rooted sibling families for literal proof-theoretic
+admissibility, state-threaded dynamic traces, witnessed derivation and paid
+recomposition, custody-indexed checking, view semantics, and judgment
+orientation. These families make paid movement, exact residue, evidence
+jurisdiction, distinguishability, inquiry posture, and exact-origin
+contribution explicit without silently folding one axis into another.
+
+Fourth, v14 assembles the capital-C **Admissibility Calculus**: a governed-family
+signature, materially different native instances, exact refusal-packet spines,
+typed comparison receipts, stored-decision crossings, and an
+origin/history-bound BreakGlass terminal instance. Its stored decisions retain
+native witnesses and refusals; its verdict projections preserve authority and
+exact refused packets without pretending that a clean verdict serializes an
+accepted witness's identity.
 
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
+
+## Formal contract and runtime conformance
+
+The proofs in this repository establish exact formal shapes, distinctions,
+preservation laws, and non-implications under their stated hypotheses. They do
+not, by themselves, prove that any runtime implements those shapes. That
+proof-to-world fence is load-bearing, but it is an epistemic boundary, not a
+waiver of correspondence.
+
+Four claims must remain distinct:
+
+- **Lean claim:** a named Lean surface establishes the governed shapes and
+  laws within its declared scope.
+- **Runtime claim:** a named implementation declares that it corresponds to
+  that surface and preserves those shapes and laws.
+- **Evidence obligation:** the runtime supplies an auditable type and
+  refinement map, executable preservation evidence, and qualification
+  receipts for that declaration.
+- **Nonclaim:** a green Lean build, citation, or adoption does not by itself
+  establish the runtime claim.
+
+A runtime repository that claims conformance to this work must carry a
+versioned, reviewable artifact such as `CALCULUS-CONFORMANCE.md`, optionally
+backed by a machine-readable manifest. For the exact scope claimed, that
+artifact must identify:
+
+- the runtime revision and exact Lean revision; the claimed surface or module
+  set and its custody role, including the exact stable root where applicable;
+  the claims and hypotheses relied on; and which formal nonclaims remain
+  runtime nonclaims or receive separate runtime evidence;
+- a map from every governed formal object, constructor, verdict, and operation
+  in scope to its runtime representation and behavior — including, where
+  present, `Claim`, claim-indexed `Witness` and `Refusal` data, derived
+  `Authority`, the separate standing/custody/obligation books, the
+  evidence-returning `decide`, exact refusal packets, and stored decisions;
+- for every formal transition rule in scope, a refinement map from runtime
+  transitions to that rule, including the runtime invariants and preconditions
+  that discharge each formal hypothesis;
+- every serialization, persistence, API, message, log, cache, or other
+  transport boundary at which a governed distinction could be erased or
+  merged; and
+- executable positive, refusal, non-implication, round-trip, and preservation
+  tests, with versioned qualification receipts tying the evidence to both
+  revisions.
+
+Runtime names and internal layouts need not literally mirror Lean. The mapped
+semantics and every required distinction must survive implementation and
+transport. A formal refinement proof may discharge covered preservation
+obligations more strongly, but it does not waive the exact map, executable
+evidence, or revision-bound qualification artifact.
+
+Within the declared scope, a missing or incomplete correspondence is a blocker
+to a conformance claim. A flattened required distinction is a defect against
+that claim, not interpretive freedom. A partial implementation may declare a
+narrower scope and explicit nonclaims; it may not present that subset as full
+conformance.
+
+Accordingly, every statement below that Lean “does not prove runtime
+correspondence,” “runtime conformance,” or “runtime enforcement” means that
+Lean alone does not discharge this runtime evidence obligation. It does not
+mean that correspondence is optional for a runtime claiming to implement the
+governed surface.
+
+## v14 current surface — Governed Admissibility Calculus
+
+v14 moves the repository's central claim from a collection of bounded formal
+families to an indexed compositional system governing its named families,
+instances, and crossings. The exact public root is
+`LeanProofs.Admissibility.Calculus`; its rung 2–7 footprint contains 191 frozen
+receipts. The rung-1 PathVerdict substrate is gated separately at 36 receipts.
+Inventory, admission history, scope fences, and axiom disclosure are recorded
+in
+[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md),
+[`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md), and
+[`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) entries 19–25.
+
+### What it proves
+
+- **Domain transport and located diagnostics (rung 1):** PathVerdicts map
+  between domain vocabularies without changing authority, mixed-domain paths
+  do not fabricate foreign obstructions, and fold-produced located verdicts
+  identify the carried edge that supplied an obstruction. Relabeling a
+  location is not repair.
+- **The governed-family signature (rung 2):** a `GovernedFamily` keeps
+  `Claim`, claim-indexed `Witness` and `Refusal` data, and the three
+  `Standing`, `Custody`, and `Obligation` books distinct. `Authority` is
+  exactly `Nonempty (Witness c)`, with no alternative introduction rule.
+  Witness and refusal exclude one another; witness requires standing and
+  preserves custody; total `decide` returns the native witness or refusal,
+  never merely a bit. A projection that collapses a witnessed claim with a
+  refused claim cannot be a faithful authority checker.
+- **Two no-distortion instances (rung 3):** static Weathering authority is
+  exactly its native `Admissible` judgment. BoundedPaidReachability authority
+  is exactly its native lawful-history judgment over the fixed two-claim
+  family; its witness is a replayable run and its refusal is a forward-closed
+  barrier. Custody does not grant authority, and endpoint-only checking is not
+  faithful.
+- **The exact refusal-packet spine (rung 4):** a governed decision can project
+  into PathVerdict without turning refusal into an opaque Boolean. The
+  permissive `SpineEncoding` is not called lossless; `LosslessEncoding` earns
+  that name with two inverse laws that recover the complete dependent
+  claim/refusal packet and preserve distinct refusals.
+- **The indexed comparison framework (rung 5):** exact judgment, exact
+  representation, directional-with-loss, and separation claims require
+  different dependent receipt types tied to one declared projection. The
+  entry index is closed at the ratified seven and ledgers cover it by
+  construction; unsupported capability is typed evidence, not a silent
+  default.
+- **The stored-decision crossing (rung 6):** the formal `check` definition is
+  the sole native-evaluation boundary, calls each family's `decide` once, and
+  stores both outcomes. Result, verdict, located diagnostics, and comparison
+  receipts are projections of that stored pair, not fresh evaluations.
+  Composite authority is exactly the conjunction of native authority. A mixed
+  refusal retains the successful side's witness; a double refusal retains and
+  exactly decodes both native refusal packets in crossing order.
+- **The origin/history-bound BreakGlass instance (rung 7):** relative to
+  consumer-supplied origin/state/actor/step atoms, origin is part of lifecycle
+  identity; four native phases carry phase-specific witnesses, the two
+  matching-origin laundering phases carry distinct refusals, and every phase
+  has a structured foreign-origin refusal; audit validity requires exact ledger
+  membership and execution-receipt attestation; reconciliation is atomic at
+  the full obligation-reference level, with laws forbidding settlement before
+  commit, duplicate settlement, and exceptional attempts after commit or
+  settlement; and the formal Weathering/BreakGlass crossing exposes one stored
+  `evaluate` boundary while retaining native witnesses and exactly decoding its
+  structured refusals.
+
+For a runtime claiming the full calculus, those distinctions are requirements,
+not design suggestions. In particular, a Boolean-only decision, a mapping that
+cannot recover native refusal packets, conflated standing/custody/obligation
+books, endpoint-only authority, downstream re-evaluation of a stored crossing,
+or a stored crossing representation that drops the successful witness from a
+mixed refusal or one side of a double refusal fails full correspondence. An
+explicitly narrower verdict/log projection may omit accepted witness identity
+where the formal projection does. A runtime may claim that narrower named
+surface, but must say so and carry the mapping and evidence required above. The
+Lean definition and its source-shape gate do not prove runtime invocation
+counts; a runtime claiming single evaluation must supply its own executable or
+instrumented evidence.
+
+### What it does NOT prove
+
+- That any runtime corresponds to the calculus. Lean supplies the governed
+  specification; the runtime supplies the separate conformance artifact and
+  evidence described above.
+- Runtime serialization, canonical byte encodings, cryptographic commitment,
+  origin-allocation uniqueness, attestor honesty, or clock honesty.
+- A universal or master `Admissible` judgment, a coercion over every earlier
+  repository family, universal completeness, arbitrary-family reachability or
+  saturation, N-ary crossing, or a generic payment/discharge/obligation
+  lifecycle.
+- That caller-supplied located identifiers are authenticated origins, or that
+  decoding a refusal packet authenticates it.
+- A concrete public realization of the seven-entry comparison ledger; the
+  public root contains its closed framework, while the reviewed concrete
+  ledger remains evidence custody.
+- A closed concrete BreakGlass substrate. Its result is relative to the
+  consumer-supplied atoms and stated hypotheses.
+
+---
 
 ## v13 release note — Repository Custody Migration
 
@@ -81,6 +250,118 @@ stable five theorem modules do not depend on those fixtures.
   payload-irrelevant occurrences all defeat it)
 - Any runtime correspondence, deployment correctness, or ledger-promotion
   authority
+
+---
+
+## v10 sibling family: View Semantics and Bounded Projection
+
+The current exact stable root is `LeanProofs.ViewSemantics`; finished fixtures
+and the P25 adapter remain in separate public-evidence targets. The v10
+campaign inventory is frozen in
+[`docs/V10-READINESS-LEDGER.md`](docs/V10-READINESS-LEDGER.md), while v13
+records the current stable/evidence custody split.
+
+### What it proves
+
+- `View`, `Indistinguishable`, `Refines`, and `Determines` make observational
+  distinguishability a first-class axis. Fine-to-coarse refinement composes;
+  declared disclosure bounds compose; weak nondetermination alone does not,
+  with rooted counterexamples.
+- Deterministic bounded sufficiency is characterized exactly by a refinement
+  sandwich. The existence theorem chooses the required-action projection; it
+  does not manufacture a disclosure budget, and all four disclosure ×
+  sufficiency cells are inhabited.
+- `FiniteChecker` returns separate typed policy/action and
+  disclosure/bound results with concrete positive or refusal witnesses. Its
+  soundness and reflection laws prevent collapsing the audit to one validity
+  bit.
+- `DynamicTraceAdapter` preserves the exact authorized-trace evidence and step
+  sequence under observation refinement and join. More visibility neither
+  overrides a revoked basis nor supplies missing authority.
+- The sixth-atom adjudication is negative and scoped: disclosure remains an
+  orthogonal view-context axis rather than a constructor silently added to the
+  resident bridge-family ontology.
+
+### What it does NOT prove
+
+- Information-flow security, noninterference, probabilistic leakage bounds,
+  side-channel absence, or transition authority
+- That a finer view is more truthful, or that visibility authorizes action
+- Runtime conformance or correctness of any concrete projection, serializer,
+  policy engine, or trace store
+- That evidence applications or the Mathlib P25 adapter belong to the exact
+  stable import graph
+
+The final gates keep the stable and default public-evidence closures
+Mathlib-free and role-separated, isolate and pin the explicit Mathlib P25
+public-evidence island, and check the declared receipt footprints.
+
+---
+
+## v9 sibling family: Dynamic Traces and Profile Semantics
+
+The current `dynamic-trace` compatibility surface has two exact Mathlib-free
+roots: `LeanProofs.Admissibility.DynamicTrace` and
+`LeanProofs.Admissibility.FreshnessDynamicTrace`. The v9 release-time
+inventory is frozen in
+[`docs/V9-RELEASE-LEDGER.md`](docs/V9-RELEASE-LEDGER.md); the checker-facing
+profile specimens it introduced are now terminal public evidence or
+skunkworks, not dependencies of these roots.
+
+### What it proves
+
+- `DynamicStep` wraps an exact static `AuthorizedStep`; its target is the
+  result of executing that witness, not a guessed endpoint. `AuthorizedTrace`
+  threads those witnessed steps through state, with no constructor for a free
+  or unwitnessed hop.
+- Revoked basis and revoked invocation standing block the corresponding
+  dynamic step. Mutation-side `StepAllowed` without claim-side authority is
+  also insufficient.
+- Actor-indexed trace variants retain hop attribution, and non-amendment
+  traces preserve the policy store.
+- `FreshnessDynamicTrace` requires a current observation at discharge time.
+  Stale, expired, not-yet-valid, incoherent, non-preceding, and
+  divergence-excessive observations cannot discharge the current obligation.
+
+### What it does NOT prove
+
+- A global `Admissible` judgment or free composition of static witnesses
+- Process semantics, scheduling, concurrency, fairness, or effect execution
+- That production-side hop attribution supplies consumption-side standing
+- That any profile specimen, Python/Rust checker, or other runtime conforms
+  merely because it cites the formal laws
+
+---
+
+## v8 sibling family: Sequent Admissibility Island
+
+The current exact Mathlib-free `proof-theory` root is
+`LeanProofs.ProofTheory`; its axiom-print audit is separately held as public
+evidence. The frozen theorem inventory is in
+[`docs/V8-RELEASE-LEDGER.md`](docs/V8-RELEASE-LEDGER.md), with constructivity
+failures caught during development recorded in
+[`LeanProofs/ProofTheory/SCARS.md`](LeanProofs/ProofTheory/SCARS.md).
+
+### What it proves
+
+- `MembershipG3` is a single-succedent intuitionistic sequent calculus over
+  `{atom, ⊥, ∧, ∨, →}` with no primitive structural rules. One monotonicity
+  theorem yields admissible weakening, contraction, and exchange; general
+  identity is derived, and cut is a computable cut-free transformer.
+- `TextbookG3ip` retains multiplicity through `List.Perm`, with admissible
+  size-preserving exchange and contraction funded by size-nonincreasing
+  inversion.
+- The two presentations are derivability-equivalent. Cut, weakening, and
+  general identity for the textbook presentation transport across that
+  equivalence.
+
+### What it does NOT prove
+
+- A governance kernel or a unifier with the repository's authority calculi;
+  “admissible” here has its literal Gentzen meaning
+- Height-preserving cut, proof search, semantics, or completeness
+- Mathlib `Multiset` representation, runtime enforcement, or runtime
+  conformance
 
 ---
 
@@ -182,7 +463,9 @@ The formally verified results:
 
 ## Admissibility Kernels 1.0 surface
 
-> The Lean work did not produce a unified calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary.
+> This section describes the earlier Admissibility Kernels 1.0 surface, not
+> the v14 capital-C Admissibility Calculus. The 1.0 work produced a set of
+> small refusal kernels rather than a unified or maximal calculus.
 
 The admissibility kernel modules described below form a named public surface: **Admissibility Kernels 1.0**, aggregated at `LeanProofs/Admissibility/AdmissibilityKernels.lean` (previously `CalculusOne.lean` under the retired "Admissibility Calculus 1.0" framing — see migration note in the aggregator's docstring). A Lean authority kernel with typed verdicts and object-level refusal theorems for admissible transition; general composition rules and meta-theorems are out of scope for 1.0. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus. Eight modules are tagged `[1.0]`:
 
@@ -582,7 +865,10 @@ frontier.
 - **not** Gentzen cut-elimination — `Formula.lean` has an *ND-style* positive-fragment `cut_elimination` (hypothesis substitution, no principal-cut reduction); `Gentzen.lean` has the LJ-style left/right *presentation* with cut syntax and soundness, and its left rules are now position-general (repaired after the head-only shape's cut-failure, archived in `HeadOnlyGentzenCutFailure`), but the `Deriv → Seq` Hauptsatz over the repaired calculus is **not yet proven** — it is a genuine cut-elimination proof, not free. The ND→Gentzen embedding therefore still stays in with-cut `Deriv`;
 - **not** full composition-classification — that gate was prosecuted and **retired** (see `COMPOSITION-CLASSIFICATION-TARGET.md`), not left open;
 - **not** model→world transfer — a compiled theorem attests the math, never a world claim; the fence is load-bearing;
-- **not** the retired maximal "Admissibility Calculus" — the name is deliberately narrow, and `WitnessedDiscipline` is a filter *beside* the calculus, not part of normalization.
+- **not by itself** the v14 Admissibility Calculus — this Witnessed family
+  supplies substrate to the v14 BreakGlass instance but does not independently
+  establish the other campaign rungs. `WitnessedDiscipline` remains a filter
+  beside the Witnessed calculus, not part of its normalization.
 
 These open directions are named, not started: [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md).
 
@@ -590,7 +876,11 @@ These open directions are named, not started: [`docs/WITNESSED-FRONTIER-REGISTER
 
 ## Infrastructure: Admissibility Kernel
 
-This is **not** paper-claim cashout. It's substrate — formal infrastructure that future Governor (`agent_gov`) work and any "no laundering" claim can cite. Doesn't fit the slogan-killing pattern of Layers 1–3 because it's not retroactively sharpening prose; it's pinning an algebraic skeleton from scratch.
+This is **not** paper-claim cashout. It's substrate — formal infrastructure
+that Governor (`agent_gov`) and other downstream work, and any "no laundering"
+claim, can cite. Doesn't fit the slogan-killing pattern of Layers 1–3 because
+it's not retroactively sharpening prose; it's pinning an algebraic skeleton
+from scratch.
 
 Four modules in `LeanProofs/Admissibility/`:
 
@@ -605,14 +895,27 @@ Four modules in `LeanProofs/Admissibility/`:
 
 ### What it does NOT warrant
 
-- Concrete `claimForStep` resolution (deferred to Governor implementation; pre-committing the resolver is ontology bait).
-- Concrete `AuthorityClaim` schema (kept abstract).
-- Behavioral laws on the abstract store API (no concrete `appendEvidence` / `applyUpdate` semantics).
-- Bridge between `Derivation.deriveStanding` (claim invocation) and `StateTransition.*Standing` predicates (state mutation).
+- A concrete `claimForStep` resolution. Lean leaves the resolver abstract; a
+  runtime claiming this correspondence must map its concrete resolver and
+  discharge the abstract hypotheses.
+- A concrete `AuthorityClaim` schema. A runtime may refine the abstract schema,
+  but must record that representation map.
+- Behavioral laws on the abstract store API. A runtime claim must supply the
+  laws for its concrete `appendEvidence` / `applyUpdate` semantics.
+- A bridge between `Derivation.deriveStanding` (claim invocation) and
+  `StateTransition.*Standing` predicates (state mutation). An end-to-end claim
+  must supply that bridge or explicitly exclude it from scope.
 
 ### Why it's here
 
-Governor (`agent_gov`) operationally implements this kernel's pattern. The Lean modules don't *replace* Governor; they pin the algebraic skeleton so a concrete Governor instantiation can cite "no laundering" with a formal warrant rather than a slogan.
+Governor (`agent_gov`) is described here as an intended downstream
+implementation target for this kernel. The Lean modules do not replace or
+prove Governor. If Governor claims to implement the kernel, the exact formal
+surface governs that claim: its conformance artifact must map the in-scope
+types, verdicts, transitions, and abstract seams above, then show that their
+required distinctions survive execution and transport. Without that map and
+evidence, Governor may cite an intended contract but may not claim this formal
+warrant for its implementation.
 
 ---
 
@@ -700,7 +1003,7 @@ See `papers/working/cross-boundary-artifact-specimens.md` for the full audit tra
 
 ---
 
-## What the stack as a whole says
+## What the Δt layers as a whole say
 
 The informal Δt framework theory was compressing three distinct claim types into single sentences:
 
@@ -721,7 +1024,7 @@ Each layer has its own claim type. Structural claims stay structural. Dynamic cl
 
 ---
 
-## The meta-result
+## The Δt meta-result
 
 Formalization did not confirm the informal theory. It forced the informal theory to stop cheating.
 

@@ -42,11 +42,14 @@
 
   Obligation discipline (cf. `Corrective.CorrectiveMonotone`). The
   bridge's defining contract — *bridge entails value preservation* —
-  is carried as a `preserves` field that any concrete `SafetyEnv`
-  must discharge at construction. The abstract theorem is a
+  is carried as a `preserves` field that any formal `SafetyEnv`
+  instantiation must discharge at construction. The abstract theorem is a
   projection through that field. Its content is not "safety holds"
   but "a compliant safety env must prove this shape, and the SafeStep
   gate makes that proof non-optional at the safety-relevant boundary."
+  A runtime claim additionally requires an exact scope/map, executable
+  preservation and transport evidence, and revision-bound qualification
+  receipts; the Lean field is not that evidence.
 
   Candidate-neutral bridge slot. `bridge` is an abstract field. The
   three candidate fillings named in FRONTIERS.md Frontier 1 —

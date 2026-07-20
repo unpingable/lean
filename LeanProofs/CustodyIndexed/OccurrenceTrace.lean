@@ -47,10 +47,9 @@
 
   Honesty notes:
   * `linearizeT` is the traced TWIN of slice 2's `linearize`, not a
-    refactor of it -- slice 2/3 theorem names are untouched. A coherence
-    theorem (linearizeT succeeds iff linearize succeeds on the label
-    projection) is named, not built; the two share the recursion shape by
-    construction.
+    refactor of it -- slice 2/3 theorem names are untouched. The coherence
+    theorem named at this slice (traced success iff untraced success on the
+    label projection) subsequently landed in `TracedCoherence`.
   * Positions are `Nat` tags, not a fresh occurrence-identity theory:
     distinctness theorems carry the explicit unambiguity hypothesis (each
     position at most once in the input) rather than a global well-formedness

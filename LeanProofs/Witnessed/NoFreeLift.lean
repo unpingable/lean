@@ -5,8 +5,12 @@
   Surface-Role: STABLE-SURFACE
   Role: schema foundation. This unchanged module is part of the v11 stable
   paid-recomposition import closure. Abstract over
-  `Claim`/`Kernel`/`Bridge`/`Sem`; imports NO model code. Mirrors canonical
-  `Admissibility/NoFreeLift.lean`.
+  `Claim`/`Kernel`/`Bridge`/`Sem`; imports NO model code. It descends from the
+  historical no-free-lift experiment spine; there is no live duplicate under
+  `Admissibility/`.
+
+  v14 intentionally records this source under the `witnessed`,
+  `custody-indexed`, and `admissibility-calculus` exact roots.
 
   This is the breaker box's upstream rail: because this module imports nothing
   modeled, no theorem here can depend on a modeled embedding. The audit relies

@@ -15,10 +15,17 @@ lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
 compiling a theorem is neither a custody promotion nor a runtime-conformance
 claim).
 
+Human and AI collaboration history, evidence basis, and attribution limits are
+recorded in [`PROVENANCE.md`](PROVENANCE.md).
+
 ## Current release: 14.0.0 — Governed Admissibility Calculus
 
-**Prepared 2026-07-18; the annotated tag, GitHub release, and Zenodo
-version deposit are separate operator acts and are not asserted here.**
+**Released 2026-07-18.** The annotated `v14.0.0` tag and
+[GitHub release](https://github.com/unpingable/lean/releases/tag/v14.0.0)
+archive commit `ff491b8`. The
+[Zenodo v14 record](https://zenodo.org/records/21435270) was published
+2026-07-19 with version DOI `10.5281/zenodo.21435270`, under the concept DOI
+shown above.
 
 v14 is the seven-rung promotion campaign that assembled, and then — as
 its own reviewed terminal act — earned the right to name, the capital-C
@@ -68,11 +75,11 @@ completed 53-file skunkworks transfer, deletion decisions, fail-closed gate,
 and final release checks are recorded in
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md). Versioned sections
 below retain archive-time custody wording where it explains what those
-releases actually contained; current paths and roles are governed by the v13
-ledger.
+releases actually contained. The v13 ledger governs that migration; the v14
+ledger records the current additions and accounting.
 
 Release verification: all 53 incubations have canonical sibling
-homes and pass its 26-check migration audit. The public tree now contains
+homes and pass its 26-check migration audit. The v13 release tree contains
 exactly 179 Lean modules — 82 stable, 96 public evidence, and one aggregate —
 and the whole-tree custody gate passes across ten stable roots and 98
 root-ownership relations. The strengthened target gate passes across two
@@ -86,9 +93,10 @@ suite, clean 149-job sibling build, four-module Mathlib incubation island, and
 deletion and confirms 171 retained/rehomed modules token-equivalent to v12
 plus eight import-only roots.
 
-The GitHub release archives this tree and drives its Zenodo version deposit
-beneath the concept DOI shown above. The version-specific DOI is assigned by
-Zenodo and is not guessed in the source tree.
+The GitHub release and Zenodo version deposit are separate operator-controlled
+publication receipts beneath the concept DOI shown above. A version-specific
+DOI is assigned by Zenodo and is not inferred from the GitHub release or
+guessed in the source tree.
 
 ## 12.0.0 — Judgment Orientation
 
@@ -133,15 +141,20 @@ footprint is `[propext, Classical.choice, Quot.sound]`, enforced fail-closed
 per receipt by `scripts/check-judgment-orientation-footprint.sh` in CI.
 
 Release inventory and gate receipts:
-[`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md). The v12 GitHub
-release archives this tree and drives its Zenodo version deposit beneath the
-concept DOI shown above. Source provenance for the first four modules:
-skunkworks commit `4f8e076`; `Bridge` was authored during promotion review.
+[`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md). The
+[v12 GitHub release](https://github.com/unpingable/lean/releases/tag/v12.0.0)
+archives this tree. As verified 2026-07-20, the Zenodo concept's version
+history contains no v12 record, so no v12 version DOI is inferred. Source
+provenance for the first four modules: skunkworks commit `4f8e076`; `Bridge`
+was authored during promotion review.
 
 ## 11.0.0 — Occurrence-Exact Paid Recomposition
 
-**Release status: locally tagged; external GitHub and Zenodo state is not
-asserted here.**
+**Released on GitHub and Zenodo.** The
+[v11 GitHub release](https://github.com/unpingable/lean/releases/tag/v11.0.0)
+was published 2026-07-16; the corresponding
+[Zenodo record](https://zenodo.org/records/21386096) carries version DOI
+`10.5281/zenodo.21386096`.
 
 *Ordered payments admit proof-relevant, occurrence-indexed checking with exact
 computed residue. Under exact attempt-level catalog completeness, paid global
@@ -200,8 +213,8 @@ refusal debt-preservation, dynamic-authority, resource-creation, or
 temporal-debt theorem. PC-1 and PC-2 remain closed. Stateful bounded
 realization/refusal remains the next frontier and is not part of v11.
 
-The local annotated `v11.0.0` tag exists; that local fact does not establish a
-GitHub release or Zenodo deposit. Release inventory and gate receipts:
+Release inventory and gate receipts (a readiness-time record, not the later
+external publication record):
 [`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md).
 
 ## 10.0.0 — View Semantics and Bounded Projection
@@ -322,9 +335,12 @@ What v9 lands:
   testimony; silence never clears; late success is not timely success;
   no GlobalTrustedTime).
   None of these testify for any runtime's compliance by themselves. Citation
-  or adoption identifies the intended contract; conformance still requires an
-  explicit mapping plus runtime evidence or a refinement proof. Lean custody
-  promotion remains a separate review.
+  or adoption identifies the intended contract. A conformance claim always
+  requires an explicit scope and exact correspondence map, executable
+  preservation and transport evidence, and revision-bound qualification
+  receipts. A formal refinement proof may strengthen covered obligations but
+  does not waive those artifacts.
+  Lean custody promotion remains a separate review.
 - **`Admissibility/DeferredWitness.lean` (ANNEX)** — the classifier
   reflection lemma `firstViolation_none_iff_lawful` is now proved (was
   documented as left to the host environment).
@@ -679,19 +695,27 @@ the post-v2 frontier is tracked in
 
 ## Stable public surfaces
 
-The stable public surface remains a collection of small admissibility kernels, each isolating a particular refusal boundary: stale authority, invalid standing upgrades, unauthorized transition, collapsed public surfaces, unwitnessed movement, and related category errors.
+The repository has eleven exact stable roots. The earlier roots remain small,
+separately scoped families; v14 adds the `AdmissibilityCalculus` root as the
+governed compositional object that relates its named families without silently
+collapsing their native judgments.
 
 > Local kernels decide admissibility. Witnessed movement between contexts requires an explicit bridge.
 
-Two central authority layers remain related but distinct:
+Three easily confused surfaces are related but distinct:
 
 1. **Admissibility Kernels** — small local refusal kernels (the stable 1.x public surface).
 2. **Witnessed Derivation Calculus** — the ratified calculus for witnessed movement and composition across typed bridges, a canonical **Mathlib-free** surface (`LeanProofs.Witnessed.*`) shipped in 1.4.0 and structurally strengthened in 2.0.0.
+3. **Admissibility Calculus** — the v14 governed-family signature, exact
+   instance adapters and refusal spines, indexed comparisons, stored-decision
+   crossings, and origin/history-bound BreakGlass terminal instance
+   (`LeanProofs.Admissibility.Calculus`).
 
-Neither is a universal model of institutions, software systems, or agency.
+None is a universal model of institutions, software systems, or agency.
 They are not the repository's only compatibility roots: CustodyIndexed,
 ProofTheory, ViewSemantics, DynamicTrace, SafetyBridge, PathVerdict, and
-JudgmentOrientation have their own exact roots. The machine source of truth is
+JudgmentOrientation have their own exact roots; `AdmissibilityCalculus` is
+also exact-root governed. The machine source of truth is
 [`scripts/stable-surfaces.tsv`](scripts/stable-surfaces.tsv); no aggregate or
 directory silently promotes a module.
 
@@ -717,6 +741,11 @@ The point is not to prove an entire software system correct. It is to make inval
 
 ## Map
 
+- **Admissibility Calculus** *(v14, Mathlib-free)* — governed-family
+  signature, native Weathering and bounded-paid instances, exact refusal
+  packets, a closed comparison framework, stored-decision crossings, and an
+  origin/history-bound BreakGlass instance. See the current release section
+  and [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md).
 - **Authority kernels** — authority, standing, verdicts, state transition, execution, corrective layers.
 - **Surface / receipt / witness kernels** — collapsed surfaces, public receipt refinement, witness invariance.
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
@@ -728,6 +757,18 @@ The point is not to prove an entire software system correct. It is to make inval
   finite checking, and artifact/jurisdiction profiles under
   `LeanProofs.CustodyIndexed`; attack and release fixtures have a separate
   evidence root.
+- **Proof Theory** *(v8 stable sibling family, Mathlib-free)* — two
+  derivability-equivalent single-succedent sequent presentations with
+  admissible structural rules and computable cut; axiom-print receipts remain
+  separate public evidence.
+- **Dynamic Trace** *(v9 stable sibling family, Mathlib-free)* — exact static
+  authorization witnesses carried through state-threaded traces, plus the
+  freshness-gated trace root; checker-facing profile specimens remain outside
+  these exact roots.
+- **View Semantics** *(v10 stable sibling family, Mathlib-free core)* —
+  distinguishability, view refinement, bounded projection, finite checking,
+  and authorized-trace observation adapters. Applications and the explicit
+  Mathlib P25 island remain separate public evidence.
 - **PathVerdict** — stable obstruction-log core and edges under
   `LeanProofs.Admissibility.PathVerdict`, with standard obstructions and
   promotion coverage in a separate evidence root.
@@ -744,7 +785,9 @@ For the full module-by-module reference, see [`LeanProofs/Admissibility/README.m
 
 ## Stable 1.x public surface
 
-> **The Lean work did not produce a *unified* calculus. It produced a set of small admissibility kernels, each isolating a different refusal boundary — and, in v1.3, a narrow witnessed-derivation calculus beside them.**
+> **The 1.x Admissibility Kernels work did not produce a unified calculus. It
+> produced small refusal kernels and, in v1.3, a narrow witnessed-derivation
+> calculus beside them. The separate v14 object is described above.**
 
 The stable public surface (**Admissibility Kernels**, unchanged since 1.0) is a Lean authority kernel with typed verdicts and object-level refusal theorems for admissible transition. General composition rules and meta-theorems are out of scope for the 1.x stable surface and live in separate kernel families. Not a sequent calculus, not a process calculus, not a proof-theoretic admissibility logic, not a unified maximal calculus — see the scope fence in [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md) for the full list of non-claims.
 
@@ -752,7 +795,13 @@ Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight stabl
 
 > Admissibility Kernels models when evidence-backed claims may authorize transitions, proves that boundary-crossing upgrades are impossible by construction, and refuses laundering across the surface, freshness, witness, and authority axes.
 
-(Migration note: this aggregator was previously named `CalculusOne` under an "Admissibility Calculus 1.0" framing. The rename retires "calculus" from the *stable* public surface; the Witnessed Derivation Calculus reintroduces it only for that narrow witnessed-derivation object. Namespace `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem `calculus_one_compiles` is now `kernels_compile`. The deprecated import shim shipped through v9 and was removed in v10.0.0.)
+(Migration note: this aggregator was previously named `CalculusOne` under an
+"Admissibility Calculus 1.0" framing. The rename correctly withheld
+"calculus" from that eight-module surface. Namespace
+`Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem
+`calculus_one_compiles` is now `kernels_compile`; and the deprecated import
+shim shipped through v9 and was removed in v10.0.0. v14 later earned the name
+for a different, separately reviewed object under `Admissibility.Calculus`.)
 
 ## Repository custody and compatibility
 
@@ -768,9 +817,13 @@ public module.
 The whole-tree custody gate, exact surface registries, family-specific
 footprint gates, and Mathlib-isolation checks are independent receipts.  This
 corrects the pre-v13 partial checker, which covered only a subset of the tree.
-See [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the
-release record and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
-what each gate establishes.
+v13 records the migration; the current v14 tree closes at 201 public sources
+(104 stable, 96 evidence, one aggregate), eleven roots, and 131 stable-root
+ownership relations. See
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration,
+[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for current
+accounting, and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for what each
+gate establishes.
 
 ### `experiments/` — tracked wiring witnesses (non-canonical)
 
@@ -841,6 +894,7 @@ lake build                  # default Mathlib-free stable and evidence targets
 lake build Witnessed WitnessedEvidence
 lake build CustodyIndexed CustodyIndexedEvidence
 lake build PathVerdict PathVerdictEvidence
+lake build AdmissibilityCalculus
 lake build PaidRecompositionEvidence
 lake build JudgmentOrientation JudgmentOrientationEvidence
 lake build ViewSemantics ViewSemanticsEvidence
@@ -849,11 +903,15 @@ lake build AdmissibilityEvidenceMathlib ViewSemanticsEvidenceMathlib
 bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
 bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
 bash scripts/check-judgment-orientation-footprint.sh # v12 exact 13-receipt footprint
+bash scripts/check-pathverdict-footprint.sh # v14 rung-1 exact 36-receipt footprint
+bash scripts/check-calculus-footprint.sh   # v14 rungs 2-7 exact 191-receipt footprint
 bash scripts/check-viewsemantics-footprint.sh # theorem/checker footprints (fail-closed)
 bash scripts/check-viewsemantics-isolation.sh # cheap roots Mathlib-free; P25 isolated
 bash scripts/audit-axioms.sh                # repo axiom classifier (signature/interface-law/specimen; 0 forbidden)
 bash scripts/audit-native-decide.sh         # native_decide confined to finite-witness modules
 bash scripts/check-mathlib-pin.sh           # lakefile mathlib rev == manifest SHA (no silent drift)
+bash scripts/check-custody-classes.sh       # exact whole-tree custody and stable-root ownership
+bash scripts/check-mathlib-free-targets.sh  # exact target closures and reverse source ownership
 ```
 
 The ViewSemantics stable root and evidence roots are now explicitly separated.
@@ -879,6 +937,10 @@ archive, not a buildable canonical path.
 - [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) — Witnessed frontier and the v11 paid-recomposition claim/evidence boundary
 - [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md) — v12 Judgment Orientation claim, custody inventory, and verification receipt
 - [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) — v13 custody/path correction, exact source accounting, compatibility boundary, and verification receipt
+- [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) — current v14
+  release inventory, accounting, and scope fence
+- [`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md) — frozen
+  seven-rung admission record and per-rung receipts
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
 - [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
 - [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
@@ -886,6 +948,12 @@ archive, not a buildable canonical path.
 - Papers repo: [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) — paper → module inverse view
 
 ## Status
+
+**`v14.0.0` released (2026-07-18):** the seven-rung campaign and separate
+capital-C ratification establish the Governed Admissibility Calculus. The
+GitHub release is archived under `v14.0.0`; Zenodo version DOI
+`10.5281/zenodo.21435270` was published 2026-07-19. Exact inventory and scope:
+[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md).
 
 **`v13.0.0` released (2026-07-17):** Repository Custody Migration makes the
 public tree's lifecycle classification match its actual dependency graph. It
@@ -898,9 +966,9 @@ exact five-module stable sibling surface. Its frozen inventory and final gate
 receipts are recorded in
 [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md).
 
-**`v11.0.0` is locally tagged:** Occurrence-Exact Paid Recomposition is in the
-stable Witnessed import surface. The local annotated tag does not establish
-external GitHub release or Zenodo state; see
+**`v11.0.0` released:** Occurrence-Exact Paid Recomposition is in the stable
+Witnessed import surface and was published to GitHub and Zenodo (version DOI
+`10.5281/zenodo.21386096`); see
 [`docs/V11-READINESS-LEDGER.md`](docs/V11-READINESS-LEDGER.md).
 
 **`v2.0.0` released** — the Witnessed Derivation Calculus now has model-independent admitting-class normalization and an explicit audit fence, while the stable 1.x Admissibility Kernels surface remains unchanged. All root-imported modules build. **Sorry-free as of 2026-05-28.** No theorems are currently admitted via `sorry`. Gaps surfaced by the dated 2026-05-10 AGI-requirements reverse-gap audit are recorded in [the closed reverse-gap audit](historical/audits/AGI_REQUIREMENTS_REVERSE_GAP_AUDIT_2026-05-10.md) — a **closed audit artifact** scoped to that one requirements document, not the project's live open-problems register.

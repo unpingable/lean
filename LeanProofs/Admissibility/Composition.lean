@@ -24,8 +24,8 @@
     The first nontrivial composition-kernel theorem would have to
     make safety depend on local process boundaries and an admissible
     boundary-merge rule — and even that earns a propagation kernel,
-    not a unified calculus. See `Admissibility/LocalBoundary.lean`
-    for the experimental aperture toward that theorem.
+    not a unified calculus. The historical `LocalBoundary.lean` aperture
+    toward that theorem now lives in the skunkworks Mathlib island.
 
   Companion prose
     Papers repo, `working/models/boundary-calculus/notes/locality-and-merge.md`.
@@ -167,8 +167,8 @@ theorem any_process_safe_under_sealed_boundary
     *Process syntax alone does not create a calculus. A propagation
     kernel begins where safety depends on the merge rule, not on the
     global oracle — and even that earns a kernel, not a unified
-    calculus. See `Admissibility/LocalBoundary.lean` for the next
-    aperture.* -/
+    calculus. The next aperture is the historical `LocalBoundary` work now
+    held in skunkworks.* -/
 theorem composition_preserves_safety_global_lift
     {Domain Failure : Type}
     [DecidableEq Domain] [DecidableEq Failure]

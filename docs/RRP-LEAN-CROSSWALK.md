@@ -21,7 +21,12 @@ runtime-correspondence claim. See
 None of these theorems prove anything about the Python or Rust checkers.
 They pin the semantics the checkers are supposed to have. The bridge from
 "Lean theorem" to "this binary derives the right verdict" is not built, and
-this file does not pretend it is.
+this file does not pretend it is. That does not make correspondence optional:
+a conformance claim requires an explicit scope, an exact map of every governed
+distinction in that scope, executable preservation and transport evidence, and
+revision-bound qualification receipts. A formal refinement proof may
+strengthen covered obligations but does not waive those artifacts. This
+pre-v14 crosswalk does not claim full Admissibility Calculus correspondence.
 
 ## Doctrine rows
 
@@ -69,7 +74,10 @@ The Lean neighbors:
   `WLPAppendAckSpecimen`, `BridgeCustomsSpecimen`, `ActorTraceSpecimen`, and
   `ScopedCertification`); `LocalBoundaryPressure` remains staged for
   skunkworks. Citation/adoption identifies the intended contract; conformance
-  requires an explicit mapping plus runtime evidence or a refinement proof.
+  requires an explicit scope, an exact map of every governed distinction in
+  that scope, executable preservation and transport evidence, and
+  revision-bound qualification receipts. A formal refinement proof may
+  strengthen covered obligations but does not waive those artifacts.
 - It does not claim the abstract kernel instantiates the RRP artifact ABI.
   `Derivation.BasisDerivation` is abstract over derivation functions; deciding
   what `requiredFor`/`witnesses` mean inside the public authority kernel is a

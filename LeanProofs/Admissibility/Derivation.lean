@@ -13,8 +13,8 @@
 
     GovState × Actor × AuthorityClaim → component verdicts → AuthorityVerdict.
 
-  Reflects what AG (agent_gov) already does operationally. The four
-  stores already have AG-shaped consumers:
+  Abstractly mirrors an AG (`agent_gov`) decomposition; it does not establish
+  exact runtime correspondence. The four stores have AG-shaped consumers:
 
     PolicyStore        ↔ AUTHORIZE_REQUIRED_CHECKS, standing / scope /
                          budget rules, premise rule, exception classes
@@ -32,10 +32,13 @@
   may expose that structure before a runtime laundering path exists.
 
   Derivation strategies are bundled into structures (`BasisDerivation`
-  etc.) that carry the function AND its proof obligations. Concrete
-  implementations later construct values of these structures, which
-  forces them to discharge the spec obligations at construction time —
-  no global axioms, no orphan implementations.
+  etc.) that carry the function AND its proof obligations. Concrete Lean
+  instantiations construct values of these structures and discharge the spec
+  obligations. A deployed implementation instead needs an explicit
+  exact correspondence/refinement map, executable preservation and transport
+  evidence, and revision-bound qualification receipts for those obligations.
+  The obligations are structure fields rather than global law axioms; the file
+  still deliberately imports or declares opaque substrate signatures.
 
   `deriveStanding` here is standing for *invoking* an authority claim.
   It is intentionally separate from `StateTransition.StepAllowed`,
@@ -72,7 +75,7 @@ axiom AuthorityClaim : Type
   A basis-derivation strategy: a function from state+claim to
   `BasisVerdict`, plus a revocation predicate and the law that any
   claim recognized as revoked must not derive `admissibleBasis`. The
-  law is a *proof obligation* — concrete implementations must supply
+  law is a *proof obligation* — concrete Lean instantiations must supply
   it when constructing a `BasisDerivation` value.
 -/
 structure BasisDerivation where
@@ -104,8 +107,9 @@ structure PrecedenceDerivation where
   Alloy standing-upgrade probe (2026-06-03) — previously, `hasStanding`
   was an unconstrained predicate at the kernel level, leaving the
   bootstrap-blocking discipline implicit. The obligation is now named
-  architecture: concrete implementations must discharge it at
-  construction time.
+  architecture: concrete Lean instantiations must discharge it at
+  construction time; runtime implementations owe separate correspondence
+  evidence.
 -/
 structure StandingDerivation where
   deriveStanding :
@@ -118,10 +122,10 @@ structure StandingDerivation where
         deriveStanding state actor claim ≠ StandingVerdict.standing
 
 /--
-  A complete derivation environment: one strategy per dimension.
-  Concrete AG implementations construct a `DerivationEnv` value;
-  proofs about derivation take this as a parameter and quantify over
-  any compliant implementation.
+  A complete formal derivation environment: one strategy per dimension.
+  Lean instantiations construct a `DerivationEnv` value; proofs take it as a
+  parameter and quantify over any formally compliant instance. An AG runtime
+  is not such a value by citation alone; it needs a correspondence artifact.
 -/
 structure DerivationEnv where
   basis : BasisDerivation
@@ -236,9 +240,10 @@ theorem revoked_standing_never_authorized
     four-layer bootstrap-blocking conjunction.
 
   - AG-specific PolicyStore rule families (AUTHORIZE_REQUIRED_CHECKS,
-    premise rule, exception classes, TTL volatility classes) become
-    refinements when a particular laundering path forces them; not
-    earlier.
+    premise rule, exception classes, TTL volatility classes) are eligible for
+    refinement when there is a precise, non-vacuous, scoped statement and an
+    overlap review. A runtime incident may motivate that work; it is neither
+    permission nor a prerequisite.
 
   - `operatorOverride`: still open. Either an additional `StepAllowed`
     constructor (StateTransition.lean) or a flag on `AuthorityClaim`

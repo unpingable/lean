@@ -49,13 +49,13 @@
       condition `StageStepDiscipline`: ascent rules raise the stage by
       exactly one and cite exactly that rung's receipt.
 
-  THE FAMILY OBSERVATION (recorded, not minted): `StageStepDiscipline` is
+  THE FAMILY OBSERVATION (recorded here before the generic closeout): `StageStepDiscipline` is
   the SECOND member of the local evidence-jurisdiction family
   (slice 1's `AdmissionJurisdiction` is the first; the C3 relation-
   promotion audit named the genus). The local wall now provably REPEATS
   across v7 slices -- this is the repeat evidence the generic screen's
-  admission decision asked for (V7-GAP-SPEC §4). The vocabulary-generic
-  screen remains UNMINTED pending operator admission.
+  admission decision asked for (V7-GAP-SPEC §4). Subsequent closeout:
+  `JurisdictionScreen` minted the vocabulary-generic screen after review.
 
   Honesty notes:
   * Stages are Nat tags; no semantics of WHAT each stage means is claimed
@@ -67,9 +67,8 @@
     Absence of a descent rule is a modeling choice, not a theorem that
     descent is refused.
   * Rung receipts and slice 1's bridge receipts are DIFFERENT species in
-    DIFFERENT files; whether they are mutually non-fungible (stage ascent
-    cannot pay for profile crossing, nor vice versa) is a named candidate
-    for a later slice, not claimed here.
+    DIFFERENT files. This slice did not prove their mutual non-fungibility;
+    the later combined cages in `JurisdictionScreen` close that question.
 
   Mathlib-free.
 -/

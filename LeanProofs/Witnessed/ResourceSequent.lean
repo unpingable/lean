@@ -9,6 +9,9 @@
   Claim and bridge resource occurrences can be consumed; residue occurrences
   cannot.
 
+  v14 intentionally records this source under the `witnessed`,
+  `custody-indexed`, and `admissibility-calculus` exact roots.
+
   Scope. This is not full linear logic. It is the canonical resource/no-drop
   slice for WDC: persistent floor `K`, linear input resources, derivations with
   residual output, erasure back to ordinary WDC sequents, and residue

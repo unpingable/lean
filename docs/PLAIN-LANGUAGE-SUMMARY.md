@@ -10,12 +10,12 @@ information, it is designed to reason about action under bounded
 knowledge: what may be concluded, what remains unknown, what further
 inquiry is admissible, and what obligations remain outstanding.
 
-The Lean formalization provides machine-checked proofs that these rules
-are internally consistent. It is not an implementation of a particular
-application, and it is not a theorem-proving exercise for its own sake:
-it is a candidate verified foundation intended to support systems such
-as operational tooling, governed inquiry, and other evidence-driven
-workflows. The Lean is the medium, not the subject.
+The Lean formalization machine-checks the stated laws under their disclosed
+definitions, hypotheses, and axiom footprints. It is not an implementation of
+a particular application, and it is not a theorem-proving exercise for its own
+sake: it is a candidate verified foundation intended to support systems such as
+operational tooling, governed inquiry, and other evidence-driven workflows.
+The Lean is the medium, not the subject.
 
 ## Why?
 
@@ -52,9 +52,9 @@ counterpart here:
 The public corpus grew from individual constructions — evidence
 weathering, paid recomposition, custody-indexed sequents, judgment
 orientation, path verdicts — toward an identifiable research program:
-a general calculus in which governed families expose their claims,
-witnesses, refusals, and books through one shared signature, with exact
-(loss-accounted) encodings, indexed comparisons, and composition that
+an indexed governed-family calculus in which named families expose their
+claims, witnesses, refusals, and books through one shared signature, with
+exact (loss-accounted) encodings, indexed comparisons, and composition that
 provably cannot mint authority.
 
 The breadth is meant to emerge from the worked examples rather than from
@@ -62,7 +62,12 @@ the claims. Every theorem's assumptions are disclosed (the repository is
 axiom-classified, not axiom-free), every promoted surface carries its
 custody history, and every boundary the formalization does *not* cross —
 runtime conformance, attestor honesty, cryptographic claims — is stated
-as an explicit nonclaim rather than left to inference.
+as an explicit nonclaim rather than left to inference. That nonclaim is not a
+waiver: a runtime claiming correspondence must declare its exact scope, supply
+an exact correspondence map, executable preservation and transport evidence,
+and revision-bound qualification receipts showing that every required
+distinction survives. A formal refinement proof does not waive those
+artifacts.
 
 ## Where to go next
 
@@ -74,5 +79,7 @@ as an explicit nonclaim rather than left to inference.
 - [`V14-READINESS-LEDGER.md`](V14-READINESS-LEDGER.md) — the seven-rung
   Admissibility Calculus promotion campaign, rung by rung, with
   verification receipts.
+- [`V14-RELEASE-LEDGER.md`](V14-RELEASE-LEDGER.md) — the released v14
+  inventory, current custody accounting, and scope fence.
 - [`LeanProofs/Admissibility/README.md`](../LeanProofs/Admissibility/README.md)
   — the module-by-module kernel reference.

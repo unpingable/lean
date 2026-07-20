@@ -20,7 +20,8 @@
     no policy-free structural rules smuggled as free (this slice is the
     CARTESIAN layer, where the three nodes are legitimately free detours --
     the LINEAR layer, where weakening/contraction must be policy-licensed and
-    contraction must FAIL to normalize freely, is slice 2, named not built);
+    contraction must FAIL to normalize freely, was then named but not built;
+    it subsequently landed as `LinearNormalization`);
     no claiming full Gentzen until the structural algebra earns it.
 
   THE SACRED OBJECT: `chainOf` -- the computable custody spine. Every theorem

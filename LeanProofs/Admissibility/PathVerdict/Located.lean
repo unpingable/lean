@@ -13,7 +13,8 @@
   Custody-Class: PUBLIC-SHIPPED
   Surface-Role: STABLE-SURFACE
   This module is part of the exact `LeanProofs.Admissibility.PathVerdict`
-  stable root.
+  stable root and is intentionally multi-rooted into
+  `admissibility-calculus` at v14.
 
   TIER-1 SCOPE (brutal, binding on any public claim): this proves that
   location decorates the obstruction log without touching the authority
@@ -23,6 +24,9 @@
   origins or occurrence history (they are caller-supplied diagnostic
   labels); that a raw `LocatedVerdict` built outside `foldLocated` is
   sound (fold provenance is load-bearing); or that any runtime conforms.
+  A runtime claiming correspondence must supply its exact scope/map,
+  executable preservation/transport evidence, and revision-bound
+  qualification receipts; this nonclaim is not a waiver.
 
   The remaining production gap after Core/Edges/Domains: a `PathVerdict`
   names the sins but not the sinners. "staleEvidence somewhere in a

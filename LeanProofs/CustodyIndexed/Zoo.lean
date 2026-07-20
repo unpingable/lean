@@ -48,7 +48,7 @@
   | ticket-spent-as-success      | ExecutionCustody.ticketSpent_does_not_imply_didExecute (public-evidence; skeleton replay CAGED HERE) |
   | commit-attempted-as-executed | ExecutionCustody.commitAttempted_does_not_imply_didExecute (public-evidence; skeleton replay CAGED HERE) |
   | caveat-blind gate            | CaveatSequent.blind_system_not_caveat_blind_free (screen + specimen resident; the attack SATISFIES the v4 discipline -- `blind_discipline` -- which is why it needed a new screen, not a replay) |
-  | silence-as-denial            | OverlapAudits.silence_as_denial_violates_discipline (C3 audit 2026-07-02: mechanism 3 instance; protocol face resident in AuthenticatedDenial) |
+  | silence-as-denial            | OverlapAudits.silence_as_denial_violates_discipline (C3 audit 2026-07-02: mechanism 3 instance; AuthenticatedDenial was the protocol-face specimen and is now skunkworks-bound) |
   | parse-implies-authority      | ArtifactProfiles.parse_authority_breaks_jurisdiction (v7 slice 1: attack satisfies the discipline; caught by the LOCAL evidence-jurisdiction condition -- the escaped animal's local face, caged) |
   | stage-self-promotion         | ProfileStages.self_promotion_violates_discipline (v7 slice 2: mechanism 3 -- standing cannot be its own promotion receipt; base-only variant also caught by JurisdictionScreen) |
   | stage-rung-skip              | ProfileStages.skip_breaks_step_discipline (v7 slice 2: attack satisfies the discipline; caught by LOCAL StageStepDiscipline = JurisdictionScreen instance) |

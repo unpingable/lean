@@ -10,9 +10,9 @@ execution over static witnesses, and checker-facing profile semantics*).
 Prior release: v8.0.0 — Sequent Admissibility Island.
 
 **Status: PREPPED, awaits operator mint.** Version strings bumped, docs
-written, gates re-run green (2026-07-09). The mint chain — git tag + GitHub
-release (which drives the Zenodo version DOI, per CHANGELOG) — is the
-operator's step and has NOT been performed by tooling.
+written, gates re-run green (2026-07-09). At this receipt point, the separate
+tag, GitHub-release, and Zenodo-deposit acts remained operator steps and had
+not been performed by tooling.
 
 **Zenodo display metadata (v8 scar closed):** `CITATION.cff` drives the
 Zenodo landing page (no `.zenodo.json` in this repo). Its `title`,
@@ -177,8 +177,10 @@ Key theorem receipts (all sorry-free, custody-classed):
   candidate formal laws for the Standing / WLP / bridge / actor-trace /
   local-boundary seams, written formalization-first. **They do not testify
   for RRP or any runtime's compliance by themselves.** Citation/adoption
-  identifies the intended contract; conformance requires an explicit mapping
-  plus runtime evidence or a refinement proof. Lean custody promotion is a
+  identifies the intended contract; conformance requires an explicit exact
+  mapping, executable preservation and transport evidence, and revision-bound
+  qualification receipts. A formal refinement proof may strengthen covered
+  obligations but does not waive those artifacts. Lean custody promotion is a
   separate review; none of these reviews is permission to begin the formal
   work. No vibes-based canonization.
 - **The profile specimen is not the RRP implementation.** No canonical JSON,
@@ -266,9 +268,10 @@ here — is recorded in the NQ crosswalk; the fix belongs on NQ's side.)
 
 1. Review + commit this prep (operator drives git).
 2. `git tag v9.0.0` on the prep commit.
-3. Create the GitHub release (this mints the Zenodo version DOI).
-4. Verify the Zenodo landing page shows the v9 title/description
+3. Create the GitHub release.
+4. Create or confirm the separate Zenodo version deposit and DOI.
+5. Verify the Zenodo landing page shows the v9 title/description
    (CITATION.cff drives it; the v8 stale-title scar is the reason to check).
-5. After-action doc sweep (Lean Admissibility README / WHAT-THIS-PROVES /
+6. After-action doc sweep (Lean Admissibility README / WHAT-THIS-PROVES /
    PAPER-MAP / papers README) stays deferred per the papers-repo discipline
    ("after paper ships"), not release-gated.

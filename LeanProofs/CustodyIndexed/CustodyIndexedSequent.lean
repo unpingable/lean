@@ -37,8 +37,9 @@
   * `weakening` -- stated, not smuggled: THIS skeleton is deliberately
     Cartesian on assumptions (judgment reuse is free). Linear pricing is a
     different system parameter -- the resource lane (`Witnessed.ResourceSequent`,
-    Sequents 2-3) owns occurrence-linear contexts, and merging the two context
-    disciplines is named future work, not claimed here. Structural rules are
+    Sequents 2-3) owns occurrence-linear contexts. The later
+    `StructuralPolicySequent` closes the named policy-controlled merge; this
+    base slice does not claim it. Structural rules are
     priced by DECLARATION: what is free is stated as a theorem, what is not
     free lives in a different system.
 

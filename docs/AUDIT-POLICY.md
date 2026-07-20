@@ -3,14 +3,16 @@
 > **The repository is not axiom-free; it is axiom-classified. WDC promoted receipts remain
 > footprint-attested.**
 
-> **v13 custody note.** The target contract classifies every retained public
-> Lean source as an exact-root `STABLE-SURFACE`, terminal `PUBLIC-EVIDENCE`, or
-> the root `REPOSITORY-AGGREGATE`. Incubation belongs in skunkworks. All 53
-> live returns now have sibling homes, and the public whole-tree gate passes
-> exactly over the 179 retained modules. The custody gate is independent of
-> the axiom and footprint gates described here; a green result from one never
-> substitutes for another. Release record:
-> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md).
+> **Current v14 custody note.** v13 established the target contract that
+> classifies every retained public Lean source as exact-root
+> `STABLE-SURFACE`, terminal `PUBLIC-EVIDENCE`, or the root
+> `REPOSITORY-AGGREGATE`; incubation belongs in skunkworks. v14 extends that
+> same contract to 201 public sources — 104 stable, 96 evidence, one aggregate
+> — across eleven stable roots and 131 ownership relations. The custody gate
+> is independent of the axiom and footprint gates described here; a green
+> result from one never substitutes for another. Records:
+> [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md) for the migration and
+> [`V14-RELEASE-LEDGER.md`](V14-RELEASE-LEDGER.md) for current accounting.
 
 That is the honest fence. An `axiom` in Lean is a hole the kernel agrees not to inspect — a
 trust import. The job of these gates is not to ban axioms (this repo legitimately uses
@@ -44,7 +46,7 @@ Every declared `axiom`/`constant` under `LeanProofs/` must be classified. Fail-c
 | **specimen** | concrete scenario stipulation for a fenced counterexample (`defendedValue_initial : … = 1`) | allowed only inside a labeled specimen module; must not silently support a broad structural receipt |
 | **forbidden** | claim-bodied placeholder (the fake-mustache class: a theorem-shaped axiom standing in for a desired doctrine — e.g. the removed `persistence_normalizes : ∀ d, d≠.dh → True`) | **zero tolerance** |
 
-Current v13 release census: 23 signature, 0 interface-law, 8
+Current v14 tree census: 23 signature, 0 interface-law, 8
 specimen, **0 forbidden**, and 0 unclassified. The authoritative receipt is
 always the bare exit and report of `scripts/audit-axioms.sh`, not this prose
 count.
@@ -85,6 +87,24 @@ Every receipt must match its exact expected footprint. The disclosed family
 maximum is `[propext, Classical.choice, Quot.sound]`; the core confinement
 laws are constructive. Missing or renamed receipts, `sorryAx`, added axioms,
 or footprint drift fail closed.
+
+## 2c. PathVerdict footprint — `check-pathverdict-footprint.sh`
+
+Builds the Mathlib-free `PathVerdict` stable and evidence targets and
+re-attests the v14 rung-1 `Domains`/`Located` surface. All 36 named receipts
+are exact: 35 axiom-free and `mixed_compose_authority_iff` exactly
+`[propext]`. A missing or renamed receipt, `sorryAx`, footprint drift, or a
+failed target build fails closed.
+
+## 2d. Admissibility Calculus footprint — `check-calculus-footprint.sh`
+
+Builds the Mathlib-free `AdmissibilityCalculus` exact root and re-attests all
+191 frozen receipts from v14 rungs 2–7. The gate fixes the constructive and
+`propext` footprints of rungs 2–6 and the explicitly accepted rung-7
+partition: 3 axiom-free, 19 opaque-substrate-only, 4 `+propext` without
+`Quot.sound`, 67 `+Quot.sound` without `Classical.choice`, and 8
+`+Classical.choice`. It is an exact per-receipt check, not a family-wide
+maximum that could hide drift.
 
 ## 3. native_decide policy — `audit-native-decide.sh` + `native-decide-policy.tsv`
 
@@ -130,11 +150,12 @@ membership from a custody role.
 This corrects the pre-v13 checker, which examined 84 of 244 modules under
 `LeanProofs/` while the full v12 source tree contained 271 Lean files.  The old
 green receipt remains historical evidence about its partial registry only.
-At the v13 release baseline, the actual public tree passes exactly at 179 files
+At the v13 release baseline, the actual public tree passed exactly at 179 files
 (82 stable, 96 evidence, one aggregate), ten roots, and 98 ownership
-relations. The strengthened public-target gate separately passes its exact
-target closures and declared Mathlib-free and ownership manifests at this
-release baseline. Its exact receipt is described separately below.
+relations. The current v14 tree passes at 201 files (104 stable, 96 evidence,
+one aggregate), eleven roots, and 131 ownership relations. The strengthened
+public-target gate separately checks exact target closures and declared
+Mathlib-free and ownership manifests; its current receipt is described below.
 
 ## 8. Exact public targets and Mathlib closure — `check-mathlib-free-targets.sh`
 
@@ -155,10 +176,10 @@ agreement between the lakefile request and manifest lock before allowing the
 declared external import boundary. This is the evidence/stable target receipt
 that the whole-tree custody gate deliberately does not provide.
 
-Current exact receipt: two repository-owned Lake projects, 23 public targets,
-23 exact local closures, 19 Mathlib-free current-tree targets, 463 local
+Current exact receipt: two repository-owned Lake projects, 24 public targets,
+24 exact local closures, 20 Mathlib-free current-tree targets, 518 local
 target/module ownerships, one pinned-external target, and one locked external
-boundary, with role-compatible target ownership for 179/179 public sources.
+boundary, with role-compatible target ownership for 201/201 public sources.
 Mathlib-reaching targets remain explicit-only. The nested downstream consumer's
 bare build completes 19 jobs in CI.
 
@@ -182,12 +203,15 @@ lake build PaidRecompositionEvidence
 lake build JudgmentOrientation JudgmentOrientationEvidence
 lake build CustodyIndexed CustodyIndexedEvidence
 lake build PathVerdict PathVerdictEvidence
+lake build AdmissibilityCalculus
 lake build LeanProofs AdmissibilityEvidenceMathlib
 lake build ViewSemantics ViewSemanticsEvidence ViewSemanticsEvidenceMathlib
 (cd downstream/wdc-v2-consumer && lake build)
 scripts/check-witnessed-footprint.sh
 scripts/check-paid-recomposition-footprint.sh
 scripts/check-judgment-orientation-footprint.sh
+scripts/check-pathverdict-footprint.sh
+scripts/check-calculus-footprint.sh
 scripts/check-viewsemantics-footprint.sh
 scripts/check-viewsemantics-isolation.sh
 scripts/audit-axioms.sh

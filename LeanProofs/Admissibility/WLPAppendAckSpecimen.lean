@@ -25,8 +25,10 @@
 
   Custody: terminal public evidence, regression-built by
   `lake build AdmissibilityEvidence`. Publication does not claim runtime
-  adoption; conformance still requires a mapping plus runtime evidence or a
-  refinement proof.
+  adoption; conformance still requires an explicit scope and exact
+  correspondence map, executable preservation and transport evidence, and
+  revision-bound qualification receipts. A formal refinement proof may
+  strengthen covered obligations but does not waive those artifacts.
 -/
 
 /-!
@@ -39,8 +41,9 @@ for this subject?). The theorems say the first two inhabitants feed only the
 first derivation, in every combination and quantity.
 
 Lean ancestors: `Authority.advisory_basis_never_authorized` (a basis that
-only advises never authorizes), `RefusalPropagation.refused_blocks_binding`
-(receipts do not convert to bindings downstream),
+only advises never authorizes), the historical/skunkworks
+`RefusalPropagation.refused_blocks_binding` (receipts do not convert to
+bindings downstream),
 `RRPProfileSpecimen.effect_requires_claim` (effects require claims — this
 file pins what specifically CANNOT stand in for the claim).
 -/

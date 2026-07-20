@@ -61,7 +61,8 @@
   Honesty notes:
   * The custody spine on success is the linear tree's own structure
     (`Consumes` splits per read) plus the conservation law; a first-class
-    positional-occurrence trace object is a refinement, named not built.
+    positional-occurrence trace object was a refinement named but not built in
+    this slice; it subsequently landed as `OccurrenceTrace`.
   * No explicit linear wk/ctr NODES here: the liberal layer states the
     detours as read patterns, and linearization prices them. Node-form linear
     structural rules (with payment arguments) are the next slice if the
