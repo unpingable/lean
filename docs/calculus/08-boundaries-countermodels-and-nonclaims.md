@@ -12,8 +12,9 @@ limits as part of the mathematics rather than as release trivia.
    explicitly defines no transition system
    ([scope fence](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L37)).
 
-2. **No global `Admissible`.** Weathering's `Admissible` is its native licensing
-   judgment. Paid reachability and BreakGlass keep different native substrates.
+2. **No global `Admissible`.** The evidence-age licensing instance
+   (`Weathering`) has a native judgment named `Admissible`. Paid reachability
+   and BreakGlass keep different native substrates.
    The common predicate is derived `Authority F c`, always parameterized by a
    governed family and claim.
 
@@ -36,17 +37,12 @@ limits as part of the mathematics rather than as release trivia.
    about any supplied ledger, not a public inhabitant containing those seven
    native comparisons.
 
-6. **No silent promotion of annex material.** Hostile audits, counterexamples,
-   legacy exploits, concrete comparison adapters, and blocked predecessor
-   packets retained in skunkworks are evidence about the admitted surface; they
-   are not imported declarations. The definitive per-rung list is the
-   [v14 readiness ledger](../V14-READINESS-LEDGER.md).
-
 ## Countermodels and hostile controls
 
-Some negative evidence is public as a generic theorem; some remains annexed:
+Some negative evidence is public as a generic theorem; some is retained outside
+the public Lean surface:
 
-| Boundary | Public result | Annex/adverse evidence |
+| Boundary | Public result | Retained non-public evidence |
 |---|---|---|
 | claim erasure | `no_claim_erasing_check_is_faithful` | Prop-squashing and full-claim controls |
 | refusal encoding | no subsingleton exact domain | compiled constant-`Unit` collapse against the old contract |
@@ -54,37 +50,36 @@ Some negative evidence is public as a generic theorem; some remains annexed:
 | stored crossing | exact stored-pair coherence and non-shadowing | arbitrary-stored-pair hostile audit; legacy crossings |
 | BreakGlass | origin-bound family, two separations, stored crossing | 49-receipt hostile matrix, fixed-`Atoms` exploit, blocked predecessor packet |
 
-The custody assignments in this table come from
-[claim-register entries 20–25](../../CLAIM-REGISTER.md#20-v14-rung-2--governed-family-signature)
-and the [readiness ledger](../V14-READINESS-LEDGER.md), not from inference based
-on filenames.
+The table separates theorem meaning from publication status. Filenames alone do
+not determine whether an artifact is public Lean.
 
-## Deliberate weakenings required by the source
+## Narrow statements that preserve the evidence
 
-- “Lossless decisions” is too broad. Only refusal packets are losslessly
-  encoded into the spine; accepted witness identity is not serialized.
-- “Paid discharge” is too strong for the public bounded-paid fixture. Its
-  positive run is admission-only, custody is vacuous, and obligations are
-  empty.
-- “Locations authenticate origin” is too strong. `foldLocated` soundly carries
-  input labels, but raw labels and arbitrary relabeling are not authenticated.
-- “Exact comparison” is ambiguous. The code distinguishes exact *judgment*
-  from exact *representation*.
-- “BreakGlass crosses into ordinary authority” is false. The public result is a
-  separation: exceptional authority coexists with a retained denied ordinary
-  verdict.
-- “BreakGlass lifecycle is general” is false. It is relative to supplied
-  `Atoms`, uses a bounded singleton audit trail, and proves no general
-  transition universe, payment lifecycle, clock honesty, origin allocator, or
-  cryptographic commitment.
+- The exact codec preserves refusal packets. Accepted witness identity remains
+  in the native decision.
+- The bounded paid fixture proves admission-only reachability. Its paid-book
+  custody is vacuous and its obligation book is empty.
+- `foldLocated` carries input labels through the sanctioned construction. It
+  does not authenticate raw labels or arbitrary relabeling.
+- Exact judgment preserves a predicate in both directions. Exact
+  representation additionally recovers source values.
+- BreakGlass exceptional authority coexists with a retained denied ordinary
+  verdict; it does not upgrade that verdict.
+- The BreakGlass lifecycle is relative to supplied `Atoms` and a singleton
+  audit trail. It proves no general transition universe, payment lifecycle,
+  clock honesty, origin allocator, or cryptographic commitment.
 
-## Axiom posture
+## Formal and repository status
 
-The calculus is not uniformly axiom-free. Rungs 2–6 have the precise footprints
-listed by the calculus gate; rung 7 deliberately includes `Quot.sound`,
-`Classical.choice`, and the declared opaque public substrate. The operator
-accepted that footprint at ratification. The exact 101-receipt rung-7 split is
-recorded in the
-[readiness ledger](../V14-READINESS-LEDGER.md#rung-7--the-originhistory-bound-breakglass-terminal-instance-admitted-2026-07-18)
-and enforced theorem-by-theorem by
+Hostile audits, legacy exploits, concrete comparison adapters, and predecessor
+artifacts can support review without becoming imported Lean declarations. The
+[claim register](../../CLAIM-REGISTER.md) and
+[readiness ledger](../V14-READINESS-LEDGER.md) record those publication
+boundaries.
+
+The calculus is not uniformly axiom-free. The exact theorem footprints are
+enforced by
 [`check-calculus-footprint.sh`](../../scripts/check-calculus-footprint.sh).
+The BreakGlass footprint includes `Quot.sound`, `Classical.choice`, and its
+declared opaque public substrate; the exact split and ratification history are
+kept in the readiness ledger rather than repeated in the mathematical flow.

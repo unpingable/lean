@@ -1,5 +1,10 @@
 # 4. Witnesses, refusals, and lossless encoding
 
+A Boolean rejection says only that the negative branch was taken. For review,
+transport, or exact recovery, a consumer may need the rejected claim and the
+native reason. This chapter separates branch preservation from exact negative
+evidence.
+
 ## Evidence is data
 
 `Witness c` and `Refusal c` inhabit `Type`. A witness may be a replayable run;
@@ -7,7 +12,8 @@ a refusal may be a closed barrier or a structured origin mismatch. The calculus
 does not force these artifacts into a proposition or a common enum
 ([`GovernedFamily`](../../LeanProofs/Admissibility/Calculus/Core.lean#L77)).
 
-The exact negative decision is packaged as a dependent pair:
+The exact negative decision is packaged as a dependent pair, a **refusal
+packet**:
 
 ```lean
 structure RefusalPacket (F : GovernedFamily) where
@@ -19,9 +25,10 @@ structure RefusalPacket (F : GovernedFamily) where
 claim is what makes the packet reconstructible without pretending every
 family's refusal has a claim-independent shape.
 
-## The permissive funnel
+## The permissive refusal spine
 
-A `SpineEncoding F` chooses a domain vocabulary `δ` and maps every native
+A **refusal spine** projects a native decision into a diagnostic
+`PathVerdict`. A `SpineEncoding F` chooses a domain vocabulary `δ` and maps every native
 refusal into it. Its `funnel` calls the family's checker: witness becomes the
 empty `PathVerdict`; refusal becomes a singleton domain obstruction
 ([source](../../LeanProofs/Admissibility/Calculus/Spine.lean#L69)).
@@ -62,13 +69,10 @@ what it returned. From these assumptions the module derives:
 - recovery of the full refusal packet from a refusing funnel result
   ([`refusal_recoverable`](../../LeanProofs/Admissibility/Calculus/Spine.lean#L247)).
 
-> **Why constant `Unit` collapse matters.** A reason-only or bare encoding can
+> **Why exactness is needed.** A reason-only or bare encoding can
 > send every refusal to `()`. That still records “some refusal happened,” but it
 > cannot invert two distinct packets. The public generic theorem rules out a
-> subsingleton domain under the exact contract. The compiled concrete
-> constant-`Unit` counterexample against the superseded contract remains
-> skunkworks adverse evidence, not a public declaration; this custody fact is
-> recorded in [claim-register entry 22](../../CLAIM-REGISTER.md#22-v14-rung-4--exact-refusal-packet-spine).
+> subsingleton domain under the exact contract.
 
 “Lossless” is restricted to the refusing branch. Every accepted claim funnels
 to `clean`; that verdict does not serialize which native witness was returned.
@@ -79,3 +83,10 @@ Finally, decoding is representation recovery, not authentication. Constructing
 bytes or a value that decodes to a packet does not establish that the native
 family returned that packet. Native validity remains tied to `F.decide` and the
 family laws.
+
+## Repository status
+
+The generic non-collapse theorem is public Lean. A compiled constant-`Unit`
+counterexample against the earlier weaker contract is retained adverse
+evidence, not part of the public Lean surface. Its status is recorded in
+[claim-register entry 22](../../CLAIM-REGISTER.md#22-v14-rung-4--the-exact-refusal-packet-spine).

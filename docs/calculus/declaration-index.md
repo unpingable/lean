@@ -1,10 +1,19 @@
 # Declaration crosswalk
 
-This index maps the principal public declarations used by the textbook to their
-exact source locations and roles. “Stable” means the declaration is in the
-`admissibility-calculus` or transitive multi-root stable surface; it does not
-mean every name has an independent compatibility promise. “Meta” identifies a
-ratified repository record rather than an object-level Lean declaration.
+This index maps the principal declarations used by the books to their exact
+source locations and roles. The final column is repository metadata, not a
+mathematical classification:
+
+- **stable public surface** means the declaration is in the registered
+  calculus root;
+- **stable multi-root support** means a public supporting declaration is shared
+  by more than one registered root;
+- **supporting machinery** means a public helper outside the principal API;
+- **retained adverse evidence** and **deferred predecessor** are not public Lean
+  doctrine.
+
+“Meta” identifies a repository record rather than an object-level Lean
+declaration. No row implies runtime conformance.
 
 ## Governed-family core
 
@@ -58,7 +67,7 @@ ratified repository record rather than an object-level Lean declaration.
 | `encodePacket_injective` | [Spine.lean:222](../../LeanProofs/Admissibility/Calculus/Spine.lean#L222) | Representation separation | decode/encode recovery | packet encoding injective | stable public surface |
 | `no_subsingleton_domain_of_distinct_refusals` | [Spine.lean:238](../../LeanProofs/Admissibility/Calculus/Spine.lean#L238) | Collapse countertheorem | two distinct refusals | exact domain cannot be subsingleton | stable public surface |
 | `refusal_recoverable` | [Spine.lean:247](../../LeanProofs/Admissibility/Calculus/Spine.lean#L247) | End-to-end refusal recovery | refusing native decision | funnel log recovers full packet | stable public surface |
-| constant-`Unit` collapse | [rung-4 ledger](../V14-READINESS-LEDGER.md#rung-4--the-exact-refusal-packet-spine-admitted-2026-07-18) | Adverse control for superseded contract | private counterexample | shows reason-only collapse | annex/skunkworks |
+| constant-`Unit` collapse | [admission ledger](../V14-READINESS-LEDGER.md#rung-4--the-exact-refusal-packet-spine-admitted-2026-07-18) | Adverse control for superseded contract | private counterexample | shows reason-only collapse | retained adverse evidence, not public Lean |
 
 ## Comparison framework
 
@@ -79,7 +88,7 @@ ratified repository record rather than an object-level Lean declaration.
 | `CapabilityDisposition` | [Comparison.lean:338](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L338) | Proof-bearing support | receipt proposition | support or classified obstruction | stable public surface |
 | `IndexedEntry` | [Comparison.lean:410](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L410) | Proof-carrying table row | pins, projection, law, capabilities | one complete indexed comparison | stable public surface |
 | `Ledger` | [Comparison.lean:424](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L424) | Exhaustive table shape | indexed entries | entry for every constructor | stable public surface |
-| concrete seven-entry ledger | [rung-5 fence](../V14-READINESS-LEDGER.md#rung-5--the-indexed-comparison-framework-admitted-2026-07-18) | Reviewed realization | private adapters and pins | evidence for framework inhabitation | annex/skunkworks, not public Lean |
+| concrete seven-entry ledger | [admission boundary](../V14-READINESS-LEDGER.md#rung-5--the-indexed-comparison-framework-admitted-2026-07-18) | Reviewed realization | private adapters and pins | evidence for framework inhabitation | supporting evidence, not public Lean |
 
 ## Stored-decision crossing
 
@@ -128,13 +137,13 @@ ratified repository record rather than an object-level Lean declaration.
 
 ## Coverage accounting
 
-The textbook directly crosswalks 90 principal declarations or ratified boundary
+The books directly crosswalk 90 principal declarations or boundary
 records above. The stable proof gates cover a larger theorem inventory:
 
 | Frozen inventory | Count | Authority |
 |---|---:|---|
 | `PathVerdict` substrate receipts | 36 | [`check-pathverdict-footprint.sh`](../../scripts/check-pathverdict-footprint.sh) |
-| calculus rungs 2–7 receipts | 191 | [`check-calculus-footprint.sh`](../../scripts/check-calculus-footprint.sh) |
+| calculus-root receipts | 191 | [`check-calculus-footprint.sh`](../../scripts/check-calculus-footprint.sh) |
 | total theorem receipts in the calculus closure | 227 | sum of the disjoint gate inventories |
 
 The 90-row conceptual crosswalk is not a substitute for the theorem-by-theorem

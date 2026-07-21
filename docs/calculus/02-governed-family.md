@@ -1,6 +1,11 @@
 # 2. The governed family
 
-The smallest common object is a ten-field structure
+Evidence-age licensing (`Weathering`), reachability, and exceptional authority
+(`BreakGlass`) do not share one native judgment.
+They do share a decision shape: a complete claim receives either positive or
+negative evidence, and positive evidence must satisfy two governing books.
+
+The smallest common object is the ten-field `GovernedFamily` structure
 ([`GovernedFamily`](../../LeanProofs/Admissibility/Calculus/Core.lean#L77)):
 
 ```lean
@@ -18,8 +23,8 @@ structure GovernedFamily where
 ```
 
 The public signature is universe-0: these data inhabit `Type`, not an arbitrary
-`Type u` ([scope fence](../../LeanProofs/Admissibility/Calculus/Core.lean#L28)).
-That is an implementation boundary of the ratified interface, not a theorem
+`Type u` ([scope note](../../LeanProofs/Admissibility/Calculus/Core.lean#L28)).
+That is an implementation boundary of the public interface, not a theorem
 that universe polymorphism is mathematically impossible.
 
 ## Claims are the unit of judgment
@@ -48,6 +53,10 @@ The claim index is essential for three distinct public examples:
 Erasing these indices loses different things: a licensing mode, provenance of
 reachability, or lifecycle identity. The generic erasure theorem does not
 pretend those losses are the same native phenomenon.
+
+> **Core/instance boundary.** `GovernedFamily` fixes the evidence shape. The
+> concrete claim coordinates—requested use, origin, phase, or history—come
+> from each instance.
 
 ## Assumptions versus derived facts
 

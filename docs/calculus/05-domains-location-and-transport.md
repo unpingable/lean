@@ -1,5 +1,9 @@
 # 5. Domains, location, and transport
 
+Several native families may report obstructions in different vocabularies. A
+shared diagnostic must preserve whether a fault exists while making any loss
+of native identity explicit.
+
 The diagnostic substrate is an ordered obstruction log:
 
 ```lean
@@ -66,7 +70,7 @@ structure LocatedVerdict (ι δ : Type) where
   obstructions : List (ι × ObstructionKind δ)
 ```
 
-The carried identifier prevents a sanctioned fold from silently moving a fault
+This **carried identity** prevents a sanctioned fold from silently moving a fault
 to another represented edge:
 
 - `foldLocated_carries` records the label of every obstructed input edge
@@ -90,3 +94,7 @@ In a binary crossing the stable identifiers are `Segment.left` and
 ([source](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L119)). This
 double carried identity makes a stored double refusal report both its segment
 and its native refusal vocabulary without swapping their order.
+
+> **Boundary note.** Domain transport preserves the clean/obstructed judgment
+> for every total map. Exact backward native identity requires injectivity.
+> Located folds carry supplied labels; they do not authenticate those labels.

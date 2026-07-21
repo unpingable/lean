@@ -141,9 +141,17 @@ K(c)\not\Longrightarrow A_{\mathcal F}(c),
 \tag{GF-NOCONV-C}
 $$
 
-For the first, the BreakGlass audit-laundering claim has settlement standing and a structured refusal. For the second, the bare paid claim has vacuous custody and a Barrier refusal. For the third, that same bare claim has an empty obligation book and no authority.
+BreakGlass supplies the standing counterexample: its audit-laundering claim has
+settlement standing and a structured refusal. The bare paid claim supplies the
+other two. Its custody is vacuous, its obligation book is empty, and it has a
+Barrier refusal.
 
-**Lean anchor.** `Authority`, `authority_requires_standing`, `authority_preserves_custody`, `refusal_refutes_authority`, `authority_has_no_multiplicity`, and `authority_iff_decide_isLeft` are in [`Core.lean`](../../LeanProofs/Admissibility/Calculus/Core.lean). The countermodels are `custody_does_not_grant_dynamic_authority` in [`BoundedPaidReachability.lean`](../../LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean) and `audit_launder_has_settlement_standing` plus `audit_launder_refused` in [`BreakGlass.lean`](../../LeanProofs/Admissibility/Calculus/Instances/BreakGlass.lean).
+**Lean anchor.** The generic authority declarations are in
+[`Core.lean`](../../LeanProofs/Admissibility/Calculus/Core.lean). The concrete
+countermodels are `custody_does_not_grant_dynamic_authority` in
+[`BoundedPaidReachability.lean`](../../LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean)
+and `audit_launder_has_settlement_standing` with `audit_launder_refused` in
+[`BreakGlass.lean`](../../LeanProofs/Admissibility/Calculus/Instances/BreakGlass.lean).
 
 ## 2. Claim preservation and erasure
 
@@ -702,7 +710,8 @@ $$
 \tag{CR-APPLY-E}
 $$
 
-This is explanatory notation for the Lean dataflow and repository source-occurrence gate. It is not a generic theorem about effects or arbitrary runtime calls.
+This is explanatory notation for the stored-decision dataflow. It is not a
+generic theorem about effects or arbitrary runtime calls.
 
 Composite authority is witness-pair existence, hence
 
@@ -712,7 +721,10 @@ A_{\mathcal F\times\mathcal G}(c_F,c_G)
 \tag{CR-AUTH-T}
 $$
 
-Authority entails both standings and both custodies. It does not create obligation interaction. The verdict is clean exactly when the stored result accepts, and exactly when composite authority holds. The located verdict forgets to the ordinary verdict without changing authority.
+Authority entails both standings and both custodies. It creates no obligation
+interaction. The verdict is clean exactly when the stored result accepts, and
+exactly when composite authority holds. Forgetting locations recovers the
+ordinary verdict without changing authority.
 
 Mixed branches deliberately retain the successful native witness alongside the refusal. The double branch retains both refusals. With lossless spines, each encoded refusal decodes to its exact native claim-and-refusal packet.
 
@@ -932,7 +944,8 @@ $$
 \tag{BG-NOORD-I}
 $$
 
-The audit-laundering claim has settlement standing, but its requested witness would assert a clean final audit trail. The retained entry refutes cleanliness:
+The audit-laundering claim has settlement standing. Its requested witness would
+assert a clean final audit trail, while the retained entry refutes cleanliness:
 
 $$
 S(o,\mathsf{auditLaunder})

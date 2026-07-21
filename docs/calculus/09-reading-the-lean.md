@@ -1,11 +1,16 @@
 # 9. Reading the Lean
 
+This chapter assumes the terminology introduced in chapters 1–8. The
+[glossary](glossary.md) gives compact definitions when reading modules out of
+order.
+
 ## Start from the root, not a search result
 
 The exact root is
 [`LeanProofs/Admissibility/Calculus.lean`](../../LeanProofs/Admissibility/Calculus.lean).
-Its imports determine the stable object. An identically suggestive declaration
-elsewhere in the repository is not thereby part of this calculus.
+Its imports determine the public compatibility surface, called a **stable
+root** in this repository. A suggestively named declaration elsewhere is not
+thereby part of this calculus.
 
 Read in dependency order:
 
@@ -25,8 +30,8 @@ BreakGlass.LifecycleOrigin → Native → Lifecycle → governed instance
                                                 → Spine / Comparison / Crossing
 ```
 
-The actual imported graph is checked by Lake and the custody registries; this
-diagram is explanatory, not an alternate root definition.
+The actual imported graph is checked mechanically; this diagram is explanatory,
+not an alternate root definition.
 
 ## Recognize the kinds of declarations
 
@@ -37,12 +42,15 @@ diagram is explanatory, not an alternate root definition.
 - A family's **`decide`** field is executable checkability, but not necessarily
   general search.
 - A **witness** or **refusal** is native data returned by that decision.
-- A **custody header**, registry row, or ledger statement is a repository-level
-  assertion about publication and compatibility, not an object-level theorem.
-
 The `#print axioms` commands at module tails are audit probes. The scripts check
 their exact reported footprints; the probes are not additional mathematical
 theorems.
+
+### Repository metadata
+
+A **custody header**, registry row, or ledger statement is a repository-level
+assertion about publication and compatibility, not an object-level theorem.
+Mathematical custody (`F.Custody c`) is a different, claim-indexed predicate.
 
 ## Namespaces that should not be collapsed
 
@@ -74,11 +82,10 @@ one global authority concept.
 
 ## Mechanical verification
 
-The documentation uses repository-relative `path#Lline` links. The line targets
-are checked by `docs/calculus/validate-links.sh` only if such a helper is added
-later; at present validation is performed by the repository audit commands and
-the link/name check described in the task report. The stable mathematical gates
-are:
+The documentation uses repository-relative `path#Lline` links. This repository
+currently has no dedicated documentation-validation command, so editorial
+changes must resolve those links directly and then run the relevant existing
+Lean and audit gates. The stable mathematical gates are:
 
 ```bash
 lake build

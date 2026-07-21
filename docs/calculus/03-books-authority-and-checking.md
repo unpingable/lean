@@ -1,8 +1,13 @@
 # 3. Books, authority, and checking
 
+“Authorized” is too coarse if it hides the basis for making a claim, the
+provenance a witness must preserve, or a duty that remains open. The calculus
+keeps those questions separate before defining authority.
+
 ## Three separate books
 
-For a claim `c`, a governed family carries three independent propositions:
+For a claim `c`, a governed family carries three independent propositions,
+called **books** because they record different aspects of the claim:
 
 ```lean
 F.Standing c
@@ -23,7 +28,7 @@ because the public examples make different combinations meaningful:
   settlement
   ([three lifecycle theorems](../../LeanProofs/Admissibility/Calculus/Instances/BreakGlass.lean#L306)).
 
-Collapsing the books into a single “good” predicate would erase exactly these
+Collapsing the books into a single “good” predicate would erase these
 states. The abstraction exports no theorem `Standing c → Authority c`,
 `Custody c → Authority c`, or `¬ Obligation c → Authority c`.
 
@@ -68,7 +73,7 @@ the paid family uses a hand-written two-constructor match
 ([source](../../LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean#L149));
 this proves no arbitrary reachability decision algorithm.
 
-The Boolean branch view is derived only after the native artifact exists:
+The Boolean branch view is derived only after the native evidence exists:
 
 ```lean
 F.Authority c ↔ (F.decide c).isLeft = true
@@ -91,3 +96,6 @@ flowchart TD
 
 The diagram contains no arrow from any book back into `Authority`. That absence
 is part of the signature's meaning.
+
+> **Instance boundary.** The core supplies no obligation lifecycle. The
+> before/commit/settlement facts above belong only to BreakGlass.

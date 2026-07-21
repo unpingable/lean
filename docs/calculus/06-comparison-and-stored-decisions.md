@@ -1,67 +1,78 @@
 # 6. Comparison and stored decisions
 
-## A constitutional comparison framework
+## Comparison without forced unification
 
-The comparison layer fixes seven semantic slots in `EntryIndex` and proves that
-their enumeration is duplicate-free and has length seven
-([source](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L68)). These
-constructors are constitutional indices, not seven public comparison results.
+Two systems can be compared without pretending they share one claim type or
+one native semantics. A comparison record starts with a source judgment, a
+target judgment, and one declared map between them. It must then prove what
+kind of comparison that map supports.
 
-Each `IndexedEntry index` contains one source/target `Projection`, a comparison
-kind, the dependent law required by that kind, source pins, capability receipts,
-and at least one explicit nonclaim
+The source and target are `JudgmentView` values: each names a carrier and a
+predicate. A `Projection` supplies the single map used by the receipt
+([source](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L168)). Using
+one map prevents a proof from relying on a convenient forward translation and
+a different, unrelated reverse translation.
+
+The framework distinguishes four relations:
+
+- `ExactJudgmentReceipt`: the source predicate holds exactly when the mapped
+  target predicate holds;
+- `ExactRepresentationReceipt`: exact judgment plus a canonical partial
+  decoder that recovers every source value;
+- `DirectionalWithLossReceipt`: forward preservation plus an explicit pair of
+  distinct positive source values collapsed by the map;
+- `SeparationReceipt`: a source-positive value whose image is target-negative,
+  together with a target-positive control.
+
+The distinction between exact judgment and exact representation is
+load-bearing. A map may preserve a predicate perfectly while merging several
+positive source values. Exact representation adds recovery and therefore
+implies injectivity
+([`ExactRepresentationReceipt.map_injective`](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L269)).
+
+Directional loss states its missing information positively. The stored
+collapsed pair rules out any decoder that recovers every source
+([`DirectionalWithLossReceipt.no_left_inverse`](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L295)).
+A separation receipt supplies a concrete counterexample to universal
+preservation rather than merely omitting a forward law
+([`SeparationReceipt.not_universal_preservation`](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L312)).
+
+> **Example.** BreakGlass uses separation. Exceptional authority maps to a
+> retained ordinary verdict that is denied; a separate positive target control
+> shows that ordinary authorization is not an empty judgment. The result does
+> not unify exceptional and ordinary authority. It proves that the proposed
+> embedding fails.
+
+## The indexed ledger shape
+
+`EntryIndex` names seven reviewed semantic slots. An `IndexedEntry` contains a
+projection, one of the four law shapes, source pins, capability receipts, and
+at least one explicit nonclaim
 ([source](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L410)). A
-`Ledger` is total by construction because it must supply an entry for every
-index
+`Ledger` is total by construction because it supplies an entry for every index
 ([`Ledger.covers`](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L424)).
 
-The four primary law shapes are:
+Capability status is proof-bearing. `supported` contains the required receipt;
+`unsupported` contains a classified reason
+([source](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L328)). A label
+such as “exact” cannot be stored without the corresponding dependent law.
 
-- `ExactJudgmentReceipt`: source judgment iff target judgment after the one
-  declared map;
-- `ExactRepresentationReceipt`: judgment exactness plus a two-sided partial
-  decoder contract;
-- `DirectionalWithLossReceipt`: preservation plus an explicit distinct source
-  pair collapsed by that same map;
-- `SeparationReceipt`: an inhabited source-positive image rejected by the
-  target, plus a target-positive control.
-
-Their definitions are
-[`ComparisonKind` and receipt structures](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L189).
-Dependent selection by `ComparisonLaw` prevents storing an “exact” label without
-constructing its corresponding receipt.
-
-> **Theorem — `ExactRepresentationReceipt.map_injective`.** Complete recovery
-> implies that the declared map is injective
-> ([source](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L269)).
-
-> **Theorem — `DirectionalWithLossReceipt.no_left_inverse`.** The stored
-> collapsed pair rules out a decoder recovering every source
-> ([source](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L295)).
-
-> **Theorem — `SeparationReceipt.not_universal_preservation`.** The receipt's
-> own counterexample refutes universal preservation through its declared map
-> ([source](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L312)).
-
-Capability support is also proof-bearing: `supported` contains an
-entry-specific receipt, while `unsupported` contains a classified reason
-([source](../../LeanProofs/Admissibility/Calculus/Comparison.lean#L328)).
-
-### The crucial custody limit
-
-The instantiated seven-entry comparison table and its native adapters are not
-in the public Lean surface. They remain receipt-bound research-tree evidence.
-The public theorem establishes the exhaustive *shape* any such ledger must
-inhabit, not a universal subsumption theorem between all seven source families.
-This is stated in the [rung-5 admission fence](../V14-READINESS-LEDGER.md#rung-5--the-indexed-comparison-framework-admitted-2026-07-18)
-and [claim-register entry 23](../../CLAIM-REGISTER.md#23-v14-rung-5--indexed-comparison-framework).
+> **Repository status.** The public Lean surface defines this exhaustive
+> framework. The concrete seven-entry table and its native adapters are
+> retained supporting evidence, not public Lean doctrine. The framework does
+> not prove that all seven native sources share one semantics. See
+> [claim-register entry 23](../../CLAIM-REGISTER.md#23-v14-rung-5--the-indexed-comparison-framework)
+> for the exact publication boundary.
 
 ## Decide once, then project
 
-The crossing contract combines exactly two governed families with lossless
-refusal encodings
-([`Crossing.Spec`](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L59)).
-Its native evaluation is deliberately concentrated:
+Rerunning a checker can change the evidence being discussed. A checker may be
+expensive or state-sensitive, and two successful runs may return different
+witness data. A summary computed now and an explanation recomputed later need
+not describe one event.
+
+A **crossing** combines exactly two governed families with exact refusal
+encodings. It evaluates both native decisions once and stores the pair:
 
 ```lean
 def check (S : Spec) (c : Claim S) : CheckedCrossing S c where
@@ -71,19 +82,14 @@ def check (S : Spec) (c : Claim S) : CheckedCrossing S c where
   }
 ```
 
-([source](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L102)). The two
-results are stored in `NativeDecisions`. `result`, `verdict`, and `located` are
-pure functions of that stored pair. They do not call a native checker again.
-
-This matters whenever checking could be expensive, state-sensitive, or
-noncanonical in its witness data. A consumer may inspect the stored decision,
-derive the branch Boolean, project a verdict, or produce a comparison receipt;
-it may not silently re-decide and assume that a new result is the stored one.
+([source](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L102)).
+`result`, `verdict`, and `located` are pure functions of the stored
+`NativeDecisions`; none calls a native checker again.
 
 ```mermaid
 flowchart LR
-  L[left decide once] --> N[NativeDecisions]
-  R[right decide once] --> N
+  L[left decision] --> N[stored pair]
+  R[right decision] --> N
   N --> SR[stored result]
   SR --> V[PathVerdict]
   SR --> LV[LocatedVerdict]
@@ -91,16 +97,23 @@ flowchart LR
   CP --> CR[ExactJudgmentReceipt]
 ```
 
-The crossing refusal type retains successful evidence in a mixed branch and
-both refusals in a double failure
-([source](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L75)). The theorem
+The mixed branches retain the successful witness beside the refusal. The
+double-failure branch retains both refusals. The theorem
 [`both_refusals_located_and_decode`](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L342)
-shows that both locations appear in order and each refusal decodes to its exact
-native packet. Composite authority is exactly the conjunction of the two native
+shows that both locations appear in order and that each obstruction decodes to
+its exact native packet.
+
+Composite authority is exactly the conjunction of the two component
 authorities
 ([`authority_iff_components`](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L180)).
+One successful component cannot cure the other component's refusal.
 
-The comparison projection over a `CheckedPacket` is the identity map between
-two observations of the already-stored packet
+The comparison projection over a `CheckedPacket` compares two observations of
+the already-stored packet
 ([`checkedProjectionExact`](../../LeanProofs/Admissibility/Calculus/Crossing.lean#L393)).
-It proves judgment agreement; it is not permission to evaluate again.
+It proves judgment agreement for that stored decision. It is not permission to
+evaluate either family again.
+
+> **Core/instance boundary.** Crossing supplies binary evidence composition.
+> It introduces no payment rule, obligation interaction, lifecycle semantics,
+> or N-ary composition theorem.

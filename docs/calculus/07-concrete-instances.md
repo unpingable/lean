@@ -3,9 +3,16 @@
 The common signature does not erase native substrate differences. Each instance
 chooses its own claim, witness, refusal, books, and total decision.
 
+The examples reuse three problems from the conceptual exposition: stale
+evidence and requested use; funded and bare histories with one endpoint; and
+exceptional authority that retains ordinary denial and audit history. Nothing
+in this chapter is automatically true of every governed family.
+
 ## Weathering: static licensing
 
-Weathering has five evidence states and four downstream dispositions
+Evidence can become too old to support direct reliance while remaining useful
+for downgrade or reprobe. The **Weathering** instance formalizes this licensing
+distinction with five evidence states and four downstream dispositions
 ([native types](../../LeanProofs/Admissibility/Calculus/Instances/Weathering/Native.lean#L45)).
 Direct reliance requires `canTestify = true`; downgrade, reprobe, and explicit
 stale carrying remain available without that license. Its native judgment is:
@@ -33,14 +40,15 @@ non-refusal `missingWitness` value deliberately decoding to `none`
 ([obstructions](../../LeanProofs/Admissibility/Calculus/Instances/Weathering/Obstructions.lean#L31),
 [decoder](../../LeanProofs/Admissibility/Calculus/Instances/Weathering/Spine.lean#L66)).
 
-## Bounded paid reachability: dynamic replay and Barrier
+## Bounded paid reachability: replay and exclusion
 
 The paid substrate has proof-relevant `Run` data over staged state transitions
 ([`Run`](../../LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability/Native.lean#L56)).
 The public instance fixes two origins, one endpoint, one warrant, and one
 positive admission run. `PaidClaim` has exactly `fromFunded` and `fromBare`.
 
-A refusal is a `Barrier origin`:
+Failure to find a run would be too weak to justify refusal. This instance uses
+a forward-closed exclusion certificate, formally `Barrier origin`:
 
 ```lean
 structure Barrier (origin : State Nat) where
@@ -89,8 +97,9 @@ settlement composition theorem.
 
 ## Bounded BreakGlass: origin and history
 
-BreakGlass is a terminal, materially richer instance. It is closed only
-relative to consumer-supplied `Atoms`—origin, state, actor, and step. A
+An exceptional act must not silently become ordinary authorization or clean
+history. **BreakGlass** is a bounded instance of that separation. It is closed
+only relative to consumer-supplied `Atoms`—origin, state, actor, and step. A
 `LifecycleOrigin` contains authority domain, epoch, and nonce. Every reference
 is indexed by a book kind and carries that origin
 ([source](../../LeanProofs/Admissibility/Calculus/Instances/BreakGlass/LifecycleOrigin.lean#L41)).
@@ -125,14 +134,18 @@ Two public separation receipts establish that exceptional authority does not
 turn the retained ordinary verdict into `.authorized`, and settlement standing
 does not clean the audit history
 ([comparison module](../../LeanProofs/Admissibility/Calculus/Instances/BreakGlass/Comparison.lean#L48)).
-The first is deliberately verdict-level. The historical stronger theorem about
-a native `AuthorizedStep` remains an adverse predecessor outside the target;
-the public module neither constructs nor rejects such a step
+The first is deliberately verdict-level. The public module neither constructs
+nor rejects the stronger native `AuthorizedStep` relation
 ([boundary comment and theorem](../../LeanProofs/Admissibility/Calculus/Instances/BreakGlass/Comparison.lean#L79)).
 
-Finally, the Weathering/BreakGlass crossing stores one fresh Weathering result
+The Weathering/BreakGlass crossing stores one fresh Weathering result
 and one BreakGlass result. It proves clean crossing for the four native phases,
 exact structured refusal for both laundering phases and foreign origins, exact
 location/decoding, and preservation of the origin and obligation observations
 ([crossing module](../../LeanProofs/Admissibility/Calculus/Instances/BreakGlass/Crossing.lean#L52)).
 It is not an unbounded or universal BreakGlass calculus.
+
+> **Core/instance boundary.** Weathering supplies use-sensitive static
+> licensing. Bounded paid reachability supplies replay and `Barrier` evidence.
+> BreakGlass supplies an origin-qualified obligation lifecycle. The core
+> calculus imposes none of those native semantics.
