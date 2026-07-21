@@ -71,5 +71,9 @@ import LeanProofs.ReachableDrift
 import LeanProofs.JudgmentOrientation
 import LeanProofs.JudgmentOrientation.Examples
 
+-- Governed Transport stable surface and its separately classified hostiles.
+import LeanProofs.GovernedTransport
+import LeanProofs.GovernedTransportEvidence
+
 -- Public terminal evidence for WDC reachability/refusal adapters.
 import LeanProofs.Admissibility.WitnessedReachability

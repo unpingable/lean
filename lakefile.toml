@@ -9,6 +9,8 @@ defaultTargets = [
   "AdmissibilityKernels",
   "AdmissibilityEvidence",
   "DynamicTrace",
+  "GovernedTransport",
+  "GovernedTransportEvidence",
   "SafetyBridge",
   "PathVerdict",
   "PathVerdictEvidence",
@@ -113,6 +115,19 @@ roots = [
   "LeanProofs.Admissibility.DynamicTrace",
   "LeanProofs.Admissibility.FreshnessDynamicTrace",
 ]
+
+# Exact GT-4A public stable/evidence split. The stable root imports only the
+# ten authorized generic leaves; hostile countermodels remain separately
+# default-built public evidence.
+[[lean_lib]]
+name = "GovernedTransport"
+srcDir = "."
+roots = ["LeanProofs.GovernedTransport"]
+
+[[lean_lib]]
+name = "GovernedTransportEvidence"
+srcDir = "."
+roots = ["LeanProofs.GovernedTransportEvidence"]
 
 [[lean_lib]]
 name = "SafetyBridge"

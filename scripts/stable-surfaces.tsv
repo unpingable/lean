@@ -8,6 +8,7 @@ admissibility-kernels	AdmissibilityKernels	LeanProofs.Admissibility.Admissibilit
 custody-indexed	CustodyIndexed	LeanProofs.CustodyIndexed	mathlib-free
 dynamic-trace	DynamicTrace	LeanProofs.Admissibility.DynamicTrace	mathlib-free
 dynamic-trace	DynamicTrace	LeanProofs.Admissibility.FreshnessDynamicTrace	mathlib-free
+governed-transport	GovernedTransport	LeanProofs.GovernedTransport	mathlib-free
 judgment-orientation	JudgmentOrientation	LeanProofs.JudgmentOrientation	mathlib-free
 path-verdict	PathVerdict	LeanProofs.Admissibility.PathVerdict	mathlib-free
 proof-theory	ProofTheory	LeanProofs.ProofTheory	mathlib-free

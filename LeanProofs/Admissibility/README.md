@@ -35,10 +35,15 @@ incubation moves to the sibling skunkworks; `ANNEX`, `Scratch/`, and
 
 Adding a public header or a build target does not promote a module.  Promotion
 is an explicit operator decision recorded by the applicable exact root and
-registry. The current tree closes at 201 public Lean sources — 104 stable, 96
-evidence, one aggregate — across eleven roots and 131 ownership relations.
-The completed release receipt is in
+registry. The released v14 tree closes at 201 public Lean sources — 104 stable,
+96 evidence, one aggregate — across eleven roots and 131 ownership relations.
+The pending top-level Governed Transport admission candidate would extend that
+inventory to 216/115/100/1 across twelve roots and 142 ownership relations;
+it does not widen any existing Admissibility root. The completed release
+receipt is in
 [`../../docs/V14-RELEASE-LEDGER.md`](../../docs/V14-RELEASE-LEDGER.md).
+The pending target record is
+[`../../docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md`](../../docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md).
 
 **What this is for.** Infrastructure substrate and formal contract, not by
 itself a paper or runtime proof. Governor (`agent_gov`) and the consumer tools

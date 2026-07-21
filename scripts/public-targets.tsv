@@ -13,6 +13,8 @@
 .	CustodyIndexed	stable-surface	mathlib-free	default
 .	CustodyIndexedEvidence	public-evidence	mathlib-free	default
 .	DynamicTrace	stable-surface	mathlib-free	default
+.	GovernedTransport	stable-surface	mathlib-free	default
+.	GovernedTransportEvidence	public-evidence	mathlib-free	default
 .	JudgmentOrientation	stable-surface	mathlib-free	default
 .	JudgmentOrientationEvidence	public-evidence	mathlib-free	default
 .	LeanProofs	repository-aggregate	mathlib-reaching	explicit

@@ -18,6 +18,20 @@ claim).
 Human and AI collaboration history, evidence basis, and attribution limits are
 recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
+## Post-v14 candidate — Governed Transport
+
+An operator-ratification candidate now maps the exact ratified GT-4A source
+packet into the separate Mathlib-free roots `LeanProofs.GovernedTransport`
+and `LeanProofs.GovernedTransportEvidence`. The stable root contains exactly
+ten generic leaves; 244 hostile/evidence declarations remain outside its
+closure. Target compilation and all 704 packet-bound declaration/body/axiom
+comparisons pass. Public custody and distribution activation remain pending
+operator ratification; Skunkworks remains the canonical scientific owner and
+no ownership transfer, runtime correspondence, release, tag, or DOI is
+claimed. See the
+[`target custody candidate`](docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md)
+and [`compatibility receipt`](docs/GT4A-PUBLIC-COMPATIBILITY-RECEIPT_2026-07-20.md).
+
 ## Current release: 14.0.0 — Governed Admissibility Calculus
 
 **Released 2026-07-18.** The annotated `v14.0.0` tag and
@@ -817,13 +831,17 @@ public module.
 The whole-tree custody gate, exact surface registries, family-specific
 footprint gates, and Mathlib-isolation checks are independent receipts.  This
 corrects the pre-v13 partial checker, which covered only a subset of the tree.
-v13 records the migration; the current v14 tree closes at 201 public sources
+v13 records the migration; the released v14 tree closes at 201 public sources
 (104 stable, 96 evidence, one aggregate), eleven roots, and 131 stable-root
-ownership relations. See
+ownership relations. The unratified GT-4A target candidate would close at 216
+public sources (115 stable, 100 evidence, one aggregate), twelve roots, and
+142 ownership relations. See
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration,
 [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for current
-accounting, and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for what each
-gate establishes.
+release accounting,
+[`docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md`](docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md)
+for the pending delta, and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
+what each gate establishes.
 
 ### `experiments/` — tracked wiring witnesses (non-canonical)
 

@@ -25,6 +25,28 @@ accepted witness's identity.
 
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
 
+## Post-v14 candidate — Governed Transport
+
+The pending `LeanProofs.GovernedTransport` surface formalizes proof-relevant
+transport across spans. Positive transport requires an explicit crossing lift;
+negative transport distinguishes image-relative blockage, global blockage,
+outstanding coverage, and exhibited gaps. Composition retains exact
+end-to-end routes, coverage repair adds witnesses without rewriting the
+original crossing, identity and associativity require explicit
+leg-preservation, and tagged federation retains local jurisdiction.
+
+The separate `LeanProofs.GovernedTransportEvidence` root carries the hostile
+countermodels: source evidence without a lift, incomplete coverage, local
+evidence laundering, endpoint-equality laundering, route-history collapse,
+and related composition/federation failures. These are public evidence, not
+stable dependencies.
+
+This is an operator-ratification candidate, not yet active target custody.
+C01, C02, C03, C04, private instances, operational correspondence,
+`FEDERATED-OR-NONE`, and a generic extension remain outside the admitted
+object. Exact scope and qualification are recorded in the
+[`GT-4A target custody candidate`](docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md).
+
 ## Formal contract and runtime conformance
 
 The proofs in this repository establish exact formal shapes, distinctions,
