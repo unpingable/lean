@@ -1,28 +1,44 @@
 # The Governed Admissibility Calculus
 
-This book documents the ratified public object imported by
-[`LeanProofs.Admissibility.Calculus`](../../LeanProofs/Admissibility/Calculus.lean#L37).
-It is an account of the Lean implementation, not a reconstruction from the
-papers. The recurring question is:
+This documentation has three entrances. Choose the one that matches the
+question you are trying to answer; none requires prior knowledge of the
+repository’s release history.
 
-> When is a representation entitled to speak for reality?
+The common subject is a calculus for evidence-bearing judgments. A complete
+**claim** is decided by returning either a claim-indexed **witness** or a
+claim-indexed **refusal**. **Authority** means that a witness exists. Standing,
+custody, and obligation remain separate books, and translations must state
+exactly which judgment or representation they preserve.
 
-The calculus gives a deliberately bounded answer. A claim is entitled when its
-native governed family returns claim-indexed witness data. Such a witness must
-come from a claim with standing and must preserve custody. Outstanding
-obligations remain a separate book. A refusal is not the absence of a proof or
-a failed Boolean: it is native, claim-indexed data. The total checker returns
-one of those two artifacts.
+## Conceptual exposition
 
-The answer is therefore not a single global `Admissible` judgment. It is a
-common *shape* inhabited by different native judgments, plus explicit laws for
-transport, comparison, and binary crossing. The stable root imports twelve
-modules; its full frozen theorem footprint is 191 calculus receipts plus the
-36-receipt `PathVerdict` substrate. The counts and axiom classes are enforced by
-[`check-calculus-footprint.sh`](../../scripts/check-calculus-footprint.sh) and
-[`check-pathverdict-footprint.sh`](../../scripts/check-pathverdict-footprint.sh).
+Read [The Governed Admissibility Calculus](GOVERNED-ADMISSIBILITY-CALCULUS.md)
+if you want the easiest entrance. It develops the intellectual problem in
+ordinary language through four recurring examples:
 
-## Reading order
+- a green health endpoint over a stalled evidence pipeline;
+- funded and bare claims that reach the same visible endpoint;
+- stale evidence that supports downgrade but not direct testimony;
+- exceptional BreakGlass authority that preserves ordinary denial and audit
+  history.
+
+Formal names appear only after the underlying idea has been introduced. Lean
+anchors are short, optional sections.
+
+## Mathematical calculus
+
+Read [A Mathematical Presentation](GOVERNED-ADMISSIBILITY-CALCULUS-TEXTBOOK.md)
+if you want definitions, inference rules, derivations, and counterexamples in
+paper notation. Each display is marked as a definition, primitive law, generic
+theorem, instance theorem, countermodel, or explanatory boundary. The text
+separates the mathematical rule from its Lean anchor.
+
+This path assumes comfort with dependent types, sums, predicates, and basic
+proof notation, but not knowledge of the project’s campaign terminology.
+
+## Lean and audit reference
+
+Use the numbered chapters when you need a declaration-grounded account:
 
 1. [Motivation and scope](01-motivation-and-scope.md)
 2. [The governed family](02-governed-family.md)
@@ -34,41 +50,47 @@ modules; its full frozen theorem footprint is 191 calculus receipts plus the
 8. [Boundaries, countermodels, and nonclaims](08-boundaries-countermodels-and-nonclaims.md)
 9. [Reading the Lean](09-reading-the-lean.md)
 
-Reference material: [declaration index](declaration-index.md) and
-[glossary](glossary.md).
+The [glossary](glossary.md) defines project vocabulary. The
+[declaration index](declaration-index.md) maps principal prose claims to exact
+Lean declarations and is the fastest route from a statement in either book to
+its implementation.
+
+This layer is intentionally denser. It is for readers checking theorem scope,
+core-versus-instance boundaries, source locations, or proof status.
 
 ## The system at a glance
 
 ```mermaid
 flowchart LR
-  C[claim c] --> D[F.decide c]
-  D -->|inl w| W[claim-indexed witness]
-  D -->|inr r| R[claim-indexed refusal]
-  W --> A[Authority F c]
-  W --> S[Standing F c]
-  W --> K[Custody F c]
-  O[Obligation F c] -. separate book .- A
-  R --> NA[not Authority F c]
-  R --> E[lossless refusal encoding]
-  E --> V[PathVerdict / LocatedVerdict]
+  C[complete claim c] --> D[decide c]
+  D -->|accepted| W[witness for c]
+  D -->|refused| R[refusal for c]
+  W --> A[authority]
+  W --> S[standing]
+  W --> K[custody]
+  O[obligation] -. separate native book .- A
+  R --> N[not authority]
+  R --> E[exact refusal encoding]
+  E --> V[diagnostic verdict]
 ```
 
-The arrows labeled by theorems are one-way unless an equivalence is stated.
-In particular, standing, custody, and absence of obligation do not introduce
-authority. The exact fields and laws are in
-[`GovernedFamily`](../../LeanProofs/Admissibility/Calculus/Core.lean#L77).
+Every arrow is one-way unless an equivalence is explicitly proved. Standing,
+custody, and absence of obligation do not create authority. The core calculus
+does not impose an obligation lifecycle; the bounded BreakGlass instance
+supplies one for its own claims.
 
-## Authority and custody of this documentation
+## Formal and repository status
 
-Mathematical claims in these chapters link to exact declarations. Promotion,
-release, and runtime-conformance claims instead cite repository custody records,
-principally [claim-register entries 19–25](../../CLAIM-REGISTER.md#19-v14-rung-1--pathverdict-domainslocated-substrate),
-the [v14 readiness ledger](../V14-READINESS-LEDGER.md), and the
-[v14 release ledger](../V14-RELEASE-LEDGER.md). Compiling a module, importing it
-through an aggregate, and promoting it to a stable surface are different acts;
-the repository's [agent rules](../../AGENTS.md) state that distinction.
+The public Lean root is
+[`LeanProofs.Admissibility.Calculus`](../../LeanProofs/Admissibility/Calculus.lean).
+Its exact imports, theorem footprints, and publication status are repository
+facts rather than premises of the mathematical exposition.
 
-No chapter claims that a runtime conforms to these definitions. The stable
-root itself requires an exact correspondence map, executable preservation and
-transport evidence, and revision-bound qualification receipts for such a claim
-([root header](../../LeanProofs/Admissibility/Calculus.lean#L23)).
+The [claim register](../../CLAIM-REGISTER.md) records claim-level status. The
+[readiness ledger](../V14-READINESS-LEDGER.md) preserves detailed admission
+history and proof accounting. The declaration index links the mathematics to
+the public source without requiring either ledger as introductory reading.
+
+No chapter claims that a runtime conforms to these definitions. Runtime
+conformance requires a separate correspondence proof and executable,
+revision-bound evidence.
