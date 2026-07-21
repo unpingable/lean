@@ -41,10 +41,11 @@ evidence laundering, endpoint-equality laundering, route-history collapse,
 and related composition/federation failures. These are public evidence, not
 stable dependencies.
 
-This is an operator-ratification candidate, not yet active target custody.
-C01, C02, C03, C04, private instances, operational correspondence,
+The generic GT-4A target remains an operator-ratification candidate, not yet
+active target custody. C03 is separately ratified as active public evidence;
+C01, C02, C04, other private instances, operational correspondence,
 `FEDERATED-OR-NONE`, and a generic extension remain outside the admitted
-object. Exact scope and qualification are recorded in the
+objects. Exact GT-4A scope and qualification are recorded in the
 [`GT-4A target custody candidate`](docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md).
 
 ## Formal contract and runtime conformance

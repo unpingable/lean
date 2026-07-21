@@ -320,8 +320,19 @@ flattened required distinction is a defect.
 | **Claim** | Proof-relevant governed spans keep lift, translation, target-local reliance, exact coverage, negative residue, end-to-end composition, explicit repair provenance, leg-preserving identity/coherence, and tagged federation distinct. The stable surface does not obtain stronger laws by dropping the hostile countermodels; evidence remains separately compiled and outside stable imports. |
 | **Bucket** | Structural (generic proof-relevant transport, exact coverage/composition, explicit negative boundaries) |
 | **Status** | **SOUND TARGET CANDIDATE** — exact source packet and archive accepted; both Mathlib-free targets compile; all 704 declaration names/kinds/types/bodies and axiom sets reproduce exactly (460 stable, 244 evidence; 679 axiom-free, 16 `[propext]`, 9 `[Quot.sound]`, zero choice/other); H01–H16 refuse. Target custody remains pending operator ratification. |
-| **Scope custody** | Skunkworks remains canonical scientific owner. The public repository is a candidate canonical distribution surface only. C01 is internally qualified but excluded; C02 remains partial and excluded; C03 remains separately gated and excluded; C04 remains unresolved; `LAW-FAMILY-ONLY` and `NO-GENERIC-EXTENSION-EARNED` remain active boundaries. |
+| **Scope custody** | Skunkworks remains canonical scientific owner. The public repository is a candidate canonical distribution surface for the exact GT-4A stable object. C01 is internally qualified but excluded; C02 remains partial and excluded; C03 is separately ratified as active public evidence under claim 27; C04 remains unresolved; `LAW-FAMILY-ONLY` and `NO-GENERIC-EXTENSION-EARNED` remain active boundaries. |
 | **Nonclaims / fix** | No ownership transfer, shared canonical ownership, runtime correspondence, external validation, generic extension, `FEDERATED-OR-NONE`, release, tag, DOI, or publication. Operator serialization/ratification remains required; no scientific fix is open. |
+
+### 27. GT-C03 — bounded SpineProjection public evidence
+
+| Field | Value |
+|-------|-------|
+| **Location** | `LeanProofs/GovernedTransportEvidence/Instances/SpineProjection.lean`, exposed only through the existing `LeanProofs.GovernedTransportEvidence` aggregate. Ratification: [`docs/GT-C03-OPERATOR-RATIFICATION_2026-07-20.md`](docs/GT-C03-OPERATOR-RATIFICATION_2026-07-20.md). |
+| **Claim** | The exact C03 instance-level governed span preserves the qualified native Weathering-to-verdict-spine correspondence and its target-local refusals, with K18 carried by the leaf and K05 remaining separately pinned. |
+| **Bucket** | Public evidence (bounded governed-transport instance; not stable GT API) |
+| **Status** | **RATIFIED / ACTIVE** — exact candidate `769cba86a12cf6788b88916d140acc4e9fd78af7`, tree `42ee31f7b513400c5fb9c51440be4e205a651a24`; 82/82 declarations, 72 axiom-free and 10 exactly `[propext]`, zero other axioms or `Classical.choice`; public compatibility and custody active. |
+| **Scope custody** | Skunkworks remains canonical scientific owner. The public repository has active custody of this exact public-evidence object only. The stable GT root and its existing 704 declarations remain unchanged. |
+| **Nonclaims / fix** | No C01/C02/C04 admission, stable-root widening, generic extension, general ownership transfer, runtime correspondence, external validation, release, tag, DOI, or publication. |
 
 ---
 

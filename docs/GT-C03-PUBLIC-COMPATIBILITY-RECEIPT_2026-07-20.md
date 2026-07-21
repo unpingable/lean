@@ -4,10 +4,12 @@
 
 **Campaign:** `GT-C03 Public Admission Qualification`
 
-**Candidate verdict:** `C03-PUBLIC-ADMISSION-CANDIDATE`
+**Candidate verdict:** `C03-PUBLIC-ADMISSION-RATIFIED`
 
-**Receipt posture:** target-candidate compatibility established; operator
-ratification and target custody activation remain pending.
+**Receipt posture:** `ACTIVE` under operator decision
+`RATIFY-C03-PUBLIC-ADMISSION` for the exact candidate commit
+`769cba86a12cf6788b88916d140acc4e9fd78af7` and tree
+`42ee31f7b513400c5fb9c51440be4e205a651a24`.
 
 ## Governed objects
 
@@ -45,8 +47,8 @@ target blob         d84c215d9d45334f40c9888336c33e375ce694b0
 target SHA-256      03615e67a159cba0b5495b536723c83899dcad98b6271c0b7675e32f0f3f62a0
 ```
 
-No candidate commit or tree is recorded yet. The work remains an inactive
-custody candidate until an operator ratifies exact serialized revisions.
+The candidate commit and tree are bound by the operator ratification record.
+Public compatibility and C03 target custody are active for those exact bytes.
 
 ## Exact declaration correspondence
 
@@ -192,9 +194,9 @@ inventory identities.
 
 ## Compatibility boundary
 
-This receipt establishes candidate compatibility only. It does not establish:
+This receipt establishes active public compatibility for the exact ratified
+C03 candidate only. It does not establish:
 
-- operator ratification or active C03 custody;
 - a change to the stable public Governed Transport contract;
 - target-global coverage;
 - governed composition or associativity for C03;

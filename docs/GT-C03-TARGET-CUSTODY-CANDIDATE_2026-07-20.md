@@ -1,14 +1,14 @@
-# GT-C03 Target Custody Candidate
+# GT-C03 Target Custody Record
 
 **Date:** 2026-07-20
 
-**Candidate verdict:** `C03-PUBLIC-ADMISSION-CANDIDATE`
+**Candidate verdict:** `C03-PUBLIC-ADMISSION-RATIFIED`
 
-**Custody state:** `INACTIVE — OPERATOR RATIFICATION REQUIRED`
+**Custody state:** `ACTIVE`
 
-This record describes a candidate target envelope. It does not activate
-custody, ratify the candidate, alter scientific ownership, or modify the
-stable public GT contract.
+The exact candidate target envelope is active under the operator decision
+`RATIFY-C03-PUBLIC-ADMISSION`. This activation does not alter scientific
+ownership or modify the stable public GT contract.
 
 ## Revision chain
 
@@ -16,18 +16,20 @@ stable public GT contract.
 public base commit       876ebf953bfa16c135138d9a736c050421ccb7e9
 public base tree         00a5eed4ad4657fef9e8918c0662e9f50e89defa
 
-candidate commit         PENDING
-candidate tree           PENDING
+candidate commit         769cba86a12cf6788b88916d140acc4e9fd78af7
+candidate tree           42ee31f7b513400c5fb9c51440be4e205a651a24
 candidate parent         e8954236a3a42c0ad9ed8f40cfc72d80524b0615
 parent tree              576ffc003706891918d447a36e97fc0535d1b188
 
-custody activation       INACTIVE
-activation tree          INACTIVE
+custody activation       ACTIVE — containing commit
+activation parent        4f8fa3ca5d9902869c6aa5de091af75bfb1a823f
+operator record          docs/GT-C03-OPERATOR-RATIFICATION_2026-07-20.md
 ```
 
-The pending fields prevent self-reference. A later operator decision must
-bind exact Git revisions and verify their exact changed-path surface before
-custody can activate.
+The activation revision is the commit containing this record; this avoids a
+self-referential commit identifier. Its exact commit, tree, and parent are
+reported by Git after serialization. The operator record binds the immutable
+candidate and manifest identities.
 
 The serialization parent is a documentation-only descendant of the frozen
 public scientific envelope. The intervening commits `51b9e3a...` and
@@ -126,7 +128,7 @@ target C03 leaf. Neither knife is laundered into a stronger disposition.
 
 ## Custody-role split
 
-If a later operator ratifies and activates this exact candidate:
+Under the operator ratification of this exact candidate:
 
 - the public repository may hold target custody for the exact C03 evidence
   leaf and expose it through the public evidence aggregate;
@@ -137,11 +139,12 @@ If a later operator ratifies and activates this exact candidate:
 - internal qualification plus public availability still do not constitute
   external validation or endorsement.
 
-At this candidate gate the current states are:
+The current states are:
 
 ```text
-C03 public admission                 CANDIDATE ONLY
-C03 target custody                   INACTIVE
+C03 public admission                 RATIFIED
+C03 target custody                   ACTIVE
+C03 public compatibility             ACTIVE
 stable public GT surface             UNCHANGED
 GT-4A source/public custody           CLOSED; NOT REOPENED
 canonical scientific ownership       SKUNKWORKS
@@ -161,8 +164,8 @@ transfer.
 
 ## Operator gate
 
-The only permitted next act is independent review of an exact serialized
-candidate commit and tree. If the path surface, leaf blob, manifests,
-declaration correspondence, axiom footprint, dependency closure, K05/K18
-posture, stable-root identity, or bounded disposition differs, refuse
-ratification and leave custody inactive.
+The exact serialized candidate passed independent operator review and was
+ratified by `RATIFY-C03-PUBLIC-ADMISSION`. Any later change to its path
+surface, leaf blob, manifests, declaration correspondence, axiom footprint,
+dependency closure, K05/K18 posture, stable-root identity, or bounded
+disposition is a new object and is not covered by this activation.
