@@ -144,6 +144,7 @@ LeanProofs/GovernedTransportEvidence.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransportEvidence/CompositionHostile.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransportEvidence/EndpointEqualityHostile.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransportEvidence/Hostile.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransportEvidence/Instances/SpineProjection.lean	PUBLIC-EVIDENCE	-
 LeanProofs/JudgmentOrientation.lean	STABLE-SURFACE	judgment-orientation
 LeanProofs/JudgmentOrientation/Attribution.lean	STABLE-SURFACE	judgment-orientation
 LeanProofs/JudgmentOrientation/Bridge.lean	STABLE-SURFACE	judgment-orientation

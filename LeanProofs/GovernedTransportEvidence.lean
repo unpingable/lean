@@ -9,3 +9,4 @@
 import LeanProofs.GovernedTransportEvidence.Hostile
 import LeanProofs.GovernedTransportEvidence.CompositionHostile
 import LeanProofs.GovernedTransportEvidence.EndpointEqualityHostile
+import LeanProofs.GovernedTransportEvidence.Instances.SpineProjection

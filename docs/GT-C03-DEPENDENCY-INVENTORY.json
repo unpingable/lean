@@ -1,0 +1,341 @@
+{
+  "classification": {
+    "hostile_fixture_dependency": false,
+    "mathlib_dependency": false,
+    "private_campaign_dependency": false,
+    "skunkworks_namespace_dependency": false,
+    "temporary_infrastructure_dependency": false
+  },
+  "k05": {
+    "posture": "frozen source adverse evidence plus already-public exact non-collapse controls; not claimed as public executable hostile module",
+    "public_controls": [
+      "Admissibility.Calculus.LosslessEncoding.encodePacket_injective",
+      "Admissibility.Calculus.LosslessEncoding.distinct_refusals_encode_distinct",
+      "Admissibility.Calculus.LosslessEncoding.no_subsingleton_domain_of_distinct_refusals",
+      "Admissibility.Calculus.Instances.Weathering.weather_funnel_distinguishes_stale_and_retired"
+    ],
+    "source_blob": "b448b82cd248ecedb926bd95938ccf958044ac92",
+    "source_path": "formalization/Calculi/Scratch/CrossCalculus/LosslessEncodingCollapse.lean",
+    "source_sha256": "386cbf96af650620e983619f1a179ad8a6d6bb1bf6d36fc519b22b786f86ab9a",
+    "target_transitive_import": false
+  },
+  "k18": {
+    "carried_by_target_leaf": true,
+    "receipts": [
+      "missingWitness_exhibited_gap",
+      "weatherBridge_not_target_covered",
+      "missingWitness_has_no_imported_positive",
+      "missingWitness_has_no_imported_negative",
+      "missingWitness_target_local_is_not_transported"
+    ]
+  },
+  "protected_public_objects": [
+    {
+      "base_blob": "e9fe6ab1be849df8c82abc915cc411c089542090",
+      "byte_exact": true,
+      "candidate_blob": "e9fe6ab1be849df8c82abc915cc411c089542090",
+      "path": "LeanProofs/GovernedTransport.lean"
+    },
+    {
+      "base_blob": "275580b4fc8a5c5a7b667d80bb7f6c65efe0fe2c",
+      "byte_exact": true,
+      "candidate_blob": "275580b4fc8a5c5a7b667d80bb7f6c65efe0fe2c",
+      "path": "LeanProofs/GovernedTransport/Core.lean"
+    },
+    {
+      "base_blob": "73562656320e1d8d534872aab1df0cd4de1d4762",
+      "byte_exact": true,
+      "candidate_blob": "73562656320e1d8d534872aab1df0cd4de1d4762",
+      "path": "LeanProofs/GovernedTransport/Coverage.lean"
+    },
+    {
+      "base_blob": "0743f6e2129a7fcb1733a7a23bc7527fad03856b",
+      "byte_exact": true,
+      "candidate_blob": "0743f6e2129a7fcb1733a7a23bc7527fad03856b",
+      "path": "LeanProofs/GovernedTransport/Positive.lean"
+    },
+    {
+      "base_blob": "1be8c39b950fd6555b0e7fa5f70bded70e42806f",
+      "byte_exact": true,
+      "candidate_blob": "1be8c39b950fd6555b0e7fa5f70bded70e42806f",
+      "path": "LeanProofs/GovernedTransport/Negative.lean"
+    },
+    {
+      "base_blob": "80d08e84d4aa4a111dfc73015a5e0d5caf027a07",
+      "byte_exact": true,
+      "candidate_blob": "80d08e84d4aa4a111dfc73015a5e0d5caf027a07",
+      "path": "LeanProofs/GovernedTransport/Residue.lean"
+    },
+    {
+      "base_blob": "ab9011a1f676c7e7d0bcdd8d80e3e831de8ed288",
+      "byte_exact": true,
+      "candidate_blob": "ab9011a1f676c7e7d0bcdd8d80e3e831de8ed288",
+      "path": "LeanProofs/GovernedTransport/Composition.lean"
+    },
+    {
+      "base_blob": "f0138c89e757431c80634016618915dcfa88691b",
+      "byte_exact": true,
+      "candidate_blob": "f0138c89e757431c80634016618915dcfa88691b",
+      "path": "LeanProofs/GovernedTransport/Federation.lean"
+    },
+    {
+      "base_blob": "392962e3c0f098039b9028441a2502453be975fd",
+      "byte_exact": true,
+      "candidate_blob": "392962e3c0f098039b9028441a2502453be975fd",
+      "path": "LeanProofs/GovernedTransport/Identity.lean"
+    },
+    {
+      "base_blob": "40b52e36bd9d85d2eafb7a00594040232e8a0c01",
+      "byte_exact": true,
+      "candidate_blob": "40b52e36bd9d85d2eafb7a00594040232e8a0c01",
+      "path": "LeanProofs/GovernedTransport/Coherence.lean"
+    },
+    {
+      "base_blob": "e8e656d67829c55802f1edaef224ca55727c0d26",
+      "byte_exact": true,
+      "candidate_blob": "e8e656d67829c55802f1edaef224ca55727c0d26",
+      "path": "LeanProofs/GovernedTransport/CoverageRepair.lean"
+    },
+    {
+      "base_blob": "6878e37156ec31ef6a5c60b3c87067ce263a92e1",
+      "byte_exact": true,
+      "candidate_blob": "6878e37156ec31ef6a5c60b3c87067ce263a92e1",
+      "path": "LeanProofs/GovernedTransportEvidence/Hostile.lean"
+    },
+    {
+      "base_blob": "ae61d7e2b0dd3e3f4520c4fe47d3c20b8b9f09bc",
+      "byte_exact": true,
+      "candidate_blob": "ae61d7e2b0dd3e3f4520c4fe47d3c20b8b9f09bc",
+      "path": "LeanProofs/GovernedTransportEvidence/CompositionHostile.lean"
+    },
+    {
+      "base_blob": "1d33375a6383e93255b9cc824f326a3288b6c751",
+      "byte_exact": true,
+      "candidate_blob": "1d33375a6383e93255b9cc824f326a3288b6c751",
+      "path": "LeanProofs/GovernedTransportEvidence/EndpointEqualityHostile.lean"
+    },
+    {
+      "base_blob": "50b8d59b11f8a91a95f6af1608e89ffc5eab7a93",
+      "byte_exact": true,
+      "candidate_blob": "50b8d59b11f8a91a95f6af1608e89ffc5eab7a93",
+      "path": "LeanProofs.lean"
+    },
+    {
+      "base_blob": "8ba8c548c9f054050e631bd0e230e2b891aa4a98",
+      "byte_exact": true,
+      "candidate_blob": "8ba8c548c9f054050e631bd0e230e2b891aa4a98",
+      "path": "lakefile.toml"
+    },
+    {
+      "base_blob": "20a43d9e0701055fea00967e08126c193d0df269",
+      "byte_exact": true,
+      "candidate_blob": "20a43d9e0701055fea00967e08126c193d0df269",
+      "path": "scripts/public-targets.tsv"
+    },
+    {
+      "base_blob": "8d12aa91a1a9825c21cfcde7ed051625a43f727a",
+      "byte_exact": true,
+      "candidate_blob": "8d12aa91a1a9825c21cfcde7ed051625a43f727a",
+      "path": "scripts/stable-surfaces.tsv"
+    }
+  ],
+  "public_base": {
+    "commit": "876ebf953bfa16c135138d9a736c050421ccb7e9",
+    "tree": "00a5eed4ad4657fef9e8918c0662e9f50e89defa"
+  },
+  "serialization_parent": {
+    "commit": "e8954236a3a42c0ad9ed8f40cfc72d80524b0615",
+    "tree": "576ffc003706891918d447a36e97fc0535d1b188",
+    "relation_to_public_base": "documentation-only descendant",
+    "intervening_commits": [
+      "51b9e3a0de75b255320c28fe7bcbb491383575bb",
+      "e8954236a3a42c0ad9ed8f40cfc72d80524b0615"
+    ],
+    "intervening_lean_path_count": 0,
+    "intervening_gt_metadata_path_count": 0
+  },
+  "root_effect": {
+    "evidence_root": {
+      "aggregate_plus_transitive_closure_count": 21,
+      "base_blob": "bbb92b0c82d100a1dd0baac662aba36730c059c0",
+      "candidate_blob": "b455ee8d66498b1126a599932406fe96fa7d2420",
+      "change": "one added import of the C03 evidence leaf",
+      "changed": true,
+      "module": "LeanProofs.GovernedTransportEvidence"
+    },
+    "lakefile_changed": false,
+    "repository_root": {
+      "changed": false,
+      "module": "LeanProofs"
+    },
+    "stable_root": {
+      "aggregate_plus_leaf_closure_count": 11,
+      "changed": false,
+      "module": "LeanProofs.GovernedTransport",
+      "stable_leaf_count": 10
+    },
+    "stable_surface_registry_changed": false,
+    "target_registry_changed": false,
+    "public_custody_registry": {
+      "path": "scripts/public-custody.tsv",
+      "base_blob": "acc0cd8a0663b20d2eb16683b665183e818eb64b",
+      "candidate_blob": "2197691fab61613c82d2a2e5bba22d2dabad4406",
+      "change": "one PUBLIC-EVIDENCE row for the C03 leaf"
+    }
+  },
+  "schema": "gt-c03-dependency-inventory-v1",
+  "source_leaf": {
+    "blob": "37bea51190157023c521d8e8f71912f1485cf9e8",
+    "direct_imports": [
+      {
+        "blob": "271b57be958f4f9ac4b5ba2f8f4a1365a6e208b2",
+        "disposition": "mapped to exact public endpoint",
+        "module": "Calculi.Scratch.CrossCalculus.WeatheringSpine",
+        "path": "formalization/Calculi/Scratch/CrossCalculus/WeatheringSpine.lean"
+      },
+      {
+        "blob": "b448b82cd248ecedb926bd95938ccf958044ac92",
+        "disposition": "unused adverse evidence; deliberately excluded from target closure",
+        "module": "Calculi.Scratch.CrossCalculus.LosslessEncodingCollapse",
+        "path": "formalization/Calculi/Scratch/CrossCalculus/LosslessEncodingCollapse.lean"
+      },
+      {
+        "blob": "abdfcad51f6c04a6700fa0e3e41bd049ee7c24d4",
+        "disposition": "mapped to exact public GT leaf",
+        "module": "Calculi.Scratch.GovernedTransport.Positive",
+        "path": "formalization/Calculi/Scratch/GovernedTransport/Positive.lean"
+      },
+      {
+        "blob": "e71b057eabcdc117299d0cc3e75eb79da8b978fc",
+        "disposition": "mapped to exact public GT leaf",
+        "module": "Calculi.Scratch.GovernedTransport.CoverageRepair",
+        "path": "formalization/Calculi/Scratch/GovernedTransport/CoverageRepair.lean"
+      }
+    ],
+    "path": "formalization/Calculi/Scratch/GovernedTransport/Instances/SpineProjection.lean"
+  },
+  "target_leaf": {
+    "blob": "d84c215d9d45334f40c9888336c33e375ce694b0",
+    "declaration_namespace": "LeanProofs.GovernedTransport.Instances.SpineProjection",
+    "dependency_count": 12,
+    "direct_imports": [
+      "LeanProofs.Admissibility.Calculus.Instances.Weathering.Spine",
+      "LeanProofs.GovernedTransport.Positive",
+      "LeanProofs.GovernedTransport.CoverageRepair"
+    ],
+    "forbidden_dependency_count": 0,
+    "module": "LeanProofs.GovernedTransportEvidence.Instances.SpineProjection",
+    "path": "LeanProofs/GovernedTransportEvidence/Instances/SpineProjection.lean",
+    "sha256": "03615e67a159cba0b5495b536723c83899dcad98b6271c0b7675e32f0f3f62a0",
+    "transitive_dependencies_excluding_leaf": [
+      {
+        "blob": "961f4d2a1ea7c5d9236338dedf42ded6481d1c3e",
+        "mode": "100644",
+        "module": "LeanProofs.Admissibility.Calculus.Core",
+        "path": "LeanProofs/Admissibility/Calculus/Core.lean",
+        "sha256": "13f0f8164ff6c9de6b9cfb05053fc1bed58aeb7d8c3f2289df5d69cb32dd5b7c",
+        "stable_owners": "admissibility-calculus",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "4d26acc98ca3879e7c01e13abe3ef2a902caf1a4",
+        "mode": "100644",
+        "module": "LeanProofs.Admissibility.Calculus.Instances.Weathering",
+        "path": "LeanProofs/Admissibility/Calculus/Instances/Weathering.lean",
+        "sha256": "adf49a1e537b6f48aad2ae91c2f62a29f2888610f30cfc4377e4f9307070a4c9",
+        "stable_owners": "admissibility-calculus",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "b7a356dd6690c6c59ce180eafa46ab030b4816b7",
+        "mode": "100644",
+        "module": "LeanProofs.Admissibility.Calculus.Instances.Weathering.Native",
+        "path": "LeanProofs/Admissibility/Calculus/Instances/Weathering/Native.lean",
+        "sha256": "7b84bcd23a41a3ff162969905d16a0178749dbdc78764de7eff92105b8383866",
+        "stable_owners": "admissibility-calculus",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "d91638f116908896cfd875874beede5bb4142bf1",
+        "mode": "100644",
+        "module": "LeanProofs.Admissibility.Calculus.Instances.Weathering.Obstructions",
+        "path": "LeanProofs/Admissibility/Calculus/Instances/Weathering/Obstructions.lean",
+        "sha256": "28ccda8619845f75fcfa62288573765b15a8ffb0ee905c8128fb349f05810e7c",
+        "stable_owners": "admissibility-calculus",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "11edea79fdb9f44d6a974113447c6f38bbf92152",
+        "mode": "100644",
+        "module": "LeanProofs.Admissibility.Calculus.Instances.Weathering.Spine",
+        "path": "LeanProofs/Admissibility/Calculus/Instances/Weathering/Spine.lean",
+        "sha256": "c3b1674685891cbb48d7a0825436bd5fad4f01868929f62a3fc57c31ff816262",
+        "stable_owners": "admissibility-calculus",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "c2c9208fcd1ce41c32329d4ba5074b924e13a0cc",
+        "mode": "100644",
+        "module": "LeanProofs.Admissibility.Calculus.Spine",
+        "path": "LeanProofs/Admissibility/Calculus/Spine.lean",
+        "sha256": "565eaff45c10d3ae1c5d5c942c96e12c9b0b7b08f806ce16cc470ccfd07c6f08",
+        "stable_owners": "admissibility-calculus",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "2ea8ac303376a772e6182bb62452db0ccbc191f2",
+        "mode": "100644",
+        "module": "LeanProofs.Admissibility.PathVerdict.Core",
+        "path": "LeanProofs/Admissibility/PathVerdict/Core.lean",
+        "sha256": "76aa68bbdd7ff414e392a3fd3ff161c4b22cc4f477b765f1fb6efcda4048dc4d",
+        "stable_owners": "admissibility-calculus,path-verdict",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "ab9011a1f676c7e7d0bcdd8d80e3e831de8ed288",
+        "mode": "100644",
+        "module": "LeanProofs.GovernedTransport.Composition",
+        "path": "LeanProofs/GovernedTransport/Composition.lean",
+        "sha256": "cfdf3f7c918941aa44cf22d0421a17ba039327f5d2efe229fe144f1db7b2239a",
+        "stable_owners": "governed-transport",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "275580b4fc8a5c5a7b667d80bb7f6c65efe0fe2c",
+        "mode": "100644",
+        "module": "LeanProofs.GovernedTransport.Core",
+        "path": "LeanProofs/GovernedTransport/Core.lean",
+        "sha256": "20d9373d8ba8017bfb3aa531576c3cd9b8a6d8f88d40df1164853d23c8808a20",
+        "stable_owners": "governed-transport",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "73562656320e1d8d534872aab1df0cd4de1d4762",
+        "mode": "100644",
+        "module": "LeanProofs.GovernedTransport.Coverage",
+        "path": "LeanProofs/GovernedTransport/Coverage.lean",
+        "sha256": "e8001326804daebe881524db683add903636c0ea3bdc5c8ea8d57e16a030038f",
+        "stable_owners": "governed-transport",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "e8e656d67829c55802f1edaef224ca55727c0d26",
+        "mode": "100644",
+        "module": "LeanProofs.GovernedTransport.CoverageRepair",
+        "path": "LeanProofs/GovernedTransport/CoverageRepair.lean",
+        "sha256": "a533f9b1cd88ceda7e0fd6b32a4eb28fe5102b8f296325fa146375b50f2362fa",
+        "stable_owners": "governed-transport",
+        "surface_role": "STABLE-SURFACE"
+      },
+      {
+        "blob": "0743f6e2129a7fcb1733a7a23bc7527fad03856b",
+        "mode": "100644",
+        "module": "LeanProofs.GovernedTransport.Positive",
+        "path": "LeanProofs/GovernedTransport/Positive.lean",
+        "sha256": "1d6ed1ab1904d49a750a8e969287857374321f359e681ac71fc0a09739470973",
+        "stable_owners": "governed-transport",
+        "surface_role": "STABLE-SURFACE"
+      }
+    ]
+  }
+}

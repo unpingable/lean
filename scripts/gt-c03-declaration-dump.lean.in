@@ -1,0 +1,110 @@
+import Lean
+import Lean.Util.CollectAxioms
+import LeanProofs.GovernedTransportEvidence.Instances.SpineProjection
+
+open Lean
+
+namespace GTC03DeclarationDump
+
+def targetModule : Name :=
+  `LeanProofs.GovernedTransportEvidence.Instances.SpineProjection
+
+def canonicalLevelParamName (index : Nat) : Name :=
+  Name.mkNum `_gt_c03_universe index
+
+def canonicalLevelNameAux
+    (parameters : List Name) (name : Name) (index : Nat) : Name :=
+  match parameters with
+  | [] => name
+  | parameter :: rest =>
+      if parameter == name then
+        canonicalLevelParamName index
+      else
+        canonicalLevelNameAux rest name (index + 1)
+
+def canonicalLevelName (parameters : List Name) (name : Name) : Name :=
+  canonicalLevelNameAux parameters name 0
+
+partial def canonicalLevel (parameters : List Name) : Level → Level
+  | .zero => .zero
+  | .succ level => .succ (canonicalLevel parameters level)
+  | .max left right =>
+      .max (canonicalLevel parameters left) (canonicalLevel parameters right)
+  | .imax left right =>
+      .imax (canonicalLevel parameters left) (canonicalLevel parameters right)
+  | .param name => .param (canonicalLevelName parameters name)
+  | .mvar id => .mvar id
+
+partial def canonicalExpr (levelParameters : List Name) : Expr → Expr
+  | .bvar index => .bvar index
+  | .fvar id => .fvar id
+  | .mvar id => .mvar id
+  | .sort level => .sort (canonicalLevel levelParameters level)
+  | .const name levels =>
+      .const name (levels.map (canonicalLevel levelParameters))
+  | .app fn arg =>
+      .app (canonicalExpr levelParameters fn)
+        (canonicalExpr levelParameters arg)
+  | .lam _ binderType body binderInfo =>
+      .lam .anonymous (canonicalExpr levelParameters binderType)
+        (canonicalExpr levelParameters body) binderInfo
+  | .forallE _ binderType body binderInfo =>
+      .forallE .anonymous (canonicalExpr levelParameters binderType)
+        (canonicalExpr levelParameters body) binderInfo
+  | .letE _ type value body nondep =>
+      .letE .anonymous (canonicalExpr levelParameters type)
+        (canonicalExpr levelParameters value)
+        (canonicalExpr levelParameters body) nondep
+  | .lit literal => .lit literal
+  | .mdata _ expr => canonicalExpr levelParameters expr
+  | .proj typeName index struct =>
+      .proj typeName index (canonicalExpr levelParameters struct)
+
+def constantKind : ConstantInfo → String
+  | .axiomInfo _ => "axiom"
+  | .defnInfo _ => "definition"
+  | .thmInfo _ => "theorem"
+  | .opaqueInfo _ => "opaque"
+  | .quotInfo _ => "quotient"
+  | .inductInfo _ => "inductive"
+  | .ctorInfo _ => "constructor"
+  | .recInfo _ => "recursor"
+
+def jsonStrings (values : List String) : Json :=
+  .arr (values.toArray.map Json.str)
+
+def optionalExprJson (render : Expr → String) : Option Expr → Json
+  | none => .null
+  | some expr => .str (render expr)
+
+run_cmd do
+  let env ← getEnv
+  let some moduleIdx := env.getModuleIdx? targetModule
+    | throwError "C03 target module is absent"
+  let mut declarations : Array (Name × ConstantInfo) := #[]
+  for (declarationName, info) in env.constants do
+    if env.getModuleIdxFor? declarationName == some moduleIdx then
+      declarations := declarations.push (declarationName, info)
+  declarations := declarations.qsort fun left right =>
+    left.1.toString < right.1.toString
+  for (declarationName, info) in declarations do
+    let axioms ← collectAxioms declarationName
+    let targetAxioms := (axioms.toList.map Name.toString).mergeSort
+    IO.println <| Json.compress <| Json.mkObj [
+      ("schema", "gt-c03-compiled-declaration-v1"),
+      ("serialization", "lean-4.29-repr-alpha-level-canonical-v2"),
+      ("target_name", declarationName.toString),
+      ("kind", constantKind info),
+      ("level_params", jsonStrings <|
+        (List.range info.levelParams.length).map fun index =>
+          (canonicalLevelParamName index).toString),
+      ("target_type", reprStr <| canonicalExpr info.levelParams info.type),
+      ("target_value", optionalExprJson
+        (fun value => reprStr <| canonicalExpr info.levelParams value)
+        (info.value? true)),
+      ("target_axioms", jsonStrings targetAxioms)
+    ]
+  unless declarations.size == 82 do
+    throwError "C03 compiled declaration census drifted: expected 82, found {declarations.size}"
+
+end GTC03DeclarationDump
