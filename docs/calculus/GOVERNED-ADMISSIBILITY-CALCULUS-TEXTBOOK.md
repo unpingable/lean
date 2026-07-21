@@ -1,8 +1,10 @@
 # The Governed Admissibility Calculus: A Mathematical Presentation
 
-## Status and rule classes
+## How to read the rules
 
-This chapter presents the public Lean calculus in paper notation. It is a mathematical reconstruction of the admitted types and theorems, not a new axiomatization. Every numbered display has one of the following statuses:
+This chapter presents the public Lean calculus in paper notation. It is a
+mathematical reconstruction of existing types and theorems, not a new
+axiomatization. Every numbered display has one of the following statuses:
 
 | Mark | Status | Meaning |
 |---|---|---|
@@ -15,9 +17,20 @@ This chapter presents the public Lean calculus in paper notation. It is a mathem
 
 The mark is part of each rule label: **GF-AUTH-D**, for example, is a definition. The rule index at the end maps every display to its Lean anchor.
 
+The recurring examples are fixed throughout: stale evidence and direct
+reliance; funded and bare claims with one endpoint; and exceptional BreakGlass
+authority with retained ordinary denial and audit history. A **claim** is the
+complete native question. A **witness** and **refusal** are positive and
+negative data indexed by that claim.
+
 ## 1. Governed families
 
 ### 1.1 Signature
+
+**Why this is needed.** A common Boolean interface would erase the evidence
+types and governing distinctions of the examples. The shared object therefore
+specifies a *shape* for native judgments without forcing them into one
+semantics.
 
 A governed family is written
 
@@ -68,6 +81,11 @@ This is totality for $C$, not a claim that arbitrary mathematical or operational
 **Lean anchor.** [`GovernedFamily`](../../LeanProofs/Admissibility/Calculus/Core.lean) contains exactly these types, fields, and laws.
 
 ### 1.2 Authority
+
+The word “authorized” is too coarse unless its introduction rule is fixed.
+Here the only introduction is native witness existence. Standing, custody, and
+obligation remain separate predicates rather than alternate ways to mint
+authority.
 
 Authority is not a separate component of the signature. It is witness existence:
 
@@ -128,6 +146,11 @@ For the first, the BreakGlass audit-laundering claim has settlement standing and
 **Lean anchor.** `Authority`, `authority_requires_standing`, `authority_preserves_custody`, `refusal_refutes_authority`, `authority_has_no_multiplicity`, and `authority_iff_decide_isLeft` are in [`Core.lean`](../../LeanProofs/Admissibility/Calculus/Core.lean). The countermodels are `custody_does_not_grant_dynamic_authority` in [`BoundedPaidReachability.lean`](../../LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean) and `audit_launder_has_settlement_standing` plus `audit_launder_refused` in [`BreakGlass.lean`](../../LeanProofs/Admissibility/Calculus/Instances/BreakGlass.lean).
 
 ## 2. Claim preservation and erasure
+
+An endpoint may be a useful summary and still be too small to judge authority.
+The forcing case is a projection that sends a supported claim and a refused
+claim to the same value. The following rule states exactly when that erasure
+becomes impossible to repair with a Boolean checker.
 
 Let $\pi:C\to E$ be a proposed claim projection. A Boolean checker through $E$ is faithful when
 
@@ -208,6 +231,10 @@ $$
 
 ## 3. Evidence-returning decision
 
+A Boolean records which branch was taken but merges every witness into `true`
+and every refusal into `false`. The native decision keeps the evidence before
+the Boolean shadow is derived.
+
 The native decision and its Boolean shadow have different codomains:
 
 $$
@@ -243,6 +270,10 @@ This is why `Option W(c)` is also weaker than the governed decision: it may pres
 ## 4. Refusal packets and exact encoding
 
 ### 4.1 Packets and permissive spines
+
+Knowing that “some refusal occurred” is enough for a clean/obstructed judgment.
+It is not enough to recover the rejected claim or distinguish two native
+reasons. The permissive spine provides the first guarantee only.
 
 The dependent refusal packet type is
 
@@ -280,6 +311,10 @@ $$
 No injectivity premise occurs. A constant map into the one-point type can satisfy **SP-JUDGMENT-T** because all refusals remain nonempty logs.
 
 ### 4.2 Lossless refusal encoding
+
+Exact negative-evidence projection is needed when a diagnostic must recover
+the complete refusal packet. That requirement forces a stronger interface than
+branch preservation.
 
 Exact refusal recovery adds a partial decoder
 
@@ -352,6 +387,11 @@ The public Lean surface has no execution-history predicate of the displayed form
 **Lean anchor.** [`RefusalPacket`, `SpineEncoding`, `funnel`, and `funnel_authority_iff`](../../LeanProofs/Admissibility/Calculus/Spine.lean) support the permissive layer. `LosslessEncoding`, `decode_some_iff`, `encodePacket_injective`, `distinct_refusals_encode_distinct`, and `no_subsingleton_domain_of_distinct_refusals` support the exact layer.
 
 ## 5. Verdict algebra and domain transport
+
+Diagnostics from several steps need an order-preserving way to compose, and
+different consumers may use different obstruction vocabularies. The verdict
+algebra separates two questions: whether an obstruction exists and which
+native obstruction it was.
 
 Let $\mathsf{Core}$ be the fixed core-obstruction type. A path verdict over native domain $\Delta$ is an ordered obstruction log:
 
@@ -427,6 +467,10 @@ $$
 
 ## 6. Located judgments
 
+An obstruction log says what went wrong but not where it entered a path. A
+located fold carries each input identifier into the output while leaving
+authentication as a separate concern.
+
 A located verdict pairs every retained obstruction with a supplied identifier:
 
 $$
@@ -480,6 +524,10 @@ This is an exact absence boundary. The public type has a raw constructor and a `
 **Lean anchor.** [`LabeledEdge`, `LocatedVerdict`, `foldLocated`, `forget_foldLocated`, `foldLocated_carries`, `foldLocated_sound`, `located_pinpoints`, and `mapId_authority_iff`](../../LeanProofs/Admissibility/PathVerdict/Located.lean) support this section.
 
 ## 7. The comparison calculus
+
+Two judgment systems need not be unified before they can be compared. The
+calculus instead declares one map from a source view to a target view and asks
+which precise relation that map can prove.
 
 A judgment view is a carrier and predicate, $X=(|X|,J_X)$. A projection is one declared map between views:
 
@@ -578,9 +626,12 @@ $$
 \tag{CP-NOPRES-T}
 $$
 
-### 7.5 Constitutional scope
+### 7.5 Public scope
 
-The public `EntryIndex` enumerates seven reviewed semantic slots, and a ledger indexed by them cannot omit a slot. The public Lean root does not expose the private seven-entry concrete realization as a theorem that all seven native sources share one semantics:
+The public `EntryIndex` enumerates seven reviewed semantic slots, and a ledger
+indexed by them cannot omit a slot. The public Lean root does not expose the
+concrete seven-entry realization as a theorem that all seven native sources
+share one semantics:
 
 $$
 \mathsf{PublicComparisonFramework}
@@ -589,9 +640,18 @@ $$
 \tag{CP-NOUNIV-E}
 $$
 
-**Lean anchor.** [`Comparison.lean`](../../LeanProofs/Admissibility/Calculus/Comparison.lean) defines `JudgmentView`, `Projection`, all four receipts, `ComparisonLaw`, `map_injective`, `no_left_inverse`, and the separation preservation refutation. Its header states the custody boundary of the concrete realization.
+**Lean anchor.** [`Comparison.lean`](../../LeanProofs/Admissibility/Calculus/Comparison.lean)
+defines `JudgmentView`, `Projection`, all four receipts, `ComparisonLaw`,
+`map_injective`, `no_left_inverse`, and the separation preservation refutation.
+Its header records that the concrete realization is not part of the public Lean
+surface.
 
 ## 8. Stored-decision crossing
+
+If a checker is rerun, a summary and its later explanation may refer to
+different evidence-producing events. A crossing therefore evaluates each of
+two native families once, stores both decisions, and derives every later view
+from that pair.
 
 Let $\mathcal F$ and $\mathcal G$ be governed families equipped with lossless refusal spines. A crossing claim is a pair $(c_F,c_G)$. Native evaluation stores
 
@@ -724,7 +784,7 @@ $$
 {\mathsf{Step}(\mathsf{funded},\mathsf{admit}(\mathsf{theWarrant}),
 \mathsf{claimed})}
 \quad
-\frac{\mathsf{Step}(\mathsf{funded},a,\mathsf{claimed})quad
+\frac{\mathsf{Step}(\mathsf{funded},a,\mathsf{claimed})\quad
 \mathsf{Run}(\mathsf{claimed},[],\mathsf{claimed})}
 {\mathsf{Run}(\mathsf{funded},[a],\mathsf{claimed})}.
 \tag{PD-FUNDED-I}
@@ -770,7 +830,7 @@ A_{\mathsf{paid}}(c)
 \tag{PD-NOPAY-E}
 $$
 
-is not a rule of the admitted instance. `PaymentDischarged` is explanatory notation, not a public predicate here.
+is not a rule of the bounded instance. `PaymentDischarged` is explanatory notation, not a public predicate here.
 
 **Lean anchor.** [`BoundedPaidReachability.lean`](../../LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean) defines `fundedRun`, `Barrier`, `bareBarrier`, and proves `Barrier.stays`, `authority_iff_lawful_history`, and refusal of the bare claim. Its public scope header records the admission-only and empty-paid-book boundary.
 
@@ -900,7 +960,12 @@ The first target is specifically the permit’s retained ordinary verdict. It is
 
 ## 10. Illegal-lifts atlas
 
-This section collects tempting rules that the calculus does not license. A crossed arrow means either a concrete public countermodel (**C**) or an exact boundary with no such public judgment (**E**), as indicated by the rule label.
+This section collects tempting rules that the calculus does not license. A
+crossed arrow means either a concrete public countermodel (**C**) or an exact
+boundary with no such public judgment (**E**), as indicated by the rule label.
+The countermodel and absence cases should not be conflated: the first refutes a
+universal rule, while the second records that the present theory supplies no
+such judgment.
 
 $$
 S(c)\not\Longrightarrow A(c).
@@ -945,7 +1010,8 @@ $$
 \tag{IL-EXACT-C}
 $$
 
-Exact judgment contains no decoder; noninjective predicate-exact projections are admitted by the public type.
+Exact judgment contains no decoder; the public type permits noninjective
+predicate-exact projections.
 
 $$
 \mathsf{AuthorityPreserved}(\mathsf{map}_f)
@@ -977,7 +1043,8 @@ A_{W\times P}(c_W,c_P)
 \tag{IL-PAY-E}
 $$
 
-Boundary: the admitted paid witness is admission-only; payment discharge is not a public predicate of the instance.
+Boundary: the public paid witness is admission-only; payment discharge is not a
+public predicate of the instance.
 
 $$
 A_{\mathsf{BreakGlass}}(c)
@@ -1052,13 +1119,13 @@ This is the complete list of numbered displays. Rows containing several equation
 | CP-PROJ-D, CP-EJ-D, CP-ER-D, CP-DIR-D, CP-LOSS-D, CP-SEP-D | D | receipt structures in [`Comparison.lean`](../../LeanProofs/Admissibility/Calculus/Comparison.lean) |
 | CP-EJNOINJ-C | C | exact-judgment structure has no recovery/injectivity field; constant true-view countermodel |
 | CP-ERINJ-T, CP-NOLEFT-T, CP-NOPRES-T | T | `map_injective`, `no_left_inverse`, separation preservation refutation |
-| CP-NOUNIV-E | E | public/private comparison custody fence in [`Comparison.lean`](../../LeanProofs/Admissibility/Calculus/Comparison.lean) |
+| CP-NOUNIV-E | E | public-scope boundary in [`Comparison.lean`](../../LeanProofs/Admissibility/Calculus/Comparison.lean) |
 | CR-CHECK-D, CR-REFUSAL-D, CR-FOLD-D, CR-STORED-D | D | crossing definitions in [`Crossing.lean`](../../LeanProofs/Admissibility/Calculus/Crossing.lean) |
 | CR-APPLY-E | E | paper name for the checked-value dataflow and source gate |
 | CR-AUTH-T | T | `authority_iff_components` |
 | WX-RULES-I through WX-DOWN-I | I | Weathering native and governed instance files |
 | PD-FUNDED-I through PD-BARENO-I | I | bounded paid definitions and theorems |
-| PD-NOPAY-E | E | admitted instance’s explicit admission-only scope fence |
+| PD-NOPAY-E | E | public instance’s explicit admission-only scope boundary |
 | XP-FF-I through XP-NOCURE-L-I | I | [`WeatheringBoundedPaidCrossing.lean`](../../LeanProofs/Admissibility/Calculus/Instances/WeatheringBoundedPaidCrossing.lean) |
 | BG-NATIVE-I through BG-AUDIT-I | I | BreakGlass family and comparison files |
 | BG-NOLAUNDER-C | C | the two public separation receipts |
@@ -1071,12 +1138,26 @@ This is the complete list of numbered displays. Rows containing several equation
 
 The following non-implications occur as numbered displays: **GF-MULT-C**, **GF-NOCONV-C**, **ER-ENDPOINT-C**, **DE-NOREC-C**, **SP-NOPROV-E**, **PV-MERGE-C**, **LV-NOAUTH-E**, **CP-EJNOINJ-C**, **CP-NOUNIV-E**, **PD-NOPAY-E**, **BG-NOLAUNDER-C**, and every **IL-*** rule in §10. Where the same logical boundary appears twice, §10 is the atlas entry and the earlier occurrence is its derivation or motivating context.
 
-## 14. Stronger paper rules not supplied by the public calculus
+## 14. Stronger rules not supplied by the public calculus
 
 Several natural-looking extensions would require new formal work.
 
-An accepted-witness codec would require an encoding and recovery theorem for witness packets; the current lossless spine covers refusals only. An authenticated-location calculus would require a trusted identity source and a predicate relating labels to that source; `LocatedVerdict` carries supplied identifiers only. A generic obligation calculus would require transition-indexed laws governing when obligations open, persist, and close; the core has only an unconstrained predicate, while BreakGlass proves one bounded lifecycle.
+An accepted-witness codec would require an encoding and recovery theorem for
+witness packets; the current lossless spine covers refusals only. An
+authenticated-location calculus would require a trusted identity source and a
+predicate relating labels to that source; `LocatedVerdict` carries supplied
+identifiers only. A generic obligation calculus would require
+transition-indexed laws governing when obligations open, persist, and close;
+the core has only an unconstrained predicate, while BreakGlass proves one
+bounded lifecycle.
 
-A universal crossing theorem for many families would require an N-ary evidence shape, obstruction-domain construction, and non-shadowing proof; the admitted crossing is binary. A payment-discharge theorem would require a native positive run that actually exercises payment and a non-vacuous account of the paid and obligation books; the admitted paid fixture exercises admission only. A broader BreakGlass process theorem would require a closed operational semantics, allocation and attestor assumptions, nontrivial history, and transition laws beyond the supplied atoms.
+A universal crossing theorem for many families would require an N-ary evidence
+shape, obstruction-domain construction, and non-shadowing proof; the public
+crossing is binary. A payment-discharge theorem would require a native positive
+run that actually exercises payment and a non-vacuous account of the paid and
+obligation books; the public paid fixture exercises admission only. A broader
+BreakGlass process theorem would require a closed operational semantics,
+allocation and attestor assumptions, nontrivial history, and transition laws
+beyond the supplied atoms.
 
 Finally, runtime conformance would require a separately reviewed correspondence map covering every distinction used in the claimed scope, together with executable preservation/transport checks and revision-bound qualification evidence. None of those bridges follows merely from compiling the Lean calculus.
