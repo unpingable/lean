@@ -61,6 +61,8 @@ The frozen inventory and admission history are in
 [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md); per-rung
 packets and receipts in
 [`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md); the
+implemented calculus is presented as a progressive mathematical system in
+the [`docs/calculus/` textbook](docs/calculus/README.md); and the
 research program in ordinary language in
 [`docs/PLAIN-LANGUAGE-SUMMARY.md`](docs/PLAIN-LANGUAGE-SUMMARY.md).
 

@@ -96,6 +96,8 @@ survives implementation and transport; the full obligation is in
 Inventory and per-rung fences:
 [`../../docs/V14-RELEASE-LEDGER.md`](../../docs/V14-RELEASE-LEDGER.md) and
 [`../../docs/V14-READINESS-LEDGER.md`](../../docs/V14-READINESS-LEDGER.md).
+For a definition-first, textbook-style account of this exact implemented
+surface, see [`../../docs/calculus/README.md`](../../docs/calculus/README.md).
 
 ## Historical changelog through v12
 
