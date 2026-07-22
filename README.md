@@ -20,11 +20,12 @@ recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
 ## Local release candidate: 15.0.0 — Cross-Calculus Atlas
 
-The operator-ratified local v15 candidate provides faithful cross-calculus
-mappings among Governed Transport, Execution Custody, and Continuity
-Admission. It preserves exact judgment indices, local countermodels, and
-receipt-bound entitlement; includes exact-receipt anti-minting; and retains
-StaticRole as a held-out partial instance closed at R3.
+The local v15 candidate, built from the operator-ratified integration base,
+provides faithful cross-calculus mappings among Governed Transport, Execution
+Custody, and Continuity Admission. It preserves exact judgment indices, local
+countermodels, and receipt-bound entitlement; includes exact-receipt
+anti-minting; and retains StaticRole as a held-out partial instance closed at
+R3.
 
 The classification is `ATLAS`: no shared bridge algebra, generic frontier
 composition, generic ownership, generic context transport, or universal
@@ -33,7 +34,9 @@ comparison-only neighbors outside the PJ primary surface. This is a local
 candidate, not a release, tag, DOI deposit, runtime-conformance claim, or
 operational AG/NQ realization. See the
 [`v15 public index`](docs/V15-PUBLIC-INDEX.md) and
-[`integration receipt`](docs/V15-INTEGRATION-VERIFICATION-RECEIPT_2026-07-22.md).
+[`local candidate overview`](docs/V15-RELEASE-CANDIDATE.md). The exact
+qualification results are in the
+[`candidate verification receipt`](docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md).
 
 ## Current published release: 14.0.0 — Governed Admissibility Calculus
 
