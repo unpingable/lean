@@ -26,7 +26,7 @@ def selectedModules : Array Name := #[
   `PJ.Hostile,
   `PJ.Instances.GovernedTransport,
   `PJ.Instances.ExecutionCustody,
-  `PJ.Instances.SomeoneContinuity,
+  `PJ.Instances.ContinuityAdmission,
   `PJ.HeldOut.StaticRole
 ]
 

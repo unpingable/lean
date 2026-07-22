@@ -15,7 +15,7 @@ import PJ.Core
 import PJ.Hostile
 import PJ.Instances.GovernedTransport
 import PJ.Instances.ExecutionCustody
-import PJ.Instances.SomeoneContinuity
+import PJ.Instances.ContinuityAdmission
 import PJ.HeldOut.StaticRole
 import PJ.TrancheBPrime.AntiMinting
 import PJ.TrancheBPrime.Instances
@@ -32,7 +32,7 @@ def selectedModules : Array Name := #[
   `PJ.Hostile,
   `PJ.Instances.GovernedTransport,
   `PJ.Instances.ExecutionCustody,
-  `PJ.Instances.SomeoneContinuity,
+  `PJ.Instances.ContinuityAdmission,
   `PJ.HeldOut.StaticRole,
   `PJ.TrancheBPrime.AntiMinting,
   `PJ.TrancheBPrime.Instances,

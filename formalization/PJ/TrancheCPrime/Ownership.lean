@@ -5,7 +5,7 @@
 
 import PJ.TrancheBPrime.Instances
 import PJ.TrancheBPrime.HeldOutStaticRole
-import ContinuityQualification.Hostile
+import Continuity.Admission.Qualification.Hostile
 
 /-!
   PJ Tranche C-prime ownership census and hostile boundary.
@@ -143,11 +143,11 @@ end ExecutionCustody
 
 /-! ## Someone Continuity: local transition theory without durable owner -/
 
-namespace SomeoneContinuity
+namespace ContinuityAdmission
 
-open Someone
-open PJ.Instances.SomeoneContinuity
-open PJ.TrancheBPrime.Instances.SomeoneContinuity
+open Continuity.Admission
+open PJ.Instances.ContinuityAdmission
+open PJ.TrancheBPrime.Instances.ContinuityAdmission
 
 /-- Native reachability is a reusable proposition.  Reusing its PJ
     entitlement does not enact the admission path a second time. -/
@@ -170,15 +170,15 @@ def repeatedReachabilityEvidence :
 theorem breach_reuses_exact_packet_after_demotion :
     step john (.fault .authorityBreach) (initial johnId) ∧
     step (initial johnId) .startForging
-      (SomeoneContinuityQualification.Hostile.forgingAgent johnId) ∧
-    step (SomeoneContinuityQualification.Hostile.forgingAgent johnId)
+      (Continuity.Admission.Qualification.Hostile.forgingAgent johnId) ∧
+    step (Continuity.Admission.Qualification.Hostile.forgingAgent johnId)
       .submitAdmission
-      (SomeoneContinuityQualification.Hostile.candidateAgent
+      (Continuity.Admission.Qualification.Hostile.candidateAgent
         johnId johnAdmission) ∧
-    step (SomeoneContinuityQualification.Hostile.candidateAgent
+    step (Continuity.Admission.Qualification.Hostile.candidateAgent
       johnId johnAdmission)
       .humanAccept john :=
-  SomeoneContinuityQualification.Hostile.breach_sequence_reuses_exact_packet
+  Continuity.Admission.Qualification.Hostile.breach_sequence_reuses_exact_packet
 
 /-- Local ownership truths at both endpoints do not manufacture a
     cross-agent realization receipt.  Packet ownership is an indexed
@@ -190,7 +190,7 @@ theorem local_packet_ownership_does_not_supply_cross_agent_receipt :
         (initial johnId) (initial gwenId) :=
   packet_truth_does_not_mint_cross_agent_continuity
 
-end SomeoneContinuity
+end ContinuityAdmission
 
 /-! ## StaticRole counterexample to generic institutional ownership -/
 
@@ -230,9 +230,9 @@ end StaticRole
 #print axioms ExecutionCustody.repeatedAttemptEvidence
 #print axioms ExecutionCustody.spent_stage_does_not_supply_execution
 #print axioms ExecutionCustody.bridge_schema_does_not_realize_attempt
-#print axioms SomeoneContinuity.repeatedReachabilityEvidence
-#print axioms SomeoneContinuity.breach_reuses_exact_packet_after_demotion
-#print axioms SomeoneContinuity.local_packet_ownership_does_not_supply_cross_agent_receipt
+#print axioms ContinuityAdmission.repeatedReachabilityEvidence
+#print axioms ContinuityAdmission.breach_reuses_exact_packet_after_demotion
+#print axioms ContinuityAdmission.local_packet_ownership_does_not_supply_cross_agent_receipt
 #print axioms StaticRole.repeatedFunctionalEvidence
 #print axioms StaticRole.lawful_action_does_not_supply_functional_uptake
 

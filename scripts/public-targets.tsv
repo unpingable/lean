@@ -26,7 +26,7 @@
 .	ReachableDrift	public-evidence	mathlib-free	default
 .	SafetyBridge	stable-surface	mathlib-free	default
 .	V15PublicTransfer	public-evidence	mathlib-free	explicit
-.	V15SomeoneSources	public-evidence	mathlib-free	explicit
+.	V15ContinuityAdmission	public-evidence	mathlib-free	explicit
 .	ViewSemantics	stable-surface	mathlib-free	default
 .	ViewSemanticsEvidence	public-evidence	mathlib-free	default
 .	ViewSemanticsEvidenceMathlib	public-evidence	mathlib-island	explicit

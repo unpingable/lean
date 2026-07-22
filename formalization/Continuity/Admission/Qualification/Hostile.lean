@@ -3,10 +3,10 @@
   Surface-Role: PUBLIC-EVIDENCE
 -/
 
-import ContinuityQualification.Core
+import Continuity.Admission.Qualification.Core
 
 /-!
-  Qualification hostiles for `Someone.lean`.
+  Qualification hostiles for `Continuity.Admission.lean`.
 
   These fixtures do not repair the frozen source.  They make its exact
   generality boundary executable so that a later PJ adapter cannot silently
@@ -14,9 +14,9 @@ import ContinuityQualification.Core
   substrate-rebound, or authenticated historical continuity.
 -/
 
-namespace SomeoneContinuityQualification.Hostile
+namespace Continuity.Admission.Qualification.Hostile
 
-open Someone
+open Continuity.Admission
 
 def emptyAdmission (i : AgentId) : Admission :=
   ⟨i, "", .repoLocal, "", false⟩
@@ -81,4 +81,4 @@ theorem raw_step_accepts_foreign_packet_from_malformed_source :
   simpa [transplant, gwen, johnAdmission, acceptedPacket, targetState] using
     (step.accept_named gwenId johnAdmission)
 
-end SomeoneContinuityQualification.Hostile
+end Continuity.Admission.Qualification.Hostile

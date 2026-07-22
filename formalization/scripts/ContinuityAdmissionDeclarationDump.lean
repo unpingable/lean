@@ -4,7 +4,7 @@
 -/
 
 /-
-  Compiled declaration census for the bounded Someone -> Continuity
+  Compiled declaration census for the bounded Continuity.Admission
   qualification campaign.
 
   The output is JSON Lines.  Types and values are serialized after erasing
@@ -15,16 +15,16 @@
 
 import Lean
 import Lean.Util.CollectAxioms
-import ContinuityQualification.Hostile
+import Continuity.Admission.Qualification.Hostile
 
 open Lean
 
-namespace SomeoneContinuityDeclarationDump
+namespace ContinuityAdmissionDeclarationDump
 
 def selectedModules : Array Name := #[
-  `Someone,
-  `ContinuityQualification.Core,
-  `ContinuityQualification.Hostile
+  `Continuity.Admission,
+  `Continuity.Admission.Qualification.Core,
+  `Continuity.Admission.Qualification.Hostile
 ]
 
 def canonicalLevelParamName (index : Nat) : Name :=
@@ -126,4 +126,4 @@ run_cmd do
         ("axioms", jsonStrings axiomNames)
       ]
 
-end SomeoneContinuityDeclarationDump
+end ContinuityAdmissionDeclarationDump

@@ -4,21 +4,21 @@
 -/
 
 import PJ.Core
-import ContinuityQualification.Core
+import Continuity.Admission.Qualification.Core
 
 /-!
   Faithful PJ adapter for the ratified Someone continuity qualification.
 
   The only bridge receipt used here is the source calculus's exact
-  `Someone.Reachable` proof.  The three bridge instances expose the native
+  `Continuity.Admission.Reachable` proof.  The three bridge instances expose the native
   preservation laws for well-formedness, coherence, and packet ownership.
   They do not add typed refusal, retained route identity, history,
   authentication, durable revocation, or substrate rebinding.
 -/
 
-namespace PJ.Instances.SomeoneContinuity
+namespace PJ.Instances.ContinuityAdmission
 
-open Someone
+open Continuity.Admission
 
 /-- Reachability preserves the source's exact well-formedness judgment. -/
 def wellFormedBridge : IndexedJudgmentBridge where
@@ -61,13 +61,13 @@ theorem receipt_identity (a : Agent) : Reachable a a :=
     law: Execution Custody does not force generic PJ composition. -/
 theorem receipt_compose {a b c : Agent} :
     Reachable a b → Reachable b c → Reachable a c :=
-  SomeoneContinuityQualification.reachable_trans
+  Continuity.Admission.Qualification.reachable_trans
 
 /-- A reachability receipt preserves the asserted `AgentId`.  This is the
     exact qualified index law, not authentication of that identifier. -/
 theorem receipt_preserves_agent_id {a b : Agent} :
     Reachable a b → b.id = a.id :=
-  SomeoneContinuityQualification.reachable_preserves_agent_id
+  Continuity.Admission.Qualification.reachable_preserves_agent_id
 
 /-- The native positive lane becomes a source-relative PJ entitlement for
     well-formedness at the exact admitted endpoint.  The receipt remains the
@@ -144,5 +144,3 @@ theorem foreign_packet_not_ownership_entitled
 #print axioms foreign_packet_not_wellformed_entitled
 #print axioms foreign_packet_not_coherent_entitled
 #print axioms foreign_packet_not_ownership_entitled
-
-end PJ.Instances.SomeoneContinuity

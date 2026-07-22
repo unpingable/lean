@@ -220,10 +220,11 @@ LeanProofs/Witnessed/ResourceCheckerExec.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/ResourceSequent.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed,witnessed
 LeanProofs/Witnessed/Sequent.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed,witnessed
 downstream/wdc-v2-consumer/DownstreamWdcV2.lean	PUBLIC-EVIDENCE	-
-formalization/ContinuityQualification.lean	PUBLIC-EVIDENCE	-
-formalization/ContinuityQualification/Campaign/Qualification.lean	PUBLIC-EVIDENCE	-
-formalization/ContinuityQualification/Core.lean	PUBLIC-EVIDENCE	-
-formalization/ContinuityQualification/Hostile.lean	PUBLIC-EVIDENCE	-
+formalization/Continuity/Admission.lean	PUBLIC-EVIDENCE	-
+formalization/Continuity/Admission/Qualification.lean	PUBLIC-EVIDENCE	-
+formalization/Continuity/Admission/Qualification/Campaign.lean	PUBLIC-EVIDENCE	-
+formalization/Continuity/Admission/Qualification/Core.lean	PUBLIC-EVIDENCE	-
+formalization/Continuity/Admission/Qualification/Hostile.lean	PUBLIC-EVIDENCE	-
 formalization/PJ.lean	PUBLIC-EVIDENCE	-
 formalization/PJ/Campaign/TrancheAQualification.lean	PUBLIC-EVIDENCE	-
 formalization/PJ/Campaign/TrancheBPrimeQualification.lean	PUBLIC-EVIDENCE	-
@@ -234,7 +235,7 @@ formalization/PJ/HeldOut/StaticRole.lean	PUBLIC-EVIDENCE	-
 formalization/PJ/Hostile.lean	PUBLIC-EVIDENCE	-
 formalization/PJ/Instances/ExecutionCustody.lean	PUBLIC-EVIDENCE	-
 formalization/PJ/Instances/GovernedTransport.lean	PUBLIC-EVIDENCE	-
-formalization/PJ/Instances/SomeoneContinuity.lean	PUBLIC-EVIDENCE	-
+formalization/PJ/Instances/ContinuityAdmission.lean	PUBLIC-EVIDENCE	-
 formalization/PJ/TrancheBPrime/AntiMinting.lean	PUBLIC-EVIDENCE	-
 formalization/PJ/TrancheBPrime/HeldOutStaticRole.lean	PUBLIC-EVIDENCE	-
 formalization/PJ/TrancheBPrime/Instances.lean	PUBLIC-EVIDENCE	-
@@ -274,5 +275,4 @@ formalization/scripts/PJTrancheADeclarationDump.lean	PUBLIC-EVIDENCE	-
 formalization/scripts/PJTrancheBPrimeDeclarationDump.lean	PUBLIC-EVIDENCE	-
 formalization/scripts/PJTrancheCPrimeDeclarationDump.lean	PUBLIC-EVIDENCE	-
 formalization/scripts/PJTrancheDPrimeDeclarationDump.lean	PUBLIC-EVIDENCE	-
-formalization/scripts/SomeoneContinuityDeclarationDump.lean	PUBLIC-EVIDENCE	-
-someone/Someone.lean	PUBLIC-EVIDENCE	-
+formalization/scripts/ContinuityAdmissionDeclarationDump.lean	PUBLIC-EVIDENCE	-

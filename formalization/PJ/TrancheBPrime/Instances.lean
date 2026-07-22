@@ -6,7 +6,7 @@
 import PJ.TrancheBPrime.AntiMinting
 import PJ.Instances.GovernedTransport
 import PJ.Instances.ExecutionCustody
-import PJ.Instances.SomeoneContinuity
+import PJ.Instances.ContinuityAdmission
 
 /-!
   Faithful Tranche B-prime specializations at native PJ-A receipt boundaries.
@@ -200,10 +200,10 @@ end ExecutionCustody
 
 /-! ## Someone Continuity -/
 
-namespace SomeoneContinuity
+namespace ContinuityAdmission
 
-open Someone
-open PJ.Instances.SomeoneContinuity
+open Continuity.Admission
+open PJ.Instances.ContinuityAdmission
 
 /-- Reachability cannot cross the exact asserted `AgentId` boundary. -/
 theorem cross_agent_receipt_is_unavailable :
@@ -262,7 +262,7 @@ theorem exact_continuity_receipt_permits_bounded_consumption :
   (exactContinuityConsumer.consumeEntitled
     (ownPacketOwnershipEntitlement johnId johnAdmission rfl)).evidence
 
-end SomeoneContinuity
+end ContinuityAdmission
 
 #print axioms GovernedTransport.true_target_has_no_exact_route
 #print axioms GovernedTransport.exact_gt_route_gap_is_nonvacuous
@@ -276,10 +276,10 @@ end SomeoneContinuity
 #print axioms ExecutionCustody.unknown_execution_outcomes_remain_distinct
 #print axioms ExecutionCustody.execution_bridge_refutes_receipt_free_mint
 #print axioms ExecutionCustody.exact_execution_receipt_permits_bounded_consumption
-#print axioms SomeoneContinuity.cross_agent_receipt_is_unavailable
-#print axioms SomeoneContinuity.packet_truth_does_not_mint_cross_agent_continuity
-#print axioms SomeoneContinuity.exact_continuity_receipt_recovers_ownership
-#print axioms SomeoneContinuity.continuity_bridge_refutes_receipt_free_mint
-#print axioms SomeoneContinuity.exact_continuity_receipt_permits_bounded_consumption
+#print axioms ContinuityAdmission.cross_agent_receipt_is_unavailable
+#print axioms ContinuityAdmission.packet_truth_does_not_mint_cross_agent_continuity
+#print axioms ContinuityAdmission.exact_continuity_receipt_recovers_ownership
+#print axioms ContinuityAdmission.continuity_bridge_refutes_receipt_free_mint
+#print axioms ContinuityAdmission.exact_continuity_receipt_permits_bounded_consumption
 
 end PJ.TrancheBPrime.Instances

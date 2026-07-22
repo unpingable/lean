@@ -32,7 +32,7 @@
     * A stopped/suspended/candidate agent has records, not ghost-authority.
 -/
 
-namespace Someone
+namespace Continuity.Admission
 
 /-! ## Provenance — receipt-grounded spine -/
 
@@ -551,9 +551,9 @@ theorem fault_preserves_no_standing_on_blocked
         surf :=
   fun _ => no_standing_on_blocked _ surf hblocked
 
-end Someone
+end Continuity.Admission
 
-namespace Someone
+namespace Continuity.Admission
 
 /-!
   ## Skunkworks extension — Montessori cohort, non-democratic quorum,
@@ -1132,4 +1132,4 @@ theorem transplant_to_same_id_is_not_inheritance :
     WellFormed (transplant johnAdmission ⟨johnId, .surname, none⟩) :=
   ⟨rfl, rfl⟩
 
-end Someone
+end Continuity.Admission

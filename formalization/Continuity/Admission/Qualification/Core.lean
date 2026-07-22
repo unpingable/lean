@@ -3,21 +3,21 @@
   Surface-Role: PUBLIC-EVIDENCE
 -/
 
-import Someone
+import Continuity.Admission
 
 /-!
-  Missing structural receipts for the exact `Someone.lean` source.
+  Missing structural receipts for the exact `Continuity.Admission.lean` source.
 
-  The qualified source judgment remains `Someone.Reachable`; this module does
+  The qualified source judgment remains `Continuity.Admission.Reachable`; this module does
   not replace it with an adapter-owned notion of continuity.  It proves three
   structural facts needed to describe that judgment faithfully: primitive
   steps preserve the asserted agent index, reachability preserves it, and
   reachability composes.
 -/
 
-namespace SomeoneContinuityQualification
+namespace Continuity.Admission.Qualification
 
-open Someone
+open Continuity.Admission
 
 /-- Every primitive transition preserves the asserted agent identifier. -/
 theorem step_preserves_agent_id {a b : Agent} {ev : Event} :
@@ -44,4 +44,4 @@ theorem reachable_trans {a b c : Agent} :
   | step a b _ ev hstep _ ih =>
       exact .step a b c ev hstep (ih hbc)
 
-end SomeoneContinuityQualification
+end Continuity.Admission.Qualification

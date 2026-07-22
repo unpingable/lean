@@ -185,10 +185,10 @@ end ExecutionCustody
 
 /-! ## Someone Continuity: Reachable is the local transport, not an index map -/
 
-namespace SomeoneContinuity
+namespace ContinuityAdmission
 
-open Someone
-open PJ.Instances.SomeoneContinuity
+open Continuity.Admission
+open PJ.Instances.ContinuityAdmission
 
 /-- A raw candidate carrying John's packet under Gwen's asserted agent index.
     It lies outside the exact `OwnsPacket` reachable-fragment invariant. -/
@@ -236,9 +236,9 @@ theorem changing_agent_index_leaves_reachable_fragment :
       OwnsPacket (initial gwenId) ∧
       ownsPacketBridge.NotEntitledFrom
         (initial johnId) (initial gwenId) :=
-  _root_.PJ.TrancheBPrime.Instances.SomeoneContinuity.packet_truth_does_not_mint_cross_agent_continuity
+  _root_.PJ.TrancheBPrime.Instances.ContinuityAdmission.packet_truth_does_not_mint_cross_agent_continuity
 
-end SomeoneContinuity
+end ContinuityAdmission
 
 /-! ## StaticRole: exact conditional commutation and an exact failure outside it -/
 
@@ -310,12 +310,12 @@ end StaticRole
 #print axioms ExecutionCustody.differentPrestateEntitlement
 #print axioms ExecutionCustody.old_stage_permission_not_entitled_at_different_prestate
 #print axioms ExecutionCustody.exact_stage_receipts_do_not_reindex
-#print axioms SomeoneContinuity.foreignCandidateRejectsToGwen
-#print axioms SomeoneContinuity.john_and_gwen_indices_are_distinct
-#print axioms SomeoneContinuity.foreign_candidate_does_not_own_packet
-#print axioms SomeoneContinuity.reachability_does_not_reflect_source_packet_ownership
-#print axioms SomeoneContinuity.reachable_context_preserves_agent_id
-#print axioms SomeoneContinuity.changing_agent_index_leaves_reachable_fragment
+#print axioms ContinuityAdmission.foreignCandidateRejectsToGwen
+#print axioms ContinuityAdmission.john_and_gwen_indices_are_distinct
+#print axioms ContinuityAdmission.foreign_candidate_does_not_own_packet
+#print axioms ContinuityAdmission.reachability_does_not_reflect_source_packet_ownership
+#print axioms ContinuityAdmission.reachable_context_preserves_agent_id
+#print axioms ContinuityAdmission.changing_agent_index_leaves_reachable_fragment
 #print axioms StaticRole.exact_isomorphism_conditionally_preserves_and_reflects_r3
 #print axioms StaticRole.presentation_change_is_load_bearing_noncommutation
 
