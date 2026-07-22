@@ -72,6 +72,37 @@ roots = [
   "scripts.ContinuityAdmissionDeclarationDump",
 ]
 
+# Canonical, non-default v15 formal surface.  The source calculi remain
+# independently owned; PJ imports their adapters as a cross-calculus atlas.
+[[lean_lib]]
+name = "V15Integration"
+srcDir = "formalization"
+roots = [
+  "Continuity.Admission",
+  "StaticRole",
+  "PJ",
+]
+
+# Isolated qualification and declaration-audit leaves for the canonical v15
+# surface.  These are evidence roots, not stable or release aggregates.
+[[lean_lib]]
+name = "V15IntegrationQualification"
+srcDir = "formalization"
+roots = [
+  "Continuity.Admission.Qualification.Campaign",
+  "StaticRole.Campaign.Qualification",
+  "StaticRole.Campaign.PhaseThreeQualification",
+  "PJ.Campaign.TrancheAQualification",
+  "PJ.Campaign.TrancheBPrimeQualification",
+  "PJ.Campaign.TrancheCPrimeQualification",
+  "PJ.Campaign.TrancheDPrimeQualification",
+  "scripts.ContinuityAdmissionDeclarationDump",
+  "scripts.PJTrancheADeclarationDump",
+  "scripts.PJTrancheBPrimeDeclarationDump",
+  "scripts.PJTrancheCPrimeDeclarationDump",
+  "scripts.PJTrancheDPrimeDeclarationDump",
+]
+
 # Exact compatibility-bearing Admissibility Kernels root.
 [[lean_lib]]
 name = "AdmissibilityKernels"

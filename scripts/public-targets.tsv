@@ -25,6 +25,8 @@
 .	ProofTheoryEvidence	public-evidence	mathlib-free	default
 .	ReachableDrift	public-evidence	mathlib-free	default
 .	SafetyBridge	stable-surface	mathlib-free	default
+.	V15Integration	public-evidence	mathlib-free	explicit
+.	V15IntegrationQualification	public-evidence	mathlib-free	explicit
 .	V15PublicTransfer	public-evidence	mathlib-free	explicit
 .	V15ContinuityAdmission	public-evidence	mathlib-free	explicit
 .	ViewSemantics	stable-surface	mathlib-free	default

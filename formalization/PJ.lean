@@ -18,12 +18,12 @@ import PJ.TrancheDPrime.CollapseHostiles
 import PJ.TrancheDPrime.OutOfSampleAdmissibility
 
 /-!
-  Non-default aggregate for the ratified PJ-A substrate and provisional
-  Tranche B-prime exact-receipt anti-minting result, ratified Tranche C-prime
-  ownership/context boundary, and provisional Tranche D-prime hostile audit.
+  Non-default aggregate for the final ratified PJ cross-calculus atlas: the
+  frozen PJ-A substrate, exact-receipt anti-minting, ownership/context negative
+  classifications, and the hostile-collapse and out-of-sample audits.
 
   This aggregate is intentionally isolated from every stable/default root.
-  Importing it does not ratify D-prime, revive a generic frontier, add a
-  generic owner/context transport, or choose Planet, Archipelago, Atlas, or
-  Mirage.
+  Importing it does not make PJ a source calculus, revive a generic frontier,
+  add generic ownership or context transport, or establish a shared algebra or
+  universal calculus.  The exact final classification is ATLAS.
 -/
