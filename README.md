@@ -9,6 +9,12 @@ This is a theoretical computer science and formal-methods project about
 refusal, and obligation constrain which conclusions or state transitions are
 justified.
 
+It does not primarily formalize the act of formalization itself. It formalizes
+the conditions under which consequential judgments and transitions are
+admissible. Evidence objects and proof-producing checkers appear because they
+govern those judgments, not because the repository is mainly metatheory about
+proofs.
+
 An ordinary transition system can say that a next state is reachable. That is
 not enough when a transition must also be supported by the right evidence,
 proposed by an actor with standing, held under the right custody, paid for by
@@ -19,19 +25,24 @@ one condition does—or does not—license another.
 V15 relates selected judgment-preserving edges from three independently
 defined semantic domains:
 
-- **Governed Transport** tracks source and target evidence across an explicit
-  route, keeping translation separate from the target's decision to rely on
-  it.
+- **Governed Transport** separates crossing geometry, certificate-dependent
+  lift, artifact translation, and the target's local decision to rely on the
+  translated artifact. Its bare `Span` carries no authority law; authority,
+  custody, spend, and obligation are not silently inferred from the route.
 - **Execution Custody** separates permission to attempt, permission to commit,
   a recorded attempt, success, refusal, unknown outcome, safety evidence, and
   obligation discharge.
 - **Continuity Admission** preserves identity-bound admission facts only along
   its qualified reachable fragment.
 
-Receipts bind a conclusion to the exact source, target, subject, context, and
-route that earned it. Structured refusals preserve why a claim was not
-admitted. Origin and stored history prevent replay from being mistaken for a
-fresh entitlement or a clean audit state. These distinctions matter wherever
+Receipts are calculus-specific semantic evidence. A PJ receipt is indexed by
+one bridge's source and target; a GT route receipt additionally retains a
+crossing witness and endpoint bindings; an Execution Custody receipt may carry
+a same-stage equality and a native constructor premise. None is inherently a
+signature, hash chain, or other cryptographic commitment. Structured refusals
+preserve why a claim was not admitted. In the instances that model origin and
+stored history, retaining those coordinates blocks replay from being mistaken
+for fresh entitlement or clean audit state. These distinctions matter wherever
 software makes externally consequential decisions under incomplete evidence.
 
 ### Build and verify
@@ -65,31 +76,48 @@ evidence outside stable v14 aggregates.
 This is not specifically a blockchain or cryptocurrency protocol, a
 zero-knowledge system, a legal-evidence product or legal protocol, a
 smart-contract framework, a generic audit-log implementation, a
-category-theory library, or an alternate-reality game. Those areas could
-instantiate some of these structures, but none defines the project. It also
-does not claim that every institutional process reduces to one calculus. The
-sources, failed implications, and qualification commands are public; there is
-no interactive reveal or withheld proof layer.
+category-theory library, a generic state-machine verification project, or an
+alternate-reality game. Nor is it a relabeling of ordinary proof theory or
+programming-languages metatheory. Those areas could instantiate or orient
+some of these structures, but none defines the project. It also does not claim
+that every institutional process reduces to one calculus. The sources, failed
+implications, and qualification commands are public; there is no interactive
+reveal or withheld proof layer.
 
-### Vocabulary bridge
+The [applications boundary](docs/PLAIN-LANGUAGE-SUMMARY.md#applications-boundary)
+separates the formal subject from possible instantiations such as operational
+automation, incident response, administrative workflows, distributed
+decisions, blockchains, or legal evidence processes. No example is the
+project's defining application domain.
 
-These terms are deliberately narrower than nearby formal-methods vocabulary:
+### Semantic guardrails
 
-| Project term | Operational meaning here |
-| --- | --- |
-| `Witness` | Claim-indexed evidence sufficient for one stated judgment, not arbitrary proof data. |
-| `Refusal` | Structured, claim-indexed evidence explaining why a total checker did not admit the claim. |
-| `Standing` | Entitlement to participate in or originate a judgment; it does not itself create authority. |
-| `Custody` | Responsibility for holding or preserving an object, receipt, or decision; possession is not standing. |
-| `Spend` | A consumable capability or resource required by a particular transition. |
-| `Obligation` | A consequence that remains unresolved after an action and must be discharged separately. |
-| `Stored decision` | A previously computed witness-or-refusal result that downstream code must project from rather than silently recompute. |
-| `Hostile countermodel` | An executable or proved model showing that a tempting implication fails. “Hostile” describes adversarial substitution, not presentation style. |
-| `Anti-minting` | A theorem preventing entitlement from appearing when the exact source-relative receipt is absent; it is not a cryptographic unforgeability claim. |
+The familiar phrases in the middle column are entry points, not replacement
+definitions. The unusual vocabulary names distinct judgments and resources,
+not theatrical aliases for ordinary proof objects.
+
+| Project term | Safe orientation | What it must not be collapsed into |
+| --- | --- | --- |
+| `Witness` | Claim-indexed `Type`-valued native evidence sufficient for that claim | Arbitrary proof data or a Boolean success flag |
+| `Refusal` | Family-native, claim-indexed evidence returned by a total decision | `false`, an exception, or one universal error enum |
+| `Standing` | The pre-claim basis book; every witness must satisfy it | Authority, organizational role, or possession |
+| `Custody` | The family-specific provenance-intactness book preserved by a witness | Standing, legal chain-of-custody, or mere storage |
+| `Authority` | In a `GovernedFamily`, `Nonempty (Witness c)` and no alternative introduction rule | Permission token, standing, custody, or assertion of support |
+| `Spend` | A family-native consumed resource or capability where that calculus defines one | Cryptocurrency payment or a universal resource shared by all calculi |
+| `Obligation` | A family-native outstanding-duty predicate with instance-specific lifecycle laws | Failure, postcondition, or automatically discharged effect |
+| `Stored decision` | In the Admissibility crossing, the retained pair of native witness-or-refusal results from one check | An audit log, cache hint, or permission to recompute |
+| `Receipt` | The exact semantic evidence type required by the rule in context | Digital signature, hash chain, zero-knowledge proof, or legal custody proof |
+| `Hostile countermodel` | Adversarial qualification model that preserves plausible premises while refuting an unjustified lift | Decorative attack example or dramatic branding |
+| `Anti-minting` | In V15, the refutation of a receipt-free function producing source-relative `EntitledFrom` at an exactly refused index pair | Reconstruction of an “original derivation” or cryptographic unforgeability |
+| `BreakGlass` | Explicit exceptional permit, attempt, commit, receipt, obligation, and settlement structures with bounded origin/history rules | An axiom or escape hatch that bypasses the rules |
+| Governed transport | Crossing geometry plus separately supplied lift, translation, and target-local reliance laws | A bare morphism, automatic authority transfer, or generic composition law |
+| Cross-calculus correspondence | A selected indexed bridge with its native judgments, receipt family, and carry rule | Equivalence, isomorphism, shared algebra, or one categorical object |
 
 ### Why countermodels are first-class results
 
-The countermodels establish semantic separation. For example,
+The countermodels establish semantic separation by adversarial qualification:
+each preserves plausible neighboring premises while withholding or changing
+the condition needed for a tempting stronger conclusion. For example,
 [`custody_does_not_grant_dynamic_authority`](LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean#L181)
 exhibits custody without authority;
 [`may_attempt_not_entitled_to_commit_without_local_preconditions`](formalization/PJ/Instances/ExecutionCustody.lean#L191)
@@ -97,7 +125,8 @@ keeps attempt permission from becoming commit permission; and
 [`safety_does_not_supply_discharge_receipt`](formalization/PJ/Instances/ExecutionCustody.lean#L284)
 shows that a safe observed execution does not by itself discharge an
 obligation. Each blocks a plausible but invalid lift unless a separate bridge
-and its required evidence are supplied.
+and its required evidence are supplied. “Hostile” names this methodological
+stress test, not an ordinary example given dramatic branding.
 
 For one end-to-end example, including evidence, standing, custody, native
 permit consumption, structured refusal, obligation lifecycle, origin, and

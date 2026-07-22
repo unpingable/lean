@@ -38,13 +38,16 @@ abstract: >-
   conclusions and state transitions. V15 records checked mappings for selected
   edges from Governed Transport, Execution Custody, and Continuity Admission,
   retaining their native judgment indices, local countermodels, and exact
-  receipts. It includes exact-receipt anti-minting and a held-out partial
-  StaticRole instance closed at R3. The classification is ATLAS: no shared
+  semantic receipts. Those receipt types are calculus-specific and not
+  inherently cryptographic. V15 includes exact-receipt anti-minting of
+  source-relative entitlement and a held-out partial StaticRole instance
+  closed at R3. The classification is ATLAS: no shared
   bridge algebra, generic frontier composition, generic ownership, generic
   context transport, or universal calculus is established. This is not
   specifically a blockchain, smart-contract, legal-protocol, legal-evidence,
-  zero-knowledge, audit-log, category-theory, or alternate-reality project. No
-  runtime conformance, JCP implementation, operational AG/NQ realization,
+  zero-knowledge, audit-log, category-theory, generic state-machine, or
+  alternate-reality project. No runtime conformance, JCP implementation,
+  operational AG/NQ realization,
   cryptographic unforgeability, phenomenology, consciousness,
   successful-prediction, or personal-identity claim is made. This metadata is
   prepared for the exact operator-ratified v15 release candidate. The concept

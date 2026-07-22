@@ -10,11 +10,18 @@ whose decisions have consequences outside the checker. Lean machine-checks
 the definitions and theorems. It does not turn the formal model into a claim
 that a particular institution or runtime implements it.
 
+The repository does not primarily formalize the act of formalization itself.
+It formalizes when consequential judgments and transitions are admissible.
+Some modules manipulate evidence, derivations, or stored decisions, but those
+objects govern the modeled action; they are not evidence that the whole
+project is reflexive metatheory.
+
 ## Why reachability is not enough
 
-A transition system can establish that a state is reachable. A proof object
-can establish that a proposition follows from assumptions. Governed systems
-often need more information than either answer carries by default:
+For orientation, a transition system may establish that a state is reachable,
+and a derivation may establish that a proposition follows from assumptions.
+Those are partial comparisons, not definitions of this project. Governed
+systems often need more information than either answer carries by default:
 
 - Which exact claim did the evidence support?
 - Was the actor entitled to originate or exercise that judgment?
@@ -34,12 +41,16 @@ theorem for free.
 V15's Cross-Calculus Atlas records selected correspondences among three
 independently defined domains.
 
-1. **Governed Transport (GT)** formalizes evidence carried across a typed
-   span. Its V15 adapter maps four edge shapes: positive and negative
-   translation, and the separate positive and negative target-local reliance
-   steps. A translation receipt contains the native route witness and both
-   endpoint bindings. The adapter does not map the whole GT law family or
-   combine translation with reliance.
+1. **Governed Transport (GT)** starts with a proof-relevant `Span`, but that
+   bare crossing geometry has no preservation or authority law. Separate
+   `CandidateLift` / `CertificateLift`, `TranslateAlong`, and `RelyLocally`
+   types state whether an artifact can enter a route, what is translated, and
+   whether the target may use the imported artifact as a local judgment. Its
+   V15 adapter maps four edge shapes: positive and negative translation, and
+   separate positive and negative reliance. A route receipt retains the
+   crossing witness and both endpoint bindings. The adapter does not map the
+   whole GT law family, combine translation with reliance, or invent generic
+   authority, custody, spend, or obligation fields absent from GT.
 2. **Execution Custody** distinguishes ticket freshness, permission to
    attempt, permission to commit, a sent commit, success, refusal, unknown
    outcome, safety evidence, and obligation discharge. Its V15 adapter maps
@@ -67,13 +78,21 @@ bridge names source and target index types, source and target judgments, an
 exact receipt family, and a carry operation. Entitlement packages the source
 evidence with that exact receipt.
 
-The checked V15 adapters preserve the native indices and the receipt evidence
-needed by their mapped edges. They also retain source-local countermodels. The
-exact-receipt anti-minting result proves that, at an index pair where source
-and target judgments are both inhabited but entitlement is refuted, no
-receipt-free function can manufacture that entitlement from the two bare
-judgments. This is adapter-local and source-relative. It is neither a generic
-bridge-qualification theorem nor a cryptographic claim.
+The checked V15 adapters preserve the native indices and the semantic receipt
+required by each mapped edge. A PJ `Receipt` is an instance-supplied dependent
+family indexed by source and target; its concrete content differs across GT,
+Execution Custody, and Continuity Admission. These receipts are not inherently
+signed, hashed, tamper-proof, zero-knowledge, or blockchain-backed.
+
+The exact-receipt anti-minting result proves one precise prohibition. At an
+index pair where source and target judgments are both inhabited but
+`EntitledFrom` is refuted, no `ReceiptFreeMintAt` function can manufacture the
+missing source-relative entitlement from the two bare judgments. It does not
+claim that evidence, standing, custody, spend, discharge, closure, historical
+identity, or origin support can never be minted under every other calculus;
+those require their own typed result. This theorem is adapter-local and
+source-relative, not generic bridge qualification or cryptographic
+unforgeability.
 
 The final classification is `ATLAS`, with four first-class negative results:
 
@@ -96,41 +115,64 @@ The repository is not specifically:
 - a legal-evidence or discovery product, or a legal protocol;
 - a smart-contract framework;
 - a generic audit-log implementation;
-- a category-theory library; or
+- a category-theory library;
+- a generic state-machine verification project; or
 - an alternate-reality game or deliberately theatrical verification artifact.
 
-It is also not a claim that all institutional processes reduce to one
-calculus. All source and verification commands are public; campaign records
-are provenance and scope control, not a withheld or interactive reveal.
+It is not a relabeling of ordinary proof theory or programming-languages
+metatheory, and it is not a claim that all institutional processes reduce to
+one calculus. All source and verification commands are public; campaign
+records are provenance and scope control, not a withheld or interactive
+reveal.
 
 Any of those areas could supply an application or model, but none is the
-subject that defines the project. “Receipt” is proof-relevant justification,
-not a transaction receipt; “custody” is a formal responsibility relation, not
-necessarily evidentiary chain-of-custody; and “Atlas” names a collection of
-bounded mappings, not a categorical equivalence.
+subject that defines the project. “Receipt” names the rule-specific semantic
+evidence type, not a transaction receipt; “custody” is a family-specific
+provenance-intactness relation, not necessarily evidentiary chain-of-custody;
+and “Atlas” names a collection of bounded mappings, not a categorical
+equivalence.
+
+## Applications boundary
+
+### The formal subject
+
+The formal subject is governed admissibility of consequential judgments and
+transitions: which evidence and resources justify them, which refusals block
+them, and which origin-, history-, custody-, spend-, or obligation-sensitive
+facts survive.
+
+### Possible instantiations
+
+Depending on the calculus and instance, the structures may be used to model
+operational automation, deployment and promotion, administrative workflows,
+incident response, security authority boundaries, evidence-bearing inquiry,
+resource-consuming transitions, or distributed and institutional decision
+systems. This is an applications boundary, not a declaration that any named
+production system already implements the formal surface.
+
+### Non-exclusive examples
+
+Blockchain systems, legal evidence processes, hardware enclaves, and
+cryptographic protocols may instantiate parts of the theory. None is the
+defining application domain, and no property distinctive to those domains is
+inherited without a separate formal model and theorem.
 
 ## A bridge to standard terminology
 
-| Term | Meaning in this repository |
-| --- | --- |
-| `Witness` | Evidence indexed by the exact claim and sufficient for that claim's native positive judgment. It is more specific than arbitrary proof data. |
-| `Refusal` | Structured evidence, also indexed by the claim, recording why a total checker did not admit it. It is not merely `false`. |
-| `Standing` | Entitlement to participate in or originate a judgment. Standing can coexist with refusal. |
-| `Custody` | Responsibility for holding or preserving an object, receipt, or decision. Custody can coexist with lack of authority. |
-| `Spend` | A consumable capability or resource required by a specific native transition. It is not a universal currency shared by all families. |
-| `Obligation` | An unresolved consequence left by an action. Safety, success, and discharge remain separate judgments. |
-| `Stored decision` | A retained witness-or-refusal result from one evaluation. Downstream projections use that result rather than reevaluating the native claim. |
-| `Hostile countermodel` | A proved or executable model chosen to make an invalid implication tempting while one load-bearing condition is absent. |
-| `Anti-minting` | A non-implication or invariant showing that evidence, authority, entitlement, or discharge cannot appear without its required source structure. |
-
-These are orientation bridges, not synonyms for capabilities, effects, traces,
-transition labels, or generic proof objects.
+The [semantic guardrail table in the public README](../README.md#semantic-guardrails)
+gives the complete entry map. Its central rule is that familiar terminology is
+an analogy unless a named type or theorem makes it exact. `Witness`, `Refusal`,
+`Standing`, `Custody`, `Authority`, `Spend`, and `Obligation` remain distinct;
+“proof object,” “capability,” “effect,” “trace,” and “certificate” do not
+replace them wholesale.
 
 ## Why “hostile countermodel” is a technical term
 
 The adjective means that the model is constructed adversarially against a
-proposed implication. The countermodel changes or withholds one exact premise
-while preserving enough nearby structure to expose a semantic collapse.
+proposed semantic lift. It preserves plausible neighboring premises—and often
+the tempting target fact—while changing or withholding the one load-bearing
+receipt or condition. Surviving those premises while breaking the unjustified
+conclusion is its qualification role.
 
 Three public examples are:
 
@@ -149,8 +191,10 @@ branding, or a promise that a generic theorem will appear later.
 ## One concrete walkthrough: bounded BreakGlass
 
 The bounded BreakGlass instance shows why the vocabulary cannot be flattened
-to “valid state transition.” It is relative to consumer-supplied atoms:
-origin, state, actor, and step.
+to “valid state transition.” It is not an exceptional axiom. It is a
+constructed `GovernedFamily`, relative to consumer-supplied atoms—origin,
+state, actor, and step—with explicit permit, attempt, commit, receipt,
+obligation, and settlement objects.
 
 1. **Proposed transition.** A claim pairs a lifecycle origin with one phase:
    prospective, attempted, committed, settled, ordinary laundering, or audit

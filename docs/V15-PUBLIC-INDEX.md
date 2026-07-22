@@ -34,6 +34,12 @@ negative translation, and negative target-local reliance as four distinct PJ
 bridges. A translation receipt contains the native `Span.Witness` plus equality
 bindings for both endpoints. A reliance receipt binds the same target.
 
+This is not a reduction of governed transport to a morphism. The native
+`Span` is deliberately only crossing geometry. Certificate-dependent lift,
+artifact translation, and target-local reliance are different laws, while
+authority, custody, spend, obligation, and runtime correspondence are absent
+unless another exact calculus supplies them.
+
 The carry functions are total given source evidence and those receipts. The
 adapter does not assert that every source has a route; does not combine
 translation and reliance; and does not import GT coverage, residue,
@@ -77,13 +83,17 @@ correctness-independence laws remain local. No R4 exists.
 
 `exact_receipt_prevents_target_minting` concerns one bridge and one source /
 target index pair. If source evidence and target evidence both exist but exact
-entitlement is refuted, no function taking only those two values can produce
-the missing entitlement. Positive collapse controls show why the exact receipt
-fiber, indices, and consumer discipline are load-bearing.
+entitlement is refuted, no `ReceiptFreeMintAt` function taking only those two
+values can produce the missing source-relative `EntitledFrom`. Positive
+collapse controls show why the exact receipt fiber, indices, and consumer
+discipline are load-bearing.
 
 The theorem is non-definitional and source-relative. It is not a generic
 qualification rule for arbitrary PJ bridge values, a global authority law, or
-a cryptographic unforgeability theorem.
+a cryptographic unforgeability theorem. In particular, it does not by itself
+prohibit minting standing, custody, spend, discharge, closure, historical
+identity, or origin-bound support in calculi whose types are not its
+conclusion.
 
 ## Exact failures and final classification
 
@@ -109,6 +119,9 @@ realization is claimed.
   — representative non-collapse ledger.
 - [`V15-READINESS-LEDGER.md`](V15-READINESS-LEDGER.md) — declaration, axiom,
   source-pin, and build accounting.
+- [`V15-PRESENTATION-SEMANTIC-AUDIT_2026-07-22.md`](V15-PRESENTATION-SEMANTIC-AUDIT_2026-07-22.md)
+  — terminology classification, analogy fences, and Lean anchors for the
+  public orientation.
 - [`../formalization/PJ/Campaign/PJ-2-GT-FIDELITY.md`](../formalization/PJ/Campaign/PJ-2-GT-FIDELITY.md),
   [`PJ-3-EXECUTION-CUSTODY-FIDELITY.md`](../formalization/PJ/Campaign/PJ-3-EXECUTION-CUSTODY-FIDELITY.md),
   and [`PJ-4-CONTINUITY-FIDELITY.md`](../formalization/PJ/Campaign/PJ-4-CONTINUITY-FIDELITY.md)

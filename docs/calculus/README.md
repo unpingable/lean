@@ -7,6 +7,11 @@ custody, authority, refusal, and obligation distinct. The repository-wide
 [plain-language orientation](../PLAIN-LANGUAGE-SUMMARY.md) explains how this
 v14 calculus sits beside the three-domain v15 Atlas.
 
+Its evidence-returning decisions are about governed claims, not primarily
+proofs about proofs. Its receipts are typed semantic artifacts, not inherently
+cryptographic commitments. The bounded BreakGlass instance is an explicit
+exceptional-authority lifecycle, not an axiom that bypasses the calculus.
+
 This documentation has three entrances. Choose the one that matches the
 question you are trying to answer; none requires prior knowledge of the
 repository’s release history.

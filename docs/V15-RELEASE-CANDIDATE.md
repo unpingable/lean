@@ -21,6 +21,13 @@ retain the exact judgment indices, local countermodels, and receipt-bound
 entitlement required by those edges. V15 also includes an exact-receipt
 anti-minting result and a held-out partial StaticRole instance.
 
+“Receipt” here means the bridge-specific semantic evidence family indexed by
+its source and target. It does not imply a digital signature, hash chain,
+zero-knowledge proof, or other cryptographic commitment. The anti-minting
+result specifically blocks receipt-free construction of source-relative
+`EntitledFrom` at an exactly refuted index pair; it is not a theorem about
+every form of evidence, authority, spend, discharge, or closure.
+
 The classification is `ATLAS`. V15 does not establish a shared bridge algebra,
 generic frontier composition, generic ownership, generic context transport,
 or a universal calculus. It makes no runtime-conformance, JCP-implementation,
@@ -44,6 +51,11 @@ residual theories remained domain-specific. Those are negative scientific
 results, not unfinished implementation work. The
 [`public index`](V15-PUBLIC-INDEX.md) records which edges are mapped and which
 source-local laws are omitted.
+
+An `IndexedJudgmentBridge` is not presented as a generic categorical object:
+it is one oriented, evidence-bearing rule with independently indexed source
+and target judgments, an instance-owned receipt family, and a carry operation.
+No generic identity or composition field exists in PJ.
 
 Exact-receipt anti-minting is non-definitional but adapter-local. Independent
 target truth or a bare bridge inhabitant does not create source-relative

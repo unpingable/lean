@@ -41,7 +41,9 @@ PJ adapters without changing the v14 stable aggregates.
   negative translation, and separate positive and negative target-local
   reliance. A route receipt retains the native span witness and both endpoint
   bindings. PJ does not map GT's whole law family or manufacture a combined
-  translation-and-reliance bridge.
+  translation-and-reliance bridge. The native `Span` is crossing geometry,
+  not a morphism that transfers authority; certificate lift, artifact
+  translation, and target-local reliance remain separate types.
 - Execution Custody contributes eight same-stage constructor edges. Local
   preconditions, ticket consumption, send status, outcome, safety, and
   discharge receipts remain explicit evidence. Attempt, commit, execution,
@@ -60,8 +62,11 @@ unless a source-local theorem explicitly supplies them.
 
 The exact-receipt anti-minting result is similarly bounded. If source and
 target judgments are inhabited at a pair of indices but exact entitlement is
-refuted, a function receiving only those two judgments cannot manufacture the
-missing entitlement. PJ itself does not qualify arbitrary bridge inhabitants.
+refuted, a `ReceiptFreeMintAt` function receiving only those two judgments
+cannot manufacture the missing source-relative `EntitledFrom`. This is not
+derivation reconstruction, cryptographic unforgeability, or a generic ban on
+minting other judgment families. PJ itself does not qualify arbitrary bridge
+inhabitants.
 
 The final classification is `ATLAS`. The retained negative results are
 `FRONTIER-NOT-COMPOSITIONAL`, `NO-USEFUL-OWNERSHIP-COMMONALITY`,
