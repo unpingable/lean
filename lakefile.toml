@@ -44,34 +44,6 @@ rev = "6ef8cc2731780be866bf243afcb7732f4da5f406"  # pinned to lake-manifest.json
 name = "LeanProofs"
 roots = ["LeanProofs"]
 
-# Temporary, non-default source library for the exact public Continuity
-# admission rename gate.
-[[lean_lib]]
-name = "V15ContinuityAdmission"
-srcDir = "formalization"
-roots = ["Continuity.Admission"]
-
-# Temporary, non-default v15 transfer gate. These roots remain isolated from
-# every stable/public aggregate pending separate operator ratification.
-[[lean_lib]]
-name = "V15PublicTransfer"
-srcDir = "formalization"
-roots = [
-  "Continuity.Admission.Qualification",
-  "StaticRole",
-  "PJ",
-  "Continuity.Admission.Qualification.Campaign",
-  "PJ.Campaign.TrancheAQualification",
-  "PJ.Campaign.TrancheBPrimeQualification",
-  "PJ.Campaign.TrancheCPrimeQualification",
-  "PJ.Campaign.TrancheDPrimeQualification",
-  "scripts.PJTrancheADeclarationDump",
-  "scripts.PJTrancheBPrimeDeclarationDump",
-  "scripts.PJTrancheCPrimeDeclarationDump",
-  "scripts.PJTrancheDPrimeDeclarationDump",
-  "scripts.ContinuityAdmissionDeclarationDump",
-]
-
 # Canonical, non-default v15 formal surface.  The source calculi remain
 # independently owned; PJ imports their adapters as a cross-calculus atlas.
 [[lean_lib]]

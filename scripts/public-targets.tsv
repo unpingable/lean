@@ -27,8 +27,6 @@
 .	SafetyBridge	stable-surface	mathlib-free	default
 .	V15Integration	public-evidence	mathlib-free	explicit
 .	V15IntegrationQualification	public-evidence	mathlib-free	explicit
-.	V15PublicTransfer	public-evidence	mathlib-free	explicit
-.	V15ContinuityAdmission	public-evidence	mathlib-free	explicit
 .	ViewSemantics	stable-surface	mathlib-free	default
 .	ViewSemanticsEvidence	public-evidence	mathlib-free	default
 .	ViewSemanticsEvidenceMathlib	public-evidence	mathlib-island	explicit
