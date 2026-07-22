@@ -144,3 +144,5 @@ theorem foreign_packet_not_ownership_entitled
 #print axioms foreign_packet_not_wellformed_entitled
 #print axioms foreign_packet_not_coherent_entitled
 #print axioms foreign_packet_not_ownership_entitled
+
+end PJ.Instances.ContinuityAdmission
