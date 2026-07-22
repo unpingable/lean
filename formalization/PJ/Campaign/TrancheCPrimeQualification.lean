@@ -1,0 +1,44 @@
+/-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+-/
+
+import PJ.TrancheCPrime.Ownership
+import PJ.TrancheCPrime.ContextTransport
+
+/-!
+  Direct axiom receipts for the provisional PJ Tranche C-prime candidate.
+  This leaf imports the exact C-prime modules directly, so a stale aggregate
+  cannot hide or substitute declarations. It does not ratify C-prime.
+-/
+
+#print axioms PJ.TrancheCPrime.Ownership.duplicateEntitlement
+#print axioms PJ.TrancheCPrime.Ownership.consumeSameEntitlementTwice
+#print axioms PJ.TrancheCPrime.Ownership.GovernedTransport.repeatedExactRouteEvidence
+#print axioms PJ.TrancheCPrime.Ownership.GovernedTransport.bridge_description_does_not_realize_missing_route
+#print axioms PJ.TrancheCPrime.Ownership.ExecutionCustody.repeatedAttemptEvidence
+#print axioms PJ.TrancheCPrime.Ownership.ExecutionCustody.spent_stage_does_not_supply_execution
+#print axioms PJ.TrancheCPrime.Ownership.ExecutionCustody.bridge_schema_does_not_realize_attempt
+#print axioms PJ.TrancheCPrime.Ownership.SomeoneContinuity.repeatedReachabilityEvidence
+#print axioms PJ.TrancheCPrime.Ownership.SomeoneContinuity.breach_reuses_exact_packet_after_demotion
+#print axioms PJ.TrancheCPrime.Ownership.SomeoneContinuity.local_packet_ownership_does_not_supply_cross_agent_receipt
+#print axioms PJ.TrancheCPrime.Ownership.StaticRole.repeatedFunctionalEvidence
+#print axioms PJ.TrancheCPrime.Ownership.StaticRole.lawful_action_does_not_supply_functional_uptake
+
+#print axioms PJ.TrancheCPrime.ContextTransport.GovernedTransport.firstRepairExtension
+#print axioms PJ.TrancheCPrime.ContextTransport.GovernedTransport.oldRouteIntoRepair
+#print axioms PJ.TrancheCPrime.ContextTransport.GovernedTransport.repair_is_not_old_context_equivalence
+#print axioms PJ.TrancheCPrime.ContextTransport.GovernedTransport.repair_changes_qualification_geometry
+#print axioms PJ.TrancheCPrime.ContextTransport.ExecutionCustody.different_prestate_may_commit
+#print axioms PJ.TrancheCPrime.ContextTransport.ExecutionCustody.different_prestate_commit_attempted
+#print axioms PJ.TrancheCPrime.ContextTransport.ExecutionCustody.differentPrestateEntitlement
+#print axioms PJ.TrancheCPrime.ContextTransport.ExecutionCustody.old_stage_permission_not_entitled_at_different_prestate
+#print axioms PJ.TrancheCPrime.ContextTransport.ExecutionCustody.exact_stage_receipts_do_not_reindex
+#print axioms PJ.TrancheCPrime.ContextTransport.SomeoneContinuity.foreignCandidateRejectsToGwen
+#print axioms PJ.TrancheCPrime.ContextTransport.SomeoneContinuity.john_and_gwen_indices_are_distinct
+#print axioms PJ.TrancheCPrime.ContextTransport.SomeoneContinuity.foreign_candidate_does_not_own_packet
+#print axioms PJ.TrancheCPrime.ContextTransport.SomeoneContinuity.reachability_does_not_reflect_source_packet_ownership
+#print axioms PJ.TrancheCPrime.ContextTransport.SomeoneContinuity.reachable_context_preserves_agent_id
+#print axioms PJ.TrancheCPrime.ContextTransport.SomeoneContinuity.changing_agent_index_leaves_reachable_fragment
+#print axioms PJ.TrancheCPrime.ContextTransport.StaticRole.exact_isomorphism_conditionally_preserves_and_reflects_r3
+#print axioms PJ.TrancheCPrime.ContextTransport.StaticRole.presentation_change_is_load_bearing_noncommutation

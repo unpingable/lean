@@ -44,6 +44,34 @@ rev = "6ef8cc2731780be866bf243afcb7732f4da5f406"  # pinned to lake-manifest.json
 name = "LeanProofs"
 roots = ["LeanProofs"]
 
+# Temporary, non-default source library for the byte-exact historical Someone
+# module transferred during the bounded v15 public-custody campaign.
+[[lean_lib]]
+name = "V15SomeoneSources"
+srcDir = "someone"
+roots = ["Someone"]
+
+# Temporary, non-default v15 transfer gate. These roots remain isolated from
+# every stable/public aggregate pending separate operator ratification.
+[[lean_lib]]
+name = "V15PublicTransfer"
+srcDir = "formalization"
+roots = [
+  "ContinuityQualification",
+  "StaticRole",
+  "PJ",
+  "ContinuityQualification.Campaign.Qualification",
+  "PJ.Campaign.TrancheAQualification",
+  "PJ.Campaign.TrancheBPrimeQualification",
+  "PJ.Campaign.TrancheCPrimeQualification",
+  "PJ.Campaign.TrancheDPrimeQualification",
+  "scripts.PJTrancheADeclarationDump",
+  "scripts.PJTrancheBPrimeDeclarationDump",
+  "scripts.PJTrancheCPrimeDeclarationDump",
+  "scripts.PJTrancheDPrimeDeclarationDump",
+  "scripts.SomeoneContinuityDeclarationDump",
+]
+
 # Exact compatibility-bearing Admissibility Kernels root.
 [[lean_lib]]
 name = "AdmissibilityKernels"

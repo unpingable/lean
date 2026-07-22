@@ -1,0 +1,66 @@
+/-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+-/
+
+/-
+  Phase-two build and axiom-audit leaf.  Importing this module reaches the
+  bounded core, eight-sort transport, the lawful shared-reduct construction,
+  and every hostile finite fixture.
+-/
+
+import StaticRole.Model.Transport
+import StaticRole.Theorems.ExpansionIndependence
+
+#print axioms StaticRole.accurately_encodes_of_encodes
+#print axioms StaticRole.internal_role_encoding_has_accurate_atlas
+#print axioms StaticRole.CoherentReferenceAction.carry_roundtrip
+#print axioms StaticRole.CoherentReferenceAction.carry_injective
+#print axioms StaticRole.preserves_current_reference_comp
+#print axioms StaticRole.preserves_current_reference_reverse
+#print axioms StaticRole.current_self_node_unique
+#print axioms StaticRole.projected_self_node_unique
+#print axioms StaticRole.prospective_de_se_iff_coherent_transport
+#print axioms StaticRole.prospective_de_se_remode
+
+#print axioms StaticRole.external_role_shift_transport
+#print axioms StaticRole.internal_role_encoding_transport
+#print axioms StaticRole.preserves_current_reference_transport
+#print axioms StaticRole.coherent_prospective_witness_transport
+#print axioms StaticRole.coherent_transport_characterization_transport
+#print axioms StaticRole.prospective_de_se_encoding_transport
+
+#print axioms StaticRole.Countermodels.DependencyChain.causal_order_without_observer_centers
+#print axioms StaticRole.Countermodels.DependencyChain.centers_and_stages_without_records
+#print axioms StaticRole.Countermodels.DependencyChain.mnemonic_representation_without_represented_succession
+#print axioms StaticRole.Countermodels.DependencyChain.represented_succession_without_self_location
+#print axioms StaticRole.Countermodels.RoleHierarchy.self_location_without_r1
+#print axioms StaticRole.Countermodels.RoleHierarchy.r0_without_r1
+
+#print axioms StaticRole.Countermodels.CoherenceHostiles.r1_without_self_reference_transport
+#print axioms StaticRole.Countermodels.CoherenceHostiles.continuation_without_self_reference_preservation
+#print axioms StaticRole.Countermodels.CoherenceHostiles.current_and_projected_anchors_without_any_lawful_action
+#print axioms StaticRole.Countermodels.CoherenceHostiles.lawful_succession_without_forecast_grounding
+#print axioms StaticRole.Countermodels.CoherenceHostiles.forecast_grounding_without_self_reference_transport
+#print axioms StaticRole.Countermodels.CoherenceHostiles.self_reference_transport_with_inaccurate_role_encoding
+#print axioms StaticRole.Countermodels.CoherenceHostiles.transport_shaped_pair_without_identity_coherence
+#print axioms StaticRole.Countermodels.CoherenceHostiles.locally_correct_endpoint
+#print axioms StaticRole.Countermodels.CoherenceHostiles.locally_incoherent_identity
+#print axioms StaticRole.Countermodels.CoherenceHostiles.mnemonic_record_grounding_without_prospective_de_se
+#print axioms StaticRole.Countermodels.CoherenceHostiles.r2_without_record_tokens
+#print axioms StaticRole.Countermodels.CoherenceHostiles.r2_without_functional_uptake
+#print axioms StaticRole.Countermodels.CoherenceHostiles.fixed_action_satisfies_all_neighboring_conditions
+#print axioms StaticRole.Countermodels.CoherenceHostiles.central_pair_shared_facts
+#print axioms StaticRole.Countermodels.CoherenceHostiles.same_reduct_lawful_actions_disagree_on_r2
+#print axioms StaticRole.Countermodels.CoherenceHostiles.same_reduct_lawful_actions_disagree_on_coherent_transport
+
+#print axioms StaticRole.Countermodels.Provenance.trace_validity_definitional_nondependence_for_r1
+#print axioms StaticRole.Theorems.ExpansionIndependence.exists_r0_not_r1
+#print axioms StaticRole.Theorems.ExpansionIndependence.exists_r1_not_r2
+#print axioms StaticRole.Theorems.ExpansionIndependence.exists_r2_without_records
+#print axioms StaticRole.Theorems.ExpansionIndependence.same_information_reduct_different_r1
+#print axioms StaticRole.Theorems.ExpansionIndependence.same_information_r1_accuracy_separates
+#print axioms StaticRole.Theorems.ExpansionIndependence.same_information_reduct_different_r2
+#print axioms StaticRole.Theorems.ExpansionIndependence.same_information_reduct_different_coherent_transport
+#print axioms StaticRole.Theorems.ExpansionIndependence.same_information_r2_expansion_reduct_is_literal
+#print axioms StaticRole.Theorems.ExpansionIndependence.r1_trace_validity_definitional_nondependence
