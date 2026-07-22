@@ -1,5 +1,12 @@
 # The Governed Admissibility Calculus
 
+This is a formal-methods treatment of governed computation, not a blockchain,
+legal-evidence, smart-contract, audit-log, or category-theory system. The
+calculus asks which evidence justifies a claim while keeping standing,
+custody, authority, refusal, and obligation distinct. The repository-wide
+[plain-language orientation](../PLAIN-LANGUAGE-SUMMARY.md) explains how this
+v14 calculus sits beside the three-domain v15 Atlas.
+
 This documentation has three entrances. Choose the one that matches the
 question you are trying to answer; none requires prior knowledge of the
 repository’s release history.

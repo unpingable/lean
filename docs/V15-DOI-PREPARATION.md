@@ -8,12 +8,13 @@ mint performed**.
 - Software-series concept DOI: `10.5281/zenodo.20369489`.
 - Prepared version: `15.0.0`.
 - Prepared title: **V15 — Cross-Calculus Atlas**.
-- Prepared subtitle: **Faithful indexed-judgment correspondence without a
+- Prepared subtitle: **Receipt-indexed correspondence without a
   shared bridge algebra.**
 - Version DOI: **unassigned**. It must not be guessed or copied from another
   release.
-- Prepared release date: `2026-07-22` in `CITATION.cff`. This metadata field
-  is not independent evidence that a tag, GitHub release, or deposit exists.
+- Release date: **unassigned**. `CITATION.cff` deliberately carries no
+  `date-released` field while v15 remains release preparation. The date at the
+  top of this page dates the preparation record, not a release.
 
 The concept DOI is preserved because it identifies the software series, not a
 v15 deposit. A future operator may tag the exact release-preparation tree,

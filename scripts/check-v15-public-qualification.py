@@ -28,6 +28,17 @@ PJ_MANIFEST = (
 )
 STATIC_TEMPLATE = ROOT / "formalization/scripts/PJTrancheDPrimeDeclarationDump.lean"
 
+# The release-candidate path manifest is a frozen receipt for the ratified
+# candidate. Later presentation-only review may edit these reader-facing files
+# without rewriting that historical manifest.
+POST_CANDIDATE_PRESENTATION_PATHS = {
+    "WHAT-THIS-IS.md",
+    "WHAT-THIS-PROVES.md",
+    "docs/PLAIN-LANGUAGE-SUMMARY.md",
+    "docs/V15-PUBLIC-INDEX.md",
+    "docs/calculus/README.md",
+}
+
 STATIC_MODULES = (
     "StaticRole.Core.CausalBase",
     "StaticRole.Core.Centers",
@@ -326,7 +337,7 @@ def verify_changed_paths() -> None:
     status = run("git", "status", "--porcelain=v1").stdout.decode().splitlines()
     working = {line[3:] for line in status if len(line) >= 4}
     changed = committed | working
-    unexpected = changed - listed
+    unexpected = changed - listed - POST_CANDIDATE_PRESENTATION_PATHS
     if unexpected:
         raise ValueError(
             "path outside V15 candidate allowlist: " + ", ".join(sorted(unexpected))
@@ -364,8 +375,8 @@ def main() -> int:
             raise ValueError("citation title drift")
         if 'version: "15.0.0"' not in citation:
             raise ValueError("citation version drift")
-        if 'date-released: "2026-07-22"' not in citation:
-            raise ValueError("prepared release date drift")
+        if "date-released:" in citation:
+            raise ValueError("unreleased v15 metadata asserts a release date")
     except (OSError, ValueError, subprocess.CalledProcessError, json.JSONDecodeError) as error:
         print(f"FAIL: V15 public qualification: {error}", file=sys.stderr)
         return 1

@@ -4,12 +4,12 @@ Date: 2026-07-22
 
 Status: **local release candidate; not released**
 
-V15 provides faithful cross-calculus mappings among GT, Execution Custody,
-and Continuity Admission, preserving exact judgment indices, local
-countermodels, and receipt-bound entitlement. It includes an exact-receipt
-anti-minting result and a held-out partial StaticRole instance. It does not
-establish a shared bridge algebra, generic frontier composition, generic
-ownership, generic context transport, or a universal calculus.
+V15 records checked mappings for selected edges from GT, Execution Custody,
+and Continuity Admission, preserving the native judgment indices, local
+countermodels, and exact receipts required by those edges. It includes an
+exact-receipt anti-minting result and a held-out partial StaticRole instance.
+It does not establish a shared bridge algebra, generic frontier composition,
+generic ownership, generic context transport, or a universal calculus.
 
 This ledger is rooted at the operator-ratified public integration commit
 `1f0e0208584e0f61fe49353dd0fc6b4775e22e00`, tree
@@ -163,7 +163,7 @@ V15 is not a shared bridge algebra, generic frontier composition law, generic
 ownership theory, generic context transport, universal calculus, Planet,
 Archipelago, complete theory of machine judgment, JCP implementation, or
 operational AG/NQ realization. Receipt fibers and residual theories remain
-local. StaticRole is a held-out faithful partial instance, not an R4 claim.
+local. StaticRole is a qualified held-out partial instance, not an R4 claim.
 
 Only the operator may ratify the local candidate and later, in separately
 authorized actions, push, tag, create a GitHub release, assign release dates,

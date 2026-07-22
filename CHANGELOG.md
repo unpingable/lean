@@ -11,16 +11,17 @@ version record.
 
 ## 15.0.0 — Cross-Calculus Atlas (prepared 2026-07-22)
 
-Faithful indexed-judgment correspondence without a shared bridge algebra.
-This operator-ratified release candidate admits the exact public Continuity
-Admission rename, StaticRole through R3, and the final PJ Atlas surface beside
-the existing public Governed Transport, Execution Custody, and Admissibility
-sources.
+This formal-methods release candidate studies governed computation across
+three independent semantic domains. It records receipt-indexed correspondence
+without a shared bridge algebra: the exact public Continuity Admission rename,
+StaticRole through R3, and checked mappings for selected Governed Transport,
+Execution Custody, and Continuity Admission edges in the final PJ Atlas
+surface.
 
 - PJ preserves the primary calculus mappings and exact judgment indices.
 - Exact-receipt anti-minting remains receipt-fiber-local and
   non-definitional; positive collapse controls remain public.
-- StaticRole is a faithful partial held-out instance with local dependence
+- StaticRole is a qualified partial held-out instance with local dependence
   structure; it makes no phenomenology, consciousness, prediction-success,
   or personal-identity claim.
 - Inquiry and Preparation remain frozen independent comparison-only

@@ -2,13 +2,125 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20369489.svg)](https://doi.org/10.5281/zenodo.20369489)
 
-Small, auditable Lean 4 formalizations for reasoning about evidence, standing, freshness, authority, witnessed transition, and the boundaries between them.
+## Governed computation, formalized
 
-New here? The
-[plain language summary](docs/PLAIN-LANGUAGE-SUMMARY.md) explains the
-research problem this project investigates — governing change under
-bounded knowledge — before the mathematics. The Lean is the medium, not
-the subject.
+This is a theoretical computer science and formal-methods project about
+**governed computation**: how evidence, authority, custody, spend, history,
+refusal, and obligation constrain which conclusions or state transitions are
+justified.
+
+An ordinary transition system can say that a next state is reachable. That is
+not enough when a transition must also be supported by the right evidence,
+proposed by an actor with standing, held under the right custody, paid for by
+an appropriate resource, and closed without erasing an unresolved obligation.
+This repository gives those conditions separate formal types and proves where
+one condition does—or does not—license another.
+
+V15 relates selected judgment-preserving edges from three independently
+defined semantic domains:
+
+- **Governed Transport** tracks source and target evidence across an explicit
+  route, keeping translation separate from the target's decision to rely on
+  it.
+- **Execution Custody** separates permission to attempt, permission to commit,
+  a recorded attempt, success, refusal, unknown outcome, safety evidence, and
+  obligation discharge.
+- **Continuity Admission** preserves identity-bound admission facts only along
+  its qualified reachable fragment.
+
+Receipts bind a conclusion to the exact source, target, subject, context, and
+route that earned it. Structured refusals preserve why a claim was not
+admitted. Origin and stored history prevent replay from being mistaken for a
+fresh entitlement or a clean audit state. These distinctions matter wherever
+software makes externally consequential decisions under incomplete evidence.
+
+### Build and verify
+
+The Lean sources are public under [`LeanProofs/`](LeanProofs/) and
+[`formalization/`](formalization/). The repository pins
+`leanprover/lean4:v4.29.0`; the corresponding environment reports Lean 4.29.0
+and Lake 5.0.0.
+
+```bash
+git clone https://github.com/unpingable/lean.git
+cd lean
+lake build V15Integration
+lake build V15IntegrationQualification
+bash scripts/check-custody-classes.sh
+bash scripts/check-mathlib-free-targets.sh
+```
+
+V15 is currently **operator-ratified release preparation**, not a tagged or
+published v15 release. The current published release remains `v14.0.0`; there
+is no v15 tag or version DOI. Public `origin/main` is
+`5232a697b6f0cfd628e01876b7b19efb9e319b3e`; local review commits after that
+point are not deployed. GitHub Pages renders that branch's `README.md`, and its
+body and response headers should be verified independently after any future
+push. Run `git rev-parse HEAD` to identify the exact local source being built.
+Canonical modules are public; isolated qualification leaves remain public
+evidence outside stable v14 aggregates.
+
+### What this is not
+
+This is not specifically a blockchain or cryptocurrency protocol, a
+zero-knowledge system, a legal-evidence product or legal protocol, a
+smart-contract framework, a generic audit-log implementation, a
+category-theory library, or an alternate-reality game. Those areas could
+instantiate some of these structures, but none defines the project. It also
+does not claim that every institutional process reduces to one calculus. The
+sources, failed implications, and qualification commands are public; there is
+no interactive reveal or withheld proof layer.
+
+### Vocabulary bridge
+
+These terms are deliberately narrower than nearby formal-methods vocabulary:
+
+| Project term | Operational meaning here |
+| --- | --- |
+| `Witness` | Claim-indexed evidence sufficient for one stated judgment, not arbitrary proof data. |
+| `Refusal` | Structured, claim-indexed evidence explaining why a total checker did not admit the claim. |
+| `Standing` | Entitlement to participate in or originate a judgment; it does not itself create authority. |
+| `Custody` | Responsibility for holding or preserving an object, receipt, or decision; possession is not standing. |
+| `Spend` | A consumable capability or resource required by a particular transition. |
+| `Obligation` | A consequence that remains unresolved after an action and must be discharged separately. |
+| `Stored decision` | A previously computed witness-or-refusal result that downstream code must project from rather than silently recompute. |
+| `Hostile countermodel` | An executable or proved model showing that a tempting implication fails. “Hostile” describes adversarial substitution, not presentation style. |
+| `Anti-minting` | A theorem preventing entitlement from appearing when the exact source-relative receipt is absent; it is not a cryptographic unforgeability claim. |
+
+### Why countermodels are first-class results
+
+The countermodels establish semantic separation. For example,
+[`custody_does_not_grant_dynamic_authority`](LeanProofs/Admissibility/Calculus/Instances/BoundedPaidReachability.lean#L181)
+exhibits custody without authority;
+[`may_attempt_not_entitled_to_commit_without_local_preconditions`](formalization/PJ/Instances/ExecutionCustody.lean#L191)
+keeps attempt permission from becoming commit permission; and
+[`safety_does_not_supply_discharge_receipt`](formalization/PJ/Instances/ExecutionCustody.lean#L284)
+shows that a safe observed execution does not by itself discharge an
+obligation. Each blocks a plausible but invalid lift unless a separate bridge
+and its required evidence are supplied.
+
+For one end-to-end example, including evidence, standing, custody, native
+permit consumption, structured refusal, obligation lifecycle, origin, and
+stored history, see the
+[`BreakGlass walkthrough`](docs/PLAIN-LANGUAGE-SUMMARY.md#one-concrete-walkthrough-bounded-breakglass).
+
+### Reading guide
+
+- **Formal-methods readers:** start with
+  [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), then the
+  [calculus exposition](docs/calculus/README.md) and
+  [declaration index](docs/calculus/declaration-index.md).
+- **Systems and security readers:** read the
+  [plain-language summary](docs/PLAIN-LANGUAGE-SUMMARY.md), the
+  [standing-upgrade example](docs/worked-examples/standing-upgrade-block.md),
+  and the [hostile audit](docs/V15-PUBLIC-HOSTILE-AUDIT_2026-07-22.md).
+- **Institutional and governance readers:** read
+  [`WHAT-THIS-IS.md`](WHAT-THIS-IS.md), then the bounded examples in the
+  [conceptual calculus](docs/calculus/GOVERNED-ADMISSIBILITY-CALCULUS.md).
+- **Code-first readers:** inspect
+  [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md),
+  build `V15Integration`, and use
+  [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md) as the v15 module map.
 
 Development-order and custody discipline for contributors and coding agents
 lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
@@ -24,10 +136,10 @@ recorded in [`PROVENANCE.md`](PROVENANCE.md).
 GitHub release, and Zenodo version deposit are separate operator acts and are
 not asserted here.**
 
-The exact operator-ratified v15 candidate provides faithful cross-calculus
-mappings among Governed Transport, Execution Custody, and Continuity
-Admission. It preserves exact judgment indices, local countermodels, and
-receipt-bound entitlement; includes exact-receipt anti-minting; and retains
+The exact operator-ratified v15 candidate records checked mappings for selected
+edges from Governed Transport, Execution Custody, and Continuity Admission. It
+preserves the native judgment indices, local countermodels, and exact receipts
+required by those edges; includes exact-receipt anti-minting; and retains
 StaticRole as a held-out partial instance closed at R3.
 
 The classification is `ATLAS`: no shared bridge algebra, generic frontier
@@ -746,7 +858,7 @@ directory silently promotes a module.
 
 ## Start here
 
-- **What changed in v1.3** → [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md)
+- **V15 Cross-Calculus Atlas** → [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md). Exact selected mappings and exact failures.
 - **Plain-English project explainer** → [`WHAT-THIS-IS.md`](WHAT-THIS-IS.md). No formal-methods background assumed.
 - **A single kernel walked end-to-end** → [`docs/worked-examples/standing-upgrade-block.md`](docs/worked-examples/standing-upgrade-block.md). What it refuses and why.
 - **What the current Lean stack proves** → [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md)
@@ -766,6 +878,11 @@ The point is not to prove an entire software system correct. It is to make inval
 
 ## Map
 
+- **Cross-Calculus Atlas** *(v15 public evidence)* — selected,
+  receipt-indexed mappings from Governed Transport, Execution Custody, and
+  Continuity Admission; exact-receipt anti-minting; and a held-out partial
+  StaticRole instance. PJ does not create a shared algebra or generic
+  composition law. See the [`v15 public index`](docs/V15-PUBLIC-INDEX.md).
 - **Admissibility Calculus** *(v14, Mathlib-free)* — governed-family
   signature, native Weathering and bounded-paid instances, exact refusal
   packets, a closed comparison framework, stored-decision crossings, and an
@@ -842,16 +959,18 @@ public module.
 The whole-tree custody gate, exact surface registries, family-specific
 footprint gates, and Mathlib-isolation checks are independent receipts.  This
 corrects the pre-v13 partial checker, which covered only a subset of the tree.
-v13 records the migration; the released v14 tree closes at 201 public sources
+v13 records the migration; the released v14 tree freezes 201 public sources
 (104 stable, 96 evidence, one aggregate), eleven roots, and 131 stable-root
-ownership relations. The unratified GT-4A target candidate would close at 216
-public sources (115 stable, 100 evidence, one aggregate), twelve roots, and
-142 ownership relations. See
+ownership relations. The prepared v15 tree has 273 public sources (115 stable,
+157 evidence, one aggregate) under registered target ownership; its new
+surfaces remain public evidence rather than changes to the v14 stable roots.
+The historical GT-4A packet records an intermediate source-custody gate, not a
+pending current-tree disposition. See
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration,
 [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for current
-release accounting,
+published-release accounting,
 [`docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md`](docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md)
-for the pending delta, and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
+for that historical gate, and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
 what each gate establishes.
 
 ### `experiments/` — tracked wiring witnesses (non-canonical)
@@ -882,9 +1001,11 @@ When a theorem lands here, it means a specific invalid inference has been isolat
 
 The audit-harness layer translates selected claims from the [Δt framework](https://github.com/unpingable/papers) into Lean so they can be checked against explicit definitions instead of persuasive prose. The framework's prose papers make claims about how complex systems degrade, recover, misread themselves, or substitute proxies for reality. It is one consumer of the admissibility kernels, not the whole repo.
 
-Some claims survive. Some narrow. Some break.
-
-That is the point. Lean is used here as a pressure chamber for theory: it helps distinguish structural claims from slogans that were useful for discovery but too loose to carry formal weight. Failed claims are kept as evidence of where the original prose overreached — see [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) for the BROKEN / STALE / SOUND / OPEN audit. The repo's value is less the surviving theorems than the disciplined damage report on the rest.
+Some claims survive, some narrow, and some fail. Lean is used here to state the
+relevant types and premises explicitly, then check the resulting theorem or
+countermodel. Failed claims remain visible where they identify a real
+non-implication; see [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md) for the BROKEN /
+STALE / SOUND / OPEN audit.
 
 ### Paper-anchored modules
 
@@ -920,6 +1041,8 @@ Requires [elan](https://github.com/leanprover/elan) and Lean 4.
 
 ```bash
 lake build                  # default Mathlib-free stable and evidence targets
+lake build V15Integration   # canonical v15 public modules
+lake build V15IntegrationQualification # isolated v15 qualification leaves
 lake build Witnessed WitnessedEvidence
 lake build CustodyIndexed CustodyIndexedEvidence
 lake build PathVerdict PathVerdictEvidence
@@ -977,6 +1100,11 @@ archive, not a buildable canonical path.
 - Papers repo: [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) — paper → module inverse view
 
 ## Status
+
+**`15.0.0` prepared, not released (2026-07-22):** the operator-ratified
+Cross-Calculus Atlas is public on `origin/main` through commit `5232a697…`;
+the release-state and presentation commits after it remain local review work.
+No `v15.0.0` tag, GitHub release, or Zenodo version DOI is asserted.
 
 **`v14.0.0` released (2026-07-18):** the seven-rung campaign and separate
 capital-C ratification establish the Governed Admissibility Calculus. The

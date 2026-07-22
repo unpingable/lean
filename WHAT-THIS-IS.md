@@ -1,50 +1,74 @@
 # What this is
 
-This is a Lean 4 proof workbench for small, auditable kernels about
-admissibility.
+This is a Lean 4 proof workbench for **governed computation**: formal models of
+when evidence licenses a conclusion or state transition, and when standing,
+custody, authority, spend, history, refusal, or obligation remains an
+independent condition.
 
-The common question is not "can this system act?" but:
+The central question is not merely “can the machine take this transition?” It
+is:
 
-> when does what has been presented actually license what follows?
+> What exact evidence justifies this judgment, at these indices, under this
+> actor's standing and custody—and what remains unresolved afterward?
 
-Most authorization systems ask whether a caller has the right role, token, or
-permission. These proofs are about a different failure surface: cases where
-evidence, standing, freshness, authority, or transition get mistaken for more
-than they can support.
+That question is useful in authority-bearing, externally consequential
+systems. A reachable endpoint can have an unlawful history. Custody can exist
+without authority. Standing can coexist with refusal. A successful and safe
+effect can leave an obligation undisclosed or undischarged. Replaying an old
+decision can preserve its result without earning a fresh receipt.
 
-The payload is not the authority. A system that cannot tell an assertion of
-authority from the real thing will eventually launder one into the other: stale
-credentials read as fresh, a dead surface read as healthy, a guess promoted to a
-verdict, a proxy mistaken for the thing it replaced.
+Most modules follow a small formal-methods pattern:
 
-Most modules follow the same pattern:
+1. state a bounded judgment or transition model;
+2. identify the evidence and indices that support it;
+3. make the tempting stronger inference explicit; and
+4. prove the permitted bridge or exhibit a countermodel to the invalid one.
 
-1. name the boundary;
-2. model the thing being offered as support;
-3. model the thing it is being used to justify;
-4. prove that the unsupported move cannot cross the boundary.
+The unusual words name different mathematical objects. A `Witness` is
+evidence indexed by a particular claim. A `Refusal` is structured evidence for
+non-admission, not a bare Boolean. `Standing` concerns participation;
+`Custody` concerns holding or preservation; `Spend` concerns a consumable
+resource; and `Obligation` concerns what remains live after action. A
+“hostile countermodel” is simply an adversarial model that proves a proposed
+implication false.
 
-Some modules audit claims from the Δt research series. Others form the
-original Admissibility Kernels 1.0 surface: authority, standing, freshness,
-surface authorization, witness invariance, state transition, execution, and
-corrective layers. That earlier surface is a set of small kernels, not by
-itself the v14 calculus.
+## The public calculi
 
-v14 separately assembles the capital-C **Admissibility Calculus**: an indexed
-governed-family contract with native witnesses and refusals, separate
-standing/custody/obligation books, exact refusal-packet encodings, comparison
-receipts, stored-decision crossings, and an origin/history-bound BreakGlass
-instance. It remains bounded and explicit rather than a universal theory of
-institutions.
+The repository contains several independently scoped formal families. The v14
+Governed Admissibility Calculus supplies claim-indexed witness/refusal data,
+separate standing/custody/obligation books, bounded instances, exact refusal
+encodings, stored decisions, and an origin/history-sensitive BreakGlass
+instance.
 
-The point is not to prove an entire institution, platform, incident, or
-distributed system correct. The point is smaller and more useful: make category
-errors mechanically visible before they become architecture.
+V15 adds a Cross-Calculus Atlas over selected edges from Governed Transport,
+Execution Custody, and Continuity Admission. The mappings preserve the native
+indices and exact receipts required by those edges. They do not identify the
+three calculi, translate every theorem, or create a shared algebra. StaticRole
+is a held-out partial instance closed at R3; Inquiry and Preparation remain
+independent comparison-only neighbors.
 
-Lean alone does not prove that a runtime implements any of this. A runtime
-claiming correspondence must name its exact scope, supply an exact map,
-executable preservation and transport evidence, and revision-bound
-qualification receipts showing that every required distinction survives. A
-formal refinement proof does not waive those artifacts.
+## What this is not
 
-This is a proof workbench, not an oracle.
+This is not a blockchain or cryptocurrency protocol, zero-knowledge system,
+legal-evidence product or legal protocol, smart-contract framework, generic
+audit-log implementation, category-theory library, or alternate-reality game.
+Those areas may instantiate some formal structures in the repository, but none
+supplies its definition or intended classification. The public records are
+ordinary source and verification receipts, not an interactive reveal.
+
+It is also not a universal theory of institutions, a complete model of
+machine judgment, a JCP implementation, an operational AG/NQ realization, or
+a claim that every governed process reduces to one calculus.
+
+## Formal result versus deployed system
+
+Lean checks the theorems under their disclosed definitions, hypotheses, and
+axiom footprints. It does not prove that a runtime implements them. A runtime
+conformance claim requires a separately scoped correspondence map, executable
+preservation evidence, and revision-bound qualification receipts for every
+governed distinction.
+
+For the first technical orientation and an end-to-end example, read the
+[`plain-language summary`](docs/PLAIN-LANGUAGE-SUMMARY.md). For exact theorem
+scope, read [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md). The source and build
+commands are in the [`README`](README.md).

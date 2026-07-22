@@ -2,7 +2,7 @@
 
 ## The short version
 
-Four headline results organize the current Lean stack.
+Five headline results organize the current Lean stack.
 
 First, it audits selected claims from the Δt framework. That work found three places where the prose was collapsing distinct claim types into single sentences. Machine-checked formalization forced each claim to declare its type, then proved or falsified it on those terms.
 
@@ -23,17 +23,63 @@ native witnesses and refusals; its verdict projections preserve authority and
 exact refused packets without pretending that a clean verdict serializes an
 accepted witness's identity.
 
+Fifth, v15 records a **Cross-Calculus Atlas** over selected edges from
+Governed Transport, Execution Custody, and Continuity Admission. PJ does not
+import whole theories into a common logic. It records source and target index
+types, their local judgment families, the exact receipt required for one edge,
+and the carry operation licensed by that receipt. StaticRole is a held-out
+partial instance rather than a fourth fully absorbed calculus.
+
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
 
-## Post-v14 candidate — Governed Transport
+## V15 current surface — Cross-Calculus Atlas
 
-The pending `LeanProofs.GovernedTransport` surface formalizes proof-relevant
-transport across spans. Positive transport requires an explicit crossing lift;
-negative transport distinguishes image-relative blockage, global blockage,
-outstanding coverage, and exhibited gaps. Composition retains exact
-end-to-end routes, coverage repair adds witnesses without rewriting the
-original crossing, identity and associativity require explicit
-leg-preservation, and tagged federation retains local jurisdiction.
+The public `V15Integration` target imports the exact source calculi and their
+PJ adapters without changing the v14 stable aggregates.
+
+- Governed Transport contributes four mapped edge shapes: positive and
+  negative translation, and separate positive and negative target-local
+  reliance. A route receipt retains the native span witness and both endpoint
+  bindings. PJ does not map GT's whole law family or manufacture a combined
+  translation-and-reliance bridge.
+- Execution Custody contributes eight same-stage constructor edges. Local
+  preconditions, ticket consumption, send status, outcome, safety, and
+  discharge receipts remain explicit evidence. Attempt, commit, execution,
+  refusal, unknown outcome, safety, and discharge are not collapsed.
+- Continuity Admission contributes three reachable-fragment preservation
+  edges: well-formedness, coherence, and packet ownership. The native
+  `Reachable` proof is the receipt. Agent identifiers are preserved but not
+  authenticated; no durable revocation, route history, substrate rebinding,
+  typed refusal, obligation, or operational correspondence follows.
+
+For every declared bridge, `carry` is total once the exact source evidence and
+receipt are supplied. This is not a total translation from every source index,
+because a receipt may not exist. Nor is it an equivalence: reverse maps,
+round-trip laws, generic composition, and a shared native judgment are absent
+unless a source-local theorem explicitly supplies them.
+
+The exact-receipt anti-minting result is similarly bounded. If source and
+target judgments are inhabited at a pair of indices but exact entitlement is
+refuted, a function receiving only those two judgments cannot manufacture the
+missing entitlement. PJ itself does not qualify arbitrary bridge inhabitants.
+
+The final classification is `ATLAS`. The retained negative results are
+`FRONTIER-NOT-COMPOSITIONAL`, `NO-USEFUL-OWNERSHIP-COMMONALITY`,
+`CONTEXT-TRANSPORT-NOT-GENERIC`, and
+`ONLY-DOMAIN-SPECIFIC-RESIDUAL-THEORIES`. They are results, not roadmap items.
+The [public index](docs/V15-PUBLIC-INDEX.md) gives the exact module map and the
+[hostile audit](docs/V15-PUBLIC-HOSTILE-AUDIT_2026-07-22.md) gives the
+representative countermodels and source pins.
+
+## Governed Transport source calculus
+
+`LeanProofs.GovernedTransport` formalizes proof-relevant transport across
+spans. Positive transport requires an explicit crossing lift; negative
+transport distinguishes image-relative blockage, global blockage, outstanding
+coverage, and exhibited gaps. Composition retains exact end-to-end routes,
+coverage repair adds witnesses without rewriting the original crossing,
+identity and associativity require explicit leg-preservation, and tagged
+federation retains local jurisdiction.
 
 The separate `LeanProofs.GovernedTransportEvidence` root carries the hostile
 countermodels: source evidence without a lift, incomplete coverage, local
@@ -41,12 +87,11 @@ evidence laundering, endpoint-equality laundering, route-history collapse,
 and related composition/federation failures. These are public evidence, not
 stable dependencies.
 
-The generic GT-4A target remains an operator-ratification candidate, not yet
-active target custody. C03 is separately ratified as active public evidence;
-C01, C02, C04, other private instances, operational correspondence,
-`FEDERATED-OR-NONE`, and a generic extension remain outside the admitted
-objects. Exact GT-4A scope and qualification are recorded in the
-[`GT-4A target custody candidate`](docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md).
+The source core and evidence roots are public and custody-registered. Their
+appearance in V15 does not promote omitted instance campaigns or establish
+operational correspondence, `FEDERATED-OR-NONE`, or a generic extension. The
+historical GT-4A candidate packet remains a source-custody record rather than
+the current V15 classification.
 
 ## Formal contract and runtime conformance
 

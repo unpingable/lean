@@ -2,7 +2,6 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "V15 — Cross-Calculus Atlas"
 version: "15.0.0"
-date-released: "2026-07-22"
 type: software
 authors:
   - family-names: Beck
@@ -17,6 +16,9 @@ identifiers:
     description: "Concept DOI — resolves to the latest published version"
 license: Apache-2.0
 keywords:
+  - governed-computation
+  - theoretical-computer-science
+  - formal-methods
   - cross-calculus-atlas
   - indexed-judgment
   - receipt-bound-entitlement
@@ -26,22 +28,24 @@ keywords:
   - governed-transport
   - execution-custody
   - admissibility
-  - formal-methods
   - Lean
   - Lean4
   - public-custody
   - public-evidence
 abstract: >-
-  V15 provides faithful cross-calculus mappings among Governed Transport,
-  Execution Custody, and Continuity Admission, preserving exact judgment
-  indices, local countermodels, and receipt-bound entitlement. It includes an
-  exact-receipt anti-minting result and a held-out partial StaticRole instance
-  closed at R3. The exact classification is ATLAS: the work does not establish
-  a shared bridge algebra, generic frontier composition, generic ownership,
-  generic context transport, or a universal calculus. Inquiry and Preparation
-  remain frozen independent comparison-only neighbors outside the PJ primary
-  surface. No runtime conformance, JCP implementation, operational AG/NQ
-  realization, cryptographic unforgeability, phenomenology, consciousness,
+  A formal-methods study of governed computation: how evidence, authority,
+  custody, spend, history, refusal, and obligation constrain justified
+  conclusions and state transitions. V15 records checked mappings for selected
+  edges from Governed Transport, Execution Custody, and Continuity Admission,
+  retaining their native judgment indices, local countermodels, and exact
+  receipts. It includes exact-receipt anti-minting and a held-out partial
+  StaticRole instance closed at R3. The classification is ATLAS: no shared
+  bridge algebra, generic frontier composition, generic ownership, generic
+  context transport, or universal calculus is established. This is not
+  specifically a blockchain, smart-contract, legal-protocol, legal-evidence,
+  zero-knowledge, audit-log, category-theory, or alternate-reality project. No
+  runtime conformance, JCP implementation, operational AG/NQ realization,
+  cryptographic unforgeability, phenomenology, consciousness,
   successful-prediction, or personal-identity claim is made. This metadata is
   prepared for the exact operator-ratified v15 release candidate. The concept
   DOI identifies the software series; no v15 version DOI or publication is
