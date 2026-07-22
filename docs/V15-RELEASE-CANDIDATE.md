@@ -1,6 +1,17 @@
 # V15 — Cross-Calculus Atlas
 
-**Status: local release candidate; not tagged or published.**
+**Status: operator-ratified release preparation; not tagged or published.**
+
+Exact ratified candidate and public-main promotion:
+
+- commit: `5232a697b6f0cfd628e01876b7b19efb9e319b3e`;
+- tree: `510f7c42a0edad406a7762cc11c0e7f0ee554687`;
+- parent: `62d118a6ede996d4b3e0351d5db3ae7e3aa04f07`;
+- promoted to `origin/main` by pure fast-forward on 2026-07-22.
+
+The release-preparation commit is recorded in the operator handoff because a
+Git object cannot contain its own identity. No tag, GitHub release, Zenodo
+deposit, or version DOI is asserted by this page.
 
 Subtitle: **Faithful indexed-judgment correspondence without a shared bridge
 algebra.**

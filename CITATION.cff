@@ -2,6 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "V15 — Cross-Calculus Atlas"
 version: "15.0.0"
+date-released: "2026-07-22"
 type: software
 authors:
   - family-names: Beck
@@ -41,7 +42,7 @@ abstract: >-
   remain frozen independent comparison-only neighbors outside the PJ primary
   surface. No runtime conformance, JCP implementation, operational AG/NQ
   realization, cryptographic unforgeability, phenomenology, consciousness,
-  successful-prediction, or personal-identity claim is made. This metadata
-  describes a local release candidate. The concept DOI identifies the software
-  series; no v15 version DOI or publication is claimed before a separate
-  operator-controlled release and Zenodo deposit.
+  successful-prediction, or personal-identity claim is made. This metadata is
+  prepared for the exact operator-ratified v15 release candidate. The concept
+  DOI identifies the software series; no v15 version DOI or publication is
+  claimed before a separate operator-controlled release and Zenodo deposit.

@@ -364,8 +364,8 @@ def main() -> int:
             raise ValueError("citation title drift")
         if 'version: "15.0.0"' not in citation:
             raise ValueError("citation version drift")
-        if "date-released:" in citation:
-            raise ValueError("candidate metadata falsely asserts a release date")
+        if 'date-released: "2026-07-22"' not in citation:
+            raise ValueError("prepared release date drift")
     except (OSError, ValueError, subprocess.CalledProcessError, json.JSONDecodeError) as error:
         print(f"FAIL: V15 public qualification: {error}", file=sys.stderr)
         return 1

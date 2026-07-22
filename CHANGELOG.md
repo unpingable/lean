@@ -9,12 +9,13 @@ that the corresponding Zenodo version exists. As checked 2026-07-20, the
 v11–v14 portion of the public series contains v11, v13, and v14 but no v12
 version record.
 
-## 15.0.0 — Cross-Calculus Atlas (local candidate; 2026-07-22)
+## 15.0.0 — Cross-Calculus Atlas (prepared 2026-07-22)
 
 Faithful indexed-judgment correspondence without a shared bridge algebra.
-This local candidate admits the exact public Continuity Admission rename,
-StaticRole through R3, and the final PJ Atlas surface beside the existing
-public Governed Transport, Execution Custody, and Admissibility sources.
+This operator-ratified release candidate admits the exact public Continuity
+Admission rename, StaticRole through R3, and the final PJ Atlas surface beside
+the existing public Governed Transport, Execution Custody, and Admissibility
+sources.
 
 - PJ preserves the primary calculus mappings and exact judgment indices.
 - Exact-receipt anti-minting remains receipt-fiber-local and
@@ -31,9 +32,9 @@ public Governed Transport, Execution Custody, and Admissibility sources.
 
 V15 establishes no shared bridge algebra, generic frontier composition,
 generic ownership, generic context transport, universal calculus, runtime
-conformance, JCP implementation, or operational AG/NQ realization. This
-entry prepares a local candidate only; no `v15.0.0` tag, GitHub release,
-Zenodo version DOI, publication, or push exists at this stage.
+conformance, JCP implementation, or operational AG/NQ realization. This entry
+records release-state metadata preparation only; no `v15.0.0` tag, GitHub
+release, Zenodo version DOI, or publication is asserted at this stage.
 
 ## 14.0.0 — Governed Admissibility Calculus (2026-07-18)
 
