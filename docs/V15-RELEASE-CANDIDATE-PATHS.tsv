@@ -1,0 +1,14 @@
+gate	path
+hostile-audit	README.md
+hostile-audit	docs/V15-PUBLIC-HOSTILE-AUDIT_2026-07-22.md
+release-metadata	CHANGELOG.md
+release-metadata	CITATION.cff
+release-metadata	README.md
+release-metadata	docs/V15-DOI-PREPARATION.md
+release-metadata	docs/V15-RELEASE-CANDIDATE.md
+release-metadata	lakefile.toml
+readiness	docs/V15-PUBLIC-DECLARATION-FOOTPRINT.json
+readiness	docs/V15-READINESS-LEDGER.md
+readiness	docs/V15-RELEASE-CANDIDATE-PATHS.tsv
+readiness	scripts/check-v15-public-qualification.py
+verification	docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md
