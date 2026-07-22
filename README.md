@@ -18,19 +18,22 @@ claim).
 Human and AI collaboration history, evidence basis, and attribution limits are
 recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
-## Post-v14 candidate — Governed Transport
+## V15 integration candidate — Cross-Calculus Atlas
 
-An operator-ratification candidate now maps the exact ratified GT-4A source
-packet into the separate Mathlib-free roots `LeanProofs.GovernedTransport`
-and `LeanProofs.GovernedTransportEvidence`. The stable root contains exactly
-ten generic leaves; 244 hostile/evidence declarations remain outside its
-closure. Target compilation and all 704 packet-bound declaration/body/axiom
-comparisons pass. Public custody and distribution activation remain pending
-operator ratification; Skunkworks remains the canonical scientific owner and
-no ownership transfer, runtime correspondence, release, tag, or DOI is
-claimed. See the
-[`target custody candidate`](docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md)
-and [`compatibility receipt`](docs/GT4A-PUBLIC-COMPATIBILITY-RECEIPT_2026-07-20.md).
+The operator-ratified local v15 integration provides faithful cross-calculus
+mappings among Governed Transport, Execution Custody, and Continuity
+Admission. It preserves exact judgment indices, local countermodels, and
+receipt-bound entitlement; includes exact-receipt anti-minting; and retains
+StaticRole as a held-out partial instance closed at R3.
+
+The classification is `ATLAS`: no shared bridge algebra, generic frontier
+composition, generic ownership, generic context transport, or universal
+calculus is established. Inquiry and Preparation remain frozen independent
+comparison-only neighbors outside the PJ primary surface. This is a local
+candidate, not a release, tag, DOI deposit, runtime-conformance claim, or
+operational AG/NQ realization. See the
+[`v15 public index`](docs/V15-PUBLIC-INDEX.md) and
+[`integration receipt`](docs/V15-INTEGRATION-VERIFICATION-RECEIPT_2026-07-22.md).
 
 ## Current release: 14.0.0 — Governed Admissibility Calculus
 
