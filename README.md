@@ -18,9 +18,9 @@ claim).
 Human and AI collaboration history, evidence basis, and attribution limits are
 recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
-## V15 integration candidate — Cross-Calculus Atlas
+## Local release candidate: 15.0.0 — Cross-Calculus Atlas
 
-The operator-ratified local v15 integration provides faithful cross-calculus
+The operator-ratified local v15 candidate provides faithful cross-calculus
 mappings among Governed Transport, Execution Custody, and Continuity
 Admission. It preserves exact judgment indices, local countermodels, and
 receipt-bound entitlement; includes exact-receipt anti-minting; and retains
@@ -35,7 +35,7 @@ operational AG/NQ realization. See the
 [`v15 public index`](docs/V15-PUBLIC-INDEX.md) and
 [`integration receipt`](docs/V15-INTEGRATION-VERIFICATION-RECEIPT_2026-07-22.md).
 
-## Current release: 14.0.0 — Governed Admissibility Calculus
+## Current published release: 14.0.0 — Governed Admissibility Calculus
 
 **Released 2026-07-18.** The annotated `v14.0.0` tag and
 [GitHub release](https://github.com/unpingable/lean/releases/tag/v14.0.0)

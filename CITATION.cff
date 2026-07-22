@@ -1,8 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Governed Admissibility Calculus"
-version: "14.0.0"
-date-released: "2026-07-18"
+title: "V15 — Cross-Calculus Atlas"
+version: "15.0.0"
 type: software
 authors:
   - family-names: Beck
@@ -14,147 +13,35 @@ doi: "10.5281/zenodo.20369489"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.20369489"
-    description: "Concept DOI — resolves to the latest version of this software"
+    description: "Concept DOI — resolves to the latest published version"
 license: Apache-2.0
 keywords:
+  - cross-calculus-atlas
+  - indexed-judgment
+  - receipt-bound-entitlement
+  - anti-minting
+  - continuity-admission
+  - static-role
+  - governed-transport
+  - execution-custody
   - admissibility
-  - admissibility-calculus
-  - governed-family
-  - refusal-packet
-  - indexed-comparison
-  - stored-decision
-  - break-glass
-  - origin-binding
-  - authority
-  - bounded-projection
-  - disclosure-bounds
   - formal-methods
   - Lean
   - Lean4
-  - mathlib
-  - occurrence-indexed
-  - paid-recomposition
-  - proof-relevant
-  - exact-catalog
-  - state-transition
-  - view-semantics
-  - boundary-kernels
-  - admissibility-kernels
-  - delta-t-framework
-  - governance-state
-  - judgment-orientation
-  - exact-origin
-  - finite-support
-  - provenance
   - public-custody
   - public-evidence
-  - compatibility-surface
-  - trace-attribution
-  - refusal-gate
-  - witness-invariance
 abstract: >-
-  v14.0.0 — Governed Admissibility Calculus — promotes, in seven
-  operator-ratified rungs, the unified object the repository had been
-  refusing to name since v10: the capital-C Admissibility Calculus. The
-  seven rungs, each separately hostile-reviewed, extracted with proven
-  normalized-source equality, footprint-declared, and custody-closed, are:
-  (1) PathVerdict domain transport and carried-id located diagnostics;
-  (2) the import-free governed-family signature (claim-indexed witness and
-  refusal DATA, separate standing/custody/obligation books, derived
-  authority, a total evidence-returning checker); (3) the Weathering and
-  BoundedPaidReachability instances with their native seams; (4) the exact
-  dependent refusal-packet spine (bare funnel vs lossless encoding, with a
-  compiled collapse counterexample retained as adverse evidence); (5) the
-  closed seven-entry indexed comparison framework (the concrete
-  proof-carrying ledger over pinned native sources remains receipt-bound
-  research-tree evidence); (6) the stored-decision crossing — decide once,
-  preserve both native outcomes, derive verdicts, located obstructions,
-  and comparison receipts solely from the stored pair — with its witnessed
-  Weathering/bounded-paid inhabitant; and (7) the origin/history-bound
-  BreakGlass terminal instance (lifecycle-origin namespacing, kind-indexed
-  references, receipt-committed book-attested audit history, verdict-level
-  exceptional/ordinary and settlement/audit separations, and a stored
-  crossing), whose 101 public receipts carry an explicitly accepted
-  footprint of 3 axiom-free, 19 opaque-substrate-only, 4 propext-only, 67
-  adding Quot.sound, and 8 adding Classical.choice. The public Calculus
-  root freezes 191 exact receipts (rungs 2-7) plus the separately gated
-  36-receipt rung-1 substrate; fail-closed custody classifies 201 public
-  Lean modules as 104 stable, 96 public evidence, and one aggregate across
-  eleven exact roots and 131 ownership relations, with a cross-repository
-  description-coherence gate guarding the prose against the code. The
-  capital-C name was ratified as its own reviewed act after rung-7 custody
-  closed, not inferred from admission. The family is closed relative to
-  consumer-supplied atoms; no runtime conformance, attestor honesty,
-  origin-allocation uniqueness, or cryptographic claim is made. Full
-  release history is in CHANGELOG.md; the campaign inventory and per-rung
-  receipts are in docs/V14-READINESS-LEDGER.md and
-  docs/V14-RELEASE-LEDGER.md.
-  The historical frame, preserved: through v13 the Lean work deliberately
-  did not claim a unified calculus. It produced a set of small
-  admissibility kernels, each isolating a different refusal boundary
-  — and v14's Calculus is built from, and does not replace, those
-  kernels. The stack exposes a typed-verdict algebra (basis ×
-  precedence × standing) over partitioned governance state, with a
-  typed pipeline from claim derivation through authorized execution,
-  plus refusal-gate kernels for metric-time freshness, collapsed-surface
-  authorization, witness invariance, and corrective monotonicity.
-  General composition rules and meta-theorems are out of scope for 1.0
-  and remain separate kernel families. The
-  1.0 public surface comprises eight modules aggregated via
-  AdmissibilityKernels.lean and is demonstrated by seven specimen
-  consumers in Examples.lean. The artifact models when evidence-backed
-  claims may authorize transitions, proves that boundary-crossing
-  upgrades are impossible by construction, and refuses laundering
-  across the surface, freshness, witness, and authority axes. Not a
-  sequent calculus, not a process calculus, not a proof-theoretic
-  admissibility logic, not a unified maximal calculus — see the
-  repository's scope fence for the full list of non-claims. Finished public
-  evidence builds green but is outside the exact stable compatibility roots;
-  live incubation is external to this repository. (Renamed 2026-06-03 from
-  "Admissibility Calculus 1.0"; a deprecated compatibility shim at
-  LeanProofs/Admissibility/CalculusOne.lean preserved the old import
-  path through v9 and was removed in v10.0.0 — see the aggregator's
-  migration note.)
-  (v1.2 adds fenced UNRATIFIED-CANDIDATE No-Free-Lift candidate annexes
-  and an experimental attestation-boundary wiring tree under
-  experiments/, shipped with module names de-placarded and a
-  composition-classification target naming the gate toward any future
-  calculus claim; the 1.0 public surface and its non-claims are
-  unchanged.) (1.4.0 promotes the ratified Witnessed Derivation
-  Calculus — a narrow proof-theoretic calculus for witnessed movement
-  across typed boundaries (composition, multi-context cut, soundness,
-  provenance, non-manufacture, model-scoped normalization) — into the
-  canonical public surface as the Mathlib-free LeanProofs.Witnessed.*
-  library, with a build-graph-enforced no-Mathlib boundary and an
-  axiom-footprint regression gate. It is additive: the 1.x
-  Admissibility surface is unchanged, and it is not a revival of the
-  retired maximal "Admissibility Calculus".) (3.0.0 completes the
-  bounded lifecycle-calculi family: nine ANNEX release-surface calculi
-  — temporal custody, surface projection, refusal/denial, boundary
-  artifacts, obligation/residue, safety preservation, execution
-  custody, boot/genesis, checkpoint settlement — with no master
-  Admissible judgment; the aggregate import proves checkability only.)
-  (4.0.0 adds the Custody-Indexed Sequents campaign: a parameterized
-  indexed-sequent skeleton, fenced under Scratch and CI-covered as its
-  own build target, where structural read discipline is explicit,
-  contraction is priced across Cartesian and linear instances, bridge
-  composition preserves provenance, index connectivity does not imply
-  derivability, master shapes are screened on both faces — universal
-  indices and universal evidence — and derived evidence cannot become
-  universal bridge currency: every cross-index derivation roots in
-  read evidence whose original scope funded it. The 1.0-era "not a
-  sequent calculus" non-claim was scoped to the stable kernel surface
-  and remains true of it; v4's sequent discipline is a distinct,
-  fenced object beside it, and full Gentzen cut elimination is
-  explicitly NOT claimed — custody-preserving normalization is the
-  named v5 target.) (5.0.0 delivers that target: normalization is
-  partial and policy-aware — a liberal structural derivation
-  normalizes into the custody discipline iff its reads can be paid by
-  occurrences, per-label counting decides normalization exactly,
-  refusal is a typed forgery whose named offender genuinely exceeds
-  supply, successful normalization conserves occurrences for every
-  measure and preserves the custody chain, and a positional occurrence
-  trace proves which occurrence paid which read — no occurrence pays
-  twice, nothing pays that was not there. Not full Gentzen cut
-  elimination; not runtime; scoped to the liberal/linear normalization
-  skeleton over the v4 sequent systems.)
+  V15 provides faithful cross-calculus mappings among Governed Transport,
+  Execution Custody, and Continuity Admission, preserving exact judgment
+  indices, local countermodels, and receipt-bound entitlement. It includes an
+  exact-receipt anti-minting result and a held-out partial StaticRole instance
+  closed at R3. The exact classification is ATLAS: the work does not establish
+  a shared bridge algebra, generic frontier composition, generic ownership,
+  generic context transport, or a universal calculus. Inquiry and Preparation
+  remain frozen independent comparison-only neighbors outside the PJ primary
+  surface. No runtime conformance, JCP implementation, operational AG/NQ
+  realization, cryptographic unforgeability, phenomenology, consciousness,
+  successful-prediction, or personal-identity claim is made. This metadata
+  describes a local release candidate. The concept DOI identifies the software
+  series; no v15 version DOI or publication is claimed before a separate
+  operator-controlled release and Zenodo deposit.
