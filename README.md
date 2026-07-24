@@ -2,15 +2,17 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20369489.svg)](https://doi.org/10.5281/zenodo.20369489)
 
-Machine-checked proofs about a family of bugs that ordinary verification does
-not see: a system reaches the *right state* for the *wrong reason*. A revoked
-credential is accepted because it still parses. A retry replays yesterday's
-approval as if it were fresh. An emergency override settles cleanly and then
-reads back as ordinary history. Reachability analysis and functional
-correctness pass all of these, because the defect is not in the state — it is
-in the justification. This repository gives justification its own formal
-types and proves, in Lean 4, which inferences between them are valid and
-which are refuted by countermodel.
+Machine-checked proofs about a family of bugs that endpoint-focused
+verification does not see: a system reaches the *right state* for the *wrong
+reason*. A revoked credential is accepted because it still parses. A retry
+replays yesterday's approval as if it were fresh. An emergency override
+settles cleanly and then reads back as ordinary history. Endpoint
+reachability and output correctness pass all of these — the endpoint is fine
+while the evidence, authority, history, or unresolved obligation supporting
+it is not preserved — and nothing catches them unless justification is
+modeled explicitly. This repository does exactly that: it gives
+justification its own formal types and proves, in Lean 4, which inferences
+between them are valid and which are refuted by countermodel.
 
 Four reader tiers: the
 [plain-language summary](docs/PLAIN-LANGUAGE-SUMMARY.md) assumes no

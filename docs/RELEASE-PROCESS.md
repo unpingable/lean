@@ -19,6 +19,12 @@ carries the release date (an operator decision) but never a predicted version
 DOI (a value Zenodo emits). A GitHub release does not by itself prove the
 corresponding Zenodo version exists; each is verified independently.
 
+The two DOI kinds never trade places: the root (concept) DOI
+`10.5281/zenodo.20369489` identifies the series, resolves to the latest
+published version, and never changes across releases — it is what
+`CITATION.cff` carries permanently. Version DOIs are per-release, minted at
+deposit, and recorded in the release record, never in place of the root.
+
 ## Verification notes
 
 - Every release-gating check is a bare command whose exit code decides

@@ -50,7 +50,8 @@ abstract: >-
   alternate-reality project. No runtime conformance, JCP implementation,
   operational AG/NQ realization,
   cryptographic unforgeability, phenomenology, consciousness,
-  successful-prediction, or personal-identity claim is made. This metadata is
-  prepared for the exact operator-ratified v15 release candidate. The concept
-  DOI identifies the software series; no v15 version DOI or publication is
-  claimed before a separate operator-controlled release and Zenodo deposit.
+  successful-prediction, or personal-identity claim is made. The DOI above is
+  the concept DOI: it identifies the software series, resolves to the latest
+  published version, and never changes across releases. Each release's
+  version DOI is minted by its Zenodo deposit and recorded there; it is never
+  substituted for the concept DOI in this file.

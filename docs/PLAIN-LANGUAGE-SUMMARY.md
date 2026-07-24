@@ -14,18 +14,22 @@ standing pattern in deployed systems:
   reads as if the ordinary process had been followed all along.
 
 In every case the system lands in a *plausible state* for an *unjustified
-reason*. Standard verification does not catch this, because standard
-verification answers different questions: model checking asks whether a bad
-state is reachable, and program logic asks whether outputs meet a spec.
-Here the state is fine and the output is correct — what is broken is the
-**justification**: who was entitled, on what evidence, at what cost, with
-what left owing. Those conditions are not in the state, so tools that only
-inspect states cannot see them.
+reason*. Endpoint-focused verification does not catch this unless
+justification is modeled explicitly: model checking asks whether a bad state
+is reachable, and program logic asks whether outputs meet a spec, and in
+each failure above the endpoint state is fine and the output is correct.
+What is broken is the **justification**: who was entitled, on what evidence,
+at what cost, with what left owing. Those conditions *can* be encoded into
+an enriched state or a temporal specification — nothing prevents it — but
+they usually are not, and each ad-hoc encoding re-decides from scratch what
+counts as evidence, authority, or an outstanding duty.
 
-This repository gives each justification condition its own formal type in
-Lean 4 — evidence, standing, custody, authority, spend, refusal, obligation,
-origin, retained history — and machine-checks which inferences between them
-are valid and which are refuted by explicit countermodel.
+Modeling them explicitly, once, with types and theorems, is this
+repository's subject. Each justification condition gets its own formal type
+in Lean 4 — evidence, standing, custody, authority, spend, refusal,
+obligation, origin, retained history — and Lean machine-checks which
+inferences between them are valid and which are refuted by explicit
+countermodel.
 
 ## An entry metaphor: the secure courier
 

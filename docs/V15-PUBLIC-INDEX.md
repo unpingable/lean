@@ -106,7 +106,7 @@ conclusion.
 - Final classification: `ATLAS`.
 
 These are negative scientific results, not unimplemented features. PJ is not
-a shared bridge algebra, a universal calculus, a Planet, or an Archipelago.
+a shared bridge algebra or a universal calculus.
 No equivalence among the source calculi, arbitrary round trip, generic
 composition, runtime conformance, JCP implementation, or operational AG/NQ
 realization is claimed.

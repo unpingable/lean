@@ -178,8 +178,12 @@ certain it feels:
   commit `ff491b8` already had `date-released: "2026-07-18"`.
 - **An external service emits it → never guess it.** The Zenodo version DOI
   does not exist until Zenodo returns it. Never guess, predict, or copy it
-  from another release. The concept DOI is different: it identifies the
-  series, already exists, and always stays.
+  from another release. The root (concept) DOI `10.5281/zenodo.20369489` is
+  the opposite case: it identifies the series, resolves to the latest
+  published version, and **never moves** — do not bump it per release, do
+  not replace it with a version DOI in `CITATION.cff`, do not treat its
+  age as staleness. Agents repeatedly get this wrong in both directions:
+  guessing the version DOI early and "updating" the root DOI late.
 
 The recurring failure is applying the second rule to the first — treating a
 date the operator picks like a value an external service emits, then stripping
