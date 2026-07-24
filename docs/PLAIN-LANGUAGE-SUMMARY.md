@@ -253,9 +253,9 @@ establish runtime conformance, attestor honesty, cryptographic security,
 operational AG/NQ realization, a JCP implementation, consciousness,
 phenomenology, or metaphysical personal identity.
 
-V15 is operator-ratified release preparation at version `15.0.0`; it has no
-v15 tag or version DOI and is not yet the published release. The current
-published release remains v14.0.0.
+V15 is the current release, version `15.0.0`, released 2026-07-22. Its Zenodo
+version DOI is minted by the GitHub release creation and recorded from
+Zenodo's response, so it is not stated here in advance.
 
 ## Where to go next
 

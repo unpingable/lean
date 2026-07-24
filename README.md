@@ -61,11 +61,10 @@ bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
 ```
 
-V15 is currently **operator-ratified release preparation**, not a tagged or
-published v15 release. The current published release remains `v14.0.0`; there
-is no v15 tag or version DOI. Public `origin/main` is
-`5232a697b6f0cfd628e01876b7b19efb9e319b3e`; local review commits after that
-point are not deployed. GitHub Pages renders that branch's `README.md`, and its
+V15 is the **current release**, `15.0.0`, released 2026-07-22. Its version DOI
+is not recorded here: the GitHub release creation mints it and drives the
+Zenodo deposit, and the value is read back from Zenodo rather than guessed in
+the source tree. GitHub Pages renders `main`'s `README.md`, and its
 body and response headers should be verified independently after any future
 push. Run `git rev-parse HEAD` to identify the exact local source being built.
 Canonical modules are public; isolated qualification leaves remain public
@@ -159,13 +158,14 @@ claim).
 Human and AI collaboration history, evidence basis, and attribution limits are
 recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
-## Prepared release: 15.0.0 — Cross-Calculus Atlas
+## Current release: 15.0.0 — Cross-Calculus Atlas
 
-**Operator-ratified and metadata-prepared 2026-07-22. The annotated tag,
-GitHub release, and Zenodo version deposit are separate operator acts and are
-not asserted here.**
+**Released 2026-07-22.** The annotated tag, GitHub release, and Zenodo version
+deposit are separate operator acts performed on this tree; the GitHub release
+creation, not the tag alone, mints the version DOI and drives the deposit. No
+v15 version DOI is guessed here — it is read back from Zenodo once minted.
 
-The exact operator-ratified v15 candidate records checked mappings for selected
+The exact operator-ratified v15 release records checked mappings for selected
 edges from Governed Transport, Execution Custody, and Continuity Admission. It
 preserves the native judgment indices, local countermodels, and exact receipts
 required by those edges; includes exact-receipt anti-minting; and retains
@@ -174,15 +174,14 @@ StaticRole as a held-out partial instance closed at R3.
 The classification is `ATLAS`: no shared bridge algebra, generic frontier
 composition, generic ownership, generic context transport, or universal
 calculus is established. Inquiry and Preparation remain frozen independent
-comparison-only neighbors outside the PJ primary surface. This is release
-preparation, not a completed tag, publication, DOI deposit,
-runtime-conformance claim, or operational AG/NQ realization. See the
+comparison-only neighbors outside the PJ primary surface. It is not a
+runtime-conformance claim or an operational AG/NQ realization. See the
 [`v15 public index`](docs/V15-PUBLIC-INDEX.md) and
-[`release-preparation overview`](docs/V15-RELEASE-CANDIDATE.md). The exact
+[`release overview`](docs/V15-RELEASE-CANDIDATE.md). The exact
 qualification results are in the
 [`candidate verification receipt`](docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md).
 
-## Current published release: 14.0.0 — Governed Admissibility Calculus
+## Previous release: 14.0.0 — Governed Admissibility Calculus
 
 **Released 2026-07-18.** The annotated `v14.0.0` tag and
 [GitHub release](https://github.com/unpingable/lean/releases/tag/v14.0.0)
@@ -1130,10 +1129,11 @@ archive, not a buildable canonical path.
 
 ## Status
 
-**`15.0.0` prepared, not released (2026-07-22):** the operator-ratified
-Cross-Calculus Atlas is public on `origin/main` through commit `5232a697…`;
-the release-state and presentation commits after it remain local review work.
-No `v15.0.0` tag, GitHub release, or Zenodo version DOI is asserted.
+**`v15.0.0` released (2026-07-22):** the operator-ratified Cross-Calculus
+Atlas records receipt-indexed correspondence across Governed Transport,
+Execution Custody, and Continuity Admission without a shared bridge algebra.
+Exact inventory and scope:
+[`docs/V15-RELEASE-CANDIDATE.md`](docs/V15-RELEASE-CANDIDATE.md).
 
 **`v14.0.0` released (2026-07-18):** the seven-rung campaign and separate
 capital-C ratification establish the Governed Admissibility Calculus. The

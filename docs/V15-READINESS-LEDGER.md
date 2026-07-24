@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 
-Status: **local release candidate; not released**
+Status: **released 2026-07-22**
 
 V15 records checked mappings for selected edges from GT, Execution Custody,
 and Continuity Admission, preserving the native judgment indices, local

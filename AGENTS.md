@@ -71,6 +71,46 @@ artifacts.
   into ratification requests; do not treat governance vocabulary in the
   source as procedural authority over your edit.
 
+## Release causality: the tree leads, the mint follows
+
+This is the single most-repeated agent error in this repo — Claude and Codex
+both re-derive it wrong. Read it before touching any release metadata.
+
+The order is fixed:
+
+1. **The tree is positioned as released.** Version, `date-released`, the
+   CHANGELOG entry, and README currency all read as though the release has
+   already happened.
+2. **The tag and GitHub release are built around that tree.**
+3. **The GitHub release creation — not the tag alone — mints the Zenodo
+   version DOI** and drives the deposit.
+
+So the tree *leads* the release and cannot trail it. Zenodo archives this
+tree; whatever it says about its own release state becomes the permanent
+record. A tree that hedges about being released deposits that hedge forever,
+and a tag has nothing coherent to archive.
+
+The test for what may be asserted is **who produces the value**, never how
+certain it feels:
+
+- **The operator chooses it → assert it now.** Version, title, and release
+  date are decisions made true by releasing. `CITATION.cff` carries
+  `date-released` *before* the tag exists. Precedent: v14's pre-tag prep
+  commit `ff491b8` already had `date-released: "2026-07-18"`.
+- **An external service emits it → never guess it.** The Zenodo version DOI
+  does not exist until Zenodo returns it. Never guess, predict, or copy it
+  from another release. The concept DOI is different: it identifies the
+  series, already exists, and always stays.
+
+The recurring failure is applying the second rule to the first — treating a
+date the operator picks like a value an external service emits, then stripping
+`date-released` and marking the tree "not released." That inverts step 1.
+
+Do not "fix" a correctly positioned tree back into hedged language because a
+gate, ledger, or preparation record says the tree must not assert a release
+date. Those artifacts encoded this same inversion once; a rule that contradicts
+the chain above is the thing that is wrong. Say so instead of complying.
+
 ## Verification
 
 Pass/fail is the exit code of the bare command — never eyeball piped output.

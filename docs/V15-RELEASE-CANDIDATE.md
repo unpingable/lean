@@ -1,6 +1,6 @@
 # V15 — Cross-Calculus Atlas
 
-**Status: operator-ratified release preparation; not tagged or published.**
+**Status: released 2026-07-22.**
 
 Exact ratified candidate and public-main promotion:
 
@@ -9,9 +9,11 @@ Exact ratified candidate and public-main promotion:
 - parent: `62d118a6ede996d4b3e0351d5db3ae7e3aa04f07`;
 - promoted to `origin/main` by pure fast-forward on 2026-07-22.
 
-The release-preparation commit is recorded in the operator handoff because a
-Git object cannot contain its own identity. No tag, GitHub release, Zenodo
-deposit, or version DOI is asserted by this page.
+The release commit is recorded in the operator handoff because a Git object
+cannot contain its own identity. The tag, GitHub release, and Zenodo deposit
+are separate operator acts built on this tree; the release creation, not the
+tag alone, mints the version DOI. That DOI is read back from Zenodo and is
+never guessed here.
 
 Subtitle: **Receipt-indexed correspondence without a shared bridge algebra.**
 

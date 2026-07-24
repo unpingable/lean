@@ -9,9 +9,9 @@ that the corresponding Zenodo version exists. As checked 2026-07-20, the
 v11–v14 portion of the public series contains v11, v13, and v14 but no v12
 version record.
 
-## 15.0.0 — Cross-Calculus Atlas (prepared 2026-07-22)
+## 15.0.0 — Cross-Calculus Atlas (2026-07-22)
 
-This formal-methods release candidate studies governed computation across
+This formal-methods release studies governed computation across
 three independent semantic domains. It records receipt-indexed correspondence
 without a shared bridge algebra: the exact public Continuity Admission rename,
 StaticRole through R3, and checked mappings for selected Governed Transport,
