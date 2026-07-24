@@ -190,6 +190,36 @@ gate, ledger, or preparation record says the tree must not assert a release
 date. Those artifacts encoded this same inversion once; a rule that contradicts
 the chain above is the thing that is wrong. Say so instead of complying.
 
+## Release documents: receipts are data, not narration
+
+A cold-read of this repo found the public documents "too self-congratulatory
+about their own theory and machinery," and the style self-amplifies: each
+release inherits the register of the last one. When writing or editing any
+release-facing document, hold this line:
+
+- **The reader needs two things: what is proved, and how to check it.** Every
+  sentence that instead narrates the process that produced the release —
+  who ratified what, which hands passed which artifact, what handshake
+  preceded which gate — is a sentence the reader has to climb over. Cut it.
+- **Receipts are tables and pins, not prose.** Commits, trees, digests, and
+  counts go in ledger tables. If a fact is already in a ledger, reader-facing
+  docs point to the ledger instead of re-performing it.
+- **Process adjectives are not evidence.** "Operator-ratified,"
+  "hostile-reviewed," "custody-closed," "earned," "exact" as a prefix of
+  everything — in a reader-facing sentence these praise the machinery instead
+  of informing the reader. The verification receipts prove diligence; prose
+  asserting diligence adds nothing but register.
+- **One status line per document.** "Released 2026-07-22." A status that
+  takes a paragraph is narration.
+- **Frozen receipts stay frozen.** Ledgers, verification receipts, and
+  ratification records under `docs/` are historical artifacts; do not
+  re-tone them. This rule governs the living surfaces: README, CHANGELOG
+  entries being written, WHAT-THIS-IS, plain-language docs, and the current
+  release overview.
+- **Honest disclosure is not self-praise — keep it.** Axiom footprints,
+  negative classifications, "what this is not," and scope limits stay,
+  stated plainly.
+
 ## Verification
 
 Pass/fail is the exit code of the bare command — never eyeball piped output.

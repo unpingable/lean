@@ -2,24 +2,17 @@
 
 **Status: released 2026-07-22.**
 
-Exact ratified candidate and public-main promotion:
-
-- commit: `5232a697b6f0cfd628e01876b7b19efb9e319b3e`;
-- tree: `510f7c42a0edad406a7762cc11c0e7f0ee554687`;
-- parent: `62d118a6ede996d4b3e0351d5db3ae7e3aa04f07`;
-- promoted to `origin/main` by pure fast-forward on 2026-07-22.
-
-The release commit is recorded in the operator handoff because a Git object
-cannot contain its own identity. The tag, GitHub release, and Zenodo deposit
-are separate operator acts built on this tree; the release creation, not the
-tag alone, mints the version DOI. That DOI is read back from Zenodo and is
-never guessed here.
+Candidate pin: commit `5232a697b6f0cfd628e01876b7b19efb9e319b3e`, tree
+`510f7c42a0edad406a7762cc11c0e7f0ee554687`, parent
+`62d118a6ede996d4b3e0351d5db3ae7e3aa04f07`. The version DOI is minted by the
+GitHub release creation and recorded from Zenodo afterward, never guessed
+here.
 
 Subtitle: **Receipt-indexed correspondence without a shared bridge algebra.**
 
 V15 records checked, source-preserving mappings for selected edges from
 Governed Transport, Execution Custody, and Continuity Admission. The adapters
-retain the exact judgment indices, local countermodels, and receipt-bound
+retain the judgment indices, local countermodels, and receipt-bound
 entitlement required by those edges. V15 also includes an exact-receipt
 anti-minting result and a held-out partial StaticRole instance.
 
@@ -89,9 +82,6 @@ frozen source object and are not current public module links. The
 the exact rename; the final PJ operator record, rather than earlier candidate
 classification documents, governs the `ATLAS` verdict.
 
-The current published release remains v14.0.0 until the operator separately
-authorizes and performs tag, GitHub release, and Zenodo actions.
-
 ## Source, build, and site state
 
 The public source is under `LeanProofs/` and `formalization/`. The repository
@@ -103,9 +93,7 @@ lake build V15Integration
 lake build V15IntegrationQualification
 ```
 
-GitHub Pages renders the root `README.md`. Public `origin/main` is commit
-`5232a697b6f0cfd628e01876b7b19efb9e319b3e`; later local review commits are
-not deployed until a separate push. The Pages body and response headers must
-be verified independently after any future push. A green build or deployed
-page does not create a v15 tag, GitHub release, Zenodo deposit, or
-runtime-conformance claim.
+GitHub Pages renders the root `README.md` from `main`. The Pages body and
+response headers should be verified independently after a push. A green
+build or deployed page does not by itself create a tag, GitHub release,
+Zenodo deposit, or runtime-conformance claim.
