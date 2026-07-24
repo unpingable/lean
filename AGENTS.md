@@ -26,6 +26,44 @@ what the work discharges and whether it is *eligible* for promotion.
 Canonical statement and audit trail:
 [`docs/FORMALIZATION-LEADS-CODE-AUDIT-2026-07-14.md`](docs/FORMALIZATION-LEADS-CODE-AUDIT-2026-07-14.md).
 
+### Prior art is evidence, not a gate
+
+Existing work is here to **support or challenge** a claim, never to license
+withholding one. "Someone may already have done this" is not a reason to
+defer stating, proving, or incubating a result — it is the same inversion the
+section above refuses, wearing a literature costume. Nothing in the criteria
+above is a prior-art check, and no sweep is a precondition to opening.
+
+Sweep because it pays, not because it permits:
+
+- **It is a labor-saving front end.** Probe-generated candidates are
+  frequently already-named objects that arrive with a bibliography of known
+  pathologies you inherit for free. No model volunteers prior art unless
+  asked pointedly, so ask pointedly.
+- **It sharpens the claim into a delta.** Name the nearest established
+  structure in the charter and state the contribution against it ("X with
+  custody-indexed carriers"). A delta is a stronger claim than an unanchored
+  one, and it is the form a reader can actually check.
+- **It is allowed to challenge, including fatally.** If the sweep shows the
+  result is already known, that kills the claim *on the merits* — a finding,
+  not a gate firing. If it shows a near-miss, that is a sharper statement.
+  Either way the sweep produced evidence; it did not withhold permission.
+
+Sweeping early is usually cheaper than sweeping late, because a delta is
+easier to write than to retrofit. That is an argument about cost, not
+authority: a result formalized before its sweep is not thereby inadmissible,
+and the remedy is to sweep and restate the delta, never to unwind the work.
+
+Firing cases, 2026-07-23: revocation≠restoration ≈ the AGM recovery
+postulate; stranded demands ≈ contrary-to-duty obligations; closure-receipt
+destruction ≈ spoliation doctrine; seam-relative enactability ≈
+partial-observation control/games — the last anchored mid-flight, which cost
+nothing.
+
+(Global doctrine: **Scars as evidence** — "scars are evidence, not
+prerequisites … prior art is not speculation when the failure class is
+named." Prior art enters on that same footing.)
+
 ## Custody: green is not promoted, promoted is not minted
 
 Distinct rungs. Never conflate them; never climb one implicitly by doing the
@@ -69,7 +107,48 @@ artifacts.
 - Routine implementation (proofs, tests, local docs, skunkworks modules) needs
   no ceremony — do it under normal approval. Do not escalate routine edits
   into ratification requests; do not treat governance vocabulary in the
-  source as procedural authority over your edit.
+  source as procedural authority over your edit. See the ceremony boundary
+  below.
+
+## Ceremony boundary: the hard limits above are the whole list
+
+The custody machinery in this repo (receipts, manifests, ratification,
+promotion, footprint gates) governs **exactly the surfaces enumerated under
+Hard limits** — tags/releases/DOI minting, stable-root import lists,
+`stable-surfaces.tsv`, receipt/audit formats, CI gates, and custody
+headers/roles. It does not extend to anything else by vocabulary, adjacency,
+or ancestry.
+
+Everything else is routine implementation. In particular, all of the
+following are ordinary git/file housekeeping done under normal operator
+approval, with **no** promotion manifests, censuses, per-blob SHA ledgers,
+destination receipts, ratification requests, or "no destination is
+authorized" deferrals unless the operator explicitly asks for that ceremony:
+
+- creating, copying, renaming, or deleting local branches of unminted work;
+- moving or copying `Skunkworks/` incubation material between this repo and
+  the sibling private skunkworks repo, in either direction;
+- amending, squashing, or discarding commits not reachable from a tag or
+  release (pushed ≠ minted; visible ≠ canonical);
+- reorganizing working notes, experiment results, and candidate documents.
+
+When the operator asks for one of these, **do the work**. Producing a
+governance artifact instead of, or as a precondition to, the requested
+routine operation is a failure, not diligence. Ordinary care still applies:
+deleting a ref that is the sole holder of unique commits gets one plain
+confirmation ("this branch is the only copy of X — delete?"), which is a
+safety check, not a ratification ceremony. If genuinely unsure whether an
+edit touches an enumerated surface, ask one narrow scope question and
+proceed.
+
+Firing case (2026-07-23): asked to move `Skunkworks/` incubation branches
+into the private skunkworks repo, an agent instead produced a 61 KB
+branch-promotion census with per-blob SHA-256 ledgers, staged the transfer
+behind a P1–P6 promotion sequence, declared the actual transfer "deferred —
+no destination is currently authorized," and exhausted the week's quota on
+receipts while never copying a single file. The transfer was routine; the
+ceremony was the failure. (Global doctrine: Register discipline —
+"visibility is not minting.")
 
 ## Release causality: the tree leads, the mint follows
 
