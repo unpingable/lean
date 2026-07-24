@@ -32,6 +32,7 @@ STATIC_TEMPLATE = ROOT / "formalization/scripts/PJTrancheDPrimeDeclarationDump.l
 # candidate. Later presentation-only review may edit these reader-facing files
 # without rewriting that historical manifest.
 POST_CANDIDATE_PRESENTATION_PATHS = {
+    "PAPER-MAP.md",
     "WHAT-THIS-IS.md",
     "WHAT-THIS-PROVES.md",
     "docs/PLAIN-LANGUAGE-SUMMARY.md",

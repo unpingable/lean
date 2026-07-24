@@ -11,11 +11,13 @@ Companion documents:
 This file exists so that a reader in the Lean repo can go the other direction: pick a module, find the paper(s) it cashes out into, and judge whether the mapping is clean enough to cite.
 
 **Current custody note:** v13 changed paths and terminal roles without changing
-paper cashouts; v14 added the Admissibility Calculus theorem family. See
-[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration and
-[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for current
-accounting. Dated changelog entries below preserve archive-time ANNEX/Scratch
-labels.
+paper cashouts; v14 added the Admissibility Calculus theorem family; v15 added
+the Cross-Calculus Atlas surface. See
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration,
+[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for the calculus
+accounting, and [`docs/V15-READINESS-LEDGER.md`](docs/V15-READINESS-LEDGER.md)
+for the atlas accounting. Dated changelog entries below preserve archive-time
+ANNEX/Scratch labels.
 
 ## Stable identifiers
 
@@ -330,3 +332,9 @@ formal refinement proof does not waive those artifacts.
 - **2026-07-18 — Released v14 Governed Admissibility Calculus.** Added the
   seven-rung formal family above. No paper cashout or runtime-conformance claim
   is assigned by release alone.
+- **2026-07-22 — Released v15 Cross-Calculus Atlas.** Receipt-indexed
+  correspondence over selected Governed Transport, Execution Custody, and
+  Continuity Admission edges; StaticRole held out at R3; classification
+  `ATLAS` with the negative results recorded in the
+  [`public index`](docs/V15-PUBLIC-INDEX.md). No paper cashout or
+  runtime-conformance claim is assigned by release alone.
