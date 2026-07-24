@@ -215,23 +215,46 @@ bash scripts/audit-native-decide.sh
 bash scripts/check-mathlib-pin.sh
 bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
+python3 scripts/check-v15-continuity-rename.py   # exact public Continuity rename
+python3 scripts/check-v15-integration.py         # V15 source pins, Track A, PJ manifests
+python3 scripts/check-v15-public-qualification.py # V15 candidate path allowlist (slow)
 ```
 
-Since the v14 rung-7 admission (2026-07-18, the origin/history-bound
-BreakGlass terminal instance into the Calculus root, completing the
-seven-rung campaign), the custody gate must pass without exclusions over
-exactly 201 public Lean files: 104 stable, 96 public evidence, and one
-aggregate, across eleven stable roots and 131 ownership relations. The
-PathVerdict substrate and the seven direct BreakGlass substrate inputs
-(`Authority`, `StateTransition`, `MeasureAccounting`, and four
-`Witnessed` sources) are intentionally multi-rooted with
-`admissibility-calculus` among their owners. Any drift or failure is a
-regression. The separate target gate must also report role-compatible
-registered target ownership for all 201/201 public sources. The v13
-baseline (179/82/96/1, 98 ownerships) stays frozen in
-[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md); the frozen
-per-rung campaign ledger is
-[`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md).
+Since the V15 Cross-Calculus Atlas admission (2026-07-22), the custody gate
+must pass without exclusions over exactly 273 public Lean files: 115 stable,
+157 public evidence, and one aggregate, across twelve stable roots and 142
+ownership relations. The PathVerdict substrate and the seven direct
+BreakGlass substrate inputs (`Authority`, `StateTransition`,
+`MeasureAccounting`, and four `Witnessed` sources) are intentionally
+multi-rooted with `admissibility-calculus` among their owners. Any drift or
+failure is a regression. The separate target gate must also report
+role-compatible registered target ownership for all 273/273 public sources
+across 28 registered targets. Those counts are the ones recorded in
+[`docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md`](docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md).
+
+Two checkers in `scripts/` are **pinned to the commit they were written to
+verify and do not pass at `HEAD`**. Neither is a regression; do not "fix"
+either by repinning without the operator asking.
+
+- `check-v15-public-transfer.py` — pinned to the frozen transfer commit
+  `d1e2d18`. The later exact-rename gate deliberately moved
+  `formalization/ContinuityQualification*` to
+  `formalization/Continuity/Admission*`, while the transfer manifest keeps
+  the pre-rename paths as provenance. Run it in a detached worktree at
+  `d1e2d18`; at `HEAD` its successor is `check-v15-continuity-rename.py`.
+- `check-gt-c03-admission.py` — the v14-era C03 admission checker, ratified
+  2026-07-20 at `958084d`. `docs/GT-C03-DEPENDENCY-INVENTORY.json` pins
+  `lakefile.toml` to blob `8ba8c548` (commit `876ebf9`); the V15 transfer
+  chain rewrote that file five times afterward, so it reports
+  `protected public object drift: lakefile.toml` at `HEAD` by construction.
+
+Earlier baselines stay frozen in their ledgers: v14 (201/104/96/1, eleven
+roots, 131 ownerships) in
+[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) with the per-rung
+campaign ledger in
+[`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md); v13
+(179/82/96/1, 98 ownerships) in
+[`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md).
 
 Repo axiom posture: not axiom-free, **axiom-classified** — see
 [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md). Keep new default-target
