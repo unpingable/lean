@@ -33,9 +33,9 @@ surface.
 
 V15 establishes no shared bridge algebra, generic frontier composition,
 generic ownership, generic context transport, universal calculus, runtime
-conformance, JCP implementation, or operational AG/NQ realization. This entry
-records release-state metadata preparation only; no `v15.0.0` tag, GitHub
-release, Zenodo version DOI, or publication is asserted at this stage.
+conformance, JCP implementation, or operational AG/NQ realization. The
+`v15.0.0` tag, GitHub release, and Zenodo deposit are built on this tree; the
+version DOI is recorded from Zenodo after the release creation mints it.
 
 ## 14.0.0 — Governed Admissibility Calculus (2026-07-18)
 

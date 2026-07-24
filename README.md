@@ -165,11 +165,11 @@ deposit are separate operator acts performed on this tree; the GitHub release
 creation, not the tag alone, mints the version DOI and drives the deposit. No
 v15 version DOI is guessed here — it is read back from Zenodo once minted.
 
-The exact operator-ratified v15 release records checked mappings for selected
-edges from Governed Transport, Execution Custody, and Continuity Admission. It
-preserves the native judgment indices, local countermodels, and exact receipts
-required by those edges; includes exact-receipt anti-minting; and retains
-StaticRole as a held-out partial instance closed at R3.
+V15 records checked mappings for selected edges from Governed Transport,
+Execution Custody, and Continuity Admission. It preserves the native judgment
+indices, local countermodels, and exact receipts required by those edges;
+includes exact-receipt anti-minting; and retains StaticRole as a held-out
+partial instance closed at R3.
 
 The classification is `ATLAS`: no shared bridge algebra, generic frontier
 composition, generic ownership, generic context transport, or universal
@@ -190,21 +190,15 @@ archive commit `ff491b8`. The
 2026-07-19 with version DOI `10.5281/zenodo.21435270`, under the concept DOI
 shown above.
 
-v14 is the seven-rung promotion campaign that assembled, and then — as
-its own reviewed terminal act — earned the right to name, the capital-C
-**Admissibility Calculus**: the governed-family signature
+v14 assembled the **Admissibility Calculus**: the governed-family signature
 (`Admissibility.Calculus`), its Weathering and BoundedPaidReachability
-instances, the exact dependent refusal-packet spine, the closed
-seven-entry indexed comparison framework, the stored-decision crossing
-(decide once; preserve both native outcomes; derive everything
-downstream from the stored pair) with its witnessed inhabitant, and the
-origin/history-bound BreakGlass terminal instance. Every rung was
-separately hostile-reviewed, operator-ratified, extracted with proven
-normalized-source equality, and custody-closed; the public Calculus root
-freezes 191 exact receipts over the separately gated rung-1 PathVerdict
-substrate, with every axiom named (the rung-7 instance's
-`Quot.sound`/`Classical.choice`-over-declared-substrate footprint was
-accepted explicitly, not summarized away).
+instances, the dependent refusal-packet spine, a closed seven-entry indexed
+comparison framework, the stored-decision crossing (decide once; preserve
+both native outcomes; derive everything downstream from the stored pair),
+and the origin/history-bound BreakGlass terminal instance. The public
+Calculus root freezes 191 receipts over the separately gated rung-1
+PathVerdict substrate, with every axiom named — the rung-7 instance's
+`Quot.sound`/`Classical.choice` footprint is disclosed, not summarized away.
 
 The frozen inventory and admission history are in
 [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md); per-rung
@@ -970,7 +964,7 @@ Importing `LeanProofs.Admissibility.AdmissibilityKernels` brings the eight stabl
 "calculus" from that eight-module surface. Namespace
 `Admissibility.CalculusOne` is now `Admissibility.Kernels`; the marker theorem
 `calculus_one_compiles` is now `kernels_compile`; and the deprecated import
-shim shipped through v9 and was removed in v10.0.0. v14 later earned the name
+shim shipped through v9 and was removed in v10.0.0. v14 later reused the name
 for a different, separately reviewed object under `Admissibility.Calculus`.)
 
 ## Repository custody and compatibility
@@ -1129,14 +1123,13 @@ archive, not a buildable canonical path.
 
 ## Status
 
-**`v15.0.0` released (2026-07-22):** the operator-ratified Cross-Calculus
-Atlas records receipt-indexed correspondence across Governed Transport,
-Execution Custody, and Continuity Admission without a shared bridge algebra.
-Exact inventory and scope:
-[`docs/V15-RELEASE-CANDIDATE.md`](docs/V15-RELEASE-CANDIDATE.md).
+**`v15.0.0` released (2026-07-22):** the Cross-Calculus Atlas records
+receipt-indexed correspondence across Governed Transport, Execution Custody,
+and Continuity Admission without a shared bridge algebra. Exact inventory and
+scope: [`docs/V15-RELEASE-CANDIDATE.md`](docs/V15-RELEASE-CANDIDATE.md).
 
-**`v14.0.0` released (2026-07-18):** the seven-rung campaign and separate
-capital-C ratification establish the Governed Admissibility Calculus. The
+**`v14.0.0` released (2026-07-18):** establishes the Governed Admissibility
+Calculus. The
 GitHub release is archived under `v14.0.0`; Zenodo version DOI
 `10.5281/zenodo.21435270` was published 2026-07-19. Exact inventory and scope:
 [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md).
