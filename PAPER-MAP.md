@@ -332,7 +332,7 @@ formal refinement proof does not waive those artifacts.
 - **2026-07-18 — Released v14 Governed Admissibility Calculus.** Added the
   seven-rung formal family above. No paper cashout or runtime-conformance claim
   is assigned by release alone.
-- **2026-07-22 — Released v15 Cross-Calculus Atlas.** Receipt-indexed
+- **2026-07-24 — Released v15 Cross-Calculus Atlas.** Receipt-indexed
   correspondence over selected Governed Transport, Execution Custody, and
   Continuity Admission edges; StaticRole held out at R3; classification
   `ATLAS` with the negative results recorded in the

@@ -209,7 +209,7 @@ release-facing document, hold this line:
   everything — in a reader-facing sentence these praise the machinery instead
   of informing the reader. The verification receipts prove diligence; prose
   asserting diligence adds nothing but register.
-- **One status line per document.** "Released 2026-07-22." A status that
+- **One status line per document.** "Released 2026-07-24." A status that
   takes a paragraph is narration.
 - **Frozen receipts stay frozen.** Ledgers, verification receipts, and
   ratification records under `docs/` are historical artifacts; do not

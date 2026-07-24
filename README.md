@@ -182,7 +182,7 @@ recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
 ## Current release: 15.0.0 — Cross-Calculus Atlas
 
-**Released 2026-07-22.** The version DOI is recorded once Zenodo mints it
+**Released 2026-07-24.** The version DOI is recorded once Zenodo mints it
 ([release process](docs/RELEASE-PROCESS.md)).
 
 V15 records checked mappings for selected edges from Governed Transport,
@@ -1150,7 +1150,7 @@ archive, not a buildable canonical path.
 
 ## Status
 
-**`v15.0.0` released (2026-07-22):** the Cross-Calculus Atlas records
+**`v15.0.0` released (2026-07-24):** the Cross-Calculus Atlas records
 receipt-indexed correspondence across Governed Transport, Execution Custody,
 and Continuity Admission without a shared bridge algebra. Exact inventory and
 scope: [`docs/V15-RELEASE-CANDIDATE.md`](docs/V15-RELEASE-CANDIDATE.md).

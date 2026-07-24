@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -19,9 +20,20 @@ TRANSFER_MANIFEST_SHA = (
 FINAL_VERDICT_SHA = (
     "3efad909f66b2caed45e57606c3c879ad877e902606d4046e057eff7942002aa"
 )
+# Track A (the frozen Inquiry/Preparation comparison-only neighbors) lives in
+# the private research repository by design — those sources were deliberately
+# not transferred. The commit, tree, and blob ids pinned below are the
+# committed public receipt of that freeze; Git object ids are content
+# addresses, so drift in the private repo cannot be hidden from a later
+# workstation re-attestation. When the private repository is unavailable
+# (public CI runners), the pins still stand as the recorded freeze and the
+# live re-attestation is reported as skipped rather than silently passed.
+# Override the location with V15_TRACK_A_REPO.
 TRACK_A_COMMIT = "cfeffc950e795752ad1928a314890185c0cda723"
 TRACK_A_TREE = "4d9de55c0d19f3984dc486ac124b2e4f2a7e1e11"
-TRACK_A_REPO = Path("/home/jbeck/git/skunkworks")
+TRACK_A_REPO = Path(
+    os.environ.get("V15_TRACK_A_REPO", "/home/jbeck/git/skunkworks")
+)
 
 PJ_MANIFESTS = (
     (
@@ -236,7 +248,13 @@ def verify_pj_declarations() -> tuple[int, int]:
     return declarations, axiom_bearing
 
 
-def verify_track_a() -> None:
+def verify_track_a() -> str:
+    if not (TRACK_A_REPO / ".git").exists() and not (TRACK_A_REPO / "HEAD").exists():
+        return (
+            "Track A freeze pinned "
+            f"({TRACK_A_COMMIT[:12]}, {len(TRACK_A_BLOBS)} blobs); private-source "
+            "re-attestation skipped (research repository unavailable)"
+        )
     tree = run(
         "git", "-C", str(TRACK_A_REPO), "rev-parse", f"{TRACK_A_COMMIT}^{{tree}}"
     ).stdout.decode().strip()
@@ -249,6 +267,7 @@ def verify_track_a() -> None:
         fields = line.split()
         if len(fields) < 3 or fields[2] != expected:
             raise ValueError(f"Track A frozen blob drift: {path}")
+    return "Track A freeze re-attested against the research repository"
 
 
 def verify_boundaries() -> None:
@@ -290,7 +309,7 @@ def main() -> int:
         verify_frozen_manifests()
         verify_source_rewrites()
         declarations, axiom_bearing = verify_pj_declarations()
-        verify_track_a()
+        track_a_mode = verify_track_a()
         run("python3", "scripts/check-v15-continuity-rename.py")
     except (OSError, ValueError, subprocess.CalledProcessError, json.JSONDecodeError) as error:
         print(f"FAIL: V15 integration verification: {error}", file=sys.stderr)
@@ -299,7 +318,7 @@ def main() -> int:
         "PASS — V15 integration preserves 4 PJ manifests "
         f"({declarations} cumulative declarations, {axiom_bearing} cumulative "
         "axiom-bearing entries), the 1,005-declaration Continuity correspondence, "
-        "source pins, Track A freeze, and final ATLAS verdict"
+        f"source pins, and final ATLAS verdict; {track_a_mode}"
     )
     return 0
 

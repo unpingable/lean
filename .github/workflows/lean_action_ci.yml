@@ -11,10 +11,15 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
+      # fetch-depth: 0 — the v15 gates verify ancestry and diffs against the
+      # ratified transfer (d1e2d18) and integration (1f0e020) commits, which a
+      # shallow clone does not contain.
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - uses: leanprover/lean-action@v1
       # Full-aggregate gate (v9): the 2026-07-08 import-surface split removed the
       # root `LeanProofs` aggregate from the default targets, so a bare
@@ -73,3 +78,14 @@ jobs:
           bash scripts/check-mathlib-pin.sh
           bash scripts/check-mathlib-free-targets.sh
           bash scripts/check-viewsemantics-isolation.sh
+      # v15 release gate: "CI green" must mean "v15 claim green," so build
+      # both v15 targets and run the public qualification checker —
+      # integration pins, rename equality, PJ declaration manifests, claim
+      # strings, changed-path allowlist, and the declaration footprint. The
+      # private Track A re-attestation self-reports as skipped on runners
+      # (the freeze pins are committed in the checker); everything else
+      # fails closed.
+      - name: V15 public surfaces
+        run: lake build V15Integration V15IntegrationQualification
+      - name: V15 public qualification gate
+        run: python3 scripts/check-v15-public-qualification.py

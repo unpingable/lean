@@ -25,7 +25,7 @@ forever.
 The distinction is **who produces the value**, not how certain it is:
 
 - **The operator chooses it → assert it now.** Version `15.0.0`, title, and
-  release date `2026-07-22` are operator decisions made true by releasing.
+  release date `2026-07-24` are operator decisions made true by releasing.
   `CITATION.cff` carries `date-released` before the tag, exactly as every
   prior release did — see `ff491b8` for the v14 precedent.
 - **An external service emits it → never guess it.** The version DOI does not
@@ -44,7 +44,7 @@ nothing coherent to archive.
 - Title: **V15 — Cross-Calculus Atlas**.
 - Subtitle: **Receipt-indexed correspondence without a shared bridge
   algebra.**
-- Release date: `2026-07-22`.
+- Release date: `2026-07-24`.
 - Version DOI: **unassigned until Zenodo mints it.**
 
 The concept DOI is preserved because it identifies the software series, not a

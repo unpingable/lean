@@ -1,6 +1,6 @@
 # V15 — Cross-Calculus Atlas
 
-**Status: released 2026-07-22.**
+**Status: released 2026-07-24.**
 
 Candidate pin: commit `5232a697b6f0cfd628e01876b7b19efb9e319b3e`, tree
 `510f7c42a0edad406a7762cc11c0e7f0ee554687`, parent

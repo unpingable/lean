@@ -302,7 +302,7 @@ establish runtime conformance, attestor honesty, cryptographic security,
 operational AG/NQ realization, a JCP implementation, consciousness,
 phenomenology, or metaphysical personal identity.
 
-V15 is the current release, version `15.0.0`, released 2026-07-22. Its Zenodo
+V15 is the current release, version `15.0.0`, released 2026-07-24. Its Zenodo
 version DOI is minted by the GitHub release creation and recorded from
 Zenodo's response, so it is not stated here in advance.
 

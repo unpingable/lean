@@ -46,8 +46,10 @@ POST_CANDIDATE_PRESENTATION_PATHS = {
 # Edits here do not touch the ratified candidate's Lean sources, receipts, or
 # manifests.
 POST_CANDIDATE_PROCESS_PATHS = {
+    ".github/workflows/lean_action_ci.yml",
     "AGENTS.md",
     "docs/RELEASE-PROCESS.md",
+    "scripts/check-v15-integration.py",
 }
 
 STATIC_MODULES = (
@@ -399,7 +401,7 @@ def main() -> int:
         # this gate inverted that and rejected date-released outright
         # ("unreleased v15 metadata asserts a release date") — see AGENTS.md
         # "Release causality: the tree leads, the mint follows".
-        if 'date-released: "2026-07-22"' not in citation:
+        if 'date-released: "2026-07-24"' not in citation:
             raise ValueError("citation date-released drift")
         if re.search(r"10\.5281/zenodo\.(?!20369489\b)\d+", citation):
             raise ValueError(
