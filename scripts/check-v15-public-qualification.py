@@ -41,10 +41,12 @@ POST_CANDIDATE_PRESENTATION_PATHS = {
     "docs/calculus/README.md",
 }
 
-# Agent operating process, not a public claim surface. Doctrine edits here do
-# not touch the ratified candidate's Lean sources, receipts, or manifests.
+# Agent operating process and release mechanics, not public claim surfaces.
+# Edits here do not touch the ratified candidate's Lean sources, receipts, or
+# manifests.
 POST_CANDIDATE_PROCESS_PATHS = {
     "AGENTS.md",
+    "docs/RELEASE-PROCESS.md",
 }
 
 STATIC_MODULES = (

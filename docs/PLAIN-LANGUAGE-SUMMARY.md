@@ -1,27 +1,73 @@
 # Governed computation: a plain-language orientation
 
-This repository is a formal study of **governed computation**. It asks when
-available evidence justifies a conclusion or state transition, and which
-additional conditions remain independent: standing, custody, authority,
-resource spend, refusal, obligation, origin, and retained history.
+Start with four failures. None of them is hypothetical in kind; each is a
+standing pattern in deployed systems:
+
+- A credential was revoked an hour ago, but a service still accepts it —
+  the token parses, the signature checks, and nothing in the request carries
+  the revocation.
+- A client retries a failed call, and the retry replays yesterday's approval
+  as though it were granted fresh today.
+- A pipeline promotes a build because the target state is reachable, without
+  asking whether the actor pushing it had the right to originate that change.
+- An emergency override runs, settles correctly — and then the audit trail
+  reads as if the ordinary process had been followed all along.
+
+In every case the system lands in a *plausible state* for an *unjustified
+reason*. Standard verification does not catch this, because standard
+verification answers different questions: model checking asks whether a bad
+state is reachable, and program logic asks whether outputs meet a spec.
+Here the state is fine and the output is correct — what is broken is the
+**justification**: who was entitled, on what evidence, at what cost, with
+what left owing. Those conditions are not in the state, so tools that only
+inspect states cannot see them.
+
+This repository gives each justification condition its own formal type in
+Lean 4 — evidence, standing, custody, authority, spend, refusal, obligation,
+origin, retained history — and machine-checks which inferences between them
+are valid and which are refuted by explicit countermodel.
+
+## An entry metaphor: the secure courier
+
+One scaffold, to make the vocabulary land — this is an entry ramp, not a
+definition, and the [guardrails table](../README.md#semantic-guardrails)
+gives the exact boundaries:
+
+| Courier world | Formal object | The question it answers |
+| --- | --- | --- |
+| The package contents | `Witness` (evidence) | Does the evidence support *this exact claim*? |
+| The sender's right to ship at all | `Standing` | May this actor even originate the request? |
+| The courier cleared for this route | `Authority` | Is this judgment actually licensed here? |
+| An unbroken chain of hands | `Custody` | Was the thing held intact the whole way? |
+| The one-use shipping label | `Spend` | Was a consumable resource actually consumed? |
+| The signature on delivery | `Receipt` | What exact evidence did this step produce? |
+| "Refused: address unknown" slip | `Refusal` | *Why* was it not admitted — as data, not a crash? |
+| Customs duty owed after delivery | `Obligation` | What does the action leave outstanding? |
+| The tracking history | Origin / stored history | Can the past be replayed or rewritten as fresh? |
+
+The point of the formalization is that **none of these rows implies
+another**. Delivery does not prove the duty was paid. An intact chain of
+hands does not prove the courier was cleared for the route. The theorems in
+this repository prove exactly which crossings between rows are valid, and
+the countermodels show each tempting invalid crossing failing.
+
+Concretely, the machine-checked results include: custody does not create
+authority; permission to attempt does not create permission to commit; an
+observed-safe execution does not discharge the obligation it opened; a
+replayed decision is not a fresh one; and an emergency settlement cannot be
+read back as clean ordinary history. Each is a named theorem or countermodel
+linked later in this document.
 
 This is theoretical computer science and formal methods applied to systems
 whose decisions have consequences outside the checker. Lean machine-checks
 the definitions and theorems. It does not turn the formal model into a claim
 that a particular institution or runtime implements it.
 
-The repository does not primarily formalize the act of formalization itself.
-It formalizes when consequential judgments and transitions are admissible.
-Some modules manipulate evidence, derivations, or stored decisions, but those
-objects govern the modeled action; they are not evidence that the whole
-project is reflexive metatheory.
+## The questions a reachability answer does not carry
 
-## Why reachability is not enough
-
-For orientation, a transition system may establish that a state is reachable,
-and a derivation may establish that a proposition follows from assumptions.
-Those are partial comparisons, not definitions of this project. Governed
-systems often need more information than either answer carries by default:
+A transition system can establish that a state is reachable; a derivation can
+establish that a proposition follows from assumptions. Governed systems need
+answers that neither carries by default:
 
 - Which exact claim did the evidence support?
 - Was the actor entitled to originate or exercise that judgment?

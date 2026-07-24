@@ -2,6 +2,23 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20369489.svg)](https://doi.org/10.5281/zenodo.20369489)
 
+Machine-checked proofs about a family of bugs that ordinary verification does
+not see: a system reaches the *right state* for the *wrong reason*. A revoked
+credential is accepted because it still parses. A retry replays yesterday's
+approval as if it were fresh. An emergency override settles cleanly and then
+reads back as ordinary history. Reachability analysis and functional
+correctness pass all of these, because the defect is not in the state — it is
+in the justification. This repository gives justification its own formal
+types and proves, in Lean 4, which inferences between them are valid and
+which are refuted by countermodel.
+
+Four reader tiers: the
+[plain-language summary](docs/PLAIN-LANGUAGE-SUMMARY.md) assumes no
+formal-methods background; the [reading guide below](#reading-guide) routes
+systems/security readers and formal-methods readers separately; and the
+[semantic guardrails](#semantic-guardrails) pin the vocabulary fast if you
+are skimming or summarizing this repository.
+
 ## Governed computation, formalized
 
 This is a theoretical computer science and formal-methods project about
@@ -61,14 +78,9 @@ bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
 ```
 
-V15 is the **current release**, `15.0.0`, released 2026-07-22. Its version DOI
-is not recorded here: the GitHub release creation mints it and drives the
-Zenodo deposit, and the value is read back from Zenodo rather than guessed in
-the source tree. GitHub Pages renders `main`'s `README.md`, and its
-body and response headers should be verified independently after any future
-push. Run `git rev-parse HEAD` to identify the exact local source being built.
 Canonical modules are public; isolated qualification leaves remain public
-evidence outside stable v14 aggregates.
+evidence outside stable v14 aggregates. Versioning, tagging, and DOI
+mechanics are on one page: [release process](docs/RELEASE-PROCESS.md).
 
 ### What this is not
 
@@ -124,8 +136,7 @@ keeps attempt permission from becoming commit permission; and
 [`safety_does_not_supply_discharge_receipt`](formalization/PJ/Instances/ExecutionCustody.lean#L284)
 shows that a safe observed execution does not by itself discharge an
 obligation. Each blocks a plausible but invalid lift unless a separate bridge
-and its required evidence are supplied. “Hostile” names this methodological
-stress test, not an ordinary example given dramatic branding.
+and its required evidence are supplied.
 
 For one end-to-end example, including evidence, standing, custody, native
 permit consumption, structured refusal, obligation lifecycle, origin, and
@@ -134,21 +145,30 @@ stored history, see the
 
 ### Reading guide
 
+Four tiers, from no assumed background to source level:
+
+- **Cold read (no formal-methods background):** the
+  [plain-language summary](docs/PLAIN-LANGUAGE-SUMMARY.md) — what breaks,
+  why existing verification misses it, and one concrete walkthrough.
+  [`WHAT-THIS-IS.md`](WHAT-THIS-IS.md) adds the institutional framing.
+- **Systems and security readers:** the
+  [standing-upgrade example](docs/worked-examples/standing-upgrade-block.md),
+  then the [hostile audit](docs/V15-PUBLIC-HOSTILE-AUDIT_2026-07-22.md) for
+  the invalid inferences that are formally refuted.
 - **Formal-methods readers:** start with
   [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), then the
   [calculus exposition](docs/calculus/README.md) and
-  [declaration index](docs/calculus/declaration-index.md).
-- **Systems and security readers:** read the
-  [plain-language summary](docs/PLAIN-LANGUAGE-SUMMARY.md), the
-  [standing-upgrade example](docs/worked-examples/standing-upgrade-block.md),
-  and the [hostile audit](docs/V15-PUBLIC-HOSTILE-AUDIT_2026-07-22.md).
-- **Institutional and governance readers:** read
-  [`WHAT-THIS-IS.md`](WHAT-THIS-IS.md), then the bounded examples in the
-  [conceptual calculus](docs/calculus/GOVERNED-ADMISSIBILITY-CALCULUS.md).
-- **Code-first readers:** inspect
+  [declaration index](docs/calculus/declaration-index.md). Code-first:
   [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md),
   build `V15Integration`, and use
-  [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md) as the v15 module map.
+  [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md) as the module map.
+- **Automated readers and coding agents:** the
+  [semantic guardrails](#semantic-guardrails) table pins each project term
+  against its nearest-neighbor misreading — apply it before classifying or
+  summarizing this repository. The [not-list](#what-this-is-not) forecloses
+  known misfilings. Contribution and custody rules are in
+  [`AGENTS.md`](AGENTS.md); release mechanics in
+  [`docs/RELEASE-PROCESS.md`](docs/RELEASE-PROCESS.md).
 
 Development-order and custody discipline for contributors and coding agents
 lives in [`AGENTS.md`](AGENTS.md) (in short: formalization leads code, and
@@ -160,10 +180,8 @@ recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
 ## Current release: 15.0.0 — Cross-Calculus Atlas
 
-**Released 2026-07-22.** The annotated tag, GitHub release, and Zenodo version
-deposit are separate operator acts performed on this tree; the GitHub release
-creation, not the tag alone, mints the version DOI and drives the deposit. No
-v15 version DOI is guessed here — it is read back from Zenodo once minted.
+**Released 2026-07-22.** The version DOI is recorded once Zenodo mints it
+([release process](docs/RELEASE-PROCESS.md)).
 
 V15 records checked mappings for selected edges from Governed Transport,
 Execution Custody, and Continuity Admission. It preserves the native judgment
@@ -854,10 +872,12 @@ the post-v2 frontier is tracked in
 
 ## Stable public surfaces
 
-The repository has eleven exact stable roots. The earlier roots remain small,
-separately scoped families; v14 adds the `AdmissibilityCalculus` root as the
-governed compositional object that relates its named families without silently
-collapsing their native judgments.
+The exact stable roots are registered in
+[`scripts/stable-surfaces.tsv`](scripts/stable-surfaces.tsv) and enforced by
+the custody gate. The earlier roots remain small, separately scoped families;
+v14 adds the `AdmissibilityCalculus` root as the governed compositional object
+that relates its named families without silently collapsing their native
+judgments.
 
 > Local kernels decide admissibility. Witnessed movement between contexts requires an explicit bridge.
 
@@ -981,13 +1001,13 @@ public module.
 The whole-tree custody gate, exact surface registries, family-specific
 footprint gates, and Mathlib-isolation checks are independent receipts.  This
 corrects the pre-v13 partial checker, which covered only a subset of the tree.
-v13 records the migration; the released v14 tree freezes 201 public sources
-(104 stable, 96 evidence, one aggregate), eleven roots, and 131 stable-root
-ownership relations. The prepared v15 tree has 273 public sources (115 stable,
-157 evidence, one aggregate) under registered target ownership; its new
-surfaces remain public evidence rather than changes to the v14 stable roots.
-The historical GT-4A packet records an intermediate source-custody gate, not a
-pending current-tree disposition. See
+Every public source carries a registered custody class, surface role, and
+target owner, and the gates fail closed on any drift; the exact counts for
+each release live in its ledger, and `bash scripts/check-custody-classes.sh`
+reproduces the current ones on demand. v15's new surfaces are public evidence
+rather than changes to the v14 stable roots. The historical GT-4A packet
+records an intermediate source-custody gate, not a pending current-tree
+disposition. See
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration,
 [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for current
 published-release accounting,

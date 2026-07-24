@@ -39,12 +39,9 @@ version DOI is recorded from Zenodo after the release creation mints it.
 
 ## 14.0.0 — Governed Admissibility Calculus (2026-07-18)
 
-The seven-rung promotion campaign that assembled — and then, as its own
-reviewed terminal act, earned the right to name — the capital-C
-**Admissibility Calculus**. Each rung was separately hostile-reviewed,
-operator-ratified, extracted with proven normalized-source equality from
-the sibling research tree, and custody-closed with receipt-bound
-extraction records.
+Assembles the capital-C **Admissibility Calculus** in seven separately
+reviewed rungs, each extracted from the sibling research tree with
+source-equality receipts.
 
 - Rung 1: PathVerdict functorial domain transport (`Domains`) and
   carried-id located diagnostics (`Located`) join the `path-verdict`
@@ -57,7 +54,7 @@ extraction records.
 - Rung 3: the Weathering and BoundedPaidReachability instances with
   their one-owner native seams; the paid native API
   (`Run`/`Provenance`/`Resource`/`Warrant`/`State`/`Action`/`Step`)
-  frozen by explicit ratification.
+  frozen.
 - Rung 4: the exact dependent refusal-packet spine — bare `SpineEncoding`
   versus `LosslessEncoding` with both inverse laws; the superseded
   reason-only contract survives as a compiled collapse counterexample in
@@ -79,14 +76,12 @@ extraction records.
   crossing. Public footprint accepted explicitly: 101 receipts =
   3 axiom-free + 19 opaque-substrate-only + 4 `+propext` + 67
   `+Quot.sound` + 8 `+Classical.choice`.
-- The public Calculus root freezes 191 exact receipts (rungs 2–7);
-  custody closes at 201 sources / 104 stable / 96 evidence / 1 aggregate
-  across eleven roots and 131 ownerships; a cross-repository six-site
+- The public Calculus root freezes 191 receipts (rungs 2–7); the exact
+  custody counts are in the release ledger, and a cross-repository
   description-coherence gate guards the prose against the code.
-- The capital-C name was ratified as a separate reviewed act after
-  rung-7 custody closed, discharging the v10 reservation. A plain
-  language summary of the research program is added at
-  `docs/PLAIN-LANGUAGE-SUMMARY.md`.
+- The capital-C name was adopted only after all seven rungs closed,
+  resolving the v10 reservation. A plain-language summary of the research
+  program is added at `docs/PLAIN-LANGUAGE-SUMMARY.md`.
 
 Frozen inventory: `docs/V14-RELEASE-LEDGER.md`; per-rung receipts:
 `docs/V14-READINESS-LEDGER.md`; claims: `CLAIM-REGISTER.md` #19–#25.
