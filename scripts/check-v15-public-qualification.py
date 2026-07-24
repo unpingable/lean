@@ -36,6 +36,7 @@ POST_CANDIDATE_PRESENTATION_PATHS = {
     "WHAT-THIS-IS.md",
     "WHAT-THIS-PROVES.md",
     "docs/PLAIN-LANGUAGE-SUMMARY.md",
+    "docs/RELATED-WORK.md",
     "docs/V15-PUBLIC-INDEX.md",
     "docs/V15-PRESENTATION-SEMANTIC-AUDIT_2026-07-22.md",
     "docs/calculus/README.md",

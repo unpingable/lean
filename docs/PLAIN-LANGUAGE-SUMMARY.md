@@ -210,7 +210,10 @@ gives the complete entry map. Its central rule is that familiar terminology is
 an analogy unless a named type or theorem makes it exact. `Witness`, `Refusal`,
 `Standing`, `Custody`, `Authority`, `Spend`, and `Obligation` remain distinct;
 “proof object,” “capability,” “effect,” “trace,” and “certificate” do not
-replace them wholesale.
+replace them wholesale. For readers who know the neighboring literatures —
+linear logic, deontic logic, CSP refusals, break-glass access control,
+provenance, object capabilities — [`RELATED-WORK.md`](RELATED-WORK.md) names
+each nearest structure and states the delta explicitly.
 
 ## Why “hostile countermodel” is a technical term
 

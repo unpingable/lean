@@ -156,7 +156,9 @@ Four tiers, from no assumed background to source level:
   then the [hostile audit](docs/V15-PUBLIC-HOSTILE-AUDIT_2026-07-22.md) for
   the invalid inferences that are formally refuted.
 - **Formal-methods readers:** start with
-  [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md), then the
+  [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md) and
+  [related work](docs/RELATED-WORK.md) — the nearest named structure for
+  each core object and the delta against it — then the
   [calculus exposition](docs/calculus/README.md) and
   [declaration index](docs/calculus/declaration-index.md). Code-first:
   [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md),
