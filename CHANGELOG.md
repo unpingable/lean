@@ -26,6 +26,11 @@ surface.
   or personal-identity claim.
 - Inquiry and Preparation remain frozen independent comparison-only
   neighbors outside the PJ primary surface.
+- This is the first tagged release to archive the governed-transport public
+  surface: the GT-4A stable root and the C03 evidence admission, publicly
+  admitted 2026-07-20/21 after the v14 tag, with 704 declarations
+  (460 stable, 244 evidence) receipted in
+  `docs/GT4A-PUBLIC-COMPATIBILITY-RECEIPT_2026-07-20.md`.
 - `FRONTIER-NOT-COMPOSITIONAL`,
   `NO-USEFUL-OWNERSHIP-COMMONALITY`,
   `CONTEXT-TRANSPORT-NOT-GENERIC`, and

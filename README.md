@@ -191,6 +191,11 @@ indices, local countermodels, and exact receipts required by those edges;
 includes exact-receipt anti-minting; and retains StaticRole as a held-out
 partial instance closed at R3.
 
+The release is also the first tag to archive the governed-transport public
+surface — the GT-4A stable root and C03 evidence admission landed publicly
+between the v14 tag and this one
+([compatibility receipt](docs/GT4A-PUBLIC-COMPATIBILITY-RECEIPT_2026-07-20.md)).
+
 The classification is `ATLAS`: no shared bridge algebra, generic frontier
 composition, generic ownership, generic context transport, or universal
 calculus is established. Inquiry and Preparation remain frozen independent
