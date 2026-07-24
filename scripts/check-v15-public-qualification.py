@@ -40,6 +40,12 @@ POST_CANDIDATE_PRESENTATION_PATHS = {
     "docs/calculus/README.md",
 }
 
+# Agent operating process, not a public claim surface. Doctrine edits here do
+# not touch the ratified candidate's Lean sources, receipts, or manifests.
+POST_CANDIDATE_PROCESS_PATHS = {
+    "AGENTS.md",
+}
+
 STATIC_MODULES = (
     "StaticRole.Core.CausalBase",
     "StaticRole.Core.Centers",
@@ -338,7 +344,12 @@ def verify_changed_paths() -> None:
     status = run("git", "status", "--porcelain=v1").stdout.decode().splitlines()
     working = {line[3:] for line in status if len(line) >= 4}
     changed = committed | working
-    unexpected = changed - listed - POST_CANDIDATE_PRESENTATION_PATHS
+    unexpected = (
+        changed
+        - listed
+        - POST_CANDIDATE_PRESENTATION_PATHS
+        - POST_CANDIDATE_PROCESS_PATHS
+    )
     if unexpected:
         raise ValueError(
             "path outside V15 candidate allowlist: " + ", ".join(sorted(unexpected))
@@ -376,8 +387,20 @@ def main() -> int:
             raise ValueError("citation title drift")
         if 'version: "15.0.0"' not in citation:
             raise ValueError("citation version drift")
-        if "date-released:" in citation:
-            raise ValueError("unreleased v15 metadata asserts a release date")
+        # Release causality: the tree is positioned as released BEFORE the tag
+        # and GitHub release are built around it, because the release creation
+        # is what mints the Zenodo version DOI. The operator chooses the
+        # release date, so the tree asserts it; only the version DOI is
+        # service-emitted and must never be guessed. An earlier revision of
+        # this gate inverted that and rejected date-released outright
+        # ("unreleased v15 metadata asserts a release date") — see AGENTS.md
+        # "Release causality: the tree leads, the mint follows".
+        if 'date-released: "2026-07-22"' not in citation:
+            raise ValueError("citation date-released drift")
+        if re.search(r"10\.5281/zenodo\.(?!20369489\b)\d+", citation):
+            raise ValueError(
+                "citation asserts a version DOI; only the concept DOI belongs here"
+            )
     except (OSError, ValueError, subprocess.CalledProcessError, json.JSONDecodeError) as error:
         print(f"FAIL: V15 public qualification: {error}", file=sys.stderr)
         return 1
