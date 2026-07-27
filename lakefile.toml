@@ -9,6 +9,8 @@ defaultTargets = [
   "AdmissibilityKernels",
   "AdmissibilityEvidence",
   "DynamicTrace",
+  "GovernedTransitionBoundaries",
+  "GovernedTransitionBoundariesEvidence",
   "GovernedTransport",
   "GovernedTransportEvidence",
   "SafetyBridge",
@@ -138,6 +140,19 @@ roots = [
   "LeanProofs.Admissibility.CrossBoundaryCascade",
   "LeanProofs.Admissibility.Composition",
 ]
+
+# V16 candidate: generic factorization core and bounded evidence remain in
+# separate Mathlib-free public-evidence targets. Candidate publication is not
+# a stable compatibility commitment or a release.
+[[lean_lib]]
+name = "GovernedTransitionBoundaries"
+srcDir = "."
+roots = ["LeanProofs.GovernedTransitionBoundaries"]
+
+[[lean_lib]]
+name = "GovernedTransitionBoundariesEvidence"
+srcDir = "."
+roots = ["LeanProofs.GovernedTransitionBoundariesEvidence"]
 
 [[lean_lib]]
 name = "DynamicTrace"

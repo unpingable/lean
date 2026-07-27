@@ -20,6 +20,23 @@ TRANSFER_MANIFEST_SHA = (
 FINAL_VERDICT_SHA = (
     "3efad909f66b2caed45e57606c3c879ad877e902606d4046e057eff7942002aa"
 )
+
+# Exact post-V15 public-evidence additions. These paths are not part of the
+# V15 surface and are excluded only from the repository-wide LeanProofs freeze
+# below. Every other added or changed path under LeanProofs still fails that
+# freeze.
+POST_V15_ISOLATED_PUBLIC_EVIDENCE = (
+    "LeanProofs/GovernedTransitionBoundaries.lean",
+    "LeanProofs/GovernedTransitionBoundaries/Core.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/ContextBoundary.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/FiniteRepresentation.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/GroundingBoundary.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/HistoricalBoundary.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/JurisdictionBoundary.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/Qualification.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/RealizabilityBoundary.lean",
+)
 # Track A (the frozen Inquiry/Preparation comparison-only neighbors) lives in
 # the private research repository by design — those sources were deliberately
 # not transferred. The commit, tree, and blob ids pinned below are the
@@ -293,7 +310,20 @@ def verify_boundaries() -> None:
     verdict_text = verdict.read_text()
     if any(item not in verdict_text for item in required):
         raise ValueError("final PJ classification text drift")
-    if run("git", "diff", "--quiet", TRANSFER, "HEAD", "--", "LeanProofs").returncode != 0:
+    freeze = subprocess.run(
+        (
+            "git", "diff", "--quiet", TRANSFER, "HEAD", "--", "LeanProofs",
+            *(
+                f":(exclude,top){path}"
+                for path in POST_V15_ISOLATED_PUBLIC_EVIDENCE
+            ),
+        ),
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if freeze.returncode != 0:
         raise ValueError("existing public source calculus drift")
     if (ROOT / "someone/Someone.lean").exists():
         raise ValueError("duplicate historical Someone implementation remains")

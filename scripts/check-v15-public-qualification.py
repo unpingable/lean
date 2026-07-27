@@ -52,6 +52,34 @@ POST_CANDIDATE_PROCESS_PATHS = {
     "scripts/check-v15-integration.py",
 }
 
+# Exact post-V15 public-evidence source family. These files are not part of the
+# V15 surface; their isolated addition must not weaken any V15 declaration,
+# digest, source, or semantic check.
+POST_V15_ISOLATED_PUBLIC_EVIDENCE_PATHS = {
+    "LeanProofs/GovernedTransitionBoundaries.lean",
+    "LeanProofs/GovernedTransitionBoundaries/Core.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/ContextBoundary.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/FiniteRepresentation.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/GroundingBoundary.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/HistoricalBoundary.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/JurisdictionBoundary.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/Qualification.lean",
+    "LeanProofs/GovernedTransitionBoundariesEvidence/RealizabilityBoundary.lean",
+}
+
+# Bounded documentation, custody, and verification support for the isolated
+# post-V15 public-evidence family. No V15 source or frozen receipt is included.
+POST_V15_V16_SUPPORT_PATHS = {
+    "docs/V16-GOVERNED-TRANSITION-BOUNDARIES-CANDIDATE.md",
+    "docs/V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md",
+    "scripts/check-governed-transition-boundaries-crossing.sh",
+    "scripts/check-governed-transition-boundaries-footprint.sh",
+    "scripts/check-v15-public-qualification.py",
+    "scripts/public-custody.tsv",
+    "scripts/public-targets.tsv",
+}
+
 STATIC_MODULES = (
     "StaticRole.Core.CausalBase",
     "StaticRole.Core.Centers",
@@ -355,6 +383,8 @@ def verify_changed_paths() -> None:
         - listed
         - POST_CANDIDATE_PRESENTATION_PATHS
         - POST_CANDIDATE_PROCESS_PATHS
+        - POST_V15_ISOLATED_PUBLIC_EVIDENCE_PATHS
+        - POST_V15_V16_SUPPORT_PATHS
     )
     if unexpected:
         raise ValueError(

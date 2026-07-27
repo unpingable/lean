@@ -129,6 +129,16 @@ LeanProofs/CustodyIndexed/TemporalSurfaceAdapter.lean	STABLE-SURFACE	custody-ind
 LeanProofs/CustodyIndexed/TemporalToSurfaceBridgeWiring.lean	STABLE-SURFACE	custody-indexed
 LeanProofs/CustodyIndexed/TracedCoherence.lean	STABLE-SURFACE	custody-indexed
 LeanProofs/CustodyIndexed/Zoo.lean	STABLE-SURFACE	custody-indexed
+LeanProofs/GovernedTransitionBoundaries.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundaries/Core.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence/ContextBoundary.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence/FiniteRepresentation.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence/GroundingBoundary.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence/HistoricalBoundary.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence/JurisdictionBoundary.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence/Qualification.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence/RealizabilityBoundary.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransport.lean	STABLE-SURFACE	governed-transport
 LeanProofs/GovernedTransport/Coherence.lean	STABLE-SURFACE	governed-transport
 LeanProofs/GovernedTransport/Composition.lean	STABLE-SURFACE	governed-transport

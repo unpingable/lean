@@ -33,6 +33,15 @@ jobs:
         run: lake build ViewSemantics ViewSemanticsEvidence ViewSemanticsEvidenceMathlib
       - name: View Semantics footprint gate
         run: bash scripts/check-viewsemantics-footprint.sh
+      # V16 candidate: isolated public-evidence core, bounded evidence, exact
+      # crossing custody, and compiler-replayed theorem footprints. This is
+      # regression coverage only; it creates no stable surface, release, or
+      # V16 finality.
+      - name: Governed transition boundaries public candidate
+        run: |
+          lake build GovernedTransitionBoundaries GovernedTransitionBoundariesEvidence
+          bash scripts/check-governed-transition-boundaries-crossing.sh
+          bash scripts/check-governed-transition-boundaries-footprint.sh
       # Gate 5: re-attest the Witnessed Derivation Calculus axiom footprint in the
       # canonical build context. Fail-closed; protects the now-public Mathlib-free
       # surface against axiom drift / sorry. Runs after lean-action so elan/lake are
