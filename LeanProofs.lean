@@ -77,3 +77,8 @@ import LeanProofs.GovernedTransportEvidence
 
 -- Public terminal evidence for WDC reachability/refusal adapters.
 import LeanProofs.Admissibility.WitnessedReachability
+
+-- Governed transition boundaries: generic explicit-factorization core and the
+-- bounded declared-finite and five-witness evidence surface.
+import LeanProofs.GovernedTransitionBoundaries
+import LeanProofs.GovernedTransitionBoundariesEvidence

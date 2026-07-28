@@ -12,11 +12,14 @@ This file exists so that a reader in the Lean repo can go the other direction: p
 
 **Current custody note:** v13 changed paths and terminal roles without changing
 paper cashouts; v14 added the Admissibility Calculus theorem family; v15 added
-the Cross-Calculus Atlas surface. See
+the Cross-Calculus Atlas surface; v16 added the governed transition boundaries
+evidence surface. See
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration,
 [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for the calculus
-accounting, and [`docs/V15-READINESS-LEDGER.md`](docs/V15-READINESS-LEDGER.md)
-for the atlas accounting. Dated changelog entries below preserve archive-time
+accounting, [`docs/V15-READINESS-LEDGER.md`](docs/V15-READINESS-LEDGER.md)
+for the atlas accounting, and
+[`docs/V16-RELEASE-LEDGER.md`](docs/V16-RELEASE-LEDGER.md) for the current
+release accounting. Dated changelog entries below preserve archive-time
 ANNEX/Scratch labels.
 
 ## Stable identifiers
@@ -295,6 +298,26 @@ correspondence map, executable preservation and transport evidence, and
 revision-bound qualification receipts; citation alone is not conformance. A
 formal refinement proof does not waive those artifacts.
 
+## `LeanProofs/GovernedTransitionBoundaries*/` (v16 evidence surface)
+
+**Release title:** *V16 — Governed Transition Boundaries*. Exact inventory and
+gates: [`docs/V16-RELEASE-LEDGER.md`](docs/V16-RELEASE-LEDGER.md); scope:
+[`docs/V16-PUBLIC-INDEX.md`](docs/V16-PUBLIC-INDEX.md).
+
+The core root proves that explicit total-decoder factorizations compose, imply
+the public `ViewSemantics.Determines` relation, are blocked by a
+target-distinguishing collision, and are not restored by deterministic
+postprocessing of an insufficient view. The evidence root carries one declared
+seven-coordinate finite determinacy calculation and five separately scoped
+witnesses. 29 receipts, gated exactly.
+
+**No current paper cashout.** The generic statements are standard
+function-factorization and view-determinacy facts and the finite result is a
+fixed-table dependency calculation; no novelty or priority is claimed. The
+nearest established structures are anchored in the public index, and a later
+paper mapping must state its contribution as a delta against them. The runtime
+conditions above apply unchanged.
+
 ## Open / axiomatic boundaries
 
 - **Universal temporal-attractor behavior remains OPEN.** The former
@@ -338,3 +361,8 @@ formal refinement proof does not waive those artifacts.
   `ATLAS` with the negative results recorded in the
   [`public index`](docs/V15-PUBLIC-INDEX.md). No paper cashout or
   runtime-conformance claim is assigned by release alone.
+- **2026-07-27 — Released v16 Governed Transition Boundaries.** Added the
+  explicit-factorization core, declared-finite determinacy calculation, and
+  five bounded witnesses above as public evidence; no stable surface was
+  promoted. No paper cashout, novelty claim, or runtime-conformance claim is
+  assigned by release alone.

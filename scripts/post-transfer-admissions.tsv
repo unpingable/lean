@@ -1,0 +1,26 @@
+# post-transfer-admissions.tsv — LeanProofs/ paths admitted after the ratified
+# V15 public transfer baseline.
+# columns: release<TAB>path<TAB>note
+#
+# check-v15-integration.py freezes every LeanProofs/ path against the transfer
+# commit and excludes exactly the paths listed here. That freeze is the repo's
+# broad change-scope protection: an unintended edit to any *other* public Lean
+# source fails it, which no other gate catches (custody checks classification,
+# target ownership checks the import graph, footprint gates check named
+# receipts, and per-file digests cover only their own release's sources).
+#
+# A release admitting new public Lean sources registers them here — one row per
+# path — instead of editing the checker. Registering a path only exempts it from
+# the freeze; it does not classify, target-own, or footprint it. Those remain
+# separate gates. Deleting a row re-freezes that path against the baseline.
+release	path	note
+v16	LeanProofs/GovernedTransitionBoundaries.lean	governed transition boundaries core root
+v16	LeanProofs/GovernedTransitionBoundaries/Core.lean	generic explicit-factorization core
+v16	LeanProofs/GovernedTransitionBoundariesEvidence.lean	bounded evidence root
+v16	LeanProofs/GovernedTransitionBoundariesEvidence/ContextBoundary.lean	selected-context validation witness
+v16	LeanProofs/GovernedTransitionBoundariesEvidence/FiniteRepresentation.lean	declared finite coordinate determinacy
+v16	LeanProofs/GovernedTransitionBoundariesEvidence/GroundingBoundary.lean	hidden-relation nonidentifiability witness
+v16	LeanProofs/GovernedTransitionBoundariesEvidence/HistoricalBoundary.lean	occurrence-link observation witness
+v16	LeanProofs/GovernedTransitionBoundariesEvidence/JurisdictionBoundary.lean	fixed-policy authorization refusal witness
+v16	LeanProofs/GovernedTransitionBoundariesEvidence/Qualification.lean	signature and axiom footprint gate
+v16	LeanProofs/GovernedTransitionBoundariesEvidence/RealizabilityBoundary.lean	bounded capacity realizability witness

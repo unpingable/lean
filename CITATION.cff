@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "V15 — Cross-Calculus Atlas"
-version: "15.0.0"
-date-released: "2026-07-24"
+title: "V16 — Governed Transition Boundaries"
+version: "16.0.0"
+date-released: "2026-07-27"
 type: software
 authors:
   - family-names: Beck
@@ -20,6 +20,9 @@ keywords:
   - governed-computation
   - theoretical-computer-science
   - formal-methods
+  - explicit-factorization
+  - view-determinacy
+  - functional-dependency
   - cross-calculus-atlas
   - indexed-judgment
   - receipt-bound-entitlement
@@ -36,19 +39,34 @@ keywords:
 abstract: >-
   A formal-methods study of governed computation: how evidence, authority,
   custody, spend, history, refusal, and obligation constrain justified
-  conclusions and state transitions. V15 records checked mappings for selected
-  edges from Governed Transport, Execution Custody, and Continuity Admission,
-  retaining their native judgment indices, local countermodels, and exact
-  semantic receipts. Those receipt types are calculus-specific and not
-  inherently cryptographic. V15 includes exact-receipt anti-minting of
-  source-relative entitlement and a held-out partial StaticRole instance
-  closed at R3. The classification is ATLAS: no shared
-  bridge algebra, generic frontier composition, generic ownership, generic
-  context transport, or universal calculus is established. This is not
+  conclusions and state transitions. V16 adds Governed Transition Boundaries:
+  a generic explicit-factorization core and a bounded evidence surface
+  answering, for selected targets and selected source views, whether one total
+  decoder recovers the target from the view correctly for every source. Four
+  axiom-free core results establish composition, implication of fibre
+  constancy, blocking by a target-distinguishing collision, and
+  non-restoration by deterministic postprocessing; one declared
+  seven-coordinate finite language carries a unique least target-determining
+  selection; and five separately scoped witnesses cover fixed-policy
+  authorization refusal, selected-context validation, bounded capacity
+  realizability, occurrence-link observation, and modeled hidden-relation
+  nonidentifiability. The generic statements are standard
+  function-factorization and view-determinacy facts and the finite result is
+  an exhaustive dependency calculation in a declared table; the contribution
+  is their mechanically checked synthesis, and no novelty or priority is
+  claimed. V16 promotes no stable surface. The V15 Cross-Calculus Atlas
+  remains authoritative for selected edges from Governed Transport, Execution
+  Custody, and Continuity Admission, retaining their native judgment indices,
+  local countermodels, and exact semantic receipts; those receipt types are
+  calculus-specific and not inherently cryptographic. Its classification
+  remains ATLAS: no shared bridge algebra, generic frontier composition,
+  generic ownership, generic context transport, or universal calculus is
+  established. This is not
   specifically a blockchain, smart-contract, legal-protocol, legal-evidence,
   zero-knowledge, audit-log, category-theory, generic state-machine, or
   alternate-reality project. No runtime conformance, JCP implementation,
-  operational AG/NQ realization,
+  operational AG/NQ realization, general authorization theory, temporal
+  validity, causal attribution, attestation correctness,
   cryptographic unforgeability, phenomenology, consciousness,
   successful-prediction, or personal-identity claim is made. The DOI above is
   the concept DOI: it identifies the software series, resolves to the latest

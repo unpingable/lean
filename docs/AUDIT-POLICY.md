@@ -3,16 +3,18 @@
 > **The repository is not axiom-free; it is axiom-classified. WDC promoted receipts remain
 > footprint-attested.**
 
-> **Current v14 custody note.** v13 established the target contract that
+> **Current v16 custody note.** v13 established the target contract that
 > classifies every retained public Lean source as exact-root
 > `STABLE-SURFACE`, terminal `PUBLIC-EVIDENCE`, or the root
-> `REPOSITORY-AGGREGATE`; incubation belongs in skunkworks. v14 extends that
-> same contract to 201 public sources — 104 stable, 96 evidence, one aggregate
-> — across eleven stable roots and 131 ownership relations. The custody gate
+> `REPOSITORY-AGGREGATE`; incubation belongs in skunkworks. v16 applies that
+> same contract to 283 public sources — 115 stable, 167 evidence, one
+> aggregate — across twelve stable roots and 142 ownership relations. The
+> per-release counts live in each release ledger; this note tracks the current
+> one. The custody gate
 > is independent of the axiom and footprint gates described here; a green
 > result from one never substitutes for another. Records:
 > [`V13-RELEASE-LEDGER.md`](V13-RELEASE-LEDGER.md) for the migration and
-> [`V14-RELEASE-LEDGER.md`](V14-RELEASE-LEDGER.md) for current accounting.
+> [`V16-RELEASE-LEDGER.md`](V16-RELEASE-LEDGER.md) for current accounting.
 
 That is the honest fence. An `axiom` in Lean is a hole the kernel agrees not to inspect — a
 trust import. The job of these gates is not to ban axioms (this repo legitimately uses
@@ -46,7 +48,7 @@ Every declared `axiom`/`constant` under `LeanProofs/` must be classified. Fail-c
 | **specimen** | concrete scenario stipulation for a fenced counterexample (`defendedValue_initial : … = 1`) | allowed only inside a labeled specimen module; must not silently support a broad structural receipt |
 | **forbidden** | claim-bodied placeholder (the fake-mustache class: a theorem-shaped axiom standing in for a desired doctrine — e.g. the removed `persistence_normalizes : ∀ d, d≠.dh → True`) | **zero tolerance** |
 
-Current v14 tree census: 23 signature, 0 interface-law, 8
+Current v16 tree census: 23 signature, 0 interface-law, 8
 specimen, **0 forbidden**, and 0 unclassified. The authoritative receipt is
 always the bare exit and report of `scripts/audit-axioms.sh`, not this prose
 count.
@@ -152,8 +154,8 @@ This corrects the pre-v13 checker, which examined 84 of 244 modules under
 green receipt remains historical evidence about its partial registry only.
 At the v13 release baseline, the actual public tree passed exactly at 179 files
 (82 stable, 96 evidence, one aggregate), ten roots, and 98 ownership
-relations. The current v14 tree passes at 201 files (104 stable, 96 evidence,
-one aggregate), eleven roots, and 131 ownership relations. The strengthened
+relations. The current v16 tree passes at 283 files (115 stable, 167 evidence,
+one aggregate), twelve roots, and 142 ownership relations. The strengthened
 public-target gate separately checks exact target closures and declared
 Mathlib-free and ownership manifests; its current receipt is described below.
 
@@ -176,10 +178,10 @@ agreement between the lakefile request and manifest lock before allowing the
 declared external import boundary. This is the evidence/stable target receipt
 that the whole-tree custody gate deliberately does not provide.
 
-Current exact receipt: two repository-owned Lake projects, 24 public targets,
-24 exact local closures, 20 Mathlib-free current-tree targets, 518 local
+Current exact receipt: two repository-owned Lake projects, 30 public targets,
+30 exact local closures, 26 Mathlib-free current-tree targets, 690 local
 target/module ownerships, one pinned-external target, and one locked external
-boundary, with role-compatible target ownership for 201/201 public sources.
+boundary, with role-compatible target ownership for 283/283 public sources.
 Mathlib-reaching targets remain explicit-only. The nested downstream consumer's
 bare build completes 19 jobs in CI.
 

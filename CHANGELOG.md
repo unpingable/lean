@@ -9,6 +9,46 @@ that the corresponding Zenodo version exists. As checked 2026-07-20, the
 v11–v14 portion of the public series contains v11, v13, and v14 but no v12
 version record.
 
+## 16.0.0 — Governed Transition Boundaries (2026-07-27)
+
+Adds one public-evidence surface answering, for selected targets and selected
+source views, whether a single total decoder recovers the target from the
+view, correctly for every source.
+
+- Generic core (four axiom-free receipts): explicit factorizations compose;
+  they imply the public `ViewSemantics.Determines` fibre-constancy relation;
+  a target-distinguishing collision blocks them; and a carrier derived solely
+  by deterministic postprocessing of an insufficient view does not restore
+  them. The converse is not claimed.
+- Declared finite representation: an exhaustive functional-dependency and
+  attribute-selection calculation over 1,024 declared sources and 128
+  duplicate-free coordinate selections, with a unique least target-determining
+  selection and exactly two determining masks.
+- Five separately scoped witnesses — fixed-policy authorization refusal,
+  selected-context validation, bounded capacity realizability, occurrence-link
+  observation, and modeled hidden-relation nonidentifiability. Each is bounded
+  to its own fixture.
+- The generic statements are standard function-factorization and
+  view-determinacy facts; the finite result is a fixed-table dependency
+  calculation. The contribution is their mechanically checked synthesis. No
+  novelty or priority is claimed.
+- Custody: 283 public Lean sources (115 stable, 167 public evidence, one
+  aggregate) across twelve stable roots and 142 ownership relations; 283/283
+  target-owned across 30 registered targets. Stable roots, their import lists,
+  and `scripts/stable-surfaces.tsv` are unchanged from v15.
+- Two new gates: a 29-receipt exact footprint replay and a 10-source crossing
+  gate that byte-pins every new file by SHA-256 and Git blob.
+- The v15 `ATLAS` classification and its four negative results remain
+  authoritative and unchanged.
+
+V16 establishes no new generic factorization theorem, general authorization
+theory, temporal validity, general amalgamation, causal attribution,
+attestation correctness, universal transition-relative semantics, canonical
+global carrier, target-independent least representation, cross-surface
+composition, or runtime conformance. The `v16.0.0` tag, GitHub release, and
+Zenodo deposit are built on this tree; the version DOI is recorded from Zenodo
+after the release creation mints it.
+
 ## 15.0.0 — Cross-Calculus Atlas (2026-07-24)
 
 This formal-methods release studies governed computation across

@@ -33,11 +33,10 @@ jobs:
         run: lake build ViewSemantics ViewSemanticsEvidence ViewSemanticsEvidenceMathlib
       - name: View Semantics footprint gate
         run: bash scripts/check-viewsemantics-footprint.sh
-      # V16 candidate: isolated public-evidence core, bounded evidence, exact
-      # crossing custody, and compiler-replayed theorem footprints. This is
-      # regression coverage only; it creates no stable surface, release, or
-      # V16 finality.
-      - name: Governed transition boundaries public candidate
+      # V16 public evidence: isolated core, bounded evidence, exact crossing
+      # custody, and compiler-replayed theorem footprints. This is regression
+      # coverage; it changes no stable surface or compatibility commitment.
+      - name: Governed transition boundaries public evidence
         run: |
           lake build GovernedTransitionBoundaries GovernedTransitionBoundariesEvidence
           bash scripts/check-governed-transition-boundaries-crossing.sh
@@ -87,14 +86,16 @@ jobs:
           bash scripts/check-mathlib-pin.sh
           bash scripts/check-mathlib-free-targets.sh
           bash scripts/check-viewsemantics-isolation.sh
-      # v15 release gate: "CI green" must mean "v15 claim green," so build
-      # both v15 targets and run the public qualification checker —
-      # integration pins, rename equality, PJ declaration manifests, claim
-      # strings, changed-path allowlist, and the declaration footprint. The
-      # private Track A re-attestation self-reports as skipped on runners
-      # (the freeze pins are committed in the checker); everything else
-      # fails closed.
+      # Release gate: "CI green" must mean "release claim green" — integration
+      # pins, rename equality, PJ declaration manifests, registered claim
+      # invariants, release-metadata consistency, and the declaration
+      # footprint. Version-agnostic by construction: a later release passes it
+      # unchanged, or fails it for a real reason. The V15-era campaign gate
+      # (check-v15-public-qualification.py) is retired and pinned to v15.0.0;
+      # see AGENTS.md. The private Track A re-attestation self-reports as
+      # skipped on runners (the freeze pins are committed in the checker);
+      # everything else fails closed.
       - name: V15 public surfaces
         run: lake build V15Integration V15IntegrationQualification
-      - name: V15 public qualification gate
-        run: python3 scripts/check-v15-public-qualification.py
+      - name: Release qualification gate
+        run: python3 scripts/check-release-qualification.py

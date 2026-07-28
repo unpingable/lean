@@ -1,6 +1,6 @@
-# Governed transition boundaries — V16 candidate
+# Governed transition boundaries — V16
 
-Candidate published 2026-07-26; not released and not V16 final.
+Released 2026-07-27.
 
 ## Thesis
 
@@ -40,7 +40,8 @@ is actually present.
 A target-distinguishing collision blocks explicit factorization.
 Consequently, if `coarse` does not explicitly factor `target`, deterministic
 postprocessing derived solely from `coarse` cannot restore that factorization.
-Independent enrichment is outside this theorem's candidate class.
+Independent enrichment lies outside the theorem's `DerivedOnlyFrom`
+hypothesis.
 
 This is a witnessed total-decoder formulation of standard function
 factorization and view-determinacy facts. The closest database distinction is
@@ -134,16 +135,17 @@ Public V15 is a Cross-Calculus Atlas of selected, receipt-indexed
 correspondences. It preserves native indices and receipts without selecting a
 shared bridge algebra.
 
-This candidate asks which selected targets uniformly factor through which
-views. It neither replaces the V15 bridge surfaces nor promotes a shared
-cross-calculus semantics. No existing public module depends on this candidate;
-its core and bounded evidence are separately rooted as
-`GovernedTransitionBoundaries` and
-`GovernedTransitionBoundariesEvidence`.
+V16 asks which selected targets uniformly factor through which views. It
+neither replaces the V15 bridge surfaces nor promotes a shared cross-calculus
+semantics. No existing public module depends on it; its core and bounded
+evidence are separately rooted as `GovernedTransitionBoundaries` and
+`GovernedTransitionBoundariesEvidence`, both classified `PUBLIC-EVIDENCE`.
+V16 promotes no stable surface: `scripts/stable-surfaces.tsv` and every
+registered stable root's import list are unchanged from V15.
 
 ## Explicitly unearned
 
-This candidate does not establish:
+V16 does not establish:
 
 - a new generic factorization theorem;
 - Hennessy–Milner characterization;
@@ -158,10 +160,8 @@ This candidate does not establish:
 - arbitrary-carrier minimality;
 - whole-system or cross-surface composition;
 - research-OS correctness;
-- product readiness;
-- external novelty or priority;
-- a V16 release; or
-- V16 finality.
+- product readiness; or
+- external novelty or priority.
 
 ## Verification entry points
 
@@ -172,8 +172,15 @@ bash scripts/check-governed-transition-boundaries-crossing.sh
 bash scripts/check-governed-transition-boundaries-footprint.sh
 ```
 
-The source-crossing receipt is
-[`V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md`](V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md).
+The footprint gate replays 29 receipts: 16 axiom-free, 7 `[propext]`, 6
+`[propext, Quot.sound]`, zero `Classical.choice`, zero `sorryAx`.
+
+- [`V16-RELEASE-OVERVIEW.md`](V16-RELEASE-OVERVIEW.md) — release state and scope.
+- [`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md) — module map and prior-art anchors.
+- [`V16-RELEASE-LEDGER.md`](V16-RELEASE-LEDGER.md) — frozen accounting.
+- [`V16-READINESS-LEDGER.md`](V16-READINESS-LEDGER.md) — pins and commands.
+- [`V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md`](V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md)
+  — per-file digests, frozen at the pre-release state.
 
 ## References
 

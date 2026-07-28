@@ -64,6 +64,13 @@ stored history, retaining those coordinates blocks replay from being mistaken
 for fresh entitlement or clean audit state. These distinctions matter wherever
 software makes externally consequential decisions under incomplete evidence.
 
+V16 adds a narrower, orthogonal audit of the same material: whether one total
+decoder uniformly recovers a selected target from a selected source view. Its
+generic core and bounded fixtures are public evidence, not a new stable
+surface. The current-release section below and the
+[release overview](docs/V16-RELEASE-OVERVIEW.md) state the exact result and
+its fences.
+
 ### Build and verify
 
 The Lean sources are public under [`LeanProofs/`](LeanProofs/) and
@@ -76,8 +83,11 @@ git clone https://github.com/unpingable/lean.git
 cd lean
 lake build V15Integration
 lake build V15IntegrationQualification
+lake build GovernedTransitionBoundaries GovernedTransitionBoundariesEvidence
 bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
+bash scripts/check-governed-transition-boundaries-crossing.sh
+bash scripts/check-governed-transition-boundaries-footprint.sh
 ```
 
 Canonical modules are public; isolated qualification leaves remain public
@@ -125,6 +135,8 @@ not theatrical aliases for ordinary proof objects.
 | `BreakGlass` | Explicit exceptional permit, attempt, commit, receipt, obligation, and settlement structures with bounded origin/history rules | An axiom or escape hatch that bypasses the rules |
 | Governed transport | Crossing geometry plus separately supplied lift, translation, and target-local reliance laws | A bare morphism, automatic authority transfer, or generic composition law |
 | Cross-calculus correspondence | A selected indexed bridge with its native judgments, receipt family, and carry rule | Equivalence, isomorphism, shared algebra, or one categorical object |
+| `ExplicitlyFactorsThrough` | In V16, one total decoder from the view that is correct for every source | Fibre constancy alone, a partial or per-fibre decoder, or a claim that the converse holds |
+| Transition-relative computation | In V16, a bounded label for targets that factor through views carrying transition or history context but not through a coarser projection | An operational semantics, or a claim that all computation is transition-relative |
 
 ### Why countermodels are first-class results
 
@@ -165,7 +177,8 @@ Four tiers, from no assumed background to source level:
   [declaration index](docs/calculus/declaration-index.md). Code-first:
   [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md),
   build `V15Integration`, and use
-  [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md) as the module map.
+  [`docs/V16-PUBLIC-INDEX.md`](docs/V16-PUBLIC-INDEX.md) and
+  [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md) as the module maps.
 - **Automated readers and coding agents:** the
   [semantic guardrails](#semantic-guardrails) table pins each project term
   against its nearest-neighbor misreading — apply it before classifying or
@@ -182,10 +195,37 @@ claim).
 Human and AI collaboration history, evidence basis, and attribution limits are
 recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
-## Current release: 15.0.0 — Cross-Calculus Atlas
+## Current release: 16.0.0 — Governed Transition Boundaries
 
-**Released 2026-07-24.** The version DOI is recorded once Zenodo mints it
+**Released 2026-07-27.** The version DOI is recorded once Zenodo mints it
 ([release process](docs/RELEASE-PROCESS.md)).
+
+V16 adds one public-evidence surface: a generic explicit-factorization core
+and a bounded evidence surface answering, for selected targets and selected
+source views, whether one total decoder recovers the target from the view for
+every source. Four core receipts are axiom-free; a declared seven-coordinate
+language over 1,024 sources and 128 duplicate-free selections carries a unique
+least target-determining selection; and five witnesses — fixed-policy
+authorization refusal, selected-context validation, bounded capacity
+realizability, occurrence-link observation, and modeled hidden-relation
+nonidentifiability — are each bounded to their own fixture.
+
+The generic statements are standard function-factorization and
+view-determinacy facts, and the finite result is a fixed-table dependency
+calculation; the contribution is their mechanically checked synthesis, and no
+novelty or priority is claimed. V16 promotes no stable surface: the registered
+stable roots and their import lists are unchanged from v15, and no existing
+public module depends on the new surface. The v15 `ATLAS` classification and
+its four negative results remain authoritative.
+
+Scope and fences: [`release overview`](docs/V16-RELEASE-OVERVIEW.md) and
+[`v16 public index`](docs/V16-PUBLIC-INDEX.md). Exact accounting:
+[`release ledger`](docs/V16-RELEASE-LEDGER.md) and
+[`readiness ledger`](docs/V16-READINESS-LEDGER.md).
+
+## Previous release: 15.0.0 — Cross-Calculus Atlas
+
+**Released 2026-07-24.**
 
 V15 records checked mappings for selected edges from Governed Transport,
 Execution Custody, and Continuity Admission. It preserves the native judgment
@@ -208,7 +248,7 @@ runtime-conformance claim or an operational AG/NQ realization. See the
 qualification results are in the
 [`candidate verification receipt`](docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md).
 
-## Previous release: 14.0.0 — Governed Admissibility Calculus
+## Earlier release: 14.0.0 — Governed Admissibility Calculus
 
 **Released 2026-07-18.** The annotated `v14.0.0` tag and
 [GitHub release](https://github.com/unpingable/lean/releases/tag/v14.0.0)
@@ -909,7 +949,7 @@ directory silently promotes a module.
 
 ## Start here
 
-- **V15 Cross-Calculus Atlas** → [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md). Exact selected mappings and exact failures.
+- **Current release: V16 Governed Transition Boundaries** → [`docs/V16-RELEASE-OVERVIEW.md`](docs/V16-RELEASE-OVERVIEW.md). What is proved, what is not, and how to verify it.
 - **Plain-English project explainer** → [`WHAT-THIS-IS.md`](WHAT-THIS-IS.md). No formal-methods background assumed.
 - **A single kernel walked end-to-end** → [`docs/worked-examples/standing-upgrade-block.md`](docs/worked-examples/standing-upgrade-block.md). What it refuses and why.
 - **What the current Lean stack proves** → [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md)
@@ -929,6 +969,11 @@ The point is not to prove an entire software system correct. It is to make inval
 
 ## Map
 
+- **Governed Transition Boundaries** *(v16 public evidence)* — a generic
+  explicit-factorization core (four axiom-free receipts), one declared-finite
+  coordinate-determinacy calculation, and five separately scoped witnesses.
+  Answers whether one total decoder recovers a selected target from a selected
+  view. See the [`v16 public index`](docs/V16-PUBLIC-INDEX.md).
 - **Cross-Calculus Atlas** *(v15 public evidence)* — selected,
   receipt-indexed mappings from Governed Transport, Execution Custody, and
   Continuity Admission; exact-receipt anti-minting; and a held-out partial
@@ -937,8 +982,9 @@ The point is not to prove an entire software system correct. It is to make inval
 - **Admissibility Calculus** *(v14, Mathlib-free)* — governed-family
   signature, native Weathering and bounded-paid instances, exact refusal
   packets, a closed comparison framework, stored-decision crossings, and an
-  origin/history-bound BreakGlass instance. See the current release section
-  and [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md).
+  origin/history-bound BreakGlass instance. See the
+  [`v14 release ledger`](docs/V14-RELEASE-LEDGER.md) and
+  [`WHAT-THIS-PROVES.md`](WHAT-THIS-PROVES.md).
 - **Authority kernels** — authority, standing, verdicts, state transition, execution, corrective layers.
 - **Surface / receipt / witness kernels** — collapsed surfaces, public receipt refinement, witness invariance.
 - **Admissibility axes** — artifact kind, numerical kind, closure, recovery margin, freshness.
@@ -1013,12 +1059,12 @@ corrects the pre-v13 partial checker, which covered only a subset of the tree.
 Every public source carries a registered custody class, surface role, and
 target owner, and the gates fail closed on any drift; the exact counts for
 each release live in its ledger, and `bash scripts/check-custody-classes.sh`
-reproduces the current ones on demand. v15's new surfaces are public evidence
-rather than changes to the v14 stable roots. The historical GT-4A packet
-records an intermediate source-custody gate, not a pending current-tree
+reproduces the current ones on demand. The v15 and v16 surfaces are public
+evidence rather than changes to the v14 stable roots. The historical GT-4A
+packet records an intermediate source-custody gate, not a pending current-tree
 disposition. See
 [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) for the migration,
-[`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) for current
+[`docs/V16-RELEASE-LEDGER.md`](docs/V16-RELEASE-LEDGER.md) for current
 published-release accounting,
 [`docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md`](docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md)
 for that historical gate, and [`docs/AUDIT-POLICY.md`](docs/AUDIT-POLICY.md) for
@@ -1102,6 +1148,7 @@ lake build PaidRecompositionEvidence
 lake build JudgmentOrientation JudgmentOrientationEvidence
 lake build ViewSemantics ViewSemanticsEvidence
 lake build AdmissibilityEvidenceMathlib ViewSemanticsEvidenceMathlib
+lake build GovernedTransitionBoundaries GovernedTransitionBoundariesEvidence # v16
 (cd downstream/wdc-v2-consumer && lake build) # pinned public-evidence fixture
 bash scripts/check-witnessed-footprint.sh   # re-attest the ratified WDC axiom footprint (fail-closed)
 bash scripts/check-paid-recomposition-footprint.sh # corrected v11 closure/evidence custody + footprint
@@ -1110,6 +1157,8 @@ bash scripts/check-pathverdict-footprint.sh # v14 rung-1 exact 36-receipt footpr
 bash scripts/check-calculus-footprint.sh   # v14 rungs 2-7 exact 191-receipt footprint
 bash scripts/check-viewsemantics-footprint.sh # theorem/checker footprints (fail-closed)
 bash scripts/check-viewsemantics-isolation.sh # cheap roots Mathlib-free; P25 isolated
+bash scripts/check-governed-transition-boundaries-crossing.sh # v16 exact 10-source crossing custody
+bash scripts/check-governed-transition-boundaries-footprint.sh # v16 exact 29-receipt footprint
 bash scripts/audit-axioms.sh                # repo axiom classifier (signature/interface-law/specimen; 0 forbidden)
 bash scripts/audit-native-decide.sh         # native_decide confined to finite-witness modules
 bash scripts/check-mathlib-pin.sh           # lakefile mathlib rev == manifest SHA (no silent drift)
@@ -1140,10 +1189,14 @@ archive, not a buildable canonical path.
 - [`docs/WITNESSED-FRONTIER-REGISTER.md`](docs/WITNESSED-FRONTIER-REGISTER.md) — Witnessed frontier and the v11 paid-recomposition claim/evidence boundary
 - [`docs/V12-RELEASE-LEDGER.md`](docs/V12-RELEASE-LEDGER.md) — v12 Judgment Orientation claim, custody inventory, and verification receipt
 - [`docs/V13-RELEASE-LEDGER.md`](docs/V13-RELEASE-LEDGER.md) — v13 custody/path correction, exact source accounting, compatibility boundary, and verification receipt
-- [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) — current v14
-  release inventory, accounting, and scope fence
+- [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) — v14 release
+  inventory, accounting, and scope fence
 - [`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md) — frozen
   seven-rung admission record and per-rung receipts
+- [`docs/V16-RELEASE-LEDGER.md`](docs/V16-RELEASE-LEDGER.md) — current v16
+  release inventory, accounting, and scope fence
+- [`docs/V16-READINESS-LEDGER.md`](docs/V16-READINESS-LEDGER.md) — v16 source
+  pins, declaration and axiom accounting, and qualification commands
 - [`RATIFICATION-v1.3.md`](experiments/no_free_lift_wiring/RATIFICATION-v1.3.md) — the ratified v1.3 claims with exact theorem receipts
 - [`V2.0-EXIT-CRITERIA.md`](experiments/no_free_lift_wiring/V2.0-EXIT-CRITERIA.md) — release-gate receipt for the 2.0 boundary
 - [`downstream/wdc-v2-consumer/`](downstream/wdc-v2-consumer/) — separate Lake consumer pinned to `v2.0.0`
@@ -1151,6 +1204,9 @@ archive, not a buildable canonical path.
 - Papers repo: [`docs/formalization-index.md`](https://github.com/unpingable/papers/blob/main/docs/formalization-index.md) — paper → module inverse view
 
 ## Status
+
+**`v16.0.0` released (2026-07-27):** current release. Exact inventory and scope:
+[`docs/V16-RELEASE-LEDGER.md`](docs/V16-RELEASE-LEDGER.md).
 
 **`v15.0.0` released (2026-07-24):** the Cross-Calculus Atlas records
 receipt-indexed correspondence across Governed Transport, Execution Custody,

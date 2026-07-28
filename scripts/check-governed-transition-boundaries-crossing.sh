@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# V16 candidate source-crossing custody and normalized-body gate.
+# V16 public-evidence source-crossing custody and normalized-body gate.
 
 set -euo pipefail
 

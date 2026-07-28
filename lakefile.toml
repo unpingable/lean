@@ -1,5 +1,5 @@
 name = "lean_proofs"
-version = "15.0.0"
+version = "16.0.0"
 keywords = ["math"]
 # Default builds stay on Mathlib-free custody/release surfaces. The root
 # `LeanProofs` aggregate remains buildable explicitly; it intentionally imports
@@ -141,9 +141,9 @@ roots = [
   "LeanProofs.Admissibility.Composition",
 ]
 
-# V16 candidate: generic factorization core and bounded evidence remain in
-# separate Mathlib-free public-evidence targets. Candidate publication is not
-# a stable compatibility commitment or a release.
+# V16 public evidence: the generic factorization core and bounded evidence
+# remain in separate Mathlib-free targets. Release publication does not promote
+# either target to a stable compatibility surface.
 [[lean_lib]]
 name = "GovernedTransitionBoundaries"
 srcDir = "."

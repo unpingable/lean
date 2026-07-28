@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# V16 candidate signature and exact axiom-footprint replay.
+# V16 public-evidence signature and exact axiom-footprint replay.
 
 set -euo pipefail
 

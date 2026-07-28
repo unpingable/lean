@@ -25,7 +25,7 @@ exact stable families; none widens the eight-module 1.0 root. v14 adds the
 separate exact `AdmissibilityCalculus` root and extends PathVerdict with the
 rung-1 substrate.
 
-**Current custody contract (v14 release).** Public source uses
+**Current custody contract (v16 release).** Public source uses
 `Custody-Class: PUBLIC-SHIPPED` plus `Surface-Role: STABLE-SURFACE` or
 `PUBLIC-EVIDENCE`.  Stable status is the transitive closure of a registered
 exact family root.  Finished examples, countermodels, applications, and audit
@@ -35,14 +35,16 @@ incubation moves to the sibling skunkworks; `ANNEX`, `Scratch/`, and
 
 Adding a public header or a build target does not promote a module.  Promotion
 is an explicit operator decision recorded by the applicable exact root and
-registry. The released v14 tree closes at 201 public Lean sources — 104 stable,
-96 evidence, one aggregate — across eleven roots and 131 ownership relations.
-The pending top-level Governed Transport admission candidate would extend that
-inventory to 216/115/100/1 across twelve roots and 142 ownership relations;
-it does not widen any existing Admissibility root. The completed release
-receipt is in
+registry. The released v16 tree closes at 283 public Lean sources — 115 stable,
+167 evidence, one aggregate — across twelve roots and 142 ownership relations,
+283/283 target-owned across 30 registered targets. Neither v15 nor v16 widened
+any existing Admissibility root: v15 added the Cross-Calculus Atlas surface and
+v16 added the governed transition boundaries evidence surface, both outside
+this directory. The current release receipt is in
+[`../../docs/V16-RELEASE-LEDGER.md`](../../docs/V16-RELEASE-LEDGER.md); the
+frozen v14 receipt (201/104/96/1, eleven roots, 131 ownerships) remains in
 [`../../docs/V14-RELEASE-LEDGER.md`](../../docs/V14-RELEASE-LEDGER.md).
-The pending target record is
+The historical Governed Transport target record is
 [`../../docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md`](../../docs/GT4A-TARGET-CUSTODY-CANDIDATE_2026-07-20.md).
 
 **What this is for.** Infrastructure substrate and formal contract, not by
@@ -72,7 +74,7 @@ original is deleted; green elaboration did not make it public evidence.
 > spines, comparison receipts, and stored-decision crossings. It does not erase
 > the local bridge obligations of every other module.
 
-## v14 current surface — Governed Admissibility Calculus
+## v14 surface — Governed Admissibility Calculus
 
 `LeanProofs.Admissibility.Calculus` is the exact public root of the ratified
 capital-C **Admissibility Calculus**. The PathVerdict additions from rung 1 are
@@ -276,6 +278,14 @@ The following finished modules remain public without entering the 1.0 stable
 root. `DynamicTrace`/`FreshnessDynamicTrace`, `SafetyBridge`, PathVerdict, and
 the v14 Admissibility Calculus have their own exact roots; concrete wounds and
 witnesses remain public evidence where the registered closures exclude them.
+
+Two later surfaces sit outside this directory entirely and own no Admissibility
+root: the v15 Cross-Calculus Atlas
+([`../../docs/V15-PUBLIC-INDEX.md`](../../docs/V15-PUBLIC-INDEX.md)) and the
+v16 governed transition boundaries under
+`LeanProofs/GovernedTransitionBoundaries*`
+([`../../docs/V16-PUBLIC-INDEX.md`](../../docs/V16-PUBLIC-INDEX.md)). Both are
+public evidence; neither promotes a stable surface.
 
 ### Kernel-adjacent public material
 

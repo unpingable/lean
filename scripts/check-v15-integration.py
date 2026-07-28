@@ -25,18 +25,43 @@ FINAL_VERDICT_SHA = (
 # V15 surface and are excluded only from the repository-wide LeanProofs freeze
 # below. Every other added or changed path under LeanProofs still fails that
 # freeze.
-POST_V15_ISOLATED_PUBLIC_EVIDENCE = (
-    "LeanProofs/GovernedTransitionBoundaries.lean",
-    "LeanProofs/GovernedTransitionBoundaries/Core.lean",
-    "LeanProofs/GovernedTransitionBoundariesEvidence.lean",
-    "LeanProofs/GovernedTransitionBoundariesEvidence/ContextBoundary.lean",
-    "LeanProofs/GovernedTransitionBoundariesEvidence/FiniteRepresentation.lean",
-    "LeanProofs/GovernedTransitionBoundariesEvidence/GroundingBoundary.lean",
-    "LeanProofs/GovernedTransitionBoundariesEvidence/HistoricalBoundary.lean",
-    "LeanProofs/GovernedTransitionBoundariesEvidence/JurisdictionBoundary.lean",
-    "LeanProofs/GovernedTransitionBoundariesEvidence/Qualification.lean",
-    "LeanProofs/GovernedTransitionBoundariesEvidence/RealizabilityBoundary.lean",
-)
+ADMISSIONS = Path(__file__).resolve().parent / "post-transfer-admissions.tsv"
+
+
+def post_transfer_admissions() -> tuple[str, ...]:
+    """LeanProofs/ paths admitted after the transfer baseline, read from data.
+
+    Previously a hardcoded tuple of the ten V16 sources. That made every later
+    release edit this file to add a public module — the same "campaign gate
+    outlives its campaign" failure the V15 path allowlist had. The freeze
+    itself is worth keeping: it is the only gate that notices an unintended
+    edit to an otherwise unpinned public Lean source. So the freeze stays and
+    the exemption list became a registry.
+    """
+    admitted: list[str] = []
+    for number, line in enumerate(ADMISSIONS.read_text().splitlines(), start=1):
+        if not line.strip() or line.startswith("#"):
+            continue
+        fields = [field.strip() for field in line.split("\t")]
+        if fields[0] == "release":
+            continue
+        if len(fields) != 3 or not all(fields[:2]):
+            raise ValueError(f"malformed post-transfer-admissions.tsv row {number}")
+        path = fields[1]
+        if not path.startswith("LeanProofs/"):
+            raise ValueError(
+                f"post-transfer-admissions.tsv row {number} is outside "
+                f"LeanProofs/: {path}"
+            )
+        if not (ROOT / path).is_file():
+            raise ValueError(
+                f"post-transfer-admissions.tsv row {number} names a missing "
+                f"path: {path}"
+            )
+        admitted.append(path)
+    if len(set(admitted)) != len(admitted):
+        raise ValueError("duplicate path in post-transfer-admissions.tsv")
+    return tuple(admitted)
 # Track A (the frozen Inquiry/Preparation comparison-only neighbors) lives in
 # the private research repository by design — those sources were deliberately
 # not transferred. The commit, tree, and blob ids pinned below are the
@@ -315,7 +340,7 @@ def verify_boundaries() -> None:
             "git", "diff", "--quiet", TRANSFER, "HEAD", "--", "LeanProofs",
             *(
                 f":(exclude,top){path}"
-                for path in POST_V15_ISOLATED_PUBLIC_EVIDENCE
+                for path in post_transfer_admissions()
             ),
         ),
         cwd=ROOT,

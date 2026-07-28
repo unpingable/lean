@@ -1,0 +1,37 @@
+# release-invariants.tsv — claim-preservation invariants checked at every HEAD.
+# columns: release<TAB>kind<TAB>pattern<TAB>scope<TAB>note
+#
+# release  the release that registered the invariant (v15, v16, ...). The
+#          current major must have at least one row, so a release cannot ship
+#          without declaring what it must keep saying and must not say.
+# kind     require = literal substring that MUST appear in the concatenated scope
+#          forbid  = regular expression (case-insensitive) that must NOT match
+# scope    comma-separated repo-relative files, concatenated before matching
+# note     why the invariant exists; shown in the failure message
+#
+# These are tripwires, not semantic proofs. `require` catches deletion of a
+# stated classification; `forbid` catches a known overclaim phrasing. Neither
+# detects prose that keeps a token while negating it, or an overclaim worded
+# around the pattern. Prefer several narrow rows over one clever regex.
+#
+# Adding a release never requires editing check-release-qualification.py.
+# A row whose scope file is absent is an error, not a silent skip.
+release	kind	pattern	scope	note
+v15	require	ATLAS	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	v15 final classification must stay stated
+v15	require	FRONTIER-NOT-COMPOSITIONAL	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	v15 negative result must stay stated
+v15	require	NO-USEFUL-OWNERSHIP-COMMONALITY	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	v15 negative result must stay stated
+v15	require	CONTEXT-TRANSPORT-NOT-GENERIC	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	v15 negative result must stay stated
+v15	require	ONLY-DOMAIN-SPECIFIC-RESIDUAL-THEORIES	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	v15 negative result must stay stated
+v15	forbid	(?:V15|this release) (?:is|establishes|provides|develops|constitutes) (?:a )?universal calculus	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	v15 establishes no universal calculus
+v15	forbid	(?:V15|this release) (?:is|establishes|provides|develops|constitutes) (?:a )?shared bridge algebra	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	v15 establishes no shared bridge algebra
+v15	forbid	(?:V15|this release) (?:implements|is) JCP	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	no JCP implementation claim
+v15	forbid	(?:V15|this release) (?:realizes|implements) (?:AG|NQ)	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	no operational AG/NQ realization claim
+v15	forbid	(?:V15|this release) (?:is|establishes) (?:Planet|Archipelago)	README.md,CHANGELOG.md,CITATION.cff,docs/V15-PUBLIC-INDEX.md,docs/V15-RELEASE-CANDIDATE.md	v15 classification is ATLAS
+v16	require	No novelty or priority is claimed	docs/V16-RELEASE-OVERVIEW.md,docs/V16-PUBLIC-INDEX.md,docs/V16-GOVERNED-TRANSITION-BOUNDARIES.md,docs/V16-READINESS-LEDGER.md	v16 core results are standard; the synthesis is the contribution
+v16	require	promotes no stable surface	README.md,docs/V16-RELEASE-OVERVIEW.md,docs/V16-RELEASE-LEDGER.md,docs/V16-GOVERNED-TRANSITION-BOUNDARIES.md	v16 is public evidence only
+v16	require	The converse is not claimed	docs/V16-PUBLIC-INDEX.md,docs/V16-GOVERNED-TRANSITION-BOUNDARIES.md	fibre constancy does not construct decoders
+v16	forbid	(?:V16|this release) (?:is|establishes|provides|develops|constitutes) (?:a |an )?universal transition-relative semantics	README.md,CHANGELOG.md,CITATION.cff,docs/V16-RELEASE-OVERVIEW.md,docs/V16-PUBLIC-INDEX.md	transition-relative computation is a bounded label
+v16	forbid	(?:V16|this release) (?:is|establishes|provides|develops|constitutes) (?:a |an )?general authorization theory	README.md,CHANGELOG.md,CITATION.cff,docs/V16-RELEASE-OVERVIEW.md,docs/V16-PUBLIC-INDEX.md	the authorization witness is one fixed policy
+v16	forbid	(?:V16|this release) (?:establishes|proves|shows) (?:the |a )?converse	README.md,CHANGELOG.md,CITATION.cff,docs/V16-RELEASE-OVERVIEW.md,docs/V16-PUBLIC-INDEX.md	fibre constancy does not construct decoders
+v16	forbid	(?:V16|this release) (?:promotes|establishes|adds) (?:a |an )?stable surface	README.md,CHANGELOG.md,CITATION.cff,docs/V16-RELEASE-OVERVIEW.md,docs/V16-PUBLIC-INDEX.md	no stable-root or import-list change
+v16	forbid	(?:V16|this release) (?:is|establishes|provides) (?:a |an )?(?:new )?generic factorization theorem	README.md,CHANGELOG.md,CITATION.cff,docs/V16-RELEASE-OVERVIEW.md,docs/V16-PUBLIC-INDEX.md	the generic core is standard, not new

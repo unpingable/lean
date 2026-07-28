@@ -2,7 +2,7 @@
 
 ## The short version
 
-Five headline results organize the current Lean stack.
+Six headline results organize the current Lean stack.
 
 First, it audits selected claims from the Δt framework. That work found three places where the prose was collapsing distinct claim types into single sentences. Machine-checked formalization forced each claim to declare its type, then proved or falsified it on those terms.
 
@@ -30,9 +30,86 @@ types, their local judgment families, the exact receipt required for one edge,
 and the carry operation licensed by that receipt. StaticRole is a held-out
 partial instance rather than a fourth fully absorbed calculus.
 
+Sixth, v16 draws **Governed Transition Boundaries**: for a selected target and
+a selected view of the source, is there one total decoder recovering the target
+from the view, correctly for every source? Four axiom-free theorems settle the
+structural half, one declared-finite calculation settles a fixed coordinate
+language, and five bounded witnesses exhibit the negative direction in
+separately scoped fixtures. The generic statements are standard; the synthesis
+is what is checked.
+
 The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
 
-## V15 current surface — Cross-Calculus Atlas
+## V16 current surface — Governed Transition Boundaries
+
+The `GovernedTransitionBoundaries` and `GovernedTransitionBoundariesEvidence`
+targets are public evidence. They change no stable root and no existing public
+module depends on them.
+
+### What it proves
+
+- **Generic core, four axiom-free receipts.** `ExplicitlyFactorsThrough view
+  target` holds when one total decoder is correct for *every* source. Such
+  factorizations compose (`explicitFactorization_compose`); they imply the
+  public `ViewSemantics.Determines` fibre-constancy relation
+  (`explicitFactorization_implies_determines`); a target-distinguishing
+  collision blocks them (`target_collision_blocks_explicit_factorization`); and
+  a carrier that is deterministic postprocessing of an insufficient view does
+  not restore them (`derived_view_cannot_restore_target`).
+- **Declared finite representation.** In a declared seven-coordinate language
+  over a source list of length 1,024 covering every `AnalysisCase`, with 128
+  duplicate-free coordinate selections: `internalMinimum` is the unique least
+  selection determining the selected five-component target in the declared
+  `AtlasSelection.Includes` order; exactly two masks in the enumeration
+  determine it, with membership, count, and duplicate freedom proved; the
+  declared six-field carrier explicitly factors the five-target result; and no
+  declared selection factors the modeled hidden relation or the combined
+  six-target result.
+- **Five bounded witnesses.** A computationally sufficient product can be
+  refused by a fixed grant-list policy; one issued observation record does not
+  factor the validation target across two use contexts; in a budget-two
+  fixture per-pair support records revalidate at the empty prefix while the
+  three-event execution type is uninhabited; two worlds share a present-state
+  view and differ on an occurrence-link Boolean; two worlds agree at the
+  admitted acquisition interface and differ on a hidden-relation Boolean.
+
+### What it does NOT prove
+
+- **No converse.** Fibre constancy does not construct an explicit decoder for
+  arbitrary types: it supplies neither representatives of reachable view fibres
+  nor values for unreachable view outputs. Quotient and coequalizer settings,
+  and a surjective view with a section, are positive controls only when that
+  lifting data is actually present.
+- **No novelty.** The generic statements are standard function-factorization
+  and view-determinacy facts; the finite result is an exhaustive
+  functional-dependency and attribute-selection calculation in a fixed table.
+  No novelty or priority is claimed. Nearest named structures are anchored in
+  [`docs/V16-PUBLIC-INDEX.md`](docs/V16-PUBLIC-INDEX.md#prior-art-anchors).
+- **No escape from the fixtures.** Fixed-policy authorization refusal is not a
+  general authorization theory. Selected-context validation is not a temporal
+  calculus, expiration theorem, revocation theorem, or certificate-lifecycle
+  result; its constructors carry no temporal or prefix order. Bounded capacity
+  realizability is not general amalgamation, CSP consistency, schedulability,
+  or an information-loss claim. Occurrence-link observation is not causality,
+  proof that an event occurred, general historical attribution, or a
+  hyperproperty theorem. Hidden-relation nonidentifiability is not physical
+  truth, attestation correctness, authentication, a trusted-root theorem, or
+  causal identification.
+- **No global semantics.** No universal transition-relative semantics, one
+  canonical global carrier, target-independent least representation,
+  arbitrary-carrier minimality, statistical minimal sufficiency, Hennessy–Milner
+  characterization, universal six-way independence, or cross-surface
+  composition. "Transition-relative computation" is a bounded program label,
+  not an operational semantics.
+- **No runtime conformance.** As everywhere in this repository, a runtime
+  claiming correspondence must satisfy the
+  [formal contract](#formal-contract-and-runtime-conformance).
+
+Receipts: 29 total — 16 axiom-free, 7 `[propext]`, 6 `[propext, Quot.sound]`,
+zero `Classical.choice`, zero `sorryAx` — replayed fail-closed by
+`scripts/check-governed-transition-boundaries-footprint.sh`.
+
+## V15 surface — Cross-Calculus Atlas
 
 The public `V15Integration` target imports the exact source calculi and their
 PJ adapters without changing the v14 stable aggregates.
@@ -160,7 +237,7 @@ Lean alone does not discharge this runtime evidence obligation. It does not
 mean that correspondence is optional for a runtime claiming to implement the
 governed surface.
 
-## v14 current surface — Governed Admissibility Calculus
+## v14 surface — Governed Admissibility Calculus
 
 v14 moves the repository's central claim from a collection of bounded formal
 families to an indexed compositional system governing its named families,

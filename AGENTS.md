@@ -244,6 +244,9 @@ bash scripts/check-pathverdict-footprint.sh   # rung-1 Domains/Located exact 36-
 bash scripts/check-calculus-footprint.sh      # Calculus exact 191-receipt footprint (rungs 2–7)
 bash scripts/check-viewsemantics-footprint.sh
 bash scripts/check-viewsemantics-isolation.sh
+lake build GovernedTransitionBoundaries GovernedTransitionBoundariesEvidence
+bash scripts/check-governed-transition-boundaries-crossing.sh # v16 exact 10-source crossing custody
+bash scripts/check-governed-transition-boundaries-footprint.sh # v16 exact 29-receipt footprint
 bash scripts/audit-axioms.sh                  # axiom classifier; 0 forbidden
 bash scripts/audit-native-decide.sh
 bash scripts/check-mathlib-pin.sh
@@ -251,24 +254,53 @@ bash scripts/check-custody-classes.sh
 bash scripts/check-mathlib-free-targets.sh
 python3 scripts/check-v15-continuity-rename.py   # exact public Continuity rename
 python3 scripts/check-v15-integration.py         # V15 source pins, Track A, PJ manifests
-python3 scripts/check-v15-public-qualification.py # V15 candidate path allowlist (slow)
+python3 scripts/check-release-qualification.py   # release metadata, claim invariants, declaration footprint (slow)
 ```
 
-Since the V15 Cross-Calculus Atlas admission (2026-07-22), the custody gate
-must pass without exclusions over exactly 273 public Lean files: 115 stable,
-157 public evidence, and one aggregate, across twelve stable roots and 142
-ownership relations. The PathVerdict substrate and the seven direct
+Since the V16 Governed Transition Boundaries admission (2026-07-26), the
+custody gate must pass without exclusions over exactly 283 public Lean files:
+115 stable, 167 public evidence, and one aggregate, across twelve stable roots
+and 142 ownership relations. The PathVerdict substrate and the seven direct
 BreakGlass substrate inputs (`Authority`, `StateTransition`,
 `MeasureAccounting`, and four `Witnessed` sources) are intentionally
 multi-rooted with `admissibility-calculus` among their owners. Any drift or
 failure is a regression. The separate target gate must also report
-role-compatible registered target ownership for all 273/273 public sources
-across 28 registered targets. Those counts are the ones recorded in
-[`docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md`](docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md).
+role-compatible registered target ownership for all 283/283 public sources
+across 30 registered targets. Those counts are the ones recorded in
+[`docs/V16-RELEASE-LEDGER.md`](docs/V16-RELEASE-LEDGER.md).
 
-Two checkers in `scripts/` are **pinned to the commit they were written to
-verify and do not pass at `HEAD`**. Neither is a regression; do not "fix"
-either by repinning without the operator asking.
+The ten governed-transition-boundaries sources are byte-pinned by
+`check-governed-transition-boundaries-crossing.sh`: it reproduces each public
+file's SHA-256 and Git blob, and re-derives the extracted body by removing
+exactly the twelve-line custody block. Editing any of those ten Lean files —
+including their comments — fails that gate by construction. Reader-facing
+changes belong in `docs/`, not in the pinned sources.
+
+Two registries carry per-release data so that adding a release is a TSV edit
+rather than a code change. `scripts/release-invariants.tsv` records the claims
+each release must keep stated and the overclaim phrasings it must not make;
+the current major version must have at least one row. `scripts/post-transfer-admissions.tsv`
+records the `LeanProofs/` paths admitted after the ratified V15 transfer
+baseline — `check-v15-integration.py` freezes every other public Lean source
+against that baseline, which is the only gate that notices an unintended edit
+to an otherwise unpinned module. Registering a path exempts it from that
+freeze and nothing else; custody class, target ownership, and axiom footprint
+remain separate gates.
+
+Three checkers in `scripts/` are **pinned to the commit they were written to
+verify and do not pass at `HEAD`**. None is a regression; do not "fix" any of
+them by repinning without the operator asking.
+
+- `check-v15-public-qualification.py` — the V15 campaign gate, retired at v16
+  and pinned to `v15.0.0`. It asserted the V15 release literals
+  (`lakefile.toml` `15.0.0`, the V15 CITATION title/version/date) and diffed
+  every changed path against a frozen allowlist rooted at `1f0e020`. Both are
+  correct for qualifying one candidate and false for any later release, so at
+  `HEAD` it blocks the tree instead of checking it. Its live successor is
+  `check-release-qualification.py`, which keeps the durable half — metadata
+  *consistency* rather than metadata literals, registered claim invariants,
+  and the declaration-footprint census — and is version-agnostic by
+  construction.
 
 - `check-v15-public-transfer.py` — pinned to the frozen transfer commit
   `d1e2d18`. The later exact-rename gate deliberately moved
@@ -282,8 +314,12 @@ either by repinning without the operator asking.
   chain rewrote that file five times afterward, so it reports
   `protected public object drift: lakefile.toml` at `HEAD` by construction.
 
-Earlier baselines stay frozen in their ledgers: v14 (201/104/96/1, eleven
-roots, 131 ownerships) in
+Earlier baselines stay frozen in their ledgers: v15 (273/115/157/1, twelve
+roots, 142 ownerships, 28 targets) in
+[`docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md`](docs/V15-CANDIDATE-VERIFICATION-RECEIPT_2026-07-22.md)
+with the release overview in
+[`docs/V15-RELEASE-CANDIDATE.md`](docs/V15-RELEASE-CANDIDATE.md); v14
+(201/104/96/1, eleven roots, 131 ownerships) in
 [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md) with the per-rung
 campaign ledger in
 [`docs/V14-READINESS-LEDGER.md`](docs/V14-READINESS-LEDGER.md); v13
@@ -302,5 +338,5 @@ target.
 - Claim-level audit (BROKEN / STALE / SOUND / OPEN): [`CLAIM-REGISTER.md`](CLAIM-REGISTER.md)
 - Module → paper crosswalk: [`PAPER-MAP.md`](PAPER-MAP.md)
 - Release ledgers and gap specs: `docs/V*-{RELEASE-LEDGER,GAP-SPEC,READINESS-LEDGER}.md`
-- Current release ledger: [`docs/V14-RELEASE-LEDGER.md`](docs/V14-RELEASE-LEDGER.md)
+- Current release ledger: [`docs/V16-RELEASE-LEDGER.md`](docs/V16-RELEASE-LEDGER.md)
 - Constructivity footguns already hit once: [`LeanProofs/ProofTheory/SCARS.md`](LeanProofs/ProofTheory/SCARS.md)
