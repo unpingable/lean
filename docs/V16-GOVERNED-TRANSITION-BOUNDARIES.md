@@ -120,9 +120,9 @@ one hidden-relation Boolean. Deterministic postprocessing of that interface
 cannot restore a uniform decoder for the hidden relation. This is modeled
 hidden-relation nonidentifiability, not physical truth, attestation
 correctness, authentication, a trusted-root theorem, or causal
-identification. Structural identifiability supplies a close comparison [15];
-remote-attestation sources delimit the external trust boundary that this
-fixture does not model [16, 17].
+identification. Causal identifiability and data fusion supply a close
+comparison [15]; remote-attestation sources delimit the external trust
+boundary that this fixture does not model [16, 17].
 
 ## Transition-relative computation
 

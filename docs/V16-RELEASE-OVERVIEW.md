@@ -34,9 +34,10 @@ surjective view with a section, are positive controls only when that
 additional lifting data is actually present.
 
 **Declared finite representation** (`…Evidence/FiniteRepresentation.lean`). In
-a declared seven-coordinate language over 1,024 sources and 128 duplicate-free
-coordinate selections: `internalMinimum` is the unique least selection
-determining the selected five-component target in the declared
+a declared seven-coordinate language, with a declared source list of length
+1,024 covering every `AnalysisCase` and 128 duplicate-free coordinate
+selections: `internalMinimum` is the unique least selection determining the
+selected five-component target in the declared
 `AtlasSelection.Includes` order; exactly two masks in the enumeration
 determine that target, with membership, count, and duplicate freedom proved;
 the declared six-field carrier explicitly factors the five-target result; and

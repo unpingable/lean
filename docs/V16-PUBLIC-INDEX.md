@@ -19,7 +19,7 @@ For the release statement and scope, start with the
 | `GovernedTransitionBoundaries` | `GENERIC-CORE-AGGREGATE` | Root of the generic core. |
 | `GovernedTransitionBoundaries.Core` | `GENERIC-EXPLICIT-FACTORIZATION-CORE` | `ExplicitlyFactorsThrough`, `DerivedOnlyFrom`, and the four axiom-free core receipts. Imports only `ViewSemantics.Core`. |
 | `GovernedTransitionBoundariesEvidence` | `BOUNDED-EVIDENCE-AGGREGATE` | Root of the bounded evidence surface. |
-| `…Evidence.FiniteRepresentation` | `DECLARED-FINITE-COORDINATE-DETERMINACY` | The declared seven-coordinate language, 1,024 sources, 128 selections, and the least-selection results. |
+| `…Evidence.FiniteRepresentation` | `DECLARED-FINITE-COORDINATE-DETERMINACY` | The declared seven-coordinate language, a declared source list of length 1,024 covering every `AnalysisCase`, 128 selections, and the least-selection results. |
 | `…Evidence.JurisdictionBoundary` | `FIXED-POLICY-AUTHORIZATION-REFUSAL-WITNESS` | Computationally sufficient product against a fixed grant-list policy. |
 | `…Evidence.ContextBoundary` | `SELECTED-CONTEXT-VALIDATION-WITNESS` | One issued observation record across exactly two use contexts. |
 | `…Evidence.RealizabilityBoundary` | `BOUNDED-CAPACITY-REALIZABILITY-WITNESS` | Budget-two fixture; local support records against an uninhabited three-event execution type. |
@@ -131,7 +131,7 @@ unanchored result. No novelty or priority is claimed.
 | Selected-context validation | Dynamic authorization and certificate validation [8–10] |
 | Bounded capacity realizability | Local consistency vs. global solution in constraint networks [11, 12] |
 | Occurrence-link observation | Trace semantics [13]; history variables and refinement mappings [14] |
-| Hidden-relation nonidentifiability | Structural identifiability and data fusion [15]; remote attestation as the external trust boundary not modeled here [16, 17] |
+| Hidden-relation nonidentifiability | Causal identifiability and data fusion [15]; remote attestation as the external trust boundary not modeled here [16, 17] |
 | Transition-relative label | Structural operational semantics [18]; trace semantics [13] |
 
 Full citations are in

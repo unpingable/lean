@@ -175,10 +175,12 @@ Four tiers, from no assumed background to source level:
   each core object and the delta against it — then the
   [calculus exposition](docs/calculus/README.md) and
   [declaration index](docs/calculus/declaration-index.md). Code-first:
-  [`LeanProofs/Admissibility/README.md`](LeanProofs/Admissibility/README.md),
-  build `V15Integration`, and use
-  [`docs/V16-PUBLIC-INDEX.md`](docs/V16-PUBLIC-INDEX.md) and
-  [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md) as the module maps.
+  build `GovernedTransitionBoundaries GovernedTransitionBoundariesEvidence`
+  and use [`docs/V16-PUBLIC-INDEX.md`](docs/V16-PUBLIC-INDEX.md); for the
+  cross-calculus atlas, build `V15Integration` and use
+  [`docs/V15-PUBLIC-INDEX.md`](docs/V15-PUBLIC-INDEX.md). The
+  [kernel reference](LeanProofs/Admissibility/README.md) gives the
+  module-by-module detail.
 - **Automated readers and coding agents:** the
   [semantic guardrails](#semantic-guardrails) table pins each project term
   against its nearest-neighbor misreading — apply it before classifying or
@@ -203,9 +205,10 @@ recorded in [`PROVENANCE.md`](PROVENANCE.md).
 V16 adds one public-evidence surface: a generic explicit-factorization core
 and a bounded evidence surface answering, for selected targets and selected
 source views, whether one total decoder recovers the target from the view for
-every source. Four core receipts are axiom-free; a declared seven-coordinate
-language over 1,024 sources and 128 duplicate-free selections carries a unique
-least target-determining selection; and five witnesses — fixed-policy
+every source. Four core receipts are axiom-free. The finite calculation uses a
+declared seven-coordinate language, a declared source list of length 1,024
+covering every `AnalysisCase`, and 128 duplicate-free selections; it yields a
+unique least target-determining selection. Five witnesses — fixed-policy
 authorization refusal, selected-context validation, bounded capacity
 realizability, occurrence-link observation, and modeled hidden-relation
 nonidentifiability — are each bounded to their own fixture.

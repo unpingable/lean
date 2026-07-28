@@ -166,8 +166,9 @@ whatever survived the trip. Does the view carry enough?
 
 Made precise: is there one rule that reads only the view and returns the right
 target value, for every possible state of the system? When there is, the target
-*factors through* the view. When there is not, no care downstream repairs it —
-the information is not in the view to begin with.
+*factors through* the view. When there is not, no downstream transformation
+derived solely from that view repairs it; independent enrichment supplies a
+different input.
 
 Four general results are proved:
 
