@@ -156,6 +156,51 @@ composition, generic ownership, generic context transport, or a universal
 calculus. Inquiry and Preparation remain frozen independent comparison-only
 neighbors outside the PJ primary surface.
 
+## What V16 adds: does this view carry enough to decide?
+
+V16 asks a narrower question about the same material, and it can be stated
+without the vocabulary above. A decision needs some fact about a system — call
+that fact the **target**. What the decider actually has is rarely the whole
+system; it is a **view** of it: a summary, a projection, a forwarded record,
+whatever survived the trip. Does the view carry enough?
+
+Made precise: is there one rule that reads only the view and returns the right
+target value, for every possible state of the system? When there is, the target
+*factors through* the view. When there is not, no care downstream repairs it —
+the information is not in the view to begin with.
+
+Four general results are proved:
+
+- Chaining two sufficient views stays sufficient.
+- A sufficient view never assigns one view value to two different target
+  values — it lines up with the fibre-constancy relation already formalized
+  elsewhere in the repository.
+- If two states look identical in the view but differ in the target, the view
+  is insufficient. One such collision settles it.
+- Post-processing an insufficient view cannot restore sufficiency.
+  Reformatting, recombining, or enriching it with anything already derivable
+  from it does not add what was never there.
+
+The converse is deliberately not claimed. Showing that a view never conflates
+two target values does not by itself hand you the rule that reads it back;
+constructing that rule needs lifting data the general setting does not supply.
+
+Alongside the general results, one fully enumerated finite example computes
+exactly which coordinate selections determine a chosen target, and five small
+fixtures each exhibit one concrete way a view falls short: a policy that
+refuses inspection, one record read in two different contexts, a capacity
+constraint whose schedule cannot be realized, an unobservable link between
+events, and a hidden relation that two worlds disagree on while agreeing
+everywhere visible.
+
+These are standard facts about functions and views, plus an exhaustive
+calculation over a fixed table. No new mathematics is claimed; the work is
+stating them precisely and machine-checking them together. Each fixture is
+bounded to itself — the authorization one is not a theory of authorization,
+and the hidden-relation one is not a claim about physical truth or causation.
+V16 adds public evidence only. It promotes no stable surface, and the V15
+`ATLAS` classification above is unchanged.
+
 ## What this is not
 
 The repository is not specifically:
@@ -306,7 +351,7 @@ establish runtime conformance, attestor honesty, cryptographic security,
 operational AG/NQ realization, a JCP implementation, consciousness,
 phenomenology, or metaphysical personal identity.
 
-V15 is the current release, version `15.0.0`, released 2026-07-24. Its Zenodo
+V16 is the current release, version `16.0.0`, released 2026-07-28. Its Zenodo
 version DOI is minted by the GitHub release creation and recorded from
 Zenodo's response, so it is not stated here in advance.
 
@@ -316,6 +361,10 @@ Zenodo's response, so it is not stated here in advance.
   paths by audience.
 - [`../WHAT-THIS-PROVES.md`](../WHAT-THIS-PROVES.md) — technical,
   claim-by-claim scope.
+- [`V16-RELEASE-OVERVIEW.md`](V16-RELEASE-OVERVIEW.md) — current release scope
+  and fences.
+- [`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md) — exact V16 module map and
+  prior-art anchors.
 - [`V15-PUBLIC-INDEX.md`](V15-PUBLIC-INDEX.md) — exact V15 module and adapter
   map.
 - [`V15-PUBLIC-HOSTILE-AUDIT_2026-07-22.md`](V15-PUBLIC-HOSTILE-AUDIT_2026-07-22.md)

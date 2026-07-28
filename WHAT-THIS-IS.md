@@ -55,6 +55,24 @@ three calculi, translate every theorem, or create a shared algebra. StaticRole
 is a held-out partial instance closed at R3; Inquiry and Preparation remain
 independent comparison-only neighbors.
 
+V16 adds Governed Transition Boundaries, a separate public-evidence surface
+asking one orthogonal question: for a selected target and a selected view of
+the source, is there a single total decoder recovering the target from the
+view, correctly for every source? Four axiom-free results establish that such
+explicit factorizations compose, that they imply the public
+`ViewSemantics.Determines` fibre-constancy relation, that a
+target-distinguishing collision blocks them, and that deterministic
+postprocessing of an insufficient view does not restore them. The converse is
+not claimed. One declared finite language carries a unique least
+target-determining selection, and five witnesses — fixed-policy authorization
+refusal, selected-context validation, bounded capacity realizability,
+occurrence-link observation, and modeled hidden-relation nonidentifiability —
+are each bounded to their own fixture. The generic statements are standard
+function-factorization and view-determinacy facts and the finite result is an
+exhaustive dependency calculation; the contribution is their mechanically
+checked synthesis, and no novelty or priority is claimed. V16 promotes no
+stable surface and the V15 `ATLAS` classification is unchanged.
+
 Governed Transport is not defined as a morphism. Its `Span` is only bare
 proof-relevant crossing geometry; certificate-dependent lift, translation,
 and target-local reliance are separate types, and the span itself supplies no

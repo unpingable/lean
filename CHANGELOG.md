@@ -9,7 +9,7 @@ that the corresponding Zenodo version exists. As checked 2026-07-20, the
 v11–v14 portion of the public series contains v11, v13, and v14 but no v12
 version record.
 
-## 16.0.0 — Governed Transition Boundaries (2026-07-27)
+## 16.0.0 — Governed Transition Boundaries (2026-07-28)
 
 Adds one public-evidence surface answering, for selected targets and selected
 source views, whether a single total decoder recovers the target from the

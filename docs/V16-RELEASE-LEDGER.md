@@ -1,11 +1,15 @@
 # v16 Release Ledger — Governed Transition Boundaries
 
-**Released: v16.0.0 — Governed Transition Boundaries (2026-07-27).** Baseline:
+> **Read this if** you need the release identity and the frozen numbers:
+> admission commits and trees, custody and target counts, and the axiom
+> footprint partition.
+
+**Released: v16.0.0 — Governed Transition Boundaries (2026-07-28).** Baseline:
 `v15.0.0` (`69bdc032dc00db1e750ffc6fdc9f73a8cdcbbf81`, tree
 `b102a07968e10461694a50adc9d5864e1c7bfa2c`, 2026-07-24). Repository version
 metadata is `16.0.0` in `lakefile.toml`; `CITATION.cff` carries the title
 `Governed Transition Boundaries`, version `16.0.0`, release date
-`2026-07-27`, and concept DOI `10.5281/zenodo.20369489`. The version DOI is
+`2026-07-28`, and concept DOI `10.5281/zenodo.20369489`. The version DOI is
 minted by the GitHub release creation and recorded from Zenodo afterward,
 never guessed here.
 
@@ -91,20 +95,11 @@ claimed.
 
 The converse of the core factorization result is not claimed: fibre constancy
 does not construct decoders for arbitrary types. Each of the five witnesses is
-bounded to its own fixture — fixed-policy authorization refusal is not a
-general authorization theory; selected-context validation is not a temporal,
-expiration, revocation, or certificate-lifecycle result; bounded capacity
-realizability is not general amalgamation, CSP consistency, or schedulability;
-occurrence-link observation is not causality, proof of occurrence, or a
-hyperproperty; modeled hidden-relation nonidentifiability is not physical
-truth, attestation correctness, or causal identification.
-
-"Transition-relative computation" is a bounded program label, not an
-operational semantics and not a claim that all computation is
-transition-relative. v16 establishes no universal transition-relative
-semantics, canonical global carrier, target-independent least representation,
-arbitrary-carrier minimality, six-way independence, or cross-surface
-composition.
+bounded to its own fixture, and "transition-relative computation" is a bounded
+program label, not an operational semantics. The per-witness fences are in
+[`V16-GOVERNED-TRANSITION-BOUNDARIES.md`](V16-GOVERNED-TRANSITION-BOUNDARIES.md);
+the complete non-claim ledger is in
+[`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md#explicitly-unearned).
 
 Lean alone establishes no runtime conformance. A runtime claiming
 correspondence to v16 must declare its exact scope, supply an explicit map for
@@ -121,7 +116,7 @@ promotes a shared cross-calculus semantics.
 
 ## Verification receipt (release-positioning tree)
 
-All by bare exit code, 2026-07-27, after the version metadata flip and
+All by bare exit code, 2026-07-28, after the version metadata flip and
 documentation sync. The full command list and per-gate results are in
 [`V16-READINESS-LEDGER.md`](V16-READINESS-LEDGER.md).
 
@@ -138,6 +133,11 @@ documentation sync. The full command list and per-gate results are in
   declaration-footprint census — is now `scripts/check-release-qualification.py`,
   and the per-release data it needs lives in `scripts/release-invariants.tsv`
   and `scripts/post-transfer-admissions.tsv`
+- the transfer freeze in `check-v15-integration.py` was narrowed from every
+  path under `LeanProofs/` to `LeanProofs/*.lean`. It had reported
+  "existing public source calculus drift" for the v16 currency edit to
+  `LeanProofs/Admissibility/README.md`; the freeze protects unpinned public
+  Lean sources, which is what `AGENTS.md` already documented it as covering
 - the three checkers pinned to earlier commits
   (`check-v15-public-qualification.py`, `check-v15-public-transfer.py`,
   `check-gt-c03-admission.py`) do not pass at this tree by construction, as
@@ -145,3 +145,10 @@ documentation sync. The full command list and per-gate results are in
 - tag, GitHub release, and Zenodo deposit are separate operator acts that
   follow this tree and change no theorem, custody class, import boundary, or
   footprint
+
+---
+
+Previous: [`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md) — module map and
+complete non-claim ledger. Next:
+[`V16-READINESS-LEDGER.md`](V16-READINESS-LEDGER.md) — source pins, axiom
+accounting, and the qualification commands.

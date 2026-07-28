@@ -38,7 +38,9 @@ language, and five bounded witnesses exhibit the negative direction in
 separately scoped fixtures. The generic statements are standard; the synthesis
 is what is checked.
 
-The result is not a grander theory. It is a sharper one. Some slogans died. Some claims narrowed. Some kernels became reusable.
+The resulting theory is narrower: several candidate generalizations were
+rejected, surviving claims were reduced in scope, and only the reusable
+kernels listed below were retained.
 
 ## V16 current surface — Governed Transition Boundaries
 
@@ -96,14 +98,15 @@ module depends on them.
   truth, attestation correctness, authentication, a trusted-root theorem, or
   causal identification.
 - **No global semantics.** No universal transition-relative semantics, one
-  canonical global carrier, target-independent least representation,
-  arbitrary-carrier minimality, statistical minimal sufficiency, Hennessy–Milner
-  characterization, universal six-way independence, or cross-surface
-  composition. "Transition-relative computation" is a bounded program label,
-  not an operational semantics.
+  canonical global carrier, target-independent least representation, or
+  cross-surface composition. "Transition-relative computation" is a bounded
+  program label, not an operational semantics.
 - **No runtime conformance.** As everywhere in this repository, a runtime
   claiming correspondence must satisfy the
   [formal contract](#formal-contract-and-runtime-conformance).
+
+The complete non-claim ledger is in
+[`docs/V16-PUBLIC-INDEX.md`](docs/V16-PUBLIC-INDEX.md#explicitly-unearned).
 
 Receipts: 29 total — 16 axiom-free, 7 `[propext]`, 6 `[propext, Quot.sound]`,
 zero `Classical.choice`, zero `sorryAx` — replayed fail-closed by

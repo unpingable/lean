@@ -2,8 +2,10 @@
 # V15 public transfer baseline.
 # columns: release<TAB>path<TAB>note
 #
-# check-v15-integration.py freezes every LeanProofs/ path against the transfer
-# commit and excludes exactly the paths listed here. That freeze is the repo's
+# check-v15-integration.py freezes every LeanProofs/ Lean source against the
+# transfer commit and excludes exactly the paths listed here. Markdown and other
+# non-source files under LeanProofs/ are outside the freeze — a module README is
+# a reader-facing document, not a pinned source. That freeze is the repo's
 # broad change-scope protection: an unintended edit to any *other* public Lean
 # source fails it, which no other gate catches (custody checks classification,
 # target ownership checks the import graph, footprint gates check named

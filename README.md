@@ -197,7 +197,7 @@ recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
 ## Current release: 16.0.0 — Governed Transition Boundaries
 
-**Released 2026-07-27.** The version DOI is recorded once Zenodo mints it
+**Released 2026-07-28.** The version DOI is recorded once Zenodo mints it
 ([release process](docs/RELEASE-PROCESS.md)).
 
 V16 adds one public-evidence surface: a generic explicit-factorization core
@@ -1205,7 +1205,7 @@ archive, not a buildable canonical path.
 
 ## Status
 
-**`v16.0.0` released (2026-07-27):** current release. Exact inventory and scope:
+**`v16.0.0` released (2026-07-28):** current release. Exact inventory and scope:
 [`docs/V16-RELEASE-LEDGER.md`](docs/V16-RELEASE-LEDGER.md).
 
 **`v15.0.0` released (2026-07-24):** the Cross-Calculus Atlas records

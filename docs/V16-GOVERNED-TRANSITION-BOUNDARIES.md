@@ -1,6 +1,11 @@
 # Governed transition boundaries — V16
 
-Released 2026-07-27.
+> **Read this if** you need the exact boundary of each result — per-witness
+> fences, what each fixture does and does not model, and the prior-art
+> references. For the release statement itself, start with
+> [`V16-RELEASE-OVERVIEW.md`](V16-RELEASE-OVERVIEW.md).
+
+Released 2026-07-28.
 
 ## Thesis
 
@@ -145,23 +150,13 @@ registered stable root's import list are unchanged from V15.
 
 ## Explicitly unearned
 
-V16 does not establish:
+Each witness section above carries its own fence. Beyond those, V16 establishes
+no new generic factorization theorem, no universal transition-relative
+semantics, no canonical global carrier or target-independent least
+representation, no runtime conformance, and no external novelty or priority.
 
-- a new generic factorization theorem;
-- Hennessy–Milner characterization;
-- statistical minimal sufficiency;
-- general authorization theory or temporal validity;
-- general amalgamation;
-- causal attribution or attestation correctness;
-- universal six-way independence;
-- a universal transition-relative semantics;
-- one canonical global carrier;
-- a target-independent least representation;
-- arbitrary-carrier minimality;
-- whole-system or cross-surface composition;
-- research-OS correctness;
-- product readiness; or
-- external novelty or priority.
+The complete non-claim ledger is in
+[`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md#explicitly-unearned).
 
 ## Verification entry points
 
@@ -175,12 +170,9 @@ bash scripts/check-governed-transition-boundaries-footprint.sh
 The footprint gate replays 29 receipts: 16 axiom-free, 7 `[propext]`, 6
 `[propext, Quot.sound]`, zero `Classical.choice`, zero `sorryAx`.
 
-- [`V16-RELEASE-OVERVIEW.md`](V16-RELEASE-OVERVIEW.md) — release state and scope.
-- [`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md) — module map and prior-art anchors.
-- [`V16-RELEASE-LEDGER.md`](V16-RELEASE-LEDGER.md) — frozen accounting.
-- [`V16-READINESS-LEDGER.md`](V16-READINESS-LEDGER.md) — pins and commands.
-- [`V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md`](V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md)
-  — per-file digests, frozen at the pre-release state.
+Previous: [`V16-RELEASE-OVERVIEW.md`](V16-RELEASE-OVERVIEW.md) — what shipped
+and why. Next: [`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md) — module map,
+prior-art anchors, and the complete non-claim ledger.
 
 ## References
 

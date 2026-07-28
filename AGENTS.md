@@ -223,6 +223,16 @@ release-facing document, hold this line:
 - **Honest disclosure is not self-praise — keep it.** Axiom footprints,
   negative classifications, "what this is not," and scope limits stay,
   stated plainly.
+- **A fact appears completely once.** State it in full in exactly one
+  authoritative place, in abbreviated context-specific form wherever a reader
+  locally needs it, and everywhere else by reference. This is how the previous
+  rule survives repetition: a complete list of what a release does not
+  establish is disclosure the first time and liturgy by the fourth. Keep the
+  canonical list in the public index, give each other document a short
+  non-claim summary scoped to its own subject, and link to the complete one.
+  The same applies to counts, footprint partitions, and verification command
+  lists. (Firing case, v16: the fifteen-item "explicitly unearned" list
+  appeared complete in six files.)
 
 ## Verification
 

@@ -361,7 +361,7 @@ conditions above apply unchanged.
   `ATLAS` with the negative results recorded in the
   [`public index`](docs/V15-PUBLIC-INDEX.md). No paper cashout or
   runtime-conformance claim is assigned by release alone.
-- **2026-07-27 — Released v16 Governed Transition Boundaries.** Added the
+- **2026-07-28 — Released v16 Governed Transition Boundaries.** Added the
   explicit-factorization core, declared-finite determinacy calculation, and
   five bounded witnesses above as public evidence; no stable surface was
   promoted. No paper cashout, novelty claim, or runtime-conformance claim is

@@ -337,7 +337,14 @@ def verify_boundaries() -> None:
         raise ValueError("final PJ classification text drift")
     freeze = subprocess.run(
         (
-            "git", "diff", "--quiet", TRANSFER, "HEAD", "--", "LeanProofs",
+            # Lean sources only. The pathspec was `LeanProofs` — the whole
+            # directory — so editing a module README tripped a gate that
+            # reports "public source calculus drift". Reader-facing markdown
+            # under LeanProofs/ is governed by ordinary doc rules, not by this
+            # freeze. `*` crosses `/` in a git pathspec, so this still reaches
+            # every nested source.
+            "git", "diff", "--quiet", TRANSFER, "HEAD", "--",
+            "LeanProofs/*.lean",
             *(
                 f":(exclude,top){path}"
                 for path in post_transfer_admissions()

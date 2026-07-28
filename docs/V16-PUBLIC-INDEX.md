@@ -1,5 +1,9 @@
 # V16 public formal index
 
+> **Read this if** you need the module map, the nearest named prior art for
+> each element, or the complete non-claim ledger — this document is the
+> authoritative list of what v16 does not establish.
+
 v16 is **Governed Transition Boundaries**: a generic explicit-factorization
 core and a bounded evidence surface. It is public under two registered
 evidence targets. It changes no v15 stable root and adds no dependency to any
@@ -146,10 +150,8 @@ readiness, or external novelty or priority.
 
 ## Navigation
 
-- [`V16-RELEASE-OVERVIEW.md`](V16-RELEASE-OVERVIEW.md) — release state and scope.
-- [`V16-GOVERNED-TRANSITION-BOUNDARIES.md`](V16-GOVERNED-TRANSITION-BOUNDARIES.md)
-  — full thesis statement, per-witness fences, and references.
-- [`V16-RELEASE-LEDGER.md`](V16-RELEASE-LEDGER.md) — frozen accounting.
-- [`V16-READINESS-LEDGER.md`](V16-READINESS-LEDGER.md) — pins and commands.
-- [`V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md`](V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md)
-  — per-file digests, frozen at the pre-release state.
+Previous:
+[`V16-GOVERNED-TRANSITION-BOUNDARIES.md`](V16-GOVERNED-TRANSITION-BOUNDARIES.md)
+— per-witness fences and references. Next:
+[`V16-RELEASE-LEDGER.md`](V16-RELEASE-LEDGER.md) — release identity and frozen
+accounting.

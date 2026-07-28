@@ -1,6 +1,9 @@
 # V16 — Governed Transition Boundaries
 
-**Status: released 2026-07-27.**
+> **Start here.** Release orientation: what shipped, what it does and does not
+> establish, and how to verify it.
+
+**Status: released 2026-07-28.**
 
 Subtitle: **Which selected targets factor through which source views.**
 
@@ -121,11 +124,19 @@ battery and per-gate results are in
 
 ## Navigation
 
-- [`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md) — module map, exact scope, and
-  prior-art anchors.
-- [`V16-RELEASE-LEDGER.md`](V16-RELEASE-LEDGER.md) — release identity, frozen
-  accounting, and non-claims.
-- [`V16-READINESS-LEDGER.md`](V16-READINESS-LEDGER.md) — source pins,
-  declaration and axiom accounting, qualification commands.
-- [`V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md`](V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md)
-  — per-file digest table, frozen at the pre-release state.
+Ordered from orientation to exact accounting. Stop wherever your question is
+answered.
+
+1. **This document** — what shipped and why.
+2. [`V16-GOVERNED-TRANSITION-BOUNDARIES.md`](V16-GOVERNED-TRANSITION-BOUNDARIES.md)
+   — exact per-witness fences and the reference list.
+3. [`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md) — module map, prior-art
+   anchors, and the complete non-claim ledger.
+4. [`V16-RELEASE-LEDGER.md`](V16-RELEASE-LEDGER.md) — release identity and
+   frozen accounting.
+5. [`V16-READINESS-LEDGER.md`](V16-READINESS-LEDGER.md) — source pins, axiom
+   accounting, and the qualification commands.
+
+Reference:
+[`V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md`](V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md)
+— per-file digest table, frozen at the pre-release state.

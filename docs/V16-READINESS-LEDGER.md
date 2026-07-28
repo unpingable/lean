@@ -1,8 +1,12 @@
 # V16 readiness ledger — Governed Transition Boundaries
 
-Date: 2026-07-27
+> **Read this if** you are reproducing the release: source pins, declaration
+> and axiom accounting, and the full qualification command list with the
+> deliberately-pinned checkers called out.
 
-Status: **released 2026-07-27**
+Date: 2026-07-28
+
+Status: **released 2026-07-28**
 
 v16 admits a generic explicit-factorization core and a bounded evidence
 surface answering, for selected targets and selected source views, whether one
@@ -175,14 +179,18 @@ functional-dependency and attribute-selection calculation in one declared
 seven-coordinate language. No novelty or priority is claimed. No converse of
 the factorization result is claimed.
 
-v16 establishes no new generic factorization theorem, Hennessy–Milner
-characterization, statistical minimal sufficiency, general authorization
-theory, temporal validity, general amalgamation, causal attribution,
-attestation correctness, universal six-way independence, universal
-transition-relative semantics, canonical global carrier, target-independent
-least representation, arbitrary-carrier minimality, cross-surface composition,
-runtime conformance, or product readiness.
+Reproducing these receipts establishes the stated mathematics under the
+disclosed definitions and axiom footprints, and nothing beyond it: no runtime
+conformance and no product readiness. The complete non-claim ledger is in
+[`V16-PUBLIC-INDEX.md`](V16-PUBLIC-INDEX.md#explicitly-unearned).
 
 The v15 `ATLAS` classification and its four negative results remain
 authoritative and unchanged. v16 neither replaces the v15 bridge surfaces nor
 promotes a shared cross-calculus semantics.
+
+---
+
+Previous: [`V16-RELEASE-LEDGER.md`](V16-RELEASE-LEDGER.md) — release identity
+and frozen accounting. Reference:
+[`V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md`](V16-PUBLIC-SOURCE-CROSSING-RECEIPT_2026-07-26.md)
+— per-file digest table, frozen at the pre-release state.
