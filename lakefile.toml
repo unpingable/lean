@@ -152,7 +152,10 @@ roots = ["LeanProofs.GovernedTransitionBoundaries"]
 [[lean_lib]]
 name = "GovernedTransitionBoundariesEvidence"
 srcDir = "."
-roots = ["LeanProofs.GovernedTransitionBoundariesEvidence"]
+roots = [
+  "LeanProofs.GovernedTransitionBoundariesEvidence",
+  "LeanProofs.GovernedTransitionBoundariesEvidence.Applications.AIPacing",
+]
 
 [[lean_lib]]
 name = "DynamicTrace"

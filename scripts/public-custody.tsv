@@ -132,6 +132,7 @@ LeanProofs/CustodyIndexed/Zoo.lean	STABLE-SURFACE	custody-indexed
 LeanProofs/GovernedTransitionBoundaries.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransitionBoundaries/Core.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransitionBoundariesEvidence.lean	PUBLIC-EVIDENCE	-
+LeanProofs/GovernedTransitionBoundariesEvidence/Applications/AIPacing.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransitionBoundariesEvidence/ContextBoundary.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransitionBoundariesEvidence/FiniteRepresentation.lean	PUBLIC-EVIDENCE	-
 LeanProofs/GovernedTransitionBoundariesEvidence/GroundingBoundary.lean	PUBLIC-EVIDENCE	-

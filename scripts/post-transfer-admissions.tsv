@@ -19,6 +19,7 @@ release	path	note
 v16	LeanProofs/GovernedTransitionBoundaries.lean	governed transition boundaries core root
 v16	LeanProofs/GovernedTransitionBoundaries/Core.lean	generic explicit-factorization core
 v16	LeanProofs/GovernedTransitionBoundariesEvidence.lean	bounded evidence root
+v16	LeanProofs/GovernedTransitionBoundariesEvidence/Applications/AIPacing.lean	AI-pacing application refusal witness
 v16	LeanProofs/GovernedTransitionBoundariesEvidence/ContextBoundary.lean	selected-context validation witness
 v16	LeanProofs/GovernedTransitionBoundariesEvidence/FiniteRepresentation.lean	declared finite coordinate determinacy
 v16	LeanProofs/GovernedTransitionBoundariesEvidence/GroundingBoundary.lean	hidden-relation nonidentifiability witness

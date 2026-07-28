@@ -27,7 +27,13 @@ For the release statement and scope, start with the
 | `…Evidence.GroundingBoundary` | `MODELED-HIDDEN-RELATION-NONIDENTIFIABILITY-WITNESS` | Two worlds agreeing at the admitted acquisition interface. |
 | `…Evidence.Qualification` | `SIGNATURE-AND-AXIOM-FOOTPRINT-GATE` | In-tree `#check`/`#print axioms` replay of all 29 receipts. |
 
-Both roots build under the default target and are Mathlib-free.
+Both public targets build by default and are Mathlib-free.
+
+A separately scoped public-evidence application tests bounded external model
+evaluation against a later deployment-certification claim; see the
+[AI-pacing case note](../LeanProofs/GovernedTransitionBoundariesEvidence/Applications/AI-PACING-CASE.md).
+It is not a new generic theorem or part of the frozen 29-receipt v16
+qualification surface.
 
 ## Exact scope
 
