@@ -1,0 +1,176 @@
+{
+  "audit_scope": {
+    "audited_commit": "ac403614fa49ba257955d359863d9cba0fc21b2f",
+    "audited_commit_tag": "v16.0.0",
+    "note": "All replayed build surfaces (toolchains A, B, C) were built at the audited commit. These qualification documents were written after the audit and cherry-picked onto main separately; no commit after ac40361 is included in, or implied to be covered by, the replayed build surface."
+  },
+  "manifest": "lean-kernel-incident-qualification/2026-07-30",
+  "incident": {
+    "issue": "https://github.com/leanprover/lean4/issues/14576",
+    "fix_pr": "https://github.com/leanprover/lean4/pull/14577",
+    "fix_merge_commit": "a39eab69e1eee9ad38f4efe507907b1026a77808",
+    "fix_merged_at": "2026-07-28T13:39:08Z",
+    "first_patched_stable": "v4.32.2",
+    "v4.32.2_cherry_pick": "8be817b3f631",
+    "patched_file": "src/kernel/inductive.cpp (+14/-3)"
+  },
+  "repository": {
+    "url": "https://github.com/unpingable/lean",
+    "head": "ac403614fa49ba257955d359863d9cba0fc21b2f",
+    "tag": "v16.0.0",
+    "pinned_toolchain": "leanprover/lean4:v4.29.0",
+    "mathlib_rev": "6ef8cc2731780be866bf243afcb7732f4da5f406"
+  },
+  "toolchains": {
+    "A_stock": {
+      "id": "leanprover/lean4:v4.29.0",
+      "version": "Lean 4.29.0, x86_64-unknown-linux-gnu, commit 98dc76e3c0a9b856c9b98726b713fb04fab16740, Release",
+      "source": "elan binary release"
+    },
+    "B_isolated_fix": {
+      "id": "v4.29.0-kfix (elan toolchain link)",
+      "version": "Lean 4.29.0, commit 98dc76e3c0a9b856c9b98726b713fb04fab16740, Release",
+      "source": "local from-source build of tag v4.29.0 + src/kernel/inductive.cpp hunk of a39eab69 applied cleanly (git apply exit 0; no hand-porting)",
+      "build_commands": [
+        "git clone --depth 1 --branch v4.29.0 https://github.com/leanprover/lean4 lean4-4.29.0-src",
+        "cd lean4-4.29.0-src && git apply kernel-14577-v4.29.0.patch   # logical artifact: audit-logs/kernel-14577-v4.29.0.patch in the evidence bundle (= src/kernel/inductive.cpp hunk of a39eab69, applies cleanly)",
+        "# host-specific accommodation (prerequisite: a working cmake; purpose: configure/build). The audit host's `cmake` entry point was a broken shim, so a working cmake 3.28.3 binary was invoked explicitly.",
+        "# host-specific accommodation (prerequisite: GMP development files, a standard Lean build prerequisite; purpose: link libleanshared against the shared GMP runtime). Absent system-wide on the audit host, they were supplied via cmake's include/library search paths.",
+        "cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release",
+        "cmake --build build/release -- -j6",
+        "cd build/release/stage1 && gmake -j6   # finish any remaining targets",
+        "elan toolchain link v4.29.0-kfix $PWD/build/release/stage1"
+      ],
+      "build_tools": {
+        "cmake": "3.28.3 (invoked explicitly; see host-specific accommodation above)",
+        "gcc": "13.3.0 (Ubuntu 13.3.0-6ubuntu0~24.04)",
+        "gmp": "GMP development files (Ubuntu libgmp-dev 2:6.3.0+dfsg-2ubuntu6.1), shared runtime; supplied via cmake search paths on the audit host"
+      }
+    },
+    "C_patched_stable": {
+      "id": "leanprover/lean4:v4.32.2",
+      "version": "Lean 4.32.2, x86_64-unknown-linux-gnu, commit f3b06c705e6c85f5314019d5d3baab0fec5b580c, Release",
+      "source": "elan binary release"
+    }
+  },
+  "probe": {
+    "file": "audit-logs/probe_min.lean",
+    "origin": "upstream regression test tests/elab/issue_14576_min.lean @ v4.32.2, #guard_msgs wrapper stripped (declaration-level probe only, not the False exploit)",
+    "commands": {
+      "A": "elan run leanprover/lean4:v4.29.0 lean probe_min.lean   # accepted: logs 'E accepted'",
+      "B": "elan run v4.29.0-kfix lean probe_min.lean              # rejected: (kernel) invalid projection w.1",
+      "C": "elan run leanprover/lean4:v4.32.2 lean probe_min.lean  # rejected: (kernel) invalid projection w.1"
+    },
+    "logs": [
+      "audit-logs/probe-A-v4.29.0.log",
+      "audit-logs/probe-B-v4.29.0-kfix.log",
+      "audit-logs/probe-C-v4.32.2.log"
+    ]
+  },
+  "replay_commands": {
+    "A": [
+      "git clone https://github.com/unpingable/lean audit-pinned && cd audit-pinned",
+      "lake exe cache get && lake build",
+      "lake build LeanProofs V15Integration V15IntegrationQualification AdmissibilityEvidenceMathlib ViewSemanticsEvidenceMathlib",
+      "bash scripts/<battery: 9 footprint gates + 5 audit scripts>; python3 scripts/check-v15-{continuity-rename,integration,release-qualification}.py",
+      "(cd downstream/wdc-v2-consumer && lake build)"
+    ],
+    "B": [
+      "git clone https://github.com/unpingable/lean audit-kfix && cd audit-kfix && echo v4.29.0-kfix > lean-toolchain",
+      "same battery as A; cache get refuses (toolchain-name check) => full from-source build of all 7892 mathlib modules + deps, zero rejections"
+    ],
+    "C": [
+      "git clone https://github.com/unpingable/lean audit-patched && cd audit-patched && echo leanprover/lean4:v4.32.2 > lean-toolchain",
+      "same battery as A (no cache get: mathlib cache is toolchain-specific)"
+    ]
+  },
+  "results": {
+    "A": "all targets PASS (236 default jobs; 8527 nondefault); all 16 gates PASS; census 2606 declarations / 953 theorems",
+    "B": "all targets PASS (236 default jobs; 8533 nondefault); all 16 gates PASS; census byte-identical; 0 kernel rejections",
+    "C": "default 235/236 (1 simp drift: BreakGlass/Native.lean:814,828); Continuity Hostile.lean:59 simp drift; mathlib islands blocked by pinned dependency drift (Batteries/Qq); 7/9 build-gates PASS with identical receipts; 0 kernel rejections"
+  },
+  "sha256": {
+    "audit-logs/A-battery.log": "1a879c65c84470c25bb943f71569bb17cfc3f2bce6d800128c98a46d8d6ec1bc",
+    "audit-logs/A-default-build.log": "cb2307a3fe322901a9bfd0c64fb5f7fbb87f843fe115ebd9ea4ea88cb0822469",
+    "audit-logs/A-nondefault-build.log": "f058289aab8650870bf0af4fde2d7f8048d381770069a0971c474c6e057ce164",
+    "audit-logs/base_audit-axioms.sh.log": "97cd84dfed792d39da2f42aea7f1abb11d8d4aef3a0db5650614bedd9aa3b2b1",
+    "audit-logs/base_audit-native-decide.sh.log": "8baea1895cbede80c30558f488f0fdc259430c28eba8fc2ee8199c494dc00a7e",
+    "audit-logs/base_check-custody-classes.sh.log": "7d8407451c72dd46f9d5310f3fd2f2870499a332403a4c81c891ff80f0607332",
+    "audit-logs/base_check-mathlib-free-targets.sh.log": "53ac0f28358c06f444544d1605f51582ca593214dd5258f2b6f5322c3f8d7d97",
+    "audit-logs/base_check-mathlib-pin.sh.log": "9a8c0ecf32ab4f70b2024a40f0cf5f780a9a8e362bb5df978ea6f3ea53730d50",
+    "audit-logs/base_fp_check-calculus-footprint.sh.log": "91bf7083f7c3e201c273beea3fb85e60f09a609da7c95cba86290c8f317cbd1b",
+    "audit-logs/base_fp_check-governed-transition-boundaries-crossing.sh.log": "0c266c9f205976fa43b291c72c6bf083f328b248a9c171ea58b2f8f54a3638ef",
+    "audit-logs/base_fp_check-governed-transition-boundaries-footprint.sh.log": "f6d23b92de0b999ecfb4224a007b4bfe1c6bfe6c5f1664f19b623b791266169c",
+    "audit-logs/base_fp_check-judgment-orientation-footprint.sh.log": "7499df0bb5af564030185a035b46162d9a566a46f0311d4b4b661134be9d4814",
+    "audit-logs/base_fp_check-paid-recomposition-footprint.sh.log": "92a9dd52f70cdf52d37941891234f29a0be86061ec5f1904043e2c2bd6ec55cf",
+    "audit-logs/base_fp_check-pathverdict-footprint.sh.log": "63476a7bc3cd20406186f15da083ffd8b56316ad45b07415f54e582510d96ec8",
+    "audit-logs/base_fp_check-viewsemantics-footprint.sh.log": "02b0e061086c4d35f95e311447d06462699dffd24059371a8c714dac32ef7e69",
+    "audit-logs/base_fp_check-viewsemantics-isolation.sh.log": "3df539893aa984fe187fabc3caec1df3a34ad5f7f20722914a8c9995146f38df",
+    "audit-logs/base_fp_check-witnessed-footprint.sh.log": "f1177d368e40033479f16698209afe09f4485c913037b6c4b53070844e8d2a41",
+    "audit-logs/base_integ.log": "6a38bc7d8068233484c2ee6feaf7cf11e3904e3a863dfc134770c7ebe59a88d5",
+    "audit-logs/base_rename.log": "2ec1770e8fb1d6478bac9a0ae2f1bbd1d7a90c89ec630c9e20d10e5880202c5e",
+    "audit-logs/base_rq.log": "a328efb44802f40747c83a6d4853f55aa9e21bdb1ced8e05a4b1997412abd2a3",
+    "audit-logs/B-battery.log": "70da58b3ef55bb86892cde16a23d42cce533f80d342feb1baaa8b6000b36737f",
+    "audit-logs/C-battery.log": "a1f6781f87fbdc0ef67cd5c6426fe4477dce727bb3e744cecd68b4236fe08fac",
+    "audit-logs/C-default-build.log": "e384a8699611d756370dd1de04c87afba70b61ea8c398e561e058ea0ed60930d",
+    "audit-logs/C-nondefault-build.log": "409b2a7533113589e96caddca6893f31ff704dbfc398ab5eb6f80902b751fc39",
+    "audit-logs/kernel-14577-v4.29.0.patch": "9dd5aed9e49d272af987b8a225da018cc1b88bdec6bc239f625c9d7b972fe457",
+    "audit-logs/kfix_audit-axioms.sh.log": "97cd84dfed792d39da2f42aea7f1abb11d8d4aef3a0db5650614bedd9aa3b2b1",
+    "audit-logs/kfix_audit-native-decide.sh.log": "8baea1895cbede80c30558f488f0fdc259430c28eba8fc2ee8199c494dc00a7e",
+    "audit-logs/kfix_check-calculus-footprint.sh.log": "91bf7083f7c3e201c273beea3fb85e60f09a609da7c95cba86290c8f317cbd1b",
+    "audit-logs/kfix_check-custody-classes.sh.log": "7d8407451c72dd46f9d5310f3fd2f2870499a332403a4c81c891ff80f0607332",
+    "audit-logs/kfix_check-governed-transition-boundaries-crossing.sh.log": "0c266c9f205976fa43b291c72c6bf083f328b248a9c171ea58b2f8f54a3638ef",
+    "audit-logs/kfix_check-governed-transition-boundaries-footprint.sh.log": "f6d23b92de0b999ecfb4224a007b4bfe1c6bfe6c5f1664f19b623b791266169c",
+    "audit-logs/kfix_check-judgment-orientation-footprint.sh.log": "7499df0bb5af564030185a035b46162d9a566a46f0311d4b4b661134be9d4814",
+    "audit-logs/kfix_check-mathlib-free-targets.sh.log": "53ac0f28358c06f444544d1605f51582ca593214dd5258f2b6f5322c3f8d7d97",
+    "audit-logs/kfix_check-mathlib-pin.sh.log": "9a8c0ecf32ab4f70b2024a40f0cf5f780a9a8e362bb5df978ea6f3ea53730d50",
+    "audit-logs/kfix_check-paid-recomposition-footprint.sh.log": "92a9dd52f70cdf52d37941891234f29a0be86061ec5f1904043e2c2bd6ec55cf",
+    "audit-logs/kfix_check-pathverdict-footprint.sh.log": "63476a7bc3cd20406186f15da083ffd8b56316ad45b07415f54e582510d96ec8",
+    "audit-logs/kfix_check-viewsemantics-footprint.sh.log": "02b0e061086c4d35f95e311447d06462699dffd24059371a8c714dac32ef7e69",
+    "audit-logs/kfix_check-viewsemantics-isolation.sh.log": "3df539893aa984fe187fabc3caec1df3a34ad5f7f20722914a8c9995146f38df",
+    "audit-logs/kfix_check-witnessed-footprint.sh.log": "f1177d368e40033479f16698209afe09f4485c913037b6c4b53070844e8d2a41",
+    "audit-logs/kfix_default.log": "6db1ef09bb80585df2c6b3c0002b7165ec62facb8ce279d9cd7119b5b8ca15f2",
+    "audit-logs/kfix_downstream.log": "ee06891ea45d8c912ba7cfd623ff60c02d965d720d59b493a0b3e7ae081eb1f4",
+    "audit-logs/kfix_integ.log": "6a38bc7d8068233484c2ee6feaf7cf11e3904e3a863dfc134770c7ebe59a88d5",
+    "audit-logs/kfix_nondefault.log": "5b174da0db757090f3e19e83ff6a4d3d8a982af06bbb60503d952458472c9056",
+    "audit-logs/kfix_rename.log": "2ec1770e8fb1d6478bac9a0ae2f1bbd1d7a90c89ec630c9e20d10e5880202c5e",
+    "audit-logs/kfix_rq.log": "a328efb44802f40747c83a6d4853f55aa9e21bdb1ced8e05a4b1997412abd2a3",
+    "audit-logs/patch_audit-axioms.sh.log": "97cd84dfed792d39da2f42aea7f1abb11d8d4aef3a0db5650614bedd9aa3b2b1",
+    "audit-logs/patch_audit-native-decide.sh.log": "8baea1895cbede80c30558f488f0fdc259430c28eba8fc2ee8199c494dc00a7e",
+    "audit-logs/patch_check-custody-classes.sh.log": "7d8407451c72dd46f9d5310f3fd2f2870499a332403a4c81c891ff80f0607332",
+    "audit-logs/patch_check-mathlib-free-targets.sh.log": "53ac0f28358c06f444544d1605f51582ca593214dd5258f2b6f5322c3f8d7d97",
+    "audit-logs/patch_check-mathlib-pin.sh.log": "9a8c0ecf32ab4f70b2024a40f0cf5f780a9a8e362bb5df978ea6f3ea53730d50",
+    "audit-logs/patch_fp_check-calculus-footprint.sh.log": "5b9cfb112e805897c895402e2318b0abaae37bc6056553cc5dfe15e96c9387f5",
+    "audit-logs/patch_fp_check-governed-transition-boundaries-crossing.sh.log": "0c266c9f205976fa43b291c72c6bf083f328b248a9c171ea58b2f8f54a3638ef",
+    "audit-logs/patch_fp_check-governed-transition-boundaries-footprint.sh.log": "f6d23b92de0b999ecfb4224a007b4bfe1c6bfe6c5f1664f19b623b791266169c",
+    "audit-logs/patch_fp_check-judgment-orientation-footprint.sh.log": "7499df0bb5af564030185a035b46162d9a566a46f0311d4b4b661134be9d4814",
+    "audit-logs/patch_fp_check-paid-recomposition-footprint.sh.log": "92a9dd52f70cdf52d37941891234f29a0be86061ec5f1904043e2c2bd6ec55cf",
+    "audit-logs/patch_fp_check-pathverdict-footprint.sh.log": "63476a7bc3cd20406186f15da083ffd8b56316ad45b07415f54e582510d96ec8",
+    "audit-logs/patch_fp_check-viewsemantics-footprint.sh.log": "ffd43413e13f262384f0087459e55ed1f3e6d39241fce583b330be989bd7d0e0",
+    "audit-logs/patch_fp_check-viewsemantics-isolation.sh.log": "3df539893aa984fe187fabc3caec1df3a34ad5f7f20722914a8c9995146f38df",
+    "audit-logs/patch_fp_check-witnessed-footprint.sh.log": "f1177d368e40033479f16698209afe09f4485c913037b6c4b53070844e8d2a41",
+    "audit-logs/patch_integ.log": "eeb2062043932f438d4a1ada0e3a6517d49acbef21e1ef63802564da9f946ba8",
+    "audit-logs/patch_rename.log": "7998a6d143249ddfe333134404d24d3e1d09a82a3a44099e59cc30704b9c3b05",
+    "audit-logs/patch_rq.log": "dd99ba7f729acc4d8e0afff08104b0b902fcc9a07fd074d916ff5094bd6e7540",
+    "audit-logs/probe-A-v4.29.0.log": "b4187ce8e137f5037bd9733337bde3361c762888deb4f8ace6654122f966930d",
+    "audit-logs/probe-B-v4.29.0-kfix.log": "d7dd5cf0c02763639c205897322206744887f2d9b5b433df7dc9d944dc22b694",
+    "audit-logs/probe-C-v4.32.2.log": "4836bb1dcfcb209f9e3492f1fbd6e050bf26fb5de0e6bec84a8a8a8745bdb12d",
+    "audit-logs/probe_min.lean": "2278cd4e9effc9a6938fd78198af064d463f2a93500b3e5c1e9dc2bf9d18a8c1",
+    "report: docs/LEAN-KERNEL-INCIDENT-QUALIFICATION-2026-07-30.md": "12da85b13c9b7046a748063ae2349d3acdcd9f7a8890ce3f0f4f4a55e6644ede"
+  },
+  "evidence_bundle": {
+    "filename": "LEAN-KERNEL-INCIDENT-QUALIFICATION-2026-07-30-EVIDENCE.tar.zst",
+    "sha256": "d72cf1af5d237f587b7a3b37bec585767bc2df1265b89a11125b2ea139c74303",
+    "in_git": false,
+    "verification_performed": [
+      "archive listing succeeded (69 entries)",
+      "full decompression to a scratch directory succeeded",
+      "recursive comparison (diff -r) with the source evidence succeeded"
+    ],
+    "superset_note": "The evidence archive is a verified strict superset of this manifest's 67 hashed artifacts (sha256 section). The two additional files are:",
+    "additional_files": [
+      "audit-logs/upstream-14577-full.patch  (complete upstream #14577 patch incl. regression tests)",
+      "audit-logs/sanity.lean  (ordinary-elaboration sanity check run on toolchain B)"
+    ]
+  }
+}
