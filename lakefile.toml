@@ -29,6 +29,7 @@ defaultTargets = [
   "ReachableDrift",
   "JudgmentOrientation",
   "JudgmentOrientationEvidence",
+  "NightshiftGovernedAuthorizationQualification",
 ]
 
 [leanOptions]
@@ -310,3 +311,23 @@ roots = ["LeanProofs.JudgmentOrientation"]
 name = "JudgmentOrientationEvidence"
 srcDir = "."
 roots = ["LeanProofs.JudgmentOrientation.Examples"]
+
+# Audited Nightshift → AG governed-authorization qualification. This is a
+# public-evidence target, not a stable compatibility surface.
+[[lean_lib]]
+name = "NightshiftGovernedAuthorizationQualification"
+srcDir = "formalization/Nightshift"
+roots = [
+  "TransitionKernel.Basic",
+  "ObservationAdequacy.Basic",
+  "ObservationAdequacy.Observation",
+  "ObservationAdequacy.Depth",
+  "ObservationAdequacy.Refinement",
+  "ObservationAdequacy.Consumer",
+  "ObservationAdequacy.Deterministic",
+  "ObservationAdequacy.Search",
+  "NightshiftGovernedAuthorization",
+  "NightshiftGovernedAuthorizationProvenance",
+  "NightshiftDecisionBasisAdequacy",
+  "NightshiftObservationCurrentness",
+]

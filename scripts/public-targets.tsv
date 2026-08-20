@@ -20,6 +20,7 @@
 .	JudgmentOrientation	stable-surface	mathlib-free	default
 .	JudgmentOrientationEvidence	public-evidence	mathlib-free	default
 .	LeanProofs	repository-aggregate	mathlib-reaching	explicit
+.	NightshiftGovernedAuthorizationQualification	public-evidence	mathlib-free	default
 .	PaidRecompositionEvidence	public-evidence	mathlib-free	default
 .	PathVerdict	stable-surface	mathlib-free	default
 .	PathVerdictEvidence	public-evidence	mathlib-free	default
