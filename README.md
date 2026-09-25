@@ -972,6 +972,11 @@ The point is not to prove an entire software system correct. It is to make inval
 
 ## Map
 
+- **Design constraints** *(public evidence, Mathlib-free)* — small, general
+  results used to constrain design claims: quantized observation versus
+  latent equality, perturbation magnitude versus argmax decisions,
+  choice/weight coherence, spend limits versus obligation reserve, and
+  provenance versus authority. See [`constraints/README.md`](constraints/README.md).
 - **Governed Transition Boundaries** *(v16 public evidence)* — a generic
   explicit-factorization core (four axiom-free receipts), one declared-finite
   coordinate-determinacy calculation, and five separately scoped witnesses.
