@@ -11,6 +11,7 @@ import DecisionSemantics.Quantization
 import DecisionSemantics.Perturbation
 import DecisionSemantics.InterfaceCoherence
 import Resources.ObligationViability
+import Authority.ProvenanceIsNotAuthority
 
 -- DecisionSemantics.Quantization
 #print axioms DecisionSemantics.observation_of_latent_equality
@@ -69,3 +70,18 @@ import Resources.ObligationViability
 #print axioms Resources.budget_compliance_does_not_imply_viability
 #print axioms Resources.preserves_required_reserve_implies_viable
 #print axioms Resources.compliant_execution_viable_of_reserve
+
+-- Authority.ProvenanceIsNotAuthority
+#print axioms Authority.produced_is_provenance_intact
+#print axioms Authority.hashed_is_provenance_intact
+#print axioms Authority.admitted_has_authority
+#print axioms Authority.descent_is_transitive
+#print axioms Authority.descent_is_provenance_intact
+#print axioms Authority.authority_requires_admission
+#print axioms Authority.authority_iff_admitted
+#print axioms Authority.provenance_does_not_grant_authority
+#print axioms Authority.produced_without_admission_bears_no_authority
+#print axioms Authority.hashed_without_admission_bears_no_authority
+#print axioms Authority.authority_is_not_heritable
+#print axioms Authority.authority_does_not_flow_upstream
+#print axioms Authority.admission_does_not_leak

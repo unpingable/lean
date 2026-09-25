@@ -345,5 +345,6 @@ roots = [
   "DecisionSemantics.Perturbation",
   "DecisionSemantics.InterfaceCoherence",
   "Resources.ObligationViability",
+  "Authority.ProvenanceIsNotAuthority",
   "DesignConstraintsQualification",
 ]
