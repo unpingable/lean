@@ -235,6 +235,7 @@ constraints/DecisionSemantics/InterfaceCoherence.lean	PUBLIC-EVIDENCE	-
 constraints/DecisionSemantics/Perturbation.lean	PUBLIC-EVIDENCE	-
 constraints/DecisionSemantics/Quantization.lean	PUBLIC-EVIDENCE	-
 constraints/DesignConstraintsQualification.lean	PUBLIC-EVIDENCE	-
+constraints/Resources/ObligationViability.lean	PUBLIC-EVIDENCE	-
 formalization/Continuity/Admission.lean	PUBLIC-EVIDENCE	-
 formalization/Continuity/Admission/Qualification.lean	PUBLIC-EVIDENCE	-
 formalization/Continuity/Admission/Qualification/Campaign.lean	PUBLIC-EVIDENCE	-

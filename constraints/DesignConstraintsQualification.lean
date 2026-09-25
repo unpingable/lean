@@ -10,6 +10,7 @@
 import DecisionSemantics.Quantization
 import DecisionSemantics.Perturbation
 import DecisionSemantics.InterfaceCoherence
+import Resources.ObligationViability
 
 -- DecisionSemantics.Quantization
 #print axioms DecisionSemantics.observation_of_latent_equality
@@ -63,3 +64,8 @@ import DecisionSemantics.InterfaceCoherence
 #print axioms DecisionSemantics.tieFreeResponse_maximizerCoherent
 #print axioms DecisionSemantics.tieFreeResponse_disagree_constantOneRule
 #print axioms DecisionSemantics.argmaxRule_necessary_for_noTopTie_agreement
+
+-- Resources.ObligationViability
+#print axioms Resources.budget_compliance_does_not_imply_viability
+#print axioms Resources.preserves_required_reserve_implies_viable
+#print axioms Resources.compliant_execution_viable_of_reserve
