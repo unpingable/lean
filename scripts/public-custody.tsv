@@ -231,6 +231,10 @@ LeanProofs/Witnessed/ResourceCheckerExec.lean	STABLE-SURFACE	witnessed
 LeanProofs/Witnessed/ResourceSequent.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed,witnessed
 LeanProofs/Witnessed/Sequent.lean	STABLE-SURFACE	admissibility-calculus,custody-indexed,witnessed
 downstream/wdc-v2-consumer/DownstreamWdcV2.lean	PUBLIC-EVIDENCE	-
+constraints/DecisionSemantics/InterfaceCoherence.lean	PUBLIC-EVIDENCE	-
+constraints/DecisionSemantics/Perturbation.lean	PUBLIC-EVIDENCE	-
+constraints/DecisionSemantics/Quantization.lean	PUBLIC-EVIDENCE	-
+constraints/DesignConstraintsQualification.lean	PUBLIC-EVIDENCE	-
 formalization/Continuity/Admission.lean	PUBLIC-EVIDENCE	-
 formalization/Continuity/Admission/Qualification.lean	PUBLIC-EVIDENCE	-
 formalization/Continuity/Admission/Qualification/Campaign.lean	PUBLIC-EVIDENCE	-

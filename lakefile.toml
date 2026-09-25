@@ -30,6 +30,7 @@ defaultTargets = [
   "JudgmentOrientation",
   "JudgmentOrientationEvidence",
   "NightshiftGovernedAuthorizationQualification",
+  "DesignConstraints",
 ]
 
 [leanOptions]
@@ -330,4 +331,18 @@ roots = [
   "NightshiftGovernedAuthorizationProvenance",
   "NightshiftDecisionBasisAdequacy",
   "NightshiftObservationCurrentness",
+]
+
+# Design constraints: small, general, Mathlib-free results used to constrain
+# public design claims (decision semantics, resource viability, provenance
+# versus authority). Public evidence, not a stable compatibility surface;
+# see constraints/README.md.
+[[lean_lib]]
+name = "DesignConstraints"
+srcDir = "constraints"
+roots = [
+  "DecisionSemantics.Quantization",
+  "DecisionSemantics.Perturbation",
+  "DecisionSemantics.InterfaceCoherence",
+  "DesignConstraintsQualification",
 ]

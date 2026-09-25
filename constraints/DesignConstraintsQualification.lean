@@ -1,0 +1,65 @@
+/-
+  Custody-Class: PUBLIC-SHIPPED
+  Surface-Role: PUBLIC-EVIDENCE
+
+  DesignConstraintsQualification — axiom-footprint evidence for the named
+  results under `constraints/`.  Its only content is `#print axioms`
+  directives, consumed by `constraints/check.sh`.  It is imported by nothing.
+-/
+
+import DecisionSemantics.Quantization
+import DecisionSemantics.Perturbation
+import DecisionSemantics.InterfaceCoherence
+
+-- DecisionSemantics.Quantization
+#print axioms DecisionSemantics.observation_of_latent_equality
+#print axioms DecisionSemantics.latent_equality_of_observation
+#print axioms DecisionSemantics.not_faithful_of_collision
+#print axioms DecisionSemantics.no_collision_of_faithful
+#print axioms DecisionSemantics.observed_equality_not_latent_equality
+#print axioms DecisionSemantics.collision_blocks_predicate_transport
+#print axioms DecisionSemantics.exists_collision_of_two_distinct
+#print axioms DecisionSemantics.faithful_of_decoder
+#print axioms DecisionSemantics.no_decoder_of_collision
+#print axioms DecisionSemantics.truncatingQuantizer_one_faithful
+#print axioms DecisionSemantics.truncatingQuantizer_collision
+#print axioms DecisionSemantics.truncatingQuantizer_not_faithful
+#print axioms DecisionSemantics.decimalQuantizer_collision
+
+-- DecisionSemantics.Perturbation
+#print axioms DecisionSemantics.tvEq_iff_l1_eq
+#print axioms DecisionSemantics.argmax_eq_of_uniqueMaximizer
+#print axioms DecisionSemantics.l1_base_reinforcing
+#print axioms DecisionSemantics.l1_base_reversing
+#print axioms DecisionSemantics.equal_perturbation_magnitude
+#print axioms DecisionSemantics.uniqueMaximizer_base
+#print axioms DecisionSemantics.uniqueMaximizer_reinforcing
+#print axioms DecisionSemantics.uniqueMaximizer_reversing
+#print axioms DecisionSemantics.equal_magnitude_opposite_decisions
+#print axioms DecisionSemantics.equal_magnitude_preserves_and_reverses
+#print axioms DecisionSemantics.exists_equal_magnitude_opposite_decisions
+#print axioms DecisionSemantics.no_magnitudeOnly_attribution
+
+-- DecisionSemantics.InterfaceCoherence
+#print axioms DecisionSemantics.agree_iff_ruleCoherent
+#print axioms DecisionSemantics.agree_of_ruleCoherent
+#print axioms DecisionSemantics.canonicalResponse_ruleCoherent
+#print axioms DecisionSemantics.maximizerCoherent_of_ruleCoherent
+#print axioms DecisionSemantics.maximizerCoherent_permits_disagreement
+#print axioms DecisionSemantics.agree_of_maximizerCoherent_of_noTopTie
+#print axioms DecisionSemantics.eq_of_isMaximizer_of_uniqueMaximizer
+#print axioms DecisionSemantics.noTopTie_of_uniqueMaximizer
+#print axioms DecisionSemantics.fin2_eq_zero_or_one
+#print axioms DecisionSemantics.leastIndexArgmax_isArgmax
+#print axioms DecisionSemantics.greatestIndexArgmax_isArgmax
+#print axioms DecisionSemantics.tiedResponse_maximizerCoherent
+#print axioms DecisionSemantics.tiedResponse_not_ruleCoherent
+#print axioms DecisionSemantics.tiedResponse_disagree
+#print axioms DecisionSemantics.maximizerCoherent_insufficient_for_agreement
+#print axioms DecisionSemantics.every_rule_admits_disagreement_on_tie
+#print axioms DecisionSemantics.coherence_is_rule_relative
+#print axioms DecisionSemantics.constantOneRule_not_argmax
+#print axioms DecisionSemantics.noTopTie_base
+#print axioms DecisionSemantics.tieFreeResponse_maximizerCoherent
+#print axioms DecisionSemantics.tieFreeResponse_disagree_constantOneRule
+#print axioms DecisionSemantics.argmaxRule_necessary_for_noTopTie_agreement

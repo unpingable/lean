@@ -12,6 +12,7 @@
 .	BoundedCalculi	public-evidence	mathlib-free	default
 .	CustodyIndexed	stable-surface	mathlib-free	default
 .	CustodyIndexedEvidence	public-evidence	mathlib-free	default
+.	DesignConstraints	public-evidence	mathlib-free	default
 .	DynamicTrace	stable-surface	mathlib-free	default
 .	GovernedTransitionBoundaries	public-evidence	mathlib-free	default
 .	GovernedTransitionBoundariesEvidence	public-evidence	mathlib-free	default
